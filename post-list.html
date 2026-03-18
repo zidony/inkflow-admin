@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文章列表 — BlogAdmin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- ===================== SIDEBAR ===================== -->
+<nav id="sidebar">
+  <a class="sidebar-logo" href="dashboard.html">
+    <div class="sidebar-logo-icon"><i class="bi bi-journals"></i></div>
+    <div class="sidebar-logo-text">
+      <span class="sidebar-logo-title">BlogAdmin</span>
+      <span class="sidebar-logo-sub">Content CMS</span>
+    </div>
+  </a>
+
+  <div class="sidebar-nav-wrap">
+    <div class="nav-section-label">主菜单</div>
+    <div class="nav-item-wrapper">
+      <a href="dashboard.html" class="nav-link-item" data-tooltip="仪表盘">
+        <i class="bi bi-grid-1x2 nav-icon"></i>
+        <span class="nav-label">仪表盘</span>
+      </a>
+    </div>
+
+    <div class="nav-section-label">内容管理</div>
+    <div class="nav-item-wrapper">
+      <button class="nav-link-item active" data-toggle="submenu" data-target="sub-content" aria-expanded="true" data-tooltip="内容管理">
+        <i class="bi bi-file-richtext nav-icon"></i>
+        <span class="nav-label">内容管理</span>
+        <i class="bi bi-chevron-right nav-arrow"></i>
+      </button>
+    </div>
+    <div class="submenu-wrap" id="sub-content">
+      <div class="submenu">
+        <div class="nav-item-wrapper">
+          <a href="post-list.html" class="nav-link-item active">
+            <i class="bi bi-file-text nav-icon"></i>
+            <span class="nav-label">文章列表</span>
+          </a>
+        </div>
+        <div class="nav-item-wrapper">
+          <a href="#" class="nav-link-item">
+            <i class="bi bi-chat-left-dots nav-icon"></i>
+            <span class="nav-label">评论列表</span>
+          </a>
+        </div>
+        <div class="nav-item-wrapper">
+          <a href="#" class="nav-link-item">
+            <i class="bi bi-folder2 nav-icon"></i>
+            <span class="nav-label">栏目列表</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-section-label">媒体</div>
+    <div class="nav-item-wrapper">
+      <button class="nav-link-item" data-toggle="submenu" data-target="sub-media" aria-expanded="false" data-tooltip="媒体管理">
+        <i class="bi bi-collection nav-icon"></i>
+        <span class="nav-label">媒体管理</span>
+        <i class="bi bi-chevron-right nav-arrow"></i>
+      </button>
+    </div>
+    <div class="submenu-wrap" id="sub-media">
+      <div class="submenu">
+        <div class="nav-item-wrapper">
+          <a href="#" class="nav-link-item"><i class="bi bi-images nav-icon"></i><span class="nav-label">相册列表</span></a>
+        </div>
+        <div class="nav-item-wrapper">
+          <a href="#" class="nav-link-item"><i class="bi bi-paperclip nav-icon"></i><span class="nav-label">文件列表</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-section-label">系统</div>
+    <div class="nav-item-wrapper">
+      <a href="#" class="nav-link-item" data-tooltip="用户管理"><i class="bi bi-people nav-icon"></i><span class="nav-label">用户管理</span></a>
+    </div>
+    <div class="nav-item-wrapper">
+      <a href="#" class="nav-link-item" data-tooltip="系统设置"><i class="bi bi-sliders nav-icon"></i><span class="nav-label">系统设置</span></a>
+    </div>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-user">
+      <div class="sidebar-user-avatar">AD</div>
+      <div class="sidebar-user-info">
+        <div class="sidebar-user-name">Admin</div>
+        <div class="sidebar-user-role">超级管理员</div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div id="sidebar-overlay"></div>
+
+<!-- ===================== MAIN WRAPPER ===================== -->
+<div id="main-wrapper">
+
+  <!-- TOPBAR -->
+  <header id="topbar">
+    <button id="sidebar-toggle" title="收起/展开菜单">
+      <i class="bi bi-layout-sidebar-inset"></i>
+    </button>
+    <div class="topbar-breadcrumb">
+      <a href="dashboard.html" style="color:var(--gray-500);text-decoration:none">BlogAdmin</a>
+      <span class="bc-sep"><i class="bi bi-chevron-right" style="font-size:.65rem"></i></span>
+      <span>内容管理</span>
+      <span class="bc-sep"><i class="bi bi-chevron-right" style="font-size:.65rem"></i></span>
+      <span class="bc-current">文章列表</span>
+    </div>
+    <div class="topbar-search">
+      <i class="bi bi-search search-icon"></i>
+      <input type="text" id="list-search" placeholder="搜索文章标题、作者…">
+    </div>
+    <div class="topbar-actions">
+      <button class="topbar-icon-btn" style="position:relative">
+        <i class="bi bi-bell"></i>
+        <span class="notif-badge">4</span>
+      </button>
+      <a href="post-edit.html" class="btn btn-primary btn-sm ms-1" style="height:34px;padding:0 14px;font-size:.8rem">
+        <i class="bi bi-plus-lg"></i> 新建文章
+      </a>
+      <div class="dropdown topbar-dropdown ms-1">
+        <button class="topbar-user-btn dropdown-toggle" data-bs-toggle="dropdown" style="border:none">
+          <div class="topbar-avatar">AD</div>
+          <span class="topbar-user-name d-none d-md-inline">Admin</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <div class="user-info-header">
+              <div class="user-info-avatar">AD</div>
+              <div>
+                <div class="user-info-name">Admin User</div>
+                <div class="user-info-email">admin@blogsite.com</div>
+              </div>
+            </div>
+          </li>
+          <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> 个人资料</a></li>
+          <li><a class="dropdown-item" href="#"><i class="bi bi-shield-check"></i> 账号安全</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#" style="color:#ef4444"><i class="bi bi-box-arrow-right"></i> 退出登录</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <main id="page-content">
+
+    <!-- Page header -->
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">文章列表</h1>
+        <p class="page-subtitle">共 1,284 篇文章 · 978 已发布 · 180 草稿 · 127 待审核</p>
+      </div>
+      <a href="post-edit.html" class="btn btn-primary">
+        <i class="bi bi-plus-lg"></i> 写新文章
+      </a>
+    </div>
+
+    <!-- Filter tabs + toolbar card -->
+    <div class="card mb-3 anim-fade-up">
+      <div class="card-body" style="padding:14px 18px">
+        <div class="d-flex align-items-center gap-3 flex-wrap">
+          <!-- Status filter tabs -->
+          <div class="d-flex gap-1" style="border:1px solid var(--gray-200);border-radius:8px;padding:3px;background:var(--gray-50)">
+            <button class="btn btn-sm active" id="filter-all" onclick="filterStatus('all')" style="border-radius:6px;font-size:.75rem;height:28px;padding:0 12px;background:var(--primary-500);color:#fff;border:none">全部 <span style="opacity:.8">(1284)</span></button>
+            <button class="btn btn-light btn-sm" id="filter-published" onclick="filterStatus('published')" style="border-radius:6px;font-size:.75rem;height:28px;padding:0 12px;border:none">已发布 <span style="opacity:.7">(978)</span></button>
+            <button class="btn btn-light btn-sm" id="filter-draft" onclick="filterStatus('draft')" style="border-radius:6px;font-size:.75rem;height:28px;padding:0 12px;border:none">草稿 <span style="opacity:.7">(180)</span></button>
+            <button class="btn btn-light btn-sm" id="filter-pending" onclick="filterStatus('pending')" style="border-radius:6px;font-size:.75rem;height:28px;padding:0 12px;border:none">待审核 <span style="opacity:.7">(127)</span></button>
+          </div>
+
+          <div class="d-flex align-items-center gap-2 ms-auto flex-wrap">
+            <!-- Category filter -->
+            <select class="form-select form-select-sm py-1" style="width:120px;height:32px;font-size:.78rem">
+              <option value="">全部分类</option>
+              <option>前端技术</option>
+              <option>AI 技术</option>
+              <option>运维部署</option>
+              <option>设计灵感</option>
+            </select>
+            <!-- Date filter -->
+            <select class="form-select form-select-sm py-0" style="width:110px;height:32px;font-size:.75rem">
+              <option>全部时间</option>
+              <option>今天</option>
+              <option>本周</option>
+              <option>本月</option>
+              <option>今年</option>
+            </select>
+            <!-- Sort -->
+            <select class="form-select form-select-sm" style="width:110px;height:32px;font-size:.78rem">
+              <option>最新发布</option>
+              <option>最多浏览</option>
+              <option>最多评论</option>
+              <option>最早发布</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bulk action bar (hidden by default) -->
+    <div id="bulk-action-bar" style="display:none;align-items:center;gap:10px;background:var(--primary-50);border:1px solid var(--primary-200);border-radius:10px;padding:10px 16px;margin-bottom:12px">
+      <i class="bi bi-check2-all" style="color:var(--primary-500)"></i>
+      <span style="font-size:.82rem;font-weight:600;color:var(--primary-700)">已选 <span id="bulk-count">0</span> 篇文章</span>
+      <div class="ms-auto d-flex gap-2">
+        <button class="btn btn-light btn-sm" style="font-size:.78rem;height:30px" onclick="showToast('批量发布成功','success')"><i class="bi bi-send me-1"></i>批量发布</button>
+        <button class="btn btn-light btn-sm" style="font-size:.78rem;height:30px" onclick="showToast('已移至草稿箱','info')"><i class="bi bi-archive me-1"></i>移至草稿</button>
+        <button class="btn btn-danger-soft btn-sm" style="font-size:.78rem;height:30px" onclick="showToast('已移至回收站','danger')"><i class="bi bi-trash3 me-1"></i>删除</button>
+      </div>
+    </div>
+
+    <!-- Table card -->
+    <div class="card anim-fade-up">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th class="table-check">
+                  <input type="checkbox" id="select-all" class="form-check-input" style="width:15px;height:15px;cursor:pointer">
+                </th>
+                <th style="min-width:300px">文章标题</th>
+                <th>分类</th>
+                <th>作者</th>
+                <th>评论</th>
+                <th>浏览量</th>
+                <th>发布时间</th>
+                <th>状态</th>
+                <th style="width:100px;text-align:center">操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Row 1 -->
+              <tr data-status="published">
+                <td><input type="checkbox" class="row-check form-check-input" style="width:15px;height:15px;cursor:pointer"></td>
+                <td>
+                  <div class="post-cell">
+                    <div class="post-thumb" style="background:var(--primary-100)">
+                      <i class="bi bi-file-code" style="color:var(--primary-400)"></i>
+                    </div>
+                    <div>
+                      <a href="post-edit.html" class="link-plain" style="font-size:.84rem">深入理解 Vue 3 Composition API 与响应式原理</a>
+                      <small>技术教程 · 置顶</small>
+                    </div>
+                  </div>
+                </td>
+                <td><span style="font-size:.75rem;background:var(--primary-50);color:var(--primary-600);padding:2px 8px;border-radius:20px;font-weight:600">前端技术</span></td>
+                <td><span style="font-size:.8rem;color:var(--gray-700)">Admin</span></td>
+                <td><span style="font-size:.8rem;color:var(--gray-600)"><i class="bi bi-chat me-1" style="font-size:.7rem"></i>48</span></td>
+                <td><span style="font-size:.8rem;font-weight:600;color:var(--gray-800)">3,821</span></td>
+                <td><span style="font-size:.75rem;color:var(--gray-500)">2025-06-18</span></td>
+                <td><span class="status-badge status-published"><span class="badge-dot-inline"></span>已发布</span></td>
+                <td>
+                  <div class="d-flex justify-content-center gap-1">
+                    <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
+                    <button class="btn btn-light btn-icon" title="预览"><i class="bi bi-eye"></i></button>
+                    <button class="btn btn-danger-soft btn-icon" title="删除"><i class="bi bi-trash3"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <!-- Row 2 -->
+              <tr data-status="published">
+                <td><input type="checkbox" class="row-check form-check-input" style="width:15px;height:15px;cursor:pointer"></td>
+                <td>
+                  <div class="post-cell">
+                    <div class="post-thumb" style="background:#fef3c7">
+                      <i class="bi bi-palette" style="color:var(--warning-500)"></i>
+                    </div>
+                    <div>
+                      <a href="post-edit.html" class="link-plain" style="font-size:.84rem">2025年产品设计趋势全解析：从扁平到沉浸式体验</a>
+                      <small>设计专题</small>
+                    </div>
+                  </div>
+                </td>
+                <td><span style="font-size:.75rem;background:#fef3c7;color:#b45309;padding:2px 8px;border-radius:20px;font-weight:600">设计灵感</span></td>
+                <td><span style="font-size:.8rem;color:var(--gray-700)">Editor</span></td>
+                <td><span style="font-size:.8rem;color:var(--gray-600)"><i class="bi bi-chat me-1" style="font-size:.7rem"></i>32</span></td>
+                <td><span style="font-size:.8rem;font-weight:600;color:var(--gray-800)">2,156</span></td>
+                <td><span style="font-size:.75rem;color:var(--gray-500)">2025-06-16</span></td>
+                <td><span class="status-badge status-published"><span class="badge-dot-inline"></span>已发布</span></td>
+                <td>
+                  <div class="d-flex justify-content-center gap-1">
+                    <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
+                    <button class="btn btn-light btn-icon" title="预览"><i class="bi bi-eye"></i></button>
+                    <button class="btn btn-danger-soft btn-icon" title="删除"><i class="bi bi-trash3"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <!-- Row 3 pending -->
+              <tr data-status="pending">
+                <td><input type="checkbox" class="row-check form-check-input" style="width:15px;height:15px;cursor:pointer"></td>
+                <td>
+                  <div class="post-cell">
+                    <div class="post-thumb" style="background:#dcfce7">
+                      <i class="bi bi-cloud" style="color:var(--success-500)"></i>
+                    </div>
+                    <div>
+                      <a href="post-edit.html" class="link-plain" style="font-size:.84rem">Docker 容器化生产部署最佳实践与常见坑</a>
+                      <small>运维分享</small>
+                    </div>
+                  </div>
+                </td>
+                <td><span style="font-size:.75rem;background:#dcfce7;color:#15803d;padding:2px 8px;border-radius:20px;font-weight:600">运维部署</span></td>
+                <td><span style="font-size:.8rem;color:var(--gray-700)">Ops</span></td>
+                <td><span style="font-size:.8rem;color:var(--gray-600)"><i class="bi bi-chat me-1" style="font-size:.7rem"></i>19</span></td>
+                <td><span style="font-size:.8rem;font-weight:600;color:var(--gray-800)">1,877</span></td>
+                <td><span style="font-size:.75rem;color:var(--gray-500)">2025-06-14</span></td>
+                <td><span class="status-badge status-pending"><span class="badge-dot-inline"></span>待审核</span></td>
+                <td>
+                  <div class="d-flex justify-content-center gap-1">
+                    <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
+                    <button class="btn btn-light btn-icon" title="通过" onclick="showToast('审核通过','success')"><i class="bi bi-check-circle" style="color:var(--success-500)"></i></button>
+                    <button class="btn btn-danger-soft btn-icon" title="删除"><i class="bi bi-trash3"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <!-- Row 4 draft -->
+              <tr data-status="draft">
+                <td><input type="checkbox" class="row-check form-check-input" style="width:15px;height:15px;cursor:pointer"></td>
+                <td>
+                  <div class="post-cell">
+                    <div class="post-thumb" style="background:#ede9fe">
+                      <i class="bi bi-cpu" style="color:#7c3aed"></i>
+                    </div>
+                    <div>
+                      <a href="post-edit.html" class="link-plain" style="font-size:.84rem">大语言模型 Fine-tuning 全流程入门指南</a>
+                      <small>AI 研究 · 未完成</small>
+                    </div>
+                  </div>
+                </td>
+                <td><span style="font-size:.75rem;background:#ede9fe;color:#7c3aed;padding:2px 8px;border-radius:20px;font-weight:600">AI 技术</span></td>
+                <td><span style="font-size:.8rem;color:var(--gray-700)">Admin</span></td>
+                <td><span style="font-size:.8rem;color:var(--gray-600)"><i class="bi bi-chat me-1" style="font-size:.7rem"></i>—</span></td>
+                <td><span style="font-size:.8rem;color:var(--gray-400)">—</span></td>
+                <td><span style="font-size:.75rem;color:var(--gray-500)">2025-06-12</span></td>
+                <td><span class="status-badge status-draft"><span class="badge-dot-inline"></span>草稿</span></td>
+                <td>
+                  <div class="d-flex justify-content-center gap-1">
+                    <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
+                    <button class="btn btn-light btn-icon" title="发布" onclick="showToast('发布成功','success')"><i class="bi bi-send" style="color:var(--primary-500)"></i></button>
+                    <button class="btn btn-danger-soft btn-icon" title="删除"><i class="bi bi-trash3"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <!-- Row 5 -->
+              <tr data-status="published">
+                <td><input type="checkbox" class="row-check form-check-input" style="width:15px;height:15px;cursor:pointer"></td>
+                <td>
+                  <div class="post-cell">
+                    <div class="post-thumb" style="background:#e0f9ff">
+                      <i class="bi bi-terminal" style="color:var(--accent-500)"></i>
+                    </div>
+                    <div>
+                      <a href="post-edit.html" class="link-plain" style="font-size:.84rem">TypeScript 高级类型体操：泛型 + infer 实战技巧</a>
+                      <small>前端进阶</small>
+                    </div>
+                  </div>
+                </td>
+                <td><span style="font-size:.75rem;background:var(--primary-50);color:var(--primary-600);padding:2px 8px;border-radius:20px;font-weight:600">前端技术</span></td>
+                <td><span style="font-size:.8rem;color:var(--gray-700)">Admin</span></td>
+                <td><span style="font-size:.8rem;color:var(--gray-600)"><i class="bi bi-chat me-1" style="font-size:.7rem"></i>67</span></td>
+                <td><span style="font-size:.8rem;font-weight:600;color:var(--gray-800)">4,603</span></td>
+                <td><span style="font-size:.75rem;color:var(--gray-500)">2025-06-10</span></td>
+                <td><span class="status-badge status-published"><span class="badge-dot-inline"></span>已发布</span></td>
+                <td>
+                  <div class="d-flex justify-content-center gap-1">
+                    <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
+                    <button class="btn btn-light btn-icon" title="预览"><i class="bi bi-eye"></i></button>
+                    <button class="btn btn-danger-soft btn-icon" title="删除"><i class="bi bi-trash3"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <!-- Row 6 -->
+              <tr data-status="published">
+                <td><input type="checkbox" class="row-check form-check-input" style="width:15px;height:15px;cursor:pointer"></td>
+                <td>
+                  <div class="post-cell">
+                    <div class="post-thumb" style="background:#fce7f3">
+                      <i class="bi bi-bar-chart" style="color:#be185d"></i>
+                    </div>
+                    <div>
+                      <a href="post-edit.html" class="link-plain" style="font-size:.84rem">从零搭建数据可视化大屏：ECharts 完整实战</a>
+                      <small>数据分析</small>
+                    </div>
+                  </div>
+                </td>
+                <td><span style="font-size:.75rem;background:#fce7f3;color:#be185d;padding:2px 8px;border-radius:20px;font-weight:600">数据可视化</span></td>
+                <td><span style="font-size:.8rem;color:var(--gray-700)">Editor</span></td>
+                <td><span style="font-size:.8rem;color:var(--gray-600)"><i class="bi bi-chat me-1" style="font-size:.7rem"></i>41</span></td>
+                <td><span style="font-size:.8rem;font-weight:600;color:var(--gray-800)">5,128</span></td>
+                <td><span style="font-size:.75rem;color:var(--gray-500)">2025-06-08</span></td>
+                <td><span class="status-badge status-published"><span class="badge-dot-inline"></span>已发布</span></td>
+                <td>
+                  <div class="d-flex justify-content-center gap-1">
+                    <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
+                    <button class="btn btn-light btn-icon" title="预览"><i class="bi bi-eye"></i></button>
+                    <button class="btn btn-danger-soft btn-icon" title="删除"><i class="bi bi-trash3"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <!-- Row 7 draft -->
+              <tr data-status="draft">
+                <td><input type="checkbox" class="row-check form-check-input" style="width:15px;height:15px;cursor:pointer"></td>
+                <td>
+                  <div class="post-cell">
+                    <div class="post-thumb" style="background:var(--gray-100)">
+                      <i class="bi bi-shield-check" style="color:var(--gray-400)"></i>
+                    </div>
+                    <div>
+                      <a href="post-edit.html" class="link-plain" style="font-size:.84rem">Web 应用安全防护：XSS、CSRF 全攻略</a>
+                      <small>安全专题 · 草稿</small>
+                    </div>
+                  </div>
+                </td>
+                <td><span style="font-size:.75rem;background:var(--gray-100);color:var(--gray-600);padding:2px 8px;border-radius:20px;font-weight:600">安全技术</span></td>
+                <td><span style="font-size:.8rem;color:var(--gray-700)">Admin</span></td>
+                <td><span style="font-size:.8rem;color:var(--gray-400)">—</span></td>
+                <td><span style="font-size:.8rem;color:var(--gray-400)">—</span></td>
+                <td><span style="font-size:.75rem;color:var(--gray-500)">2025-06-05</span></td>
+                <td><span class="status-badge status-draft"><span class="badge-dot-inline"></span>草稿</span></td>
+                <td>
+                  <div class="d-flex justify-content-center gap-1">
+                    <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
+                    <button class="btn btn-light btn-icon" title="发布" onclick="showToast('发布成功','success')"><i class="bi bi-send" style="color:var(--primary-500)"></i></button>
+                    <button class="btn btn-danger-soft btn-icon" title="删除"><i class="bi bi-trash3"></i></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="card-footer d-flex align-items-center justify-content-between">
+        <span style="font-size:.78rem;color:var(--gray-500)">共 <strong>1,284</strong> 篇文章，当前第 <strong>1</strong> / <strong>129</strong> 页</span>
+        <nav>
+          <ul class="pagination mb-0">
+            <li class="page-item disabled"><a class="page-link" href="#"><i class="bi bi-chevron-left" style="font-size:.7rem"></i></a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item disabled"><a class="page-link">…</a></li>
+            <li class="page-item"><a class="page-link" href="#">129</a></li>
+            <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right" style="font-size:.7rem"></i></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="admin.js"></script>
+<script>
+  // Status filter tabs
+  function filterStatus(status) {
+    ['all','published','draft','pending'].forEach(function(s) {
+      var btn = document.getElementById('filter-' + s);
+      if (!btn) return;
+      btn.className = s === status
+        ? 'btn btn-sm active'
+        : 'btn btn-light btn-sm';
+      btn.style.cssText = s === status
+        ? 'border-radius:6px;font-size:.75rem;height:28px;padding:0 12px;background:var(--primary-500);color:#fff;border:none'
+        : 'border-radius:6px;font-size:.75rem;height:28px;padding:0 12px;border:none';
+    });
+    document.querySelectorAll('.admin-table tbody tr').forEach(function(row) {
+      if (status === 'all') { row.style.display = ''; return; }
+      row.style.display = row.getAttribute('data-status') === status ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>

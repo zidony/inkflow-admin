@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>仪表盘 — BlogAdmin</title>
+  <!-- Bootstrap 5.3 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <!-- Bootstrap Icons 1.13.1 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- Custom -->
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- ===================== SIDEBAR ===================== -->
+<nav id="sidebar">
+  <!-- Logo -->
+  <a class="sidebar-logo" href="dashboard.html">
+    <div class="sidebar-logo-icon"><i class="bi bi-journals"></i></div>
+    <div class="sidebar-logo-text">
+      <span class="sidebar-logo-title">BlogAdmin</span>
+      <span class="sidebar-logo-sub">Content CMS</span>
+    </div>
+  </a>
+
+  <!-- Nav -->
+  <div class="sidebar-nav-wrap">
+
+    <div class="nav-section-label">主菜单</div>
+
+    <div class="nav-item-wrapper">
+      <a href="dashboard.html" class="nav-link-item active" data-tooltip="仪表盘">
+        <i class="bi bi-grid-1x2 nav-icon"></i>
+        <span class="nav-label">仪表盘</span>
+      </a>
+    </div>
+
+    <div class="nav-section-label">内容管理</div>
+
+    <div class="nav-item-wrapper">
+      <button class="nav-link-item" data-toggle="submenu" data-target="sub-content" aria-expanded="true" data-tooltip="内容管理">
+        <i class="bi bi-file-richtext nav-icon"></i>
+        <span class="nav-label">内容管理</span>
+        <i class="bi bi-chevron-right nav-arrow"></i>
+      </button>
+    </div>
+    <div class="submenu-wrap" id="sub-content">
+      <div class="submenu">
+        <div class="nav-item-wrapper">
+          <a href="post-list.html" class="nav-link-item">
+            <i class="bi bi-file-text nav-icon"></i>
+            <span class="nav-label">文章列表</span>
+          </a>
+        </div>
+        <div class="nav-item-wrapper">
+          <a href="#" class="nav-link-item">
+            <i class="bi bi-chat-left-dots nav-icon"></i>
+            <span class="nav-label">评论列表</span>
+          </a>
+        </div>
+        <div class="nav-item-wrapper">
+          <a href="#" class="nav-link-item">
+            <i class="bi bi-folder2 nav-icon"></i>
+            <span class="nav-label">栏目列表</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-section-label">媒体</div>
+
+    <div class="nav-item-wrapper">
+      <button class="nav-link-item" data-toggle="submenu" data-target="sub-media" aria-expanded="false" data-tooltip="媒体管理">
+        <i class="bi bi-collection nav-icon"></i>
+        <span class="nav-label">媒体管理</span>
+        <i class="bi bi-chevron-right nav-arrow"></i>
+      </button>
+    </div>
+    <div class="submenu-wrap" id="sub-media">
+      <div class="submenu">
+        <div class="nav-item-wrapper">
+          <a href="#" class="nav-link-item">
+            <i class="bi bi-images nav-icon"></i>
+            <span class="nav-label">相册列表</span>
+          </a>
+        </div>
+        <div class="nav-item-wrapper">
+          <a href="#" class="nav-link-item">
+            <i class="bi bi-paperclip nav-icon"></i>
+            <span class="nav-label">文件列表</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-section-label">系统</div>
+
+    <div class="nav-item-wrapper">
+      <a href="#" class="nav-link-item" data-tooltip="用户管理">
+        <i class="bi bi-people nav-icon"></i>
+        <span class="nav-label">用户管理</span>
+      </a>
+    </div>
+    <div class="nav-item-wrapper">
+      <a href="#" class="nav-link-item" data-tooltip="系统设置">
+        <i class="bi bi-sliders nav-icon"></i>
+        <span class="nav-label">系统设置</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Sidebar footer user -->
+  <div class="sidebar-footer">
+    <div class="sidebar-user">
+      <div class="sidebar-user-avatar">AD</div>
+      <div class="sidebar-user-info">
+        <div class="sidebar-user-name">Admin</div>
+        <div class="sidebar-user-role">超级管理员</div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile overlay -->
+<div id="sidebar-overlay"></div>
+
+<!-- ===================== MAIN WRAPPER ===================== -->
+<div id="main-wrapper">
+
+  <!-- TOPBAR -->
+  <header id="topbar">
+    <button id="sidebar-toggle" title="收起/展开菜单">
+      <i class="bi bi-layout-sidebar-inset"></i>
+    </button>
+
+    <div class="topbar-breadcrumb">
+      <span>BlogAdmin</span>
+      <span class="bc-sep"><i class="bi bi-chevron-right" style="font-size:.65rem"></i></span>
+      <span class="bc-current">仪表盘</span>
+    </div>
+
+    <div class="topbar-search">
+      <i class="bi bi-search search-icon"></i>
+      <input type="text" placeholder="快速搜索文章、评论…">
+    </div>
+
+    <div class="topbar-actions">
+      <!-- Notifications -->
+      <button class="topbar-icon-btn" title="通知" style="position:relative">
+        <i class="bi bi-bell"></i>
+        <span class="notif-badge">4</span>
+      </button>
+      <!-- New post shortcut -->
+      <a href="post-edit.html" class="btn btn-primary btn-sm ms-1" style="height:34px;padding:0 14px;font-size:.8rem">
+        <i class="bi bi-plus-lg"></i>
+        <span>新建文章</span>
+      </a>
+      <!-- User dropdown -->
+      <div class="dropdown topbar-dropdown ms-1">
+        <button class="topbar-user-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="border:none">
+          <div class="topbar-avatar">AD</div>
+          <span class="topbar-user-name d-none d-md-inline">Admin</span>
+          <!-- <i class="bi bi-chevron-down"></i> -->
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <div class="user-info-header">
+              <div class="user-info-avatar">AD</div>
+              <div>
+                <div class="user-info-name">Admin User</div>
+                <div class="user-info-email">admin@blogsite.com</div>
+              </div>
+            </div>
+          </li>
+          <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> 个人资料</a></li>
+          <li><a class="dropdown-item" href="#"><i class="bi bi-shield-check"></i> 账号安全</a></li>
+          <li><a class="dropdown-item" href="#"><i class="bi bi-bell"></i> 通知设置</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#" style="color:#ef4444"><i class="bi bi-box-arrow-right"></i> 退出登录</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <main id="page-content">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">仪表盘</h1>
+        <p class="page-subtitle" id="topbar-date">加载日期中…</p>
+      </div>
+      <a href="post-edit.html" class="btn btn-primary">
+        <i class="bi bi-pencil-square"></i> 写新文章
+      </a>
+    </div>
+
+    <!-- ===== STAT CARDS ===== -->
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-xl-3 anim-fade-up">
+        <div class="stat-card blue-accent">
+          <div class="stat-card-icon stat-icon-blue"><i class="bi bi-file-earmark-text"></i></div>
+          <div class="stat-value" data-target="1284">1,284</div>
+          <div class="stat-label">累计文章</div>
+          <div class="stat-change up"><i class="bi bi-arrow-up-short"></i> 本月新增 38 篇</div>
+        </div>
+      </div>
+      <div class="col-6 col-xl-3 anim-fade-up">
+        <div class="stat-card cyan-accent">
+          <div class="stat-card-icon stat-icon-cyan"><i class="bi bi-chat-square-dots"></i></div>
+          <div class="stat-value" data-target="8731">8,731</div>
+          <div class="stat-label">累计评论</div>
+          <div class="stat-change up"><i class="bi bi-arrow-up-short"></i> 今日新增 24 条</div>
+        </div>
+      </div>
+      <div class="col-6 col-xl-3 anim-fade-up">
+        <div class="stat-card green-accent">
+          <div class="stat-card-icon stat-icon-green"><i class="bi bi-eye"></i></div>
+          <div class="stat-value" data-target="236918">236,918</div>
+          <div class="stat-label">总浏览量</div>
+          <div class="stat-change up"><i class="bi bi-arrow-up-short"></i> 较昨日 +12.4%</div>
+        </div>
+      </div>
+      <div class="col-6 col-xl-3 anim-fade-up">
+        <div class="stat-card amber-accent">
+          <div class="stat-card-icon stat-icon-amber"><i class="bi bi-people"></i></div>
+          <div class="stat-value" data-target="4210">4,210</div>
+          <div class="stat-label">注册用户</div>
+          <div class="stat-change up"><i class="bi bi-arrow-up-short"></i> 本周新增 86 人</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CHARTS ROW ===== -->
+    <div class="row g-3 mb-4">
+      <!-- Visits chart -->
+      <div class="col-12 col-xl-8 anim-fade-up">
+        <div class="card h-100">
+          <div class="card-header">
+            <h6 class="card-title"><i class="bi bi-bar-chart-line"></i> 年度访问趋势</h6>
+            <div class="d-flex align-items-center gap-2">
+              <select class="form-select form-select-sm" style="width:auto;font-size:.75rem;height:30px;padding:3px 10px">
+                <option>2024 年</option>
+                <option selected>2025 年</option>
+              </select>
+            </div>
+          </div>
+          <div class="card-body" style="height:240px;padding:12px 16px 10px">
+            <canvas id="visits-chart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick stats right panel -->
+      <div class="col-12 col-xl-4 anim-fade-up">
+        <div class="card h-100">
+          <div class="card-header">
+            <h6 class="card-title"><i class="bi bi-pie-chart"></i> 内容概况</h6>
+          </div>
+          <div class="card-body">
+            <div class="d-flex flex-column gap-3">
+              <div>
+                <div class="d-flex justify-content-between mb-1" style="font-size:.8rem">
+                  <span class="text-muted">已发布文章</span>
+                  <span class="fw-600 text-dark">978 / 1284</span>
+                </div>
+                <div class="mini-progress">
+                  <div class="mini-progress-bar" style="width:76%;background:var(--primary-500)"></div>
+                </div>
+              </div>
+              <div>
+                <div class="d-flex justify-content-between mb-1" style="font-size:.8rem">
+                  <span class="text-muted">待审评论</span>
+                  <span class="fw-600 text-dark">127 / 8731</span>
+                </div>
+                <div class="mini-progress">
+                  <div class="mini-progress-bar" style="width:14%;background:var(--warning-400)"></div>
+                </div>
+              </div>
+              <div>
+                <div class="d-flex justify-content-between mb-1" style="font-size:.8rem">
+                  <span class="text-muted">媒体文件</span>
+                  <span class="fw-600 text-dark">2.8 GB / 10 GB</span>
+                </div>
+                <div class="mini-progress">
+                  <div class="mini-progress-bar" style="width:28%;background:var(--accent-400)"></div>
+                </div>
+              </div>
+              <div>
+                <div class="d-flex justify-content-between mb-1" style="font-size:.8rem">
+                  <span class="text-muted">活跃用户</span>
+                  <span class="fw-600 text-dark">3,180 / 4,210</span>
+                </div>
+                <div class="mini-progress">
+                  <div class="mini-progress-bar" style="width:75%;background:var(--success-400)"></div>
+                </div>
+              </div>
+              <div>
+                <div class="d-flex justify-content-between mb-1" style="font-size:.8rem">
+                  <span class="text-muted">草稿箱</span>
+                  <span class="fw-600 text-dark">180</span>
+                </div>
+                <div class="mini-progress">
+                  <div class="mini-progress-bar" style="width:14%;background:var(--gray-300)"></div>
+                </div>
+              </div>
+            </div>
+
+            <hr style="margin:16px 0;border-color:var(--gray-100)">
+
+            <!-- Quick actions -->
+            <div class="quick-action-grid">
+              <a href="post-edit.html" class="quick-action-btn">
+                <div class="quick-action-icon"><i class="bi bi-pencil-square"></i></div>
+                <span class="quick-action-label">写文章</span>
+              </a>
+              <a href="#" class="quick-action-btn">
+                <div class="quick-action-icon"><i class="bi bi-image"></i></div>
+                <span class="quick-action-label">上传图片</span>
+              </a>
+              <a href="#" class="quick-action-btn">
+                <div class="quick-action-icon"><i class="bi bi-folder-plus"></i></div>
+                <span class="quick-action-label">新建栏目</span>
+              </a>
+              <a href="#" class="quick-action-btn">
+                <div class="quick-action-icon"><i class="bi bi-gear"></i></div>
+                <span class="quick-action-label">系统设置</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== RECENT POSTS + RECENT COMMENTS ===== -->
+    <div class="row g-3">
+      <!-- Recent Posts -->
+      <div class="col-12 col-xl-7 anim-fade-up">
+        <div class="card">
+          <div class="card-header">
+            <h6 class="card-title"><i class="bi bi-file-earmark-richtext"></i> 最新发布文章</h6>
+            <a href="post-list.html" class="btn btn-light btn-sm" style="font-size:.75rem;height:28px;padding:0 10px">查看全部</a>
+          </div>
+          <div class="card-body p-0">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>标题</th>
+                  <th>分类</th>
+                  <th>浏览</th>
+                  <th>状态</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="post-cell">
+                      <div class="post-thumb" style="background:var(--primary-100)"><i class="bi bi-file-code" style="color:var(--primary-400)"></i></div>
+                      <div>
+                        <div class="link-plain" style="font-size:.82rem;font-weight:600">深入理解 Vue 3 Composition API</div>
+                        <small style="color:var(--gray-400);font-size:.7rem">2025-06-18</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span style="font-size:.75rem;color:var(--gray-600)">前端技术</span></td>
+                  <td><span style="font-size:.8rem;color:var(--gray-700)">3,821</span></td>
+                  <td><span class="status-badge status-published"><span class="badge-dot-inline"></span>已发布</span></td>
+                  <td><a href="post-edit.html" class="btn btn-light btn-icon btn-sm"><i class="bi bi-pencil"></i></a></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="post-cell">
+                      <div class="post-thumb" style="background:#fef3c7"><i class="bi bi-lightbulb" style="color:var(--warning-500)"></i></div>
+                      <div>
+                        <div class="link-plain" style="font-size:.82rem;font-weight:600">2025年产品设计趋势全解析</div>
+                        <small style="color:var(--gray-400);font-size:.7rem">2025-06-16</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span style="font-size:.75rem;color:var(--gray-600)">设计灵感</span></td>
+                  <td><span style="font-size:.8rem;color:var(--gray-700)">2,156</span></td>
+                  <td><span class="status-badge status-published"><span class="badge-dot-inline"></span>已发布</span></td>
+                  <td><a href="post-edit.html" class="btn btn-light btn-icon btn-sm"><i class="bi bi-pencil"></i></a></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="post-cell">
+                      <div class="post-thumb" style="background:#dcfce7"><i class="bi bi-cloud" style="color:var(--success-500)"></i></div>
+                      <div>
+                        <div class="link-plain" style="font-size:.82rem;font-weight:600">Docker 容器化部署最佳实践</div>
+                        <small style="color:var(--gray-400);font-size:.7rem">2025-06-14</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span style="font-size:.75rem;color:var(--gray-600)">运维部署</span></td>
+                  <td><span style="font-size:.8rem;color:var(--gray-700)">1,877</span></td>
+                  <td><span class="status-badge status-pending"><span class="badge-dot-inline"></span>待审核</span></td>
+                  <td><a href="post-edit.html" class="btn btn-light btn-icon btn-sm"><i class="bi bi-pencil"></i></a></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="post-cell">
+                      <div class="post-thumb" style="background:#ede9fe"><i class="bi bi-cpu" style="color:#7c3aed"></i></div>
+                      <div>
+                        <div class="link-plain" style="font-size:.82rem;font-weight:600">大语言模型 Fine-tuning 入门指南</div>
+                        <small style="color:var(--gray-400);font-size:.7rem">2025-06-12</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span style="font-size:.75rem;color:var(--gray-600)">AI 技术</span></td>
+                  <td><span style="font-size:.8rem;color:var(--gray-700)">4,603</span></td>
+                  <td><span class="status-badge status-draft"><span class="badge-dot-inline"></span>草稿</span></td>
+                  <td><a href="post-edit.html" class="btn btn-light btn-icon btn-sm"><i class="bi bi-pencil"></i></a></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="post-cell">
+                      <div class="post-thumb" style="background:#e0f9ff"><i class="bi bi-terminal" style="color:var(--accent-500)"></i></div>
+                      <div>
+                        <div class="link-plain" style="font-size:.82rem;font-weight:600">TypeScript 高级类型体操技巧</div>
+                        <small style="color:var(--gray-400);font-size:.7rem">2025-06-10</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span style="font-size:.75rem;color:var(--gray-600)">前端技术</span></td>
+                  <td><span style="font-size:.8rem;color:var(--gray-700)">2,940</span></td>
+                  <td><span class="status-badge status-published"><span class="badge-dot-inline"></span>已发布</span></td>
+                  <td><a href="post-edit.html" class="btn btn-light btn-icon btn-sm"><i class="bi bi-pencil"></i></a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Comments + Activity -->
+      <div class="col-12 col-xl-5 anim-fade-up">
+        <!-- Recent comments -->
+        <div class="card mb-3">
+          <div class="card-header">
+            <h6 class="card-title"><i class="bi bi-chat-left-text"></i> 最新评论</h6>
+            <span class="status-badge status-pending" style="font-size:.68rem">127 待审</span>
+          </div>
+          <div class="card-body p-0" style="padding:0 20px!important">
+            <ul class="activity-list">
+              <li class="activity-item">
+                <div class="activity-icon" style="background:var(--primary-100)">
+                  <span style="font-size:.7rem;font-weight:700;color:var(--primary-600)">张S</span>
+                </div>
+                <div class="activity-body">
+                  <div class="activity-text"><strong>张三</strong> 评论了 <strong>《Vue 3 Composition API》</strong>：讲得非常清楚，一看就懂！</div>
+                  <div class="activity-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
+                </div>
+                <div class="d-flex gap-1 ms-2">
+                  <button class="btn btn-light btn-icon" style="width:26px;height:26px;font-size:.72rem" title="通过"><i class="bi bi-check" style="color:var(--success-500)"></i></button>
+                  <button class="btn btn-danger-soft btn-icon" style="width:26px;height:26px;font-size:.72rem" title="删除"><i class="bi bi-trash3"></i></button>
+                </div>
+              </li>
+              <li class="activity-item">
+                <div class="activity-icon" style="background:#dcfce7">
+                  <span style="font-size:.7rem;font-weight:700;color:var(--success-600)">李M</span>
+                </div>
+                <div class="activity-body">
+                  <div class="activity-text"><strong>李明</strong> 回复了 <strong>《Docker 最佳实践》</strong>：能否补充 K8s 部分？</div>
+                  <div class="activity-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
+                </div>
+                <div class="d-flex gap-1 ms-2">
+                  <button class="btn btn-light btn-icon" style="width:26px;height:26px;font-size:.72rem" title="通过"><i class="bi bi-check" style="color:var(--success-500)"></i></button>
+                  <button class="btn btn-danger-soft btn-icon" style="width:26px;height:26px;font-size:.72rem" title="删除"><i class="bi bi-trash3"></i></button>
+                </div>
+              </li>
+              <li class="activity-item">
+                <div class="activity-icon" style="background:#fef3c7">
+                  <span style="font-size:.7rem;font-weight:700;color:var(--warning-600)">王H</span>
+                </div>
+                <div class="activity-body">
+                  <div class="activity-text"><strong>王红</strong> 评论了 <strong>《LLM Fine-tuning 指南》</strong>：数据集处理部分写错了</div>
+                  <div class="activity-time"><i class="bi bi-clock me-1"></i>1 小时前</div>
+                </div>
+                <div class="d-flex gap-1 ms-2">
+                  <button class="btn btn-light btn-icon" style="width:26px;height:26px;font-size:.72rem" title="通过"><i class="bi bi-check" style="color:var(--success-500)"></i></button>
+                  <button class="btn btn-danger-soft btn-icon" style="width:26px;height:26px;font-size:.72rem" title="删除"><i class="bi bi-trash3"></i></button>
+                </div>
+              </li>
+              <li class="activity-item">
+                <div class="activity-icon" style="background:#ede9fe">
+                  <span style="font-size:.7rem;font-weight:700;color:#7c3aed">陈K</span>
+                </div>
+                <div class="activity-body">
+                  <div class="activity-text"><strong>陈凯</strong> 评论了 <strong>《TypeScript 高级类型》</strong>：太硬核了！收藏了</div>
+                  <div class="activity-time"><i class="bi bi-clock me-1"></i>2 小时前</div>
+                </div>
+                <div class="d-flex gap-1 ms-2">
+                  <button class="btn btn-light btn-icon" style="width:26px;height:26px;font-size:.72rem" title="通过"><i class="bi bi-check" style="color:var(--success-500)"></i></button>
+                  <button class="btn btn-danger-soft btn-icon" style="width:26px;height:26px;font-size:.72rem" title="删除"><i class="bi bi-trash3"></i></button>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="card-footer d-flex justify-content-center">
+            <a href="#" style="font-size:.78rem;color:var(--primary-500);font-weight:600;text-decoration:none">查看全部评论 <i class="bi bi-arrow-right ms-1"></i></a>
+          </div>
+        </div>
+
+        <!-- System info -->
+        <div class="card">
+          <div class="card-header">
+            <h6 class="card-title"><i class="bi bi-hdd-rack"></i> 系统状态</h6>
+            <span class="status-badge status-published" style="font-size:.68rem"><span class="badge-dot-inline"></span>运行正常</span>
+          </div>
+          <div class="card-body">
+            <div class="d-flex flex-column gap-2" style="font-size:.8rem">
+              <div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid var(--gray-100)">
+                <span class="text-muted"><i class="bi bi-cpu me-2" style="color:var(--primary-400)"></i>CPU 使用率</span>
+                <span class="fw-600">23%</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid var(--gray-100)">
+                <span class="text-muted"><i class="bi bi-memory me-2" style="color:var(--accent-400)"></i>内存使用</span>
+                <span class="fw-600">1.8 / 8 GB</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid var(--gray-100)">
+                <span class="text-muted"><i class="bi bi-hdd me-2" style="color:var(--success-400)"></i>磁盘空间</span>
+                <span class="fw-600">42 / 200 GB</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center py-1">
+                <span class="text-muted"><i class="bi bi-clock-history me-2" style="color:var(--warning-400)"></i>系统运行</span>
+                <span class="fw-600">38 天 14 时</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS -->
+<script src="admin.js"></script>
+</body>
+</html>
