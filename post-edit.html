@@ -1,529 +1,853 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>编辑文章 — BlogAdmin</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="admin.css">
-  <style>
-    /* Extra editor-page specific overrides */
-    #page-content { padding-top: 0; }
-    .editor-layout { display: grid; grid-template-columns: 1fr 300px; gap: 16px; align-items: start; }
-    @media (max-width: 1199px) { .editor-layout { grid-template-columns: 1fr; } }
-    .editor-sidebar-panel { position: sticky; top: calc(var(--topbar-height) + 70px); }
-  </style>
-</head>
-<body>
-
-<!-- ===================== SIDEBAR ===================== -->
-<nav id="sidebar">
-  <a class="sidebar-logo" href="dashboard.html">
-    <div class="sidebar-logo-icon"><i class="bi bi-journals"></i></div>
-    <div class="sidebar-logo-text">
-      <span class="sidebar-logo-title">BlogAdmin</span>
-      <span class="sidebar-logo-sub">Content CMS</span>
-    </div>
-  </a>
-
-  <div class="sidebar-nav-wrap">
-    <div class="nav-section-label">主菜单</div>
-    <div class="nav-item-wrapper">
-      <a href="dashboard.html" class="nav-link-item" data-tooltip="仪表盘">
-        <i class="bi bi-grid-1x2 nav-icon"></i>
-        <span class="nav-label">仪表盘</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>编辑文章 — InkFlow Admin</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="admin.css" />
+    <style>
+      #page-content {
+        padding-top: 0;
+      }
+      .ci-editor-layout {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 16px;
+        align-items: start;
+      }
+      @media (max-width: 1199px) {
+        .ci-editor-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+      .ci-editor-sidebar {
+        position: sticky;
+        top: calc(var(--topbar-height) + 68px);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ==================== SIDEBAR ==================== -->
+    <nav id="sidebar">
+      <a class="sidebar-logo" href="dashboard.html">
+        <div class="sidebar-logo-icon"><i class="bi bi-journals"></i></div>
+        <div class="sidebar-logo-text">
+          <span class="sidebar-logo-title">InkFlow</span>
+          <span class="sidebar-logo-sub">Blog CMS</span>
+        </div>
       </a>
-    </div>
-
-    <div class="nav-section-label">内容管理</div>
-    <div class="nav-item-wrapper">
-      <button class="nav-link-item active" data-toggle="submenu" data-target="sub-content" aria-expanded="true" data-tooltip="内容管理">
-        <i class="bi bi-file-richtext nav-icon"></i>
-        <span class="nav-label">内容管理</span>
-        <i class="bi bi-chevron-right nav-arrow"></i>
-      </button>
-    </div>
-    <div class="submenu-wrap" id="sub-content">
-      <div class="submenu">
+      <div class="sidebar-nav-wrap">
+        <div class="nav-section-label">主菜单</div>
         <div class="nav-item-wrapper">
-          <a href="post-list.html" class="nav-link-item active">
-            <i class="bi bi-file-text nav-icon"></i>
-            <span class="nav-label">文章列表</span>
+          <a href="dashboard.html" class="nav-link-item" data-tooltip="仪表盘">
+            <i class="bi bi-grid-1x2 nav-icon"></i
+            ><span class="nav-label">仪表盘</span>
+          </a>
+        </div>
+        <div class="nav-section-label">内容管理</div>
+        <div class="nav-item-wrapper">
+          <button
+            class="nav-link-item active"
+            data-toggle="submenu"
+            data-target="sub-content"
+            aria-expanded="true"
+            data-tooltip="内容管理"
+          >
+            <i class="bi bi-file-richtext nav-icon"></i>
+            <span class="nav-label">内容管理</span>
+            <i class="bi bi-chevron-right nav-arrow"></i>
+          </button>
+        </div>
+        <div class="submenu-wrap" id="sub-content">
+          <div class="submenu">
+            <div class="nav-item-wrapper">
+              <a href="post-list.html" class="nav-link-item active">
+                <i class="bi bi-file-text nav-icon"></i
+                ><span class="nav-label">文章列表</span>
+              </a>
+            </div>
+            <div class="nav-item-wrapper">
+              <a href="comment-list.html" class="nav-link-item">
+                <i class="bi bi-chat-left-dots nav-icon"></i
+                ><span class="nav-label">评论列表</span>
+              </a>
+            </div>
+            <div class="nav-item-wrapper">
+              <a href="category-list.html" class="nav-link-item">
+                <i class="bi bi-folder2 nav-icon"></i
+                ><span class="nav-label">栏目列表</span>
+              </a>
+            </div>
+            <div class="nav-item-wrapper">
+              <a href="tag-list.html" class="nav-link-item">
+                <i class="bi bi-tags nav-icon"></i
+                ><span class="nav-label">标签管理</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-section-label">媒体</div>
+        <div class="nav-item-wrapper">
+          <button
+            class="nav-link-item"
+            data-toggle="submenu"
+            data-target="sub-media"
+            aria-expanded="false"
+            data-tooltip="媒体管理"
+          >
+            <i class="bi bi-collection nav-icon"></i>
+            <span class="nav-label">媒体管理</span>
+            <i class="bi bi-chevron-right nav-arrow"></i>
+          </button>
+        </div>
+        <div class="submenu-wrap" id="sub-media">
+          <div class="submenu">
+            <div class="nav-item-wrapper">
+              <a href="image-list.html" class="nav-link-item">
+                <i class="bi bi-images nav-icon"></i
+                ><span class="nav-label">图片管理</span>
+              </a>
+            </div>
+            <div class="nav-item-wrapper">
+              <a href="link-list.html" class="nav-link-item">
+                <i class="bi bi-link-45deg nav-icon"></i
+                ><span class="nav-label">链接管理</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-section-label">系统</div>
+        <div class="nav-item-wrapper">
+          <a
+            href="user-list.html"
+            class="nav-link-item"
+            data-tooltip="用户管理"
+          >
+            <i class="bi bi-people nav-icon"></i
+            ><span class="nav-label">用户管理</span>
           </a>
         </div>
         <div class="nav-item-wrapper">
-          <a href="#" class="nav-link-item"><i class="bi bi-chat-left-dots nav-icon"></i><span class="nav-label">评论列表</span></a>
-        </div>
-        <div class="nav-item-wrapper">
-          <a href="#" class="nav-link-item"><i class="bi bi-folder2 nav-icon"></i><span class="nav-label">栏目列表</span></a>
-        </div>
-      </div>
-    </div>
-
-    <div class="nav-section-label">媒体</div>
-    <div class="nav-item-wrapper">
-      <button class="nav-link-item" data-toggle="submenu" data-target="sub-media" aria-expanded="false" data-tooltip="媒体管理">
-        <i class="bi bi-collection nav-icon"></i>
-        <span class="nav-label">媒体管理</span>
-        <i class="bi bi-chevron-right nav-arrow"></i>
-      </button>
-    </div>
-    <div class="submenu-wrap" id="sub-media">
-      <div class="submenu">
-        <div class="nav-item-wrapper">
-          <a href="#" class="nav-link-item"><i class="bi bi-images nav-icon"></i><span class="nav-label">相册列表</span></a>
-        </div>
-        <div class="nav-item-wrapper">
-          <a href="#" class="nav-link-item"><i class="bi bi-paperclip nav-icon"></i><span class="nav-label">文件列表</span></a>
+          <a href="settings.html" class="nav-link-item" data-tooltip="系统设置">
+            <i class="bi bi-sliders nav-icon"></i
+            ><span class="nav-label">系统设置</span>
+          </a>
         </div>
       </div>
-    </div>
-
-    <div class="nav-section-label">系统</div>
-    <div class="nav-item-wrapper">
-      <a href="#" class="nav-link-item" data-tooltip="用户管理"><i class="bi bi-people nav-icon"></i><span class="nav-label">用户管理</span></a>
-    </div>
-    <div class="nav-item-wrapper">
-      <a href="#" class="nav-link-item" data-tooltip="系统设置"><i class="bi bi-sliders nav-icon"></i><span class="nav-label">系统设置</span></a>
-    </div>
-  </div>
-
-  <div class="sidebar-footer">
-    <div class="sidebar-user">
-      <div class="sidebar-user-avatar">AD</div>
-      <div class="sidebar-user-info">
-        <div class="sidebar-user-name">Admin</div>
-        <div class="sidebar-user-role">超级管理员</div>
-      </div>
-    </div>
-  </div>
-</nav>
-
-<div id="sidebar-overlay"></div>
-
-<!-- ===================== MAIN WRAPPER ===================== -->
-<div id="main-wrapper">
-
-  <!-- TOPBAR -->
-  <header id="topbar">
-    <button id="sidebar-toggle" title="收起/展开菜单">
-      <i class="bi bi-layout-sidebar-inset"></i>
-    </button>
-    <div class="topbar-breadcrumb">
-      <a href="dashboard.html" style="color:var(--gray-500);text-decoration:none">BlogAdmin</a>
-      <span class="bc-sep"><i class="bi bi-chevron-right" style="font-size:.65rem"></i></span>
-      <a href="post-list.html" style="color:var(--gray-500);text-decoration:none">文章列表</a>
-      <span class="bc-sep"><i class="bi bi-chevron-right" style="font-size:.65rem"></i></span>
-      <span class="bc-current" id="editor-breadcrumb">编辑文章</span>
-    </div>
-    <div class="topbar-search">
-      <i class="bi bi-search search-icon"></i>
-      <input type="text" placeholder="快速搜索…">
-    </div>
-    <div class="topbar-actions">
-      <button class="topbar-icon-btn" style="position:relative">
-        <i class="bi bi-bell"></i>
-        <span class="notif-badge">4</span>
-      </button>
-      <div class="dropdown topbar-dropdown ms-1">
-        <button class="topbar-user-btn dropdown-toggle" data-bs-toggle="dropdown" style="border:none">
-          <div class="topbar-avatar">AD</div>
-          <span class="topbar-user-name d-none d-md-inline">Admin</span>
-          <i class="bi bi-chevron-down"></i>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <li>
-            <div class="user-info-header">
-              <div class="user-info-avatar">AD</div>
-              <div>
-                <div class="user-info-name">Admin User</div>
-                <div class="user-info-email">admin@blogsite.com</div>
-              </div>
-            </div>
-          </li>
-          <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> 个人资料</a></li>
-          <li><a class="dropdown-item" href="#"><i class="bi bi-shield-check"></i> 账号安全</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#" style="color:#ef4444"><i class="bi bi-box-arrow-right"></i> 退出登录</a></li>
-        </ul>
-      </div>
-    </div>
-  </header>
-
-  <!-- STICKY ACTION BAR -->
-  <div class="editor-sticky-bar">
-    <div class="d-flex align-items-center justify-content-between">
-      <div class="d-flex align-items-center gap-3">
-        <a href="post-list.html" class="btn btn-light btn-sm" style="height:32px;font-size:.78rem;padding:0 12px">
-          <i class="bi bi-arrow-left me-1"></i>返回列表
-        </a>
-        <span style="font-size:.78rem;color:var(--gray-500)">
-          <i class="bi bi-circle-fill me-1" style="color:var(--warning-400);font-size:.5rem"></i>
-          <span id="save-status">草稿已自动保存 · 刚刚</span>
-        </span>
-      </div>
-      <div class="d-flex align-items-center gap-2">
-        <button class="btn btn-light btn-sm" id="btn-preview" style="height:32px;font-size:.78rem;padding:0 12px">
-          <i class="bi bi-eye me-1"></i>预览
-        </button>
-        <button class="btn btn-light btn-sm" id="btn-save-draft" style="height:32px;font-size:.78rem;padding:0 12px">
-          <i class="bi bi-floppy me-1"></i>保存草稿
-        </button>
-        <button class="btn btn-primary btn-sm" id="btn-publish" style="height:32px;font-size:.78rem;padding:0 16px">
-          <i class="bi bi-send-fill me-1"></i>发布文章
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- PAGE CONTENT -->
-  <main id="page-content" style="padding-top:20px">
-
-    <div class="editor-layout">
-
-      <!-- ===== LEFT: Main editor ===== -->
-      <div>
-
-        <!-- Title input -->
-        <div class="form-section mb-3 anim-fade-up">
-          <div class="form-section-body" style="padding:16px 20px">
-            <input type="text"
-              id="post-title"
-              class="form-control"
-              placeholder="在此输入文章标题…"
-              style="font-size:1.3rem;font-weight:700;border:none;padding:0;box-shadow:none;color:var(--gray-900);letter-spacing:-.3px"
-              value="深入理解 Vue 3 Composition API 与响应式原理">
-            <div class="d-flex align-items-center gap-3 mt-2" style="padding-top:10px;border-top:1px solid var(--gray-100)">
-              <div style="flex:1">
-                <label class="form-label mb-0" style="font-size:.72rem;margin-right:6px">永久链接</label>
-                <span style="font-size:.78rem;color:var(--primary-500);font-family:var(--font-mono)">
-                  https://blog.site/post/<span id="slug-preview" style="border-bottom:1px dashed var(--primary-300);cursor:pointer">vue3-composition-api</span>
-                </span>
-                <button class="btn btn-light btn-sm ms-2" style="height:22px;font-size:.68rem;padding:0 8px">修改</button>
-              </div>
-              <div class="word-count-bar">
-                字符数：<strong><span id="word-count">0</span></strong> · 阅读约 <strong>5</strong> 分钟
-              </div>
-            </div>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div class="sidebar-user-avatar">AD</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Admin</div>
+            <div class="sidebar-user-role">超级管理员</div>
           </div>
         </div>
+      </div>
+    </nav>
+    <div id="sidebar-overlay"></div>
 
-        <!-- Rich text editor -->
-        <div class="form-section mb-3 anim-fade-up">
-          <div class="form-section-header">
-            <i class="bi bi-pencil-square"></i> 文章内容
-            <div class="ms-auto d-flex gap-2">
-              <button class="btn btn-light btn-sm" style="font-size:.72rem;height:26px;padding:0 8px" onclick="showToast('已切换到源码模式','info')">
-                <i class="bi bi-code-slash me-1"></i>源码
-              </button>
-              <button class="btn btn-light btn-sm" style="font-size:.72rem;height:26px;padding:0 8px" onclick="showToast('已切换到预览模式','info')">
-                <i class="bi bi-eye me-1"></i>预览
-              </button>
-            </div>
-          </div>
-          <div class="form-section-body p-0">
-            <!-- Toolbar -->
-            <div class="editor-toolbar">
-              <div class="toolbar-group">
-                <select style="border:none;background:transparent;font-size:.78rem;font-family:var(--font-sans);color:var(--gray-700);height:28px;padding:0 6px;cursor:pointer;border-radius:4px">
-                  <option>段落</option>
-                  <option>标题 1</option>
-                  <option>标题 2</option>
-                  <option>标题 3</option>
-                  <option>代码块</option>
-                  <option>引用</option>
-                </select>
-              </div>
-              <div class="toolbar-group">
-                <button class="toolbar-btn active" title="粗体"><i class="bi bi-type-bold"></i></button>
-                <button class="toolbar-btn" title="斜体"><i class="bi bi-type-italic"></i></button>
-                <button class="toolbar-btn" title="下划线"><i class="bi bi-type-underline"></i></button>
-                <button class="toolbar-btn" title="删除线"><i class="bi bi-type-strikethrough"></i></button>
-              </div>
-              <div class="toolbar-group">
-                <button class="toolbar-btn" title="左对齐"><i class="bi bi-text-left"></i></button>
-                <button class="toolbar-btn" title="居中"><i class="bi bi-text-center"></i></button>
-                <button class="toolbar-btn" title="右对齐"><i class="bi bi-text-right"></i></button>
-              </div>
-              <div class="toolbar-group">
-                <button class="toolbar-btn" title="无序列表"><i class="bi bi-list-ul"></i></button>
-                <button class="toolbar-btn" title="有序列表"><i class="bi bi-list-ol"></i></button>
-                <button class="toolbar-btn" title="任务列表"><i class="bi bi-list-check"></i></button>
-              </div>
-              <div class="toolbar-group">
-                <button class="toolbar-btn" title="插入链接"><i class="bi bi-link-45deg"></i></button>
-                <button class="toolbar-btn" title="插入图片" onclick="showToast('请从媒体库选择图片','info')"><i class="bi bi-image"></i></button>
-                <button class="toolbar-btn" title="插入代码"><i class="bi bi-code-slash"></i></button>
-                <button class="toolbar-btn" title="插入表格"><i class="bi bi-table"></i></button>
-                <button class="toolbar-btn" title="插入分割线"><i class="bi bi-dash-lg"></i></button>
-              </div>
-              <div class="toolbar-group">
-                <button class="toolbar-btn" title="撤销"><i class="bi bi-arrow-counterclockwise"></i></button>
-                <button class="toolbar-btn" title="重做"><i class="bi bi-arrow-clockwise"></i></button>
-              </div>
-              <div class="toolbar-group">
-                <button class="toolbar-btn" title="全屏"><i class="bi bi-fullscreen"></i></button>
-              </div>
-            </div>
-            <!-- Editor area -->
-            <div class="editor-body"
-                 id="editor-body"
-                 contenteditable="true"
-                 spellcheck="false">
-              <p>Vue 3 带来了全新的 Composition API，相比 Options API，它提供了更灵活的代码组织方式与更强大的逻辑复用能力。本文将深入探讨其核心原理。</p>
-              <h2>一、为什么需要 Composition API？</h2>
-              <p>在大型 Vue 2 项目中，Options API 存在以下痛点：</p>
-              <ul>
-                <li>相关逻辑代码被分散在 <code>data</code>、<code>methods</code>、<code>computed</code> 等不同选项中</li>
-                <li>代码复用依赖 Mixins，存在命名冲突和来源不明确的问题</li>
-                <li>TypeScript 类型推断支持较差</li>
-              </ul>
-              <p>Composition API 通过 <code>setup()</code> 函数将相关逻辑集中在一起，大大提升了代码的可维护性与可读性。</p>
-              <h2>二、响应式核心：reactive 与 ref</h2>
-              <p>Vue 3 的响应式系统基于 ES6 <strong>Proxy</strong> 实现，彻底替换了 Vue 2 基于 <code>Object.defineProperty</code> 的方案…</p>
-            </div>
-          </div>
+    <!-- ==================== MAIN WRAPPER ==================== -->
+    <div id="main-wrapper">
+      <!-- TOPBAR -->
+      <header id="topbar">
+        <button id="sidebar-toggle" title="收起/展开菜单">
+          <i class="bi bi-layout-sidebar-inset"></i>
+        </button>
+        <div class="topbar-breadcrumb">
+          <a
+            href="dashboard.html"
+            style="color: var(--ci-gray-500); text-decoration: none"
+            >InkFlow</a
+          >
+          <span class="bc-sep"
+            ><i class="bi bi-chevron-right" style="font-size: 0.65rem"></i
+          ></span>
+          <a
+            href="post-list.html"
+            style="color: var(--ci-gray-500); text-decoration: none"
+            >文章列表</a
+          >
+          <span class="bc-sep"
+            ><i class="bi bi-chevron-right" style="font-size: 0.65rem"></i
+          ></span>
+          <span class="bc-current">编辑文章</span>
         </div>
-
-        <!-- SEO Settings -->
-        <div class="form-section mb-3 anim-fade-up">
-          <div class="form-section-header" style="cursor:pointer" data-bs-toggle="collapse" data-bs-target="#seo-collapse">
-            <i class="bi bi-search-heart"></i> SEO 优化设置
-            <i class="bi bi-chevron-down ms-auto" style="font-size:.75rem;color:var(--gray-400)"></i>
-          </div>
-          <div id="seo-collapse" class="collapse show">
-            <div class="form-section-body">
-              <div class="row g-3">
-                <div class="col-12">
-                  <label class="form-label">SEO 标题</label>
-                  <input type="text" class="form-control" placeholder="留空则使用文章标题" value="深入理解 Vue 3 Composition API 与响应式原理 | 前端技术博客">
-                  <div class="form-hint"><span id="seo-title-len">58</span> / 60 字符（建议 50–60）</div>
+        <div class="topbar-search">
+          <i class="bi bi-search search-icon"></i>
+          <input type="text" placeholder="快速搜索…" />
+        </div>
+        <div class="topbar-actions">
+          <button
+            class="topbar-icon-btn"
+            title="通知"
+            style="position: relative"
+          >
+            <i class="bi bi-bell"></i>
+            <span class="ci-notif-badge">4</span>
+          </button>
+          <div class="dropdown topbar-dropdown ms-1">
+            <button
+              class="topbar-user-btn"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style="border: none"
+            >
+              <div class="topbar-avatar">AD</div>
+              <span class="topbar-user-name d-none d-md-inline">Admin</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <div class="user-info-header">
+                  <div class="user-info-avatar">AD</div>
+                  <div>
+                    <div class="user-info-name">Admin User</div>
+                    <div class="user-info-email">admin@inkflow.dev</div>
+                  </div>
                 </div>
-                <div class="col-12">
-                  <label class="form-label">Meta 描述</label>
-                  <textarea class="form-control" rows="2" placeholder="页面摘要描述，显示在搜索结果中，建议 120–160 字符">本文深入探讨 Vue 3 Composition API 的核心原理，包括 reactive、ref、computed 的实现机制，以及与 Options API 的对比分析，适合有一定 Vue 2 基础的前端开发者。</textarea>
-                  <div class="form-hint">当前 <span>82</span> 字符（建议 120–160）</div>
-                </div>
-                <div class="col-12">
-                  <label class="form-label">Focus 关键词</label>
-                  <input type="text" class="form-control" placeholder="主关键词，如：Vue 3 Composition API" value="Vue 3 Composition API">
-                </div>
-              </div>
-            </div>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-person-circle"></i> 个人资料</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-shield-check"></i> 账号安全</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="login.html"
+                  style="color: #ef4444"
+                >
+                  <i class="bi bi-box-arrow-right"></i> 退出登录
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
+      </header>
 
-      </div>
-
-      <!-- ===== RIGHT: Sidebar panels ===== -->
-      <div class="editor-sidebar-panel">
-
-        <!-- Publish settings -->
-        <div class="form-section mb-3 anim-fade-up">
-          <div class="form-section-header">
-            <i class="bi bi-send"></i> 发布设置
+      <!-- STICKY ACTION BAR -->
+      <div class="ci-editor-sticky-bar">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center gap-3">
+            <a
+              href="post-list.html"
+              class="btn btn-light btn-sm"
+              style="height: 32px; font-size: 0.78rem; padding: 0 12px"
+            >
+              <i class="bi bi-arrow-left me-1"></i>返回列表
+            </a>
+            <span
+              style="font-size: 0.78rem; color: var(--ci-gray-500)"
+              id="save-status"
+            >
+              <i
+                class="bi bi-check-circle-fill"
+                style="
+                  color: var(--ci-success-400);
+                  font-size: 0.7rem;
+                  vertical-align: middle;
+                  margin-right: 3px;
+                "
+              ></i>
+              草稿已自动保存 · 刚刚
+            </span>
           </div>
-          <div class="form-section-body">
-            <div class="mb-3">
-              <label class="form-label">文章状态</label>
-              <select class="form-select">
-                <option value="draft">草稿</option>
-                <option value="pending">待审核</option>
-                <option value="published" selected>立即发布</option>
-                <option value="scheduled">定时发布</option>
-                <option value="private">私密</option>
-              </select>
-            </div>
-            <div class="mb-3" id="schedule-row" style="display:none">
-              <label class="form-label">定时发布时间</label>
-              <input type="datetime-local" class="form-control">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">可见范围</label>
-              <select class="form-select">
-                <option selected>所有人可见</option>
-                <option>仅登录用户</option>
-                <option>仅管理员</option>
-                <option>密码保护</option>
-              </select>
-            </div>
-            <div class="d-flex align-items-center justify-content-between mb-2">
-              <label class="form-label mb-0" style="font-size:.8rem">置顶文章</label>
-              <div class="form-check form-switch mb-0">
-                <input class="form-check-input" type="checkbox" checked>
-              </div>
-            </div>
-            <div class="d-flex align-items-center justify-content-between mb-2">
-              <label class="form-label mb-0" style="font-size:.8rem">允许评论</label>
-              <div class="form-check form-switch mb-0">
-                <input class="form-check-input" type="checkbox" checked>
-              </div>
-            </div>
-            <div class="d-flex align-items-center justify-content-between">
-              <label class="form-label mb-0" style="font-size:.8rem">原创标记</label>
-              <div class="form-check form-switch mb-0">
-                <input class="form-check-input" type="checkbox" checked>
-              </div>
-            </div>
-
-            <div class="d-grid gap-2 mt-3">
-              <button class="btn btn-primary" id="btn-publish">
-                <i class="bi bi-send-fill"></i> 发布文章
-              </button>
-              <button class="btn btn-light" id="btn-save-draft">
-                <i class="bi bi-floppy"></i> 保存草稿
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Cover image -->
-        <div class="form-section mb-3 anim-fade-up">
-          <div class="form-section-header"><i class="bi bi-image"></i> 封面图片</div>
-          <div class="form-section-body">
-            <div class="cover-preview" id="cover-preview">
-              <img src="https://picsum.photos/seed/vue3/600/200" alt="封面">
-              <div class="cover-preview-overlay"><i class="bi bi-arrow-repeat"></i> 更换图片</div>
-            </div>
-            <input type="file" id="cover-file-input" accept="image/*" style="display:none">
-            <div class="d-flex gap-2 mt-2">
-              <button class="btn btn-light btn-sm flex-1" onclick="document.getElementById('cover-file-input').click()" style="font-size:.75rem;flex:1">
-                <i class="bi bi-upload me-1"></i>上传图片
-              </button>
-              <button class="btn btn-light btn-sm" onclick="showToast('已从媒体库选择','info')" style="font-size:.75rem;flex:1">
-                <i class="bi bi-collection-play me-1"></i>媒体库
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Category -->
-        <div class="form-section mb-3 anim-fade-up">
-          <div class="form-section-header"><i class="bi bi-folder2-open"></i> 栏目分类</div>
-          <div class="form-section-body">
-            <div class="category-pills">
-              <span class="category-pill selected">前端技术</span>
-              <span class="category-pill">AI 技术</span>
-              <span class="category-pill">运维部署</span>
-              <span class="category-pill">设计灵感</span>
-              <span class="category-pill">数据可视化</span>
-              <span class="category-pill">安全技术</span>
-              <span class="category-pill">开源项目</span>
-              <span class="category-pill">随笔日记</span>
-            </div>
-            <button class="btn btn-light btn-sm w-100 mt-2" style="font-size:.75rem;height:28px" onclick="showToast('请在栏目管理中新建分类','info')">
-              <i class="bi bi-plus me-1"></i>新建栏目
+          <div class="d-flex align-items-center gap-2">
+            <button
+              class="btn btn-light btn-sm"
+              id="btn-preview"
+              style="height: 32px; font-size: 0.78rem; padding: 0 12px"
+            >
+              <i class="bi bi-eye me-1"></i>预览
+            </button>
+            <button
+              class="btn btn-light btn-sm"
+              id="btn-save-draft"
+              style="height: 32px; font-size: 0.78rem; padding: 0 12px"
+            >
+              <i class="bi bi-floppy me-1"></i>保存草稿
+            </button>
+            <button
+              class="btn btn-primary btn-sm"
+              id="btn-publish"
+              style="height: 32px; font-size: 0.78rem; padding: 0 16px"
+            >
+              <i class="bi bi-send-fill me-1"></i>发布文章
             </button>
           </div>
         </div>
+      </div>
 
-        <!-- Tags -->
-        <div class="form-section mb-3 anim-fade-up">
-          <div class="form-section-header"><i class="bi bi-tags"></i> 文章标签</div>
-          <div class="form-section-body">
-            <div class="tag-list" id="tag-list">
-              <span class="tag-item">Vue 3<button type="button"><i class="bi bi-x"></i></button></span>
-              <span class="tag-item">Composition API<button type="button"><i class="bi bi-x"></i></button></span>
-              <span class="tag-item">响应式<button type="button"><i class="bi bi-x"></i></button></span>
-              <span class="tag-item">前端<button type="button"><i class="bi bi-x"></i></button></span>
+      <!-- PAGE CONTENT -->
+      <main id="page-content" style="padding-top: 20px">
+        <div class="ci-editor-layout">
+          <!-- ===== LEFT: 主编辑区 ===== -->
+          <div>
+            <!-- 标题输入 -->
+            <div class="ci-panel ci-anim">
+              <div class="ci-panel-body" style="padding: 16px 20px">
+                <input
+                  type="text"
+                  id="post-title"
+                  class="form-control"
+                  style="
+                    font-size: 1.3rem;
+                    font-weight: 700;
+                    border: none;
+                    padding: 0;
+                    box-shadow: none;
+                    color: var(--ci-gray-900);
+                    letter-spacing: -0.3px;
+                  "
+                  value="深入理解 Vue 3 Composition API 与响应式原理"
+                  placeholder="在此输入文章标题…"
+                />
+                <div
+                  class="d-flex align-items-center flex-wrap gap-3 mt-2"
+                  style="
+                    padding-top: 10px;
+                    border-top: 1px solid var(--ci-gray-100);
+                  "
+                >
+                  <div style="flex: 1; min-width: 200px; font-size: 0.78rem">
+                    <span style="color: var(--ci-gray-400); margin-right: 6px"
+                      >永久链接</span
+                    >
+                    <span
+                      style="
+                        color: var(--ci-500);
+                        font-family: var(--font-mono);
+                      "
+                    >
+                      https://blog.inkflow.dev/post/
+                      <span
+                        id="slug-preview"
+                        style="
+                          border-bottom: 1px dashed var(--ci-300);
+                          cursor: pointer;
+                        "
+                        onclick="showToast('请在下方修改 Slug', 'info')"
+                      >
+                        vue3-composition-api
+                      </span>
+                    </span>
+                    <button
+                      class="btn btn-light btn-sm ms-2"
+                      style="height: 22px; font-size: 0.68rem; padding: 0 8px"
+                      onclick="showToast('Slug 已可编辑', 'info')"
+                    >
+                      修改
+                    </button>
+                  </div>
+                  <div class="ci-word-count">
+                    字符数：<strong><span id="word-count">0</span></strong> ·
+                    阅读约 <strong>5</strong> 分钟
+                  </div>
+                </div>
+              </div>
             </div>
-            <input type="text"
-              id="tag-input"
-              class="form-control mt-2"
-              placeholder="输入标签后按 Enter 确认"
-              style="height:32px;font-size:.78rem">
-            <div class="form-hint">按 Enter 或逗号添加标签，已添加 4 个</div>
+
+            <!-- 富文本编辑器 -->
+            <div class="ci-panel ci-anim mt-3" style="--ci-delay: 0.05s">
+              <div class="ci-panel-header">
+                <i class="bi bi-pencil-square"></i> 文章内容
+                <div class="ms-auto d-flex gap-2">
+                  <button
+                    class="btn btn-light btn-sm"
+                    style="font-size: 0.72rem; height: 26px; padding: 0 8px"
+                    onclick="showToast('已切换到源码模式', 'info')"
+                  >
+                    <i class="bi bi-code-slash me-1"></i>源码
+                  </button>
+                  <button
+                    class="btn btn-light btn-sm"
+                    style="font-size: 0.72rem; height: 26px; padding: 0 8px"
+                    onclick="showToast('已切换到预览模式', 'info')"
+                  >
+                    <i class="bi bi-eye me-1"></i>预览
+                  </button>
+                </div>
+              </div>
+              <div class="ci-panel-body p-0">
+                <!-- 工具栏 -->
+                <div class="ci-editor-toolbar">
+                  <div class="ci-toolbar-group">
+                    <select
+                      style="
+                        border: none;
+                        background: transparent;
+                        font-size: 0.78rem;
+                        font-family: var(--font-sans);
+                        color: var(--ci-gray-700);
+                        height: 28px;
+                        padding: 0 4px;
+                        cursor: pointer;
+                        border-radius: 4px;
+                      "
+                    >
+                      <option>段落</option>
+                      <option>标题 1</option>
+                      <option>标题 2</option>
+                      <option>标题 3</option>
+                      <option>代码块</option>
+                      <option>引用</option>
+                    </select>
+                  </div>
+                  <div class="ci-toolbar-group">
+                    <button class="ci-toolbar-btn active" title="粗体">
+                      <i class="bi bi-type-bold"></i>
+                    </button>
+                    <button class="ci-toolbar-btn" title="斜体">
+                      <i class="bi bi-type-italic"></i>
+                    </button>
+                    <button class="ci-toolbar-btn" title="下划线">
+                      <i class="bi bi-type-underline"></i>
+                    </button>
+                    <button class="ci-toolbar-btn" title="删除线">
+                      <i class="bi bi-type-strikethrough"></i>
+                    </button>
+                    <button class="ci-toolbar-btn" title="行内代码">
+                      <i class="bi bi-code"></i>
+                    </button>
+                  </div>
+                  <div class="ci-toolbar-group">
+                    <button class="ci-toolbar-btn" title="左对齐">
+                      <i class="bi bi-text-left"></i>
+                    </button>
+                    <button class="ci-toolbar-btn" title="居中对齐">
+                      <i class="bi bi-text-center"></i>
+                    </button>
+                    <button class="ci-toolbar-btn" title="右对齐">
+                      <i class="bi bi-text-right"></i>
+                    </button>
+                  </div>
+                  <div class="ci-toolbar-group">
+                    <button class="ci-toolbar-btn" title="无序列表">
+                      <i class="bi bi-list-ul"></i>
+                    </button>
+                    <button class="ci-toolbar-btn" title="有序列表">
+                      <i class="bi bi-list-ol"></i>
+                    </button>
+                    <button class="ci-toolbar-btn" title="任务清单">
+                      <i class="bi bi-list-check"></i>
+                    </button>
+                  </div>
+                  <div class="ci-toolbar-group">
+                    <button class="ci-toolbar-btn" title="插入链接">
+                      <i class="bi bi-link-45deg"></i>
+                    </button>
+                    <button
+                      class="ci-toolbar-btn"
+                      title="插入图片"
+                      onclick="showToast('请从媒体库选择图片', 'info')"
+                    >
+                      <i class="bi bi-image"></i>
+                    </button>
+                    <button class="ci-toolbar-btn" title="插入代码块">
+                      <i class="bi bi-code-slash"></i>
+                    </button>
+                    <button class="ci-toolbar-btn" title="插入表格">
+                      <i class="bi bi-table"></i>
+                    </button>
+                    <button class="ci-toolbar-btn" title="插入分割线">
+                      <i class="bi bi-dash-lg"></i>
+                    </button>
+                  </div>
+                  <div class="ci-toolbar-group">
+                    <button class="ci-toolbar-btn" title="撤销">
+                      <i class="bi bi-arrow-counterclockwise"></i>
+                    </button>
+                    <button class="ci-toolbar-btn" title="重做">
+                      <i class="bi bi-arrow-clockwise"></i>
+                    </button>
+                  </div>
+                  <div class="ci-toolbar-group">
+                    <button
+                      class="ci-toolbar-btn"
+                      title="全屏"
+                      onclick="showToast('全屏模式已开启', 'info')"
+                    >
+                      <i class="bi bi-fullscreen"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- 编辑区域 -->
+                <div
+                  class="ci-editor-body"
+                  id="editor-body"
+                  contenteditable="true"
+                  spellcheck="false"
+                >
+                  <p>
+                    Vue 3 带来了全新的 Composition API，相比 Options
+                    API，它提供了更灵活的代码
+                    组织方式与更强大的逻辑复用能力。本文将深入探讨其核心原理。
+                  </p>
+                  <h2>一、为什么需要 Composition API？</h2>
+                  <p>在大型 Vue 2 项目中，Options API 存在以下痛点：</p>
+                  <ul>
+                    <li>
+                      相关逻辑代码被分散在
+                      <code>data</code>、<code>methods</code>、
+                      <code>computed</code> 等不同选项中
+                    </li>
+                    <li>代码复用依赖 Mixins，存在命名冲突和来源不明确的问题</li>
+                    <li>TypeScript 类型推断支持较差</li>
+                  </ul>
+                  <p>
+                    Composition API 通过
+                    <code>setup()</code> 函数将相关逻辑集中在一起，
+                    大大提升了代码的可维护性与可读性。
+                  </p>
+                  <h2>二、响应式核心：reactive 与 ref</h2>
+                  <p>
+                    Vue 3 的响应式系统基于 ES6
+                    <strong>Proxy</strong> 实现，彻底替换了 Vue 2 基于
+                    <code>Object.defineProperty</code> 的方案…
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- SEO 设置（可折叠） -->
+            <div class="ci-panel ci-anim mt-3" style="--ci-delay: 0.1s">
+              <div
+                class="ci-panel-header"
+                style="cursor: pointer"
+                data-bs-toggle="collapse"
+                data-bs-target="#seo-collapse"
+              >
+                <i class="bi bi-search-heart"></i> SEO 优化设置
+                <i
+                  class="bi bi-chevron-down ms-auto"
+                  style="font-size: 0.75rem; color: var(--ci-gray-400)"
+                ></i>
+              </div>
+              <div id="seo-collapse" class="collapse show">
+                <div class="ci-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label class="form-label">SEO 标题</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="留空则使用文章标题"
+                        value="深入理解 Vue 3 Composition API 与响应式原理 | InkFlow"
+                      />
+                      <div class="ci-form-hint">
+                        <span id="seo-title-len">58</span> / 60 字符（建议
+                        50–60）
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">Meta 描述</label>
+                      <textarea
+                        class="form-control"
+                        rows="2"
+                        placeholder="页面摘要描述，显示在搜索结果中，建议 120–160 字符"
+                      >
+本文深入探讨 Vue 3 Composition API 的核心原理，包括 reactive、ref、computed 的实现机制，以及与 Options API 的对比分析。</textarea
+                      >
+                      <div class="ci-form-hint">
+                        当前 <span>82</span> 字符（建议 120–160）
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">Focus 关键词</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="主关键词，如：Vue 3 Composition API"
+                        value="Vue 3 Composition API"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+          <!-- /left -->
 
-        <!-- Excerpt -->
-        <div class="form-section mb-3 anim-fade-up">
-          <div class="form-section-header"><i class="bi bi-blockquote-left"></i> 文章摘要</div>
-          <div class="form-section-body">
-            <textarea class="form-control" rows="3" placeholder="不填则自动取正文前 150 字…" style="resize:vertical;font-size:.82rem">Vue 3 带来了全新的 Composition API，提供了更灵活的代码组织方式与更强大的逻辑复用能力。</textarea>
-            <div class="d-flex align-items-center justify-content-between mt-1">
-              <span class="form-hint mb-0">建议 50–150 字</span>
-              <button class="btn btn-light btn-sm" style="height:24px;font-size:.68rem;padding:0 8px" onclick="showToast('已自动生成摘要','info')">
-                <i class="bi bi-magic me-1"></i>自动生成
-              </button>
+          <!-- ===== RIGHT: 侧边面板 ===== -->
+          <div class="ci-editor-sidebar">
+            <!-- 发布设置 -->
+            <div class="ci-panel ci-anim" style="--ci-delay: 0.02s">
+              <div class="ci-panel-header">
+                <i class="bi bi-send"></i> 发布设置
+              </div>
+              <div class="ci-panel-body">
+                <div class="mb-3">
+                  <label class="form-label">文章状态</label>
+                  <select class="form-select" id="post-status-sel">
+                    <option value="draft">草稿</option>
+                    <option value="pending">待审核</option>
+                    <option value="published" selected>立即发布</option>
+                    <option value="scheduled">定时发布</option>
+                    <option value="private">私密</option>
+                  </select>
+                </div>
+                <div class="mb-3" id="schedule-row" style="display: none">
+                  <label class="form-label">定时发布时间</label>
+                  <input type="datetime-local" class="form-control" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">可见范围</label>
+                  <select class="form-select">
+                    <option selected>所有人可见</option>
+                    <option>仅登录用户</option>
+                    <option>仅管理员</option>
+                    <option>密码保护</option>
+                  </select>
+                </div>
+                <div class="d-flex flex-column gap-2 mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="form-label mb-0" style="font-size: 0.82rem"
+                      >置顶文章</label
+                    >
+                    <div class="form-check form-switch mb-0">
+                      <input class="form-check-input" type="checkbox" checked />
+                    </div>
+                  </div>
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="form-label mb-0" style="font-size: 0.82rem"
+                      >允许评论</label
+                    >
+                    <div class="form-check form-switch mb-0">
+                      <input class="form-check-input" type="checkbox" checked />
+                    </div>
+                  </div>
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="form-label mb-0" style="font-size: 0.82rem"
+                      >原创标记</label
+                    >
+                    <div class="form-check form-switch mb-0">
+                      <input class="form-check-input" type="checkbox" checked />
+                    </div>
+                  </div>
+                </div>
+                <div class="d-grid gap-2">
+                  <button class="btn btn-primary" id="btn-publish">
+                    <i class="bi bi-send-fill me-1"></i>发布文章
+                  </button>
+                  <button class="btn btn-light" id="btn-save-draft">
+                    <i class="bi bi-floppy me-1"></i>保存草稿
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 封面图片 -->
+            <div class="ci-panel ci-anim" style="--ci-delay: 0.06s">
+              <div class="ci-panel-header">
+                <i class="bi bi-image"></i> 封面图片
+              </div>
+              <div class="ci-panel-body">
+                <div class="ci-cover-preview" id="cover-preview">
+                  <img
+                    src="https://picsum.photos/seed/vue3cover/600/200"
+                    alt="封面"
+                  />
+                  <div class="ci-cover-overlay">
+                    <i class="bi bi-arrow-repeat"></i> 更换图片
+                  </div>
+                </div>
+                <input
+                  type="file"
+                  id="cover-file-input"
+                  accept="image/*"
+                  style="display: none"
+                />
+                <div class="d-flex gap-2 mt-2">
+                  <button
+                    class="btn btn-light btn-sm flex-fill"
+                    onclick="
+                      document.getElementById('cover-file-input').click()
+                    "
+                  >
+                    <i class="bi bi-upload me-1"></i>上传图片
+                  </button>
+                  <button
+                    class="btn btn-light btn-sm flex-fill"
+                    onclick="showToast('已从媒体库选择', 'info')"
+                  >
+                    <i class="bi bi-collection me-1"></i>媒体库
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 栏目分类 -->
+            <div class="ci-panel ci-anim" style="--ci-delay: 0.1s">
+              <div class="ci-panel-header">
+                <i class="bi bi-folder2-open"></i> 栏目分类
+              </div>
+              <div class="ci-panel-body">
+                <div class="ci-pill-group">
+                  <span class="ci-pill selected">前端技术</span>
+                  <span class="ci-pill">AI 技术</span>
+                  <span class="ci-pill">运维部署</span>
+                  <span class="ci-pill">设计灵感</span>
+                  <span class="ci-pill">数据可视化</span>
+                  <span class="ci-pill">安全技术</span>
+                  <span class="ci-pill">开源项目</span>
+                  <span class="ci-pill">随笔日记</span>
+                </div>
+                <button
+                  class="btn btn-light btn-sm w-100 mt-2"
+                  style="font-size: 0.75rem; height: 28px"
+                  onclick="showToast('请在栏目管理中新建分类', 'info')"
+                >
+                  <i class="bi bi-plus me-1"></i>新建栏目
+                </button>
+              </div>
+            </div>
+
+            <!-- 文章标签 -->
+            <div class="ci-panel ci-anim" style="--ci-delay: 0.14s">
+              <div class="ci-panel-header">
+                <i class="bi bi-tags"></i> 文章标签
+              </div>
+              <div class="ci-panel-body">
+                <div class="ci-tag-list" id="tag-list">
+                  <span class="ci-tag"
+                    >Vue 3<button type="button"><i class="bi bi-x"></i></button
+                  ></span>
+                  <span class="ci-tag"
+                    >Composition API<button type="button">
+                      <i class="bi bi-x"></i></button
+                  ></span>
+                  <span class="ci-tag"
+                    >响应式<button type="button"><i class="bi bi-x"></i></button
+                  ></span>
+                  <span class="ci-tag"
+                    >前端<button type="button"><i class="bi bi-x"></i></button
+                  ></span>
+                </div>
+                <input
+                  type="text"
+                  id="tag-input"
+                  class="form-control mt-2"
+                  placeholder="输入标签后按 Enter 确认"
+                  style="height: 32px; font-size: 0.78rem"
+                />
+                <div class="ci-form-hint">按 Enter 或逗号添加标签</div>
+              </div>
+            </div>
+
+            <!-- 文章摘要 -->
+            <div class="ci-panel ci-anim" style="--ci-delay: 0.18s">
+              <div class="ci-panel-header">
+                <i class="bi bi-blockquote-left"></i> 文章摘要
+              </div>
+              <div class="ci-panel-body">
+                <textarea
+                  class="form-control"
+                  rows="3"
+                  placeholder="不填则自动取正文前 150 字…"
+                  style="resize: vertical; font-size: 0.82rem"
+                >
+Vue 3 带来了全新的 Composition API，提供了更灵活的代码组织方式与更强大的逻辑复用能力。</textarea
+                >
+                <div
+                  class="d-flex align-items-center justify-content-between mt-1"
+                >
+                  <span class="ci-form-hint mb-0">建议 50–150 字</span>
+                  <button
+                    class="btn btn-light btn-sm"
+                    style="height: 24px; font-size: 0.68rem; padding: 0 8px"
+                    onclick="showToast('已自动生成摘要', 'info')"
+                  >
+                    <i class="bi bi-magic me-1"></i>自动生成
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 更多设置（可折叠） -->
+            <div class="ci-panel ci-anim" style="--ci-delay: 0.22s">
+              <div
+                class="ci-panel-header"
+                style="cursor: pointer"
+                data-bs-toggle="collapse"
+                data-bs-target="#more-collapse"
+              >
+                <i class="bi bi-three-dots"></i> 更多设置
+                <i
+                  class="bi bi-chevron-down ms-auto"
+                  style="font-size: 0.75rem; color: var(--ci-gray-400)"
+                ></i>
+              </div>
+              <div id="more-collapse" class="collapse show">
+                <div class="ci-panel-body">
+                  <div class="mb-3">
+                    <label class="form-label">文章作者</label>
+                    <select class="form-select form-select-sm">
+                      <option selected>Admin（超级管理员）</option>
+                      <option>Editor（编辑）</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">排序权重</label>
+                    <input
+                      type="number"
+                      class="form-control form-control-sm"
+                      value="100"
+                      min="0"
+                      max="999"
+                    />
+                    <div class="ci-form-hint">数值越大越靠前，默认 100</div>
+                  </div>
+                  <div class="mb-0">
+                    <label class="form-label">自定义模板</label>
+                    <select class="form-select form-select-sm">
+                      <option selected>默认模板</option>
+                      <option>全宽无侧边栏</option>
+                      <option>专栏长文模板</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          <!-- /ci-editor-sidebar -->
         </div>
+        <!-- /ci-editor-layout -->
+      </main>
+    </div>
+    <!-- /main-wrapper -->
 
-        <!-- More settings -->
-        <div class="form-section anim-fade-up">
-          <div class="form-section-header"><i class="bi bi-three-dots"></i> 更多设置</div>
-          <div class="form-section-body">
-            <div class="mb-3">
-              <label class="form-label">文章作者</label>
-              <select class="form-select form-select-sm">
-                <option selected>Admin（超级管理员）</option>
-                <option>Editor（编辑）</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">文章排序权重</label>
-              <input type="number" class="form-control form-control-sm" value="100" min="0" max="999">
-              <div class="form-hint">数值越大越靠前，默认 100</div>
-            </div>
-            <div class="mb-2">
-              <label class="form-label">自定义模板</label>
-              <select class="form-select form-select-sm">
-                <option selected>默认模板</option>
-                <option>全宽无侧边栏</option>
-                <option>专栏长文模板</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /editor-sidebar-panel -->
-    </div><!-- /editor-layout -->
-
-  </main>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="admin.js"></script>
-<script>
-  // Show scheduled row when "定时发布" selected
-  document.querySelectorAll('select').forEach(function(sel) {
-    sel.addEventListener('change', function() {
-      var scheduleRow = document.getElementById('schedule-row');
-      if (this.value === 'scheduled' && scheduleRow) {
-        scheduleRow.style.display = '';
-      } else if (scheduleRow) {
-        scheduleRow.style.display = 'none';
-      }
-    });
-  });
-
-  // Toolbar button toggle active state (demo)
-  document.querySelectorAll('.toolbar-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      if (!this.title.includes('插入') && !this.title.includes('撤销') && !this.title.includes('重做') && !this.title.includes('全屏')) {
-        this.classList.toggle('active');
-      }
-    });
-  });
-
-  // Auto-save simulation
-  var saveStatus = document.getElementById('save-status');
-  if (saveStatus) {
-    var editorBody = document.getElementById('editor-body');
-    var titleInput = document.getElementById('post-title');
-    var timer;
-    function triggerSave() {
-      clearTimeout(timer);
-      if (saveStatus) saveStatus.innerHTML = '<i class="bi bi-circle-fill" style="color:var(--warning-400);font-size:.45rem;margin-right:3px"></i>未保存';
-      timer = setTimeout(function() {
-        if (saveStatus) saveStatus.innerHTML = '<i class="bi bi-check-circle-fill" style="color:var(--success-400);font-size:.7rem;margin-right:3px"></i>草稿已自动保存 · 刚刚';
-      }, 1500);
-    }
-    if (editorBody) editorBody.addEventListener('input', triggerSave);
-    if (titleInput) titleInput.addEventListener('input', triggerSave);
-  }
-</script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="admin.js"></script>
+    <script>
+      // 定时发布行显示/隐藏
+      (function () {
+        var sel = document.getElementById("post-status-sel");
+        var row = document.getElementById("schedule-row");
+        if (sel && row) {
+          sel.addEventListener("change", function () {
+            row.style.display = this.value === "scheduled" ? "" : "none";
+          });
+        }
+      })();
+    </script>
+  </body>
 </html>

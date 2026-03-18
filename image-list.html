@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>文章列表 — InkFlow Admin</title>
+    <title>图片管理 — InkFlow Admin</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -36,10 +36,10 @@
         <div class="nav-section-label">内容管理</div>
         <div class="nav-item-wrapper">
           <button
-            class="nav-link-item active"
+            class="nav-link-item"
             data-toggle="submenu"
             data-target="sub-content"
-            aria-expanded="true"
+            aria-expanded="false"
             data-tooltip="内容管理"
           >
             <i class="bi bi-file-richtext nav-icon"></i
@@ -50,7 +50,7 @@
         <div class="submenu-wrap" id="sub-content">
           <div class="submenu">
             <div class="nav-item-wrapper">
-              <a href="post-list.html" class="nav-link-item active"
+              <a href="post-list.html" class="nav-link-item"
                 ><i class="bi bi-file-text nav-icon"></i
                 ><span class="nav-label">文章列表</span></a
               >
@@ -78,10 +78,10 @@
         <div class="nav-section-label">媒体</div>
         <div class="nav-item-wrapper">
           <button
-            class="nav-link-item"
+            class="nav-link-item active"
             data-toggle="submenu"
             data-target="sub-media"
-            aria-expanded="false"
+            aria-expanded="true"
             data-tooltip="媒体管理"
           >
             <i class="bi bi-collection nav-icon"></i
@@ -92,7 +92,7 @@
         <div class="submenu-wrap" id="sub-media">
           <div class="submenu">
             <div class="nav-item-wrapper">
-              <a href="image-list.html" class="nav-link-item"
+              <a href="image-list.html" class="nav-link-item active"
                 ><i class="bi bi-images nav-icon"></i
                 ><span class="nav-label">图片管理</span></a
               >
@@ -147,13 +147,13 @@
               style="font-size: 0.65rem"
             ></i></span
           ><a href="#" style="color: var(--ci-gray-500); text-decoration: none"
-            >内容管理</a
+            >媒体管理</a
           ><span class="bc-sep"
             ><i
               class="bi bi-chevron-right"
               style="font-size: 0.65rem"
             ></i></span
-          ><span class="bc-current">文章列表</span>
+          ><span class="bc-current">图片管理</span>
         </div>
         <div class="topbar-search">
           <i class="bi bi-search search-icon"></i>
@@ -219,14 +219,9 @@
       <main id="page-content">
         <div class="page-header">
           <div>
-            <h1 class="page-title">文章列表</h1>
-            <p class="page-subtitle">
-              共 1,284 篇 · 978 已发布 · 180 草稿 · 127 待审核
-            </p>
+            <h1 class="page-title">图片管理</h1>
+            <p class="page-subtitle">共 328 个文件 · 2.8 GB</p>
           </div>
-          <a href="post-edit.html" class="btn btn-primary"
-            ><i class="bi bi-plus-lg"></i> 写新文章</a
-          >
         </div>
         <div class="ci-bulk-bar" id="bulk-action-bar">
           <i class="bi bi-check2-all" style="color: var(--ci-500)"></i>
@@ -255,51 +250,55 @@
                 <button class="ci-filter-tab active" data-filter="all">
                   全部
                   <span style="opacity: 0.7; font-weight: 400"
-                    >(1284)</span
+                    >(328)</span
                   ></button
-                ><button class="ci-filter-tab" data-filter="published">
-                  已发布
+                ><button class="ci-filter-tab" data-filter="image">
+                  图片
                   <span style="opacity: 0.7; font-weight: 400"
-                    >(978)</span
+                    >(284)</span
                   ></button
-                ><button class="ci-filter-tab" data-filter="draft">
-                  草稿
+                ><button class="ci-filter-tab" data-filter="document">
+                  文档
                   <span style="opacity: 0.7; font-weight: 400"
-                    >(180)</span
+                    >(32)</span
                   ></button
-                ><button class="ci-filter-tab" data-filter="pending">
-                  待审核
-                  <span style="opacity: 0.7; font-weight: 400">(127)</span>
+                ><button class="ci-filter-tab" data-filter="other">
+                  其他 <span style="opacity: 0.7; font-weight: 400">(12)</span>
                 </button>
               </div>
               <div class="d-flex align-items-center gap-2 ms-auto flex-wrap">
                 <select
                   class="form-select"
-                  style="width: 120px; height: 32px; font-size: 0.78rem"
+                  style="width: 110px; height: 32px; font-size: 0.78rem"
                 >
-                  <option value="">全部分类</option>
-                  <option>前端技术</option>
-                  <option>AI 技术</option>
-                  <option>运维部署</option>
-                  <option>设计灵感</option>
+                  <option>全部类型</option>
+                  <option>JPG/PNG</option>
+                  <option>GIF</option>
+                  <option>SVG</option>
+                  <option>WebP</option>
                 </select>
                 <select
                   class="form-select"
                   style="width: 110px; height: 32px; font-size: 0.78rem"
                 >
-                  <option>全部时间</option>
-                  <option>今天</option>
-                  <option>本周</option>
-                  <option>本月</option>
+                  <option>最新上传</option>
+                  <option>最大文件</option>
+                  <option>最早上传</option>
                 </select>
-                <select
-                  class="form-select"
-                  style="width: 110px; height: 32px; font-size: 0.78rem"
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="height: 32px"
+                  onclick="document.getElementById('upload-input').click()"
                 >
-                  <option>最新发布</option>
-                  <option>最多浏览</option>
-                  <option>最多评论</option>
-                </select>
+                  <i class="bi bi-upload me-1"></i>上传文件
+                </button>
+                <input
+                  type="file"
+                  id="upload-input"
+                  multiple
+                  accept="image/*"
+                  style="display: none"
+                />
               </div>
             </div>
           </div>
@@ -318,18 +317,16 @@
                         style="width: 15px; height: 15px; cursor: pointer"
                       />
                     </th>
-                    <th style="min-width: 300px">文章标题</th>
-                    <th>分类</th>
-                    <th>作者</th>
-                    <th>评论</th>
-                    <th>浏览量</th>
-                    <th>发布时间</th>
-                    <th>状态</th>
-                    <th style="width: 110px; text-align: center">操作</th>
+                    <th style="min-width: 240px">文件名</th>
+                    <th>类型</th>
+                    <th>大小</th>
+                    <th>尺寸</th>
+                    <th>上传时间</th>
+                    <th style="width: 140px; text-align: center">操作</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr data-status="published">
+                  <tr>
                     <td>
                       <input
                         type="checkbox"
@@ -338,62 +335,52 @@
                       />
                     </td>
                     <td>
-                      <div class="ci-item-cell">
-                        <div class="ci-thumb" style="background: var(--ci-100)">
-                          <i
-                            class="bi bi-file-code"
-                            style="color: var(--ci-400)"
-                          ></i>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="ci-img-thumb">
+                          <img
+                            src="https://picsum.photos/seed/pic/50/72/48"
+                            alt=""
+                            loading="lazy"
+                          />
                         </div>
                         <div>
                           <a
-                            href="post-edit.html"
+                            href="image-edit.html"
                             class="ci-link"
-                            style="font-size: 0.84rem"
-                            >深入理解 Vue 3 Composition API 与响应式原理</a
-                          ><small>技术教程</small>
+                            style="font-size: 0.83rem"
+                            >cover-vue3.jpg</a
+                          >
                         </div>
                       </div>
                     </td>
-                    <td>
-                      <span
-                        class="ci-cat-pill"
-                        style="background: var(--ci-50); color: var(--ci-600)"
-                        >前端技术</span
-                      >
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-700)">
-                      Admin
+                    <td><span class="ci-badge ci-badge-draft">JPG</span></td>
+                    <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
+                      1.2 MB
                     </td>
                     <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
-                      48
-                    </td>
-                    <td
-                      style="
-                        font-size: 0.8rem;
-                        font-weight: 600;
-                        color: var(--ci-gray-800);
-                      "
-                    >
-                      3,821
+                      1920×1080
                     </td>
                     <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
                       2025-06-18
                     </td>
                     <td>
-                      <span class="ci-badge ci-badge-published"
-                        ><span class="ci-badge-dot"></span>已发布</span
-                      >
-                    </td>
-                    <td>
                       <div class="d-flex justify-content-center gap-1">
                         <a
-                          href="post-edit.html"
+                          href="image-edit.html"
                           class="btn btn-light btn-icon"
-                          title="编辑"
+                          title="编辑信息"
                           ><i class="bi bi-pencil"></i
                         ></a>
-
+                        <button
+                          class="btn btn-light btn-icon"
+                          title="复制链接"
+                          onclick="showToast('链接已复制到剪贴板', 'success')"
+                        >
+                          <i class="bi bi-clipboard"></i>
+                        </button>
+                        <button class="btn btn-light btn-icon" title="预览">
+                          <i class="bi bi-eye"></i>
+                        </button>
                         <button
                           class="btn btn-danger-soft btn-icon"
                           title="删除"
@@ -404,7 +391,7 @@
                       </div>
                     </td>
                   </tr>
-                  <tr data-status="published">
+                  <tr>
                     <td>
                       <input
                         type="checkbox"
@@ -413,62 +400,52 @@
                       />
                     </td>
                     <td>
-                      <div class="ci-item-cell">
-                        <div class="ci-thumb" style="background: #fef3c7">
-                          <i
-                            class="bi bi-palette"
-                            style="color: var(--ci-warning-500)"
-                          ></i>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="ci-img-thumb">
+                          <img
+                            src="https://picsum.photos/seed/pic/60/72/48"
+                            alt=""
+                            loading="lazy"
+                          />
                         </div>
                         <div>
                           <a
-                            href="post-edit.html"
+                            href="image-edit.html"
                             class="ci-link"
-                            style="font-size: 0.84rem"
-                            >2025年产品设计趋势全解析：从扁平到沉浸式体验</a
-                          ><small>设计专题</small>
+                            style="font-size: 0.83rem"
+                            >design-trends.png</a
+                          >
                         </div>
                       </div>
                     </td>
-                    <td>
-                      <span
-                        class="ci-cat-pill"
-                        style="background: #fef3c7; color: #b45309"
-                        >设计灵感</span
-                      >
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-700)">
-                      Editor
+                    <td><span class="ci-badge ci-badge-draft">PNG</span></td>
+                    <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
+                      856 KB
                     </td>
                     <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
-                      32
-                    </td>
-                    <td
-                      style="
-                        font-size: 0.8rem;
-                        font-weight: 600;
-                        color: var(--ci-gray-800);
-                      "
-                    >
-                      2,156
+                      1600×900
                     </td>
                     <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
                       2025-06-16
                     </td>
                     <td>
-                      <span class="ci-badge ci-badge-published"
-                        ><span class="ci-badge-dot"></span>已发布</span
-                      >
-                    </td>
-                    <td>
                       <div class="d-flex justify-content-center gap-1">
                         <a
-                          href="post-edit.html"
+                          href="image-edit.html"
                           class="btn btn-light btn-icon"
-                          title="编辑"
+                          title="编辑信息"
                           ><i class="bi bi-pencil"></i
                         ></a>
-
+                        <button
+                          class="btn btn-light btn-icon"
+                          title="复制链接"
+                          onclick="showToast('链接已复制到剪贴板', 'success')"
+                        >
+                          <i class="bi bi-clipboard"></i>
+                        </button>
+                        <button class="btn btn-light btn-icon" title="预览">
+                          <i class="bi bi-eye"></i>
+                        </button>
                         <button
                           class="btn btn-danger-soft btn-icon"
                           title="删除"
@@ -479,7 +456,7 @@
                       </div>
                     </td>
                   </tr>
-                  <tr data-status="pending">
+                  <tr>
                     <td>
                       <input
                         type="checkbox"
@@ -488,70 +465,51 @@
                       />
                     </td>
                     <td>
-                      <div class="ci-item-cell">
-                        <div class="ci-thumb" style="background: #dcfce7">
-                          <i
-                            class="bi bi-cloud"
-                            style="color: var(--ci-success-500)"
-                          ></i>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="ci-img-thumb">
+                          <img
+                            src="https://picsum.photos/seed/pic/70/72/48"
+                            alt=""
+                            loading="lazy"
+                          />
                         </div>
                         <div>
                           <a
-                            href="post-edit.html"
+                            href="image-edit.html"
                             class="ci-link"
-                            style="font-size: 0.84rem"
-                            >Docker 容器化生产部署最佳实践与常见坑</a
-                          ><small>运维分享</small>
+                            style="font-size: 0.83rem"
+                            >docker-arch.png</a
+                          >
                         </div>
                       </div>
                     </td>
-                    <td>
-                      <span
-                        class="ci-cat-pill"
-                        style="background: #dcfce7; color: #15803d"
-                        >运维部署</span
-                      >
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-700)">
-                      Ops
+                    <td><span class="ci-badge ci-badge-draft">PNG</span></td>
+                    <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
+                      442 KB
                     </td>
                     <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
-                      19
-                    </td>
-                    <td
-                      style="
-                        font-size: 0.8rem;
-                        font-weight: 600;
-                        color: var(--ci-gray-800);
-                      "
-                    >
-                      1,877
+                      1200×800
                     </td>
                     <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
                       2025-06-14
                     </td>
                     <td>
-                      <span class="ci-badge ci-badge-pending"
-                        ><span class="ci-badge-dot"></span>待审核</span
-                      >
-                    </td>
-                    <td>
                       <div class="d-flex justify-content-center gap-1">
                         <a
-                          href="post-edit.html"
+                          href="image-edit.html"
                           class="btn btn-light btn-icon"
-                          title="编辑"
+                          title="编辑信息"
                           ><i class="bi bi-pencil"></i
                         ></a>
                         <button
                           class="btn btn-light btn-icon"
-                          title="通过审核"
-                          onclick="showToast('已审核通过', 'success')"
+                          title="复制链接"
+                          onclick="showToast('链接已复制到剪贴板', 'success')"
                         >
-                          <i
-                            class="bi bi-check-circle"
-                            style="color: var(--ci-success-500)"
-                          ></i>
+                          <i class="bi bi-clipboard"></i>
+                        </button>
+                        <button class="btn btn-light btn-icon" title="预览">
+                          <i class="bi bi-eye"></i>
                         </button>
                         <button
                           class="btn btn-danger-soft btn-icon"
@@ -563,7 +521,7 @@
                       </div>
                     </td>
                   </tr>
-                  <tr data-status="draft">
+                  <tr>
                     <td>
                       <input
                         type="checkbox"
@@ -572,67 +530,51 @@
                       />
                     </td>
                     <td>
-                      <div class="ci-item-cell">
-                        <div class="ci-thumb" style="background: #ede9fe">
-                          <i class="bi bi-cpu" style="color: #7c3aed"></i>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="ci-img-thumb">
+                          <img
+                            src="https://picsum.photos/seed/pic/80/72/48"
+                            alt=""
+                            loading="lazy"
+                          />
                         </div>
                         <div>
                           <a
-                            href="post-edit.html"
+                            href="image-edit.html"
                             class="ci-link"
-                            style="font-size: 0.84rem"
-                            >大语言模型 Fine-tuning 全流程入门指南</a
-                          ><small>AI 研究</small>
+                            style="font-size: 0.83rem"
+                            >llm-finetune.jpg</a
+                          >
                         </div>
                       </div>
                     </td>
-                    <td>
-                      <span
-                        class="ci-cat-pill"
-                        style="background: #ede9fe; color: #7c3aed"
-                        >AI 技术</span
-                      >
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-700)">
-                      Admin
+                    <td><span class="ci-badge ci-badge-draft">JPG</span></td>
+                    <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
+                      1.8 MB
                     </td>
                     <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
-                      —
-                    </td>
-                    <td
-                      style="
-                        font-size: 0.8rem;
-                        font-weight: 600;
-                        color: var(--ci-gray-800);
-                      "
-                    >
-                      —
+                      2000×1125
                     </td>
                     <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
                       2025-06-12
                     </td>
                     <td>
-                      <span class="ci-badge ci-badge-draft"
-                        ><span class="ci-badge-dot"></span>草稿</span
-                      >
-                    </td>
-                    <td>
                       <div class="d-flex justify-content-center gap-1">
                         <a
-                          href="post-edit.html"
+                          href="image-edit.html"
                           class="btn btn-light btn-icon"
-                          title="编辑"
+                          title="编辑信息"
                           ><i class="bi bi-pencil"></i
                         ></a>
                         <button
                           class="btn btn-light btn-icon"
-                          title="发布"
-                          onclick="showToast('发布成功', 'success')"
+                          title="复制链接"
+                          onclick="showToast('链接已复制到剪贴板', 'success')"
                         >
-                          <i
-                            class="bi bi-send"
-                            style="color: var(--ci-500)"
-                          ></i>
+                          <i class="bi bi-clipboard"></i>
+                        </button>
+                        <button class="btn btn-light btn-icon" title="预览">
+                          <i class="bi bi-eye"></i>
                         </button>
                         <button
                           class="btn btn-danger-soft btn-icon"
@@ -644,7 +586,7 @@
                       </div>
                     </td>
                   </tr>
-                  <tr data-status="published">
+                  <tr>
                     <td>
                       <input
                         type="checkbox"
@@ -653,62 +595,52 @@
                       />
                     </td>
                     <td>
-                      <div class="ci-item-cell">
-                        <div class="ci-thumb" style="background: #e0f9ff">
-                          <i
-                            class="bi bi-terminal"
-                            style="color: var(--ci-accent-500)"
-                          ></i>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="ci-img-thumb">
+                          <img
+                            src="https://picsum.photos/seed/pic/90/72/48"
+                            alt=""
+                            loading="lazy"
+                          />
                         </div>
                         <div>
                           <a
-                            href="post-edit.html"
+                            href="image-edit.html"
                             class="ci-link"
-                            style="font-size: 0.84rem"
-                            >TypeScript 高级类型体操：泛型 + infer 实战技巧</a
-                          ><small>前端进阶</small>
+                            style="font-size: 0.83rem"
+                            >typescript-types.png</a
+                          >
                         </div>
                       </div>
                     </td>
-                    <td>
-                      <span
-                        class="ci-cat-pill"
-                        style="background: var(--ci-50); color: var(--ci-600)"
-                        >前端技术</span
-                      >
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-700)">
-                      Admin
+                    <td><span class="ci-badge ci-badge-draft">PNG</span></td>
+                    <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
+                      328 KB
                     </td>
                     <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
-                      67
-                    </td>
-                    <td
-                      style="
-                        font-size: 0.8rem;
-                        font-weight: 600;
-                        color: var(--ci-gray-800);
-                      "
-                    >
-                      4,603
+                      1400×900
                     </td>
                     <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
                       2025-06-10
                     </td>
                     <td>
-                      <span class="ci-badge ci-badge-published"
-                        ><span class="ci-badge-dot"></span>已发布</span
-                      >
-                    </td>
-                    <td>
                       <div class="d-flex justify-content-center gap-1">
                         <a
-                          href="post-edit.html"
+                          href="image-edit.html"
                           class="btn btn-light btn-icon"
-                          title="编辑"
+                          title="编辑信息"
                           ><i class="bi bi-pencil"></i
                         ></a>
-
+                        <button
+                          class="btn btn-light btn-icon"
+                          title="复制链接"
+                          onclick="showToast('链接已复制到剪贴板', 'success')"
+                        >
+                          <i class="bi bi-clipboard"></i>
+                        </button>
+                        <button class="btn btn-light btn-icon" title="预览">
+                          <i class="bi bi-eye"></i>
+                        </button>
                         <button
                           class="btn btn-danger-soft btn-icon"
                           title="删除"
@@ -719,7 +651,7 @@
                       </div>
                     </td>
                   </tr>
-                  <tr data-status="published">
+                  <tr>
                     <td>
                       <input
                         type="checkbox"
@@ -728,59 +660,52 @@
                       />
                     </td>
                     <td>
-                      <div class="ci-item-cell">
-                        <div class="ci-thumb" style="background: #fce7f3">
-                          <i class="bi bi-bar-chart" style="color: #be185d"></i>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="ci-img-thumb">
+                          <img
+                            src="https://picsum.photos/seed/pic/100/72/48"
+                            alt=""
+                            loading="lazy"
+                          />
                         </div>
                         <div>
                           <a
-                            href="post-edit.html"
+                            href="image-edit.html"
                             class="ci-link"
-                            style="font-size: 0.84rem"
-                            >从零搭建数据可视化大屏：ECharts 完整实战</a
-                          ><small>数据分析</small>
+                            style="font-size: 0.83rem"
+                            >echarts-demo.gif</a
+                          >
                         </div>
                       </div>
                     </td>
-                    <td>
-                      <span
-                        class="ci-cat-pill"
-                        style="background: #fce7f3; color: #be185d"
-                        >数据可视化</span
-                      >
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-700)">
-                      Editor
+                    <td><span class="ci-badge ci-badge-draft">GIF</span></td>
+                    <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
+                      3.4 MB
                     </td>
                     <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
-                      41
-                    </td>
-                    <td
-                      style="
-                        font-size: 0.8rem;
-                        font-weight: 600;
-                        color: var(--ci-gray-800);
-                      "
-                    >
-                      5,128
+                      800×600
                     </td>
                     <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
                       2025-06-08
                     </td>
                     <td>
-                      <span class="ci-badge ci-badge-published"
-                        ><span class="ci-badge-dot"></span>已发布</span
-                      >
-                    </td>
-                    <td>
                       <div class="d-flex justify-content-center gap-1">
                         <a
-                          href="post-edit.html"
+                          href="image-edit.html"
                           class="btn btn-light btn-icon"
-                          title="编辑"
+                          title="编辑信息"
                           ><i class="bi bi-pencil"></i
                         ></a>
-
+                        <button
+                          class="btn btn-light btn-icon"
+                          title="复制链接"
+                          onclick="showToast('链接已复制到剪贴板', 'success')"
+                        >
+                          <i class="bi bi-clipboard"></i>
+                        </button>
+                        <button class="btn btn-light btn-icon" title="预览">
+                          <i class="bi bi-eye"></i>
+                        </button>
                         <button
                           class="btn btn-danger-soft btn-icon"
                           title="删除"
@@ -791,7 +716,7 @@
                       </div>
                     </td>
                   </tr>
-                  <tr data-status="draft">
+                  <tr>
                     <td>
                       <input
                         type="checkbox"
@@ -800,76 +725,116 @@
                       />
                     </td>
                     <td>
-                      <div class="ci-item-cell">
-                        <div
-                          class="ci-thumb"
-                          style="background: var(--ci-gray-100)"
-                        >
-                          <i
-                            class="bi bi-shield-check"
-                            style="color: var(--ci-gray-400)"
-                          ></i>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="ci-img-thumb">
+                          <img
+                            src="https://picsum.photos/seed/pic/110/72/48"
+                            alt=""
+                            loading="lazy"
+                          />
                         </div>
                         <div>
                           <a
-                            href="post-edit.html"
+                            href="image-edit.html"
                             class="ci-link"
-                            style="font-size: 0.84rem"
-                            >Web 应用安全防护：XSS、CSRF 全攻略</a
-                          ><small>安全专题</small>
+                            style="font-size: 0.83rem"
+                            >security-banner.jpg</a
+                          >
                         </div>
                       </div>
                     </td>
-                    <td>
-                      <span
-                        class="ci-cat-pill"
-                        style="
-                          background: var(--ci-gray-100);
-                          color: var(--ci-gray-600);
-                        "
-                        >安全技术</span
-                      >
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-700)">
-                      Admin
+                    <td><span class="ci-badge ci-badge-draft">JPG</span></td>
+                    <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
+                      944 KB
                     </td>
                     <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
-                      —
-                    </td>
-                    <td
-                      style="
-                        font-size: 0.8rem;
-                        font-weight: 600;
-                        color: var(--ci-gray-800);
-                      "
-                    >
-                      —
+                      1920×1080
                     </td>
                     <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
                       2025-06-05
                     </td>
                     <td>
-                      <span class="ci-badge ci-badge-draft"
-                        ><span class="ci-badge-dot"></span>草稿</span
-                      >
-                    </td>
-                    <td>
                       <div class="d-flex justify-content-center gap-1">
                         <a
-                          href="post-edit.html"
+                          href="image-edit.html"
                           class="btn btn-light btn-icon"
-                          title="编辑"
+                          title="编辑信息"
                           ><i class="bi bi-pencil"></i
                         ></a>
                         <button
                           class="btn btn-light btn-icon"
-                          title="发布"
-                          onclick="showToast('发布成功', 'success')"
+                          title="复制链接"
+                          onclick="showToast('链接已复制到剪贴板', 'success')"
                         >
-                          <i
-                            class="bi bi-send"
-                            style="color: var(--ci-500)"
-                          ></i>
+                          <i class="bi bi-clipboard"></i>
+                        </button>
+                        <button class="btn btn-light btn-icon" title="预览">
+                          <i class="bi bi-eye"></i>
+                        </button>
+                        <button
+                          class="btn btn-danger-soft btn-icon"
+                          title="删除"
+                          onclick="ciConfirmDelete(this)"
+                        >
+                          <i class="bi bi-trash3"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                        type="checkbox"
+                        class="form-check-input ci-row-check"
+                        style="width: 15px; height: 15px; cursor: pointer"
+                      />
+                    </td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="ci-img-thumb">
+                          <img
+                            src="https://picsum.photos/seed/pic/120/72/48"
+                            alt=""
+                            loading="lazy"
+                          />
+                        </div>
+                        <div>
+                          <a
+                            href="image-edit.html"
+                            class="ci-link"
+                            style="font-size: 0.83rem"
+                            >avatar-admin.png</a
+                          >
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="ci-badge ci-badge-draft">PNG</span></td>
+                    <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
+                      24 KB
+                    </td>
+                    <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
+                      200×200
+                    </td>
+                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
+                      2025-05-20
+                    </td>
+                    <td>
+                      <div class="d-flex justify-content-center gap-1">
+                        <a
+                          href="image-edit.html"
+                          class="btn btn-light btn-icon"
+                          title="编辑信息"
+                          ><i class="bi bi-pencil"></i
+                        ></a>
+                        <button
+                          class="btn btn-light btn-icon"
+                          title="复制链接"
+                          onclick="showToast('链接已复制到剪贴板', 'success')"
+                        >
+                          <i class="bi bi-clipboard"></i>
+                        </button>
+                        <button class="btn btn-light btn-icon" title="预览">
+                          <i class="bi bi-eye"></i>
                         </button>
                         <button
                           class="btn btn-danger-soft btn-icon"
@@ -889,8 +854,8 @@
             class="card-footer d-flex align-items-center justify-content-between"
           >
             <span style="font-size: 0.78rem; color: var(--ci-gray-500)"
-              >共 <strong>1,284</strong> 条记录，第 <strong>1</strong> /
-              <strong>129</strong> 页</span
+              >共 <strong>328</strong> 条记录，第 <strong>1</strong> /
+              <strong>33</strong> 页</span
             >
             <nav>
               <ul class="pagination mb-0">
@@ -972,14 +937,16 @@
               t.classList.remove("active");
             });
             this.classList.add("active");
-            var f = this.dataset.filter;
-            document
-              .querySelectorAll(".ci-table tbody tr")
-              .forEach(function (row) {
-                row.style.display =
-                  f === "all" || row.dataset.status === f ? "" : "none";
-              });
           });
+        });
+      })();
+      // Upload preview
+      (function () {
+        var inp = document.getElementById("upload-input");
+        if (!inp) return;
+        inp.addEventListener("change", function () {
+          if (this.files && this.files.length)
+            showToast("已上传 " + this.files.length + " 个文件", "success");
         });
       })();
     </script>

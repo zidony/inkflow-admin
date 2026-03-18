@@ -1,4 +1,4 @@
-# InkFlow Admin 后台管理系统模板 (InkFlow Admin Template)
+# InkFlow Admin 后台管理系统模板 (InkFlow Blog Admin Template)
 
 这是一套专为生产环境设计的现代、美观、轻量级的博客管理后台 UI 模板。本项目由资深前端架构驱动，摒弃了臃肿的第三方框架，致力于在极佳的视觉体验与极致的运行效率之间取得完美平衡。
 

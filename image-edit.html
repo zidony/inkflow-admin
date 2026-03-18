@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>编辑图片 — InkFlow Admin</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
+    />
+
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <!-- SIDEBAR -->
+    <nav id="sidebar">
+      <a class="sidebar-logo" href="dashboard.html">
+        <div class="sidebar-logo-icon"><i class="bi bi-journals"></i></div>
+        <div class="sidebar-logo-text">
+          <span class="sidebar-logo-title">InkFlow</span>
+          <span class="sidebar-logo-sub">Blog CMS</span>
+        </div>
+      </a>
+      <div class="sidebar-nav-wrap">
+        <div class="nav-section-label">主菜单</div>
+        <div class="nav-item-wrapper">
+          <a href="dashboard.html" class="nav-link-item" data-tooltip="仪表盘">
+            <i class="bi bi-grid-1x2 nav-icon"></i
+            ><span class="nav-label">仪表盘</span>
+          </a>
+        </div>
+        <div class="nav-section-label">内容管理</div>
+        <div class="nav-item-wrapper">
+          <button
+            class="nav-link-item"
+            data-toggle="submenu"
+            data-target="sub-content"
+            aria-expanded="false"
+            data-tooltip="内容管理"
+          >
+            <i class="bi bi-file-richtext nav-icon"></i
+            ><span class="nav-label">内容管理</span>
+            <i class="bi bi-chevron-right nav-arrow"></i>
+          </button>
+        </div>
+        <div class="submenu-wrap" id="sub-content">
+          <div class="submenu">
+            <div class="nav-item-wrapper">
+              <a href="post-list.html" class="nav-link-item"
+                ><i class="bi bi-file-text nav-icon"></i
+                ><span class="nav-label">文章列表</span></a
+              >
+            </div>
+            <div class="nav-item-wrapper">
+              <a href="comment-list.html" class="nav-link-item"
+                ><i class="bi bi-chat-left-dots nav-icon"></i
+                ><span class="nav-label">评论列表</span></a
+              >
+            </div>
+            <div class="nav-item-wrapper">
+              <a href="category-list.html" class="nav-link-item"
+                ><i class="bi bi-folder2 nav-icon"></i
+                ><span class="nav-label">栏目列表</span></a
+              >
+            </div>
+            <div class="nav-item-wrapper">
+              <a href="tag-list.html" class="nav-link-item"
+                ><i class="bi bi-tags nav-icon"></i
+                ><span class="nav-label">标签管理</span></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="nav-section-label">媒体</div>
+        <div class="nav-item-wrapper">
+          <button
+            class="nav-link-item active"
+            data-toggle="submenu"
+            data-target="sub-media"
+            aria-expanded="true"
+            data-tooltip="媒体管理"
+          >
+            <i class="bi bi-collection nav-icon"></i
+            ><span class="nav-label">媒体管理</span>
+            <i class="bi bi-chevron-right nav-arrow"></i>
+          </button>
+        </div>
+        <div class="submenu-wrap" id="sub-media">
+          <div class="submenu">
+            <div class="nav-item-wrapper">
+              <a href="image-list.html" class="nav-link-item active"
+                ><i class="bi bi-images nav-icon"></i
+                ><span class="nav-label">图片管理</span></a
+              >
+            </div>
+            <div class="nav-item-wrapper">
+              <a href="link-list.html" class="nav-link-item"
+                ><i class="bi bi-link-45deg nav-icon"></i
+                ><span class="nav-label">链接管理</span></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="nav-section-label">系统</div>
+        <div class="nav-item-wrapper">
+          <a href="user-list.html" class="nav-link-item" data-tooltip="用户管理"
+            ><i class="bi bi-people nav-icon"></i
+            ><span class="nav-label">用户管理</span></a
+          >
+        </div>
+        <div class="nav-item-wrapper">
+          <a href="settings.html" class="nav-link-item" data-tooltip="系统设置"
+            ><i class="bi bi-sliders nav-icon"></i
+            ><span class="nav-label">系统设置</span></a
+          >
+        </div>
+      </div>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div class="sidebar-user-avatar">AD</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Admin</div>
+            <div class="sidebar-user-role">超级管理员</div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div id="sidebar-overlay"></div>
+    <div id="main-wrapper">
+      <!-- TOPBAR -->
+      <header id="topbar">
+        <button id="sidebar-toggle" title="收起/展开菜单">
+          <i class="bi bi-layout-sidebar-inset"></i>
+        </button>
+        <div class="topbar-breadcrumb">
+          <a
+            href="dashboard.html"
+            style="color: var(--ci-gray-500); text-decoration: none"
+            >InkFlow</a
+          ><span class="bc-sep"
+            ><i
+              class="bi bi-chevron-right"
+              style="font-size: 0.65rem"
+            ></i></span
+          ><a
+            href="image-list.html"
+            style="color: var(--ci-gray-500); text-decoration: none"
+            >图片管理</a
+          ><span class="bc-sep"
+            ><i
+              class="bi bi-chevron-right"
+              style="font-size: 0.65rem"
+            ></i></span
+          ><span class="bc-current">编辑图片</span>
+        </div>
+        <div class="topbar-search">
+          <i class="bi bi-search search-icon"></i>
+          <input type="text" id="list-search" placeholder="快速搜索…" />
+        </div>
+        <div class="topbar-actions">
+          <button
+            class="topbar-icon-btn"
+            style="position: relative"
+            title="通知"
+          >
+            <i class="bi bi-bell"></i><span class="ci-notif-badge">4</span>
+          </button>
+
+          <div class="dropdown topbar-dropdown ms-1">
+            <button
+              class="topbar-user-btn"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style="border: none"
+            >
+              <div class="topbar-avatar">AD</div>
+              <span class="topbar-user-name d-none d-md-inline">Admin</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <div class="user-info-header">
+                  <div class="user-info-avatar">AD</div>
+                  <div>
+                    <div class="user-info-name">Admin User</div>
+                    <div class="user-info-email">admin@inkflow.dev</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-person-circle"></i> 个人资料</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-shield-check"></i> 账号安全</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="login.html"
+                  style="color: #ef4444"
+                  ><i class="bi bi-box-arrow-right"></i> 退出登录</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <main id="page-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">编辑图片信息</h1>
+          </div>
+          <a href="image-list.html" class="btn btn-light"
+            ><i class="bi bi-arrow-left"></i> 返回列表</a
+          >
+        </div>
+        <div class="row g-3">
+          <div class="col-12 col-xl-8">
+            <div class="ci-panel ci-anim">
+              <div class="ci-panel-header">
+                <i class="bi bi-image"></i> 图片预览
+              </div>
+              <div class="ci-panel-body">
+                <div
+                  style="
+                    background: var(--ci-gray-100);
+                    border-radius: 8px;
+                    overflow: hidden;
+                    text-align: center;
+                    padding: 12px;
+                  "
+                >
+                  <img
+                    src="https://picsum.photos/seed/vue3/800/450"
+                    alt="预览"
+                    style="
+                      max-width: 100%;
+                      max-height: 400px;
+                      border-radius: 6px;
+                      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+                    "
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="ci-panel ci-anim" style="--ci-delay: 0.1s">
+              <div class="ci-panel-header">
+                <i class="bi bi-info-circle"></i> 图片信息
+              </div>
+              <div class="ci-panel-body">
+                <div class="row g-3">
+                  <div class="col-12">
+                    <label class="form-label">文件标题</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      value="cover-vue3.jpg"
+                    />
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Alt 文本（描述）</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      value="Vue 3 Composition API 封面图"
+                      placeholder="图片的文字描述，有助于 SEO 和无障碍访问"
+                    />
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">图片说明</label>
+                    <textarea
+                      class="form-control"
+                      rows="2"
+                      placeholder="图片附加说明（可选）"
+                    ></textarea>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label">链接到</label>
+                    <select class="form-select">
+                      <option>无</option>
+                      <option>媒体文件</option>
+                      <option>附件页</option>
+                      <option>自定义 URL</option>
+                    </select>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label">显示方式</label>
+                    <select class="form-select">
+                      <option>原始大小</option>
+                      <option>缩略图</option>
+                      <option>中等大小</option>
+                      <option>大图</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ci-panel ci-anim" style="--ci-delay: 0.2s">
+              <div class="ci-panel-header">
+                <i class="bi bi-link-45deg"></i> 直链地址
+              </div>
+              <div class="ci-panel-body">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    value="https://cdn.inkflow.dev/uploads/2025/06/cover-vue3.jpg"
+                    readonly
+                    style="font-size: 0.8rem; font-family: var(--font-mono)"
+                  />
+                  <button
+                    class="btn btn-light"
+                    onclick="showToast('已复制到剪贴板', 'success')"
+                  >
+                    <i class="bi bi-clipboard"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex gap-2">
+              <button
+                class="btn btn-primary"
+                onclick="showToast('图片信息已保存', 'success')"
+              >
+                <i class="bi bi-check-lg me-1"></i>保存信息
+              </button>
+              <button
+                class="btn btn-light"
+                onclick="window.location = 'image-list.html'"
+              >
+                取消
+              </button>
+            </div>
+          </div>
+          <div class="col-12 col-xl-4">
+            <div class="ci-panel ci-anim" style="--ci-delay: 0.05s">
+              <div class="ci-panel-header">
+                <i class="bi bi-file-earmark-text"></i> 文件详情
+              </div>
+              <div class="ci-panel-body">
+                <dl style="font-size: 0.82rem; margin: 0">
+                  <dt
+                    style="
+                      color: var(--ci-gray-400);
+                      font-weight: 500;
+                      margin-bottom: 2px;
+                    "
+                  >
+                    文件名
+                  </dt>
+                  <dd
+                    style="
+                      font-family: var(--font-mono);
+                      font-size: 0.78rem;
+                      color: var(--ci-gray-800);
+                      margin-bottom: 10px;
+                    "
+                  >
+                    cover-vue3.jpg
+                  </dd>
+                  <dt
+                    style="
+                      color: var(--ci-gray-400);
+                      font-weight: 500;
+                      margin-bottom: 2px;
+                    "
+                  >
+                    文件类型
+                  </dt>
+                  <dd style="color: var(--ci-gray-800); margin-bottom: 10px">
+                    image/jpeg
+                  </dd>
+                  <dt
+                    style="
+                      color: var(--ci-gray-400);
+                      font-weight: 500;
+                      margin-bottom: 2px;
+                    "
+                  >
+                    文件大小
+                  </dt>
+                  <dd style="color: var(--ci-gray-800); margin-bottom: 10px">
+                    1.2 MB (1,258,496 字节)
+                  </dd>
+                  <dt
+                    style="
+                      color: var(--ci-gray-400);
+                      font-weight: 500;
+                      margin-bottom: 2px;
+                    "
+                  >
+                    尺寸
+                  </dt>
+                  <dd style="color: var(--ci-gray-800); margin-bottom: 10px">
+                    1920 × 1080 px
+                  </dd>
+                  <dt
+                    style="
+                      color: var(--ci-gray-400);
+                      font-weight: 500;
+                      margin-bottom: 2px;
+                    "
+                  >
+                    上传时间
+                  </dt>
+                  <dd style="color: var(--ci-gray-800); margin-bottom: 10px">
+                    2025-06-18 09:32:14
+                  </dd>
+                  <dt
+                    style="
+                      color: var(--ci-gray-400);
+                      font-weight: 500;
+                      margin-bottom: 2px;
+                    "
+                  >
+                    上传者
+                  </dt>
+                  <dd style="color: var(--ci-gray-800); margin-bottom: 0">
+                    Admin
+                  </dd>
+                </dl>
+              </div>
+            </div>
+            <div class="ci-panel ci-anim" style="--ci-delay: 0.15s">
+              <div class="ci-panel-header">
+                <i class="bi bi-scissors"></i> 图片操作
+              </div>
+              <div class="ci-panel-body d-flex flex-column gap-2">
+                <button
+                  class="btn btn-light w-100"
+                  onclick="showToast('图片编辑器开发中', 'info')"
+                >
+                  <i class="bi bi-crop me-1"></i>裁剪图片
+                </button>
+                <button
+                  class="btn btn-light w-100"
+                  onclick="showToast('正在重新生成缩略图', 'info')"
+                >
+                  <i class="bi bi-arrow-repeat me-1"></i>重新生成缩略图
+                </button>
+                <button
+                  class="btn btn-danger-soft w-100 mt-2"
+                  onclick="
+                    if (confirm('确定永久删除此文件？')) {
+                      showToast('文件已删除', 'danger');
+                      window.location = 'image-list.html';
+                    }
+                  "
+                >
+                  <i class="bi bi-trash3 me-1"></i>永久删除文件
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>

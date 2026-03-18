@@ -1,548 +1,1136 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>仪表盘 — BlogAdmin</title>
-  <!-- Bootstrap 5.3 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-  <!-- Bootstrap Icons 1.13.1 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-  <!-- Custom -->
-  <link rel="stylesheet" href="admin.css">
-</head>
-<body>
-
-<!-- ===================== SIDEBAR ===================== -->
-<nav id="sidebar">
-  <!-- Logo -->
-  <a class="sidebar-logo" href="dashboard.html">
-    <div class="sidebar-logo-icon"><i class="bi bi-journals"></i></div>
-    <div class="sidebar-logo-text">
-      <span class="sidebar-logo-title">BlogAdmin</span>
-      <span class="sidebar-logo-sub">Content CMS</span>
-    </div>
-  </a>
-
-  <!-- Nav -->
-  <div class="sidebar-nav-wrap">
-
-    <div class="nav-section-label">主菜单</div>
-
-    <div class="nav-item-wrapper">
-      <a href="dashboard.html" class="nav-link-item active" data-tooltip="仪表盘">
-        <i class="bi bi-grid-1x2 nav-icon"></i>
-        <span class="nav-label">仪表盘</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>仪表盘 — InkFlow Admin</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <!-- SIDEBAR -->
+    <nav id="sidebar">
+      <a class="sidebar-logo" href="dashboard.html">
+        <div class="sidebar-logo-icon"><i class="bi bi-journals"></i></div>
+        <div class="sidebar-logo-text">
+          <span class="sidebar-logo-title">InkFlow</span>
+          <span class="sidebar-logo-sub">Blog CMS</span>
+        </div>
       </a>
-    </div>
-
-    <div class="nav-section-label">内容管理</div>
-
-    <div class="nav-item-wrapper">
-      <button class="nav-link-item" data-toggle="submenu" data-target="sub-content" aria-expanded="true" data-tooltip="内容管理">
-        <i class="bi bi-file-richtext nav-icon"></i>
-        <span class="nav-label">内容管理</span>
-        <i class="bi bi-chevron-right nav-arrow"></i>
-      </button>
-    </div>
-    <div class="submenu-wrap" id="sub-content">
-      <div class="submenu">
+      <div class="sidebar-nav-wrap">
+        <div class="nav-section-label">主菜单</div>
         <div class="nav-item-wrapper">
-          <a href="post-list.html" class="nav-link-item">
-            <i class="bi bi-file-text nav-icon"></i>
-            <span class="nav-label">文章列表</span>
+          <a
+            href="dashboard.html"
+            class="nav-link-item active"
+            data-tooltip="仪表盘"
+          >
+            <i class="bi bi-grid-1x2 nav-icon"></i
+            ><span class="nav-label">仪表盘</span>
           </a>
         </div>
+        <div class="nav-section-label">内容管理</div>
         <div class="nav-item-wrapper">
-          <a href="#" class="nav-link-item">
-            <i class="bi bi-chat-left-dots nav-icon"></i>
-            <span class="nav-label">评论列表</span>
-          </a>
+          <button
+            class="nav-link-item"
+            data-toggle="submenu"
+            data-target="sub-content"
+            aria-expanded="false"
+            data-tooltip="内容管理"
+          >
+            <i class="bi bi-file-richtext nav-icon"></i
+            ><span class="nav-label">内容管理</span>
+            <i class="bi bi-chevron-right nav-arrow"></i>
+          </button>
+        </div>
+        <div class="submenu-wrap" id="sub-content">
+          <div class="submenu">
+            <div class="nav-item-wrapper">
+              <a href="post-list.html" class="nav-link-item"
+                ><i class="bi bi-file-text nav-icon"></i
+                ><span class="nav-label">文章列表</span></a
+              >
+            </div>
+            <div class="nav-item-wrapper">
+              <a href="comment-list.html" class="nav-link-item"
+                ><i class="bi bi-chat-left-dots nav-icon"></i
+                ><span class="nav-label">评论列表</span></a
+              >
+            </div>
+            <div class="nav-item-wrapper">
+              <a href="category-list.html" class="nav-link-item"
+                ><i class="bi bi-folder2 nav-icon"></i
+                ><span class="nav-label">栏目列表</span></a
+              >
+            </div>
+            <div class="nav-item-wrapper">
+              <a href="tag-list.html" class="nav-link-item"
+                ><i class="bi bi-tags nav-icon"></i
+                ><span class="nav-label">标签管理</span></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="nav-section-label">媒体</div>
+        <div class="nav-item-wrapper">
+          <button
+            class="nav-link-item"
+            data-toggle="submenu"
+            data-target="sub-media"
+            aria-expanded="false"
+            data-tooltip="媒体管理"
+          >
+            <i class="bi bi-collection nav-icon"></i
+            ><span class="nav-label">媒体管理</span>
+            <i class="bi bi-chevron-right nav-arrow"></i>
+          </button>
+        </div>
+        <div class="submenu-wrap" id="sub-media">
+          <div class="submenu">
+            <div class="nav-item-wrapper">
+              <a href="image-list.html" class="nav-link-item"
+                ><i class="bi bi-images nav-icon"></i
+                ><span class="nav-label">图片管理</span></a
+              >
+            </div>
+            <div class="nav-item-wrapper">
+              <a href="link-list.html" class="nav-link-item"
+                ><i class="bi bi-link-45deg nav-icon"></i
+                ><span class="nav-label">链接管理</span></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="nav-section-label">系统</div>
+        <div class="nav-item-wrapper">
+          <a href="user-list.html" class="nav-link-item" data-tooltip="用户管理"
+            ><i class="bi bi-people nav-icon"></i
+            ><span class="nav-label">用户管理</span></a
+          >
         </div>
         <div class="nav-item-wrapper">
-          <a href="#" class="nav-link-item">
-            <i class="bi bi-folder2 nav-icon"></i>
-            <span class="nav-label">栏目列表</span>
-          </a>
+          <a href="settings.html" class="nav-link-item" data-tooltip="系统设置"
+            ><i class="bi bi-sliders nav-icon"></i
+            ><span class="nav-label">系统设置</span></a
+          >
         </div>
       </div>
-    </div>
-
-    <div class="nav-section-label">媒体</div>
-
-    <div class="nav-item-wrapper">
-      <button class="nav-link-item" data-toggle="submenu" data-target="sub-media" aria-expanded="false" data-tooltip="媒体管理">
-        <i class="bi bi-collection nav-icon"></i>
-        <span class="nav-label">媒体管理</span>
-        <i class="bi bi-chevron-right nav-arrow"></i>
-      </button>
-    </div>
-    <div class="submenu-wrap" id="sub-media">
-      <div class="submenu">
-        <div class="nav-item-wrapper">
-          <a href="#" class="nav-link-item">
-            <i class="bi bi-images nav-icon"></i>
-            <span class="nav-label">相册列表</span>
-          </a>
-        </div>
-        <div class="nav-item-wrapper">
-          <a href="#" class="nav-link-item">
-            <i class="bi bi-paperclip nav-icon"></i>
-            <span class="nav-label">文件列表</span>
-          </a>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div class="sidebar-user-avatar">AD</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Admin</div>
+            <div class="sidebar-user-role">超级管理员</div>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="nav-section-label">系统</div>
-
-    <div class="nav-item-wrapper">
-      <a href="#" class="nav-link-item" data-tooltip="用户管理">
-        <i class="bi bi-people nav-icon"></i>
-        <span class="nav-label">用户管理</span>
-      </a>
-    </div>
-    <div class="nav-item-wrapper">
-      <a href="#" class="nav-link-item" data-tooltip="系统设置">
-        <i class="bi bi-sliders nav-icon"></i>
-        <span class="nav-label">系统设置</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- Sidebar footer user -->
-  <div class="sidebar-footer">
-    <div class="sidebar-user">
-      <div class="sidebar-user-avatar">AD</div>
-      <div class="sidebar-user-info">
-        <div class="sidebar-user-name">Admin</div>
-        <div class="sidebar-user-role">超级管理员</div>
-      </div>
-    </div>
-  </div>
-</nav>
-
-<!-- Mobile overlay -->
-<div id="sidebar-overlay"></div>
-
-<!-- ===================== MAIN WRAPPER ===================== -->
-<div id="main-wrapper">
-
-  <!-- TOPBAR -->
-  <header id="topbar">
-    <button id="sidebar-toggle" title="收起/展开菜单">
-      <i class="bi bi-layout-sidebar-inset"></i>
-    </button>
-
-    <div class="topbar-breadcrumb">
-      <span>BlogAdmin</span>
-      <span class="bc-sep"><i class="bi bi-chevron-right" style="font-size:.65rem"></i></span>
-      <span class="bc-current">仪表盘</span>
-    </div>
-
-    <div class="topbar-search">
-      <i class="bi bi-search search-icon"></i>
-      <input type="text" placeholder="快速搜索文章、评论…">
-    </div>
-
-    <div class="topbar-actions">
-      <!-- Notifications -->
-      <button class="topbar-icon-btn" title="通知" style="position:relative">
-        <i class="bi bi-bell"></i>
-        <span class="notif-badge">4</span>
-      </button>
-      <!-- New post shortcut -->
-      <a href="post-edit.html" class="btn btn-primary btn-sm ms-1" style="height:34px;padding:0 14px;font-size:.8rem">
-        <i class="bi bi-plus-lg"></i>
-        <span>新建文章</span>
-      </a>
-      <!-- User dropdown -->
-      <div class="dropdown topbar-dropdown ms-1">
-        <button class="topbar-user-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="border:none">
-          <div class="topbar-avatar">AD</div>
-          <span class="topbar-user-name d-none d-md-inline">Admin</span>
-          <!-- <i class="bi bi-chevron-down"></i> -->
+    </nav>
+    <div id="sidebar-overlay"></div>
+    <div id="main-wrapper">
+      <!-- TOPBAR -->
+      <header id="topbar">
+        <button id="sidebar-toggle" title="收起/展开菜单">
+          <i class="bi bi-layout-sidebar-inset"></i>
         </button>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <li>
-            <div class="user-info-header">
-              <div class="user-info-avatar">AD</div>
-              <div>
-                <div class="user-info-name">Admin User</div>
-                <div class="user-info-email">admin@blogsite.com</div>
-              </div>
-            </div>
-          </li>
-          <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> 个人资料</a></li>
-          <li><a class="dropdown-item" href="#"><i class="bi bi-shield-check"></i> 账号安全</a></li>
-          <li><a class="dropdown-item" href="#"><i class="bi bi-bell"></i> 通知设置</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#" style="color:#ef4444"><i class="bi bi-box-arrow-right"></i> 退出登录</a></li>
-        </ul>
-      </div>
-    </div>
-  </header>
-
-  <!-- PAGE CONTENT -->
-  <main id="page-content">
-
-    <!-- Page Header -->
-    <div class="page-header">
-      <div>
-        <h1 class="page-title">仪表盘</h1>
-        <p class="page-subtitle" id="topbar-date">加载日期中…</p>
-      </div>
-      <a href="post-edit.html" class="btn btn-primary">
-        <i class="bi bi-pencil-square"></i> 写新文章
-      </a>
-    </div>
-
-    <!-- ===== STAT CARDS ===== -->
-    <div class="row g-3 mb-4">
-      <div class="col-6 col-xl-3 anim-fade-up">
-        <div class="stat-card blue-accent">
-          <div class="stat-card-icon stat-icon-blue"><i class="bi bi-file-earmark-text"></i></div>
-          <div class="stat-value" data-target="1284">1,284</div>
-          <div class="stat-label">累计文章</div>
-          <div class="stat-change up"><i class="bi bi-arrow-up-short"></i> 本月新增 38 篇</div>
+        <div class="topbar-breadcrumb">
+          <a
+            href="dashboard.html"
+            style="color: var(--ci-gray-500); text-decoration: none"
+            >InkFlow</a
+          ><span class="bc-sep"
+            ><i
+              class="bi bi-chevron-right"
+              style="font-size: 0.65rem"
+            ></i></span
+          ><span class="bc-current">仪表盘</span>
         </div>
-      </div>
-      <div class="col-6 col-xl-3 anim-fade-up">
-        <div class="stat-card cyan-accent">
-          <div class="stat-card-icon stat-icon-cyan"><i class="bi bi-chat-square-dots"></i></div>
-          <div class="stat-value" data-target="8731">8,731</div>
-          <div class="stat-label">累计评论</div>
-          <div class="stat-change up"><i class="bi bi-arrow-up-short"></i> 今日新增 24 条</div>
+        <div class="topbar-search">
+          <i class="bi bi-search search-icon"></i>
+          <input type="text" id="list-search" placeholder="快速搜索…" />
         </div>
-      </div>
-      <div class="col-6 col-xl-3 anim-fade-up">
-        <div class="stat-card green-accent">
-          <div class="stat-card-icon stat-icon-green"><i class="bi bi-eye"></i></div>
-          <div class="stat-value" data-target="236918">236,918</div>
-          <div class="stat-label">总浏览量</div>
-          <div class="stat-change up"><i class="bi bi-arrow-up-short"></i> 较昨日 +12.4%</div>
-        </div>
-      </div>
-      <div class="col-6 col-xl-3 anim-fade-up">
-        <div class="stat-card amber-accent">
-          <div class="stat-card-icon stat-icon-amber"><i class="bi bi-people"></i></div>
-          <div class="stat-value" data-target="4210">4,210</div>
-          <div class="stat-label">注册用户</div>
-          <div class="stat-change up"><i class="bi bi-arrow-up-short"></i> 本周新增 86 人</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== CHARTS ROW ===== -->
-    <div class="row g-3 mb-4">
-      <!-- Visits chart -->
-      <div class="col-12 col-xl-8 anim-fade-up">
-        <div class="card h-100">
-          <div class="card-header">
-            <h6 class="card-title"><i class="bi bi-bar-chart-line"></i> 年度访问趋势</h6>
-            <div class="d-flex align-items-center gap-2">
-              <select class="form-select form-select-sm" style="width:auto;font-size:.75rem;height:30px;padding:3px 10px">
-                <option>2024 年</option>
-                <option selected>2025 年</option>
-              </select>
-            </div>
-          </div>
-          <div class="card-body" style="height:240px;padding:12px 16px 10px">
-            <canvas id="visits-chart"></canvas>
-          </div>
-        </div>
-      </div>
-
-      <!-- Quick stats right panel -->
-      <div class="col-12 col-xl-4 anim-fade-up">
-        <div class="card h-100">
-          <div class="card-header">
-            <h6 class="card-title"><i class="bi bi-pie-chart"></i> 内容概况</h6>
-          </div>
-          <div class="card-body">
-            <div class="d-flex flex-column gap-3">
-              <div>
-                <div class="d-flex justify-content-between mb-1" style="font-size:.8rem">
-                  <span class="text-muted">已发布文章</span>
-                  <span class="fw-600 text-dark">978 / 1284</span>
-                </div>
-                <div class="mini-progress">
-                  <div class="mini-progress-bar" style="width:76%;background:var(--primary-500)"></div>
-                </div>
-              </div>
-              <div>
-                <div class="d-flex justify-content-between mb-1" style="font-size:.8rem">
-                  <span class="text-muted">待审评论</span>
-                  <span class="fw-600 text-dark">127 / 8731</span>
-                </div>
-                <div class="mini-progress">
-                  <div class="mini-progress-bar" style="width:14%;background:var(--warning-400)"></div>
-                </div>
-              </div>
-              <div>
-                <div class="d-flex justify-content-between mb-1" style="font-size:.8rem">
-                  <span class="text-muted">媒体文件</span>
-                  <span class="fw-600 text-dark">2.8 GB / 10 GB</span>
-                </div>
-                <div class="mini-progress">
-                  <div class="mini-progress-bar" style="width:28%;background:var(--accent-400)"></div>
-                </div>
-              </div>
-              <div>
-                <div class="d-flex justify-content-between mb-1" style="font-size:.8rem">
-                  <span class="text-muted">活跃用户</span>
-                  <span class="fw-600 text-dark">3,180 / 4,210</span>
-                </div>
-                <div class="mini-progress">
-                  <div class="mini-progress-bar" style="width:75%;background:var(--success-400)"></div>
-                </div>
-              </div>
-              <div>
-                <div class="d-flex justify-content-between mb-1" style="font-size:.8rem">
-                  <span class="text-muted">草稿箱</span>
-                  <span class="fw-600 text-dark">180</span>
-                </div>
-                <div class="mini-progress">
-                  <div class="mini-progress-bar" style="width:14%;background:var(--gray-300)"></div>
-                </div>
-              </div>
-            </div>
-
-            <hr style="margin:16px 0;border-color:var(--gray-100)">
-
-            <!-- Quick actions -->
-            <div class="quick-action-grid">
-              <a href="post-edit.html" class="quick-action-btn">
-                <div class="quick-action-icon"><i class="bi bi-pencil-square"></i></div>
-                <span class="quick-action-label">写文章</span>
-              </a>
-              <a href="#" class="quick-action-btn">
-                <div class="quick-action-icon"><i class="bi bi-image"></i></div>
-                <span class="quick-action-label">上传图片</span>
-              </a>
-              <a href="#" class="quick-action-btn">
-                <div class="quick-action-icon"><i class="bi bi-folder-plus"></i></div>
-                <span class="quick-action-label">新建栏目</span>
-              </a>
-              <a href="#" class="quick-action-btn">
-                <div class="quick-action-icon"><i class="bi bi-gear"></i></div>
-                <span class="quick-action-label">系统设置</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== RECENT POSTS + RECENT COMMENTS ===== -->
-    <div class="row g-3">
-      <!-- Recent Posts -->
-      <div class="col-12 col-xl-7 anim-fade-up">
-        <div class="card">
-          <div class="card-header">
-            <h6 class="card-title"><i class="bi bi-file-earmark-richtext"></i> 最新发布文章</h6>
-            <a href="post-list.html" class="btn btn-light btn-sm" style="font-size:.75rem;height:28px;padding:0 10px">查看全部</a>
-          </div>
-          <div class="card-body p-0">
-            <table class="admin-table">
-              <thead>
-                <tr>
-                  <th>标题</th>
-                  <th>分类</th>
-                  <th>浏览</th>
-                  <th>状态</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="post-cell">
-                      <div class="post-thumb" style="background:var(--primary-100)"><i class="bi bi-file-code" style="color:var(--primary-400)"></i></div>
-                      <div>
-                        <div class="link-plain" style="font-size:.82rem;font-weight:600">深入理解 Vue 3 Composition API</div>
-                        <small style="color:var(--gray-400);font-size:.7rem">2025-06-18</small>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span style="font-size:.75rem;color:var(--gray-600)">前端技术</span></td>
-                  <td><span style="font-size:.8rem;color:var(--gray-700)">3,821</span></td>
-                  <td><span class="status-badge status-published"><span class="badge-dot-inline"></span>已发布</span></td>
-                  <td><a href="post-edit.html" class="btn btn-light btn-icon btn-sm"><i class="bi bi-pencil"></i></a></td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="post-cell">
-                      <div class="post-thumb" style="background:#fef3c7"><i class="bi bi-lightbulb" style="color:var(--warning-500)"></i></div>
-                      <div>
-                        <div class="link-plain" style="font-size:.82rem;font-weight:600">2025年产品设计趋势全解析</div>
-                        <small style="color:var(--gray-400);font-size:.7rem">2025-06-16</small>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span style="font-size:.75rem;color:var(--gray-600)">设计灵感</span></td>
-                  <td><span style="font-size:.8rem;color:var(--gray-700)">2,156</span></td>
-                  <td><span class="status-badge status-published"><span class="badge-dot-inline"></span>已发布</span></td>
-                  <td><a href="post-edit.html" class="btn btn-light btn-icon btn-sm"><i class="bi bi-pencil"></i></a></td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="post-cell">
-                      <div class="post-thumb" style="background:#dcfce7"><i class="bi bi-cloud" style="color:var(--success-500)"></i></div>
-                      <div>
-                        <div class="link-plain" style="font-size:.82rem;font-weight:600">Docker 容器化部署最佳实践</div>
-                        <small style="color:var(--gray-400);font-size:.7rem">2025-06-14</small>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span style="font-size:.75rem;color:var(--gray-600)">运维部署</span></td>
-                  <td><span style="font-size:.8rem;color:var(--gray-700)">1,877</span></td>
-                  <td><span class="status-badge status-pending"><span class="badge-dot-inline"></span>待审核</span></td>
-                  <td><a href="post-edit.html" class="btn btn-light btn-icon btn-sm"><i class="bi bi-pencil"></i></a></td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="post-cell">
-                      <div class="post-thumb" style="background:#ede9fe"><i class="bi bi-cpu" style="color:#7c3aed"></i></div>
-                      <div>
-                        <div class="link-plain" style="font-size:.82rem;font-weight:600">大语言模型 Fine-tuning 入门指南</div>
-                        <small style="color:var(--gray-400);font-size:.7rem">2025-06-12</small>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span style="font-size:.75rem;color:var(--gray-600)">AI 技术</span></td>
-                  <td><span style="font-size:.8rem;color:var(--gray-700)">4,603</span></td>
-                  <td><span class="status-badge status-draft"><span class="badge-dot-inline"></span>草稿</span></td>
-                  <td><a href="post-edit.html" class="btn btn-light btn-icon btn-sm"><i class="bi bi-pencil"></i></a></td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="post-cell">
-                      <div class="post-thumb" style="background:#e0f9ff"><i class="bi bi-terminal" style="color:var(--accent-500)"></i></div>
-                      <div>
-                        <div class="link-plain" style="font-size:.82rem;font-weight:600">TypeScript 高级类型体操技巧</div>
-                        <small style="color:var(--gray-400);font-size:.7rem">2025-06-10</small>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span style="font-size:.75rem;color:var(--gray-600)">前端技术</span></td>
-                  <td><span style="font-size:.8rem;color:var(--gray-700)">2,940</span></td>
-                  <td><span class="status-badge status-published"><span class="badge-dot-inline"></span>已发布</span></td>
-                  <td><a href="post-edit.html" class="btn btn-light btn-icon btn-sm"><i class="bi bi-pencil"></i></a></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- Recent Comments + Activity -->
-      <div class="col-12 col-xl-5 anim-fade-up">
-        <!-- Recent comments -->
-        <div class="card mb-3">
-          <div class="card-header">
-            <h6 class="card-title"><i class="bi bi-chat-left-text"></i> 最新评论</h6>
-            <span class="status-badge status-pending" style="font-size:.68rem">127 待审</span>
-          </div>
-          <div class="card-body p-0" style="padding:0 20px!important">
-            <ul class="activity-list">
-              <li class="activity-item">
-                <div class="activity-icon" style="background:var(--primary-100)">
-                  <span style="font-size:.7rem;font-weight:700;color:var(--primary-600)">张S</span>
-                </div>
-                <div class="activity-body">
-                  <div class="activity-text"><strong>张三</strong> 评论了 <strong>《Vue 3 Composition API》</strong>：讲得非常清楚，一看就懂！</div>
-                  <div class="activity-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
-                </div>
-                <div class="d-flex gap-1 ms-2">
-                  <button class="btn btn-light btn-icon" style="width:26px;height:26px;font-size:.72rem" title="通过"><i class="bi bi-check" style="color:var(--success-500)"></i></button>
-                  <button class="btn btn-danger-soft btn-icon" style="width:26px;height:26px;font-size:.72rem" title="删除"><i class="bi bi-trash3"></i></button>
+        <div class="topbar-actions">
+          <button
+            class="topbar-icon-btn"
+            style="position: relative"
+            title="通知"
+          >
+            <i class="bi bi-bell"></i><span class="ci-notif-badge">4</span>
+          </button>
+          <a
+            href="post-edit.html"
+            class="btn btn-primary btn-sm ms-1"
+            style="height: 34px; padding: 0 14px; font-size: 0.8rem"
+            ><i class="bi bi-plus-lg"></i> 新建文章</a
+          >
+          <div class="dropdown topbar-dropdown ms-1">
+            <button
+              class="topbar-user-btn"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style="border: none"
+            >
+              <div class="topbar-avatar">AD</div>
+              <span class="topbar-user-name d-none d-md-inline">Admin</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <div class="user-info-header">
+                  <div class="user-info-avatar">AD</div>
+                  <div>
+                    <div class="user-info-name">Admin User</div>
+                    <div class="user-info-email">admin@inkflow.dev</div>
+                  </div>
                 </div>
               </li>
-              <li class="activity-item">
-                <div class="activity-icon" style="background:#dcfce7">
-                  <span style="font-size:.7rem;font-weight:700;color:var(--success-600)">李M</span>
-                </div>
-                <div class="activity-body">
-                  <div class="activity-text"><strong>李明</strong> 回复了 <strong>《Docker 最佳实践》</strong>：能否补充 K8s 部分？</div>
-                  <div class="activity-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
-                </div>
-                <div class="d-flex gap-1 ms-2">
-                  <button class="btn btn-light btn-icon" style="width:26px;height:26px;font-size:.72rem" title="通过"><i class="bi bi-check" style="color:var(--success-500)"></i></button>
-                  <button class="btn btn-danger-soft btn-icon" style="width:26px;height:26px;font-size:.72rem" title="删除"><i class="bi bi-trash3"></i></button>
-                </div>
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-person-circle"></i> 个人资料</a
+                >
               </li>
-              <li class="activity-item">
-                <div class="activity-icon" style="background:#fef3c7">
-                  <span style="font-size:.7rem;font-weight:700;color:var(--warning-600)">王H</span>
-                </div>
-                <div class="activity-body">
-                  <div class="activity-text"><strong>王红</strong> 评论了 <strong>《LLM Fine-tuning 指南》</strong>：数据集处理部分写错了</div>
-                  <div class="activity-time"><i class="bi bi-clock me-1"></i>1 小时前</div>
-                </div>
-                <div class="d-flex gap-1 ms-2">
-                  <button class="btn btn-light btn-icon" style="width:26px;height:26px;font-size:.72rem" title="通过"><i class="bi bi-check" style="color:var(--success-500)"></i></button>
-                  <button class="btn btn-danger-soft btn-icon" style="width:26px;height:26px;font-size:.72rem" title="删除"><i class="bi bi-trash3"></i></button>
-                </div>
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-shield-check"></i> 账号安全</a
+                >
               </li>
-              <li class="activity-item">
-                <div class="activity-icon" style="background:#ede9fe">
-                  <span style="font-size:.7rem;font-weight:700;color:#7c3aed">陈K</span>
-                </div>
-                <div class="activity-body">
-                  <div class="activity-text"><strong>陈凯</strong> 评论了 <strong>《TypeScript 高级类型》</strong>：太硬核了！收藏了</div>
-                  <div class="activity-time"><i class="bi bi-clock me-1"></i>2 小时前</div>
-                </div>
-                <div class="d-flex gap-1 ms-2">
-                  <button class="btn btn-light btn-icon" style="width:26px;height:26px;font-size:.72rem" title="通过"><i class="bi bi-check" style="color:var(--success-500)"></i></button>
-                  <button class="btn btn-danger-soft btn-icon" style="width:26px;height:26px;font-size:.72rem" title="删除"><i class="bi bi-trash3"></i></button>
-                </div>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="login.html"
+                  style="color: #ef4444"
+                  ><i class="bi bi-box-arrow-right"></i> 退出登录</a
+                >
               </li>
             </ul>
           </div>
-          <div class="card-footer d-flex justify-content-center">
-            <a href="#" style="font-size:.78rem;color:var(--primary-500);font-weight:600;text-decoration:none">查看全部评论 <i class="bi bi-arrow-right ms-1"></i></a>
-          </div>
         </div>
-
-        <!-- System info -->
-        <div class="card">
-          <div class="card-header">
-            <h6 class="card-title"><i class="bi bi-hdd-rack"></i> 系统状态</h6>
-            <span class="status-badge status-published" style="font-size:.68rem"><span class="badge-dot-inline"></span>运行正常</span>
+      </header>
+      <main id="page-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">仪表盘</h1>
           </div>
-          <div class="card-body">
-            <div class="d-flex flex-column gap-2" style="font-size:.8rem">
-              <div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid var(--gray-100)">
-                <span class="text-muted"><i class="bi bi-cpu me-2" style="color:var(--primary-400)"></i>CPU 使用率</span>
-                <span class="fw-600">23%</span>
+          <a href="post-edit.html" class="btn btn-primary"
+            ><i class="bi bi-pencil-square"></i> 写新文章</a
+          >
+        </div>
+        <p
+          class="page-subtitle mb-3"
+          id="topbar-date"
+          style="margin-top: -14px"
+        ></p>
+
+        <!-- 第一行：统计卡(左半) + 快捷操作(右半) -->
+        <div class="row g-3 mb-4">
+          <!-- 4 stat cards -->
+          <div class="col-12 col-xl-6">
+            <div class="row g-3 h-100">
+              <div class="col-6 ci-anim" style="--ci-delay: 0.05s">
+                <div class="stat-card blue-accent">
+                  <div class="stat-card-icon stat-icon-blue">
+                    <i class="bi bi-file-earmark-text"></i>
+                  </div>
+                  <div class="stat-value" data-target="1284">1,284</div>
+                  <div class="stat-label">累计文章</div>
+                  <div class="stat-change up">
+                    <i class="bi bi-arrow-up-short"></i>本月新增 38 篇
+                  </div>
+                </div>
               </div>
-              <div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid var(--gray-100)">
-                <span class="text-muted"><i class="bi bi-memory me-2" style="color:var(--accent-400)"></i>内存使用</span>
-                <span class="fw-600">1.8 / 8 GB</span>
+              <div class="col-6 ci-anim" style="--ci-delay: 0.1s">
+                <div class="stat-card cyan-accent">
+                  <div class="stat-card-icon stat-icon-cyan">
+                    <i class="bi bi-chat-square-dots"></i>
+                  </div>
+                  <div class="stat-value" data-target="8731">8,731</div>
+                  <div class="stat-label">累计评论</div>
+                  <div class="stat-change up">
+                    <i class="bi bi-arrow-up-short"></i>今日新增 24 条
+                  </div>
+                </div>
               </div>
-              <div class="d-flex justify-content-between align-items-center py-1" style="border-bottom:1px solid var(--gray-100)">
-                <span class="text-muted"><i class="bi bi-hdd me-2" style="color:var(--success-400)"></i>磁盘空间</span>
-                <span class="fw-600">42 / 200 GB</span>
+              <div class="col-6 ci-anim" style="--ci-delay: 0.15s">
+                <div class="stat-card green-accent">
+                  <div class="stat-card-icon stat-icon-green">
+                    <i class="bi bi-eye"></i>
+                  </div>
+                  <div class="stat-value" data-target="236918">236,918</div>
+                  <div class="stat-label">总浏览量</div>
+                  <div class="stat-change up">
+                    <i class="bi bi-arrow-up-short"></i>较昨日 +12.4%
+                  </div>
+                </div>
               </div>
-              <div class="d-flex justify-content-between align-items-center py-1">
-                <span class="text-muted"><i class="bi bi-clock-history me-2" style="color:var(--warning-400)"></i>系统运行</span>
-                <span class="fw-600">38 天 14 时</span>
+              <div class="col-6 ci-anim" style="--ci-delay: 0.2s">
+                <div class="stat-card amber-accent">
+                  <div class="stat-card-icon stat-icon-amber">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div class="stat-value" data-target="4210">4,210</div>
+                  <div class="stat-label">注册用户</div>
+                  <div class="stat-change up">
+                    <i class="bi bi-arrow-up-short"></i>本周新增 86 人
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Quick actions -->
+          <div class="col-12 col-xl-6 ci-anim" style="--ci-delay: 0.25s">
+            <div class="card ci-card h-100">
+              <div class="card-header">
+                <h6 class="ci-card-title">
+                  <i class="bi bi-lightning-charge"></i> 快捷操作
+                </h6>
+              </div>
+              <div class="card-body">
+                <div
+                  class="ci-quick-grid"
+                  style="grid-template-columns: repeat(4, 1fr)"
+                >
+                  <a href="post-edit.html" class="ci-quick-btn">
+                    <div class="ci-quick-icon">
+                      <i class="bi bi-pencil-square"></i>
+                    </div>
+                    <span class="ci-quick-label">写文章</span>
+                  </a>
+                  <a href="image-list.html" class="ci-quick-btn">
+                    <div class="ci-quick-icon">
+                      <i class="bi bi-image-fill"></i>
+                    </div>
+                    <span class="ci-quick-label">上传图片</span>
+                  </a>
+                  <a href="category-edit.html" class="ci-quick-btn">
+                    <div class="ci-quick-icon">
+                      <i class="bi bi-folder-plus"></i>
+                    </div>
+                    <span class="ci-quick-label">新建栏目</span>
+                  </a>
+                  <a href="settings.html" class="ci-quick-btn">
+                    <div class="ci-quick-icon"><i class="bi bi-gear"></i></div>
+                    <span class="ci-quick-label">系统设置</span>
+                  </a>
+                </div>
+                <div
+                  class="ci-quick-grid mt-3"
+                  style="grid-template-columns: repeat(4, 1fr)"
+                >
+                  <a href="comment-list.html" class="ci-quick-btn">
+                    <div class="ci-quick-icon">
+                      <i class="bi bi-chat-dots"></i>
+                    </div>
+                    <span class="ci-quick-label">管理评论</span>
+                  </a>
+                  <a href="tag-list.html" class="ci-quick-btn">
+                    <div class="ci-quick-icon"><i class="bi bi-tags"></i></div>
+                    <span class="ci-quick-label">标签管理</span>
+                  </a>
+                  <a href="link-list.html" class="ci-quick-btn">
+                    <div class="ci-quick-icon">
+                      <i class="bi bi-link-45deg"></i>
+                    </div>
+                    <span class="ci-quick-label">链接管理</span>
+                  </a>
+                  <a href="user-list.html" class="ci-quick-btn">
+                    <div class="ci-quick-icon">
+                      <i class="bi bi-person-gear"></i>
+                    </div>
+                    <span class="ci-quick-label">用户管理</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+
+        <!-- 第二行：访问图表(左) + 内容概况+系统状态(右) -->
+        <div class="row g-3 mb-4">
+          <!-- Visits chart -->
+          <div class="col-12 col-xl-8 ci-anim" style="--ci-delay: 0.3s">
+            <div class="card ci-card h-100">
+              <div class="card-header">
+                <h6 class="ci-card-title">
+                  <i class="bi bi-bar-chart-line"></i> 年度访问趋势
+                </h6>
+                <select
+                  class="form-select"
+                  style="
+                    width: auto;
+                    font-size: 0.75rem;
+                    height: 30px;
+                    padding: 3px 10px;
+                  "
+                >
+                  <option>2024 年</option>
+                  <option selected>2025 年</option>
+                </select>
+              </div>
+              <div
+                class="card-body"
+                style="height: 220px; padding: 12px 16px 10px"
+              >
+                <canvas id="visits-chart"></canvas>
+              </div>
+            </div>
+          </div>
+          <!-- 内容概况 + 系统状态 stacked -->
+          <div class="col-12 col-xl-4 ci-anim" style="--ci-delay: 0.35s">
+            <!-- 内容概况 -->
+            <div class="card ci-card mb-3">
+              <div class="card-header">
+                <h6 class="ci-card-title">
+                  <i class="bi bi-pie-chart"></i> 内容概况
+                </h6>
+              </div>
+              <div class="card-body">
+                <div class="d-flex flex-column gap-3">
+                  <div>
+                    <div
+                      class="d-flex justify-content-between mb-1"
+                      style="font-size: 0.8rem"
+                    >
+                      <span class="text-muted">已发布文章</span
+                      ><span class="fw-semibold">978 / 1284</span>
+                    </div>
+                    <div class="ci-progress">
+                      <div
+                        class="ci-progress-bar"
+                        style="width: 76%; background: var(--ci-500)"
+                      ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      class="d-flex justify-content-between mb-1"
+                      style="font-size: 0.8rem"
+                    >
+                      <span class="text-muted">待审评论</span
+                      ><span class="fw-semibold">127 / 8731</span>
+                    </div>
+                    <div class="ci-progress">
+                      <div
+                        class="ci-progress-bar"
+                        style="width: 14%; background: var(--ci-warning-400)"
+                      ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      class="d-flex justify-content-between mb-1"
+                      style="font-size: 0.8rem"
+                    >
+                      <span class="text-muted">媒体文件</span
+                      ><span class="fw-semibold">2.8 GB / 10 GB</span>
+                    </div>
+                    <div class="ci-progress">
+                      <div
+                        class="ci-progress-bar"
+                        style="width: 28%; background: var(--ci-accent-400)"
+                      ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      class="d-flex justify-content-between mb-1"
+                      style="font-size: 0.8rem"
+                    >
+                      <span class="text-muted">活跃用户</span
+                      ><span class="fw-semibold">3,180 / 4,210</span>
+                    </div>
+                    <div class="ci-progress">
+                      <div
+                        class="ci-progress-bar"
+                        style="width: 75%; background: var(--ci-success-400)"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 系统状态 -->
+            <div class="card ci-card">
+              <div class="card-header">
+                <h6 class="ci-card-title">
+                  <i class="bi bi-hdd-rack"></i> 系统状态
+                </h6>
+                <span class="ci-badge ci-badge-published"
+                  ><span class="ci-badge-dot"></span>运行正常</span
+                >
+              </div>
+              <div class="card-body">
+                <div class="d-flex flex-column gap-2" style="font-size: 0.8rem">
+                  <div
+                    class="d-flex justify-content-between align-items-center py-1"
+                    style="border-bottom: 1px solid var(--ci-gray-100)"
+                  >
+                    <span class="text-muted"
+                      ><i
+                        class="bi bi-cpu me-2"
+                        style="color: var(--ci-400)"
+                      ></i
+                      >CPU 使用率</span
+                    ><span class="fw-semibold">23%</span>
+                  </div>
+                  <div
+                    class="d-flex justify-content-between align-items-center py-1"
+                    style="border-bottom: 1px solid var(--ci-gray-100)"
+                  >
+                    <span class="text-muted"
+                      ><i
+                        class="bi bi-memory me-2"
+                        style="color: var(--ci-accent-400)"
+                      ></i
+                      >内存使用</span
+                    ><span class="fw-semibold">1.8 / 8 GB</span>
+                  </div>
+                  <div
+                    class="d-flex justify-content-between align-items-center py-1"
+                    style="border-bottom: 1px solid var(--ci-gray-100)"
+                  >
+                    <span class="text-muted"
+                      ><i
+                        class="bi bi-hdd me-2"
+                        style="color: var(--ci-success-400)"
+                      ></i
+                      >磁盘空间</span
+                    ><span class="fw-semibold">42 / 200 GB</span>
+                  </div>
+                  <div
+                    class="d-flex justify-content-between align-items-center py-1"
+                  >
+                    <span class="text-muted"
+                      ><i
+                        class="bi bi-clock-history me-2"
+                        style="color: var(--ci-warning-400)"
+                      ></i
+                      >系统运行</span
+                    ><span class="fw-semibold">38 天 14 时</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 第三行：最新文章 (全宽) -->
+        <div class="row g-3 mb-4">
+          <div class="col-12 ci-anim" style="--ci-delay: 0.4s">
+            <div class="card ci-card">
+              <div class="card-header">
+                <h6 class="ci-card-title">
+                  <i class="bi bi-file-earmark-richtext"></i> 最新文章
+                </h6>
+                <a
+                  href="post-list.html"
+                  class="btn btn-light btn-sm"
+                  style="font-size: 0.75rem; height: 28px; padding: 0 10px"
+                  >查看全部</a
+                >
+              </div>
+              <div class="card-body p-0">
+                <table class="ci-table">
+                  <thead>
+                    <tr>
+                      <th>标题</th>
+                      <th>分类</th>
+                      <th>浏览量</th>
+                      <th>发布时间</th>
+                      <th>状态</th>
+                      <th style="text-align: center">操作</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="ci-item-cell">
+                          <div
+                            class="ci-thumb"
+                            style="background: var(--ci-100)"
+                          >
+                            <i
+                              class="bi bi-file-code"
+                              style="color: var(--ci-400)"
+                            ></i>
+                          </div>
+                          <div>
+                            <a
+                              href="post-edit.html"
+                              class="ci-link"
+                              style="font-size: 0.83rem"
+                              >深入理解 Vue 3 Composition API 与响应式原理</a
+                            ><small>技术教程</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span
+                          class="ci-cat-pill"
+                          style="background: var(--ci-50); color: var(--ci-600)"
+                          >前端技术</span
+                        >
+                      </td>
+                      <td style="font-size: 0.8rem; font-weight: 600">3,821</td>
+                      <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
+                        2025-06-18
+                      </td>
+                      <td>
+                        <span class="ci-badge ci-badge-published"
+                          ><span class="ci-badge-dot"></span>已发布</span
+                        >
+                      </td>
+                      <td>
+                        <div class="d-flex justify-content-center gap-1">
+                          <a
+                            href="post-edit.html"
+                            class="btn btn-light btn-icon"
+                            title="编辑"
+                            ><i class="bi bi-pencil"></i
+                          ></a>
+
+                          <button
+                            class="btn btn-danger-soft btn-icon"
+                            title="删除"
+                            onclick="ciConfirmDelete(this)"
+                          >
+                            <i class="bi bi-trash3"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="ci-item-cell">
+                          <div class="ci-thumb" style="background: #fef3c7">
+                            <i
+                              class="bi bi-palette"
+                              style="color: var(--ci-warning-500)"
+                            ></i>
+                          </div>
+                          <div>
+                            <a
+                              href="post-edit.html"
+                              class="ci-link"
+                              style="font-size: 0.83rem"
+                              >2025年产品设计趋势全解析</a
+                            ><small>设计专题</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span
+                          class="ci-cat-pill"
+                          style="background: #fef3c7; color: #b45309"
+                          >设计灵感</span
+                        >
+                      </td>
+                      <td style="font-size: 0.8rem; font-weight: 600">2,156</td>
+                      <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
+                        2025-06-16
+                      </td>
+                      <td>
+                        <span class="ci-badge ci-badge-published"
+                          ><span class="ci-badge-dot"></span>已发布</span
+                        >
+                      </td>
+                      <td>
+                        <div class="d-flex justify-content-center gap-1">
+                          <a
+                            href="post-edit.html"
+                            class="btn btn-light btn-icon"
+                            title="编辑"
+                            ><i class="bi bi-pencil"></i
+                          ></a>
+
+                          <button
+                            class="btn btn-danger-soft btn-icon"
+                            title="删除"
+                            onclick="ciConfirmDelete(this)"
+                          >
+                            <i class="bi bi-trash3"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="ci-item-cell">
+                          <div class="ci-thumb" style="background: #dcfce7">
+                            <i
+                              class="bi bi-cloud"
+                              style="color: var(--ci-success-500)"
+                            ></i>
+                          </div>
+                          <div>
+                            <a
+                              href="post-edit.html"
+                              class="ci-link"
+                              style="font-size: 0.83rem"
+                              >Docker 容器化部署最佳实践</a
+                            ><small>运维分享</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span
+                          class="ci-cat-pill"
+                          style="background: #dcfce7; color: #15803d"
+                          >运维部署</span
+                        >
+                      </td>
+                      <td style="font-size: 0.8rem; font-weight: 600">1,877</td>
+                      <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
+                        2025-06-14
+                      </td>
+                      <td>
+                        <span class="ci-badge ci-badge-pending"
+                          ><span class="ci-badge-dot"></span>待审核</span
+                        >
+                      </td>
+                      <td>
+                        <div class="d-flex justify-content-center gap-1">
+                          <a
+                            href="post-edit.html"
+                            class="btn btn-light btn-icon"
+                            title="编辑"
+                            ><i class="bi bi-pencil"></i
+                          ></a>
+
+                          <button
+                            class="btn btn-danger-soft btn-icon"
+                            title="删除"
+                            onclick="ciConfirmDelete(this)"
+                          >
+                            <i class="bi bi-trash3"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="ci-item-cell">
+                          <div class="ci-thumb" style="background: #ede9fe">
+                            <i class="bi bi-cpu" style="color: #7c3aed"></i>
+                          </div>
+                          <div>
+                            <a
+                              href="post-edit.html"
+                              class="ci-link"
+                              style="font-size: 0.83rem"
+                              >大语言模型 Fine-tuning 入门指南</a
+                            ><small>AI 研究</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span
+                          class="ci-cat-pill"
+                          style="background: #ede9fe; color: #7c3aed"
+                          >AI 技术</span
+                        >
+                      </td>
+                      <td style="font-size: 0.8rem; color: var(--ci-gray-400)">
+                        —
+                      </td>
+                      <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
+                        2025-06-12
+                      </td>
+                      <td>
+                        <span class="ci-badge ci-badge-draft"
+                          ><span class="ci-badge-dot"></span>草稿</span
+                        >
+                      </td>
+                      <td>
+                        <div class="d-flex justify-content-center gap-1">
+                          <a
+                            href="post-edit.html"
+                            class="btn btn-light btn-icon"
+                            title="编辑"
+                            ><i class="bi bi-pencil"></i
+                          ></a>
+
+                          <button
+                            class="btn btn-danger-soft btn-icon"
+                            title="删除"
+                            onclick="ciConfirmDelete(this)"
+                          >
+                            <i class="bi bi-trash3"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="ci-item-cell">
+                          <div class="ci-thumb" style="background: #e0f9ff">
+                            <i
+                              class="bi bi-terminal"
+                              style="color: var(--ci-accent-500)"
+                            ></i>
+                          </div>
+                          <div>
+                            <a
+                              href="post-edit.html"
+                              class="ci-link"
+                              style="font-size: 0.83rem"
+                              >TypeScript 高级类型体操技巧</a
+                            ><small>前端进阶</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span
+                          class="ci-cat-pill"
+                          style="background: var(--ci-50); color: var(--ci-600)"
+                          >前端技术</span
+                        >
+                      </td>
+                      <td style="font-size: 0.8rem; font-weight: 600">4,603</td>
+                      <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
+                        2025-06-10
+                      </td>
+                      <td>
+                        <span class="ci-badge ci-badge-published"
+                          ><span class="ci-badge-dot"></span>已发布</span
+                        >
+                      </td>
+                      <td>
+                        <div class="d-flex justify-content-center gap-1">
+                          <a
+                            href="post-edit.html"
+                            class="btn btn-light btn-icon"
+                            title="编辑"
+                            ><i class="bi bi-pencil"></i
+                          ></a>
+
+                          <button
+                            class="btn btn-danger-soft btn-icon"
+                            title="删除"
+                            onclick="ciConfirmDelete(this)"
+                          >
+                            <i class="bi bi-trash3"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 第四行：最新评论 (全宽) -->
+        <div class="row g-3">
+          <div class="col-12 ci-anim" style="--ci-delay: 0.45s">
+            <div class="card ci-card">
+              <div class="card-header">
+                <h6 class="ci-card-title">
+                  <i class="bi bi-chat-left-text"></i> 最新评论
+                </h6>
+                <span class="ci-badge ci-badge-pending"
+                  ><span class="ci-badge-dot"></span>127 待审</span
+                >
+              </div>
+              <div class="card-body p-0" style="padding: 0 20px !important">
+                <ul class="ci-activity-list">
+                  <li class="ci-activity-item">
+                    <div
+                      class="ci-activity-icon"
+                      style="background: var(--ci-100)"
+                    >
+                      <span
+                        style="
+                          font-size: 0.7rem;
+                          font-weight: 700;
+                          color: var(--ci-600);
+                        "
+                        >张S</span
+                      >
+                    </div>
+                    <div class="ci-activity-body">
+                      <div class="ci-activity-text">
+                        <strong>张三</strong> 评论了
+                        <strong>《Vue 3 Composition API》</strong
+                        >：讲得非常清楚，一看就懂！
+                      </div>
+                      <div class="ci-activity-time">
+                        <i class="bi bi-clock me-1"></i>10 分钟前
+                      </div>
+                    </div>
+                    <div class="d-flex gap-1 ms-2 align-items-center">
+                      <button
+                        class="btn btn-light btn-icon"
+                        style="width: 28px; height: 28px"
+                        onclick="showToast('已审核通过', 'success')"
+                      >
+                        <i
+                          class="bi bi-check"
+                          style="color: var(--ci-success-500)"
+                        ></i></button
+                      ><button
+                        class="btn btn-danger-soft btn-icon"
+                        style="width: 28px; height: 28px"
+                        onclick="ciConfirmDelete(this)"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </li>
+                  <li class="ci-activity-item">
+                    <div class="ci-activity-icon" style="background: #dcfce7">
+                      <span
+                        style="
+                          font-size: 0.7rem;
+                          font-weight: 700;
+                          color: var(--ci-success-500);
+                        "
+                        >李M</span
+                      >
+                    </div>
+                    <div class="ci-activity-body">
+                      <div class="ci-activity-text">
+                        <strong>李明</strong> 回复了
+                        <strong>《Docker 最佳实践》</strong>：能否补充 K8s
+                        部分？
+                      </div>
+                      <div class="ci-activity-time">
+                        <i class="bi bi-clock me-1"></i>32 分钟前
+                      </div>
+                    </div>
+                    <div class="d-flex gap-1 ms-2 align-items-center">
+                      <button
+                        class="btn btn-light btn-icon"
+                        style="width: 28px; height: 28px"
+                        onclick="showToast('已审核通过', 'success')"
+                      >
+                        <i
+                          class="bi bi-check"
+                          style="color: var(--ci-success-500)"
+                        ></i></button
+                      ><button
+                        class="btn btn-danger-soft btn-icon"
+                        style="width: 28px; height: 28px"
+                        onclick="ciConfirmDelete(this)"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </li>
+                  <li class="ci-activity-item">
+                    <div class="ci-activity-icon" style="background: #fef3c7">
+                      <span
+                        style="
+                          font-size: 0.7rem;
+                          font-weight: 700;
+                          color: var(--ci-warning-500);
+                        "
+                        >王H</span
+                      >
+                    </div>
+                    <div class="ci-activity-body">
+                      <div class="ci-activity-text">
+                        <strong>王红</strong> 评论了
+                        <strong>《LLM Fine-tuning 指南》</strong
+                        >：数据集处理部分有误
+                      </div>
+                      <div class="ci-activity-time">
+                        <i class="bi bi-clock me-1"></i>1 小时前
+                      </div>
+                    </div>
+                    <div class="d-flex gap-1 ms-2 align-items-center">
+                      <button
+                        class="btn btn-light btn-icon"
+                        style="width: 28px; height: 28px"
+                        onclick="showToast('已审核通过', 'success')"
+                      >
+                        <i
+                          class="bi bi-check"
+                          style="color: var(--ci-success-500)"
+                        ></i></button
+                      ><button
+                        class="btn btn-danger-soft btn-icon"
+                        style="width: 28px; height: 28px"
+                        onclick="ciConfirmDelete(this)"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </li>
+                  <li class="ci-activity-item">
+                    <div class="ci-activity-icon" style="background: #ede9fe">
+                      <span
+                        style="
+                          font-size: 0.7rem;
+                          font-weight: 700;
+                          color: #7c3aed;
+                        "
+                        >陈K</span
+                      >
+                    </div>
+                    <div class="ci-activity-body">
+                      <div class="ci-activity-text">
+                        <strong>陈凯</strong> 评论了
+                        <strong>《TypeScript 高级类型》</strong
+                        >：太硬核了！已收藏
+                      </div>
+                      <div class="ci-activity-time">
+                        <i class="bi bi-clock me-1"></i>2 小时前
+                      </div>
+                    </div>
+                    <div class="d-flex gap-1 ms-2 align-items-center">
+                      <button
+                        class="btn btn-light btn-icon"
+                        style="width: 28px; height: 28px"
+                        onclick="showToast('已审核通过', 'success')"
+                      >
+                        <i
+                          class="bi bi-check"
+                          style="color: var(--ci-success-500)"
+                        ></i></button
+                      ><button
+                        class="btn btn-danger-soft btn-icon"
+                        style="width: 28px; height: 28px"
+                        onclick="ciConfirmDelete(this)"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </li>
+                  <li class="ci-activity-item">
+                    <div class="ci-activity-icon" style="background: #e0f9ff">
+                      <span
+                        style="
+                          font-size: 0.7rem;
+                          font-weight: 700;
+                          color: var(--ci-accent-500);
+                        "
+                        >赵L</span
+                      >
+                    </div>
+                    <div class="ci-activity-body">
+                      <div class="ci-activity-text">
+                        <strong>赵磊</strong> 评论了
+                        <strong>《ECharts 数据大屏》</strong
+                        >：感谢分享，代码可以直接用！
+                      </div>
+                      <div class="ci-activity-time">
+                        <i class="bi bi-clock me-1"></i>3 小时前
+                      </div>
+                    </div>
+                    <div class="d-flex gap-1 ms-2 align-items-center">
+                      <button
+                        class="btn btn-light btn-icon"
+                        style="width: 28px; height: 28px"
+                        onclick="showToast('已审核通过', 'success')"
+                      >
+                        <i
+                          class="bi bi-check"
+                          style="color: var(--ci-success-500)"
+                        ></i></button
+                      ><button
+                        class="btn btn-danger-soft btn-icon"
+                        style="width: 28px; height: 28px"
+                        onclick="ciConfirmDelete(this)"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div
+                class="card-footer d-flex justify-content-center"
+                style="
+                  background: var(--ci-gray-50);
+                  border-top: 1px solid var(--ci-gray-100);
+                  padding: 12px 20px;
+                  border-radius: 0 0 var(--ci-card-radius) var(--ci-card-radius);
+                "
+              >
+                <a
+                  href="comment-list.html"
+                  style="
+                    font-size: 0.78rem;
+                    color: var(--ci-500);
+                    font-weight: 600;
+                    text-decoration: none;
+                  "
+                  >查看全部评论 <i class="bi bi-arrow-right ms-1"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
-
-  </main>
-</div>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Custom JS -->
-<script src="admin.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="admin.js"></script>
+    <script>
+      // Date
+      (function(){var e=document.getElementById('topbar-date');if(e)e.textContent=new Date().toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric',weekday:'long'});})();
+      // Chart
+      (function(){
+        var canvas=document.getElementById('visits-chart');
+        if(!canvas||!window.Chart) return;
+        new Chart(canvas,{type:'bar',data:{labels:['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],datasets:[{label:'访问量',data:[1200,1900,1500,2800,2200,3100,2600,3800,3200,4100,3700,4800],backgroundColor:function(ctx){var c=ctx.chart;if(!c.chartArea)return '#0d6ecc';var g=c.ctx.createLinearGradient(0,c.chartArea.top,0,c.chartArea.bottom);g.addColorStop(0,'rgba(13,110,204,.85)');g.addColorStop(1,'rgba(6,182,212,.45)');return g;},borderRadius:5,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:'#0f172a',titleFont:{family:"'Plus Jakarta Sans',sans-serif",size:11},bodyFont:{family:"'Plus Jakarta Sans',sans-serif",size:12},padding:10,cornerRadius:8}},scales:{x:{grid:{display:false},ticks:{font:{family:"'Plus Jakarta Sans',sans-serif",size:10},color:'#94a3b8'}},y:{grid:{color:'#f1f5f9'},ticks:{font:{family:"'Plus Jakarta Sans',sans-serif",size:10},color:'#94a3b8'}}}}});
+      })();
+      // Stat counters
+      (function(){
+        if(!('IntersectionObserver' in window)) return;
+        var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var el=e.target,target=parseInt(el.dataset.target),dur=900,start=performance.now();(function step(now){var p=Math.min((now-start)/dur,1),ease=1-Math.pow(1-p,3);el.textContent=Math.round(ease*target).toLocaleString();if(p<1)requestAnimationFrame(step);}))(start);obs.unobserve(el);}});},{threshold:0.3});
+        document.querySelectorAll('.stat-value[data-target]').forEach(function(el){obs.observe(el);});
+      })();
+    </script>
+    <script>
+      // Row checkbox bulk select
+      (function () {
+        var sa = document.getElementById("select-all");
+        var bar = document.getElementById("bulk-action-bar");
+        var cnt = document.getElementById("bulk-count");
+        function upd() {
+          var n = document.querySelectorAll(".ci-row-check:checked").length;
+          if (bar) {
+            bar.classList.toggle("show", n > 0);
+          }
+          if (cnt) cnt.textContent = n;
+          if (sa) {
+            sa.indeterminate =
+              n > 0 && n < document.querySelectorAll(".ci-row-check").length;
+          }
+        }
+        if (sa)
+          sa.addEventListener("change", function () {
+            document.querySelectorAll(".ci-row-check").forEach(function (c) {
+              c.checked = sa.checked;
+            });
+            upd();
+          });
+        document.querySelectorAll(".ci-row-check").forEach(function (c) {
+          c.addEventListener("change", upd);
+        });
+      })();
+      // Confirm delete
+      window.ciConfirmDelete = function (btn) {
+        if (confirm("确定要删除该项目吗？此操作不可撤销。")) {
+          var row = btn.closest("tr");
+          if (row) {
+            row.style.opacity = ".3";
+            row.style.transition = "opacity .3s";
+            setTimeout(function () {
+              row.remove();
+            }, 300);
+          }
+          showToast("已删除", "danger");
+        }
+      };
+    </script>
+  </body>
 </html>

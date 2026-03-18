@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>文章列表 — InkFlow Admin</title>
+    <title>用户管理 — InkFlow Admin</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -36,10 +36,10 @@
         <div class="nav-section-label">内容管理</div>
         <div class="nav-item-wrapper">
           <button
-            class="nav-link-item active"
+            class="nav-link-item"
             data-toggle="submenu"
             data-target="sub-content"
-            aria-expanded="true"
+            aria-expanded="false"
             data-tooltip="内容管理"
           >
             <i class="bi bi-file-richtext nav-icon"></i
@@ -50,7 +50,7 @@
         <div class="submenu-wrap" id="sub-content">
           <div class="submenu">
             <div class="nav-item-wrapper">
-              <a href="post-list.html" class="nav-link-item active"
+              <a href="post-list.html" class="nav-link-item"
                 ><i class="bi bi-file-text nav-icon"></i
                 ><span class="nav-label">文章列表</span></a
               >
@@ -107,7 +107,10 @@
         </div>
         <div class="nav-section-label">系统</div>
         <div class="nav-item-wrapper">
-          <a href="user-list.html" class="nav-link-item" data-tooltip="用户管理"
+          <a
+            href="user-list.html"
+            class="nav-link-item active"
+            data-tooltip="用户管理"
             ><i class="bi bi-people nav-icon"></i
             ><span class="nav-label">用户管理</span></a
           >
@@ -146,14 +149,7 @@
               class="bi bi-chevron-right"
               style="font-size: 0.65rem"
             ></i></span
-          ><a href="#" style="color: var(--ci-gray-500); text-decoration: none"
-            >内容管理</a
-          ><span class="bc-sep"
-            ><i
-              class="bi bi-chevron-right"
-              style="font-size: 0.65rem"
-            ></i></span
-          ><span class="bc-current">文章列表</span>
+          ><span class="bc-current">用户管理</span>
         </div>
         <div class="topbar-search">
           <i class="bi bi-search search-icon"></i>
@@ -219,13 +215,11 @@
       <main id="page-content">
         <div class="page-header">
           <div>
-            <h1 class="page-title">文章列表</h1>
-            <p class="page-subtitle">
-              共 1,284 篇 · 978 已发布 · 180 草稿 · 127 待审核
-            </p>
+            <h1 class="page-title">用户管理</h1>
+            <p class="page-subtitle">共 4,210 名用户</p>
           </div>
-          <a href="post-edit.html" class="btn btn-primary"
-            ><i class="bi bi-plus-lg"></i> 写新文章</a
+          <a href="user-edit.html" class="btn btn-primary"
+            ><i class="bi bi-person-plus"></i> 新建用户</a
           >
         </div>
         <div class="ci-bulk-bar" id="bulk-action-bar">
@@ -248,61 +242,19 @@
             </button>
           </div>
         </div>
-        <div class="card ci-card mb-0">
-          <div class="card-body" style="padding: 12px 18px">
-            <div class="d-flex align-items-center gap-2 flex-wrap">
-              <div class="ci-filter-tabs" id="filter-tabs" role="tablist">
-                <button class="ci-filter-tab active" data-filter="all">
-                  全部
-                  <span style="opacity: 0.7; font-weight: 400"
-                    >(1284)</span
-                  ></button
-                ><button class="ci-filter-tab" data-filter="published">
-                  已发布
-                  <span style="opacity: 0.7; font-weight: 400"
-                    >(978)</span
-                  ></button
-                ><button class="ci-filter-tab" data-filter="draft">
-                  草稿
-                  <span style="opacity: 0.7; font-weight: 400"
-                    >(180)</span
-                  ></button
-                ><button class="ci-filter-tab" data-filter="pending">
-                  待审核
-                  <span style="opacity: 0.7; font-weight: 400">(127)</span>
-                </button>
-              </div>
-              <div class="d-flex align-items-center gap-2 ms-auto flex-wrap">
-                <select
-                  class="form-select"
-                  style="width: 120px; height: 32px; font-size: 0.78rem"
-                >
-                  <option value="">全部分类</option>
-                  <option>前端技术</option>
-                  <option>AI 技术</option>
-                  <option>运维部署</option>
-                  <option>设计灵感</option>
-                </select>
-                <select
-                  class="form-select"
-                  style="width: 110px; height: 32px; font-size: 0.78rem"
-                >
-                  <option>全部时间</option>
-                  <option>今天</option>
-                  <option>本周</option>
-                  <option>本月</option>
-                </select>
-                <select
-                  class="form-select"
-                  style="width: 110px; height: 32px; font-size: 0.78rem"
-                >
-                  <option>最新发布</option>
-                  <option>最多浏览</option>
-                  <option>最多评论</option>
-                </select>
-              </div>
-            </div>
-          </div>
+        <div class="ci-filter-tabs" id="filter-tabs" role="tablist">
+          <button class="ci-filter-tab active" data-filter="all">
+            全部
+            <span style="opacity: 0.7; font-weight: 400">(4210)</span></button
+          ><button class="ci-filter-tab" data-filter="active">
+            正常
+            <span style="opacity: 0.7; font-weight: 400">(4080)</span></button
+          ><button class="ci-filter-tab" data-filter="inactive">
+            禁用
+            <span style="opacity: 0.7; font-weight: 400">(86)</span></button
+          ><button class="ci-filter-tab" data-filter="banned">
+            封禁 <span style="opacity: 0.7; font-weight: 400">(44)</span>
+          </button>
         </div>
         <div class="card ci-card mt-3">
           <div class="card-body p-0">
@@ -318,18 +270,17 @@
                         style="width: 15px; height: 15px; cursor: pointer"
                       />
                     </th>
-                    <th style="min-width: 300px">文章标题</th>
-                    <th>分类</th>
-                    <th>作者</th>
-                    <th>评论</th>
-                    <th>浏览量</th>
-                    <th>发布时间</th>
+                    <th style="min-width: 200px">用户名</th>
+                    <th>角色</th>
+                    <th>文章数</th>
+                    <th>注册时间</th>
+                    <th>最后登录</th>
                     <th>状态</th>
-                    <th style="width: 110px; text-align: center">操作</th>
+                    <th style="width: 120px; text-align: center">操作</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr data-status="published">
+                  <tr data-status="active">
                     <td>
                       <input
                         type="checkbox"
@@ -338,503 +289,40 @@
                       />
                     </td>
                     <td>
-                      <div class="ci-item-cell">
-                        <div class="ci-thumb" style="background: var(--ci-100)">
-                          <i
-                            class="bi bi-file-code"
-                            style="color: var(--ci-400)"
-                          ></i>
-                        </div>
-                        <div>
-                          <a
-                            href="post-edit.html"
-                            class="ci-link"
-                            style="font-size: 0.84rem"
-                            >深入理解 Vue 3 Composition API 与响应式原理</a
-                          ><small>技术教程</small>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <span
-                        class="ci-cat-pill"
-                        style="background: var(--ci-50); color: var(--ci-600)"
-                        >前端技术</span
-                      >
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-700)">
-                      Admin
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
-                      48
-                    </td>
-                    <td
-                      style="
-                        font-size: 0.8rem;
-                        font-weight: 600;
-                        color: var(--ci-gray-800);
-                      "
-                    >
-                      3,821
-                    </td>
-                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
-                      2025-06-18
-                    </td>
-                    <td>
-                      <span class="ci-badge ci-badge-published"
-                        ><span class="ci-badge-dot"></span>已发布</span
-                      >
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-center gap-1">
-                        <a
-                          href="post-edit.html"
-                          class="btn btn-light btn-icon"
-                          title="编辑"
-                          ><i class="bi bi-pencil"></i
-                        ></a>
-
-                        <button
-                          class="btn btn-danger-soft btn-icon"
-                          title="删除"
-                          onclick="ciConfirmDelete(this)"
-                        >
-                          <i class="bi bi-trash3"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr data-status="published">
-                    <td>
-                      <input
-                        type="checkbox"
-                        class="form-check-input ci-row-check"
-                        style="width: 15px; height: 15px; cursor: pointer"
-                      />
-                    </td>
-                    <td>
-                      <div class="ci-item-cell">
-                        <div class="ci-thumb" style="background: #fef3c7">
-                          <i
-                            class="bi bi-palette"
-                            style="color: var(--ci-warning-500)"
-                          ></i>
-                        </div>
-                        <div>
-                          <a
-                            href="post-edit.html"
-                            class="ci-link"
-                            style="font-size: 0.84rem"
-                            >2025年产品设计趋势全解析：从扁平到沉浸式体验</a
-                          ><small>设计专题</small>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <span
-                        class="ci-cat-pill"
-                        style="background: #fef3c7; color: #b45309"
-                        >设计灵感</span
-                      >
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-700)">
-                      Editor
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
-                      32
-                    </td>
-                    <td
-                      style="
-                        font-size: 0.8rem;
-                        font-weight: 600;
-                        color: var(--ci-gray-800);
-                      "
-                    >
-                      2,156
-                    </td>
-                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
-                      2025-06-16
-                    </td>
-                    <td>
-                      <span class="ci-badge ci-badge-published"
-                        ><span class="ci-badge-dot"></span>已发布</span
-                      >
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-center gap-1">
-                        <a
-                          href="post-edit.html"
-                          class="btn btn-light btn-icon"
-                          title="编辑"
-                          ><i class="bi bi-pencil"></i
-                        ></a>
-
-                        <button
-                          class="btn btn-danger-soft btn-icon"
-                          title="删除"
-                          onclick="ciConfirmDelete(this)"
-                        >
-                          <i class="bi bi-trash3"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr data-status="pending">
-                    <td>
-                      <input
-                        type="checkbox"
-                        class="form-check-input ci-row-check"
-                        style="width: 15px; height: 15px; cursor: pointer"
-                      />
-                    </td>
-                    <td>
-                      <div class="ci-item-cell">
-                        <div class="ci-thumb" style="background: #dcfce7">
-                          <i
-                            class="bi bi-cloud"
-                            style="color: var(--ci-success-500)"
-                          ></i>
-                        </div>
-                        <div>
-                          <a
-                            href="post-edit.html"
-                            class="ci-link"
-                            style="font-size: 0.84rem"
-                            >Docker 容器化生产部署最佳实践与常见坑</a
-                          ><small>运维分享</small>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <span
-                        class="ci-cat-pill"
-                        style="background: #dcfce7; color: #15803d"
-                        >运维部署</span
-                      >
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-700)">
-                      Ops
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
-                      19
-                    </td>
-                    <td
-                      style="
-                        font-size: 0.8rem;
-                        font-weight: 600;
-                        color: var(--ci-gray-800);
-                      "
-                    >
-                      1,877
-                    </td>
-                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
-                      2025-06-14
-                    </td>
-                    <td>
-                      <span class="ci-badge ci-badge-pending"
-                        ><span class="ci-badge-dot"></span>待审核</span
-                      >
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-center gap-1">
-                        <a
-                          href="post-edit.html"
-                          class="btn btn-light btn-icon"
-                          title="编辑"
-                          ><i class="bi bi-pencil"></i
-                        ></a>
-                        <button
-                          class="btn btn-light btn-icon"
-                          title="通过审核"
-                          onclick="showToast('已审核通过', 'success')"
-                        >
-                          <i
-                            class="bi bi-check-circle"
-                            style="color: var(--ci-success-500)"
-                          ></i>
-                        </button>
-                        <button
-                          class="btn btn-danger-soft btn-icon"
-                          title="删除"
-                          onclick="ciConfirmDelete(this)"
-                        >
-                          <i class="bi bi-trash3"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr data-status="draft">
-                    <td>
-                      <input
-                        type="checkbox"
-                        class="form-check-input ci-row-check"
-                        style="width: 15px; height: 15px; cursor: pointer"
-                      />
-                    </td>
-                    <td>
-                      <div class="ci-item-cell">
-                        <div class="ci-thumb" style="background: #ede9fe">
-                          <i class="bi bi-cpu" style="color: #7c3aed"></i>
-                        </div>
-                        <div>
-                          <a
-                            href="post-edit.html"
-                            class="ci-link"
-                            style="font-size: 0.84rem"
-                            >大语言模型 Fine-tuning 全流程入门指南</a
-                          ><small>AI 研究</small>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <span
-                        class="ci-cat-pill"
-                        style="background: #ede9fe; color: #7c3aed"
-                        >AI 技术</span
-                      >
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-700)">
-                      Admin
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
-                      —
-                    </td>
-                    <td
-                      style="
-                        font-size: 0.8rem;
-                        font-weight: 600;
-                        color: var(--ci-gray-800);
-                      "
-                    >
-                      —
-                    </td>
-                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
-                      2025-06-12
-                    </td>
-                    <td>
-                      <span class="ci-badge ci-badge-draft"
-                        ><span class="ci-badge-dot"></span>草稿</span
-                      >
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-center gap-1">
-                        <a
-                          href="post-edit.html"
-                          class="btn btn-light btn-icon"
-                          title="编辑"
-                          ><i class="bi bi-pencil"></i
-                        ></a>
-                        <button
-                          class="btn btn-light btn-icon"
-                          title="发布"
-                          onclick="showToast('发布成功', 'success')"
-                        >
-                          <i
-                            class="bi bi-send"
-                            style="color: var(--ci-500)"
-                          ></i>
-                        </button>
-                        <button
-                          class="btn btn-danger-soft btn-icon"
-                          title="删除"
-                          onclick="ciConfirmDelete(this)"
-                        >
-                          <i class="bi bi-trash3"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr data-status="published">
-                    <td>
-                      <input
-                        type="checkbox"
-                        class="form-check-input ci-row-check"
-                        style="width: 15px; height: 15px; cursor: pointer"
-                      />
-                    </td>
-                    <td>
-                      <div class="ci-item-cell">
-                        <div class="ci-thumb" style="background: #e0f9ff">
-                          <i
-                            class="bi bi-terminal"
-                            style="color: var(--ci-accent-500)"
-                          ></i>
-                        </div>
-                        <div>
-                          <a
-                            href="post-edit.html"
-                            class="ci-link"
-                            style="font-size: 0.84rem"
-                            >TypeScript 高级类型体操：泛型 + infer 实战技巧</a
-                          ><small>前端进阶</small>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <span
-                        class="ci-cat-pill"
-                        style="background: var(--ci-50); color: var(--ci-600)"
-                        >前端技术</span
-                      >
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-700)">
-                      Admin
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
-                      67
-                    </td>
-                    <td
-                      style="
-                        font-size: 0.8rem;
-                        font-weight: 600;
-                        color: var(--ci-gray-800);
-                      "
-                    >
-                      4,603
-                    </td>
-                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
-                      2025-06-10
-                    </td>
-                    <td>
-                      <span class="ci-badge ci-badge-published"
-                        ><span class="ci-badge-dot"></span>已发布</span
-                      >
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-center gap-1">
-                        <a
-                          href="post-edit.html"
-                          class="btn btn-light btn-icon"
-                          title="编辑"
-                          ><i class="bi bi-pencil"></i
-                        ></a>
-
-                        <button
-                          class="btn btn-danger-soft btn-icon"
-                          title="删除"
-                          onclick="ciConfirmDelete(this)"
-                        >
-                          <i class="bi bi-trash3"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr data-status="published">
-                    <td>
-                      <input
-                        type="checkbox"
-                        class="form-check-input ci-row-check"
-                        style="width: 15px; height: 15px; cursor: pointer"
-                      />
-                    </td>
-                    <td>
-                      <div class="ci-item-cell">
-                        <div class="ci-thumb" style="background: #fce7f3">
-                          <i class="bi bi-bar-chart" style="color: #be185d"></i>
-                        </div>
-                        <div>
-                          <a
-                            href="post-edit.html"
-                            class="ci-link"
-                            style="font-size: 0.84rem"
-                            >从零搭建数据可视化大屏：ECharts 完整实战</a
-                          ><small>数据分析</small>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <span
-                        class="ci-cat-pill"
-                        style="background: #fce7f3; color: #be185d"
-                        >数据可视化</span
-                      >
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-700)">
-                      Editor
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
-                      41
-                    </td>
-                    <td
-                      style="
-                        font-size: 0.8rem;
-                        font-weight: 600;
-                        color: var(--ci-gray-800);
-                      "
-                    >
-                      5,128
-                    </td>
-                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
-                      2025-06-08
-                    </td>
-                    <td>
-                      <span class="ci-badge ci-badge-published"
-                        ><span class="ci-badge-dot"></span>已发布</span
-                      >
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-center gap-1">
-                        <a
-                          href="post-edit.html"
-                          class="btn btn-light btn-icon"
-                          title="编辑"
-                          ><i class="bi bi-pencil"></i
-                        ></a>
-
-                        <button
-                          class="btn btn-danger-soft btn-icon"
-                          title="删除"
-                          onclick="ciConfirmDelete(this)"
-                        >
-                          <i class="bi bi-trash3"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr data-status="draft">
-                    <td>
-                      <input
-                        type="checkbox"
-                        class="form-check-input ci-row-check"
-                        style="width: 15px; height: 15px; cursor: pointer"
-                      />
-                    </td>
-                    <td>
-                      <div class="ci-item-cell">
+                      <div class="d-flex align-items-center gap-2">
                         <div
-                          class="ci-thumb"
-                          style="background: var(--ci-gray-100)"
+                          style="
+                            width: 36px;
+                            height: 36px;
+                            border-radius: 50%;
+                            background: linear-gradient(
+                              135deg,
+                              var(--ci-500),
+                              var(--ci-accent-400)
+                            );
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: #fff;
+                            font-size: 0.75rem;
+                            font-weight: 700;
+                            flex-shrink: 0;
+                          "
                         >
-                          <i
-                            class="bi bi-shield-check"
-                            style="color: var(--ci-gray-400)"
-                          ></i>
+                          AD
                         </div>
                         <div>
                           <a
-                            href="post-edit.html"
+                            href="user-edit.html"
                             class="ci-link"
                             style="font-size: 0.84rem"
-                            >Web 应用安全防护：XSS、CSRF 全攻略</a
-                          ><small>安全专题</small>
+                            >Admin</a
+                          ><small>admin@inkflow.dev</small>
                         </div>
                       </div>
                     </td>
                     <td>
-                      <span
-                        class="ci-cat-pill"
-                        style="
-                          background: var(--ci-gray-100);
-                          color: var(--ci-gray-600);
-                        "
-                        >安全技术</span
-                      >
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-700)">
-                      Admin
-                    </td>
-                    <td style="font-size: 0.8rem; color: var(--ci-gray-600)">
-                      —
+                      <span class="ci-badge ci-badge-draft">超级管理员</span>
                     </td>
                     <td
                       style="
@@ -843,40 +331,483 @@
                         color: var(--ci-gray-800);
                       "
                     >
-                      —
+                      1,284
                     </td>
                     <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
-                      2025-06-05
+                      2024-01-01
+                    </td>
+                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
+                      2025-06-18 09:32
                     </td>
                     <td>
-                      <span class="ci-badge ci-badge-draft"
-                        ><span class="ci-badge-dot"></span>草稿</span
+                      <span class="ci-badge ci-badge-active"
+                        ><span class="ci-badge-dot"></span>正常</span
                       >
                     </td>
                     <td>
                       <div class="d-flex justify-content-center gap-1">
                         <a
-                          href="post-edit.html"
+                          href="user-edit.html"
                           class="btn btn-light btn-icon"
                           title="编辑"
                           ><i class="bi bi-pencil"></i
                         ></a>
                         <button
                           class="btn btn-light btn-icon"
-                          title="发布"
-                          onclick="showToast('发布成功', 'success')"
+                          title="发送消息"
+                          onclick="showToast('消息功能开发中', 'info')"
                         >
-                          <i
-                            class="bi bi-send"
-                            style="color: var(--ci-500)"
-                          ></i>
+                          <i class="bi bi-envelope"></i>
                         </button>
                         <button
                           class="btn btn-danger-soft btn-icon"
-                          title="删除"
-                          onclick="ciConfirmDelete(this)"
+                          title="封禁用户"
+                          onclick="showToast('用户已被封禁', 'danger')"
                         >
-                          <i class="bi bi-trash3"></i>
+                          <i class="bi bi-person-x"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-status="active">
+                    <td>
+                      <input
+                        type="checkbox"
+                        class="form-check-input ci-row-check"
+                        style="width: 15px; height: 15px; cursor: pointer"
+                      />
+                    </td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div
+                          style="
+                            width: 36px;
+                            height: 36px;
+                            border-radius: 50%;
+                            background: linear-gradient(
+                              135deg,
+                              #22c55e,
+                              #16a34a
+                            );
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: #fff;
+                            font-size: 0.75rem;
+                            font-weight: 700;
+                            flex-shrink: 0;
+                          "
+                        >
+                          ED
+                        </div>
+                        <div>
+                          <a
+                            href="user-edit.html"
+                            class="ci-link"
+                            style="font-size: 0.84rem"
+                            >Editor</a
+                          ><small>editor@inkflow.dev</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="ci-badge ci-badge-draft">内容编辑</span>
+                    </td>
+                    <td
+                      style="
+                        font-size: 0.8rem;
+                        font-weight: 600;
+                        color: var(--ci-gray-800);
+                      "
+                    >
+                      168
+                    </td>
+                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
+                      2024-02-15
+                    </td>
+                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
+                      2025-06-17 16:45
+                    </td>
+                    <td>
+                      <span class="ci-badge ci-badge-active"
+                        ><span class="ci-badge-dot"></span>正常</span
+                      >
+                    </td>
+                    <td>
+                      <div class="d-flex justify-content-center gap-1">
+                        <a
+                          href="user-edit.html"
+                          class="btn btn-light btn-icon"
+                          title="编辑"
+                          ><i class="bi bi-pencil"></i
+                        ></a>
+                        <button
+                          class="btn btn-light btn-icon"
+                          title="发送消息"
+                          onclick="showToast('消息功能开发中', 'info')"
+                        >
+                          <i class="bi bi-envelope"></i>
+                        </button>
+                        <button
+                          class="btn btn-danger-soft btn-icon"
+                          title="封禁用户"
+                          onclick="showToast('用户已被封禁', 'danger')"
+                        >
+                          <i class="bi bi-person-x"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-status="active">
+                    <td>
+                      <input
+                        type="checkbox"
+                        class="form-check-input ci-row-check"
+                        style="width: 15px; height: 15px; cursor: pointer"
+                      />
+                    </td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div
+                          style="
+                            width: 36px;
+                            height: 36px;
+                            border-radius: 50%;
+                            background: linear-gradient(
+                              135deg,
+                              #f59e0b,
+                              #d97706
+                            );
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: #fff;
+                            font-size: 0.75rem;
+                            font-weight: 700;
+                            flex-shrink: 0;
+                          "
+                        >
+                          OP
+                        </div>
+                        <div>
+                          <a
+                            href="user-edit.html"
+                            class="ci-link"
+                            style="font-size: 0.84rem"
+                            >Ops</a
+                          ><small>ops@inkflow.dev</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="ci-badge ci-badge-draft">运维工程师</span>
+                    </td>
+                    <td
+                      style="
+                        font-size: 0.8rem;
+                        font-weight: 600;
+                        color: var(--ci-gray-800);
+                      "
+                    >
+                      42
+                    </td>
+                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
+                      2024-03-20
+                    </td>
+                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
+                      2025-06-16 11:20
+                    </td>
+                    <td>
+                      <span class="ci-badge ci-badge-active"
+                        ><span class="ci-badge-dot"></span>正常</span
+                      >
+                    </td>
+                    <td>
+                      <div class="d-flex justify-content-center gap-1">
+                        <a
+                          href="user-edit.html"
+                          class="btn btn-light btn-icon"
+                          title="编辑"
+                          ><i class="bi bi-pencil"></i
+                        ></a>
+                        <button
+                          class="btn btn-light btn-icon"
+                          title="发送消息"
+                          onclick="showToast('消息功能开发中', 'info')"
+                        >
+                          <i class="bi bi-envelope"></i>
+                        </button>
+                        <button
+                          class="btn btn-danger-soft btn-icon"
+                          title="封禁用户"
+                          onclick="showToast('用户已被封禁', 'danger')"
+                        >
+                          <i class="bi bi-person-x"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-status="inactive">
+                    <td>
+                      <input
+                        type="checkbox"
+                        class="form-check-input ci-row-check"
+                        style="width: 15px; height: 15px; cursor: pointer"
+                      />
+                    </td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div
+                          style="
+                            width: 36px;
+                            height: 36px;
+                            border-radius: 50%;
+                            background: linear-gradient(
+                              135deg,
+                              #94a3b8,
+                              #64748b
+                            );
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: #fff;
+                            font-size: 0.75rem;
+                            font-weight: 700;
+                            flex-shrink: 0;
+                          "
+                        >
+                          RV
+                        </div>
+                        <div>
+                          <a
+                            href="user-edit.html"
+                            class="ci-link"
+                            style="font-size: 0.84rem"
+                            >Reviewer</a
+                          ><small>reviewer@inkflow.dev</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="ci-badge ci-badge-draft">审核员</span></td>
+                    <td
+                      style="
+                        font-size: 0.8rem;
+                        font-weight: 600;
+                        color: var(--ci-gray-800);
+                      "
+                    >
+                      0
+                    </td>
+                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
+                      2024-06-10
+                    </td>
+                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
+                      2025-06-10 08:00
+                    </td>
+                    <td>
+                      <span class="ci-badge ci-badge-inactive"
+                        ><span class="ci-badge-dot"></span>禁用</span
+                      >
+                    </td>
+                    <td>
+                      <div class="d-flex justify-content-center gap-1">
+                        <a
+                          href="user-edit.html"
+                          class="btn btn-light btn-icon"
+                          title="编辑"
+                          ><i class="bi bi-pencil"></i
+                        ></a>
+                        <button
+                          class="btn btn-light btn-icon"
+                          title="发送消息"
+                          onclick="showToast('消息功能开发中', 'info')"
+                        >
+                          <i class="bi bi-envelope"></i>
+                        </button>
+                        <button
+                          class="btn btn-danger-soft btn-icon"
+                          title="封禁用户"
+                          onclick="showToast('用户已被封禁', 'danger')"
+                        >
+                          <i class="bi bi-person-x"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-status="active">
+                    <td>
+                      <input
+                        type="checkbox"
+                        class="form-check-input ci-row-check"
+                        style="width: 15px; height: 15px; cursor: pointer"
+                      />
+                    </td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div
+                          style="
+                            width: 36px;
+                            height: 36px;
+                            border-radius: 50%;
+                            background: linear-gradient(
+                              135deg,
+                              #a78bfa,
+                              #7c3aed
+                            );
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: #fff;
+                            font-size: 0.75rem;
+                            font-weight: 700;
+                            flex-shrink: 0;
+                          "
+                        >
+                          张
+                        </div>
+                        <div>
+                          <a
+                            href="user-edit.html"
+                            class="ci-link"
+                            style="font-size: 0.84rem"
+                            >张三</a
+                          ><small>zhangsan@qq.com</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="ci-badge ci-badge-draft">普通用户</span>
+                    </td>
+                    <td
+                      style="
+                        font-size: 0.8rem;
+                        font-weight: 600;
+                        color: var(--ci-gray-800);
+                      "
+                    >
+                      0
+                    </td>
+                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
+                      2025-01-15
+                    </td>
+                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
+                      2025-06-18 14:32
+                    </td>
+                    <td>
+                      <span class="ci-badge ci-badge-active"
+                        ><span class="ci-badge-dot"></span>正常</span
+                      >
+                    </td>
+                    <td>
+                      <div class="d-flex justify-content-center gap-1">
+                        <a
+                          href="user-edit.html"
+                          class="btn btn-light btn-icon"
+                          title="编辑"
+                          ><i class="bi bi-pencil"></i
+                        ></a>
+                        <button
+                          class="btn btn-light btn-icon"
+                          title="发送消息"
+                          onclick="showToast('消息功能开发中', 'info')"
+                        >
+                          <i class="bi bi-envelope"></i>
+                        </button>
+                        <button
+                          class="btn btn-danger-soft btn-icon"
+                          title="封禁用户"
+                          onclick="showToast('用户已被封禁', 'danger')"
+                        >
+                          <i class="bi bi-person-x"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-status="banned">
+                    <td>
+                      <input
+                        type="checkbox"
+                        class="form-check-input ci-row-check"
+                        style="width: 15px; height: 15px; cursor: pointer"
+                      />
+                    </td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div
+                          style="
+                            width: 36px;
+                            height: 36px;
+                            border-radius: 50%;
+                            background: linear-gradient(
+                              135deg,
+                              #f87171,
+                              #ef4444
+                            );
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: #fff;
+                            font-size: 0.75rem;
+                            font-weight: 700;
+                            flex-shrink: 0;
+                          "
+                        >
+                          李
+                        </div>
+                        <div>
+                          <a
+                            href="user-edit.html"
+                            class="ci-link"
+                            style="font-size: 0.84rem"
+                            >李明</a
+                          ><small>liming@163.com</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="ci-badge ci-badge-draft">普通用户</span>
+                    </td>
+                    <td
+                      style="
+                        font-size: 0.8rem;
+                        font-weight: 600;
+                        color: var(--ci-gray-800);
+                      "
+                    >
+                      0
+                    </td>
+                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
+                      2025-02-20
+                    </td>
+                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
+                      2025-06-18 13:10
+                    </td>
+                    <td>
+                      <span class="ci-badge ci-badge-banned"
+                        ><span class="ci-badge-dot"></span>封禁</span
+                      >
+                    </td>
+                    <td>
+                      <div class="d-flex justify-content-center gap-1">
+                        <a
+                          href="user-edit.html"
+                          class="btn btn-light btn-icon"
+                          title="编辑"
+                          ><i class="bi bi-pencil"></i
+                        ></a>
+                        <button
+                          class="btn btn-light btn-icon"
+                          title="发送消息"
+                          onclick="showToast('消息功能开发中', 'info')"
+                        >
+                          <i class="bi bi-envelope"></i>
+                        </button>
+                        <button
+                          class="btn btn-danger-soft btn-icon"
+                          title="封禁用户"
+                          onclick="showToast('用户已被封禁', 'danger')"
+                        >
+                          <i class="bi bi-person-x"></i>
                         </button>
                       </div>
                     </td>
@@ -889,8 +820,8 @@
             class="card-footer d-flex align-items-center justify-content-between"
           >
             <span style="font-size: 0.78rem; color: var(--ci-gray-500)"
-              >共 <strong>1,284</strong> 条记录，第 <strong>1</strong> /
-              <strong>129</strong> 页</span
+              >共 <strong>4,210</strong> 条记录，第 <strong>1</strong> /
+              <strong>421</strong> 页</span
             >
             <nav>
               <ul class="pagination mb-0">

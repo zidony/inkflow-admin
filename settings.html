@@ -1,0 +1,1096 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>系统设置 — InkFlow Admin</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
+    />
+
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <!-- SIDEBAR -->
+    <nav id="sidebar">
+      <a class="sidebar-logo" href="dashboard.html">
+        <div class="sidebar-logo-icon"><i class="bi bi-journals"></i></div>
+        <div class="sidebar-logo-text">
+          <span class="sidebar-logo-title">InkFlow</span>
+          <span class="sidebar-logo-sub">Blog CMS</span>
+        </div>
+      </a>
+      <div class="sidebar-nav-wrap">
+        <div class="nav-section-label">主菜单</div>
+        <div class="nav-item-wrapper">
+          <a href="dashboard.html" class="nav-link-item" data-tooltip="仪表盘">
+            <i class="bi bi-grid-1x2 nav-icon"></i
+            ><span class="nav-label">仪表盘</span>
+          </a>
+        </div>
+        <div class="nav-section-label">内容管理</div>
+        <div class="nav-item-wrapper">
+          <button
+            class="nav-link-item"
+            data-toggle="submenu"
+            data-target="sub-content"
+            aria-expanded="false"
+            data-tooltip="内容管理"
+          >
+            <i class="bi bi-file-richtext nav-icon"></i
+            ><span class="nav-label">内容管理</span>
+            <i class="bi bi-chevron-right nav-arrow"></i>
+          </button>
+        </div>
+        <div class="submenu-wrap" id="sub-content">
+          <div class="submenu">
+            <div class="nav-item-wrapper">
+              <a href="post-list.html" class="nav-link-item"
+                ><i class="bi bi-file-text nav-icon"></i
+                ><span class="nav-label">文章列表</span></a
+              >
+            </div>
+            <div class="nav-item-wrapper">
+              <a href="comment-list.html" class="nav-link-item"
+                ><i class="bi bi-chat-left-dots nav-icon"></i
+                ><span class="nav-label">评论列表</span></a
+              >
+            </div>
+            <div class="nav-item-wrapper">
+              <a href="category-list.html" class="nav-link-item"
+                ><i class="bi bi-folder2 nav-icon"></i
+                ><span class="nav-label">栏目列表</span></a
+              >
+            </div>
+            <div class="nav-item-wrapper">
+              <a href="tag-list.html" class="nav-link-item"
+                ><i class="bi bi-tags nav-icon"></i
+                ><span class="nav-label">标签管理</span></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="nav-section-label">媒体</div>
+        <div class="nav-item-wrapper">
+          <button
+            class="nav-link-item"
+            data-toggle="submenu"
+            data-target="sub-media"
+            aria-expanded="false"
+            data-tooltip="媒体管理"
+          >
+            <i class="bi bi-collection nav-icon"></i
+            ><span class="nav-label">媒体管理</span>
+            <i class="bi bi-chevron-right nav-arrow"></i>
+          </button>
+        </div>
+        <div class="submenu-wrap" id="sub-media">
+          <div class="submenu">
+            <div class="nav-item-wrapper">
+              <a href="image-list.html" class="nav-link-item"
+                ><i class="bi bi-images nav-icon"></i
+                ><span class="nav-label">图片管理</span></a
+              >
+            </div>
+            <div class="nav-item-wrapper">
+              <a href="link-list.html" class="nav-link-item"
+                ><i class="bi bi-link-45deg nav-icon"></i
+                ><span class="nav-label">链接管理</span></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="nav-section-label">系统</div>
+        <div class="nav-item-wrapper">
+          <a href="user-list.html" class="nav-link-item" data-tooltip="用户管理"
+            ><i class="bi bi-people nav-icon"></i
+            ><span class="nav-label">用户管理</span></a
+          >
+        </div>
+        <div class="nav-item-wrapper">
+          <a
+            href="settings.html"
+            class="nav-link-item active"
+            data-tooltip="系统设置"
+            ><i class="bi bi-sliders nav-icon"></i
+            ><span class="nav-label">系统设置</span></a
+          >
+        </div>
+      </div>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div class="sidebar-user-avatar">AD</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Admin</div>
+            <div class="sidebar-user-role">超级管理员</div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div id="sidebar-overlay"></div>
+    <div id="main-wrapper">
+      <!-- TOPBAR -->
+      <header id="topbar">
+        <button id="sidebar-toggle" title="收起/展开菜单">
+          <i class="bi bi-layout-sidebar-inset"></i>
+        </button>
+        <div class="topbar-breadcrumb">
+          <a
+            href="dashboard.html"
+            style="color: var(--ci-gray-500); text-decoration: none"
+            >InkFlow</a
+          ><span class="bc-sep"
+            ><i
+              class="bi bi-chevron-right"
+              style="font-size: 0.65rem"
+            ></i></span
+          ><span class="bc-current">系统设置</span>
+        </div>
+        <div class="topbar-search">
+          <i class="bi bi-search search-icon"></i>
+          <input type="text" id="list-search" placeholder="快速搜索…" />
+        </div>
+        <div class="topbar-actions">
+          <button
+            class="topbar-icon-btn"
+            style="position: relative"
+            title="通知"
+          >
+            <i class="bi bi-bell"></i><span class="ci-notif-badge">4</span>
+          </button>
+
+          <div class="dropdown topbar-dropdown ms-1">
+            <button
+              class="topbar-user-btn"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style="border: none"
+            >
+              <div class="topbar-avatar">AD</div>
+              <span class="topbar-user-name d-none d-md-inline">Admin</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <div class="user-info-header">
+                  <div class="user-info-avatar">AD</div>
+                  <div>
+                    <div class="user-info-name">Admin User</div>
+                    <div class="user-info-email">admin@inkflow.dev</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-person-circle"></i> 个人资料</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  ><i class="bi bi-shield-check"></i> 账号安全</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="login.html"
+                  style="color: #ef4444"
+                  ><i class="bi bi-box-arrow-right"></i> 退出登录</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <main id="page-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">系统设置</h1>
+            <p class="page-subtitle">管理 InkFlow 博客的全局配置</p>
+          </div>
+          <button
+            class="btn btn-primary"
+            onclick="showToast('所有设置已保存', 'success')"
+          >
+            <i class="bi bi-check-lg me-1"></i>保存所有设置
+          </button>
+        </div>
+
+        <div class="ci-settings-layout">
+          <!-- Left nav -->
+          <div>
+            <div class="card ci-card">
+              <div class="card-body" style="padding: 8px">
+                <div class="ci-settings-nav">
+                  <button
+                    class="ci-settings-nav-item active"
+                    onclick="switchSettings('site')"
+                    data-section="site"
+                  >
+                    <i class="bi bi-house"></i>站点基本设置</button
+                  ><button
+                    class="ci-settings-nav-item"
+                    onclick="switchSettings('post')"
+                    data-section="post"
+                  >
+                    <i class="bi bi-file-richtext"></i>文章设置</button
+                  ><button
+                    class="ci-settings-nav-item"
+                    onclick="switchSettings('comment')"
+                    data-section="comment"
+                  >
+                    <i class="bi bi-chat-left-dots"></i>评论设置</button
+                  ><button
+                    class="ci-settings-nav-item"
+                    onclick="switchSettings('media')"
+                    data-section="media"
+                  >
+                    <i class="bi bi-image"></i>媒体设置</button
+                  ><button
+                    class="ci-settings-nav-item"
+                    onclick="switchSettings('seo')"
+                    data-section="seo"
+                  >
+                    <i class="bi bi-search-heart"></i>SEO 设置</button
+                  ><button
+                    class="ci-settings-nav-item"
+                    onclick="switchSettings('smtp')"
+                    data-section="smtp"
+                  >
+                    <i class="bi bi-envelope-at"></i>邮件 SMTP</button
+                  ><button
+                    class="ci-settings-nav-item"
+                    onclick="switchSettings('security')"
+                    data-section="security"
+                  >
+                    <i class="bi bi-shield-lock"></i>安全设置</button
+                  ><button
+                    class="ci-settings-nav-item"
+                    onclick="switchSettings('cache')"
+                    data-section="cache"
+                  >
+                    <i class="bi bi-lightning-charge"></i>缓存与性能</button
+                  ><button
+                    class="ci-settings-nav-item"
+                    onclick="switchSettings('advanced')"
+                    data-section="advanced"
+                  >
+                    <i class="bi bi-sliders"></i>高级设置
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right content -->
+          <div>
+            <!-- SITE -->
+            <div id="section-site" class="ci-anim">
+              <div class="ci-panel">
+                <div class="ci-panel-header">
+                  <i class="bi bi-house"></i> 站点基本设置
+                </div>
+                <div class="ci-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label class="form-label">站点名称</label
+                      ><input
+                        type="text"
+                        class="form-control"
+                        value="InkFlow 技术博客"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">站点副标题</label
+                      ><input
+                        type="text"
+                        class="form-control"
+                        value="分享技术，记录成长"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">站点地址 (URL)</label
+                      ><input
+                        type="url"
+                        class="form-control"
+                        value="https://blog.inkflow.dev"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">管理后台地址</label
+                      ><input
+                        type="url"
+                        class="form-control"
+                        value="https://blog.inkflow.dev/admin"
+                      />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">管理员邮箱</label
+                      ><input
+                        type="email"
+                        class="form-control"
+                        value="admin@inkflow.dev"
+                      />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">站点语言</label
+                      ><select class="form-select">
+                        <option selected>简体中文</option>
+                        <option>繁體中文</option>
+                        <option>English</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">时区</label
+                      ><select class="form-select">
+                        <option selected>Asia/Shanghai (UTC+8)</option>
+                        <option>Asia/Tokyo (UTC+9)</option>
+                        <option>UTC</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">日期格式</label
+                      ><select class="form-select">
+                        <option selected>2025-06-18</option>
+                        <option>2025/06/18</option>
+                        <option>June 18, 2025</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">站点描述</label
+                      ><textarea class="form-control" rows="3">
+专注于前端技术、AI 技术、运维部署等领域的技术博客，分享实战经验与学习心得。</textarea
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ci-panel">
+                <div class="ci-panel-header">
+                  <i class="bi bi-image"></i> 站点 Logo 与图标
+                </div>
+                <div class="ci-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">站点 Logo</label>
+                      <div
+                        class="ci-upload-zone"
+                        onclick="showToast('请选择 Logo 图片', 'info')"
+                      >
+                        <i class="bi bi-image-fill"></i>
+                        <p>
+                          点击上传 Logo<br /><small
+                            >建议尺寸 200×60px，支持 PNG/SVG</small
+                          >
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">网站图标 (Favicon)</label>
+                      <div
+                        class="ci-upload-zone"
+                        onclick="showToast('请选择 Favicon 图标', 'info')"
+                      >
+                        <i class="bi bi-grid-3x3-gap-fill"></i>
+                        <p>
+                          点击上传 Favicon<br /><small
+                            >建议 32×32px，支持 ICO/PNG</small
+                          >
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ci-panel">
+                <div class="ci-panel-header">
+                  <i class="bi bi-layout-text-window-reverse"></i>
+                  首页与阅读设置
+                </div>
+                <div class="ci-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">首页显示</label>
+                      <select class="form-select">
+                        <option selected>最新文章列表</option>
+                        <option>固定页面</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">每页显示文章数</label>
+                      <input type="number" class="form-control" value="10" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">RSS 输出条数</label>
+                      <input type="number" class="form-control" value="20" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">摘要字数限制</label>
+                      <input type="number" class="form-control" value="150" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- POST (hidden by default) -->
+            <div id="section-post" style="display: none">
+              <div class="ci-panel ci-anim">
+                <div class="ci-panel-header">
+                  <i class="bi bi-file-richtext"></i> 文章默认设置
+                </div>
+                <div class="ci-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">默认文章分类</label
+                      ><select class="form-select">
+                        <option selected>前端技术</option>
+                        <option>AI 技术</option>
+                        <option>运维部署</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">默认文章状态</label
+                      ><select class="form-select">
+                        <option selected>草稿</option>
+                        <option>待审核</option>
+                        <option>发布</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">文章 URL 格式</label
+                      ><select class="form-select">
+                        <option>/?p=ID</option>
+                        <option selected>/post/slug</option>
+                        <option>/YYYY/MM/slug</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">代码高亮主题</label
+                      ><select class="form-select">
+                        <option selected>GitHub Dark</option>
+                        <option>Dracula</option>
+                        <option>Monokai</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <div class="d-flex flex-wrap gap-4">
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            checked
+                            id="p-pingback"
+                          /><label
+                            class="form-check-label"
+                            for="p-pingback"
+                            style="font-size: 0.82rem"
+                            >允许 Pingback</label
+                          >
+                        </div>
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            checked
+                            id="p-toc"
+                          /><label
+                            class="form-check-label"
+                            for="p-toc"
+                            style="font-size: 0.82rem"
+                            >自动生成目录</label
+                          >
+                        </div>
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            checked
+                            id="p-copyright"
+                          /><label
+                            class="form-check-label"
+                            for="p-copyright"
+                            style="font-size: 0.82rem"
+                            >添加版权声明</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">版权声明模板</label
+                      ><textarea class="form-control" rows="3">
+本文为 InkFlow 原创文章，遵循 CC BY-NC-SA 4.0 版权协议，转载请附上原文出处链接及本声明。</textarea
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- COMMENT (hidden) -->
+            <div id="section-comment" style="display: none">
+              <div class="ci-panel ci-anim">
+                <div class="ci-panel-header">
+                  <i class="bi bi-chat-left-dots"></i> 评论设置
+                </div>
+                <div class="ci-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <div class="d-flex flex-wrap gap-4">
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            checked
+                            id="c-enable"
+                          /><label
+                            class="form-check-label"
+                            for="c-enable"
+                            style="font-size: 0.82rem"
+                            >开启评论功能</label
+                          >
+                        </div>
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            checked
+                            id="c-register"
+                          /><label
+                            class="form-check-label"
+                            for="c-register"
+                            style="font-size: 0.82rem"
+                            >需要注册才能评论</label
+                          >
+                        </div>
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            checked
+                            id="c-review"
+                          /><label
+                            class="form-check-label"
+                            for="c-review"
+                            style="font-size: 0.82rem"
+                            >评论需审核后显示</label
+                          >
+                        </div>
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="c-nested"
+                          /><label
+                            class="form-check-label"
+                            for="c-nested"
+                            style="font-size: 0.82rem"
+                            >允许嵌套评论</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">评论分页，每页条数</label
+                      ><input type="number" class="form-control" value="20" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label"
+                        >评论关闭天数（0=永不关闭）</label
+                      ><input type="number" class="form-control" value="0" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">评论头像来源</label
+                      ><select class="form-select">
+                        <option selected>Gravatar</option>
+                        <option>本地头像</option>
+                        <option>随机生成</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">黑名单检测</label
+                      ><select class="form-select">
+                        <option selected>关键词过滤</option>
+                        <option>Akismet 反垃圾</option>
+                        <option>两者均用</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label"
+                        >评论黑名单关键词（每行一个）</label
+                      ><textarea
+                        class="form-control"
+                        rows="3"
+                        placeholder="广告&#10;赌博&#10;xx网站"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SMTP (hidden) -->
+            <div id="section-smtp" style="display: none">
+              <div class="ci-panel ci-anim">
+                <div class="ci-panel-header">
+                  <i class="bi bi-envelope-at"></i> 邮件 SMTP 设置
+                </div>
+                <div class="ci-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">SMTP 服务器</label
+                      ><input
+                        type="text"
+                        class="form-control"
+                        value="smtp.exmail.qq.com"
+                        placeholder="smtp.example.com"
+                      />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">SMTP 端口</label
+                      ><input type="number" class="form-control" value="465" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">加密方式</label
+                      ><select class="form-select">
+                        <option selected>SSL/TLS</option>
+                        <option>STARTTLS</option>
+                        <option>无加密</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">发件人名称</label
+                      ><input
+                        type="text"
+                        class="form-control"
+                        value="InkFlow 博客"
+                      />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">发件人邮箱</label
+                      ><input
+                        type="email"
+                        class="form-control"
+                        value="noreply@inkflow.dev"
+                      />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">SMTP 用户名</label
+                      ><input
+                        type="text"
+                        class="form-control"
+                        value="noreply@inkflow.dev"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">SMTP 密码</label
+                      ><input
+                        type="password"
+                        class="form-control"
+                        value="••••••••••••"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <button
+                        class="btn btn-outline-primary"
+                        onclick="showToast('测试邮件发送成功', 'success')"
+                      >
+                        <i class="bi bi-send me-1"></i>发送测试邮件
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Security (hidden) -->
+            <div id="section-security" style="display: none">
+              <div class="ci-panel ci-anim">
+                <div class="ci-panel-header">
+                  <i class="bi bi-shield-lock"></i> 安全设置
+                </div>
+                <div class="ci-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">登录失败锁定次数</label
+                      ><input type="number" class="form-control" value="5" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">锁定时间（分钟）</label
+                      ><input type="number" class="form-control" value="30" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">Session 超时（分钟）</label
+                      ><input type="number" class="form-control" value="120" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">密码最低长度</label
+                      ><input type="number" class="form-control" value="8" />
+                    </div>
+                    <div class="col-12">
+                      <div class="d-flex flex-wrap gap-4">
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            checked
+                            id="s-2fa"
+                          /><label
+                            class="form-check-label"
+                            for="s-2fa"
+                            style="font-size: 0.82rem"
+                            >强制管理员启用两步验证</label
+                          >
+                        </div>
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            checked
+                            id="s-csrf"
+                          /><label
+                            class="form-check-label"
+                            for="s-csrf"
+                            style="font-size: 0.82rem"
+                            >启用 CSRF 保护</label
+                          >
+                        </div>
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="s-ipwhite"
+                          /><label
+                            class="form-check-label"
+                            for="s-ipwhite"
+                            style="font-size: 0.82rem"
+                            >启用后台 IP 白名单</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">IP 白名单（每行一个）</label
+                      ><textarea
+                        class="form-control"
+                        rows="3"
+                        placeholder="127.0.0.1&#10;192.168.1.0/24"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cache (hidden) -->
+            <div id="section-cache" style="display: none">
+              <div class="ci-panel ci-anim">
+                <div class="ci-panel-header">
+                  <i class="bi bi-lightning-charge"></i> 缓存与性能设置
+                </div>
+                <div class="ci-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">页面缓存驱动</label
+                      ><select class="form-select">
+                        <option selected>文件缓存</option>
+                        <option>Redis</option>
+                        <option>Memcached</option>
+                        <option>不缓存</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">缓存过期时间（秒）</label
+                      ><input type="number" class="form-control" value="3600" />
+                    </div>
+                    <div class="col-12">
+                      <div class="d-flex flex-wrap gap-4">
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            checked
+                            id="ch-gzip"
+                          /><label
+                            class="form-check-label"
+                            for="ch-gzip"
+                            style="font-size: 0.82rem"
+                            >启用 Gzip 压缩</label
+                          >
+                        </div>
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            checked
+                            id="ch-lazyimg"
+                          /><label
+                            class="form-check-label"
+                            for="ch-lazyimg"
+                            style="font-size: 0.82rem"
+                            >图片懒加载</label
+                          >
+                        </div>
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="ch-minjs"
+                          /><label
+                            class="form-check-label"
+                            for="ch-minjs"
+                            style="font-size: 0.82rem"
+                            >JS/CSS 压缩合并</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <button
+                        class="btn btn-outline-primary me-2"
+                        onclick="showToast('缓存已全部清除', 'success')"
+                      >
+                        <i class="bi bi-arrow-repeat me-1"></i>清除全部缓存
+                      </button>
+                      <button
+                        class="btn btn-light"
+                        onclick="showToast('CSS/JS 资源已重新生成', 'info')"
+                      >
+                        <i class="bi bi-gear me-1"></i>重新生成静态资源
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Placeholders for other sections -->
+            <div id="section-seo" style="display: none">
+              <div class="ci-panel ci-anim">
+                <div class="ci-panel-header">
+                  <i class="bi bi-search-heart"></i> SEO 全局设置
+                </div>
+                <div class="ci-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label class="form-label">全站 Meta 关键词</label
+                      ><input
+                        type="text"
+                        class="form-control"
+                        placeholder="Vue,TypeScript,前端技术,博客"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">全站 Meta 描述</label
+                      ><textarea
+                        class="form-control"
+                        rows="2"
+                        placeholder="站点全局描述…"
+                      ></textarea>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">Google Analytics ID</label
+                      ><input
+                        type="text"
+                        class="form-control"
+                        placeholder="G-XXXXXXXXXX"
+                      />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">百度统计 ID</label
+                      ><input
+                        type="text"
+                        class="form-control"
+                        placeholder="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <div class="form-check form-switch mb-0">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          checked
+                          id="seo-sitemap"
+                        /><label
+                          class="form-check-label"
+                          for="seo-sitemap"
+                          style="font-size: 0.82rem"
+                          >自动生成 Sitemap</label
+                        >
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-check form-switch mb-0">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          checked
+                          id="seo-robots"
+                        /><label
+                          class="form-check-label"
+                          for="seo-robots"
+                          style="font-size: 0.82rem"
+                          >允许搜索引擎索引</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="section-media" style="display: none">
+              <div class="ci-panel ci-anim">
+                <div class="ci-panel-header">
+                  <i class="bi bi-image"></i> 媒体上传设置
+                </div>
+                <div class="ci-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">最大上传文件大小 (MB)</label
+                      ><input type="number" class="form-control" value="20" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">允许的文件类型</label
+                      ><input
+                        type="text"
+                        class="form-control"
+                        value="jpg,jpeg,png,gif,webp,svg,pdf,zip"
+                      />
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <label class="form-label">缩略图宽 (px)</label
+                      ><input type="number" class="form-control" value="150" />
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <label class="form-label">中等图宽 (px)</label
+                      ><input type="number" class="form-control" value="800" />
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <label class="form-label">大图宽 (px)</label
+                      ><input type="number" class="form-control" value="1200" />
+                    </div>
+                    <div class="col-12">
+                      <div class="form-check form-switch mb-0">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          checked
+                          id="m-webp"
+                        /><label
+                          class="form-check-label"
+                          for="m-webp"
+                          style="font-size: 0.82rem"
+                          >自动转换为 WebP 格式</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="section-advanced" style="display: none">
+              <div class="ci-panel ci-anim">
+                <div class="ci-panel-header">
+                  <i class="bi bi-sliders"></i> 高级设置
+                </div>
+                <div class="ci-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label class="form-label"
+                        >自定义 CSS（注入到前台页面）</label
+                      ><textarea
+                        class="form-control"
+                        rows="4"
+                        placeholder="/* 自定义样式 */"
+                        style="
+                          font-family: var(--font-mono);
+                          font-size: 0.82rem;
+                        "
+                      ></textarea>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label"
+                        >自定义 JS（注入到前台页面 body 底部）</label
+                      ><textarea
+                        class="form-control"
+                        rows="4"
+                        placeholder="// 自定义脚本"
+                        style="
+                          font-family: var(--font-mono);
+                          font-size: 0.82rem;
+                        "
+                      ></textarea>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">robots.txt 内容</label
+                      ><textarea
+                        class="form-control"
+                        rows="4"
+                        style="
+                          font-family: var(--font-mono);
+                          font-size: 0.82rem;
+                        "
+                      >
+User-agent: *
+Allow: /
+Sitemap: https://blog.inkflow.dev/sitemap.xml</textarea
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex gap-2 mt-3">
+              <button
+                class="btn btn-primary"
+                onclick="showToast('设置已保存', 'success')"
+              >
+                <i class="bi bi-check-lg me-1"></i>保存设置
+              </button>
+              <button
+                class="btn btn-light"
+                onclick="showToast('已重置为默认值', 'info')"
+              >
+                <i class="bi bi-arrow-counterclockwise me-1"></i>重置默认
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="admin.js"></script>
+    <script>
+      function switchSettings(section) {
+        var sections = [
+          "site",
+          "post",
+          "comment",
+          "media",
+          "seo",
+          "smtp",
+          "security",
+          "cache",
+          "advanced",
+        ];
+        sections.forEach(function (s) {
+          var el = document.getElementById("section-" + s);
+          if (el) el.style.display = s === section ? "" : "none";
+        });
+        document
+          .querySelectorAll(".ci-settings-nav-item")
+          .forEach(function (btn) {
+            btn.classList.toggle("active", btn.dataset.section === section);
+          });
+      }
+    </script>
+  </body>
+</html>
