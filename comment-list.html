@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>评论列表 — InkFlow Admin</title>
+    <title>评论列表 — InkFlow</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -160,13 +160,103 @@
           <input type="text" id="list-search" placeholder="快速搜索…" />
         </div>
         <div class="topbar-actions">
-          <button
-            class="topbar-icon-btn"
-            style="position: relative"
-            title="通知"
-          >
-            <i class="bi bi-bell"></i><span class="ci-notif-badge">4</span>
-          </button>
+          <div class="dropdown">
+            <button
+              class="topbar-icon-btn"
+              style="position: relative"
+              title="通知"
+              data-bs-toggle="dropdown"
+              data-bs-auto-close="outside"
+              aria-expanded="false"
+            >
+              <i class="bi bi-bell"></i><span class="ci-notif-badge">4</span>
+            </button>
+            <ul
+              class="dropdown-menu dropdown-menu-end ci-notif-dropdown"
+              style="padding: 0"
+            >
+              <li>
+                <div class="ci-notif-header">
+                  <span
+                    ><i class="bi bi-bell me-2" style="color: var(--ci-500)"></i
+                    >通知中心</span
+                  >
+                  <button
+                    class="btn btn-light btn-sm"
+                    style="height: 24px; font-size: 0.68rem; padding: 0 8px"
+                    onclick="showToast('已全部标记已读', 'success')"
+                  >
+                    全部已读
+                  </button>
+                </div>
+              </li>
+              <li>
+                <ul class="ci-notif-list">
+                  <li class="ci-notif-item unread">
+                    <div
+                      class="ci-notif-icon"
+                      style="background: var(--ci-50); color: var(--ci-500)"
+                    >
+                      <i class="bi bi-chat-left-dots"></i>
+                    </div>
+                    <div class="ci-notif-body">
+                      <div class="ci-notif-text">
+                        <strong>张三</strong> 评论了《Vue 3 Composition API》
+                      </div>
+                      <div class="ci-notif-time">
+                        <i class="bi bi-clock me-1"></i>10 分钟前
+                      </div>
+                    </div>
+                    <span class="ci-notif-dot"></span>
+                  </li>
+                  <li class="ci-notif-item unread">
+                    <div
+                      class="ci-notif-icon"
+                      style="background: #dcfce7; color: var(--ci-success-500)"
+                    >
+                      <i class="bi bi-person-plus"></i>
+                    </div>
+                    <div class="ci-notif-body">
+                      <div class="ci-notif-text">
+                        <strong>新用户</strong> 李明 完成了注册
+                      </div>
+                      <div class="ci-notif-time">
+                        <i class="bi bi-clock me-1"></i>32 分钟前
+                      </div>
+                    </div>
+                    <span class="ci-notif-dot"></span>
+                  </li>
+                  <li class="ci-notif-item">
+                    <div
+                      class="ci-notif-icon"
+                      style="
+                        background: var(--ci-gray-100);
+                        color: var(--ci-gray-500);
+                      "
+                    >
+                      <i class="bi bi-file-earmark-check"></i>
+                    </div>
+                    <div class="ci-notif-body">
+                      <div class="ci-notif-text">
+                        文章《TypeScript 高级类型》已成功发布
+                      </div>
+                      <div class="ci-notif-time">
+                        <i class="bi bi-clock me-1"></i>昨天 16:30
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <div
+                  class="ci-notif-footer"
+                  onclick="showToast('通知中心', 'info')"
+                >
+                  查看全部通知 <i class="bi bi-arrow-right ms-1"></i>
+                </div>
+              </li>
+            </ul>
+          </div>
           <a
             href="post-edit.html"
             class="btn btn-primary btn-sm ms-1"
@@ -175,7 +265,7 @@
           >
           <div class="dropdown topbar-dropdown ms-1">
             <button
-              class="topbar-user-btn"
+              class="topbar-user-btn dropdown-toggle"
               data-bs-toggle="dropdown"
               aria-expanded="false"
               style="border: none"
@@ -189,7 +279,14 @@
                   <div class="user-info-avatar">AD</div>
                   <div>
                     <div class="user-info-name">Admin User</div>
-                    <div class="user-info-email">admin@inkflow.dev</div>
+                    <div class="user-info-email">
+                      <a
+                        href="/cdn-cgi/l/email-protection"
+                        class="__cf_email__"
+                        data-cfemail="bcddd8d1d5d2fcdfd5dfd1cf92dfd3d1"
+                        >[email&#160;protected]</a
+                      >
+                    </div>
                   </div>
                 </div>
               </li>
@@ -220,7 +317,7 @@
         <div class="page-header">
           <div>
             <h1 class="page-title">评论列表</h1>
-            <p class="page-subtitle">共 8,731 条评论 · 127 待审核</p>
+            <span class="page-subtitle">共 8,731 条评论 · 127 待审核</span>
           </div>
         </div>
         <div class="ci-bulk-bar" id="bulk-action-bar">
@@ -320,7 +417,12 @@
                               color: var(--ci-gray-400);
                             "
                           >
-                            zhangsan@qq.com
+                            <a
+                              href="/cdn-cgi/l/email-protection"
+                              class="__cf_email__"
+                              data-cfemail="c3b9aba2ada4b0a2ad83b2b2eda0acae"
+                              >[email&#160;protected]</a
+                            >
                           </div>
                         </div>
                       </div>
@@ -443,7 +545,12 @@
                               color: var(--ci-gray-400);
                             "
                           >
-                            liming@163.com
+                            <a
+                              href="/cdn-cgi/l/email-protection"
+                              class="__cf_email__"
+                              data-cfemail="523e3b3f3b3c35126364617c313d3f"
+                              >[email&#160;protected]</a
+                            >
                           </div>
                         </div>
                       </div>
@@ -566,7 +673,12 @@
                               color: var(--ci-gray-400);
                             "
                           >
-                            wanghong@gmail.com
+                            <a
+                              href="/cdn-cgi/l/email-protection"
+                              class="__cf_email__"
+                              data-cfemail="4334222d242b2c2d2403242e222a2f6d202c2e"
+                              >[email&#160;protected]</a
+                            >
                           </div>
                         </div>
                       </div>
@@ -689,7 +801,12 @@
                               color: var(--ci-gray-400);
                             "
                           >
-                            chenkai@163.com
+                            <a
+                              href="/cdn-cgi/l/email-protection"
+                              class="__cf_email__"
+                              data-cfemail="9cfff4f9f2f7fdf5dcadaaafb2fff3f1"
+                              >[email&#160;protected]</a
+                            >
                           </div>
                         </div>
                       </div>
@@ -812,7 +929,12 @@
                               color: var(--ci-gray-400);
                             "
                           >
-                            zhaolei@outlook.com
+                            <a
+                              href="/cdn-cgi/l/email-protection"
+                              class="__cf_email__"
+                              data-cfemail="166c7e77797a737f567963627a79797d3875797b"
+                              >[email&#160;protected]</a
+                            >
                           </div>
                         </div>
                       </div>
@@ -935,7 +1057,12 @@
                               color: var(--ci-gray-400);
                             "
                           >
-                            sunyan@126.com
+                            <a
+                              href="/cdn-cgi/l/email-protection"
+                              class="__cf_email__"
+                              data-cfemail="0576706b7c646b453437332b666a68"
+                              >[email&#160;protected]</a
+                            >
                           </div>
                         </div>
                       </div>
@@ -1057,68 +1184,5 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="admin.js"></script>
-    <script>
-      // Row checkbox bulk select
-      (function () {
-        var sa = document.getElementById("select-all");
-        var bar = document.getElementById("bulk-action-bar");
-        var cnt = document.getElementById("bulk-count");
-        function upd() {
-          var n = document.querySelectorAll(".ci-row-check:checked").length;
-          if (bar) {
-            bar.classList.toggle("show", n > 0);
-          }
-          if (cnt) cnt.textContent = n;
-          if (sa) {
-            sa.indeterminate =
-              n > 0 && n < document.querySelectorAll(".ci-row-check").length;
-          }
-        }
-        if (sa)
-          sa.addEventListener("change", function () {
-            document.querySelectorAll(".ci-row-check").forEach(function (c) {
-              c.checked = sa.checked;
-            });
-            upd();
-          });
-        document.querySelectorAll(".ci-row-check").forEach(function (c) {
-          c.addEventListener("change", upd);
-        });
-      })();
-      // Confirm delete
-      window.ciConfirmDelete = function (btn) {
-        if (confirm("确定要删除该项目吗？此操作不可撤销。")) {
-          var row = btn.closest("tr");
-          if (row) {
-            row.style.opacity = ".3";
-            row.style.transition = "opacity .3s";
-            setTimeout(function () {
-              row.remove();
-            }, 300);
-          }
-          showToast("已删除", "danger");
-        }
-      };
-    </script>
-    <script>
-      (function () {
-        var tabs = document.querySelectorAll(".ci-filter-tab");
-        tabs.forEach(function (tab) {
-          tab.addEventListener("click", function () {
-            tabs.forEach(function (t) {
-              t.classList.remove("active");
-            });
-            this.classList.add("active");
-            var f = this.dataset.filter;
-            document
-              .querySelectorAll(".ci-table tbody tr")
-              .forEach(function (row) {
-                row.style.display =
-                  f === "all" || row.dataset.status === f ? "" : "none";
-              });
-          });
-        });
-      })();
-    </script>
   </body>
 </html>

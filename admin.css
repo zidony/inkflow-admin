@@ -1,5 +1,5 @@
 /* ============================================================
-   InkFlow Admin — Shared Stylesheet  v1.1
+   InkFlow Admin — Shared Stylesheet  v1.2
    Stack : Bootstrap 5.3.3 + Bootstrap Icons 1.13.1 + Custom
    Theme : Deep Teal-Blue  (#0d6ecc primary)
 
@@ -326,7 +326,7 @@ body.sidebar-collapsed #main-wrapper { margin-left: var(--sidebar-collapsed-widt
 #page-content { flex: 1; padding: 24px; }
 
 .page-header {
-  display: flex; align-items: flex-end; justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between;
   margin-bottom: 22px; gap: 12px;
 }
 .page-title    { font-size: 1.35rem; font-weight: 800; color: var(--ci-gray-900); letter-spacing: -.3px; margin: 0; line-height: 1.2; }
@@ -410,6 +410,113 @@ body.sidebar-collapsed #main-wrapper { margin-left: var(--sidebar-collapsed-widt
 .stat-card.cyan-accent::after  { background: var(--ci-accent-400); }
 .stat-card.green-accent::after { background: var(--ci-success-400); }
 .stat-card.amber-accent::after { background: var(--ci-warning-400); }
+
+/* ============================================================
+   STAT CARD — compact horizontal variant (dashboard row-1)
+   ============================================================ */
+.stat-card-compact {
+  background: var(--ci-card-bg); border: 1px solid var(--ci-card-border);
+  border-radius: var(--ci-card-radius); padding: 14px 18px;
+  box-shadow: var(--ci-card-shadow); transition: box-shadow .2s, transform .2s;
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; gap: 14px; height: 100%;
+}
+.stat-card-compact:hover { box-shadow: var(--ci-card-shadow-hover); transform: translateY(-1px); }
+.stat-card-compact .stat-card-icon {
+  width: 42px; height: 42px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0; margin-bottom: 0;
+}
+.stat-card-compact .stat-info { flex: 1; min-width: 0; }
+.stat-card-compact .stat-value {
+  font-size: 1.35rem; font-weight: 800; color: var(--ci-gray-900);
+  letter-spacing: -.5px; line-height: 1.1; margin-bottom: 2px;
+  animation: ci-count-up .4s ease .1s both;
+}
+.stat-card-compact .stat-label  { font-size: .73rem; color: var(--ci-gray-500); font-weight: 500; }
+.stat-card-compact .stat-change { font-size: .68rem; margin-top: 2px; }
+.stat-card-compact::after {
+  content: ''; position: absolute; right: -10px; top: -10px;
+  width: 60px; height: 60px; border-radius: 50%; opacity: .06;
+}
+.stat-card-compact.blue-accent::after  { background: var(--ci-500); }
+.stat-card-compact.cyan-accent::after  { background: var(--ci-accent-400); }
+.stat-card-compact.green-accent::after { background: var(--ci-success-400); }
+.stat-card-compact.amber-accent::after { background: var(--ci-warning-400); }
+
+/* Quick action — compact (4 items in one row) */
+.ci-quick-btn-sm {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 14px 8px; border: 1.5px solid var(--ci-gray-200); border-radius: 10px;
+  background: #fff; cursor: pointer;
+  transition: border-color .15s, background .15s, transform .15s;
+  text-decoration: none; color: var(--ci-gray-700); flex: 1;
+}
+.ci-quick-btn-sm:hover {
+  border-color: var(--ci-300); background: var(--ci-50); color: var(--ci-600);
+  transform: translateY(-1px); box-shadow: 0 4px 12px rgba(13,110,204,.1);
+}
+.ci-quick-btn-sm .ci-quick-icon-sm {
+  width: 34px; height: 34px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .95rem; background: var(--ci-gray-100); color: var(--ci-gray-600);
+  transition: background .15s, color .15s;
+}
+.ci-quick-btn-sm:hover .ci-quick-icon-sm { background: var(--ci-100); color: var(--ci-600); }
+.ci-quick-btn-sm .ci-quick-label-sm { font-size: .7rem; font-weight: 600; text-align: center; white-space: nowrap; }
+
+/* Notification dropdown */
+.ci-notif-dropdown {
+  min-width: 340px; max-width: 360px; padding: 0;
+  border: 1px solid var(--ci-gray-200); border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.14), 0 4px 12px rgba(0,0,0,.06);
+  font-family: var(--font-sans); overflow: hidden;
+}
+.ci-notif-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px; border-bottom: 1px solid var(--ci-gray-100);
+  font-size: .85rem; font-weight: 700; color: var(--ci-gray-800);
+}
+.ci-notif-list { list-style: none; padding: 6px 0; margin: 0; max-height: 340px; overflow-y: auto; }
+.ci-notif-item {
+  display: flex; gap: 12px; padding: 10px 18px;
+  cursor: pointer; transition: background .12s; position: relative;
+}
+.ci-notif-item:hover { background: var(--ci-gray-50); }
+.ci-notif-item.unread { background: #f0f7ff; }
+.ci-notif-item.unread:hover { background: #e6f1ff; }
+.ci-notif-icon {
+  width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: .85rem;
+}
+.ci-notif-body { flex: 1; min-width: 0; }
+.ci-notif-text { font-size: .8rem; color: var(--ci-gray-700); line-height: 1.45; }
+.ci-notif-text strong { color: var(--ci-gray-900); font-weight: 600; }
+.ci-notif-time { font-size: .7rem; color: var(--ci-gray-400); margin-top: 2px; }
+.ci-notif-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--ci-500);
+  position: absolute; top: 14px; right: 14px; flex-shrink: 0;
+}
+.ci-notif-footer {
+  padding: 10px 18px; text-align: center; border-top: 1px solid var(--ci-gray-100);
+  font-size: .78rem; color: var(--ci-500); font-weight: 600; cursor: pointer;
+  transition: background .12s;
+}
+.ci-notif-footer:hover { background: var(--ci-gray-50); }
+
+/* Avatar crop modal */
+.ci-avatar-crop-wrap {
+  position: relative; width: 240px; height: 240px; margin: 0 auto;
+  background: var(--ci-gray-100); border-radius: 8px; overflow: hidden;
+}
+.ci-avatar-crop-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ci-avatar-crop-ring {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 160px; height: 160px; border: 2px solid rgba(255,255,255,.9);
+  border-radius: 50%; box-shadow: 0 0 0 9999px rgba(0,0,0,.4);
+  pointer-events: none;
+}
+
 
 /* ============================================================
    CI-TABLE

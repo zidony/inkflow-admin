@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>编辑文章 — InkFlow Admin</title>
+    <title>编辑文章 — InkFlow</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -16,21 +16,6 @@
     <style>
       #page-content {
         padding-top: 0;
-      }
-      .ci-editor-layout {
-        display: grid;
-        grid-template-columns: 1fr 300px;
-        gap: 16px;
-        align-items: start;
-      }
-      @media (max-width: 1199px) {
-        .ci-editor-layout {
-          grid-template-columns: 1fr;
-        }
-      }
-      .ci-editor-sidebar {
-        position: sticky;
-        top: calc(var(--topbar-height) + 68px);
       }
     </style>
   </head>
@@ -195,7 +180,7 @@
           </button>
           <div class="dropdown topbar-dropdown ms-1">
             <button
-              class="topbar-user-btn"
+              class="topbar-user-btn dropdown-toggle"
               data-bs-toggle="dropdown"
               aria-expanded="false"
               style="border: none"
@@ -209,7 +194,14 @@
                   <div class="user-info-avatar">AD</div>
                   <div>
                     <div class="user-info-name">Admin User</div>
-                    <div class="user-info-email">admin@inkflow.dev</div>
+                    <div class="user-info-email">
+                      <a
+                        href="/cdn-cgi/l/email-protection"
+                        class="__cf_email__"
+                        data-cfemail="7213161f1b1c32111b111f015c111d1f"
+                        >[email&#160;protected]</a
+                      >
+                    </div>
                   </div>
                 </div>
               </li>
@@ -240,7 +232,10 @@
 
       <!-- STICKY ACTION BAR -->
       <div class="ci-editor-sticky-bar">
-        <div class="d-flex align-items-center justify-content-between">
+        <div
+          class="d-flex align-items-center justify-content-between px-3"
+          style="max-width: 1400px; margin: 0 auto"
+        >
           <div class="d-flex align-items-center gap-3">
             <a
               href="post-list.html"
@@ -283,7 +278,7 @@
             <button
               class="btn btn-primary btn-sm"
               id="btn-publish"
-              style="height: 32px; font-size: 0.78rem; padding: 0 16px"
+              style="height: 32px; font-size: 0.85rem; padding: 0 16px"
             >
               <i class="bi bi-send-fill me-1"></i>发布文章
             </button>
@@ -833,21 +828,7 @@ Vue 3 带来了全新的 Composition API，提供了更灵活的代码组织方�
         <!-- /ci-editor-layout -->
       </main>
     </div>
-    <!-- /main-wrapper -->
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="admin.js"></script>
-    <script>
-      // 定时发布行显示/隐藏
-      (function () {
-        var sel = document.getElementById("post-status-sel");
-        var row = document.getElementById("schedule-row");
-        if (sel && row) {
-          sel.addEventListener("change", function () {
-            row.style.display = this.value === "scheduled" ? "" : "none";
-          });
-        }
-      })();
-    </script>
   </body>
 </html>
