@@ -1,5 +1,5 @@
 /* ============================================================
-   InkFlow Admin — Shared Stylesheet  v1.2
+   InkFlow Admin — Shared Stylesheet  v1.3
    Stack : Bootstrap 5.3.3 + Bootstrap Icons 1.13.1 + Custom
    Theme : Deep Teal-Blue  (#0d6ecc primary)
 
@@ -331,6 +331,8 @@ body.sidebar-collapsed #main-wrapper { margin-left: var(--sidebar-collapsed-widt
 }
 .page-title    { font-size: 1.35rem; font-weight: 800; color: var(--ci-gray-900); letter-spacing: -.3px; margin: 0; line-height: 1.2; }
 .page-subtitle { font-size: .82rem; color: var(--ci-gray-500); margin-top: 2px; }
+.page-header > .btn,
+.page-header > a.btn { font-size: .82rem; padding: 6px 14px; height: 34px; line-height: 1; }
 
 /* ============================================================
    CI-CARD  ← scoped card layout wrapper
@@ -416,21 +418,21 @@ body.sidebar-collapsed #main-wrapper { margin-left: var(--sidebar-collapsed-widt
    ============================================================ */
 .stat-card-compact {
   background: var(--ci-card-bg); border: 1px solid var(--ci-card-border);
-  border-radius: var(--ci-card-radius); padding: 14px 18px;
+  border-radius: var(--ci-card-radius); padding: 10px 14px;
   box-shadow: var(--ci-card-shadow); transition: box-shadow .2s, transform .2s;
   position: relative; overflow: hidden;
-  display: flex; align-items: center; gap: 14px; height: 100%;
+  display: flex; align-items: center; gap: 12px; height: 100%;
 }
 .stat-card-compact:hover { box-shadow: var(--ci-card-shadow-hover); transform: translateY(-1px); }
 .stat-card-compact .stat-card-icon {
-  width: 42px; height: 42px; border-radius: 10px;
+  width: 36px; height: 36px; border-radius: 8px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem; flex-shrink: 0; margin-bottom: 0;
+  font-size: .95rem; flex-shrink: 0; margin-bottom: 0;
 }
 .stat-card-compact .stat-info { flex: 1; min-width: 0; }
 .stat-card-compact .stat-value {
-  font-size: 1.35rem; font-weight: 800; color: var(--ci-gray-900);
-  letter-spacing: -.5px; line-height: 1.1; margin-bottom: 2px;
+  font-size: 1.2rem; font-weight: 800; color: var(--ci-gray-900);
+  letter-spacing: -.5px; line-height: 1.1; margin-bottom: 1px;
   animation: ci-count-up .4s ease .1s both;
 }
 .stat-card-compact .stat-label  { font-size: .73rem; color: var(--ci-gray-500); font-weight: 500; }
@@ -446,8 +448,8 @@ body.sidebar-collapsed #main-wrapper { margin-left: var(--sidebar-collapsed-widt
 
 /* Quick action — compact (4 items in one row) */
 .ci-quick-btn-sm {
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
-  padding: 14px 8px; border: 1.5px solid var(--ci-gray-200); border-radius: 10px;
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  padding: 10px 8px; border: 1.5px solid var(--ci-gray-200); border-radius: 10px;
   background: #fff; cursor: pointer;
   transition: border-color .15s, background .15s, transform .15s;
   text-decoration: none; color: var(--ci-gray-700); flex: 1;
@@ -457,9 +459,9 @@ body.sidebar-collapsed #main-wrapper { margin-left: var(--sidebar-collapsed-widt
   transform: translateY(-1px); box-shadow: 0 4px 12px rgba(13,110,204,.1);
 }
 .ci-quick-btn-sm .ci-quick-icon-sm {
-  width: 34px; height: 34px; border-radius: 8px;
+  width: 30px; height: 30px; border-radius: 7px;
   display: flex; align-items: center; justify-content: center;
-  font-size: .95rem; background: var(--ci-gray-100); color: var(--ci-gray-600);
+  font-size: .85rem; background: var(--ci-gray-100); color: var(--ci-gray-600);
   transition: background .15s, color .15s;
 }
 .ci-quick-btn-sm:hover .ci-quick-icon-sm { background: var(--ci-100); color: var(--ci-600); }
@@ -739,6 +741,10 @@ textarea.form-control { padding: 9px 13px; }
   background: rgba(240,244,250,.92); backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--ci-gray-200);
   padding: 10px 24px; margin: 0 -24px 20px;
+}
+.ci-editor-sticky-bar > .ci-sticky-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 1400px; padding: 0 4px;
 }
 
 .ci-word-count {
@@ -1089,3 +1095,33 @@ textarea.form-control { padding: 9px 13px; }
   font-size: .85rem; color: var(--ci-gray-500); overflow: hidden; flex-shrink: 0;
 }
 .ci-link-favicon img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ============================================================
+   POST EDITOR LAYOUT
+   ============================================================ */
+.ci-editor-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 16px;
+  align-items: start;
+}
+@media (max-width: 1199px) {
+  .ci-editor-layout { grid-template-columns: 1fr; }
+}
+.ci-editor-sidebar {
+  position: sticky;
+  top: calc(var(--topbar-height) + 68px);
+}
+
+/* ============================================================
+   STATUS DOTS
+   ============================================================ */
+.ci-status-dot {
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  vertical-align: middle; margin-right: 5px;
+}
+.ci-status-dot.green  { background: var(--ci-success-500); }
+.ci-status-dot.amber  { background: var(--ci-warning-500); }
+.ci-status-dot.red    { background: var(--ci-danger-500); }
+.ci-status-dot.gray   { background: var(--ci-gray-400); }
+.ci-status-dot.blue   { background: var(--ci-500); }

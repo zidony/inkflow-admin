@@ -331,14 +331,7 @@
                   <div class="user-info-avatar">AD</div>
                   <div>
                     <div class="user-info-name">Admin User</div>
-                    <div class="user-info-email">
-                      <a
-                        href="/cdn-cgi/l/email-protection"
-                        class="__cf_email__"
-                        data-cfemail="5a3b3e3733341a393339372974393537"
-                        >[email&#160;protected]</a
-                      >
-                    </div>
+                    <div class="user-info-email">admin@inkflow.dev</div>
                   </div>
                 </div>
               </li>
@@ -371,84 +364,79 @@
             <h1 class="page-title">仪表盘</h1>
             <span class="page-subtitle" id="topbar-date"></span>
           </div>
-          <a href="post-edit.html" class="btn btn-primary"
+          <a href="post-edit.html" class="btn btn-primary btn-sm"
             ><i class="bi bi-pencil-square"></i> 新建文章</a
           >
         </div>
 
-        <!-- 第一行：统计卡 col-8 + 快捷操作 col-4（8:4 紧凑单行） -->
-        <div class="row g-3 mb-4">
-          <!-- 4 compact stat cards -->
-          <div class="col-12 col-xl-8">
-            <div class="row g-3 h-100">
-              <div class="col-6 col-md-3 ci-anim" style="--ci-delay: 0.05s">
-                <div class="stat-card-compact blue-accent">
-                  <div class="stat-card-icon stat-icon-blue">
-                    <i class="bi bi-file-earmark-text"></i>
-                  </div>
-                  <div class="stat-info">
-                    <div class="stat-value" data-target="1284">1,284</div>
-                    <div class="stat-label">累计文章</div>
-                    <div class="stat-change up">
-                      <i class="bi bi-arrow-up-short"></i>本月 +38
-                    </div>
+        <!-- 第一行：统计卡 col-8 + 快捷操作 col-4（8:4 等高单行） -->
+        <div class="row g-3 mb-4 align-items-stretch">
+          <!-- 4 compact stat cards — flex row, equal height via align-items-stretch -->
+          <div class="col-12 col-xl-8 ci-anim" style="--ci-delay: 0.05s">
+            <div class="d-flex gap-3 h-100">
+              <div class="stat-card-compact blue-accent flex-fill">
+                <div class="stat-card-icon stat-icon-blue">
+                  <i class="bi bi-file-earmark-text"></i>
+                </div>
+                <div class="stat-info">
+                  <div class="stat-value" data-target="1284">1,284</div>
+                  <div class="stat-label">累计文章</div>
+                  <div class="stat-change up">
+                    <i class="bi bi-arrow-up-short"></i>本月 +38
                   </div>
                 </div>
               </div>
-              <div class="col-6 col-md-3 ci-anim" style="--ci-delay: 0.1s">
-                <div class="stat-card-compact cyan-accent">
-                  <div class="stat-card-icon stat-icon-cyan">
-                    <i class="bi bi-chat-square-dots"></i>
-                  </div>
-                  <div class="stat-info">
-                    <div class="stat-value" data-target="8731">8,731</div>
-                    <div class="stat-label">累计评论</div>
-                    <div class="stat-change up">
-                      <i class="bi bi-arrow-up-short"></i>今日 +24
-                    </div>
+              <div class="stat-card-compact cyan-accent flex-fill">
+                <div class="stat-card-icon stat-icon-cyan">
+                  <i class="bi bi-chat-square-dots"></i>
+                </div>
+                <div class="stat-info">
+                  <div class="stat-value" data-target="8731">8,731</div>
+                  <div class="stat-label">累计评论</div>
+                  <div class="stat-change up">
+                    <i class="bi bi-arrow-up-short"></i>今日 +24
                   </div>
                 </div>
               </div>
-              <div class="col-6 col-md-3 ci-anim" style="--ci-delay: 0.15s">
-                <div class="stat-card-compact green-accent">
-                  <div class="stat-card-icon stat-icon-green">
-                    <i class="bi bi-eye"></i>
-                  </div>
-                  <div class="stat-info">
-                    <div class="stat-value" data-target="236918">236,918</div>
-                    <div class="stat-label">总浏览量</div>
-                    <div class="stat-change up">
-                      <i class="bi bi-arrow-up-short"></i>+12.4%
-                    </div>
+              <div class="stat-card-compact green-accent flex-fill">
+                <div class="stat-card-icon stat-icon-green">
+                  <i class="bi bi-eye"></i>
+                </div>
+                <div class="stat-info">
+                  <div class="stat-value" data-target="236918">236,918</div>
+                  <div class="stat-label">总浏览量</div>
+                  <div class="stat-change up">
+                    <i class="bi bi-arrow-up-short"></i>+12.4%
                   </div>
                 </div>
               </div>
-              <div class="col-6 col-md-3 ci-anim" style="--ci-delay: 0.2s">
-                <div class="stat-card-compact amber-accent">
-                  <div class="stat-card-icon stat-icon-amber">
-                    <i class="bi bi-people"></i>
-                  </div>
-                  <div class="stat-info">
-                    <div class="stat-value" data-target="4210">4,210</div>
-                    <div class="stat-label">注册用户</div>
-                    <div class="stat-change up">
-                      <i class="bi bi-arrow-up-short"></i>本周 +86
-                    </div>
+              <div class="stat-card-compact amber-accent flex-fill">
+                <div class="stat-card-icon stat-icon-amber">
+                  <i class="bi bi-people"></i>
+                </div>
+                <div class="stat-info">
+                  <div class="stat-value" data-target="4210">4,210</div>
+                  <div class="stat-label">注册用户</div>
+                  <div class="stat-change up">
+                    <i class="bi bi-arrow-up-short"></i>本周 +86
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <!-- 快捷操作 4项紧凑版 -->
-          <div class="col-12 col-xl-4 ci-anim" style="--ci-delay: 0.25s">
-            <div class="card ci-card h-100">
-              <div class="card-header pb-1 mb-0">
+          <div class="col-12 col-xl-4 ci-anim" style="--ci-delay: 0.1s">
+            <div class="card ci-card h-100" style="min-height: 0">
+              <div class="card-header" style="padding: 10px 16px">
                 <h6 class="ci-card-title">
                   <i class="bi bi-lightning-charge"></i> 快捷操作
                 </h6>
               </div>
-              <div class="card-body d-flex align-items-center py-0">
-                <div class="d-flex gap-2 w-100 pt-0">
+              <div
+                class="card-body d-flex align-items-center"
+                style="padding: 12px 16px"
+              >
+                <div class="d-flex gap-2 w-100">
                   <a href="post-edit.html" class="ci-quick-btn-sm">
                     <div class="ci-quick-icon-sm">
                       <i class="bi bi-pencil-square"></i>
