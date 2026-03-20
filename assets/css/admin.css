@@ -1,5 +1,5 @@
 /* ============================================================
-   InkFlow Admin — Shared Stylesheet  v1.3
+   InkFlow Admin — Shared Stylesheet  v1.4
    Stack : Bootstrap 5.3.3 + Bootstrap Icons 1.13.1 + Custom
    Theme : Deep Teal-Blue  (#0d6ecc primary)
 
@@ -731,9 +731,53 @@ textarea.form-control { padding: 9px 13px; }
   border: 1.5px solid var(--ci-gray-200); border-top: none; border-radius: 0 0 8px 8px;
   min-height: 360px; padding: 16px; background: #fff;
   font-size: .875rem; line-height: 1.7; color: var(--ci-gray-700); cursor: text;
+  /* Prevent content overflow */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  overflow: hidden;
 }
 .ci-editor-body:focus {
   outline: none; border-color: var(--ci-400); box-shadow: 0 0 0 3px rgba(13,110,204,.1);
+}
+/* Prevent media/table/code from exceeding editor width */
+.ci-editor-body img,
+.ci-editor-body video,
+.ci-editor-body iframe {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 4px;
+}
+.ci-editor-body table {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+}
+.ci-editor-body pre {
+  white-space: pre;
+  overflow-x: auto;
+  background: var(--ci-gray-50);
+  border: 1px solid var(--ci-gray-200);
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-size: .82rem;
+}
+.ci-editor-body code {
+  background: var(--ci-gray-100);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: .83em;
+  font-family: var(--font-mono);
+}
+.ci-editor-body pre code {
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  white-space: pre;
+  overflow-x: auto;
+  display: block;
 }
 
 .ci-editor-sticky-bar {
@@ -1125,3 +1169,29 @@ textarea.form-control { padding: 9px 13px; }
 .ci-status-dot.red    { background: var(--ci-danger-500); }
 .ci-status-dot.gray   { background: var(--ci-gray-400); }
 .ci-status-dot.blue   { background: var(--ci-500); }
+
+/* Notification center page rows */
+.ci-notif-row { border-bottom: 1px solid var(--ci-gray-100); transition: background .12s; }
+.ci-notif-row:last-of-type { border-bottom: none; }
+.ci-notif-row:hover { background: var(--ci-gray-50); }
+.ci-notif-row.unread { background: #f5f9ff; }
+.ci-notif-row.unread:hover { background: #edf4ff; }
+.ci-notif-row-inner { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px; }
+.ci-notif-icon-lg {
+  width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 1rem;
+}
+.ci-notif-content { flex: 1; min-width: 0; }
+.ci-notif-title  { font-size: .84rem; font-weight: 600; color: var(--ci-gray-900); margin-bottom: 4px; }
+.ci-notif-desc   { font-size: .80rem; color: var(--ci-gray-600); line-height: 1.5; margin-bottom: 6px;
+                   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ci-notif-meta   { font-size: .73rem; color: var(--ci-gray-400); display: flex; align-items: center; gap: 4px; }
+.ci-notif-sep    { color: var(--ci-gray-300); }
+.ci-notif-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; padding-top: 2px; }
+.ci-unread-dot   { width: 8px; height: 8px; border-radius: 50%; background: var(--ci-500); flex-shrink: 0; }
+.ci-notif-more   { opacity: 0; transition: opacity .12s; }
+.ci-notif-row:hover .ci-notif-more { opacity: 1; }
+/* Badge color variants */
+.ci-badge-blue  { background: var(--ci-50);  color: var(--ci-600); }
+.ci-badge-green { background: #dcfce7; color: #16a34a; }
+.ci-badge-amber { background: #fef3c7; color: #d97706; }

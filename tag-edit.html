@@ -1,444 +1,221 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>编辑标签 — InkFlow</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
-    />
-
-    <link rel="stylesheet" href="admin.css" />
-  </head>
-  <body>
-    <!-- SIDEBAR -->
-    <nav id="sidebar">
-      <a class="sidebar-logo" href="dashboard.html">
-        <div class="sidebar-logo-icon"><i class="bi bi-journals"></i></div>
-        <div class="sidebar-logo-text">
-          <span class="sidebar-logo-title">InkFlow</span>
-          <span class="sidebar-logo-sub">Blog CMS</span>
-        </div>
-      </a>
-      <div class="sidebar-nav-wrap">
-        <div class="nav-section-label">主菜单</div>
-        <div class="nav-item-wrapper">
-          <a href="dashboard.html" class="nav-link-item" data-tooltip="仪表盘">
-            <i class="bi bi-grid-1x2 nav-icon"></i
-            ><span class="nav-label">仪表盘</span>
-          </a>
-        </div>
-        <div class="nav-section-label">内容管理</div>
-        <div class="nav-item-wrapper">
-          <button
-            class="nav-link-item active"
-            data-toggle="submenu"
-            data-target="sub-content"
-            aria-expanded="true"
-            data-tooltip="内容管理"
-          >
-            <i class="bi bi-file-richtext nav-icon"></i
-            ><span class="nav-label">内容管理</span>
-            <i class="bi bi-chevron-right nav-arrow"></i>
-          </button>
-        </div>
-        <div class="submenu-wrap" id="sub-content">
-          <div class="submenu">
-            <div class="nav-item-wrapper">
-              <a href="post-list.html" class="nav-link-item"
-                ><i class="bi bi-file-text nav-icon"></i
-                ><span class="nav-label">文章列表</span></a
-              >
-            </div>
-            <div class="nav-item-wrapper">
-              <a href="comment-list.html" class="nav-link-item"
-                ><i class="bi bi-chat-left-dots nav-icon"></i
-                ><span class="nav-label">评论列表</span></a
-              >
-            </div>
-            <div class="nav-item-wrapper">
-              <a href="category-list.html" class="nav-link-item"
-                ><i class="bi bi-folder2 nav-icon"></i
-                ><span class="nav-label">栏目列表</span></a
-              >
-            </div>
-            <div class="nav-item-wrapper">
-              <a href="tag-list.html" class="nav-link-item active"
-                ><i class="bi bi-tags nav-icon"></i
-                ><span class="nav-label">标签管理</span></a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="nav-section-label">媒体</div>
-        <div class="nav-item-wrapper">
-          <button
-            class="nav-link-item"
-            data-toggle="submenu"
-            data-target="sub-media"
-            aria-expanded="false"
-            data-tooltip="媒体管理"
-          >
-            <i class="bi bi-collection nav-icon"></i
-            ><span class="nav-label">媒体管理</span>
-            <i class="bi bi-chevron-right nav-arrow"></i>
-          </button>
-        </div>
-        <div class="submenu-wrap" id="sub-media">
-          <div class="submenu">
-            <div class="nav-item-wrapper">
-              <a href="image-list.html" class="nav-link-item"
-                ><i class="bi bi-images nav-icon"></i
-                ><span class="nav-label">图片管理</span></a
-              >
-            </div>
-            <div class="nav-item-wrapper">
-              <a href="link-list.html" class="nav-link-item"
-                ><i class="bi bi-link-45deg nav-icon"></i
-                ><span class="nav-label">链接管理</span></a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="nav-section-label">系统</div>
-        <div class="nav-item-wrapper">
-          <a href="user-list.html" class="nav-link-item" data-tooltip="用户管理"
-            ><i class="bi bi-people nav-icon"></i
-            ><span class="nav-label">用户管理</span></a
-          >
-        </div>
-        <div class="nav-item-wrapper">
-          <a href="settings.html" class="nav-link-item" data-tooltip="系统设置"
-            ><i class="bi bi-sliders nav-icon"></i
-            ><span class="nav-label">系统设置</span></a
-          >
-        </div>
-      </div>
-      <div class="sidebar-footer">
-        <div class="sidebar-user">
-          <div class="sidebar-user-avatar">AD</div>
-          <div class="sidebar-user-info">
-            <div class="sidebar-user-name">Admin</div>
-            <div class="sidebar-user-role">超级管理员</div>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <div id="sidebar-overlay"></div>
-    <div id="main-wrapper">
-      <!-- TOPBAR -->
-      <header id="topbar">
-        <button id="sidebar-toggle" title="收起/展开菜单">
-          <i class="bi bi-layout-sidebar-inset"></i>
-        </button>
-        <div class="topbar-breadcrumb">
-          <a
-            href="dashboard.html"
-            style="color: var(--ci-gray-500); text-decoration: none"
-            >InkFlow</a
-          ><span class="bc-sep"
-            ><i
-              class="bi bi-chevron-right"
-              style="font-size: 0.65rem"
-            ></i></span
-          ><a
-            href="tag-list.html"
-            style="color: var(--ci-gray-500); text-decoration: none"
-            >标签管理</a
-          ><span class="bc-sep"
-            ><i
-              class="bi bi-chevron-right"
-              style="font-size: 0.65rem"
-            ></i></span
-          ><span class="bc-current">编辑标签</span>
-        </div>
-        <div class="topbar-search">
-          <i class="bi bi-search search-icon"></i>
-          <input type="text" id="list-search" placeholder="快速搜索…" />
-        </div>
-        <div class="topbar-actions">
-          <div class="dropdown">
-            <button
-              class="topbar-icon-btn"
-              style="position: relative"
-              title="通知"
-              data-bs-toggle="dropdown"
-              data-bs-auto-close="outside"
-              aria-expanded="false"
-            >
-              <i class="bi bi-bell"></i><span class="ci-notif-badge">4</span>
-            </button>
-            <ul
-              class="dropdown-menu dropdown-menu-end ci-notif-dropdown"
-              style="padding: 0"
-            >
-              <li>
-                <div class="ci-notif-header">
-                  <span
-                    ><i class="bi bi-bell me-2" style="color: var(--ci-500)"></i
-                    >通知中心</span
-                  >
-                  <button
-                    class="btn btn-light btn-sm"
-                    style="height: 24px; font-size: 0.68rem; padding: 0 8px"
-                    onclick="showToast('已全部标记已读', 'success')"
-                  >
-                    全部已读
-                  </button>
-                </div>
-              </li>
-              <li>
-                <ul class="ci-notif-list">
-                  <li class="ci-notif-item unread">
-                    <div
-                      class="ci-notif-icon"
-                      style="background: var(--ci-50); color: var(--ci-500)"
-                    >
-                      <i class="bi bi-chat-left-dots"></i>
-                    </div>
-                    <div class="ci-notif-body">
-                      <div class="ci-notif-text">
-                        <strong>张三</strong> 评论了《Vue 3 Composition API》
-                      </div>
-                      <div class="ci-notif-time">
-                        <i class="bi bi-clock me-1"></i>10 分钟前
-                      </div>
-                    </div>
-                    <span class="ci-notif-dot"></span>
-                  </li>
-                  <li class="ci-notif-item unread">
-                    <div
-                      class="ci-notif-icon"
-                      style="background: #dcfce7; color: var(--ci-success-500)"
-                    >
-                      <i class="bi bi-person-plus"></i>
-                    </div>
-                    <div class="ci-notif-body">
-                      <div class="ci-notif-text">
-                        <strong>新用户</strong> 李明 完成了注册
-                      </div>
-                      <div class="ci-notif-time">
-                        <i class="bi bi-clock me-1"></i>32 分钟前
-                      </div>
-                    </div>
-                    <span class="ci-notif-dot"></span>
-                  </li>
-                  <li class="ci-notif-item">
-                    <div
-                      class="ci-notif-icon"
-                      style="
-                        background: var(--ci-gray-100);
-                        color: var(--ci-gray-500);
-                      "
-                    >
-                      <i class="bi bi-file-earmark-check"></i>
-                    </div>
-                    <div class="ci-notif-body">
-                      <div class="ci-notif-text">
-                        文章《TypeScript 高级类型》已成功发布
-                      </div>
-                      <div class="ci-notif-time">
-                        <i class="bi bi-clock me-1"></i>昨天 16:30
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <div
-                  class="ci-notif-footer"
-                  onclick="showToast('通知中心', 'info')"
-                >
-                  查看全部通知 <i class="bi bi-arrow-right ms-1"></i>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="dropdown topbar-dropdown ms-1">
-            <button
-              class="topbar-user-btn dropdown-toggle"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              style="border: none"
-            >
-              <div class="topbar-avatar">AD</div>
-              <span class="topbar-user-name d-none d-md-inline">Admin</span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li>
-                <div class="user-info-header">
-                  <div class="user-info-avatar">AD</div>
-                  <div>
-                    <div class="user-info-name">Admin User</div>
-                    <div class="user-info-email">admin@inkflow.dev</div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#"
-                  ><i class="bi bi-person-circle"></i> 个人资料</a
-                >
-              </li>
-              <li>
-                <a class="dropdown-item" href="#"
-                  ><i class="bi bi-shield-check"></i> 账号安全</a
-                >
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <a
-                  class="dropdown-item"
-                  href="login.html"
-                  style="color: #ef4444"
-                  ><i class="bi bi-box-arrow-right"></i> 退出登录</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-      </header>
-      <main id="page-content">
-        <div class="page-header">
-          <div>
-            <h1 class="page-title">编辑标签</h1>
-          </div>
-          <a href="tag-list.html" class="btn btn-light"
-            ><i class="bi bi-arrow-left"></i> 返回列表</a
-          >
-        </div>
-        <div class="row g-3">
-          <div class="col-12 col-xl-8">
-            <div class="ci-panel ci-anim">
-              <div class="ci-panel-header">
-                <i class="bi bi-tag"></i> 标签信息
-              </div>
-              <div class="ci-panel-body">
-                <div class="row g-3">
-                  <div class="col-12 col-md-6">
-                    <label class="form-label"
-                      >标签名称 <span class="text-danger">*</span></label
-                    >
-                    <input type="text" class="form-control" value="Vue 3" />
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <label class="form-label">URL Slug</label>
-                    <input type="text" class="form-control" value="vue3" />
-                    <div class="ci-form-hint">留空则自动生成</div>
-                  </div>
-                  <div class="col-12">
-                    <label class="form-label">标签描述</label>
-                    <textarea
-                      class="form-control"
-                      rows="2"
-                      placeholder="简短描述这个标签的含义…"
-                    >
-Vue.js 3.x 版本相关内容，包括 Composition API、响应式系统等新特性。</textarea
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="ci-panel ci-anim" style="--ci-delay: 0.1s">
-              <div class="ci-panel-header">
-                <i class="bi bi-search-heart"></i> SEO 设置
-              </div>
-              <div class="ci-panel-body">
-                <div class="row g-3">
-                  <div class="col-12">
-                    <label class="form-label">SEO 标题</label
-                    ><input
-                      type="text"
-                      class="form-control"
-                      value="Vue 3 标签 | InkFlow 博客"
-                    />
-                  </div>
-                  <div class="col-12">
-                    <label class="form-label">Meta 描述</label
-                    ><textarea class="form-control" rows="2">
-汇聚所有 Vue 3 相关技术文章，涵盖入门到进阶的完整学习路径。</textarea
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="d-flex gap-2">
-              <button
-                class="btn btn-primary btn-sm"
-                onclick="showToast('标签保存成功', 'success')"
-              >
-                <i class="bi bi-check-lg me-1"></i>保存标签
-              </button>
-              <button
-                class="btn btn-light"
-                onclick="window.location = 'tag-list.html'"
-              >
-                取消
-              </button>
-            </div>
-          </div>
-          <div class="col-12 col-xl-4">
-            <div class="ci-panel ci-anim" style="--ci-delay: 0.05s">
-              <div class="ci-panel-header">
-                <i class="bi bi-bar-chart-line"></i> 标签统计
-              </div>
-              <div class="ci-panel-body">
-                <div
-                  class="d-flex flex-column gap-2"
-                  style="font-size: 0.82rem"
-                >
-                  <div
-                    class="d-flex justify-content-between py-1"
-                    style="border-bottom: 1px solid var(--ci-gray-100)"
-                  >
-                    <span class="text-muted">关联文章</span
-                    ><strong>34 篇</strong>
-                  </div>
-                  <div
-                    class="d-flex justify-content-between py-1"
-                    style="border-bottom: 1px solid var(--ci-gray-100)"
-                  >
-                    <span class="text-muted">总浏览量</span
-                    ><strong>84,291</strong>
-                  </div>
-                  <div class="d-flex justify-content-between py-1">
-                    <span class="text-muted">创建时间</span
-                    ><strong>2025-01-12</strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="ci-panel ci-anim" style="--ci-delay: 0.15s">
-              <div class="ci-panel-header">
-                <i class="bi bi-lightning"></i> 批量操作
-              </div>
-              <div class="ci-panel-body">
-                <p style="font-size: 0.8rem; color: var(--ci-gray-500)">
-                  可批量导入标签，每行一个标签名，自动生成 Slug。
-                </p>
-                <textarea
-                  class="form-control"
-                  rows="4"
-                  placeholder="每行一个标签名，如：&#10;JavaScript&#10;CSS3&#10;HTML5"
-                ></textarea>
-                <button
-                  class="btn btn-outline-primary btn-sm w-100 mt-2"
-                  onclick="showToast('批量导入成功', 'success')"
-                >
-                  <i class="bi bi-upload me-1"></i>批量导入
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>编辑标签 — InkFlow</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
+  
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <a class="sidebar-logo" href="dashboard.html">
+    <div class="sidebar-logo-icon"><i class="bi bi-journals"></i></div>
+    <div class="sidebar-logo-text">
+      <span class="sidebar-logo-title">InkFlow</span>
+      <span class="sidebar-logo-sub">InkFlow</span>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="admin.js"></script>
-  </body>
+  </a>
+  <div class="sidebar-nav-wrap">
+    <div class="nav-section-label">主菜单</div>
+    <div class="nav-item-wrapper">
+      <a href="dashboard.html" class="nav-link-item " data-tooltip="仪表盘">
+        <i class="bi bi-grid-1x2 nav-icon"></i><span class="nav-label">仪表盘</span>
+      </a>
+    </div>
+    <div class="nav-section-label">内容管理</div>
+    <div class="nav-item-wrapper">
+      <button class="nav-link-item active" data-toggle="submenu" data-target="sub-content" aria-expanded="true" data-tooltip="内容管理">
+        <i class="bi bi-file-richtext nav-icon"></i><span class="nav-label">内容管理</span>
+        <i class="bi bi-chevron-right nav-arrow"></i>
+      </button>
+    </div>
+    <div class="submenu-wrap" id="sub-content">
+      <div class="submenu">
+        <div class="nav-item-wrapper"><a href="post-list.html" class="nav-link-item "><i class="bi bi-file-text nav-icon"></i><span class="nav-label">文章列表</span></a></div>
+        <div class="nav-item-wrapper"><a href="comment-list.html" class="nav-link-item "><i class="bi bi-chat-left-dots nav-icon"></i><span class="nav-label">评论列表</span></a></div>
+        <div class="nav-item-wrapper"><a href="category-list.html" class="nav-link-item "><i class="bi bi-folder2 nav-icon"></i><span class="nav-label">栏目列表</span></a></div>
+        <div class="nav-item-wrapper"><a href="tag-list.html" class="nav-link-item active"><i class="bi bi-tags nav-icon"></i><span class="nav-label">标签管理</span></a></div>
+      </div>
+    </div>
+    <div class="nav-section-label">媒体</div>
+    <div class="nav-item-wrapper">
+      <button class="nav-link-item " data-toggle="submenu" data-target="sub-media" aria-expanded="false" data-tooltip="媒体管理">
+        <i class="bi bi-collection nav-icon"></i><span class="nav-label">媒体管理</span>
+        <i class="bi bi-chevron-right nav-arrow"></i>
+      </button>
+    </div>
+    <div class="submenu-wrap" id="sub-media">
+      <div class="submenu">
+        <div class="nav-item-wrapper"><a href="image-list.html" class="nav-link-item "><i class="bi bi-images nav-icon"></i><span class="nav-label">图片管理</span></a></div>
+        <div class="nav-item-wrapper"><a href="link-list.html" class="nav-link-item "><i class="bi bi-link-45deg nav-icon"></i><span class="nav-label">链接管理</span></a></div>
+      </div>
+    </div>
+    <div class="nav-section-label">系统</div>
+    <div class="nav-item-wrapper"><a href="user-list.html" class="nav-link-item " data-tooltip="用户管理"><i class="bi bi-people nav-icon"></i><span class="nav-label">用户管理</span></a></div>
+    <div class="nav-item-wrapper"><a href="settings.html" class="nav-link-item " data-tooltip="系统设置"><i class="bi bi-sliders nav-icon"></i><span class="nav-label">系统设置</span></a></div>
+  </div>
+  <div class="sidebar-footer">
+    <div class="sidebar-user">
+      <div class="sidebar-user-avatar">AD</div>
+      <div class="sidebar-user-info">
+        <div class="sidebar-user-name">Admin</div>
+        <div class="sidebar-user-role">超级管理员</div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div id="sidebar-overlay"></div>
+<div id="main-wrapper">
+<!-- TOPBAR -->
+<header id="topbar">
+  <button id="sidebar-toggle" title="收起/展开菜单"><i class="bi bi-layout-sidebar-inset"></i></button>
+  <div class="topbar-breadcrumb"><a href="dashboard.html" style="color:var(--ci-gray-500);text-decoration:none">InkFlow</a><span class="bc-sep"><i class="bi bi-chevron-right" style="font-size:.65rem"></i></span><a href="tag-list.html" style="color:var(--ci-gray-500);text-decoration:none">标签管理</a><span class="bc-sep"><i class="bi bi-chevron-right" style="font-size:.65rem"></i></span><span class="bc-current">编辑标签</span></div>
+  <div class="topbar-search">
+    <i class="bi bi-search search-icon"></i>
+    <input type="text" id="list-search" placeholder="快速搜索…">
+  </div>
+  <div class="topbar-actions">
+    <div class="dropdown">
+      <button class="topbar-icon-btn" style="position:relative" title="通知"
+              data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+        <i class="bi bi-bell"></i><span class="ci-notif-badge">4</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end ci-notif-dropdown" style="padding:0">
+        <li>
+          <div class="ci-notif-header">
+            <span><i class="bi bi-bell me-2" style="color:var(--ci-500)"></i>通知中心</span>
+            <button class="btn btn-light btn-sm" style="height:24px;font-size:.68rem;padding:0 8px"
+                    onclick="showToast('已全部标记已读','success')">全部已读</button>
+          </div>
+        </li>
+        <li>
+          <ul class="ci-notif-list">
+            <li class="ci-notif-item unread">
+              <div class="ci-notif-icon" style="background:var(--ci-50);color:var(--ci-500)"><i class="bi bi-chat-left-dots"></i></div>
+              <div class="ci-notif-body">
+                <div class="ci-notif-text"><strong>张三</strong> 评论了《Vue 3 Composition API》</div>
+                <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
+              </div>
+              <span class="ci-notif-dot"></span>
+            </li>
+            <li class="ci-notif-item unread">
+              <div class="ci-notif-icon" style="background:#dcfce7;color:var(--ci-success-500)"><i class="bi bi-person-plus"></i></div>
+              <div class="ci-notif-body">
+                <div class="ci-notif-text"><strong>新用户</strong> 李明 完成了注册</div>
+                <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
+              </div>
+              <span class="ci-notif-dot"></span>
+            </li>
+            <li class="ci-notif-item">
+              <div class="ci-notif-icon" style="background:var(--ci-gray-100);color:var(--ci-gray-500)"><i class="bi bi-file-earmark-check"></i></div>
+              <div class="ci-notif-body">
+                <div class="ci-notif-text">文章《TypeScript 高级类型》已成功发布</div>
+                <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <div class="ci-notif-footer" onclick="window.location='notification-center.html'">
+            查看全部通知 <i class="bi bi-arrow-right ms-1"></i>
+          </div>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="dropdown topbar-dropdown ms-1">
+      <button class="topbar-user-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="border:none">
+        <div class="topbar-avatar">AD</div>
+        <span class="topbar-user-name d-none d-md-inline">Admin</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li>
+          <div class="user-info-header">
+            <div class="user-info-avatar">AD</div>
+            <div><div class="user-info-name">Admin User</div><div class="user-info-email">admin@inkflow.dev</div></div>
+          </div>
+        </li>
+        <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> 个人资料</a></li>
+        <li><a class="dropdown-item" href="#"><i class="bi bi-shield-check"></i> 账号安全</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="login.html" style="color:#ef4444"><i class="bi bi-box-arrow-right"></i> 退出登录</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+<main id="page-content">
+
+<div class="page-header">
+  <div>
+    <h1 class="page-title">编辑标签</h1>
+    
+  </div>
+  <a href="tag-list.html" class="btn btn-light"><i class="bi bi-arrow-left"></i> 返回列表</a>
+</div>
+<div class="row g-3">
+  <div class="col-12 col-xl-8">
+    <div class="ci-panel ci-anim">
+      <div class="ci-panel-header"><i class="bi bi-tag"></i> 标签信息</div>
+      <div class="ci-panel-body">
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <label class="form-label">标签名称 <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" value="Vue 3">
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label">URL Slug</label>
+            <input type="text" class="form-control" value="vue3">
+            <div class="ci-form-hint">留空则自动生成</div>
+          </div>
+          <div class="col-12">
+            <label class="form-label">标签描述</label>
+            <textarea class="form-control" rows="2" placeholder="简短描述这个标签的含义…">Vue.js 3.x 版本相关内容，包括 Composition API、响应式系统等新特性。</textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ci-panel ci-anim" style="--ci-delay:.1s">
+      <div class="ci-panel-header"><i class="bi bi-search-heart"></i> SEO 设置</div>
+      <div class="ci-panel-body">
+        <div class="row g-3">
+          <div class="col-12"><label class="form-label">SEO 标题</label><input type="text" class="form-control" value="Vue 3 标签 | InkFlow 博客"></div>
+          <div class="col-12"><label class="form-label">Meta 描述</label><textarea class="form-control" rows="2">汇聚所有 Vue 3 相关技术文章，涵盖入门到进阶的完整学习路径。</textarea></div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex gap-2">
+      <button class="btn btn-primary btn-sm" onclick="showToast('标签保存成功','success')"><i class="bi bi-check-lg me-1"></i>保存标签</button>
+      <button class="btn btn-light" onclick="window.location='tag-list.html'">取消</button>
+    </div>
+  </div>
+  <div class="col-12 col-xl-4">
+    <div class="ci-panel ci-anim" style="--ci-delay:.05s">
+      <div class="ci-panel-header"><i class="bi bi-bar-chart-line"></i> 标签统计</div>
+      <div class="ci-panel-body">
+        <div class="d-flex flex-column gap-2" style="font-size:.82rem">
+          <div class="d-flex justify-content-between py-1" style="border-bottom:1px solid var(--ci-gray-100)"><span class="text-muted">关联文章</span><strong>34 篇</strong></div>
+          <div class="d-flex justify-content-between py-1" style="border-bottom:1px solid var(--ci-gray-100)"><span class="text-muted">总浏览量</span><strong>84,291</strong></div>
+          <div class="d-flex justify-content-between py-1"><span class="text-muted">创建时间</span><strong>2025-01-12</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="ci-panel ci-anim" style="--ci-delay:.15s">
+      <div class="ci-panel-header"><i class="bi bi-lightning"></i> 批量操作</div>
+      <div class="ci-panel-body">
+        <p style="font-size:.8rem;color:var(--ci-gray-500)">可批量导入标签，每行一个标签名，自动生成 Slug。</p>
+        <textarea class="form-control" rows="4" placeholder="每行一个标签名，如：&#10;JavaScript&#10;CSS3&#10;HTML5"></textarea>
+        <button class="btn btn-outline-primary btn-sm w-100 mt-2" onclick="showToast('批量导入成功','success')"><i class="bi bi-upload me-1"></i>批量导入</button>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/admin.js"></script>
+</body>
 </html>

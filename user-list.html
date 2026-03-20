@@ -1,953 +1,308 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>用户管理 — InkFlow</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
-    />
-
-    <link rel="stylesheet" href="admin.css" />
-  </head>
-  <body>
-    <!-- SIDEBAR -->
-    <nav id="sidebar">
-      <a class="sidebar-logo" href="dashboard.html">
-        <div class="sidebar-logo-icon"><i class="bi bi-journals"></i></div>
-        <div class="sidebar-logo-text">
-          <span class="sidebar-logo-title">InkFlow</span>
-          <span class="sidebar-logo-sub">Blog CMS</span>
-        </div>
-      </a>
-      <div class="sidebar-nav-wrap">
-        <div class="nav-section-label">主菜单</div>
-        <div class="nav-item-wrapper">
-          <a href="dashboard.html" class="nav-link-item" data-tooltip="仪表盘">
-            <i class="bi bi-grid-1x2 nav-icon"></i
-            ><span class="nav-label">仪表盘</span>
-          </a>
-        </div>
-        <div class="nav-section-label">内容管理</div>
-        <div class="nav-item-wrapper">
-          <button
-            class="nav-link-item"
-            data-toggle="submenu"
-            data-target="sub-content"
-            aria-expanded="false"
-            data-tooltip="内容管理"
-          >
-            <i class="bi bi-file-richtext nav-icon"></i
-            ><span class="nav-label">内容管理</span>
-            <i class="bi bi-chevron-right nav-arrow"></i>
-          </button>
-        </div>
-        <div class="submenu-wrap" id="sub-content">
-          <div class="submenu">
-            <div class="nav-item-wrapper">
-              <a href="post-list.html" class="nav-link-item"
-                ><i class="bi bi-file-text nav-icon"></i
-                ><span class="nav-label">文章列表</span></a
-              >
-            </div>
-            <div class="nav-item-wrapper">
-              <a href="comment-list.html" class="nav-link-item"
-                ><i class="bi bi-chat-left-dots nav-icon"></i
-                ><span class="nav-label">评论列表</span></a
-              >
-            </div>
-            <div class="nav-item-wrapper">
-              <a href="category-list.html" class="nav-link-item"
-                ><i class="bi bi-folder2 nav-icon"></i
-                ><span class="nav-label">栏目列表</span></a
-              >
-            </div>
-            <div class="nav-item-wrapper">
-              <a href="tag-list.html" class="nav-link-item"
-                ><i class="bi bi-tags nav-icon"></i
-                ><span class="nav-label">标签管理</span></a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="nav-section-label">媒体</div>
-        <div class="nav-item-wrapper">
-          <button
-            class="nav-link-item"
-            data-toggle="submenu"
-            data-target="sub-media"
-            aria-expanded="false"
-            data-tooltip="媒体管理"
-          >
-            <i class="bi bi-collection nav-icon"></i
-            ><span class="nav-label">媒体管理</span>
-            <i class="bi bi-chevron-right nav-arrow"></i>
-          </button>
-        </div>
-        <div class="submenu-wrap" id="sub-media">
-          <div class="submenu">
-            <div class="nav-item-wrapper">
-              <a href="image-list.html" class="nav-link-item"
-                ><i class="bi bi-images nav-icon"></i
-                ><span class="nav-label">图片管理</span></a
-              >
-            </div>
-            <div class="nav-item-wrapper">
-              <a href="link-list.html" class="nav-link-item"
-                ><i class="bi bi-link-45deg nav-icon"></i
-                ><span class="nav-label">链接管理</span></a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="nav-section-label">系统</div>
-        <div class="nav-item-wrapper">
-          <a
-            href="user-list.html"
-            class="nav-link-item active"
-            data-tooltip="用户管理"
-            ><i class="bi bi-people nav-icon"></i
-            ><span class="nav-label">用户管理</span></a
-          >
-        </div>
-        <div class="nav-item-wrapper">
-          <a href="settings.html" class="nav-link-item" data-tooltip="系统设置"
-            ><i class="bi bi-sliders nav-icon"></i
-            ><span class="nav-label">系统设置</span></a
-          >
-        </div>
-      </div>
-      <div class="sidebar-footer">
-        <div class="sidebar-user">
-          <div class="sidebar-user-avatar">AD</div>
-          <div class="sidebar-user-info">
-            <div class="sidebar-user-name">Admin</div>
-            <div class="sidebar-user-role">超级管理员</div>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <div id="sidebar-overlay"></div>
-    <div id="main-wrapper">
-      <!-- TOPBAR -->
-      <header id="topbar">
-        <button id="sidebar-toggle" title="收起/展开菜单">
-          <i class="bi bi-layout-sidebar-inset"></i>
-        </button>
-        <div class="topbar-breadcrumb">
-          <a
-            href="dashboard.html"
-            style="color: var(--ci-gray-500); text-decoration: none"
-            >InkFlow</a
-          ><span class="bc-sep"
-            ><i
-              class="bi bi-chevron-right"
-              style="font-size: 0.65rem"
-            ></i></span
-          ><span class="bc-current">用户管理</span>
-        </div>
-        <div class="topbar-search">
-          <i class="bi bi-search search-icon"></i>
-          <input type="text" id="list-search" placeholder="快速搜索…" />
-        </div>
-        <div class="topbar-actions">
-          <div class="dropdown">
-            <button
-              class="topbar-icon-btn"
-              style="position: relative"
-              title="通知"
-              data-bs-toggle="dropdown"
-              data-bs-auto-close="outside"
-              aria-expanded="false"
-            >
-              <i class="bi bi-bell"></i><span class="ci-notif-badge">4</span>
-            </button>
-            <ul
-              class="dropdown-menu dropdown-menu-end ci-notif-dropdown"
-              style="padding: 0"
-            >
-              <li>
-                <div class="ci-notif-header">
-                  <span
-                    ><i class="bi bi-bell me-2" style="color: var(--ci-500)"></i
-                    >通知中心</span
-                  >
-                  <button
-                    class="btn btn-light btn-sm"
-                    style="height: 24px; font-size: 0.68rem; padding: 0 8px"
-                    onclick="showToast('已全部标记已读', 'success')"
-                  >
-                    全部已读
-                  </button>
-                </div>
-              </li>
-              <li>
-                <ul class="ci-notif-list">
-                  <li class="ci-notif-item unread">
-                    <div
-                      class="ci-notif-icon"
-                      style="background: var(--ci-50); color: var(--ci-500)"
-                    >
-                      <i class="bi bi-chat-left-dots"></i>
-                    </div>
-                    <div class="ci-notif-body">
-                      <div class="ci-notif-text">
-                        <strong>张三</strong> 评论了《Vue 3 Composition API》
-                      </div>
-                      <div class="ci-notif-time">
-                        <i class="bi bi-clock me-1"></i>10 分钟前
-                      </div>
-                    </div>
-                    <span class="ci-notif-dot"></span>
-                  </li>
-                  <li class="ci-notif-item unread">
-                    <div
-                      class="ci-notif-icon"
-                      style="background: #dcfce7; color: var(--ci-success-500)"
-                    >
-                      <i class="bi bi-person-plus"></i>
-                    </div>
-                    <div class="ci-notif-body">
-                      <div class="ci-notif-text">
-                        <strong>新用户</strong> 李明 完成了注册
-                      </div>
-                      <div class="ci-notif-time">
-                        <i class="bi bi-clock me-1"></i>32 分钟前
-                      </div>
-                    </div>
-                    <span class="ci-notif-dot"></span>
-                  </li>
-                  <li class="ci-notif-item">
-                    <div
-                      class="ci-notif-icon"
-                      style="
-                        background: var(--ci-gray-100);
-                        color: var(--ci-gray-500);
-                      "
-                    >
-                      <i class="bi bi-file-earmark-check"></i>
-                    </div>
-                    <div class="ci-notif-body">
-                      <div class="ci-notif-text">
-                        文章《TypeScript 高级类型》已成功发布
-                      </div>
-                      <div class="ci-notif-time">
-                        <i class="bi bi-clock me-1"></i>昨天 16:30
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <div
-                  class="ci-notif-footer"
-                  onclick="showToast('通知中心', 'info')"
-                >
-                  查看全部通知 <i class="bi bi-arrow-right ms-1"></i>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <a
-            href="post-edit.html"
-            class="btn btn-primary btn-sm ms-1"
-            style="height: 34px; padding: 0 14px; font-size: 0.8rem"
-            ><i class="bi bi-plus-lg"></i> 新建文章</a
-          >
-          <div class="dropdown topbar-dropdown ms-1">
-            <button
-              class="topbar-user-btn dropdown-toggle"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              style="border: none"
-            >
-              <div class="topbar-avatar">AD</div>
-              <span class="topbar-user-name d-none d-md-inline">Admin</span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li>
-                <div class="user-info-header">
-                  <div class="user-info-avatar">AD</div>
-                  <div>
-                    <div class="user-info-name">Admin User</div>
-                    <div class="user-info-email">admin@inkflow.dev</div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#"
-                  ><i class="bi bi-person-circle"></i> 个人资料</a
-                >
-              </li>
-              <li>
-                <a class="dropdown-item" href="#"
-                  ><i class="bi bi-shield-check"></i> 账号安全</a
-                >
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <a
-                  class="dropdown-item"
-                  href="login.html"
-                  style="color: #ef4444"
-                  ><i class="bi bi-box-arrow-right"></i> 退出登录</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-      </header>
-      <main id="page-content">
-        <div class="page-header">
-          <div>
-            <h1 class="page-title">用户管理</h1>
-            <span class="page-subtitle">共 4,210 名用户</span>
-          </div>
-          <a href="user-edit.html" class="btn btn-primary btn-sm"
-            ><i class="bi bi-person-plus"></i> 新建用户</a
-          >
-        </div>
-        <div class="ci-bulk-bar" id="bulk-action-bar">
-          <i class="bi bi-check2-all" style="color: var(--ci-500)"></i>
-          <span>已选 <strong id="bulk-count">0</strong> 项</span>
-          <div class="ms-auto d-flex gap-2">
-            <button
-              class="btn btn-light btn-sm"
-              style="font-size: 0.78rem; height: 30px"
-              onclick="showToast('操作成功', 'success')"
-            >
-              <i class="bi bi-check-lg me-1"></i>批量操作
-            </button>
-            <button
-              class="btn btn-danger-soft btn-sm"
-              style="font-size: 0.78rem; height: 30px"
-              onclick="showToast('已删除', 'danger')"
-            >
-              <i class="bi bi-trash3 me-1"></i>批量删除
-            </button>
-          </div>
-        </div>
-        <div class="card ci-card mb-0">
-          <div class="card-body" style="padding: 12px 18px">
-            <div class="ci-filter-tabs" id="filter-tabs" role="tablist">
-              <button class="ci-filter-tab active" data-filter="all">
-                全部
-                <span style="opacity: 0.7; font-weight: 400"
-                  >(4210)</span
-                ></button
-              ><button class="ci-filter-tab" data-filter="active">
-                正常
-                <span style="opacity: 0.7; font-weight: 400"
-                  >(4080)</span
-                ></button
-              ><button class="ci-filter-tab" data-filter="inactive">
-                禁用
-                <span style="opacity: 0.7; font-weight: 400">(86)</span></button
-              ><button class="ci-filter-tab" data-filter="banned">
-                封禁 <span style="opacity: 0.7; font-weight: 400">(44)</span>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="card ci-card mt-3">
-          <div class="card-body p-0">
-            <div class="table-responsive">
-              <table class="ci-table">
-                <thead>
-                  <tr>
-                    <th class="table-check">
-                      <input
-                        type="checkbox"
-                        id="select-all"
-                        class="form-check-input"
-                        style="width: 15px; height: 15px; cursor: pointer"
-                      />
-                    </th>
-                    <th style="min-width: 200px">用户名</th>
-                    <th>角色</th>
-                    <th>文章数</th>
-                    <th>注册时间</th>
-                    <th>最后登录</th>
-                    <th>状态</th>
-                    <th style="width: 120px; text-align: center">操作</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr data-status="active">
-                    <td>
-                      <input
-                        type="checkbox"
-                        class="form-check-input ci-row-check"
-                        style="width: 15px; height: 15px; cursor: pointer"
-                      />
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-2">
-                        <div
-                          style="
-                            width: 36px;
-                            height: 36px;
-                            border-radius: 50%;
-                            background: linear-gradient(
-                              135deg,
-                              var(--ci-500),
-                              var(--ci-accent-400)
-                            );
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            color: #fff;
-                            font-size: 0.75rem;
-                            font-weight: 700;
-                            flex-shrink: 0;
-                          "
-                        >
-                          AD
-                        </div>
-                        <div>
-                          <a
-                            href="user-edit.html"
-                            class="ci-link"
-                            style="font-size: 0.84rem"
-                            >Admin</a
-                          ><small>admin@inkflow.dev</small>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <span class="ci-badge ci-badge-draft">超级管理员</span>
-                    </td>
-                    <td
-                      style="
-                        font-size: 0.8rem;
-                        font-weight: 600;
-                        color: var(--ci-gray-800);
-                      "
-                    >
-                      1,284
-                    </td>
-                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
-                      2024-01-01
-                    </td>
-                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
-                      2025-06-18 09:32
-                    </td>
-                    <td>
-                      <span class="ci-badge ci-badge-active"
-                        ><span class="ci-badge-dot"></span>正常</span
-                      >
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-center gap-1">
-                        <a
-                          href="user-edit.html"
-                          class="btn btn-light btn-icon"
-                          title="编辑"
-                          ><i class="bi bi-pencil"></i
-                        ></a>
-                        <button
-                          class="btn btn-light btn-icon"
-                          title="发送消息"
-                          onclick="showToast('消息功能开发中', 'info')"
-                        >
-                          <i class="bi bi-envelope"></i>
-                        </button>
-                        <button
-                          class="btn btn-danger-soft btn-icon"
-                          title="封禁用户"
-                          onclick="showToast('用户已被封禁', 'danger')"
-                        >
-                          <i class="bi bi-person-x"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr data-status="active">
-                    <td>
-                      <input
-                        type="checkbox"
-                        class="form-check-input ci-row-check"
-                        style="width: 15px; height: 15px; cursor: pointer"
-                      />
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-2">
-                        <div
-                          style="
-                            width: 36px;
-                            height: 36px;
-                            border-radius: 50%;
-                            background: linear-gradient(
-                              135deg,
-                              #22c55e,
-                              #16a34a
-                            );
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            color: #fff;
-                            font-size: 0.75rem;
-                            font-weight: 700;
-                            flex-shrink: 0;
-                          "
-                        >
-                          ED
-                        </div>
-                        <div>
-                          <a
-                            href="user-edit.html"
-                            class="ci-link"
-                            style="font-size: 0.84rem"
-                            >Editor</a
-                          ><small>admin@inkflow.dev</small>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <span class="ci-badge ci-badge-draft">内容编辑</span>
-                    </td>
-                    <td
-                      style="
-                        font-size: 0.8rem;
-                        font-weight: 600;
-                        color: var(--ci-gray-800);
-                      "
-                    >
-                      168
-                    </td>
-                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
-                      2024-02-15
-                    </td>
-                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
-                      2025-06-17 16:45
-                    </td>
-                    <td>
-                      <span class="ci-badge ci-badge-active"
-                        ><span class="ci-badge-dot"></span>正常</span
-                      >
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-center gap-1">
-                        <a
-                          href="user-edit.html"
-                          class="btn btn-light btn-icon"
-                          title="编辑"
-                          ><i class="bi bi-pencil"></i
-                        ></a>
-                        <button
-                          class="btn btn-light btn-icon"
-                          title="发送消息"
-                          onclick="showToast('消息功能开发中', 'info')"
-                        >
-                          <i class="bi bi-envelope"></i>
-                        </button>
-                        <button
-                          class="btn btn-danger-soft btn-icon"
-                          title="封禁用户"
-                          onclick="showToast('用户已被封禁', 'danger')"
-                        >
-                          <i class="bi bi-person-x"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr data-status="active">
-                    <td>
-                      <input
-                        type="checkbox"
-                        class="form-check-input ci-row-check"
-                        style="width: 15px; height: 15px; cursor: pointer"
-                      />
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-2">
-                        <div
-                          style="
-                            width: 36px;
-                            height: 36px;
-                            border-radius: 50%;
-                            background: linear-gradient(
-                              135deg,
-                              #f59e0b,
-                              #d97706
-                            );
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            color: #fff;
-                            font-size: 0.75rem;
-                            font-weight: 700;
-                            flex-shrink: 0;
-                          "
-                        >
-                          OP
-                        </div>
-                        <div>
-                          <a
-                            href="user-edit.html"
-                            class="ci-link"
-                            style="font-size: 0.84rem"
-                            >Ops</a
-                          ><small>admin@inkflow.dev</small>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <span class="ci-badge ci-badge-draft">运维工程师</span>
-                    </td>
-                    <td
-                      style="
-                        font-size: 0.8rem;
-                        font-weight: 600;
-                        color: var(--ci-gray-800);
-                      "
-                    >
-                      42
-                    </td>
-                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
-                      2024-03-20
-                    </td>
-                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
-                      2025-06-16 11:20
-                    </td>
-                    <td>
-                      <span class="ci-badge ci-badge-active"
-                        ><span class="ci-badge-dot"></span>正常</span
-                      >
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-center gap-1">
-                        <a
-                          href="user-edit.html"
-                          class="btn btn-light btn-icon"
-                          title="编辑"
-                          ><i class="bi bi-pencil"></i
-                        ></a>
-                        <button
-                          class="btn btn-light btn-icon"
-                          title="发送消息"
-                          onclick="showToast('消息功能开发中', 'info')"
-                        >
-                          <i class="bi bi-envelope"></i>
-                        </button>
-                        <button
-                          class="btn btn-danger-soft btn-icon"
-                          title="封禁用户"
-                          onclick="showToast('用户已被封禁', 'danger')"
-                        >
-                          <i class="bi bi-person-x"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr data-status="inactive">
-                    <td>
-                      <input
-                        type="checkbox"
-                        class="form-check-input ci-row-check"
-                        style="width: 15px; height: 15px; cursor: pointer"
-                      />
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-2">
-                        <div
-                          style="
-                            width: 36px;
-                            height: 36px;
-                            border-radius: 50%;
-                            background: linear-gradient(
-                              135deg,
-                              #94a3b8,
-                              #64748b
-                            );
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            color: #fff;
-                            font-size: 0.75rem;
-                            font-weight: 700;
-                            flex-shrink: 0;
-                          "
-                        >
-                          RV
-                        </div>
-                        <div>
-                          <a
-                            href="user-edit.html"
-                            class="ci-link"
-                            style="font-size: 0.84rem"
-                            >Reviewer</a
-                          ><small>admin@inkflow.dev</small>
-                        </div>
-                      </div>
-                    </td>
-                    <td><span class="ci-badge ci-badge-draft">审核员</span></td>
-                    <td
-                      style="
-                        font-size: 0.8rem;
-                        font-weight: 600;
-                        color: var(--ci-gray-800);
-                      "
-                    >
-                      0
-                    </td>
-                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
-                      2024-06-10
-                    </td>
-                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
-                      2025-06-10 08:00
-                    </td>
-                    <td>
-                      <span class="ci-badge ci-badge-inactive"
-                        ><span class="ci-badge-dot"></span>禁用</span
-                      >
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-center gap-1">
-                        <a
-                          href="user-edit.html"
-                          class="btn btn-light btn-icon"
-                          title="编辑"
-                          ><i class="bi bi-pencil"></i
-                        ></a>
-                        <button
-                          class="btn btn-light btn-icon"
-                          title="发送消息"
-                          onclick="showToast('消息功能开发中', 'info')"
-                        >
-                          <i class="bi bi-envelope"></i>
-                        </button>
-                        <button
-                          class="btn btn-danger-soft btn-icon"
-                          title="封禁用户"
-                          onclick="showToast('用户已被封禁', 'danger')"
-                        >
-                          <i class="bi bi-person-x"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr data-status="active">
-                    <td>
-                      <input
-                        type="checkbox"
-                        class="form-check-input ci-row-check"
-                        style="width: 15px; height: 15px; cursor: pointer"
-                      />
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-2">
-                        <div
-                          style="
-                            width: 36px;
-                            height: 36px;
-                            border-radius: 50%;
-                            background: linear-gradient(
-                              135deg,
-                              #a78bfa,
-                              #7c3aed
-                            );
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            color: #fff;
-                            font-size: 0.75rem;
-                            font-weight: 700;
-                            flex-shrink: 0;
-                          "
-                        >
-                          张
-                        </div>
-                        <div>
-                          <a
-                            href="user-edit.html"
-                            class="ci-link"
-                            style="font-size: 0.84rem"
-                            >张三</a
-                          ><small>admin@inkflow.dev</small>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <span class="ci-badge ci-badge-draft">普通用户</span>
-                    </td>
-                    <td
-                      style="
-                        font-size: 0.8rem;
-                        font-weight: 600;
-                        color: var(--ci-gray-800);
-                      "
-                    >
-                      0
-                    </td>
-                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
-                      2025-01-15
-                    </td>
-                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
-                      2025-06-18 14:32
-                    </td>
-                    <td>
-                      <span class="ci-badge ci-badge-active"
-                        ><span class="ci-badge-dot"></span>正常</span
-                      >
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-center gap-1">
-                        <a
-                          href="user-edit.html"
-                          class="btn btn-light btn-icon"
-                          title="编辑"
-                          ><i class="bi bi-pencil"></i
-                        ></a>
-                        <button
-                          class="btn btn-light btn-icon"
-                          title="发送消息"
-                          onclick="showToast('消息功能开发中', 'info')"
-                        >
-                          <i class="bi bi-envelope"></i>
-                        </button>
-                        <button
-                          class="btn btn-danger-soft btn-icon"
-                          title="封禁用户"
-                          onclick="showToast('用户已被封禁', 'danger')"
-                        >
-                          <i class="bi bi-person-x"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr data-status="banned">
-                    <td>
-                      <input
-                        type="checkbox"
-                        class="form-check-input ci-row-check"
-                        style="width: 15px; height: 15px; cursor: pointer"
-                      />
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-2">
-                        <div
-                          style="
-                            width: 36px;
-                            height: 36px;
-                            border-radius: 50%;
-                            background: linear-gradient(
-                              135deg,
-                              #f87171,
-                              #ef4444
-                            );
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            color: #fff;
-                            font-size: 0.75rem;
-                            font-weight: 700;
-                            flex-shrink: 0;
-                          "
-                        >
-                          李
-                        </div>
-                        <div>
-                          <a
-                            href="user-edit.html"
-                            class="ci-link"
-                            style="font-size: 0.84rem"
-                            >李明</a
-                          ><small>admin@inkflow.dev</small>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <span class="ci-badge ci-badge-draft">普通用户</span>
-                    </td>
-                    <td
-                      style="
-                        font-size: 0.8rem;
-                        font-weight: 600;
-                        color: var(--ci-gray-800);
-                      "
-                    >
-                      0
-                    </td>
-                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
-                      2025-02-20
-                    </td>
-                    <td style="font-size: 0.75rem; color: var(--ci-gray-500)">
-                      2025-06-18 13:10
-                    </td>
-                    <td>
-                      <span class="ci-badge ci-badge-banned"
-                        ><span class="ci-badge-dot"></span>封禁</span
-                      >
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-center gap-1">
-                        <a
-                          href="user-edit.html"
-                          class="btn btn-light btn-icon"
-                          title="编辑"
-                          ><i class="bi bi-pencil"></i
-                        ></a>
-                        <button
-                          class="btn btn-light btn-icon"
-                          title="发送消息"
-                          onclick="showToast('消息功能开发中', 'info')"
-                        >
-                          <i class="bi bi-envelope"></i>
-                        </button>
-                        <button
-                          class="btn btn-danger-soft btn-icon"
-                          title="封禁用户"
-                          onclick="showToast('用户已被封禁', 'danger')"
-                        >
-                          <i class="bi bi-person-x"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div
-            class="card-footer d-flex align-items-center justify-content-between"
-          >
-            <span style="font-size: 0.78rem; color: var(--ci-gray-500)"
-              >共 <strong>4,210</strong> 条记录，第 <strong>1</strong> /
-              <strong>421</strong> 页</span
-            >
-            <nav>
-              <ul class="pagination mb-0">
-                <li class="page-item disabled">
-                  <a class="page-link" href="#"
-                    ><i class="bi bi-chevron-left" style="font-size: 0.7rem"></i
-                  ></a>
-                </li>
-                <li class="page-item active">
-                  <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#"
-                    ><i
-                      class="bi bi-chevron-right"
-                      style="font-size: 0.7rem"
-                    ></i
-                  ></a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </main>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用户管理 — InkFlow</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
+  
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <a class="sidebar-logo" href="dashboard.html">
+    <div class="sidebar-logo-icon"><i class="bi bi-journals"></i></div>
+    <div class="sidebar-logo-text">
+      <span class="sidebar-logo-title">InkFlow</span>
+      <span class="sidebar-logo-sub">InkFlow</span>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="admin.js"></script>
-  </body>
+  </a>
+  <div class="sidebar-nav-wrap">
+    <div class="nav-section-label">主菜单</div>
+    <div class="nav-item-wrapper">
+      <a href="dashboard.html" class="nav-link-item " data-tooltip="仪表盘">
+        <i class="bi bi-grid-1x2 nav-icon"></i><span class="nav-label">仪表盘</span>
+      </a>
+    </div>
+    <div class="nav-section-label">内容管理</div>
+    <div class="nav-item-wrapper">
+      <button class="nav-link-item " data-toggle="submenu" data-target="sub-content" aria-expanded="false" data-tooltip="内容管理">
+        <i class="bi bi-file-richtext nav-icon"></i><span class="nav-label">内容管理</span>
+        <i class="bi bi-chevron-right nav-arrow"></i>
+      </button>
+    </div>
+    <div class="submenu-wrap" id="sub-content">
+      <div class="submenu">
+        <div class="nav-item-wrapper"><a href="post-list.html" class="nav-link-item "><i class="bi bi-file-text nav-icon"></i><span class="nav-label">文章列表</span></a></div>
+        <div class="nav-item-wrapper"><a href="comment-list.html" class="nav-link-item "><i class="bi bi-chat-left-dots nav-icon"></i><span class="nav-label">评论列表</span></a></div>
+        <div class="nav-item-wrapper"><a href="category-list.html" class="nav-link-item "><i class="bi bi-folder2 nav-icon"></i><span class="nav-label">栏目列表</span></a></div>
+        <div class="nav-item-wrapper"><a href="tag-list.html" class="nav-link-item "><i class="bi bi-tags nav-icon"></i><span class="nav-label">标签管理</span></a></div>
+      </div>
+    </div>
+    <div class="nav-section-label">媒体</div>
+    <div class="nav-item-wrapper">
+      <button class="nav-link-item " data-toggle="submenu" data-target="sub-media" aria-expanded="false" data-tooltip="媒体管理">
+        <i class="bi bi-collection nav-icon"></i><span class="nav-label">媒体管理</span>
+        <i class="bi bi-chevron-right nav-arrow"></i>
+      </button>
+    </div>
+    <div class="submenu-wrap" id="sub-media">
+      <div class="submenu">
+        <div class="nav-item-wrapper"><a href="image-list.html" class="nav-link-item "><i class="bi bi-images nav-icon"></i><span class="nav-label">图片管理</span></a></div>
+        <div class="nav-item-wrapper"><a href="link-list.html" class="nav-link-item "><i class="bi bi-link-45deg nav-icon"></i><span class="nav-label">链接管理</span></a></div>
+      </div>
+    </div>
+    <div class="nav-section-label">系统</div>
+    <div class="nav-item-wrapper"><a href="user-list.html" class="nav-link-item active" data-tooltip="用户管理"><i class="bi bi-people nav-icon"></i><span class="nav-label">用户管理</span></a></div>
+    <div class="nav-item-wrapper"><a href="settings.html" class="nav-link-item " data-tooltip="系统设置"><i class="bi bi-sliders nav-icon"></i><span class="nav-label">系统设置</span></a></div>
+  </div>
+  <div class="sidebar-footer">
+    <div class="sidebar-user">
+      <div class="sidebar-user-avatar">AD</div>
+      <div class="sidebar-user-info">
+        <div class="sidebar-user-name">Admin</div>
+        <div class="sidebar-user-role">超级管理员</div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div id="sidebar-overlay"></div>
+<div id="main-wrapper">
+<!-- TOPBAR -->
+<header id="topbar">
+  <button id="sidebar-toggle" title="收起/展开菜单"><i class="bi bi-layout-sidebar-inset"></i></button>
+  <div class="topbar-breadcrumb"><a href="dashboard.html" style="color:var(--ci-gray-500);text-decoration:none">InkFlow</a><span class="bc-sep"><i class="bi bi-chevron-right" style="font-size:.65rem"></i></span><span class="bc-current">用户管理</span></div>
+  <div class="topbar-search">
+    <i class="bi bi-search search-icon"></i>
+    <input type="text" id="list-search" placeholder="快速搜索…">
+  </div>
+  <div class="topbar-actions">
+    <div class="dropdown">
+      <button class="topbar-icon-btn" style="position:relative" title="通知"
+              data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+        <i class="bi bi-bell"></i><span class="ci-notif-badge">4</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end ci-notif-dropdown" style="padding:0">
+        <li>
+          <div class="ci-notif-header">
+            <span><i class="bi bi-bell me-2" style="color:var(--ci-500)"></i>通知中心</span>
+            <button class="btn btn-light btn-sm" style="height:24px;font-size:.68rem;padding:0 8px"
+                    onclick="showToast('已全部标记已读','success')">全部已读</button>
+          </div>
+        </li>
+        <li>
+          <ul class="ci-notif-list">
+            <li class="ci-notif-item unread">
+              <div class="ci-notif-icon" style="background:var(--ci-50);color:var(--ci-500)"><i class="bi bi-chat-left-dots"></i></div>
+              <div class="ci-notif-body">
+                <div class="ci-notif-text"><strong>张三</strong> 评论了《Vue 3 Composition API》</div>
+                <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
+              </div>
+              <span class="ci-notif-dot"></span>
+            </li>
+            <li class="ci-notif-item unread">
+              <div class="ci-notif-icon" style="background:#dcfce7;color:var(--ci-success-500)"><i class="bi bi-person-plus"></i></div>
+              <div class="ci-notif-body">
+                <div class="ci-notif-text"><strong>新用户</strong> 李明 完成了注册</div>
+                <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
+              </div>
+              <span class="ci-notif-dot"></span>
+            </li>
+            <li class="ci-notif-item">
+              <div class="ci-notif-icon" style="background:var(--ci-gray-100);color:var(--ci-gray-500)"><i class="bi bi-file-earmark-check"></i></div>
+              <div class="ci-notif-body">
+                <div class="ci-notif-text">文章《TypeScript 高级类型》已成功发布</div>
+                <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <div class="ci-notif-footer" onclick="window.location='notification-center.html'">
+            查看全部通知 <i class="bi bi-arrow-right ms-1"></i>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <a href="post-edit.html" class="btn btn-primary btn-sm ms-1" style="height:34px;padding:0 14px;font-size:.8rem"><i class="bi bi-plus-lg"></i> 新建文章</a>
+    <div class="dropdown topbar-dropdown ms-1">
+      <button class="topbar-user-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="border:none">
+        <div class="topbar-avatar">AD</div>
+        <span class="topbar-user-name d-none d-md-inline">Admin</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li>
+          <div class="user-info-header">
+            <div class="user-info-avatar">AD</div>
+            <div><div class="user-info-name">Admin User</div><div class="user-info-email">admin@inkflow.dev</div></div>
+          </div>
+        </li>
+        <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> 个人资料</a></li>
+        <li><a class="dropdown-item" href="#"><i class="bi bi-shield-check"></i> 账号安全</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="login.html" style="color:#ef4444"><i class="bi bi-box-arrow-right"></i> 退出登录</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+<main id="page-content">
+<div class="page-header">
+  <div>
+    <h1 class="page-title">用户管理</h1>
+    <span class='page-subtitle'>共 4,210 名用户</span>
+  </div>
+  <a href="user-edit.html" class="btn btn-primary btn-sm"><i class="bi bi-person-plus"></i> 新建用户</a>
+</div>
+<div class="ci-bulk-bar" id="bulk-action-bar">
+  <i class="bi bi-check2-all" style="color:var(--ci-500)"></i>
+  <span>已选 <strong id="bulk-count">0</strong> 项</span>
+  <div class="ms-auto d-flex gap-2">
+    <button class="btn btn-light btn-sm" style="font-size:.78rem;height:30px" onclick="showToast('操作成功','success')"><i class="bi bi-check-lg me-1"></i>批量操作</button>
+    <button class="btn btn-danger-soft btn-sm" style="font-size:.78rem;height:30px" onclick="showToast('已删除','danger')"><i class="bi bi-trash3 me-1"></i>批量删除</button>
+  </div>
+</div>
+<div class="card ci-card mb-0">
+  <div class="card-body" style="padding:12px 18px">
+    <div class="ci-filter-tabs" id="filter-tabs" role="tablist"><button class="ci-filter-tab active" data-filter="all">全部 <span style="opacity:.7;font-weight:400">(4210)</span></button><button class="ci-filter-tab" data-filter="active">正常 <span style="opacity:.7;font-weight:400">(4080)</span></button><button class="ci-filter-tab" data-filter="inactive">禁用 <span style="opacity:.7;font-weight:400">(86)</span></button><button class="ci-filter-tab" data-filter="banned">封禁 <span style="opacity:.7;font-weight:400">(44)</span></button></div>
+  </div>
+</div>
+<div class="card ci-card mt-3">
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="ci-table">
+      <thead><tr>
+        <th class="table-check"><input type="checkbox" id="select-all" class="form-check-input" style="width:15px;height:15px;cursor:pointer"></th>
+        <th style="min-width:200px">用户名</th><th>角色</th><th>文章数</th><th>注册时间</th><th>最后登录</th><th>状态</th><th style="width:120px;text-align:center">操作</th>
+      </tr></thead>
+      <tbody><tr data-status="active">
+          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td>
+            <div class="d-flex align-items-center gap-2">
+              <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--ci-500),var(--ci-accent-400));display:flex;align-items:center;justify-content:center;color:#fff;font-size:.75rem;font-weight:700;flex-shrink:0">AD</div>
+              <div><a href="user-edit.html" class="ci-link" style="font-size:.84rem">Admin</a><small>admin@inkflow.dev</small></div>
+            </div>
+          </td>
+          <td><span class="ci-badge ci-badge-draft">超级管理员</span></td>
+          <td style="font-size:.8rem;font-weight:600;color:var(--ci-gray-800)">1,284</td>
+          <td style="font-size:.75rem;color:var(--ci-gray-500)">2024-01-01</td>
+          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-18 09:32</td>
+          <td><span class="ci-badge ci-badge-active"><span class="ci-badge-dot"></span>正常</span></td>
+          <td>
+            <div class="d-flex justify-content-center gap-1">
+              <a href="user-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
+              <button class="btn btn-light btn-icon" title="发送消息" onclick="showToast('消息功能开发中','info')"><i class="bi bi-envelope"></i></button>
+              <button class="btn btn-danger-soft btn-icon" title="封禁用户" onclick="showToast('用户已被封禁','danger')"><i class="bi bi-person-x"></i></button>
+            </div>
+          </td>
+        </tr><tr data-status="active">
+          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td>
+            <div class="d-flex align-items-center gap-2">
+              <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#22c55e,#16a34a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.75rem;font-weight:700;flex-shrink:0">ED</div>
+              <div><a href="user-edit.html" class="ci-link" style="font-size:.84rem">Editor</a><small>admin@inkflow.dev</small></div>
+            </div>
+          </td>
+          <td><span class="ci-badge ci-badge-draft">内容编辑</span></td>
+          <td style="font-size:.8rem;font-weight:600;color:var(--ci-gray-800)">168</td>
+          <td style="font-size:.75rem;color:var(--ci-gray-500)">2024-02-15</td>
+          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-17 16:45</td>
+          <td><span class="ci-badge ci-badge-active"><span class="ci-badge-dot"></span>正常</span></td>
+          <td>
+            <div class="d-flex justify-content-center gap-1">
+              <a href="user-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
+              <button class="btn btn-light btn-icon" title="发送消息" onclick="showToast('消息功能开发中','info')"><i class="bi bi-envelope"></i></button>
+              <button class="btn btn-danger-soft btn-icon" title="封禁用户" onclick="showToast('用户已被封禁','danger')"><i class="bi bi-person-x"></i></button>
+            </div>
+          </td>
+        </tr><tr data-status="active">
+          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td>
+            <div class="d-flex align-items-center gap-2">
+              <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#f59e0b,#d97706);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.75rem;font-weight:700;flex-shrink:0">OP</div>
+              <div><a href="user-edit.html" class="ci-link" style="font-size:.84rem">Ops</a><small>admin@inkflow.dev</small></div>
+            </div>
+          </td>
+          <td><span class="ci-badge ci-badge-draft">运维工程师</span></td>
+          <td style="font-size:.8rem;font-weight:600;color:var(--ci-gray-800)">42</td>
+          <td style="font-size:.75rem;color:var(--ci-gray-500)">2024-03-20</td>
+          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-16 11:20</td>
+          <td><span class="ci-badge ci-badge-active"><span class="ci-badge-dot"></span>正常</span></td>
+          <td>
+            <div class="d-flex justify-content-center gap-1">
+              <a href="user-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
+              <button class="btn btn-light btn-icon" title="发送消息" onclick="showToast('消息功能开发中','info')"><i class="bi bi-envelope"></i></button>
+              <button class="btn btn-danger-soft btn-icon" title="封禁用户" onclick="showToast('用户已被封禁','danger')"><i class="bi bi-person-x"></i></button>
+            </div>
+          </td>
+        </tr><tr data-status="inactive">
+          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td>
+            <div class="d-flex align-items-center gap-2">
+              <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#94a3b8,#64748b);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.75rem;font-weight:700;flex-shrink:0">RV</div>
+              <div><a href="user-edit.html" class="ci-link" style="font-size:.84rem">Reviewer</a><small>admin@inkflow.dev</small></div>
+            </div>
+          </td>
+          <td><span class="ci-badge ci-badge-draft">审核员</span></td>
+          <td style="font-size:.8rem;font-weight:600;color:var(--ci-gray-800)">0</td>
+          <td style="font-size:.75rem;color:var(--ci-gray-500)">2024-06-10</td>
+          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-10 08:00</td>
+          <td><span class="ci-badge ci-badge-inactive"><span class="ci-badge-dot"></span>禁用</span></td>
+          <td>
+            <div class="d-flex justify-content-center gap-1">
+              <a href="user-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
+              <button class="btn btn-light btn-icon" title="发送消息" onclick="showToast('消息功能开发中','info')"><i class="bi bi-envelope"></i></button>
+              <button class="btn btn-danger-soft btn-icon" title="封禁用户" onclick="showToast('用户已被封禁','danger')"><i class="bi bi-person-x"></i></button>
+            </div>
+          </td>
+        </tr><tr data-status="active">
+          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td>
+            <div class="d-flex align-items-center gap-2">
+              <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#a78bfa,#7c3aed);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.75rem;font-weight:700;flex-shrink:0">张</div>
+              <div><a href="user-edit.html" class="ci-link" style="font-size:.84rem">张三</a><small>admin@inkflow.dev</small></div>
+            </div>
+          </td>
+          <td><span class="ci-badge ci-badge-draft">普通用户</span></td>
+          <td style="font-size:.8rem;font-weight:600;color:var(--ci-gray-800)">0</td>
+          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-01-15</td>
+          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-18 14:32</td>
+          <td><span class="ci-badge ci-badge-active"><span class="ci-badge-dot"></span>正常</span></td>
+          <td>
+            <div class="d-flex justify-content-center gap-1">
+              <a href="user-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
+              <button class="btn btn-light btn-icon" title="发送消息" onclick="showToast('消息功能开发中','info')"><i class="bi bi-envelope"></i></button>
+              <button class="btn btn-danger-soft btn-icon" title="封禁用户" onclick="showToast('用户已被封禁','danger')"><i class="bi bi-person-x"></i></button>
+            </div>
+          </td>
+        </tr><tr data-status="banned">
+          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td>
+            <div class="d-flex align-items-center gap-2">
+              <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#f87171,#ef4444);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.75rem;font-weight:700;flex-shrink:0">李</div>
+              <div><a href="user-edit.html" class="ci-link" style="font-size:.84rem">李明</a><small>admin@inkflow.dev</small></div>
+            </div>
+          </td>
+          <td><span class="ci-badge ci-badge-draft">普通用户</span></td>
+          <td style="font-size:.8rem;font-weight:600;color:var(--ci-gray-800)">0</td>
+          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-02-20</td>
+          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-18 13:10</td>
+          <td><span class="ci-badge ci-badge-banned"><span class="ci-badge-dot"></span>封禁</span></td>
+          <td>
+            <div class="d-flex justify-content-center gap-1">
+              <a href="user-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
+              <button class="btn btn-light btn-icon" title="发送消息" onclick="showToast('消息功能开发中','info')"><i class="bi bi-envelope"></i></button>
+              <button class="btn btn-danger-soft btn-icon" title="封禁用户" onclick="showToast('用户已被封禁','danger')"><i class="bi bi-person-x"></i></button>
+            </div>
+          </td>
+        </tr></tbody>
+    </table>
+    </div>
+  </div>
+  <div class="card-footer d-flex align-items-center justify-content-between">
+  <span style="font-si
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/admin.js"></script>
+</body>
 </html>

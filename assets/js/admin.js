@@ -1,14 +1,14 @@
 /* ============================================================
-   InkFlow Admin — Shared JavaScript  v1.1
+   InkFlow Admin — Shared JavaScript  v1.4
    Vanilla JS, no external runtime dependencies
    ============================================================ */
 (function () {
   'use strict';
 
   /* ── SIDEBAR TOGGLE ── */
-  var sidebar = document.getElementById('sidebar');
-  var toggle = document.getElementById('sidebar-toggle');
-  var overlay = document.getElementById('sidebar-overlay');
+  var sidebar  = document.getElementById('sidebar');
+  var toggle   = document.getElementById('sidebar-toggle');
+  var overlay  = document.getElementById('sidebar-overlay');
   var COLLAPSED_KEY = 'inkflow_sidebar_collapsed';
 
   function isMobile() { return window.innerWidth < 992; }
@@ -17,7 +17,7 @@
     if (isMobile()) return;
     sidebar.classList.toggle('collapsed', collapsed);
     document.body.classList.toggle('sidebar-collapsed', collapsed);
-    try { localStorage.setItem(COLLAPSED_KEY, collapsed ? '1' : '0'); } catch (_) { }
+    try { localStorage.setItem(COLLAPSED_KEY, collapsed ? '1' : '0'); } catch (_) {}
   }
 
   if (toggle && sidebar) {
@@ -42,7 +42,7 @@
     if (!isMobile() && sidebar && localStorage.getItem(COLLAPSED_KEY) === '1') {
       applySidebarState(true);
     }
-  } catch (_) { }
+  } catch (_) {}
 
   window.addEventListener('resize', function () {
     if (!isMobile() && sidebar) {
@@ -56,8 +56,8 @@
     var targetEl = document.getElementById(btn.getAttribute('data-target'));
     if (targetEl) {
       targetEl.style.transition = 'max-height 0.25s cubic-bezier(.4,0,.2,1)';
-      targetEl.style.overflow = 'hidden';
-      targetEl.style.maxHeight = btn.getAttribute('aria-expanded') === 'true'
+      targetEl.style.overflow   = 'hidden';
+      targetEl.style.maxHeight  = btn.getAttribute('aria-expanded') === 'true'
         ? targetEl.scrollHeight + 'px' : '0';
     }
 
@@ -98,8 +98,8 @@
 
   /* ── BULK SELECT ── */
   var selectAll = document.getElementById('select-all');
-  var bulkBar = document.getElementById('bulk-action-bar');
-  var bulkCnt = document.getElementById('bulk-count');
+  var bulkBar   = document.getElementById('bulk-action-bar');
+  var bulkCnt   = document.getElementById('bulk-count');
 
   function updateBulkBar() {
     var checked = document.querySelectorAll('.ci-row-check:checked').length;
@@ -130,7 +130,7 @@
 
   /* ── TAG INPUT ── */
   var tagInput = document.getElementById('tag-input');
-  var tagList = document.getElementById('tag-list');
+  var tagList  = document.getElementById('tag-list');
 
   if (tagInput && tagList) {
     tagInput.addEventListener('keydown', function (e) {
@@ -151,7 +151,7 @@
   }
 
   /* ── COVER PREVIEW ── */
-  var coverInput = document.getElementById('cover-file-input');
+  var coverInput   = document.getElementById('cover-file-input');
   var coverPreview = document.getElementById('cover-preview');
   if (coverInput && coverPreview) {
     coverPreview.addEventListener('click', function () { coverInput.click(); });
@@ -197,28 +197,22 @@
     new window.Chart(canvas, {
       type: 'bar',
       data: {
-        labels: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-        datasets: [{
-          label: '访问量', data: [1200, 1900, 1500, 2800, 2200, 3100, 2600, 3800, 3200, 4100, 3700, 4800],
+        labels: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+        datasets: [{ label: '访问量', data: [1200,1900,1500,2800,2200,3100,2600,3800,3200,4100,3700,4800],
           backgroundColor: function (ctx) {
             var c = ctx.chart; if (!c.chartArea) return '#0d6ecc';
             var g = c.ctx.createLinearGradient(0, c.chartArea.top, 0, c.chartArea.bottom);
-            g.addColorStop(0, 'rgba(13,110,204,.85)'); g.addColorStop(1, 'rgba(6,182,212,.45)'); return g;
-          }, borderRadius: 5, borderSkipped: false
-        }]
+            g.addColorStop(0,'rgba(13,110,204,.85)'); g.addColorStop(1,'rgba(6,182,212,.45)'); return g;
+          }, borderRadius: 5, borderSkipped: false }]
       },
       options: {
         responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false }, tooltip: {
-            backgroundColor: '#0f172a', padding: 10, cornerRadius: 8,
-            titleFont: { family: "'Plus Jakarta Sans',sans-serif", size: 11 },
-            bodyFont: { family: "'Plus Jakarta Sans',sans-serif", size: 12 }
-          }
-        },
+        plugins: { legend:{display:false}, tooltip:{ backgroundColor:'#0f172a', padding:10, cornerRadius:8,
+          titleFont:{family:"'Plus Jakarta Sans',sans-serif",size:11},
+          bodyFont:{family:"'Plus Jakarta Sans',sans-serif",size:12}}},
         scales: {
-          x: { grid: { display: false }, ticks: { color: '#94a3b8', font: { family: "'Plus Jakarta Sans',sans-serif", size: 10 } } },
-          y: { grid: { color: '#f1f5f9' }, ticks: { color: '#94a3b8', font: { family: "'Plus Jakarta Sans',sans-serif", size: 10 } } }
+          x:{ grid:{display:false}, ticks:{color:'#94a3b8',font:{family:"'Plus Jakarta Sans',sans-serif",size:10}}},
+          y:{ grid:{color:'#f1f5f9'}, ticks:{color:'#94a3b8',font:{family:"'Plus Jakarta Sans',sans-serif",size:10}}}
         }
       }
     });
@@ -227,7 +221,7 @@
 
   /* ── TOPBAR DATE ── */
   var dateEl = document.getElementById('topbar-date');
-  if (dateEl) { dateEl.textContent = new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' }); }
+  if (dateEl) { dateEl.textContent = new Date().toLocaleDateString('zh-CN', {year:'numeric',month:'long',day:'numeric',weekday:'long'}); }
 
   /* ── PUBLISH BUTTON ── */
   var publishBtn = document.getElementById('btn-publish');
@@ -235,22 +229,22 @@
     publishBtn.addEventListener('click', function () {
       this.disabled = true; this.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>发布中…';
       var self = this;
-      setTimeout(function () { self.disabled = false; self.innerHTML = '<i class="bi bi-send-fill me-1"></i>发布文章'; showToast('文章已成功发布！', 'success'); }, 1200);
+      setTimeout(function () { self.disabled = false; self.innerHTML = '<i class="bi bi-send-fill me-1"></i>发布文章'; showToast('文章已成功发布！','success'); }, 1200);
     });
   }
 
   var saveDraftBtn = document.getElementById('btn-save-draft');
-  if (saveDraftBtn) { saveDraftBtn.addEventListener('click', function () { showToast('草稿已保存', 'info'); }); }
+  if (saveDraftBtn) { saveDraftBtn.addEventListener('click', function () { showToast('草稿已保存','info'); }); }
 
   var previewBtn = document.getElementById('btn-preview');
-  if (previewBtn) { previewBtn.addEventListener('click', function () { showToast('预览已在新标签页打开', 'info'); }); }
+  if (previewBtn) { previewBtn.addEventListener('click', function () { showToast('预览已在新标签页打开','info'); }); }
 
   /* ── WORD COUNT ── */
-  var editorBody = document.getElementById('editor-body');
+  var editorBody  = document.getElementById('editor-body');
   var wordCountEl = document.getElementById('word-count');
   if (editorBody && wordCountEl) {
     editorBody.addEventListener('input', function () {
-      var t = (this.textContent || '').trim();
+      var t = (this.textContent||'').trim();
       wordCountEl.textContent = t ? t.split(/\s+/).length : 0;
     });
   }
@@ -267,7 +261,7 @@
       }, 1800);
     }
     var titleInp = document.getElementById('post-title');
-    if (titleInp) titleInp.addEventListener('input', triggerAS);
+    if (titleInp)   titleInp.addEventListener('input', triggerAS);
     if (editorBody) editorBody.addEventListener('input', triggerAS);
   }
 
@@ -298,7 +292,7 @@
 
   /* ── SETTINGS NAV ── */
   window.switchSettings = function (section) {
-    ['site', 'post', 'comment', 'media', 'seo', 'smtp', 'security', 'cache', 'advanced'].forEach(function (s) {
+    ['site','post','comment','media','seo','smtp','security','cache','advanced'].forEach(function (s) {
       var el = document.getElementById('section-' + s);
       if (el) el.style.display = (s === section) ? '' : 'none';
     });
@@ -310,17 +304,17 @@
   /* ── TOAST ── */
   window.showToast = function (message, type) {
     type = type || 'success';
-    var icons = { success: 'bi-check-circle-fill', danger: 'bi-x-circle-fill', warning: 'bi-exclamation-triangle-fill', info: 'bi-info-circle-fill' };
-    var colors = { success: '#16a34a', danger: '#ef4444', warning: '#d97706', info: '#0d6ecc' };
+    var icons  = {success:'bi-check-circle-fill',danger:'bi-x-circle-fill',warning:'bi-exclamation-triangle-fill',info:'bi-info-circle-fill'};
+    var colors = {success:'#16a34a',danger:'#ef4444',warning:'#d97706',info:'#0d6ecc'};
     var toast = document.createElement('div');
     Object.assign(toast.style, {
-      position: 'fixed', bottom: '24px', right: '24px', zIndex: '9999', background: '#fff',
-      borderRadius: '10px', padding: '12px 16px', display: 'flex', alignItems: 'center', gap: '10px',
-      boxShadow: '0 8px 30px rgba(0,0,0,.14)', fontSize: '.85rem',
-      fontFamily: '"Plus Jakarta Sans",system-ui,sans-serif', fontWeight: '500', color: '#334155',
-      maxWidth: '320px', borderLeft: '3px solid ' + colors[type], animation: 'ci-fade-up .3s ease both'
+      position:'fixed',bottom:'24px',right:'24px',zIndex:'9999',background:'#fff',
+      borderRadius:'10px',padding:'12px 16px',display:'flex',alignItems:'center',gap:'10px',
+      boxShadow:'0 8px 30px rgba(0,0,0,.14)',fontSize:'.85rem',
+      fontFamily:'"Plus Jakarta Sans",system-ui,sans-serif',fontWeight:'500',color:'#334155',
+      maxWidth:'320px',borderLeft:'3px solid '+colors[type],animation:'ci-fade-up .3s ease both'
     });
-    toast.innerHTML = '<i class="bi ' + icons[type] + '" style="color:' + colors[type] + ';font-size:1rem;flex-shrink:0"></i><span style="flex:1">' + message + '</span><button onclick="this.parentNode.remove()" style="border:none;background:transparent;cursor:pointer;color:#94a3b8;font-size:1.1rem;padding:0;line-height:1;margin-left:4px">&times;</button>';
+    toast.innerHTML = '<i class="bi '+icons[type]+'" style="color:'+colors[type]+';font-size:1rem;flex-shrink:0"></i><span style="flex:1">'+message+'</span><button onclick="this.parentNode.remove()" style="border:none;background:transparent;cursor:pointer;color:#94a3b8;font-size:1.1rem;padding:0;line-height:1;margin-left:4px">&times;</button>';
     document.body.appendChild(toast);
     setTimeout(function () { toast.style.animation = 'ci-fade-up .3s ease reverse forwards'; setTimeout(function () { toast && toast.remove(); }, 300); }, 3500);
   };

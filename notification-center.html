@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>通知中心 — InkFlow Admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+
+<!-- ==================== SIDEBAR ==================== -->
+<nav id="sidebar">
+  <a class="sidebar-logo" href="dashboard.html">
+    <div class="sidebar-logo-icon"><i class="bi bi-journals"></i></div>
+    <div class="sidebar-logo-text">
+      <span class="sidebar-logo-title">InkFlow</span>
+      <span class="sidebar-logo-sub">InkFlow</span>
+    </div>
+  </a>
+  <div class="sidebar-nav-wrap">
+    <div class="nav-section-label">主菜单</div>
+    <div class="nav-item-wrapper">
+      <a href="dashboard.html" class="nav-link-item" data-tooltip="仪表盘">
+        <i class="bi bi-grid-1x2 nav-icon"></i><span class="nav-label">仪表盘</span>
+      </a>
+    </div>
+    <div class="nav-section-label">内容管理</div>
+    <div class="nav-item-wrapper">
+      <button class="nav-link-item" data-toggle="submenu" data-target="sub-content" aria-expanded="false" data-tooltip="内容管理">
+        <i class="bi bi-file-richtext nav-icon"></i><span class="nav-label">内容管理</span>
+        <i class="bi bi-chevron-right nav-arrow"></i>
+      </button>
+    </div>
+    <div class="submenu-wrap" id="sub-content">
+      <div class="submenu">
+        <div class="nav-item-wrapper"><a href="post-list.html" class="nav-link-item"><i class="bi bi-file-text nav-icon"></i><span class="nav-label">文章列表</span></a></div>
+        <div class="nav-item-wrapper"><a href="comment-list.html" class="nav-link-item"><i class="bi bi-chat-left-dots nav-icon"></i><span class="nav-label">评论列表</span></a></div>
+        <div class="nav-item-wrapper"><a href="category-list.html" class="nav-link-item"><i class="bi bi-folder2 nav-icon"></i><span class="nav-label">栏目列表</span></a></div>
+        <div class="nav-item-wrapper"><a href="tag-list.html" class="nav-link-item"><i class="bi bi-tags nav-icon"></i><span class="nav-label">标签管理</span></a></div>
+      </div>
+    </div>
+    <div class="nav-section-label">媒体</div>
+    <div class="nav-item-wrapper">
+      <button class="nav-link-item" data-toggle="submenu" data-target="sub-media" aria-expanded="false" data-tooltip="媒体管理">
+        <i class="bi bi-collection nav-icon"></i><span class="nav-label">媒体管理</span>
+        <i class="bi bi-chevron-right nav-arrow"></i>
+      </button>
+    </div>
+    <div class="submenu-wrap" id="sub-media">
+      <div class="submenu">
+        <div class="nav-item-wrapper"><a href="image-list.html" class="nav-link-item"><i class="bi bi-images nav-icon"></i><span class="nav-label">图片管理</span></a></div>
+        <div class="nav-item-wrapper"><a href="link-list.html" class="nav-link-item"><i class="bi bi-link-45deg nav-icon"></i><span class="nav-label">链接管理</span></a></div>
+      </div>
+    </div>
+    <div class="nav-section-label">系统</div>
+    <div class="nav-item-wrapper">
+      <a href="user-list.html" class="nav-link-item" data-tooltip="用户管理">
+        <i class="bi bi-people nav-icon"></i><span class="nav-label">用户管理</span>
+      </a>
+    </div>
+    <div class="nav-item-wrapper">
+      <a href="settings.html" class="nav-link-item" data-tooltip="系统设置">
+        <i class="bi bi-sliders nav-icon"></i><span class="nav-label">系统设置</span>
+      </a>
+    </div>
+  </div>
+  <div class="sidebar-footer">
+    <div class="sidebar-user">
+      <div class="sidebar-user-avatar">AD</div>
+      <div class="sidebar-user-info">
+        <div class="sidebar-user-name">Admin</div>
+        <div class="sidebar-user-role">超级管理员</div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div id="sidebar-overlay"></div>
+
+<!-- ==================== MAIN ==================== -->
+<div id="main-wrapper">
+
+  <!-- TOPBAR -->
+  <header id="topbar">
+    <button id="sidebar-toggle" title="收起/展开菜单"><i class="bi bi-layout-sidebar-inset"></i></button>
+    <div class="topbar-breadcrumb">
+      <a href="dashboard.html" style="color:var(--ci-gray-500);text-decoration:none">InkFlow</a>
+      <span class="bc-sep"><i class="bi bi-chevron-right" style="font-size:.65rem"></i></span>
+      <span class="bc-current">通知中心</span>
+    </div>
+    <div class="topbar-search">
+      <i class="bi bi-search search-icon"></i>
+      <input type="text" id="notif-search" placeholder="搜索通知…" oninput="filterNotifs(this.value)">
+    </div>
+    <div class="topbar-actions">
+      <div class="dropdown">
+        <button class="topbar-icon-btn" style="position:relative" title="通知"
+                data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+          <i class="bi bi-bell"></i>
+          <span class="ci-notif-badge" id="notif-badge">4</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end ci-notif-dropdown" style="padding:0">
+          <li>
+            <div class="ci-notif-header">
+              <span><i class="bi bi-bell me-2" style="color:var(--ci-500)"></i>通知中心</span>
+              <button class="btn btn-light btn-sm" style="height:24px;font-size:.68rem;padding:0 8px"
+                      onclick="markAllRead()">全部已读</button>
+            </div>
+          </li>
+          <li>
+            <ul class="ci-notif-list">
+              <li class="ci-notif-item unread">
+                <div class="ci-notif-icon" style="background:var(--ci-50);color:var(--ci-500)"><i class="bi bi-chat-left-dots"></i></div>
+                <div class="ci-notif-body">
+                  <div class="ci-notif-text"><strong>张三</strong> 评论了《Vue 3 Composition API》</div>
+                  <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
+                </div>
+                <span class="ci-notif-dot"></span>
+              </li>
+              <li class="ci-notif-item unread">
+                <div class="ci-notif-icon" style="background:#dcfce7;color:var(--ci-success-500)"><i class="bi bi-person-plus"></i></div>
+                <div class="ci-notif-body">
+                  <div class="ci-notif-text"><strong>新用户</strong> 李明 完成了注册</div>
+                  <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
+                </div>
+                <span class="ci-notif-dot"></span>
+              </li>
+              <li class="ci-notif-item">
+                <div class="ci-notif-icon" style="background:var(--ci-gray-100);color:var(--ci-gray-500)"><i class="bi bi-file-earmark-check"></i></div>
+                <div class="ci-notif-body">
+                  <div class="ci-notif-text">文章《TypeScript 高级类型》已成功发布</div>
+                  <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <div class="ci-notif-footer" onclick="window.location='notification-center.html'">
+              查看全部通知 <i class="bi bi-arrow-right ms-1"></i>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="dropdown topbar-dropdown ms-1">
+        <button class="topbar-user-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="border:none">
+          <div class="topbar-avatar">AD</div>
+          <span class="topbar-user-name d-none d-md-inline">Admin</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <div class="user-info-header">
+              <div class="user-info-avatar">AD</div>
+              <div><div class="user-info-name">Admin User</div><div class="user-info-email">admin@inkflow.dev</div></div>
+            </div>
+          </li>
+          <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> 个人资料</a></li>
+          <li><a class="dropdown-item" href="#"><i class="bi bi-shield-check"></i> 账号安全</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="login.html" style="color:#ef4444"><i class="bi bi-box-arrow-right"></i> 退出登录</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <main id="page-content">
+
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">通知中心</h1>
+        <span class="page-subtitle">管理所有系统通知、评论提醒和用户动态</span>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-light btn-sm" onclick="markAllRead()">
+          <i class="bi bi-check2-all me-1"></i>全部已读
+        </button>
+        <button class="btn btn-light btn-sm" onclick="showToast('已清除全部通知','success')">
+          <i class="bi bi-trash3 me-1"></i>清除已读
+        </button>
+      </div>
+    </div>
+
+    <div class="row g-3">
+
+      <!-- LEFT: 通知列表 -->
+      <div class="col-12 col-xl-8">
+
+        <!-- 筛选 tabs -->
+        <div class="card ci-card mb-0">
+          <div class="card-body" style="padding:12px 18px">
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+              <div class="ci-filter-tabs" id="notif-filter-tabs" role="tablist">
+                <button class="ci-filter-tab active" data-filter="all" onclick="filterByType('all',this)">
+                  全部 <span style="opacity:.7;font-weight:400" id="cnt-all">(24)</span>
+                </button>
+                <button class="ci-filter-tab" data-filter="unread" onclick="filterByType('unread',this)">
+                  未读 <span style="opacity:.7;font-weight:400" id="cnt-unread">(4)</span>
+                </button>
+                <button class="ci-filter-tab" data-filter="comment" onclick="filterByType('comment',this)">
+                  评论 <span style="opacity:.7;font-weight:400">(12)</span>
+                </button>
+                <button class="ci-filter-tab" data-filter="system" onclick="filterByType('system',this)">
+                  系统 <span style="opacity:.7;font-weight:400">(6)</span>
+                </button>
+                <button class="ci-filter-tab" data-filter="user" onclick="filterByType('user',this)">
+                  用户 <span style="opacity:.7;font-weight:400">(6)</span>
+                </button>
+              </div>
+              <span style="font-size:.75rem;color:var(--ci-gray-400)">共 24 条通知</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 通知列表卡片 -->
+        <div class="card ci-card mt-3" id="notif-list-card">
+          <div class="card-body p-0">
+            <ul class="list-unstyled mb-0" id="notif-full-list">
+
+              <!-- 今天 -->
+              <li class="px-4 pt-3 pb-1">
+                <span style="font-size:.72rem;font-weight:700;color:var(--ci-gray-400);text-transform:uppercase;letter-spacing:.5px">今天</span>
+              </li>
+
+              <!-- Item: unread comment -->
+              <li class="ci-notif-row unread" data-type="comment">
+                <div class="ci-notif-row-inner">
+                  <div class="ci-notif-icon-lg" style="background:var(--ci-50);color:var(--ci-500)">
+                    <i class="bi bi-chat-left-dots"></i>
+                  </div>
+                  <div class="ci-notif-content">
+                    <div class="ci-notif-title">
+                      <strong>张三</strong> 评论了你的文章
+                      <span class="ci-badge ci-badge-blue ms-1">评论</span>
+                    </div>
+                    <div class="ci-notif-desc">「很棒的文章！Composition API 的解析非常清晰，对我帮助很大。」</div>
+                    <div class="ci-notif-meta">
+                      <i class="bi bi-file-text me-1"></i>《Vue 3 Composition API 深入解析》
+                      <span class="ci-notif-sep">·</span>
+                      <i class="bi bi-clock me-1"></i>10 分钟前
+                    </div>
+                  </div>
+                  <div class="ci-notif-actions">
+                    <div class="ci-unread-dot"></div>
+                    <div class="dropdown">
+                      <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown">
+                        <i class="bi bi-three-dots"></i>
+                      </button>
+                      <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="comment-list.html"><i class="bi bi-eye me-2"></i>查看评论</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="markOneRead(this)"><i class="bi bi-check me-2"></i>标记已读</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="deleteNotif(this)"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Item: unread user -->
+              <li class="ci-notif-row unread" data-type="user">
+                <div class="ci-notif-row-inner">
+                  <div class="ci-notif-icon-lg" style="background:#dcfce7;color:var(--ci-success-500)">
+                    <i class="bi bi-person-plus"></i>
+                  </div>
+                  <div class="ci-notif-content">
+                    <div class="ci-notif-title">
+                      新用户注册
+                      <span class="ci-badge ci-badge-green ms-1">用户</span>
+                    </div>
+                    <div class="ci-notif-desc"><strong>李明</strong> (li.ming@example.com) 完成了账号注册，等待审核激活。</div>
+                    <div class="ci-notif-meta">
+                      <i class="bi bi-clock me-1"></i>32 分钟前
+                    </div>
+                  </div>
+                  <div class="ci-notif-actions">
+                    <div class="ci-unread-dot"></div>
+                    <div class="dropdown">
+                      <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown">
+                        <i class="bi bi-three-dots"></i>
+                      </button>
+                      <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="user-list.html"><i class="bi bi-person me-2"></i>查看用户</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="markOneRead(this)"><i class="bi bi-check me-2"></i>标记已读</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="deleteNotif(this)"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Item: unread system -->
+              <li class="ci-notif-row unread" data-type="system">
+                <div class="ci-notif-row-inner">
+                  <div class="ci-notif-icon-lg" style="background:#fef3c7;color:var(--ci-warning-500)">
+                    <i class="bi bi-exclamation-triangle"></i>
+                  </div>
+                  <div class="ci-notif-content">
+                    <div class="ci-notif-title">
+                      磁盘空间提醒
+                      <span class="ci-badge ci-badge-amber ms-1">系统</span>
+                    </div>
+                    <div class="ci-notif-desc">服务器磁盘使用率已达到 <strong>42%</strong>，建议清理临时文件或扩容。</div>
+                    <div class="ci-notif-meta">
+                      <i class="bi bi-clock me-1"></i>1 小时前
+                    </div>
+                  </div>
+                  <div class="ci-notif-actions">
+                    <div class="ci-unread-dot"></div>
+                    <div class="dropdown">
+                      <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown">
+                        <i class="bi bi-three-dots"></i>
+                      </button>
+                      <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="settings.html"><i class="bi bi-gear me-2"></i>前往设置</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="markOneRead(this)"><i class="bi bi-check me-2"></i>标记已读</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="deleteNotif(this)"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Item: unread comment -->
+              <li class="ci-notif-row unread" data-type="comment">
+                <div class="ci-notif-row-inner">
+                  <div class="ci-notif-icon-lg" style="background:#ede9fe;color:#7c3aed">
+                    <i class="bi bi-chat-left-dots"></i>
+                  </div>
+                  <div class="ci-notif-content">
+                    <div class="ci-notif-title">
+                      <strong>王红</strong> 指出了文章中的一处错误
+                      <span class="ci-badge ci-badge-blue ms-1">评论</span>
+                    </div>
+                    <div class="ci-notif-desc">「第三节代码示例中 watchEffect 的用法有误，应该是…」</div>
+                    <div class="ci-notif-meta">
+                      <i class="bi bi-file-text me-1"></i>《LLM Fine-tuning 实战》
+                      <span class="ci-notif-sep">·</span>
+                      <i class="bi bi-clock me-1"></i>2 小时前
+                    </div>
+                  </div>
+                  <div class="ci-notif-actions">
+                    <div class="ci-unread-dot"></div>
+                    <div class="dropdown">
+                      <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown">
+                        <i class="bi bi-three-dots"></i>
+                      </button>
+                      <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="comment-list.html"><i class="bi bi-eye me-2"></i>查看评论</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="markOneRead(this)"><i class="bi bi-check me-2"></i>标记已读</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="deleteNotif(this)"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- 昨天 -->
+              <li class="px-4 pt-3 pb-1">
+                <span style="font-size:.72rem;font-weight:700;color:var(--ci-gray-400);text-transform:uppercase;letter-spacing:.5px">昨天</span>
+              </li>
+
+              <!-- read items -->
+              <li class="ci-notif-row" data-type="system">
+                <div class="ci-notif-row-inner">
+                  <div class="ci-notif-icon-lg" style="background:var(--ci-gray-100);color:var(--ci-gray-500)">
+                    <i class="bi bi-file-earmark-check"></i>
+                  </div>
+                  <div class="ci-notif-content">
+                    <div class="ci-notif-title">文章发布成功 <span class="ci-badge" style="background:var(--ci-gray-100);color:var(--ci-gray-600) ms-1">系统</span></div>
+                    <div class="ci-notif-desc">文章《TypeScript 高级类型完全指南》已成功发布，当前已获得 <strong>128</strong> 次阅读。</div>
+                    <div class="ci-notif-meta"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
+                  </div>
+                  <div class="ci-notif-actions">
+                    <div class="dropdown">
+                      <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
+                      <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="post-list.html"><i class="bi bi-file-text me-2"></i>查看文章</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="deleteNotif(this)"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li class="ci-notif-row" data-type="system">
+                <div class="ci-notif-row-inner">
+                  <div class="ci-notif-icon-lg" style="background:var(--ci-gray-100);color:var(--ci-gray-500)">
+                    <i class="bi bi-shield-check"></i>
+                  </div>
+                  <div class="ci-notif-content">
+                    <div class="ci-notif-title">SSL 证书到期提醒 <span class="ci-badge ci-badge-amber ms-1">系统</span></div>
+                    <div class="ci-notif-desc">域名 <strong>blog.inkflow.dev</strong> 的 SSL 证书将在 <strong>30 天</strong>后到期，请及时续签以避免服务中断。</div>
+                    <div class="ci-notif-meta"><i class="bi bi-clock me-1"></i>昨天 09:15</div>
+                  </div>
+                  <div class="ci-notif-actions">
+                    <div class="dropdown">
+                      <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
+                      <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="settings.html"><i class="bi bi-gear me-2"></i>前往设置</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="deleteNotif(this)"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li class="ci-notif-row" data-type="comment">
+                <div class="ci-notif-row-inner">
+                  <div class="ci-notif-icon-lg" style="background:var(--ci-50);color:var(--ci-500)">
+                    <i class="bi bi-chat-left-dots"></i>
+                  </div>
+                  <div class="ci-notif-content">
+                    <div class="ci-notif-title"><strong>Alice Chen</strong> 回复了你的评论 <span class="ci-badge ci-badge-blue ms-1">评论</span></div>
+                    <div class="ci-notif-desc">「同意你的观点，Rust 的所有权系统确实有一定学习曲线，但值得投入。」</div>
+                    <div class="ci-notif-meta">
+                      <i class="bi bi-file-text me-1"></i>《Rust 所有权机制详解》
+                      <span class="ci-notif-sep">·</span>
+                      <i class="bi bi-clock me-1"></i>昨天 14:20
+                    </div>
+                  </div>
+                  <div class="ci-notif-actions">
+                    <div class="dropdown">
+                      <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
+                      <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="comment-list.html"><i class="bi bi-eye me-2"></i>查看评论</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="deleteNotif(this)"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- 更早 -->
+              <li class="px-4 pt-3 pb-1">
+                <span style="font-size:.72rem;font-weight:700;color:var(--ci-gray-400);text-transform:uppercase;letter-spacing:.5px">更早</span>
+              </li>
+
+              <li class="ci-notif-row" data-type="user">
+                <div class="ci-notif-row-inner">
+                  <div class="ci-notif-icon-lg" style="background:#dcfce7;color:var(--ci-success-500)"><i class="bi bi-person-plus"></i></div>
+                  <div class="ci-notif-content">
+                    <div class="ci-notif-title">新用户注册 <span class="ci-badge ci-badge-green ms-1">用户</span></div>
+                    <div class="ci-notif-desc"><strong>Bob Wang</strong> (bob@example.com) 完成注册。</div>
+                    <div class="ci-notif-meta"><i class="bi bi-clock me-1"></i>3 天前</div>
+                  </div>
+                  <div class="ci-notif-actions">
+                    <div class="dropdown">
+                      <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
+                      <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="user-list.html"><i class="bi bi-person me-2"></i>查看用户</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="deleteNotif(this)"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li class="ci-notif-row" data-type="comment">
+                <div class="ci-notif-row-inner">
+                  <div class="ci-notif-icon-lg" style="background:var(--ci-50);color:var(--ci-500)"><i class="bi bi-chat-left-dots"></i></div>
+                  <div class="ci-notif-content">
+                    <div class="ci-notif-title"><strong>赵磊</strong> 赞了你的文章 <span class="ci-badge ci-badge-blue ms-1">评论</span></div>
+                    <div class="ci-notif-desc">《Docker 容器化部署最佳实践》获得了新的点赞。</div>
+                    <div class="ci-notif-meta"><i class="bi bi-clock me-1"></i>5 天前</div>
+                  </div>
+                  <div class="ci-notif-actions">
+                    <div class="dropdown">
+                      <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
+                      <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="post-list.html"><i class="bi bi-file-text me-2"></i>查看文章</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="deleteNotif(this)"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+            </ul>
+
+            <!-- Empty state (hidden by default) -->
+            <div id="notif-empty" style="display:none;padding:60px 0;text-align:center">
+              <i class="bi bi-bell-slash" style="font-size:2.5rem;color:var(--ci-gray-300);display:block;margin-bottom:12px"></i>
+              <p style="color:var(--ci-gray-400);font-size:.875rem;margin:0">暂无符合条件的通知</p>
+            </div>
+
+          </div>
+          <div class="card-footer d-flex align-items-center justify-content-between">
+            <span style="font-size:.78rem;color:var(--ci-gray-500)">共 24 条 · 显示第 1–10 条</span>
+            <nav>
+              <ul class="pagination pagination-sm mb-0">
+                <li class="page-item disabled"><a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: 统计 + 偏好设置 -->
+      <div class="col-12 col-xl-4">
+
+        <!-- 未读统计 -->
+        <div class="ci-panel ci-anim">
+          <div class="ci-panel-header"><i class="bi bi-bar-chart-line"></i> 通知统计</div>
+          <div class="ci-panel-body">
+            <div class="d-flex flex-column gap-2">
+              <div class="d-flex align-items-center justify-content-between py-2"
+                   style="border-bottom:1px solid var(--ci-gray-100)">
+                <div class="d-flex align-items-center gap-2">
+                  <span style="width:8px;height:8px;border-radius:50%;background:var(--ci-500);display:inline-block"></span>
+                  <span style="font-size:.82rem">未读通知</span>
+                </div>
+                <span class="ci-badge ci-badge-blue" id="stat-unread">4</span>
+              </div>
+              <div class="d-flex align-items-center justify-content-between py-2"
+                   style="border-bottom:1px solid var(--ci-gray-100)">
+                <div class="d-flex align-items-center gap-2">
+                  <span style="width:8px;height:8px;border-radius:50%;background:var(--ci-500);display:inline-block"></span>
+                  <span style="font-size:.82rem">评论通知</span>
+                </div>
+                <span style="font-size:.82rem;font-weight:600;color:var(--ci-gray-700)">12</span>
+              </div>
+              <div class="d-flex align-items-center justify-content-between py-2"
+                   style="border-bottom:1px solid var(--ci-gray-100)">
+                <div class="d-flex align-items-center gap-2">
+                  <span style="width:8px;height:8px;border-radius:50%;background:var(--ci-success-500);display:inline-block"></span>
+                  <span style="font-size:.82rem">用户通知</span>
+                </div>
+                <span style="font-size:.82rem;font-weight:600;color:var(--ci-gray-700)">6</span>
+              </div>
+              <div class="d-flex align-items-center justify-content-between py-2"
+                   style="border-bottom:1px solid var(--ci-gray-100)">
+                <div class="d-flex align-items-center gap-2">
+                  <span style="width:8px;height:8px;border-radius:50%;background:var(--ci-warning-500);display:inline-block"></span>
+                  <span style="font-size:.82rem">系统通知</span>
+                </div>
+                <span style="font-size:.82rem;font-weight:600;color:var(--ci-gray-700)">6</span>
+              </div>
+              <div class="d-flex align-items-center justify-content-between py-2">
+                <span style="font-size:.82rem;color:var(--ci-gray-500)">总计</span>
+                <span style="font-size:.82rem;font-weight:700;color:var(--ci-gray-900)">24</span>
+              </div>
+            </div>
+            <button class="btn btn-light w-100 mt-3" style="font-size:.78rem" onclick="markAllRead()">
+              <i class="bi bi-check2-all me-1"></i>全部标记已读
+            </button>
+          </div>
+        </div>
+
+        <!-- 通知偏好 -->
+        <div class="ci-panel ci-anim mt-3" style="--ci-delay:.05s">
+          <div class="ci-panel-header"><i class="bi bi-bell-slash"></i> 通知偏好设置</div>
+          <div class="ci-panel-body">
+            <div class="d-flex flex-column gap-3">
+              <div class="d-flex align-items-center justify-content-between">
+                <div>
+                  <div style="font-size:.82rem;font-weight:600;color:var(--ci-gray-800)">评论通知</div>
+                  <div style="font-size:.72rem;color:var(--ci-gray-500)">新评论、回复时提醒</div>
+                </div>
+                <div class="form-check form-switch mb-0">
+                  <input class="form-check-input" type="checkbox" checked onchange="showToast('偏好已保存','success')">
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div>
+                  <div style="font-size:.82rem;font-weight:600;color:var(--ci-gray-800)">用户注册通知</div>
+                  <div style="font-size:.72rem;color:var(--ci-gray-500)">新用户注册时提醒</div>
+                </div>
+                <div class="form-check form-switch mb-0">
+                  <input class="form-check-input" type="checkbox" checked onchange="showToast('偏好已保存','success')">
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div>
+                  <div style="font-size:.82rem;font-weight:600;color:var(--ci-gray-800)">系统告警</div>
+                  <div style="font-size:.72rem;color:var(--ci-gray-500)">磁盘、证书、安全提醒</div>
+                </div>
+                <div class="form-check form-switch mb-0">
+                  <input class="form-check-input" type="checkbox" checked onchange="showToast('偏好已保存','success')">
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div>
+                  <div style="font-size:.82rem;font-weight:600;color:var(--ci-gray-800)">邮件通知</div>
+                  <div style="font-size:.72rem;color:var(--ci-gray-500)">通知同时发送至邮箱</div>
+                </div>
+                <div class="form-check form-switch mb-0">
+                  <input class="form-check-input" type="checkbox" onchange="showToast('邮件通知已' + (this.checked ? '开启' : '关闭'),'info')">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+</div><!-- /main-wrapper -->
+
+<style>
+/* ── Notification center page specific styles ────────────── */
+.ci-notif-row {
+  border-bottom: 1px solid var(--ci-gray-100);
+  transition: background .12s;
+}
+.ci-notif-row:last-of-type { border-bottom: none; }
+.ci-notif-row:hover { background: var(--ci-gray-50); }
+.ci-notif-row.unread { background: #f5f9ff; }
+.ci-notif-row.unread:hover { background: #edf4ff; }
+
+.ci-notif-row-inner {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 16px 20px;
+}
+.ci-notif-icon-lg {
+  width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 1rem;
+}
+.ci-notif-content { flex: 1; min-width: 0; }
+.ci-notif-title { font-size: .84rem; font-weight: 600; color: var(--ci-gray-900); margin-bottom: 4px; }
+.ci-notif-desc  { font-size: .80rem; color: var(--ci-gray-600); line-height: 1.5; margin-bottom: 6px;
+                  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 420px; }
+.ci-notif-meta  { font-size: .73rem; color: var(--ci-gray-400); display: flex; align-items: center; gap: 4px; }
+.ci-notif-sep   { color: var(--ci-gray-300); }
+.ci-notif-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; padding-top: 2px; }
+.ci-unread-dot  { width: 8px; height: 8px; border-radius: 50%; background: var(--ci-500); flex-shrink: 0; }
+.ci-notif-more  { opacity: 0; transition: opacity .12s; }
+.ci-notif-row:hover .ci-notif-more { opacity: 1; }
+
+/* Badge variants */
+.ci-badge-blue  { background: var(--ci-50);  color: var(--ci-600); }
+.ci-badge-green { background: #dcfce7; color: var(--ci-success-600, #16a34a); }
+.ci-badge-amber { background: #fef3c7; color: var(--ci-warning-600, #d97706); }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/admin.js"></script>
+<script>
+// ── Notification page JS ──────────────────────────────────
+function markAllRead() {
+  document.querySelectorAll('.ci-notif-row.unread').forEach(function(row) {
+    row.classList.remove('unread');
+    var dot = row.querySelector('.ci-unread-dot');
+    if (dot) dot.remove();
+  });
+  var badge = document.getElementById('notif-badge');
+  if (badge) badge.style.display = 'none';
+  var stat = document.getElementById('stat-unread');
+  if (stat) stat.textContent = '0';
+  showToast('所有通知已标记为已读', 'success');
+}
+
+function markOneRead(btn) {
+  var row = btn.closest('.ci-notif-row');
+  if (!row) return;
+  row.classList.remove('unread');
+  var dot = row.querySelector('.ci-unread-dot');
+  if (dot) dot.remove();
+  showToast('已标记为已读', 'success');
+}
+
+function deleteNotif(btn) {
+  var row = btn.closest('.ci-notif-row');
+  if (!row) return;
+  row.style.transition = 'opacity .25s, max-height .25s';
+  row.style.overflow = 'hidden';
+  row.style.maxHeight = row.offsetHeight + 'px';
+  setTimeout(function() { row.style.maxHeight = '0'; row.style.opacity = '0'; }, 10);
+  setTimeout(function() { row.remove(); }, 280);
+  showToast('通知已删除', 'info');
+}
+
+function filterByType(type, btn) {
+  document.querySelectorAll('.ci-filter-tab').forEach(function(t) { t.classList.remove('active'); });
+  btn.classList.add('active');
+  var rows = document.querySelectorAll('#notif-full-list .ci-notif-row');
+  var visible = 0;
+  rows.forEach(function(row) {
+    var match = type === 'all' || row.dataset.type === type ||
+                (type === 'unread' && row.classList.contains('unread'));
+    row.style.display = match ? '' : 'none';
+    if (match) visible++;
+  });
+  // date headers: hide if no visible items follow
+  document.querySelectorAll('#notif-full-list li.px-4').forEach(function(header) {
+    var next = header.nextElementSibling;
+    var hasVisible = false;
+    while (next && !next.classList.contains('px-4')) {
+      if (next.style.display !== 'none' && next.classList.contains('ci-notif-row')) hasVisible = true;
+      next = next.nextElementSibling;
+    }
+    header.style.display = hasVisible ? '' : 'none';
+  });
+  document.getElementById('notif-empty').style.display = visible ? 'none' : 'block';
+}
+
+function filterNotifs(query) {
+  query = query.toLowerCase().trim();
+  var rows = document.querySelectorAll('#notif-full-list .ci-notif-row');
+  rows.forEach(function(row) {
+    var text = row.textContent.toLowerCase();
+    row.style.display = (!query || text.includes(query)) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>
