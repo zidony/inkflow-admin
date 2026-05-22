@@ -14,7 +14,7 @@
 
 ## ✨ 特性
 
-- **18 个完整页面**：覆盖博客后台所有核心功能场景
+- **19 + 1 个完整页面**：覆盖博客后台所有核心功能场景
 - **响应式布局**：完美适配桌面、平板和移动端
 - **Bootstrap 5.3.8**：使用最新 Bootstrap 5 稳定版，支持原生 Popover / Dropdown / Modal
 - **统一设计语言**：深蓝主题（`#0d6ecc`），`ci-` 前缀 CSS 命名规范，`--ci-*` CSS 变量体系
@@ -33,10 +33,10 @@
 inkflow-admin/
 ├── assets/
 │   ├── css/
-│   │   └── admin.css          # 全局样式
+│   │   └── admin.css          # 全局样式（v1.5）
 │   └── js/
-│       └── admin.js           # 全局脚本
-├── dashboard.html             # 仪表盘
+│       └── admin.js           # 全局脚本（v1.5）
+├── index.html             # 仪表盘
 ├── post-list.html             # 文章列表
 ├── post-edit.html             # 发布 / 编辑文章
 ├── comment-list.html          # 评论列表
@@ -61,14 +61,14 @@ inkflow-admin/
 
 ## 🚀 快速开始
 
-直接用浏览器打开 `dashboard.html` 即可预览，无需构建工具或服务器。
+直接用浏览器打开 `index.html` 即可预览，无需构建工具或服务器。
 
 ```bash
 # 克隆仓库
 git clone https://github.com/your-username/inkflow-admin.git
 
 # 直接在浏览器打开
-open inkflow-admin/dashboard.html
+open inkflow-admin/index.html
 ```
 
 如需本地开发服务（解决部分浏览器跨域限制），推荐使用：
@@ -77,7 +77,7 @@ open inkflow-admin/dashboard.html
 # VS Code Live Server 插件（推荐）
 # 或 Python 内置服务器
 python3 -m http.server 8080
-# 访问 http://localhost:8080/dashboard.html
+# 访问 http://localhost:8080/index.html
 ```
 
 ---
@@ -97,7 +97,7 @@ python3 -m http.server 8080
 
 ## 📄 页面说明
 
-### 仪表盘 `dashboard.html`
+### 仪表盘 `index.html`
 - 4 张紧凑统计卡（文章 / 评论 / 浏览量 / 用户），8:4 比例与快捷操作并排
 - 年度访问趋势柱状图（Chart.js）
 - 内容概况 + 系统状态侧栏
@@ -181,19 +181,15 @@ python3 -m http.server 8080
 | v1.1 | CSS 前缀规范化（`ci-`），富文本编辑器 UI，全站 JS 对齐 |
 | v1.2 | Dashboard 重构（8:4 布局）、图片上传、头像裁剪、通知下拉、picsum 修复 |
 | v1.3 | Dashboard 等高修复、filter-tabs 白底卡片、page-header 按钮统一、全站 CF 邮箱修复 |
-| v1.4 | Bootstrap 5.3.3 → **5.3.8**、资源移至 `assets/`、编辑器防溢出 CSS、通知中心独立页面、README |
+| v1.4 | 更名 CiCMS → **InkFlow**、Bootstrap 5.3.3 → **5.3.8**、资源移至 `assets/`、编辑器防溢出 CSS、通知中心独立页面、README |
+| v1.5 | 结构重构、移动端适配优化、样式清理 |
 
 ---
 
 ## 📜 License
 
-MIT License — 免费用于个人或商业项目，保留版权声明即可。
+MIT License — 自由用于个人或商业项目，保留版权声明即可。
 
 ---
 
 > Made with ♥ for the InkFlow blog platform.
-
----
-
-## 附言
-这是 Claude.ai 的 Sonnet 4.6 免费版在2026年2至3月的生成作品，秒杀一切同期其他模型的生成能力。

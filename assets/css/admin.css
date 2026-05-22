@@ -1,5 +1,5 @@
 /* ============================================================
-   InkFlow Admin — Shared Stylesheet  v1.4
+   InkFlow Admin — Shared Stylesheet  v1.5
    Stack : Bootstrap 5.3.3 + Bootstrap Icons 1.13.1 + Custom
    Theme : Deep Teal-Blue  (#0d6ecc primary)
 
@@ -250,8 +250,14 @@ body.sidebar-collapsed #main-wrapper { margin-left: var(--sidebar-collapsed-widt
 .topbar-breadcrumb {
   flex: 1; display: flex; align-items: center; gap: 6px;
   font-size: .82rem; color: var(--ci-gray-500);
+  /* truncate on small screens */
+  overflow: hidden; min-width: 0;
 }
-.topbar-breadcrumb .bc-current { color: var(--ci-gray-800); font-weight: 600; }
+.topbar-breadcrumb a { color: var(--ci-gray-500); text-decoration: none; transition: color .12s; white-space: nowrap; }
+.topbar-breadcrumb a:hover { color: var(--ci-600); }
+.topbar-breadcrumb .bc-sep { color: var(--ci-gray-300); font-size: .65rem; flex-shrink: 0; }
+.topbar-breadcrumb .bc-sep::before { content: '\F285'; font-family: 'bootstrap-icons'; }
+.topbar-breadcrumb .bc-current { color: var(--ci-gray-800); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 .topbar-search { position: relative; width: 240px; }
 .topbar-search input {
@@ -479,6 +485,8 @@ body.sidebar-collapsed #main-wrapper { margin-left: var(--sidebar-collapsed-widt
   padding: 14px 18px; border-bottom: 1px solid var(--ci-gray-100);
   font-size: .85rem; font-weight: 700; color: var(--ci-gray-800);
 }
+.ci-notif-header-icon { color: var(--ci-500); margin-right: .4em; }
+.ci-notif-header-btn  { height: 24px; font-size: .68rem; padding: 0 8px; }
 .ci-notif-list { list-style: none; padding: 6px 0; margin: 0; max-height: 340px; overflow-y: auto; }
 .ci-notif-item {
   display: flex; gap: 12px; padding: 10px 18px;
@@ -1005,6 +1013,7 @@ textarea.form-control { padding: 9px 13px; }
 #sidebar-overlay {
   display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 1039;
 }
+/* ── TABLET (≤992px) ──────────────────────────────────────── */
 @media (max-width: 991.98px) {
   #sidebar { transform: translateX(-100%); width: var(--sidebar-width) !important; transition: transform var(--sidebar-transition); }
   #sidebar.mobile-open { transform: translateX(0); }
@@ -1012,11 +1021,56 @@ textarea.form-control { padding: 9px 13px; }
   #sidebar-overlay { display: block; opacity: 0; pointer-events: none; transition: opacity .28s; }
   #sidebar-overlay.active { opacity: 1; pointer-events: auto; }
   .topbar-search { display: none; }
+  /* Topbar: compress breadcrumb to not overflow */
+  .topbar-breadcrumb { max-width: 160px; }
 }
+
+/* ── MOBILE (≤767px) ──────────────────────────────────────── */
 @media (max-width: 767.98px) {
-  #page-content { padding: 16px; }
-  .page-header  { flex-direction: column; align-items: flex-start; }
-  .ci-editor-sticky-bar { padding: 10px 16px; margin: 0 -16px 16px; }
+  /* Layout */
+  #page-content { padding: 12px; }
+  #topbar { padding: 0 12px; gap: 8px; }
+  .page-header  { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .page-header > .btn, .page-header > a.btn { width: 100%; justify-content: center; }
+
+  /* Topbar: hide breadcrumb text, show only current page */
+  .topbar-breadcrumb { max-width: none; }
+  .topbar-breadcrumb a:not(.bc-root),
+  .topbar-breadcrumb .bc-sep { display: none; }
+  .topbar-breadcrumb .bc-current { font-size: .9rem; }
+
+  /* Topbar user: hide name on very small screens */
+  .topbar-user-name { display: none !important; }
+  .topbar-user-btn  { padding: 4px; }
+
+  /* Editor sticky bar */
+  .ci-editor-sticky-bar { padding: 8px 12px; margin: 0 -12px 12px; }
+  .ci-sticky-inner { flex-wrap: wrap; gap: 6px; }
+  .ci-sticky-inner > div { flex: 1; min-width: 0; }
+
+  /* Tables: allow horizontal scroll */
+  .ci-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* Stat cards compact: wrap to 2 cols on mobile */
+  .col-12.col-xl-8 > .d-flex { flex-wrap: wrap; }
+  .col-12.col-xl-8 > .d-flex > .stat-card-compact { min-width: calc(50% - 8px); }
+
+  /* Panels and cards: tighten padding */
+  .ci-panel-body { padding: 12px; }
+  .card-body { padding: 12px !important; }
+
+  /* Filter tabs: allow wrapping */
+  .ci-filter-tabs { flex-wrap: wrap; }
+
+  /* Bulk action bar */
+  .ci-bulk-bar .d-flex { flex-wrap: wrap; gap: 8px; }
+}
+
+/* ── SMALL MOBILE (≤480px) ───────────────────────────────── */
+@media (max-width: 479.98px) {
+  #topbar { padding: 0 10px; gap: 6px; }
+  .topbar-breadcrumb { display: none; }
+  .ci-notif-dropdown { min-width: calc(100vw - 20px); max-width: calc(100vw - 20px); }
 }
 
 /* ============================================================
@@ -1195,3 +1249,63 @@ textarea.form-control { padding: 9px 13px; }
 .ci-badge-blue  { background: var(--ci-50);  color: var(--ci-600); }
 .ci-badge-green { background: #dcfce7; color: #16a34a; }
 .ci-badge-amber { background: #fef3c7; color: #d97706; }
+
+/* ============================================================
+   EXTRACTED UTILITY CLASSES  (v1.5 — replaces inline styles)
+   ============================================================ */
+
+/* Typography */
+.u-text-xs     { font-size: .72rem; }
+.u-text-sm     { font-size: .78rem; }
+.u-text-body   { font-size: .82rem; }
+.u-text-md     { font-size: .84rem; }
+.u-text-muted  { color: var(--ci-gray-500); }
+.u-text-dimmed { color: var(--ci-gray-400); }
+.u-text-dark   { color: var(--ci-gray-800); }
+.u-text-mono   { font-family: var(--font-mono); }
+.u-fw-600      { font-weight: 600; }
+.u-fw-700      { font-weight: 700; }
+.u-nowrap      { white-space: nowrap; }
+
+/* Icon helpers */
+.u-icon-xs     { font-size: .65rem; }
+.u-icon-muted  { color: var(--ci-gray-400); }
+.u-icon-blue   { color: var(--ci-500); }
+
+/* Colour helpers */
+.u-c-danger    { color: #ef4444; }
+.u-c-blue      { color: var(--ci-500); }
+.u-c-muted     { color: var(--ci-gray-500); }
+
+/* Link danger (logout) */
+.u-link-danger            { color: #ef4444 !important; }
+.u-link-danger:hover      { color: #dc2626 !important; }
+
+/* Tiny button (notification header, etc.) */
+.u-btn-xs      { height: 24px !important; font-size: .68rem !important; padding: 0 8px !important; }
+
+/* Separator */
+.u-sep         { color: var(--ci-gray-300); }
+
+/* Table cell: name + subtitle in one column */
+.ci-cell-title             { display: flex; flex-direction: column; gap: 1px; }
+.ci-cell-title .ci-link    { font-size: .84rem; }
+.ci-cell-title small       { display: block; font-size: .72rem; color: var(--ci-gray-400); margin-top: 1px; white-space: normal; line-height: 1.4; }
+
+/* Date-group label (notification-center / list pages) */
+.ci-date-label {
+  display: block; font-size: .72rem; font-weight: 700;
+  color: var(--ci-gray-400); text-transform: uppercase; letter-spacing: .5px;
+  padding: 12px 20px 4px;
+}
+
+/* Notif dropdown: padding handled here, not inline */
+.ci-notif-dropdown         { padding: 0; }
+
+/* Notif header icon colour */
+.ci-notif-header-icon      { color: var(--ci-500); margin-right: .4em; }
+
+/* dl in sidebar panels */
+.ci-dl dt   { color: var(--ci-gray-400); font-weight: 500; font-size: .78rem; margin-bottom: 2px; }
+.ci-dl dd   { color: var(--ci-gray-800); font-size: .82rem; margin-bottom: 10px; }
+.ci-dl dd:last-child { margin-bottom: 0; }

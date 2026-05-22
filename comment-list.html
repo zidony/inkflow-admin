@@ -12,7 +12,7 @@
 <body>
 <!-- SIDEBAR -->
 <nav id="sidebar">
-  <a class="sidebar-logo" href="dashboard.html">
+  <a class="sidebar-logo" href="index.html">
     <div class="sidebar-logo-icon"><i class="bi bi-journals"></i></div>
     <div class="sidebar-logo-text">
       <span class="sidebar-logo-title">InkFlow</span>
@@ -22,7 +22,7 @@
   <div class="sidebar-nav-wrap">
     <div class="nav-section-label">主菜单</div>
     <div class="nav-item-wrapper">
-      <a href="dashboard.html" class="nav-link-item " data-tooltip="仪表盘">
+      <a href="index.html" class="nav-link-item " data-tooltip="仪表盘">
         <i class="bi bi-grid-1x2 nav-icon"></i><span class="nav-label">仪表盘</span>
       </a>
     </div>
@@ -73,23 +73,22 @@
 <!-- TOPBAR -->
 <header id="topbar">
   <button id="sidebar-toggle" title="收起/展开菜单"><i class="bi bi-layout-sidebar-inset"></i></button>
-  <div class="topbar-breadcrumb"><a href="dashboard.html" style="color:var(--ci-gray-500);text-decoration:none">InkFlow</a><span class="bc-sep"><i class="bi bi-chevron-right" style="font-size:.65rem"></i></span><a href="#" style="color:var(--ci-gray-500);text-decoration:none">内容管理</a><span class="bc-sep"><i class="bi bi-chevron-right" style="font-size:.65rem"></i></span><span class="bc-current">评论列表</span></div>
+  <div class="topbar-breadcrumb"><a href="index.html" class="bc-root">InkFlow</a><span class="bc-sep"></span><a href="#">内容管理</a><span class="bc-sep"></span><span class="bc-current">评论列表</span></div>
   <div class="topbar-search">
     <i class="bi bi-search search-icon"></i>
     <input type="text" id="list-search" placeholder="快速搜索…">
   </div>
   <div class="topbar-actions">
     <div class="dropdown">
-      <button class="topbar-icon-btn" style="position:relative" title="通知"
+      <button class="topbar-icon-btn" title="通知"
               data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
         <i class="bi bi-bell"></i><span class="ci-notif-badge">4</span>
       </button>
-      <ul class="dropdown-menu dropdown-menu-end ci-notif-dropdown" style="padding:0">
+      <ul class="dropdown-menu dropdown-menu-end ci-notif-dropdown">
         <li>
           <div class="ci-notif-header">
-            <span><i class="bi bi-bell me-2" style="color:var(--ci-500)"></i>通知中心</span>
-            <button class="btn btn-light btn-sm" style="height:24px;font-size:.68rem;padding:0 8px"
-                    onclick="showToast('已全部标记已读','success')">全部已读</button>
+            <span><i class="bi bi-bell ci-notif-header-icon"></i>通知中心</span>
+            <button class="btn btn-light u-btn-xs" onclick="showToast('已全部标记已读','success')">全部已读</button>
           </div>
         </li>
         <li>
@@ -142,7 +141,7 @@
         <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> 个人资料</a></li>
         <li><a class="dropdown-item" href="#"><i class="bi bi-shield-check"></i> 账号安全</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="login.html" style="color:#ef4444"><i class="bi bi-box-arrow-right"></i> 退出登录</a></li>
+        <li><a class="dropdown-item u-link-danger" href="login.html"><i class="bi bi-box-arrow-right"></i> 退出登录</a></li>
       </ul>
     </div>
   </div>
@@ -181,7 +180,7 @@
           <td>
             <div class="d-flex align-items-center gap-2">
               <div class="ci-thumb" style="width:34px;height:34px;border-radius:50%;background:var(--ci-100);font-size:.75rem;font-weight:700;color:var(--ci-600)">张</div>
-              <div><div style="font-size:.83rem;font-weight:600;color:var(--ci-gray-800)">张三</div><div style="font-size:.72rem;color:var(--ci-gray-400)">admin@inkflow.dev</div></div>
+              <div><div style="font-size:.83rem;font-weight:600;color:var(--ci-gray-800)">张三</div><div style="font-size:.72rem;color:var(--ci-gray-400)">zhangsan@example.com</div></div>
             </div>
           </td>
           <td style="font-size:.8rem;color:var(--ci-gray-700);max-width:260px">
@@ -204,7 +203,7 @@
           <td>
             <div class="d-flex align-items-center gap-2">
               <div class="ci-thumb" style="width:34px;height:34px;border-radius:50%;background:var(--ci-100);font-size:.75rem;font-weight:700;color:var(--ci-600)">李</div>
-              <div><div style="font-size:.83rem;font-weight:600;color:var(--ci-gray-800)">李明</div><div style="font-size:.72rem;color:var(--ci-gray-400)">admin@inkflow.dev</div></div>
+              <div><div style="font-size:.83rem;font-weight:600;color:var(--ci-gray-800)">李明</div><div style="font-size:.72rem;color:var(--ci-gray-400)">user@inkflow.dev</div></div>
             </div>
           </td>
           <td style="font-size:.8rem;color:var(--ci-gray-700);max-width:260px">
@@ -227,7 +226,7 @@
           <td>
             <div class="d-flex align-items-center gap-2">
               <div class="ci-thumb" style="width:34px;height:34px;border-radius:50%;background:var(--ci-100);font-size:.75rem;font-weight:700;color:var(--ci-600)">王</div>
-              <div><div style="font-size:.83rem;font-weight:600;color:var(--ci-gray-800)">王红</div><div style="font-size:.72rem;color:var(--ci-gray-400)">admin@inkflow.dev</div></div>
+              <div><div style="font-size:.83rem;font-weight:600;color:var(--ci-gray-800)">王红</div><div style="font-size:.72rem;color:var(--ci-gray-400)">user@inkflow.dev</div></div>
             </div>
           </td>
           <td style="font-size:.8rem;color:var(--ci-gray-700);max-width:260px">
@@ -250,7 +249,7 @@
           <td>
             <div class="d-flex align-items-center gap-2">
               <div class="ci-thumb" style="width:34px;height:34px;border-radius:50%;background:var(--ci-100);font-size:.75rem;font-weight:700;color:var(--ci-600)">陈</div>
-              <div><div style="font-size:.83rem;font-weight:600;color:var(--ci-gray-800)">陈凯</div><div style="font-size:.72rem;color:var(--ci-gray-400)">admin@inkflow.dev</div></div>
+              <div><div style="font-size:.83rem;font-weight:600;color:var(--ci-gray-800)">陈凯</div><div style="font-size:.72rem;color:var(--ci-gray-400)">user@inkflow.dev</div></div>
             </div>
           </td>
           <td style="font-size:.8rem;color:var(--ci-gray-700);max-width:260px">
@@ -273,7 +272,7 @@
           <td>
             <div class="d-flex align-items-center gap-2">
               <div class="ci-thumb" style="width:34px;height:34px;border-radius:50%;background:var(--ci-100);font-size:.75rem;font-weight:700;color:var(--ci-600)">赵</div>
-              <div><div style="font-size:.83rem;font-weight:600;color:var(--ci-gray-800)">赵磊</div><div style="font-size:.72rem;color:var(--ci-gray-400)">admin@inkflow.dev</div></div>
+              <div><div style="font-size:.83rem;font-weight:600;color:var(--ci-gray-800)">赵磊</div><div style="font-size:.72rem;color:var(--ci-gray-400)">user@inkflow.dev</div></div>
             </div>
           </td>
           <td style="font-size:.8rem;color:var(--ci-gray-700);max-width:260px">
@@ -296,7 +295,7 @@
           <td>
             <div class="d-flex align-items-center gap-2">
               <div class="ci-thumb" style="width:34px;height:34px;border-radius:50%;background:var(--ci-100);font-size:.75rem;font-weight:700;color:var(--ci-600)">孙</div>
-              <div><div style="font-size:.83rem;font-weight:600;color:var(--ci-gray-800)">孙燕</div><div style="font-size:.72rem;color:var(--ci-gray-400)">admin@inkflow.dev</div></div>
+              <div><div style="font-size:.83rem;font-weight:600;color:var(--ci-gray-800)">孙燕</div><div style="font-size:.72rem;color:var(--ci-gray-400)">user@inkflow.dev</div></div>
             </div>
           </td>
           <td style="font-size:.8rem;color:var(--ci-gray-700);max-width:260px">
@@ -309,17 +308,7 @@
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"><i class="bi bi-chat-quote"></i></a>
-              <button class="btn btn-light btn-icon" title="通过审核" onclick="showToast('已审核通过','success')"><i class="bi bi-check-circle" style="color:var(--ci-success-500)"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="标记垃圾" onclick="showToast('已标记为垃圾','warning')"><i class="bi bi-ban"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="删除" onclick="ciConfirmDelete(this)"><i class="bi bi-trash3"></i></button>
-            </div>
-          </td>
-        </tr></tbody>
-    </table>
-    </div>
-  </div>
-  <div class="card-footer d-flex align-items-center justify-content-between">
-  <span style="font-si
+              <button cl
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/admin.js"></script>
 </body>
