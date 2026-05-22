@@ -6,8 +6,7 @@
   <title>仪表盘 — InkFlow</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-  <link rel="stylesheet" href="assets/css/admin.css">
+  <link rel="stylesheet" href="assets/css/inkflow-admin.css">
 </head>
 <body>
 <!-- SIDEBAR -->
@@ -35,9 +34,9 @@
     </div>
     <div class="submenu-wrap" id="sub-content">
       <div class="submenu">
-        <div class="nav-item-wrapper"><a href="post-list.html" class="nav-link-item "><i class="bi bi-file-text nav-icon"></i><span class="nav-label">文章列表</span></a></div>
-        <div class="nav-item-wrapper"><a href="comment-list.html" class="nav-link-item "><i class="bi bi-chat-left-dots nav-icon"></i><span class="nav-label">评论列表</span></a></div>
-        <div class="nav-item-wrapper"><a href="category-list.html" class="nav-link-item "><i class="bi bi-folder2 nav-icon"></i><span class="nav-label">栏目列表</span></a></div>
+        <div class="nav-item-wrapper"><a href="post-list.html" class="nav-link-item "><i class="bi bi-file-text nav-icon"></i><span class="nav-label">文章管理</span></a></div>
+        <div class="nav-item-wrapper"><a href="comment-list.html" class="nav-link-item "><i class="bi bi-chat-left-dots nav-icon"></i><span class="nav-label">评论管理</span></a></div>
+        <div class="nav-item-wrapper"><a href="category-list.html" class="nav-link-item "><i class="bi bi-folder2 nav-icon"></i><span class="nav-label">栏目管理</span></a></div>
         <div class="nav-item-wrapper"><a href="tag-list.html" class="nav-link-item "><i class="bi bi-tags nav-icon"></i><span class="nav-label">标签管理</span></a></div>
       </div>
     </div>
@@ -73,7 +72,7 @@
 <!-- TOPBAR -->
 <header id="topbar">
   <button id="sidebar-toggle" title="收起/展开菜单"><i class="bi bi-layout-sidebar-inset"></i></button>
-  <div class="topbar-breadcrumb"><a href="index.html" class="bc-root">InkFlow</a><span class="bc-sep"></span><span class="bc-current">仪表盘</span></div>
+  <nav aria-label="breadcrumb" class="topbar-breadcrumb mb-0"><ol class="breadcrumb mb-0"><li class="breadcrumb-item"><a href="index.html">首页</a></li><li class="breadcrumb-item active" aria-current="page">仪表盘</li></ol></nav>
   <div class="topbar-search">
     <i class="bi bi-search search-icon"></i>
     <input type="text" id="list-search" placeholder="快速搜索…">
@@ -88,7 +87,7 @@
         <li>
           <div class="ci-notif-header">
             <span><i class="bi bi-bell ci-notif-header-icon"></i>通知中心</span>
-            <button class="btn btn-light u-btn-xs" onclick="markAllRead()">全部已读</button>
+            <button class="btn btn-light u-btn-xs" data-action="read-all">全部已读</button>
           </div>
         </li>
         <li>
@@ -142,7 +141,7 @@
           </ul>
         </li>
         <li>
-          <div class="ci-notif-footer" onclick="window.location='notification-center.html'">
+          <div class="ci-notif-footer" data-action="navigate" data-href="notification-center.html">
             查看全部通知 <i class="bi bi-arrow-right ms-1"></i>
           </div>
         </li>
@@ -164,7 +163,7 @@
         <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> 个人资料</a></li>
         <li><a class="dropdown-item" href="#"><i class="bi bi-shield-check"></i> 账号安全</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item u-link-danger" href="login.html"><i class="bi bi-box-arrow-right"></i> 退出登录</a></li>
+        <li><a class="dropdown-item link-danger" href="login.html"><i class="bi bi-box-arrow-right"></i> 退出登录</a></li>
       </ul>
     </div>
   </div>
@@ -340,28 +339,28 @@
           <tbody>
             <tr><td><div class="ci-item-cell"><div class="ci-thumb" style="background:var(--ci-100)"><i class="bi bi-file-code" style="color:var(--ci-400)"></i></div><div><a href="post-edit.html" class="ci-link" style="font-size:.83rem">深入理解 Vue 3 Composition API 与响应式原理</a><small>技术教程</small></div></div></td><td><span class="ci-cat-pill" style="background:var(--ci-50);color:var(--ci-600)">前端技术</span></td><td style="font-size:.8rem;font-weight:600">3,821</td><td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-18</td><td><span class="ci-badge ci-badge-published"><span class="ci-badge-dot"></span>已发布</span></td><td><div class="d-flex justify-content-center gap-1">
   <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
-  
-  <button class="btn btn-danger-soft btn-icon" title="删除" onclick="ciConfirmDelete(this)"><i class="bi bi-trash3"></i></button>
+
+  <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
 </div></td></tr>
             <tr><td><div class="ci-item-cell"><div class="ci-thumb" style="background:#fef3c7"><i class="bi bi-palette" style="color:var(--ci-warning-500)"></i></div><div><a href="post-edit.html" class="ci-link" style="font-size:.83rem">2025年产品设计趋势全解析</a><small>设计专题</small></div></div></td><td><span class="ci-cat-pill" style="background:#fef3c7;color:#b45309">设计灵感</span></td><td style="font-size:.8rem;font-weight:600">2,156</td><td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-16</td><td><span class="ci-badge ci-badge-published"><span class="ci-badge-dot"></span>已发布</span></td><td><div class="d-flex justify-content-center gap-1">
   <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
-  
-  <button class="btn btn-danger-soft btn-icon" title="删除" onclick="ciConfirmDelete(this)"><i class="bi bi-trash3"></i></button>
+
+  <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
 </div></td></tr>
             <tr><td><div class="ci-item-cell"><div class="ci-thumb" style="background:#dcfce7"><i class="bi bi-cloud" style="color:var(--ci-success-500)"></i></div><div><a href="post-edit.html" class="ci-link" style="font-size:.83rem">Docker 容器化部署最佳实践</a><small>运维分享</small></div></div></td><td><span class="ci-cat-pill" style="background:#dcfce7;color:#15803d">运维部署</span></td><td style="font-size:.8rem;font-weight:600">1,877</td><td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-14</td><td><span class="ci-badge ci-badge-pending"><span class="ci-badge-dot"></span>待审核</span></td><td><div class="d-flex justify-content-center gap-1">
   <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
-  
-  <button class="btn btn-danger-soft btn-icon" title="删除" onclick="ciConfirmDelete(this)"><i class="bi bi-trash3"></i></button>
+
+  <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
 </div></td></tr>
             <tr><td><div class="ci-item-cell"><div class="ci-thumb" style="background:#ede9fe"><i class="bi bi-cpu" style="color:#7c3aed"></i></div><div><a href="post-edit.html" class="ci-link" style="font-size:.83rem">大语言模型 Fine-tuning 入门指南</a><small>AI 研究</small></div></div></td><td><span class="ci-cat-pill" style="background:#ede9fe;color:#7c3aed">AI 技术</span></td><td style="font-size:.8rem;color:var(--ci-gray-400)">—</td><td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-12</td><td><span class="ci-badge ci-badge-draft"><span class="ci-badge-dot"></span>草稿</span></td><td><div class="d-flex justify-content-center gap-1">
   <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
-  
-  <button class="btn btn-danger-soft btn-icon" title="删除" onclick="ciConfirmDelete(this)"><i class="bi bi-trash3"></i></button>
+
+  <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
 </div></td></tr>
             <tr><td><div class="ci-item-cell"><div class="ci-thumb" style="background:#e0f9ff"><i class="bi bi-terminal" style="color:var(--ci-accent-500)"></i></div><div><a href="post-edit.html" class="ci-link" style="font-size:.83rem">TypeScript 高级类型体操技巧</a><small>前端进阶</small></div></div></td><td><span class="ci-cat-pill" style="background:var(--ci-50);color:var(--ci-600)">前端技术</span></td><td style="font-size:.8rem;font-weight:600">4,603</td><td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-10</td><td><span class="ci-badge ci-badge-published"><span class="ci-badge-dot"></span>已发布</span></td><td><div class="d-flex justify-content-center gap-1">
   <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
-  
-  <button class="btn btn-danger-soft btn-icon" title="删除" onclick="ciConfirmDelete(this)"><i class="bi bi-trash3"></i></button>
+
+  <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
 </div></td></tr>
           </tbody>
         </table>
@@ -383,27 +382,27 @@
           <li class="ci-activity-item">
             <div class="ci-activity-icon" style="background:var(--ci-100)"><span style="font-size:.7rem;font-weight:700;color:var(--ci-600)">张S</span></div>
             <div class="ci-activity-body"><div class="ci-activity-text"><strong>张三</strong> 评论了 <strong>《Vue 3 Composition API》</strong>：讲得非常清楚，一看就懂！</div><div class="ci-activity-time"><i class="bi bi-clock me-1"></i>10 分钟前</div></div>
-            <div class="d-flex gap-1 ms-2 align-items-center"><button class="btn btn-light btn-icon" style="width:28px;height:28px" onclick="showToast('已审核通过','success')"><i class="bi bi-check" style="color:var(--ci-success-500)"></i></button><button class="btn btn-danger-soft btn-icon" style="width:28px;height:28px" onclick="ciConfirmDelete(this)"><i class="bi bi-trash3"></i></button></div>
+            <div class="d-flex gap-1 ms-2 align-items-center"><button class="btn btn-light btn-icon" style="width:28px;height:28px" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check" style="color:var(--ci-success-500)"></i></button><button class="btn btn-danger-soft btn-icon" style="width:28px;height:28px" data-action="delete"><i class="bi bi-trash3"></i></button></div>
           </li>
           <li class="ci-activity-item">
             <div class="ci-activity-icon" style="background:#dcfce7"><span style="font-size:.7rem;font-weight:700;color:var(--ci-success-500)">李M</span></div>
             <div class="ci-activity-body"><div class="ci-activity-text"><strong>李明</strong> 回复了 <strong>《Docker 最佳实践》</strong>：能否补充 K8s 部分？</div><div class="ci-activity-time"><i class="bi bi-clock me-1"></i>32 分钟前</div></div>
-            <div class="d-flex gap-1 ms-2 align-items-center"><button class="btn btn-light btn-icon" style="width:28px;height:28px" onclick="showToast('已审核通过','success')"><i class="bi bi-check" style="color:var(--ci-success-500)"></i></button><button class="btn btn-danger-soft btn-icon" style="width:28px;height:28px" onclick="ciConfirmDelete(this)"><i class="bi bi-trash3"></i></button></div>
+            <div class="d-flex gap-1 ms-2 align-items-center"><button class="btn btn-light btn-icon" style="width:28px;height:28px" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check" style="color:var(--ci-success-500)"></i></button><button class="btn btn-danger-soft btn-icon" style="width:28px;height:28px" data-action="delete"><i class="bi bi-trash3"></i></button></div>
           </li>
           <li class="ci-activity-item">
             <div class="ci-activity-icon" style="background:#fef3c7"><span style="font-size:.7rem;font-weight:700;color:var(--ci-warning-500)">王H</span></div>
             <div class="ci-activity-body"><div class="ci-activity-text"><strong>王红</strong> 评论了 <strong>《LLM Fine-tuning 指南》</strong>：数据集处理部分有误</div><div class="ci-activity-time"><i class="bi bi-clock me-1"></i>1 小时前</div></div>
-            <div class="d-flex gap-1 ms-2 align-items-center"><button class="btn btn-light btn-icon" style="width:28px;height:28px" onclick="showToast('已审核通过','success')"><i class="bi bi-check" style="color:var(--ci-success-500)"></i></button><button class="btn btn-danger-soft btn-icon" style="width:28px;height:28px" onclick="ciConfirmDelete(this)"><i class="bi bi-trash3"></i></button></div>
+            <div class="d-flex gap-1 ms-2 align-items-center"><button class="btn btn-light btn-icon" style="width:28px;height:28px" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check" style="color:var(--ci-success-500)"></i></button><button class="btn btn-danger-soft btn-icon" style="width:28px;height:28px" data-action="delete"><i class="bi bi-trash3"></i></button></div>
           </li>
           <li class="ci-activity-item">
             <div class="ci-activity-icon" style="background:#ede9fe"><span style="font-size:.7rem;font-weight:700;color:#7c3aed">陈K</span></div>
             <div class="ci-activity-body"><div class="ci-activity-text"><strong>陈凯</strong> 评论了 <strong>《TypeScript 高级类型》</strong>：太硬核了！已收藏</div><div class="ci-activity-time"><i class="bi bi-clock me-1"></i>2 小时前</div></div>
-            <div class="d-flex gap-1 ms-2 align-items-center"><button class="btn btn-light btn-icon" style="width:28px;height:28px" onclick="showToast('已审核通过','success')"><i class="bi bi-check" style="color:var(--ci-success-500)"></i></button><button class="btn btn-danger-soft btn-icon" style="width:28px;height:28px" onclick="ciConfirmDelete(this)"><i class="bi bi-trash3"></i></button></div>
+            <div class="d-flex gap-1 ms-2 align-items-center"><button class="btn btn-light btn-icon" style="width:28px;height:28px" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check" style="color:var(--ci-success-500)"></i></button><button class="btn btn-danger-soft btn-icon" style="width:28px;height:28px" data-action="delete"><i class="bi bi-trash3"></i></button></div>
           </li>
           <li class="ci-activity-item">
             <div class="ci-activity-icon" style="background:#e0f9ff"><span style="font-size:.7rem;font-weight:700;color:var(--ci-accent-500)">赵L</span></div>
             <div class="ci-activity-body"><div class="ci-activity-text"><strong>赵磊</strong> 评论了 <strong>《ECharts 数据大屏》</strong>：感谢分享，代码可以直接用！</div><div class="ci-activity-time"><i class="bi bi-clock me-1"></i>3 小时前</div></div>
-            <div class="d-flex gap-1 ms-2 align-items-center"><button class="btn btn-light btn-icon" style="width:28px;height:28px" onclick="showToast('已审核通过','success')"><i class="bi bi-check" style="color:var(--ci-success-500)"></i></button><button class="btn btn-danger-soft btn-icon" style="width:28px;height:28px" onclick="ciConfirmDelete(this)"><i class="bi bi-trash3"></i></button></div>
+            <div class="d-flex gap-1 ms-2 align-items-center"><button class="btn btn-light btn-icon" style="width:28px;height:28px" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check" style="color:var(--ci-success-500)"></i></button><button class="btn btn-danger-soft btn-icon" style="width:28px;height:28px" data-action="delete"><i class="bi bi-trash3"></i></button></div>
           </li>
         </ul>
       </div>
@@ -417,6 +416,7 @@
 </main>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/admin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="assets/js/inkflow-admin.js"></script>
 </body>
 </html>

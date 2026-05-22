@@ -6,7 +6,7 @@
   <title>通知中心 — InkFlow Admin</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="assets/css/admin.css">
+  <link rel="stylesheet" href="assets/css/inkflow-admin.css">
 </head>
 <body>
 
@@ -35,9 +35,9 @@
     </div>
     <div class="submenu-wrap" id="sub-content">
       <div class="submenu">
-        <div class="nav-item-wrapper"><a href="post-list.html" class="nav-link-item"><i class="bi bi-file-text nav-icon"></i><span class="nav-label">文章列表</span></a></div>
-        <div class="nav-item-wrapper"><a href="comment-list.html" class="nav-link-item"><i class="bi bi-chat-left-dots nav-icon"></i><span class="nav-label">评论列表</span></a></div>
-        <div class="nav-item-wrapper"><a href="category-list.html" class="nav-link-item"><i class="bi bi-folder2 nav-icon"></i><span class="nav-label">栏目列表</span></a></div>
+        <div class="nav-item-wrapper"><a href="post-list.html" class="nav-link-item"><i class="bi bi-file-text nav-icon"></i><span class="nav-label">文章管理</span></a></div>
+        <div class="nav-item-wrapper"><a href="comment-list.html" class="nav-link-item"><i class="bi bi-chat-left-dots nav-icon"></i><span class="nav-label">评论管理</span></a></div>
+        <div class="nav-item-wrapper"><a href="category-list.html" class="nav-link-item"><i class="bi bi-folder2 nav-icon"></i><span class="nav-label">栏目管理</span></a></div>
         <div class="nav-item-wrapper"><a href="tag-list.html" class="nav-link-item"><i class="bi bi-tags nav-icon"></i><span class="nav-label">标签管理</span></a></div>
       </div>
     </div>
@@ -84,11 +84,11 @@
   <!-- TOPBAR -->
   <header id="topbar">
     <button id="sidebar-toggle" title="收起/展开菜单"><i class="bi bi-layout-sidebar-inset"></i></button>
-    <div class="topbar-breadcrumb">
-      <a href="index.html" class="bc-root">InkFlow</a>
-      <span class="bc-sep"></span>
-      <span class="bc-current">通知中心</span>
-    </div>
+    <nav aria-label="breadcrumb" class="topbar-breadcrumb mb-0"><ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a href="index.html">首页</a></li>
+
+      <li class="breadcrumb-item active" aria-current="page">通知中心</li>
+    </ol></nav>
     <div class="topbar-search">
       <i class="bi bi-search search-icon"></i>
       <input type="text" id="notif-search" placeholder="搜索通知…" oninput="filterNotifs(this.value)">
@@ -105,7 +105,7 @@
             <div class="ci-notif-header">
               <span><i class="bi bi-bell ci-notif-header-icon"></i>通知中心</span>
               <button class="btn btn-light btn-sm" style="height:24px;font-size:.68rem;padding:0 8px"
-                      onclick="markAllRead()">全部已读</button>
+                      data-action="read-all">全部已读</button>
             </div>
           </li>
           <li>
@@ -136,7 +136,7 @@
             </ul>
           </li>
           <li>
-            <div class="ci-notif-footer" onclick="window.location='notification-center.html'">
+            <div class="ci-notif-footer" data-action="navigate" data-href="notification-center.html">
               查看全部通知 <i class="bi bi-arrow-right ms-1"></i>
             </div>
           </li>
@@ -157,7 +157,7 @@
           <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> 个人资料</a></li>
           <li><a class="dropdown-item" href="#"><i class="bi bi-shield-check"></i> 账号安全</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item u-link-danger" href="login.html"><i class="bi bi-box-arrow-right"></i> 退出登录</a></li>
+          <li><a class="dropdown-item link-danger" href="login.html"><i class="bi bi-box-arrow-right"></i> 退出登录</a></li>
         </ul>
       </div>
     </div>
@@ -172,10 +172,10 @@
         <span class="page-subtitle">管理所有系统通知、评论提醒和用户动态</span>
       </div>
       <div class="d-flex gap-2">
-        <button class="btn btn-light btn-sm" onclick="markAllRead()">
+        <button class="btn btn-light btn-sm" data-action="read-all">
           <i class="bi bi-check2-all me-1"></i>全部已读
         </button>
-        <button class="btn btn-light btn-sm" onclick="showToast('已清除全部通知','success')">
+        <button class="btn btn-light btn-sm" data-action="toast" data-toast-msg="已清除全部通知" data-toast-type="success">
           <i class="bi bi-trash3 me-1"></i>清除已读
         </button>
       </div>
@@ -191,19 +191,19 @@
           <div class="card-body" style="padding:12px 18px">
             <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
               <div class="ci-filter-tabs" id="notif-filter-tabs" role="tablist">
-                <button class="ci-filter-tab active" data-filter="all" onclick="filterByType('all',this)">
+                <button class="ci-filter-tab active" data-filter="all" data-action="filter-type" data-filter="all">
                   全部 <span style="opacity:.7;font-weight:400" id="cnt-all">(24)</span>
                 </button>
-                <button class="ci-filter-tab" data-filter="unread" onclick="filterByType('unread',this)">
+                <button class="ci-filter-tab" data-filter="unread" data-action="filter-type" data-filter="unread">
                   未读 <span style="opacity:.7;font-weight:400" id="cnt-unread">(4)</span>
                 </button>
-                <button class="ci-filter-tab" data-filter="comment" onclick="filterByType('comment',this)">
+                <button class="ci-filter-tab" data-filter="comment" data-action="filter-type" data-filter="comment">
                   评论 <span style="opacity:.7;font-weight:400">(12)</span>
                 </button>
-                <button class="ci-filter-tab" data-filter="system" onclick="filterByType('system',this)">
+                <button class="ci-filter-tab" data-filter="system" data-action="filter-type" data-filter="system">
                   系统 <span style="opacity:.7;font-weight:400">(6)</span>
                 </button>
-                <button class="ci-filter-tab" data-filter="user" onclick="filterByType('user',this)">
+                <button class="ci-filter-tab" data-filter="user" data-action="filter-type" data-filter="user">
                   用户 <span style="opacity:.7;font-weight:400">(6)</span>
                 </button>
               </div>
@@ -248,9 +248,9 @@
                       </button>
                       <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="comment-list.html"><i class="bi bi-eye me-2"></i>查看评论</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="markOneRead(this)"><i class="bi bi-check me-2"></i>标记已读</a></li>
+                        <li><a class="dropdown-item" href="#" data-action="read-one"><i class="bi bi-check me-2"></i>标记已读</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="#" onclick="deleteNotif(this)"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
                       </ul>
                     </div>
                   </div>
@@ -281,9 +281,9 @@
                       </button>
                       <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="user-list.html"><i class="bi bi-person me-2"></i>查看用户</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="markOneRead(this)"><i class="bi bi-check me-2"></i>标记已读</a></li>
+                        <li><a class="dropdown-item" href="#" data-action="read-one"><i class="bi bi-check me-2"></i>标记已读</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="#" onclick="deleteNotif(this)"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
                       </ul>
                     </div>
                   </div>
@@ -314,9 +314,9 @@
                       </button>
                       <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="settings.html"><i class="bi bi-gear me-2"></i>前往设置</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="markOneRead(this)"><i class="bi bi-check me-2"></i>标记已读</a></li>
+                        <li><a class="dropdown-item" href="#" data-action="read-one"><i class="bi bi-check me-2"></i>标记已读</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="#" onclick="deleteNotif(this)"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
                       </ul>
                     </div>
                   </div>
@@ -349,9 +349,9 @@
                       </button>
                       <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="comment-list.html"><i class="bi bi-eye me-2"></i>查看评论</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="markOneRead(this)"><i class="bi bi-check me-2"></i>标记已读</a></li>
+                        <li><a class="dropdown-item" href="#" data-action="read-one"><i class="bi bi-check me-2"></i>标记已读</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="#" onclick="deleteNotif(this)"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
                       </ul>
                     </div>
                   </div>
@@ -379,7 +379,7 @@
                       <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
                       <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="post-list.html"><i class="bi bi-file-text me-2"></i>查看文章</a></li>
-                        <li><a class="dropdown-item text-danger" href="#" onclick="deleteNotif(this)"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
                       </ul>
                     </div>
                   </div>
@@ -401,7 +401,7 @@
                       <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
                       <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="settings.html"><i class="bi bi-gear me-2"></i>前往设置</a></li>
-                        <li><a class="dropdown-item text-danger" href="#" onclick="deleteNotif(this)"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
                       </ul>
                     </div>
                   </div>
@@ -427,7 +427,7 @@
                       <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
                       <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="comment-list.html"><i class="bi bi-eye me-2"></i>查看评论</a></li>
-                        <li><a class="dropdown-item text-danger" href="#" onclick="deleteNotif(this)"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
                       </ul>
                     </div>
                   </div>
@@ -452,7 +452,7 @@
                       <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
                       <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="user-list.html"><i class="bi bi-person me-2"></i>查看用户</a></li>
-                        <li><a class="dropdown-item text-danger" href="#" onclick="deleteNotif(this)"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
                       </ul>
                     </div>
                   </div>
@@ -472,7 +472,7 @@
                       <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
                       <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="post-list.html"><i class="bi bi-file-text me-2"></i>查看文章</a></li>
-                        <li><a class="dropdown-item text-danger" href="#" onclick="deleteNotif(this)"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
                       </ul>
                     </div>
                   </div>
@@ -548,7 +548,7 @@
                 <span style="font-size:.82rem;font-weight:700;color:var(--ci-gray-900)">24</span>
               </div>
             </div>
-            <button class="btn btn-light w-100 mt-3" style="font-size:.78rem" onclick="markAllRead()">
+            <button class="btn btn-light w-100 mt-3" style="font-size:.78rem" data-action="read-all">
               <i class="bi bi-check2-all me-1"></i>全部标记已读
             </button>
           </div>
@@ -605,6 +605,6 @@
   </main>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/admin.js"></script>
+<script src="assets/js/inkflow-admin.js"></script>
 </body>
 </html>

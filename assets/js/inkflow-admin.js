@@ -1,5 +1,5 @@
 /* ============================================================
-   InkFlow Admin — Shared JavaScript  v1.5
+   InkFlow Admin — Shared JavaScript  v1.6
    Vanilla JS, no external runtime dependencies
    ============================================================ */
 (function () {
@@ -314,7 +314,22 @@
       fontFamily:'"Plus Jakarta Sans",system-ui,sans-serif',fontWeight:'500',color:'#334155',
       maxWidth:'320px',borderLeft:'3px solid '+colors[type],animation:'ci-fade-up .3s ease both'
     });
-    toast.innerHTML = '<i class="bi '+icons[type]+'" style="color:'+colors[type]+';font-size:1rem;flex-shrink:0"></i><span style="flex:1">'+message+'</span><button onclick="this.parentNode.remove()" style="border:none;background:transparent;cursor:pointer;color:#94a3b8;font-size:1.1rem;padding:0;line-height:1;margin-left:4px">&times;</button>';
+    var iconEl = document.createElement("i");
+    iconEl.className = "bi " + icons[type];
+    Object.assign(iconEl.style, { color: colors[type], fontSize: "1rem", flexShrink: "0" });
+
+    var msgEl = document.createElement("span");
+    msgEl.style.flex = "1";
+    msgEl.textContent = message; // SAFE DOM operation
+
+    var closeBtn = document.createElement("button");
+    closeBtn.innerHTML = "&times;"; // HTML entity, safe
+    Object.assign(closeBtn.style, { border: "none", background: "transparent", cursor: "pointer", color: "#94a3b8", fontSize: "1.1rem", padding: "0", lineHeight: "1", marginLeft: "4px" });
+    closeBtn.addEventListener("click", function() { toast.remove(); });
+
+    toast.appendChild(iconEl);
+    toast.appendChild(msgEl);
+    toast.appendChild(closeBtn);
     document.body.appendChild(toast);
     setTimeout(function () { toast.style.animation = 'ci-fade-up .3s ease reverse forwards'; setTimeout(function () { toast && toast.remove(); }, 300); }, 3500);
   };
@@ -322,6 +337,81 @@
   /* ── STAGGER ANIMATIONS ── */
   document.querySelectorAll('.ci-anim').forEach(function (el, i) {
     if (!el.style.getPropertyValue('--ci-delay')) { el.style.setProperty('--ci-delay', (i * 0.04) + 's'); }
+  });
+
+  /* ── EVENT DELEGATION ── */
+  document.body.addEventListener("click", function (e) {
+    // Confirm Delete
+    var deleteBtn = e.target.closest("[data-action='delete']");
+    if (deleteBtn) {
+      if (!confirm("确定要删除该项目吗？此操作不可撤销。")) return;
+      var row = deleteBtn.closest("tr") || deleteBtn.closest(".ci-item-container");
+      if (row) {
+        row.style.transition = "opacity .3s";
+        row.style.opacity = "0";
+        setTimeout(function () { row.remove(); }, 320);
+      }
+      showToast("已删除", "danger");
+      return;
+    }
+
+    // Toast triggers
+    var toastBtn = e.target.closest("[data-action='toast']");
+    if (toastBtn) {
+      var msg = toastBtn.getAttribute("data-toast-msg") || "操作成功";
+      var type = toastBtn.getAttribute("data-toast-type") || "success";
+      showToast(msg, type);
+    }
+
+    // Notification close / read all
+    var readAllBtn = e.target.closest("[data-action='read-all']");
+    if (readAllBtn) {
+      showToast("已全部标记已读", "success");
+    }
+
+    // Permanent delete
+    var permDelBtn = e.target.closest('[data-action="permanent-delete"]');
+    if (permDelBtn) {
+      if (confirm("确定永久删除吗？此操作不可恢复。")) {
+        showToast("文件已删除", "danger");
+        var href = permDelBtn.getAttribute("data-href");
+        if (href) setTimeout(function() { window.location = href; }, 800);
+      }
+    }
+
+    // Navigate
+    var navBtn = e.target.closest('[data-action="navigate"]');
+    if (navBtn) {
+      var href = navBtn.getAttribute("data-href");
+      if (href) window.location = href;
+    }
+
+    // Trigger click on another element
+    var triggerBtn = e.target.closest('[data-action="trigger"]');
+    if (triggerBtn) {
+      var targetId = triggerBtn.getAttribute("data-target");
+      if (targetId) {
+        var t = document.getElementById(targetId);
+        if (t) t.click();
+      }
+    }
+
+    // Custom dispatchers for page-specific inline functions
+    var readOneBtn = e.target.closest('[data-action="read-one"]');
+    if (readOneBtn && typeof markOneRead === "function") markOneRead(readOneBtn);
+
+    var delNotifBtn = e.target.closest('[data-action="delete-notif"]');
+    if (delNotifBtn && typeof deleteNotif === "function") deleteNotif(delNotifBtn);
+
+    if (e.target.closest('[data-action="toggle-pwd"]') && typeof togglePwd === "function") togglePwd();
+    if (e.target.closest('[data-action="do-login"]') && typeof doLogin === "function") doLogin();
+    if (e.target.closest('[data-action="clear-preview"]') && typeof clearPreview === "function") clearPreview();
+
+    var switchSetBtn = e.target.closest('[data-action="switch-settings"]');
+    if (switchSetBtn && typeof switchSettings === "function") switchSettings(switchSetBtn.getAttribute("data-section"));
+
+    var filterBtn = e.target.closest('[data-action="filter-type"]');
+    if (filterBtn && typeof filterByType === "function") filterByType(filterBtn.getAttribute("data-filter"), filterBtn);
   });
 
 })();

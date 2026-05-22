@@ -6,8 +6,7 @@
   <title>评论列表 — InkFlow</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
-  
-  <link rel="stylesheet" href="assets/css/admin.css">
+  <link rel="stylesheet" href="assets/css/inkflow-admin.css">
 </head>
 <body>
 <!-- SIDEBAR -->
@@ -35,9 +34,9 @@
     </div>
     <div class="submenu-wrap" id="sub-content">
       <div class="submenu">
-        <div class="nav-item-wrapper"><a href="post-list.html" class="nav-link-item "><i class="bi bi-file-text nav-icon"></i><span class="nav-label">文章列表</span></a></div>
-        <div class="nav-item-wrapper"><a href="comment-list.html" class="nav-link-item active"><i class="bi bi-chat-left-dots nav-icon"></i><span class="nav-label">评论列表</span></a></div>
-        <div class="nav-item-wrapper"><a href="category-list.html" class="nav-link-item "><i class="bi bi-folder2 nav-icon"></i><span class="nav-label">栏目列表</span></a></div>
+        <div class="nav-item-wrapper"><a href="post-list.html" class="nav-link-item "><i class="bi bi-file-text nav-icon"></i><span class="nav-label">文章管理</span></a></div>
+        <div class="nav-item-wrapper"><a href="comment-list.html" class="nav-link-item active"><i class="bi bi-chat-left-dots nav-icon"></i><span class="nav-label">评论管理</span></a></div>
+        <div class="nav-item-wrapper"><a href="category-list.html" class="nav-link-item "><i class="bi bi-folder2 nav-icon"></i><span class="nav-label">栏目管理</span></a></div>
         <div class="nav-item-wrapper"><a href="tag-list.html" class="nav-link-item "><i class="bi bi-tags nav-icon"></i><span class="nav-label">标签管理</span></a></div>
       </div>
     </div>
@@ -73,7 +72,7 @@
 <!-- TOPBAR -->
 <header id="topbar">
   <button id="sidebar-toggle" title="收起/展开菜单"><i class="bi bi-layout-sidebar-inset"></i></button>
-  <div class="topbar-breadcrumb"><a href="index.html" class="bc-root">InkFlow</a><span class="bc-sep"></span><a href="#">内容管理</a><span class="bc-sep"></span><span class="bc-current">评论列表</span></div>
+  <nav aria-label="breadcrumb" class="topbar-breadcrumb mb-0"><ol class="breadcrumb mb-0"><li class="breadcrumb-item"><a href="index.html">首页</a></li><li class="breadcrumb-item"><a href="#">内容管理</a></li><li class="breadcrumb-item active" aria-current="page">评论管理</li></ol></nav>
   <div class="topbar-search">
     <i class="bi bi-search search-icon"></i>
     <input type="text" id="list-search" placeholder="快速搜索…">
@@ -88,7 +87,7 @@
         <li>
           <div class="ci-notif-header">
             <span><i class="bi bi-bell ci-notif-header-icon"></i>通知中心</span>
-            <button class="btn btn-light u-btn-xs" onclick="showToast('已全部标记已读','success')">全部已读</button>
+            <button class="btn btn-light u-btn-xs" data-action="toast" data-toast-msg="已全部标记已读" data-toast-type="success">全部已读</button>
           </div>
         </li>
         <li>
@@ -141,7 +140,7 @@
         <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> 个人资料</a></li>
         <li><a class="dropdown-item" href="#"><i class="bi bi-shield-check"></i> 账号安全</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item u-link-danger" href="login.html"><i class="bi bi-box-arrow-right"></i> 退出登录</a></li>
+        <li><a class="dropdown-item link-danger" href="login.html"><i class="bi bi-box-arrow-right"></i> 退出登录</a></li>
       </ul>
     </div>
   </div>
@@ -149,17 +148,17 @@
 <main id="page-content">
 <div class="page-header">
   <div>
-    <h1 class="page-title">评论列表</h1>
+    <h1 class="page-title">评论管理</h1>
     <span class='page-subtitle'>共 8,731 条评论 · 127 待审核</span>
   </div>
-  
+
 </div>
 <div class="ci-bulk-bar" id="bulk-action-bar">
   <i class="bi bi-check2-all" style="color:var(--ci-500)"></i>
   <span>已选 <strong id="bulk-count">0</strong> 项</span>
   <div class="ms-auto d-flex gap-2">
-    <button class="btn btn-light btn-sm" style="font-size:.78rem;height:30px" onclick="showToast('操作成功','success')"><i class="bi bi-check-lg me-1"></i>批量操作</button>
-    <button class="btn btn-danger-soft btn-sm" style="font-size:.78rem;height:30px" onclick="showToast('已删除','danger')"><i class="bi bi-trash3 me-1"></i>批量删除</button>
+    <button class="btn btn-light btn-sm" style="font-size:.78rem;height:30px" data-action="toast" data-toast-msg="操作成功" data-toast-type="success"><i class="bi bi-check-lg me-1"></i>批量操作</button>
+    <button class="btn btn-danger-soft btn-sm" style="font-size:.78rem;height:30px" data-action="toast" data-toast-msg="已删除" data-toast-type="danger"><i class="bi bi-trash3 me-1"></i>批量删除</button>
   </div>
 </div>
 <div class="card ci-card mb-0">
@@ -193,9 +192,9 @@
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"><i class="bi bi-chat-quote"></i></a>
-              <button class="btn btn-light btn-icon" title="通过审核" onclick="showToast('已审核通过','success')"><i class="bi bi-check-circle" style="color:var(--ci-success-500)"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="标记垃圾" onclick="showToast('已标记为垃圾','warning')"><i class="bi bi-ban"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="删除" onclick="ciConfirmDelete(this)"><i class="bi bi-trash3"></i></button>
+              <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check-circle" style="color:var(--ci-success-500)"></i></button>
+              <button class="btn btn-danger-soft btn-icon" title="标记垃圾" data-action="toast" data-toast-msg="已标记为垃圾" data-toast-type="warning"><i class="bi bi-ban"></i></button>
+              <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
             </div>
           </td>
         </tr><tr data-status="approved">
@@ -216,9 +215,9 @@
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"><i class="bi bi-chat-quote"></i></a>
-              <button class="btn btn-light btn-icon" title="通过审核" onclick="showToast('已审核通过','success')"><i class="bi bi-check-circle" style="color:var(--ci-success-500)"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="标记垃圾" onclick="showToast('已标记为垃圾','warning')"><i class="bi bi-ban"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="删除" onclick="ciConfirmDelete(this)"><i class="bi bi-trash3"></i></button>
+              <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check-circle" style="color:var(--ci-success-500)"></i></button>
+              <button class="btn btn-danger-soft btn-icon" title="标记垃圾" data-action="toast" data-toast-msg="已标记为垃圾" data-toast-type="warning"><i class="bi bi-ban"></i></button>
+              <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
             </div>
           </td>
         </tr><tr data-status="pending">
@@ -239,9 +238,9 @@
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"><i class="bi bi-chat-quote"></i></a>
-              <button class="btn btn-light btn-icon" title="通过审核" onclick="showToast('已审核通过','success')"><i class="bi bi-check-circle" style="color:var(--ci-success-500)"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="标记垃圾" onclick="showToast('已标记为垃圾','warning')"><i class="bi bi-ban"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="删除" onclick="ciConfirmDelete(this)"><i class="bi bi-trash3"></i></button>
+              <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check-circle" style="color:var(--ci-success-500)"></i></button>
+              <button class="btn btn-danger-soft btn-icon" title="标记垃圾" data-action="toast" data-toast-msg="已标记为垃圾" data-toast-type="warning"><i class="bi bi-ban"></i></button>
+              <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
             </div>
           </td>
         </tr><tr data-status="approved">
@@ -262,9 +261,9 @@
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"><i class="bi bi-chat-quote"></i></a>
-              <button class="btn btn-light btn-icon" title="通过审核" onclick="showToast('已审核通过','success')"><i class="bi bi-check-circle" style="color:var(--ci-success-500)"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="标记垃圾" onclick="showToast('已标记为垃圾','warning')"><i class="bi bi-ban"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="删除" onclick="ciConfirmDelete(this)"><i class="bi bi-trash3"></i></button>
+              <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check-circle" style="color:var(--ci-success-500)"></i></button>
+              <button class="btn btn-danger-soft btn-icon" title="标记垃圾" data-action="toast" data-toast-msg="已标记为垃圾" data-toast-type="warning"><i class="bi bi-ban"></i></button>
+              <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
             </div>
           </td>
         </tr><tr data-status="approved">
@@ -285,9 +284,9 @@
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"><i class="bi bi-chat-quote"></i></a>
-              <button class="btn btn-light btn-icon" title="通过审核" onclick="showToast('已审核通过','success')"><i class="bi bi-check-circle" style="color:var(--ci-success-500)"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="标记垃圾" onclick="showToast('已标记为垃圾','warning')"><i class="bi bi-ban"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="删除" onclick="ciConfirmDelete(this)"><i class="bi bi-trash3"></i></button>
+              <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check-circle" style="color:var(--ci-success-500)"></i></button>
+              <button class="btn btn-danger-soft btn-icon" title="标记垃圾" data-action="toast" data-toast-msg="已标记为垃圾" data-toast-type="warning"><i class="bi bi-ban"></i></button>
+              <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
             </div>
           </td>
         </tr><tr data-status="spam">
@@ -308,8 +307,29 @@
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"><i class="bi bi-chat-quote"></i></a>
-              <button cl
+              <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer d-flex align-items-center justify-content-between">
+    <span style="font-size:.78rem;color:var(--ci-gray-500)">共 127 条评论 · 显示第 1–10 条</span>
+    <nav>
+      <ul class="pagination pagination-sm mb-0">
+        <li class="page-item disabled"><a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a></li>
+        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+</main>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/admin.js"></script>
+<script src="assets/js/inkflow-admin.js"></script>
 </body>
 </html>

@@ -33,9 +33,9 @@
 inkflow-admin/
 ├── assets/
 │   ├── css/
-│   │   └── admin.css          # 全局样式（v1.5）
+│   │   └── inkflow-admin.css          # 全局样式（v1.6）
 │   └── js/
-│       └── admin.js           # 全局脚本（v1.5）
+│       └── inkflow-admin.js           # 全局脚本（v1.6）
 ├── index.html             # 仪表盘
 ├── post-list.html             # 文章列表
 ├── post-edit.html             # 发布 / 编辑文章
@@ -161,13 +161,21 @@ python3 -m http.server 8080
 
 ---
 
-## ⚙️ 全局 JS API（`admin.js`）
+## ⚙️ 事件委托与 JS API（`inkflow-admin.js`）
 
+v1.6 引入了基于 `data-action` 的底层事件委托引擎，彻底剥离了内联的 `onclick` 事件。
+
+| data-action 属性 | 配合属性 | 说明 |
+|------|------|------|
+| `toast` | `data-toast-msg`, `data-toast-type` | 显示安全弹窗，从根源消除 XSS 攻击 |
+| `delete` | 无 | 自动拦截并处理表格/列表行的带弹窗删除交互 |
+| `navigate` | `data-href` | 实现安全的无感页面跳转 |
+| `permanent-delete` | `data-href` | 二次确认永久删除，完成后自动跳转页面 |
+
+**保留的全局可用方法**：
 | 函数 | 说明 |
 |------|------|
-| `showToast(message, type)` | 显示右下角 Toast，`type` 可为 `success / info / warning / danger` |
-| `ciConfirmDelete(btn)` | 确认删除当前行，带确认弹窗 |
-| `switchSettings(section)` | 系统设置页分区切换 |
+| `showToast(message, type)` | 在自定义脚本中直接调用以显示 Toast 弹窗（类型支持：success/info/warning/danger） |
 
 侧边栏折叠状态持久化 key：`inkflow_sidebar_collapsed`
 
@@ -183,6 +191,7 @@ python3 -m http.server 8080
 | v1.3 | Dashboard 等高修复、filter-tabs 白底卡片、page-header 按钮统一、全站 CF 邮箱修复 |
 | v1.4 | 更名 CiCMS → **InkFlow**、Bootstrap 5.3.3 → **5.3.8**、资源移至 `assets/`、编辑器防溢出 CSS、通知中心独立页面、README |
 | v1.5 | 结构重构、移动端适配优化、样式清理 |
+| v1.6 | 底层重构：引入纯数据驱动的事件委托引擎，彻底移除内联 onClick 事件；重写 showToast 消除 XSS 安全隐患；兼容 BS5 标准面包屑结构。 |
 
 ---
 

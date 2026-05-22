@@ -6,7 +6,7 @@
   <title>编辑文章 — InkFlow</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="assets/css/admin.css">
+  <link rel="stylesheet" href="assets/css/inkflow-admin.css">
   <style>
     #page-content { padding-top: 0; }
   </style>
@@ -52,7 +52,7 @@
         </div>
         <div class="nav-item-wrapper">
           <a href="category-list.html" class="nav-link-item">
-            <i class="bi bi-folder2 nav-icon"></i><span class="nav-label">栏目列表</span>
+            <i class="bi bi-folder2 nav-icon"></i><span class="nav-label">栏目管理</span>
           </a>
         </div>
         <div class="nav-item-wrapper">
@@ -117,13 +117,13 @@
     <button id="sidebar-toggle" title="收起/展开菜单">
       <i class="bi bi-layout-sidebar-inset"></i>
     </button>
-    <div class="topbar-breadcrumb">
-      <a href="index.html" class="bc-root">InkFlow</a>
-      <span class="bc-sep"></span>
-      <a href="post-list.html">文章列表</a>
-      <span class="bc-sep"></span>
-      <span class="bc-current">编辑文章</span>
-    </div>
+    <nav aria-label="breadcrumb" class="topbar-breadcrumb mb-0"><ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a href="index.html">首页</a></li>
+
+      <li class="breadcrumb-item"><a href="post-list.html">文章列表</a></li>
+
+      <li class="breadcrumb-item active" aria-current="page">编辑文章</li>
+    </ol></nav>
     <div class="topbar-search">
       <i class="bi bi-search search-icon"></i>
       <input type="text" placeholder="快速搜索…">
@@ -153,7 +153,7 @@
           <li><a class="dropdown-item" href="#"><i class="bi bi-shield-check"></i> 账号安全</a></li>
           <li><hr class="dropdown-divider"></li>
           <li>
-            <a class="dropdown-item u-link-danger" href="login.html">
+            <a class="dropdown-item link-danger" href="login.html">
               <i class="bi bi-box-arrow-right"></i> 退出登录
             </a>
           </li>
@@ -216,13 +216,13 @@
                   https://blog.inkflow.dev/post/
                   <span id="slug-preview"
                         style="border-bottom:1px dashed var(--ci-300);cursor:pointer"
-                        onclick="showToast('请在下方修改 Slug','info')">
+                        data-action="toast" data-toast-msg="请在下方修改 Slug" data-toast-type="info">
                     vue3-composition-api
                   </span>
                 </span>
                 <button class="btn btn-light btn-sm ms-2"
                         style="height:22px;font-size:.68rem;padding:0 8px"
-                        onclick="showToast('Slug 已可编辑','info')">
+                        data-action="toast" data-toast-msg="Slug 已可编辑" data-toast-type="info">
                   修改
                 </button>
               </div>
@@ -240,12 +240,12 @@
             <div class="ms-auto d-flex gap-2">
               <button class="btn btn-light btn-sm"
                       style="font-size:.72rem;height:26px;padding:0 8px"
-                      onclick="showToast('已切换到源码模式','info')">
+                      data-action="toast" data-toast-msg="已切换到源码模式" data-toast-type="info">
                 <i class="bi bi-code-slash me-1"></i>源码
               </button>
               <button class="btn btn-light btn-sm"
                       style="font-size:.72rem;height:26px;padding:0 8px"
-                      onclick="showToast('已切换到预览模式','info')">
+                      data-action="toast" data-toast-msg="已切换到预览模式" data-toast-type="info">
                 <i class="bi bi-eye me-1"></i>预览
               </button>
             </div>
@@ -285,7 +285,7 @@
               <div class="ci-toolbar-group">
                 <button class="ci-toolbar-btn" title="插入链接"><i class="bi bi-link-45deg"></i></button>
                 <button class="ci-toolbar-btn" title="插入图片"
-                        onclick="showToast('请从媒体库选择图片','info')">
+                        data-action="toast" data-toast-msg="请从媒体库选择图片" data-toast-type="info">
                   <i class="bi bi-image"></i>
                 </button>
                 <button class="ci-toolbar-btn" title="插入代码块"><i class="bi bi-code-slash"></i></button>
@@ -298,7 +298,7 @@
               </div>
               <div class="ci-toolbar-group">
                 <button class="ci-toolbar-btn" title="全屏"
-                        onclick="showToast('全屏模式已开启','info')">
+                        data-action="toast" data-toast-msg="全屏模式已开启" data-toast-type="info">
                   <i class="bi bi-fullscreen"></i>
                 </button>
               </div>
@@ -437,11 +437,11 @@
             <input type="file" id="cover-file-input" accept="image/*" style="display:none">
             <div class="d-flex gap-2 mt-2">
               <button class="btn btn-light btn-sm flex-fill"
-                      onclick="document.getElementById('cover-file-input').click()">
+                      data-action="trigger" data-target="cover-file-input">
                 <i class="bi bi-upload me-1"></i>上传图片
               </button>
               <button class="btn btn-light btn-sm flex-fill"
-                      onclick="showToast('已从媒体库选择','info')">
+                      data-action="toast" data-toast-msg="已从媒体库选择" data-toast-type="info">
                 <i class="bi bi-collection me-1"></i>媒体库
               </button>
             </div>
@@ -466,7 +466,7 @@
             </div>
             <button class="btn btn-light btn-sm w-100 mt-2"
                     style="font-size:.75rem;height:28px"
-                    onclick="showToast('请在栏目管理中新建分类','info')">
+                    data-action="toast" data-toast-msg="请在栏目管理中新建分类" data-toast-type="info">
               <i class="bi bi-plus me-1"></i>新建栏目
             </button>
           </div>
@@ -503,7 +503,7 @@
               <span class="ci-form-hint mb-0">建议 50–150 字</span>
               <button class="btn btn-light btn-sm"
                       style="height:24px;font-size:.68rem;padding:0 8px"
-                      onclick="showToast('已自动生成摘要','info')">
+                      data-action="toast" data-toast-msg="已自动生成摘要" data-toast-type="info">
                 <i class="bi bi-magic me-1"></i>自动生成
               </button>
             </div>
@@ -549,6 +549,6 @@
   </main>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/admin.js"></script>
+<script src="assets/js/inkflow-admin.js"></script>
 </body>
 </html>

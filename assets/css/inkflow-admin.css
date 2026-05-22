@@ -1,6 +1,6 @@
 /* ============================================================
-   InkFlow Admin — Shared Stylesheet  v1.5
-   Stack : Bootstrap 5.3.3 + Bootstrap Icons 1.13.1 + Custom
+   InkFlow Admin — Shared Stylesheet  v1.6
+   Stack : Bootstrap 5.3.8 + Bootstrap Icons 1.13.1 + Custom
    Theme : Deep Teal-Blue  (#0d6ecc primary)
 
    DESIGN RULE:
@@ -257,6 +257,17 @@ body.sidebar-collapsed #main-wrapper { margin-left: var(--sidebar-collapsed-widt
 .topbar-breadcrumb a:hover { color: var(--ci-600); }
 .topbar-breadcrumb .bc-sep { color: var(--ci-gray-300); font-size: .65rem; flex-shrink: 0; }
 .topbar-breadcrumb .bc-sep::before { content: '\F285'; font-family: 'bootstrap-icons'; }
+
+/* Support for standard BS5 breadcrumbs */
+.topbar-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  content: '\F285';
+  font-family: 'bootstrap-icons';
+  font-size: .65rem;
+  color: var(--ci-gray-300);
+  /* vertical-align: -3px; */
+  position: relative;
+  top: 3px;
+}
 .topbar-breadcrumb .bc-current { color: var(--ci-gray-800); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 .topbar-search { position: relative; width: 240px; }
@@ -526,7 +537,6 @@ body.sidebar-collapsed #main-wrapper { margin-left: var(--sidebar-collapsed-widt
   border-radius: 50%; box-shadow: 0 0 0 9999px rgba(0,0,0,.4);
   pointer-events: none;
 }
-
 
 /* ============================================================
    CI-TABLE
@@ -1259,13 +1269,7 @@ textarea.form-control { padding: 9px 13px; }
 .u-text-sm     { font-size: .78rem; }
 .u-text-body   { font-size: .82rem; }
 .u-text-md     { font-size: .84rem; }
-.u-text-muted  { color: var(--ci-gray-500); }
-.u-text-dimmed { color: var(--ci-gray-400); }
-.u-text-dark   { color: var(--ci-gray-800); }
 .u-text-mono   { font-family: var(--font-mono); }
-.u-fw-600      { font-weight: 600; }
-.u-fw-700      { font-weight: 700; }
-.u-nowrap      { white-space: nowrap; }
 
 /* Icon helpers */
 .u-icon-xs     { font-size: .65rem; }
@@ -1273,13 +1277,8 @@ textarea.form-control { padding: 9px 13px; }
 .u-icon-blue   { color: var(--ci-500); }
 
 /* Colour helpers */
-.u-c-danger    { color: #ef4444; }
 .u-c-blue      { color: var(--ci-500); }
 .u-c-muted     { color: var(--ci-gray-500); }
-
-/* Link danger (logout) */
-.u-link-danger            { color: #ef4444 !important; }
-.u-link-danger:hover      { color: #dc2626 !important; }
 
 /* Tiny button (notification header, etc.) */
 .u-btn-xs      { height: 24px !important; font-size: .68rem !important; padding: 0 8px !important; }
