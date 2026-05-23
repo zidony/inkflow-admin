@@ -59,7 +59,7 @@
   </div>
   <div class="sidebar-footer">
     <div class="sidebar-user">
-      <div class="sidebar-user-avatar">AD</div>
+      <div class="if-avatar if-avatar-sm if-avatar-blue">AD</div>
       <div class="sidebar-user-info">
         <div class="sidebar-user-name">Admin</div>
         <div class="sidebar-user-role">超级管理员</div>
@@ -81,44 +81,44 @@
     <div class="dropdown">
       <button class="topbar-icon-btn" title="通知"
               data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-        <i class="bi bi-bell"></i><span class="ci-notif-badge">4</span>
+        <i class="bi bi-bell"></i><span class="if-notif-badge">4</span>
       </button>
-      <ul class="dropdown-menu dropdown-menu-end ci-notif-dropdown">
+      <ul class="dropdown-menu dropdown-menu-end if-notif-dropdown">
         <li>
-          <div class="ci-notif-header">
-            <span><i class="bi bi-bell ci-notif-header-icon"></i>通知中心</span>
+          <div class="if-notif-header">
+            <span><i class="bi bi-bell if-notif-header-icon"></i>通知中心</span>
             <button class="btn btn-light u-btn-xs" data-action="toast" data-toast-msg="已全部标记已读" data-toast-type="success">全部已读</button>
           </div>
         </li>
         <li>
-          <ul class="ci-notif-list">
-            <li class="ci-notif-item unread">
-              <div class="ci-notif-icon" style="background:var(--ci-50);color:var(--ci-500)"><i class="bi bi-chat-left-dots"></i></div>
-              <div class="ci-notif-body">
-                <div class="ci-notif-text"><strong>张三</strong> 评论了《Vue 3 Composition API》</div>
-                <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
+          <ul class="if-notif-list">
+            <li class="if-notif-item unread">
+              <div class="if-notif-icon" style="background:var(--if-50);color:var(--if-500)"><i class="bi bi-chat-left-dots"></i></div>
+              <div class="if-notif-body">
+                <div class="if-notif-text"><strong>张三</strong> 评论了《Vue 3 Composition API》</div>
+                <div class="if-notif-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
               </div>
-              <span class="ci-notif-dot"></span>
+              <span class="if-notif-dot"></span>
             </li>
-            <li class="ci-notif-item unread">
-              <div class="ci-notif-icon" style="background:#dcfce7;color:var(--ci-success-500)"><i class="bi bi-person-plus"></i></div>
-              <div class="ci-notif-body">
-                <div class="ci-notif-text"><strong>新用户</strong> 李明 完成了注册</div>
-                <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
+            <li class="if-notif-item unread">
+              <div class="if-notif-icon" style="background:#dcfce7;color:var(--if-success-500)"><i class="bi bi-person-plus"></i></div>
+              <div class="if-notif-body">
+                <div class="if-notif-text"><strong>新用户</strong> 李明 完成了注册</div>
+                <div class="if-notif-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
               </div>
-              <span class="ci-notif-dot"></span>
+              <span class="if-notif-dot"></span>
             </li>
-            <li class="ci-notif-item">
-              <div class="ci-notif-icon" style="background:var(--ci-gray-100);color:var(--ci-gray-500)"><i class="bi bi-file-earmark-check"></i></div>
-              <div class="ci-notif-body">
-                <div class="ci-notif-text">文章《TypeScript 高级类型》已成功发布</div>
-                <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
+            <li class="if-notif-item">
+              <div class="if-notif-icon" style="background:var(--if-gray-100);color:var(--if-gray-500)"><i class="bi bi-file-earmark-check"></i></div>
+              <div class="if-notif-body">
+                <div class="if-notif-text">文章《TypeScript 高级类型》已成功发布</div>
+                <div class="if-notif-time"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
               </div>
             </li>
           </ul>
         </li>
         <li>
-          <div class="ci-notif-footer" onclick="window.location='notification-center.html'">
+          <div class="if-notif-footer" onclick="window.location='notification-center.html'">
             查看全部通知 <i class="bi bi-arrow-right ms-1"></i>
           </div>
         </li>
@@ -127,13 +127,13 @@
     <a href="post-edit.html" class="btn btn-primary btn-sm ms-1" style="height:34px;padding:0 14px;font-size:.8rem"><i class="bi bi-plus-lg"></i> 新建文章</a>
     <div class="dropdown topbar-dropdown ms-1">
       <button class="topbar-user-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="border:none">
-        <div class="topbar-avatar">AD</div>
+        <div class="if-avatar if-avatar-sm if-avatar-blue">AD</div>
         <span class="topbar-user-name d-none d-md-inline">Admin</span>
       </button>
       <ul class="dropdown-menu dropdown-menu-end">
         <li>
           <div class="user-info-header">
-            <div class="user-info-avatar">AD</div>
+            <div class="if-avatar if-avatar-blue">AD</div>
             <div><div class="user-info-name">Admin User</div><div class="user-info-email">admin@inkflow.dev</div></div>
           </div>
         </li>
@@ -153,157 +153,157 @@
   </div>
 
 </div>
-<div class="ci-bulk-bar" id="bulk-action-bar">
-  <i class="bi bi-check2-all" style="color:var(--ci-500)"></i>
+<div class="if-bulk-bar" id="bulk-action-bar">
+  <i class="bi bi-check2-all" style="color:var(--if-500)"></i>
   <span>已选 <strong id="bulk-count">0</strong> 项</span>
   <div class="ms-auto d-flex gap-2">
     <button class="btn btn-light btn-sm" style="font-size:.78rem;height:30px" data-action="toast" data-toast-msg="操作成功" data-toast-type="success"><i class="bi bi-check-lg me-1"></i>批量操作</button>
     <button class="btn btn-danger-soft btn-sm" style="font-size:.78rem;height:30px" data-action="toast" data-toast-msg="已删除" data-toast-type="danger"><i class="bi bi-trash3 me-1"></i>批量删除</button>
   </div>
 </div>
-<div class="card ci-card mb-0">
+<div class="card if-card mb-0">
   <div class="card-body" style="padding:12px 18px">
-    <div class="ci-filter-tabs" id="filter-tabs" role="tablist"><button class="ci-filter-tab active" data-filter="all">全部 <span style="opacity:.7;font-weight:400">(8731)</span></button><button class="ci-filter-tab" data-filter="pending">待审核 <span style="opacity:.7;font-weight:400">(127)</span></button><button class="ci-filter-tab" data-filter="approved">已审核 <span style="opacity:.7;font-weight:400">(8560)</span></button><button class="ci-filter-tab" data-filter="spam">垃圾 <span style="opacity:.7;font-weight:400">(44)</span></button></div>
+    <div class="if-filter-tabs" id="filter-tabs" role="tablist"><button class="if-filter-tab active" data-filter="all">全部 <span style="opacity:.7;font-weight:400">(8731)</span></button><button class="if-filter-tab" data-filter="pending">待审核 <span style="opacity:.7;font-weight:400">(127)</span></button><button class="if-filter-tab" data-filter="approved">已审核 <span style="opacity:.7;font-weight:400">(8560)</span></button><button class="if-filter-tab" data-filter="spam">垃圾 <span style="opacity:.7;font-weight:400">(44)</span></button></div>
   </div>
 </div>
-<div class="card ci-card mt-3">
+<div class="card if-card mt-3">
   <div class="card-body p-0">
     <div class="table-responsive">
-      <table class="ci-table">
+      <table class="if-table">
       <thead><tr>
         <th class="table-check"><input type="checkbox" id="select-all" class="form-check-input" style="width:15px;height:15px;cursor:pointer"></th>
         <th style="min-width:140px">评论者</th><th style="min-width:280px">评论内容</th><th>IP 地址</th><th>时间</th><th>状态</th><th style="width:140px;text-align:center">操作</th>
       </tr></thead>
       <tbody><tr data-status="pending">
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
           <td>
             <div class="d-flex align-items-center gap-2">
-              <div class="ci-thumb" style="width:34px;height:34px;border-radius:50%;background:var(--ci-100);font-size:.75rem;font-weight:700;color:var(--ci-600)">张</div>
-              <div><div style="font-size:.83rem;font-weight:600;color:var(--ci-gray-800)">张三</div><div style="font-size:.72rem;color:var(--ci-gray-400)">zhangsan@example.com</div></div>
+              <div class="if-avatar if-avatar-green">张</div>
+              <div class="if-cell-title"><span class="if-title">张三</span><small>zhangsan@example.com</small></div>
             </div>
           </td>
-          <td style="font-size:.8rem;color:var(--ci-gray-700);max-width:260px">
+          <td style="font-size:.8rem;color:var(--if-gray-700);max-width:260px">
             <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px">讲得非常清楚，一看就懂！收藏了这篇文章。</div>
-            <div style="font-size:.72rem;color:var(--ci-gray-400);margin-top:2px">回复于：<a href="post-edit.html" class="ci-link" style="font-size:.72rem">《Vue 3 Composition API》</a></div>
+            <div style="font-size:.72rem;color:var(--if-gray-400);margin-top:2px">回复于：<a href="post-edit.html" class="if-link" style="font-size:.72rem">《Vue 3 Composition API》</a></div>
           </td>
-          <td style="font-size:.75rem;color:var(--ci-gray-400)">120.88.xx.xx</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-18 14:32</td>
-          <td><span class="ci-badge ci-badge-pending"><span class="ci-badge-dot"></span>待审核</span></td>
+          <td style="font-size:.75rem;color:var(--if-gray-400)">120.88.xx.xx</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-06-18 14:32</td>
+          <td><span class="if-badge if-badge-pending"><span class="if-badge-dot"></span>待审核</span></td>
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"><i class="bi bi-chat-quote"></i></a>
-              <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check-circle" style="color:var(--ci-success-500)"></i></button>
+              <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check-circle" style="color:var(--if-success-500)"></i></button>
               <button class="btn btn-danger-soft btn-icon" title="标记垃圾" data-action="toast" data-toast-msg="已标记为垃圾" data-toast-type="warning"><i class="bi bi-ban"></i></button>
               <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
             </div>
           </td>
         </tr><tr data-status="approved">
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
           <td>
             <div class="d-flex align-items-center gap-2">
-              <div class="ci-thumb" style="width:34px;height:34px;border-radius:50%;background:var(--ci-100);font-size:.75rem;font-weight:700;color:var(--ci-600)">李</div>
-              <div><div style="font-size:.83rem;font-weight:600;color:var(--ci-gray-800)">李明</div><div style="font-size:.72rem;color:var(--ci-gray-400)">user@inkflow.dev</div></div>
+              <div class="if-avatar if-avatar-blue">李</div>
+              <div class="if-cell-title"><span class="if-title">李明</span><small>user@inkflow.dev</small></div>
             </div>
           </td>
-          <td style="font-size:.8rem;color:var(--ci-gray-700);max-width:260px">
+          <td style="font-size:.8rem;color:var(--if-gray-700);max-width:260px">
             <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px">能否补充 Kubernetes 相关内容？期待更新。</div>
-            <div style="font-size:.72rem;color:var(--ci-gray-400);margin-top:2px">回复于：<a href="post-edit.html" class="ci-link" style="font-size:.72rem">《Docker 最佳实践》</a></div>
+            <div style="font-size:.72rem;color:var(--if-gray-400);margin-top:2px">回复于：<a href="post-edit.html" class="if-link" style="font-size:.72rem">《Docker 最佳实践》</a></div>
           </td>
-          <td style="font-size:.75rem;color:var(--ci-gray-400)">116.24.xx.xx</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-18 13:10</td>
-          <td><span class="ci-badge ci-badge-approved"><span class="ci-badge-dot"></span>已审核</span></td>
+          <td style="font-size:.75rem;color:var(--if-gray-400)">116.24.xx.xx</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-06-18 13:10</td>
+          <td><span class="if-badge if-badge-approved"><span class="if-badge-dot"></span>已审核</span></td>
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"><i class="bi bi-chat-quote"></i></a>
-              <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check-circle" style="color:var(--ci-success-500)"></i></button>
+              <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check-circle" style="color:var(--if-success-500)"></i></button>
               <button class="btn btn-danger-soft btn-icon" title="标记垃圾" data-action="toast" data-toast-msg="已标记为垃圾" data-toast-type="warning"><i class="bi bi-ban"></i></button>
               <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
             </div>
           </td>
         </tr><tr data-status="pending">
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
           <td>
             <div class="d-flex align-items-center gap-2">
-              <div class="ci-thumb" style="width:34px;height:34px;border-radius:50%;background:var(--ci-100);font-size:.75rem;font-weight:700;color:var(--ci-600)">王</div>
-              <div><div style="font-size:.83rem;font-weight:600;color:var(--ci-gray-800)">王红</div><div style="font-size:.72rem;color:var(--ci-gray-400)">user@inkflow.dev</div></div>
+              <div class="if-avatar if-avatar-purple">王</div>
+              <div class="if-cell-title"><span class="if-title">王红</span><small>user@inkflow.dev</small></div>
             </div>
           </td>
-          <td style="font-size:.8rem;color:var(--ci-gray-700);max-width:260px">
+          <td style="font-size:.8rem;color:var(--if-gray-700);max-width:260px">
             <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px">数据集处理部分好像有个小错误，第三步…</div>
-            <div style="font-size:.72rem;color:var(--ci-gray-400);margin-top:2px">回复于：<a href="post-edit.html" class="ci-link" style="font-size:.72rem">《LLM Fine-tuning 指南》</a></div>
+            <div style="font-size:.72rem;color:var(--if-gray-400);margin-top:2px">回复于：<a href="post-edit.html" class="if-link" style="font-size:.72rem">《LLM Fine-tuning 指南》</a></div>
           </td>
-          <td style="font-size:.75rem;color:var(--ci-gray-400)">202.96.xx.xx</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-18 11:45</td>
-          <td><span class="ci-badge ci-badge-pending"><span class="ci-badge-dot"></span>待审核</span></td>
+          <td style="font-size:.75rem;color:var(--if-gray-400)">202.96.xx.xx</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-06-18 11:45</td>
+          <td><span class="if-badge if-badge-pending"><span class="if-badge-dot"></span>待审核</span></td>
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"><i class="bi bi-chat-quote"></i></a>
-              <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check-circle" style="color:var(--ci-success-500)"></i></button>
+              <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check-circle" style="color:var(--if-success-500)"></i></button>
               <button class="btn btn-danger-soft btn-icon" title="标记垃圾" data-action="toast" data-toast-msg="已标记为垃圾" data-toast-type="warning"><i class="bi bi-ban"></i></button>
               <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
             </div>
           </td>
         </tr><tr data-status="approved">
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
           <td>
             <div class="d-flex align-items-center gap-2">
-              <div class="ci-thumb" style="width:34px;height:34px;border-radius:50%;background:var(--ci-100);font-size:.75rem;font-weight:700;color:var(--ci-600)">陈</div>
-              <div><div style="font-size:.83rem;font-weight:600;color:var(--ci-gray-800)">陈凯</div><div style="font-size:.72rem;color:var(--ci-gray-400)">user@inkflow.dev</div></div>
+              <div class="if-avatar if-avatar-red">陈</div>
+              <div class="if-cell-title"><span class="if-title">陈凯</span><small>user@inkflow.dev</small></div>
             </div>
           </td>
-          <td style="font-size:.8rem;color:var(--ci-gray-700);max-width:260px">
+          <td style="font-size:.8rem;color:var(--if-gray-700);max-width:260px">
             <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px">太硬核了！已收藏，强烈推荐给同事看。</div>
-            <div style="font-size:.72rem;color:var(--ci-gray-400);margin-top:2px">回复于：<a href="post-edit.html" class="ci-link" style="font-size:.72rem">《TypeScript 高级类型》</a></div>
+            <div style="font-size:.72rem;color:var(--if-gray-400);margin-top:2px">回复于：<a href="post-edit.html" class="if-link" style="font-size:.72rem">《TypeScript 高级类型》</a></div>
           </td>
-          <td style="font-size:.75rem;color:var(--ci-gray-400)">61.135.xx.xx</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-18 10:20</td>
-          <td><span class="ci-badge ci-badge-approved"><span class="ci-badge-dot"></span>已审核</span></td>
+          <td style="font-size:.75rem;color:var(--if-gray-400)">61.135.xx.xx</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-06-18 10:20</td>
+          <td><span class="if-badge if-badge-approved"><span class="if-badge-dot"></span>已审核</span></td>
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"><i class="bi bi-chat-quote"></i></a>
-              <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check-circle" style="color:var(--ci-success-500)"></i></button>
+              <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check-circle" style="color:var(--if-success-500)"></i></button>
               <button class="btn btn-danger-soft btn-icon" title="标记垃圾" data-action="toast" data-toast-msg="已标记为垃圾" data-toast-type="warning"><i class="bi bi-ban"></i></button>
               <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
             </div>
           </td>
         </tr><tr data-status="approved">
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
           <td>
             <div class="d-flex align-items-center gap-2">
-              <div class="ci-thumb" style="width:34px;height:34px;border-radius:50%;background:var(--ci-100);font-size:.75rem;font-weight:700;color:var(--ci-600)">赵</div>
-              <div><div style="font-size:.83rem;font-weight:600;color:var(--ci-gray-800)">赵磊</div><div style="font-size:.72rem;color:var(--ci-gray-400)">user@inkflow.dev</div></div>
+              <div class="if-avatar if-avatar-amber">赵</div>
+              <div class="if-cell-title"><span class="if-title">赵磊</span><small>user@inkflow.dev</small></div>
             </div>
           </td>
-          <td style="font-size:.8rem;color:var(--ci-gray-700);max-width:260px">
+          <td style="font-size:.8rem;color:var(--if-gray-700);max-width:260px">
             <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px">代码可以直接用，感谢分享！</div>
-            <div style="font-size:.72rem;color:var(--ci-gray-400);margin-top:2px">回复于：<a href="post-edit.html" class="ci-link" style="font-size:.72rem">《ECharts 数据大屏》</a></div>
+            <div style="font-size:.72rem;color:var(--if-gray-400);margin-top:2px">回复于：<a href="post-edit.html" class="if-link" style="font-size:.72rem">《ECharts 数据大屏》</a></div>
           </td>
-          <td style="font-size:.75rem;color:var(--ci-gray-400)">59.37.xx.xx</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-18 09:05</td>
-          <td><span class="ci-badge ci-badge-approved"><span class="ci-badge-dot"></span>已审核</span></td>
+          <td style="font-size:.75rem;color:var(--if-gray-400)">59.37.xx.xx</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-06-18 09:05</td>
+          <td><span class="if-badge if-badge-approved"><span class="if-badge-dot"></span>已审核</span></td>
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"><i class="bi bi-chat-quote"></i></a>
-              <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check-circle" style="color:var(--ci-success-500)"></i></button>
+              <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check-circle" style="color:var(--if-success-500)"></i></button>
               <button class="btn btn-danger-soft btn-icon" title="标记垃圾" data-action="toast" data-toast-msg="已标记为垃圾" data-toast-type="warning"><i class="bi bi-ban"></i></button>
               <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
             </div>
           </td>
         </tr><tr data-status="spam">
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
           <td>
             <div class="d-flex align-items-center gap-2">
-              <div class="ci-thumb" style="width:34px;height:34px;border-radius:50%;background:var(--ci-100);font-size:.75rem;font-weight:700;color:var(--ci-600)">孙</div>
-              <div><div style="font-size:.83rem;font-weight:600;color:var(--ci-gray-800)">孙燕</div><div style="font-size:.72rem;color:var(--ci-gray-400)">user@inkflow.dev</div></div>
+              <div class="if-avatar if-avatar-slate">孙</div>
+              <div class="if-cell-title"><span class="if-title">孙燕</span><small>user@inkflow.dev</small></div>
             </div>
           </td>
-          <td style="font-size:.8rem;color:var(--ci-gray-700);max-width:260px">
+          <td style="font-size:.8rem;color:var(--if-gray-700);max-width:260px">
             <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px">CSRF token 那部分能展开讲讲吗？</div>
-            <div style="font-size:.72rem;color:var(--ci-gray-400);margin-top:2px">回复于：<a href="post-edit.html" class="ci-link" style="font-size:.72rem">《Web 安全防护》</a></div>
+            <div style="font-size:.72rem;color:var(--if-gray-400);margin-top:2px">回复于：<a href="post-edit.html" class="if-link" style="font-size:.72rem">《Web 安全防护》</a></div>
           </td>
-          <td style="font-size:.75rem;color:var(--ci-gray-400)">182.61.xx.xx</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-17 22:40</td>
-          <td><span class="ci-badge ci-badge-spam"><span class="ci-badge-dot"></span>垃圾</span></td>
+          <td style="font-size:.75rem;color:var(--if-gray-400)">182.61.xx.xx</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-06-17 22:40</td>
+          <td><span class="if-badge if-badge-spam"><span class="if-badge-dot"></span>垃圾</span></td>
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"><i class="bi bi-chat-quote"></i></a>
@@ -315,7 +315,7 @@
     </table>
   </div>
   <div class="card-footer d-flex align-items-center justify-content-between">
-    <span style="font-size:.78rem;color:var(--ci-gray-500)">共 127 条评论 · 显示第 1–10 条</span>
+    <span style="font-size:.78rem;color:var(--if-gray-500)">共 127 条评论 · 显示第 1–10 条</span>
     <nav>
       <ul class="pagination pagination-sm mb-0">
         <li class="page-item disabled"><a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a></li>

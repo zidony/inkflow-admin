@@ -59,7 +59,7 @@
   </div>
   <div class="sidebar-footer">
     <div class="sidebar-user">
-      <div class="sidebar-user-avatar">AD</div>
+      <div class="if-avatar if-avatar-sm if-avatar-blue">AD</div>
       <div class="sidebar-user-info">
         <div class="sidebar-user-name">Admin</div>
         <div class="sidebar-user-role">超级管理员</div>
@@ -81,44 +81,44 @@
     <div class="dropdown">
       <button class="topbar-icon-btn" title="通知"
               data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-        <i class="bi bi-bell"></i><span class="ci-notif-badge">4</span>
+        <i class="bi bi-bell"></i><span class="if-notif-badge">4</span>
       </button>
-      <ul class="dropdown-menu dropdown-menu-end ci-notif-dropdown">
+      <ul class="dropdown-menu dropdown-menu-end if-notif-dropdown">
         <li>
-          <div class="ci-notif-header">
-            <span><i class="bi bi-bell ci-notif-header-icon"></i>通知中心</span>
+          <div class="if-notif-header">
+            <span><i class="bi bi-bell if-notif-header-icon"></i>通知中心</span>
             <button class="btn btn-light u-btn-xs" data-action="toast" data-toast-msg="已全部标记已读" data-toast-type="success">全部已读</button>
           </div>
         </li>
         <li>
-          <ul class="ci-notif-list">
-            <li class="ci-notif-item unread">
-              <div class="ci-notif-icon" style="background:var(--ci-50);color:var(--ci-500)"><i class="bi bi-chat-left-dots"></i></div>
-              <div class="ci-notif-body">
-                <div class="ci-notif-text"><strong>张三</strong> 评论了《Vue 3 Composition API》</div>
-                <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
+          <ul class="if-notif-list">
+            <li class="if-notif-item unread">
+              <div class="if-notif-icon" style="background:var(--if-50);color:var(--if-500)"><i class="bi bi-chat-left-dots"></i></div>
+              <div class="if-notif-body">
+                <div class="if-notif-text"><strong>张三</strong> 评论了《Vue 3 Composition API》</div>
+                <div class="if-notif-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
               </div>
-              <span class="ci-notif-dot"></span>
+              <span class="if-notif-dot"></span>
             </li>
-            <li class="ci-notif-item unread">
-              <div class="ci-notif-icon" style="background:#dcfce7;color:var(--ci-success-500)"><i class="bi bi-person-plus"></i></div>
-              <div class="ci-notif-body">
-                <div class="ci-notif-text"><strong>新用户</strong> 李明 完成了注册</div>
-                <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
+            <li class="if-notif-item unread">
+              <div class="if-notif-icon" style="background:#dcfce7;color:var(--if-success-500)"><i class="bi bi-person-plus"></i></div>
+              <div class="if-notif-body">
+                <div class="if-notif-text"><strong>新用户</strong> 李明 完成了注册</div>
+                <div class="if-notif-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
               </div>
-              <span class="ci-notif-dot"></span>
+              <span class="if-notif-dot"></span>
             </li>
-            <li class="ci-notif-item">
-              <div class="ci-notif-icon" style="background:var(--ci-gray-100);color:var(--ci-gray-500)"><i class="bi bi-file-earmark-check"></i></div>
-              <div class="ci-notif-body">
-                <div class="ci-notif-text">文章《TypeScript 高级类型》已成功发布</div>
-                <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
+            <li class="if-notif-item">
+              <div class="if-notif-icon" style="background:var(--if-gray-100);color:var(--if-gray-500)"><i class="bi bi-file-earmark-check"></i></div>
+              <div class="if-notif-body">
+                <div class="if-notif-text">文章《TypeScript 高级类型》已成功发布</div>
+                <div class="if-notif-time"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
               </div>
             </li>
           </ul>
         </li>
         <li>
-          <div class="ci-notif-footer" onclick="window.location='notification-center.html'">
+          <div class="if-notif-footer" onclick="window.location='notification-center.html'">
             查看全部通知 <i class="bi bi-arrow-right ms-1"></i>
           </div>
         </li>
@@ -127,13 +127,13 @@
 
     <div class="dropdown topbar-dropdown ms-1">
       <button class="topbar-user-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="border:none">
-        <div class="topbar-avatar">AD</div>
+        <div class="if-avatar if-avatar-sm if-avatar-blue">AD</div>
         <span class="topbar-user-name d-none d-md-inline">Admin</span>
       </button>
       <ul class="dropdown-menu dropdown-menu-end">
         <li>
           <div class="user-info-header">
-            <div class="user-info-avatar">AD</div>
+            <div class="if-avatar if-avatar-blue">AD</div>
             <div><div class="user-info-name">Admin User</div><div class="user-info-email">admin@inkflow.dev</div></div>
           </div>
         </li>
@@ -157,22 +157,22 @@
 <div class="row g-3">
   <div class="col-12 col-xl-8">
     <!-- Original comment -->
-    <div class="ci-panel ci-anim">
-      <div class="ci-panel-header"><i class="bi bi-chat-left-quote"></i> 原始评论</div>
-      <div class="ci-panel-body">
+    <div class="if-panel if-anim">
+      <div class="if-panel-header"><i class="bi bi-chat-left-quote"></i> 原始评论</div>
+      <div class="if-panel-body">
         <div class="d-flex align-items-center gap-3 mb-3">
-          <div style="width:44px;height:44px;border-radius:50%;background:var(--ci-100);display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;color:var(--ci-600);flex-shrink:0">张</div>
+          <div style="width:44px;height:44px;border-radius:50%;background:var(--if-100);display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;color:var(--if-600);flex-shrink:0">张</div>
           <div>
-            <div style="font-size:.9rem;font-weight:700;color:var(--ci-gray-800)">张三</div>
-            <div style="font-size:.75rem;color:var(--ci-gray-400)">zhangsan@example.com · 120.88.xx.xx · 2025-06-18 14:32</div>
+            <div style="font-size:.9rem;font-weight:700;color:var(--if-gray-800)">张三</div>
+            <div style="font-size:.75rem;color:var(--if-gray-400)">zhangsan@example.com · 120.88.xx.xx · 2025-06-18 14:32</div>
           </div>
-          <div class="ms-auto"><span class="ci-badge ci-badge-pending"><span class="ci-badge-dot"></span>待审核</span></div>
+          <div class="ms-auto"><span class="if-badge if-badge-pending"><span class="if-badge-dot"></span>待审核</span></div>
         </div>
-        <div style="background:var(--ci-gray-50);border-left:3px solid var(--ci-300);border-radius:0 8px 8px 0;padding:14px 16px;font-size:.875rem;color:var(--ci-gray-700);line-height:1.7">
+        <div style="background:var(--if-gray-50);border-left:3px solid var(--if-300);border-radius:0 8px 8px 0;padding:14px 16px;font-size:.875rem;color:var(--if-gray-700);line-height:1.7">
           讲得非常清楚，一看就懂！Composition API 的优势我现在终于明白了，特别是逻辑复用那部分，之前一直被 Mixins 搞得很困惑。收藏了这篇文章，强烈推荐给身边的同事看。
         </div>
-        <div class="mt-2" style="font-size:.78rem;color:var(--ci-gray-500)">
-          评论于：<a href="post-edit.html" class="ci-link" style="font-size:.78rem">《深入理解 Vue 3 Composition API 与响应式原理》</a>
+        <div class="mt-2" style="font-size:.78rem;color:var(--if-gray-500)">
+          评论于：<a href="post-edit.html" class="if-link" style="font-size:.78rem">《深入理解 Vue 3 Composition API 与响应式原理》</a>
         </div>
         <div class="d-flex gap-2 mt-3">
           <button class="btn btn-primary btn-sm" data-action="toast" data-toast-msg="审核通过" data-toast-type="success"><i class="bi bi-check-circle me-1"></i>通过审核</button>
@@ -184,9 +184,9 @@
     </div>
 
     <!-- Editor reply -->
-    <div class="ci-panel ci-anim" style="--ci-delay:.1s">
-      <div class="ci-panel-header"><i class="bi bi-reply"></i> 管理员回复</div>
-      <div class="ci-panel-body">
+    <div class="if-panel if-anim" style="--if-delay:.1s">
+      <div class="if-panel-header"><i class="bi bi-reply"></i> 管理员回复</div>
+      <div class="if-panel-body">
         <div class="mb-3">
           <label class="form-label">回复内容</label>
           <textarea class="form-control" rows="5" placeholder="输入回复内容…">感谢您的认可！Composition API 相比 Options API 确实在代码组织上更灵活，特别适合大型项目的逻辑复用。如有更多问题欢迎继续讨论！</textarea>
@@ -199,17 +199,17 @@
     </div>
 
     <!-- Previous replies -->
-    <div class="ci-panel ci-anim" style="--ci-delay:.2s">
-      <div class="ci-panel-header"><i class="bi bi-chat-dots"></i> 历史回复 <span style="font-size:.75rem;font-weight:400;color:var(--ci-gray-400)">(1 条)</span></div>
-      <div class="ci-panel-body">
+    <div class="if-panel if-anim" style="--if-delay:.2s">
+      <div class="if-panel-header"><i class="bi bi-chat-dots"></i> 历史回复 <span style="font-size:.75rem;font-weight:400;color:var(--if-gray-400)">(1 条)</span></div>
+      <div class="if-panel-body">
         <div class="d-flex gap-3">
-          <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--ci-500),var(--ci-accent-400));display:flex;align-items:center;justify-content:center;color:#fff;font-size:.72rem;font-weight:700;flex-shrink:0">AD</div>
+          <div class="if-avatar if-avatar-blue">AD</div>
           <div style="flex:1">
             <div class="d-flex align-items-center gap-2 mb-1">
-              <span style="font-size:.82rem;font-weight:700;color:var(--ci-gray-800)">Admin</span>
-              <span style="font-size:.7rem;color:var(--ci-gray-400)">2025-06-18 15:00</span>
+              <span style="font-size:.82rem;font-weight:700;color:var(--if-gray-800)">Admin</span>
+              <span style="font-size:.7rem;color:var(--if-gray-400)">2025-06-18 15:00</span>
             </div>
-            <div style="font-size:.85rem;color:var(--ci-gray-700);line-height:1.6">感谢您的认可！</div>
+            <div style="font-size:.85rem;color:var(--if-gray-700);line-height:1.6">感谢您的认可！</div>
           </div>
         </div>
       </div>
@@ -217,28 +217,28 @@
   </div>
 
   <div class="col-12 col-xl-4">
-    <div class="ci-panel ci-anim" style="--ci-delay:.05s">
-      <div class="ci-panel-header"><i class="bi bi-info-circle"></i> 评论信息</div>
-      <div class="ci-panel-body">
+    <div class="if-panel if-anim" style="--if-delay:.05s">
+      <div class="if-panel-header"><i class="bi bi-info-circle"></i> 评论信息</div>
+      <div class="if-panel-body">
         <dl style="font-size:.82rem">
-          <dt style="color:var(--ci-gray-400);font-weight:500;margin-bottom:2px">评论者</dt>
-          <dd style="color:var(--ci-gray-800);font-weight:600;margin-bottom:10px">张三</dd>
-          <dt style="color:var(--ci-gray-400);font-weight:500;margin-bottom:2px">邮箱</dt>
-          <dd style="color:var(--ci-gray-800);margin-bottom:10px">zhangsan@example.com</dd>
-          <dt style="color:var(--ci-gray-400);font-weight:500;margin-bottom:2px">IP 地址</dt>
-          <dd style="color:var(--ci-gray-800);margin-bottom:10px">120.88.xx.xx (中国·广东)</dd>
-          <dt style="color:var(--ci-gray-400);font-weight:500;margin-bottom:2px">浏览器</dt>
-          <dd style="color:var(--ci-gray-800);margin-bottom:10px">Chrome 124 / Windows 11</dd>
-          <dt style="color:var(--ci-gray-400);font-weight:500;margin-bottom:2px">评论时间</dt>
-          <dd style="color:var(--ci-gray-800);margin-bottom:10px">2025-06-18 14:32:17</dd>
-          <dt style="color:var(--ci-gray-400);font-weight:500;margin-bottom:2px">历史评论</dt>
-          <dd style="color:var(--ci-gray-800);margin-bottom:0">共 7 条，全部通过</dd>
+          <dt style="color:var(--if-gray-400);font-weight:500;margin-bottom:2px">评论者</dt>
+          <dd style="color:var(--if-gray-800);font-weight:600;margin-bottom:10px">张三</dd>
+          <dt style="color:var(--if-gray-400);font-weight:500;margin-bottom:2px">邮箱</dt>
+          <dd style="color:var(--if-gray-800);margin-bottom:10px">zhangsan@example.com</dd>
+          <dt style="color:var(--if-gray-400);font-weight:500;margin-bottom:2px">IP 地址</dt>
+          <dd style="color:var(--if-gray-800);margin-bottom:10px">120.88.xx.xx (中国·广东)</dd>
+          <dt style="color:var(--if-gray-400);font-weight:500;margin-bottom:2px">浏览器</dt>
+          <dd style="color:var(--if-gray-800);margin-bottom:10px">Chrome 124 / Windows 11</dd>
+          <dt style="color:var(--if-gray-400);font-weight:500;margin-bottom:2px">评论时间</dt>
+          <dd style="color:var(--if-gray-800);margin-bottom:10px">2025-06-18 14:32:17</dd>
+          <dt style="color:var(--if-gray-400);font-weight:500;margin-bottom:2px">历史评论</dt>
+          <dd style="color:var(--if-gray-800);margin-bottom:0">共 7 条，全部通过</dd>
         </dl>
       </div>
     </div>
-    <div class="ci-panel ci-anim" style="--ci-delay:.15s">
-      <div class="ci-panel-header"><i class="bi bi-shield-check"></i> 快速处理</div>
-      <div class="ci-panel-body d-flex flex-column gap-2">
+    <div class="if-panel if-anim" style="--if-delay:.15s">
+      <div class="if-panel-header"><i class="bi bi-shield-check"></i> 快速处理</div>
+      <div class="if-panel-body d-flex flex-column gap-2">
         <button class="btn btn-primary w-100" data-action="toast" data-toast-msg="审核通过" data-toast-type="success"><i class="bi bi-check-circle me-1"></i>通过审核</button>
         <button class="btn btn-light w-100" data-action="toast" data-toast-msg="已加入白名单" data-toast-type="info"><i class="bi bi-person-check me-1"></i>加入白名单</button>
         <button class="btn btn-danger-soft w-100 mt-2" data-action="toast" data-toast-msg="已移至垃圾箱" data-toast-type="danger"><i class="bi bi-trash3 me-1"></i>移至垃圾箱</button>

@@ -90,7 +90,7 @@
   if (listSearch) {
     listSearch.addEventListener('input', function () {
       var q = this.value.toLowerCase();
-      document.querySelectorAll('.ci-table tbody tr').forEach(function (row) {
+      document.querySelectorAll('.if-table tbody tr').forEach(function (row) {
         row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
       });
     });
@@ -102,11 +102,11 @@
   var bulkCnt   = document.getElementById('bulk-count');
 
   function updateBulkBar() {
-    var checked = document.querySelectorAll('.ci-row-check:checked').length;
+    var checked = document.querySelectorAll('.if-row-check:checked').length;
     if (bulkBar) bulkBar.classList.toggle('show', checked > 0);
     if (bulkCnt) bulkCnt.textContent = checked;
     if (selectAll) {
-      var total = document.querySelectorAll('.ci-row-check').length;
+      var total = document.querySelectorAll('.if-row-check').length;
       selectAll.indeterminate = checked > 0 && checked < total;
       selectAll.checked = total > 0 && checked === total;
     }
@@ -114,11 +114,11 @@
 
   if (selectAll) {
     selectAll.addEventListener('change', function () {
-      document.querySelectorAll('.ci-row-check').forEach(function (cb) { cb.checked = selectAll.checked; });
+      document.querySelectorAll('.if-row-check').forEach(function (cb) { cb.checked = selectAll.checked; });
       updateBulkBar();
     });
   }
-  document.querySelectorAll('.ci-row-check').forEach(function (cb) { cb.addEventListener('change', updateBulkBar); });
+  document.querySelectorAll('.if-row-check').forEach(function (cb) { cb.addEventListener('change', updateBulkBar); });
 
   /* ── CONFIRM DELETE ── */
   window.ciConfirmDelete = function (btn) {
@@ -138,15 +138,15 @@
         e.preventDefault();
         var text = this.value.trim().replace(/,+$/, '');
         var span = document.createElement('span');
-        span.className = 'ci-tag';
+        span.className = 'if-tag';
         span.innerHTML = text + '<button type="button"><i class="bi bi-x"></i></button>';
         span.querySelector('button').addEventListener('click', function () { span.remove(); });
         tagList.appendChild(span);
         this.value = '';
       }
     });
-    tagList.querySelectorAll('.ci-tag button').forEach(function (btn) {
-      btn.addEventListener('click', function () { btn.closest('.ci-tag').remove(); });
+    tagList.querySelectorAll('.if-tag button').forEach(function (btn) {
+      btn.addEventListener('click', function () { btn.closest('.if-tag').remove(); });
     });
   }
 
@@ -159,7 +159,7 @@
       if (this.files && this.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-          coverPreview.innerHTML = '<img src="' + e.target.result + '" alt="cover"><div class="ci-cover-overlay"><i class="bi bi-arrow-repeat"></i> 更换图片</div>';
+          coverPreview.innerHTML = '<img src="' + e.target.result + '" alt="cover"><div class="if-cover-overlay"><i class="bi bi-arrow-repeat"></i> 更换图片</div>';
         };
         reader.readAsDataURL(this.files[0]);
       }
@@ -167,7 +167,7 @@
   }
 
   /* ── CATEGORY PILL TOGGLE ── */
-  document.querySelectorAll('.ci-pill').forEach(function (pill) {
+  document.querySelectorAll('.if-pill').forEach(function (pill) {
     pill.addEventListener('click', function () { this.classList.toggle('selected'); });
   });
 
@@ -255,9 +255,9 @@
     var asTimer;
     function triggerAS() {
       clearTimeout(asTimer);
-      saveStatus.innerHTML = '<i class="bi bi-circle-fill" style="color:var(--ci-warning-400);font-size:.45rem;vertical-align:middle;margin-right:3px"></i>未保存';
+      saveStatus.innerHTML = '<i class="bi bi-circle-fill" style="color:var(--if-warning-400);font-size:.45rem;vertical-align:middle;margin-right:3px"></i>未保存';
       asTimer = setTimeout(function () {
-        saveStatus.innerHTML = '<i class="bi bi-check-circle-fill" style="color:var(--ci-success-400);font-size:.7rem;vertical-align:middle;margin-right:3px"></i>草稿已自动保存 · 刚刚';
+        saveStatus.innerHTML = '<i class="bi bi-check-circle-fill" style="color:var(--if-success-400);font-size:.7rem;vertical-align:middle;margin-right:3px"></i>草稿已自动保存 · 刚刚';
       }, 1800);
     }
     var titleInp = document.getElementById('post-title');
@@ -266,7 +266,7 @@
   }
 
   /* ── EDITOR TOOLBAR ── */
-  document.querySelectorAll('.ci-toolbar-btn').forEach(function (btn) {
+  document.querySelectorAll('.if-toolbar-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var t = this.title || '';
       if (!t.includes('插入') && !t.includes('撤销') && !t.includes('重做') && !t.includes('全屏')) {
@@ -276,14 +276,14 @@
   });
 
   /* ── FILTER TABS (generic) ── */
-  document.querySelectorAll('.ci-filter-tabs').forEach(function (group) {
-    group.querySelectorAll('.ci-filter-tab').forEach(function (tab) {
+  document.querySelectorAll('.if-filter-tabs').forEach(function (group) {
+    group.querySelectorAll('.if-filter-tab').forEach(function (tab) {
       tab.addEventListener('click', function () {
-        group.querySelectorAll('.ci-filter-tab').forEach(function (t) { t.classList.remove('active'); });
+        group.querySelectorAll('.if-filter-tab').forEach(function (t) { t.classList.remove('active'); });
         tab.classList.add('active');
         var filter = tab.dataset.filter;
         if (!filter) return;
-        document.querySelectorAll('.ci-table tbody tr').forEach(function (row) {
+        document.querySelectorAll('.if-table tbody tr').forEach(function (row) {
           row.style.display = (filter === 'all' || row.dataset.status === filter) ? '' : 'none';
         });
       });
@@ -296,7 +296,7 @@
       var el = document.getElementById('section-' + s);
       if (el) el.style.display = (s === section) ? '' : 'none';
     });
-    document.querySelectorAll('.ci-settings-nav-item').forEach(function (btn) {
+    document.querySelectorAll('.if-settings-nav-item').forEach(function (btn) {
       btn.classList.toggle('active', btn.dataset.section === section);
     });
   };
@@ -312,7 +312,7 @@
       borderRadius:'10px',padding:'12px 16px',display:'flex',alignItems:'center',gap:'10px',
       boxShadow:'0 8px 30px rgba(0,0,0,.14)',fontSize:'.85rem',
       fontFamily:'"Plus Jakarta Sans",system-ui,sans-serif',fontWeight:'500',color:'#334155',
-      maxWidth:'320px',borderLeft:'3px solid '+colors[type],animation:'ci-fade-up .3s ease both'
+      maxWidth:'320px',borderLeft:'3px solid '+colors[type],animation:'if-fade-up .3s ease both'
     });
     var iconEl = document.createElement("i");
     iconEl.className = "bi " + icons[type];
@@ -331,12 +331,12 @@
     toast.appendChild(msgEl);
     toast.appendChild(closeBtn);
     document.body.appendChild(toast);
-    setTimeout(function () { toast.style.animation = 'ci-fade-up .3s ease reverse forwards'; setTimeout(function () { toast && toast.remove(); }, 300); }, 3500);
+    setTimeout(function () { toast.style.animation = 'if-fade-up .3s ease reverse forwards'; setTimeout(function () { toast && toast.remove(); }, 300); }, 3500);
   };
 
   /* ── STAGGER ANIMATIONS ── */
-  document.querySelectorAll('.ci-anim').forEach(function (el, i) {
-    if (!el.style.getPropertyValue('--ci-delay')) { el.style.setProperty('--ci-delay', (i * 0.04) + 's'); }
+  document.querySelectorAll('.if-anim').forEach(function (el, i) {
+    if (!el.style.getPropertyValue('--if-delay')) { el.style.setProperty('--if-delay', (i * 0.04) + 's'); }
   });
 
   /* ── EVENT DELEGATION ── */
@@ -345,7 +345,7 @@
     var deleteBtn = e.target.closest("[data-action='delete']");
     if (deleteBtn) {
       if (!confirm("确定要删除该项目吗？此操作不可撤销。")) return;
-      var row = deleteBtn.closest("tr") || deleteBtn.closest(".ci-item-container");
+      var row = deleteBtn.closest("tr") || deleteBtn.closest(".if-item-container");
       if (row) {
         row.style.transition = "opacity .3s";
         row.style.opacity = "0";

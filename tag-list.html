@@ -59,7 +59,7 @@
   </div>
   <div class="sidebar-footer">
     <div class="sidebar-user">
-      <div class="sidebar-user-avatar">AD</div>
+      <div class="if-avatar if-avatar-sm if-avatar-blue">AD</div>
       <div class="sidebar-user-info">
         <div class="sidebar-user-name">Admin</div>
         <div class="sidebar-user-role">超级管理员</div>
@@ -81,44 +81,44 @@
     <div class="dropdown">
       <button class="topbar-icon-btn" title="通知"
               data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-        <i class="bi bi-bell"></i><span class="ci-notif-badge">4</span>
+        <i class="bi bi-bell"></i><span class="if-notif-badge">4</span>
       </button>
-      <ul class="dropdown-menu dropdown-menu-end ci-notif-dropdown">
+      <ul class="dropdown-menu dropdown-menu-end if-notif-dropdown">
         <li>
-          <div class="ci-notif-header">
-            <span><i class="bi bi-bell ci-notif-header-icon"></i>通知中心</span>
+          <div class="if-notif-header">
+            <span><i class="bi bi-bell if-notif-header-icon"></i>通知中心</span>
             <button class="btn btn-light u-btn-xs" data-action="toast" data-toast-msg="已全部标记已读" data-toast-type="success">全部已读</button>
           </div>
         </li>
         <li>
-          <ul class="ci-notif-list">
-            <li class="ci-notif-item unread">
-              <div class="ci-notif-icon" style="background:var(--ci-50);color:var(--ci-500)"><i class="bi bi-chat-left-dots"></i></div>
-              <div class="ci-notif-body">
-                <div class="ci-notif-text"><strong>张三</strong> 评论了《Vue 3 Composition API》</div>
-                <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
+          <ul class="if-notif-list">
+            <li class="if-notif-item unread">
+              <div class="if-notif-icon" style="background:var(--if-50);color:var(--if-500)"><i class="bi bi-chat-left-dots"></i></div>
+              <div class="if-notif-body">
+                <div class="if-notif-text"><strong>张三</strong> 评论了《Vue 3 Composition API》</div>
+                <div class="if-notif-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
               </div>
-              <span class="ci-notif-dot"></span>
+              <span class="if-notif-dot"></span>
             </li>
-            <li class="ci-notif-item unread">
-              <div class="ci-notif-icon" style="background:#dcfce7;color:var(--ci-success-500)"><i class="bi bi-person-plus"></i></div>
-              <div class="ci-notif-body">
-                <div class="ci-notif-text"><strong>新用户</strong> 李明 完成了注册</div>
-                <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
+            <li class="if-notif-item unread">
+              <div class="if-notif-icon" style="background:#dcfce7;color:var(--if-success-500)"><i class="bi bi-person-plus"></i></div>
+              <div class="if-notif-body">
+                <div class="if-notif-text"><strong>新用户</strong> 李明 完成了注册</div>
+                <div class="if-notif-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
               </div>
-              <span class="ci-notif-dot"></span>
+              <span class="if-notif-dot"></span>
             </li>
-            <li class="ci-notif-item">
-              <div class="ci-notif-icon" style="background:var(--ci-gray-100);color:var(--ci-gray-500)"><i class="bi bi-file-earmark-check"></i></div>
-              <div class="ci-notif-body">
-                <div class="ci-notif-text">文章《TypeScript 高级类型》已成功发布</div>
-                <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
+            <li class="if-notif-item">
+              <div class="if-notif-icon" style="background:var(--if-gray-100);color:var(--if-gray-500)"><i class="bi bi-file-earmark-check"></i></div>
+              <div class="if-notif-body">
+                <div class="if-notif-text">文章《TypeScript 高级类型》已成功发布</div>
+                <div class="if-notif-time"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
               </div>
             </li>
           </ul>
         </li>
         <li>
-          <div class="ci-notif-footer" data-action="navigate" data-href="notification-center.html">
+          <div class="if-notif-footer" data-action="navigate" data-href="notification-center.html">
             查看全部通知 <i class="bi bi-arrow-right ms-1"></i>
           </div>
         </li>
@@ -127,13 +127,13 @@
     <a href="post-edit.html" class="btn btn-primary btn-sm ms-1" style="height:34px;padding:0 14px;font-size:.8rem"><i class="bi bi-plus-lg"></i> 新建文章</a>
     <div class="dropdown topbar-dropdown ms-1">
       <button class="topbar-user-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="border:none">
-        <div class="topbar-avatar">AD</div>
+        <div class="if-avatar if-avatar-sm if-avatar-blue">AD</div>
         <span class="topbar-user-name d-none d-md-inline">Admin</span>
       </button>
       <ul class="dropdown-menu dropdown-menu-end">
         <li>
           <div class="user-info-header">
-            <div class="user-info-avatar">AD</div>
+            <div class="if-avatar if-avatar-blue">AD</div>
             <div><div class="user-info-name">Admin User</div><div class="user-info-email">admin@inkflow.dev</div></div>
           </div>
         </li>
@@ -153,8 +153,8 @@
   </div>
   <a href="tag-edit.html" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg"></i> 新建标签</a>
 </div>
-<div class="ci-bulk-bar" id="bulk-action-bar">
-  <i class="bi bi-check2-all" style="color:var(--ci-500)"></i>
+<div class="if-bulk-bar" id="bulk-action-bar">
+  <i class="bi bi-check2-all" style="color:var(--if-500)"></i>
   <span>已选 <strong id="bulk-count">0</strong> 项</span>
   <div class="ms-auto d-flex gap-2">
     <button class="btn btn-light btn-sm" style="font-size:.78rem;height:30px" data-action="toast" data-toast-msg="操作成功" data-toast-type="success"><i class="bi bi-check-lg me-1"></i>批量操作</button>
@@ -162,141 +162,141 @@
   </div>
 </div>
 
-<div class="card ci-card mt-3">
+<div class="card if-card mt-3">
   <div class="card-body p-0">
     <div class="table-responsive">
-      <table class="ci-table">
+      <table class="if-table">
       <thead><tr>
         <th class="table-check"><input type="checkbox" id="select-all" class="form-check-input" style="width:15px;height:15px;cursor:pointer"></th>
         <th>标签名称</th><th>URL Slug</th><th>文章数</th><th>创建时间</th><th style="width:100px;text-align:center">操作</th>
       </tr></thead>
       <tbody><tr>
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
-          <td><a href="tag-edit.html" class="ci-link" style="font-size:.85rem">Vue 3</a></td>
-          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--ci-gray-500)">vue3</td>
-          <td style="font-size:.8rem;font-weight:600;color:var(--ci-gray-800)">34</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-01-12</td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><div class="if-cell-title"><a href="tag-edit.html" class="if-link">Vue 3</a></div></td>
+          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--if-gray-500)">vue3</td>
+          <td style="font-size:.8rem;font-weight:600;color:var(--if-gray-800)">34</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-01-12</td>
           <td><div class="d-flex justify-content-center gap-1">
   <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
   <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
 </div></td>
         </tr><tr>
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
-          <td><a href="tag-edit.html" class="ci-link" style="font-size:.85rem">TypeScript</a></td>
-          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--ci-gray-500)">typescript</td>
-          <td style="font-size:.8rem;font-weight:600;color:var(--ci-gray-800)">28</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-01-14</td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><div class="if-cell-title"><a href="tag-edit.html" class="if-link">TypeScript</a></div></td>
+          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--if-gray-500)">typescript</td>
+          <td style="font-size:.8rem;font-weight:600;color:var(--if-gray-800)">28</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-01-14</td>
           <td><div class="d-flex justify-content-center gap-1">
   <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
   <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
 </div></td>
         </tr><tr>
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
-          <td><a href="tag-edit.html" class="ci-link" style="font-size:.85rem">React</a></td>
-          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--ci-gray-500)">react</td>
-          <td style="font-size:.8rem;font-weight:600;color:var(--ci-gray-800)">22</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-01-20</td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><div class="if-cell-title"><a href="tag-edit.html" class="if-link">React</a></div></td>
+          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--if-gray-500)">react</td>
+          <td style="font-size:.8rem;font-weight:600;color:var(--if-gray-800)">22</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-01-20</td>
           <td><div class="d-flex justify-content-center gap-1">
   <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
   <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
 </div></td>
         </tr><tr>
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
-          <td><a href="tag-edit.html" class="ci-link" style="font-size:.85rem">Docker</a></td>
-          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--ci-gray-500)">docker</td>
-          <td style="font-size:.8rem;font-weight:600;color:var(--ci-gray-800)">18</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-02-03</td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><div class="if-cell-title"><a href="tag-edit.html" class="if-link">Docker</a></div></td>
+          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--if-gray-500)">docker</td>
+          <td style="font-size:.8rem;font-weight:600;color:var(--if-gray-800)">18</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-02-03</td>
           <td><div class="d-flex justify-content-center gap-1">
   <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
   <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
 </div></td>
         </tr><tr>
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
-          <td><a href="tag-edit.html" class="ci-link" style="font-size:.85rem">Python</a></td>
-          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--ci-gray-500)">python</td>
-          <td style="font-size:.8rem;font-weight:600;color:var(--ci-gray-800)">31</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-02-10</td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><div class="if-cell-title"><a href="tag-edit.html" class="if-link">Python</a></div></td>
+          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--if-gray-500)">python</td>
+          <td style="font-size:.8rem;font-weight:600;color:var(--if-gray-800)">31</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-02-10</td>
           <td><div class="d-flex justify-content-center gap-1">
   <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
   <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
 </div></td>
         </tr><tr>
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
-          <td><a href="tag-edit.html" class="ci-link" style="font-size:.85rem">机器学习</a></td>
-          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--ci-gray-500)">machine-learning</td>
-          <td style="font-size:.8rem;font-weight:600;color:var(--ci-gray-800)">15</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-02-18</td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><div class="if-cell-title"><a href="tag-edit.html" class="if-link">机器学习</a></div></td>
+          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--if-gray-500)">machine-learning</td>
+          <td style="font-size:.8rem;font-weight:600;color:var(--if-gray-800)">15</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-02-18</td>
           <td><div class="d-flex justify-content-center gap-1">
   <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
   <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
 </div></td>
         </tr><tr>
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
-          <td><a href="tag-edit.html" class="ci-link" style="font-size:.85rem">Webpack</a></td>
-          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--ci-gray-500)">webpack</td>
-          <td style="font-size:.8rem;font-weight:600;color:var(--ci-gray-800)">12</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-03-01</td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><div class="if-cell-title"><a href="tag-edit.html" class="if-link">Webpack</a></div></td>
+          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--if-gray-500)">webpack</td>
+          <td style="font-size:.8rem;font-weight:600;color:var(--if-gray-800)">12</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-03-01</td>
           <td><div class="d-flex justify-content-center gap-1">
   <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
   <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
 </div></td>
         </tr><tr>
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
-          <td><a href="tag-edit.html" class="ci-link" style="font-size:.85rem">Node.js</a></td>
-          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--ci-gray-500)">nodejs</td>
-          <td style="font-size:.8rem;font-weight:600;color:var(--ci-gray-800)">26</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-03-05</td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><div class="if-cell-title"><a href="tag-edit.html" class="if-link">Node.js</a></div></td>
+          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--if-gray-500)">nodejs</td>
+          <td style="font-size:.8rem;font-weight:600;color:var(--if-gray-800)">26</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-03-05</td>
           <td><div class="d-flex justify-content-center gap-1">
   <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
   <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
 </div></td>
         </tr><tr>
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
-          <td><a href="tag-edit.html" class="ci-link" style="font-size:.85rem">CSS</a></td>
-          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--ci-gray-500)">css</td>
-          <td style="font-size:.8rem;font-weight:600;color:var(--ci-gray-800)">19</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-03-12</td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><div class="if-cell-title"><a href="tag-edit.html" class="if-link">CSS</a></div></td>
+          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--if-gray-500)">css</td>
+          <td style="font-size:.8rem;font-weight:600;color:var(--if-gray-800)">19</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-03-12</td>
           <td><div class="d-flex justify-content-center gap-1">
   <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
   <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
 </div></td>
         </tr><tr>
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
-          <td><a href="tag-edit.html" class="ci-link" style="font-size:.85rem">Git</a></td>
-          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--ci-gray-500)">git</td>
-          <td style="font-size:.8rem;font-weight:600;color:var(--ci-gray-800)">24</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-03-20</td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><div class="if-cell-title"><a href="tag-edit.html" class="if-link">Git</a></div></td>
+          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--if-gray-500)">git</td>
+          <td style="font-size:.8rem;font-weight:600;color:var(--if-gray-800)">24</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-03-20</td>
           <td><div class="d-flex justify-content-center gap-1">
   <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
   <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
 </div></td>
         </tr><tr>
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
-          <td><a href="tag-edit.html" class="ci-link" style="font-size:.85rem">Linux</a></td>
-          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--ci-gray-500)">linux</td>
-          <td style="font-size:.8rem;font-weight:600;color:var(--ci-gray-800)">16</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-04-01</td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><div class="if-cell-title"><a href="tag-edit.html" class="if-link">Linux</a></div></td>
+          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--if-gray-500)">linux</td>
+          <td style="font-size:.8rem;font-weight:600;color:var(--if-gray-800)">16</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-04-01</td>
           <td><div class="d-flex justify-content-center gap-1">
   <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
   <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
 </div></td>
         </tr><tr>
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
-          <td><a href="tag-edit.html" class="ci-link" style="font-size:.85rem">ECharts</a></td>
-          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--ci-gray-500)">echarts</td>
-          <td style="font-size:.8rem;font-weight:600;color:var(--ci-gray-800)">11</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-04-10</td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><div class="if-cell-title"><a href="tag-edit.html" class="if-link">ECharts</a></div></td>
+          <td style="font-size:.8rem;font-family:var(--font-mono);color:var(--if-gray-500)">echarts</td>
+          <td style="font-size:.8rem;font-weight:600;color:var(--if-gray-800)">11</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-04-10</td>
           <td><div class="d-flex justify-content-center gap-1">
   <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
@@ -307,7 +307,7 @@
     </div>
   </div>
   <div class="card-footer d-flex align-items-center justify-content-between">
-  <span style="font-size:.78rem;color:var(--ci-gray-500)">共 <strong>12</strong> 条记录，第 <strong>1</strong> / <strong>1</strong> 页</span>
+  <span style="font-size:.78rem;color:var(--if-gray-500)">共 <strong>12</strong> 条记录，第 <strong>1</strong> / <strong>1</strong> 页</span>
   <nav><ul class="pagination mb-0">
     <li class="page-item disabled"><a class="page-link" href="#"><i class="bi bi-chevron-left" style="font-size:.7rem"></i></a></li>
     <li class="page-item active"><a class="page-link" href="#">1</a></li>

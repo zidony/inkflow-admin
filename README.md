@@ -17,7 +17,7 @@
 - **19 + 1 个完整页面**：覆盖博客后台所有核心功能场景
 - **响应式布局**：完美适配桌面、平板和移动端
 - **Bootstrap 5.3.8**：使用最新 Bootstrap 5 稳定版，支持原生 Popover / Dropdown / Modal
-- **统一设计语言**：深蓝主题（`#0d6ecc`），`ci-` 前缀 CSS 命名规范，`--ci-*` CSS 变量体系
+- **统一设计语言**：深蓝主题（`#0d6ecc`），`if-` 前缀 CSS 命名规范，`--if-*` CSS 变量体系
 - **可折叠侧边栏**：支持手风琴子菜单、折叠态 Tooltip、状态持久化（`localStorage`）
 - **富文本编辑器 UI**：自定义工具栏、防溢出编辑区（长链接/宽图/宽表格/代码块均有保护）
 - **通知中心**：顶栏下拉快速预览 + 独立通知中心页面（分类筛选、搜索、已读/删除）
@@ -33,9 +33,9 @@
 inkflow-admin/
 ├── assets/
 │   ├── css/
-│   │   └── inkflow-admin.css          # 全局样式（v1.6）
+│   │   └── inkflow-admin.css          # 全局样式
 │   └── js/
-│       └── inkflow-admin.js           # 全局脚本（v1.6）
+│       └── inkflow-admin.js           # 全局脚本
 ├── index.html             # 仪表盘
 ├── post-list.html             # 文章列表
 ├── post-edit.html             # 发布 / 编辑文章
@@ -133,29 +133,29 @@ python3 -m http.server 8080
 
 ### 主色系
 ```css
---ci-500: #0d6ecc   /* 主色 */
---ci-400: #3b8de0
---ci-300: #7ab3eb
---ci-100: #d0e6f9
---ci-50:  #e8f2fd
+--if-500: #0d6ecc   /* 主色 */
+--if-400: #3b8de0
+--if-300: #7ab3eb
+--if-100: #d0e6f9
+--if-50:  #e8f2fd
 ```
 
 ### CSS 命名规范
-- 所有自定义类使用 `ci-` 前缀（如 `.ci-panel`、`.ci-table`、`.ci-badge`）
-- CSS 变量使用 `--ci-` 前缀（如 `--ci-gray-500`、`--ci-card-shadow`）
+- 所有自定义类使用 `if-` 前缀（如 `.if-panel`、`.if-table`、`.if-badge`）
+- CSS 变量使用 `--if-` 前缀（如 `--if-gray-500`、`--if-card-shadow`）
 - JS 中的 `localStorage` key 使用 `inkflow_` 前缀
 
 ### 常用组件类
 ```
-.ci-panel / .ci-panel-header / .ci-panel-body   面板
-.ci-table                                        数据表格
-.ci-badge / .ci-badge-blue/green/amber           标签徽章
-.ci-filter-tabs / .ci-filter-tab                 筛选标签栏
-.ci-bulk-bar                                     批量操作栏
-.ci-editor-toolbar / .ci-editor-body            富文本编辑器
-.ci-cover-preview                                封面图预览
+.if-panel / .if-panel-header / .if-panel-body   面板
+.if-table                                        数据表格
+.if-badge / .if-badge-blue/green/amber           标签徽章
+.if-filter-tabs / .if-filter-tab                 筛选标签栏
+.if-bulk-bar                                     批量操作栏
+.if-editor-toolbar / .if-editor-body            富文本编辑器
+.if-cover-preview                                封面图预览
 .stat-card-compact                               紧凑统计卡
-.ci-notif-dropdown                              通知下拉
+.if-notif-dropdown                              通知下拉
 .btn-danger-soft                                 危险操作软按钮
 ```
 
@@ -186,12 +186,13 @@ v1.6 引入了基于 `data-action` 的底层事件委托引擎，彻底剥离了
 | 版本 | 主要内容 |
 |------|----------|
 | v1.0 | 初始版本，基础页面结构 |
-| v1.1 | CSS 前缀规范化（`ci-`），富文本编辑器 UI，全站 JS 对齐 |
+| v1.1 | CSS 前缀规范化（`if-`），富文本编辑器 UI，全站 JS 对齐 |
 | v1.2 | Dashboard 重构（8:4 布局）、图片上传、头像裁剪、通知下拉、picsum 修复 |
 | v1.3 | Dashboard 等高修复、filter-tabs 白底卡片、page-header 按钮统一、全站 CF 邮箱修复 |
 | v1.4 | 更名 CiCMS → **InkFlow**、Bootstrap 5.3.3 → **5.3.8**、资源移至 `assets/`、编辑器防溢出 CSS、通知中心独立页面、README |
 | v1.5 | 结构重构、移动端适配优化、样式清理 |
 | v1.6 | 底层重构：引入纯数据驱动的事件委托引擎，彻底移除内联 onClick 事件；重写 showToast 消除 XSS 安全隐患；兼容 BS5 标准面包屑结构。 |
+| v1.7 | UI架构统一：全站组件启用 `if-` 前缀，构建全局 `if-avatar` 高级头像渐变组件与 `if-cell-title` 列表排版规范，肃清海量内联 HTML 样式代码，全面提升底层源码的整洁度与高级感。 |
 
 ---
 

@@ -59,7 +59,7 @@
   </div>
   <div class="sidebar-footer">
     <div class="sidebar-user">
-      <div class="sidebar-user-avatar">AD</div>
+      <div class="if-avatar if-avatar-sm if-avatar-blue">AD</div>
       <div class="sidebar-user-info">
         <div class="sidebar-user-name">Admin</div>
         <div class="sidebar-user-role">超级管理员</div>
@@ -81,44 +81,44 @@
     <div class="dropdown">
       <button class="topbar-icon-btn" title="通知"
               data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-        <i class="bi bi-bell"></i><span class="ci-notif-badge">4</span>
+        <i class="bi bi-bell"></i><span class="if-notif-badge">4</span>
       </button>
-      <ul class="dropdown-menu dropdown-menu-end ci-notif-dropdown">
+      <ul class="dropdown-menu dropdown-menu-end if-notif-dropdown">
         <li>
-          <div class="ci-notif-header">
-            <span><i class="bi bi-bell ci-notif-header-icon"></i>通知中心</span>
+          <div class="if-notif-header">
+            <span><i class="bi bi-bell if-notif-header-icon"></i>通知中心</span>
             <button class="btn btn-light u-btn-xs" data-action="toast" data-toast-msg="已全部标记已读" data-toast-type="success">全部已读</button>
           </div>
         </li>
         <li>
-          <ul class="ci-notif-list">
-            <li class="ci-notif-item unread">
-              <div class="ci-notif-icon" style="background:var(--ci-50);color:var(--ci-500)"><i class="bi bi-chat-left-dots"></i></div>
-              <div class="ci-notif-body">
-                <div class="ci-notif-text"><strong>张三</strong> 评论了《Vue 3 Composition API》</div>
-                <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
+          <ul class="if-notif-list">
+            <li class="if-notif-item unread">
+              <div class="if-notif-icon" style="background:var(--if-50);color:var(--if-500)"><i class="bi bi-chat-left-dots"></i></div>
+              <div class="if-notif-body">
+                <div class="if-notif-text"><strong>张三</strong> 评论了《Vue 3 Composition API》</div>
+                <div class="if-notif-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
               </div>
-              <span class="ci-notif-dot"></span>
+              <span class="if-notif-dot"></span>
             </li>
-            <li class="ci-notif-item unread">
-              <div class="ci-notif-icon" style="background:#dcfce7;color:var(--ci-success-500)"><i class="bi bi-person-plus"></i></div>
-              <div class="ci-notif-body">
-                <div class="ci-notif-text"><strong>新用户</strong> 李明 完成了注册</div>
-                <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
+            <li class="if-notif-item unread">
+              <div class="if-notif-icon" style="background:#dcfce7;color:var(--if-success-500)"><i class="bi bi-person-plus"></i></div>
+              <div class="if-notif-body">
+                <div class="if-notif-text"><strong>新用户</strong> 李明 完成了注册</div>
+                <div class="if-notif-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
               </div>
-              <span class="ci-notif-dot"></span>
+              <span class="if-notif-dot"></span>
             </li>
-            <li class="ci-notif-item">
-              <div class="ci-notif-icon" style="background:var(--ci-gray-100);color:var(--ci-gray-500)"><i class="bi bi-file-earmark-check"></i></div>
-              <div class="ci-notif-body">
-                <div class="ci-notif-text">文章《TypeScript 高级类型》已成功发布</div>
-                <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
+            <li class="if-notif-item">
+              <div class="if-notif-icon" style="background:var(--if-gray-100);color:var(--if-gray-500)"><i class="bi bi-file-earmark-check"></i></div>
+              <div class="if-notif-body">
+                <div class="if-notif-text">文章《TypeScript 高级类型》已成功发布</div>
+                <div class="if-notif-time"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
               </div>
             </li>
           </ul>
         </li>
         <li>
-          <div class="ci-notif-footer" data-action="navigate" data-href="notification-center.html">
+          <div class="if-notif-footer" data-action="navigate" data-href="notification-center.html">
             查看全部通知 <i class="bi bi-arrow-right ms-1"></i>
           </div>
         </li>
@@ -127,13 +127,13 @@
     <a href="post-edit.html" class="btn btn-primary btn-sm ms-1" style="height:34px;padding:0 14px;font-size:.8rem"><i class="bi bi-plus-lg"></i> 新建文章</a>
     <div class="dropdown topbar-dropdown ms-1">
       <button class="topbar-user-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="border:none">
-        <div class="topbar-avatar">AD</div>
+        <div class="if-avatar if-avatar-sm if-avatar-blue">AD</div>
         <span class="topbar-user-name d-none d-md-inline">Admin</span>
       </button>
       <ul class="dropdown-menu dropdown-menu-end">
         <li>
           <div class="user-info-header">
-            <div class="user-info-avatar">AD</div>
+            <div class="if-avatar if-avatar-blue">AD</div>
             <div><div class="user-info-name">Admin User</div><div class="user-info-email">admin@inkflow.dev</div></div>
           </div>
         </li>
@@ -153,18 +153,18 @@
   </div>
 
 </div>
-<div class="ci-bulk-bar" id="bulk-action-bar">
-  <i class="bi bi-check2-all" style="color:var(--ci-500)"></i>
+<div class="if-bulk-bar" id="bulk-action-bar">
+  <i class="bi bi-check2-all" style="color:var(--if-500)"></i>
   <span>已选 <strong id="bulk-count">0</strong> 项</span>
   <div class="ms-auto d-flex gap-2">
     <button class="btn btn-light btn-sm" style="font-size:.78rem;height:30px" data-action="toast" data-toast-msg="操作成功" data-toast-type="success"><i class="bi bi-check-lg me-1"></i>批量操作</button>
     <button class="btn btn-danger-soft btn-sm" style="font-size:.78rem;height:30px" data-action="toast" data-toast-msg="已删除" data-toast-type="danger"><i class="bi bi-trash3 me-1"></i>批量删除</button>
   </div>
 </div>
-<div class="card ci-card mb-0">
+<div class="card if-card mb-0">
   <div class="card-body" style="padding:12px 18px">
     <div class="d-flex align-items-center gap-2 flex-wrap">
-      <div class="ci-filter-tabs" id="filter-tabs" role="tablist"><button class="ci-filter-tab active" data-filter="all">全部 <span style="opacity:.7;font-weight:400">(328)</span></button><button class="ci-filter-tab" data-filter="image">图片 <span style="opacity:.7;font-weight:400">(284)</span></button><button class="ci-filter-tab" data-filter="document">文档 <span style="opacity:.7;font-weight:400">(32)</span></button><button class="ci-filter-tab" data-filter="other">其他 <span style="opacity:.7;font-weight:400">(12)</span></button></div>
+      <div class="if-filter-tabs" id="filter-tabs" role="tablist"><button class="if-filter-tab active" data-filter="all">全部 <span style="opacity:.7;font-weight:400">(328)</span></button><button class="if-filter-tab" data-filter="image">图片 <span style="opacity:.7;font-weight:400">(284)</span></button><button class="if-filter-tab" data-filter="document">文档 <span style="opacity:.7;font-weight:400">(32)</span></button><button class="if-filter-tab" data-filter="other">其他 <span style="opacity:.7;font-weight:400">(12)</span></button></div>
       <div class="d-flex align-items-center gap-2 ms-auto flex-wrap">
         <select class="form-select" style="width:110px;height:32px;font-size:.78rem"><option>全部类型</option><option>JPG/PNG</option><option>GIF</option><option>SVG</option><option>WebP</option></select>
         <select class="form-select" style="width:110px;height:32px;font-size:.78rem"><option>最新上传</option><option>最大文件</option><option>最早上传</option></select>
@@ -173,26 +173,26 @@
     </div>
   </div>
 </div>
-<div class="card ci-card mt-3">
+<div class="card if-card mt-3">
   <div class="card-body p-0">
     <div class="table-responsive">
-      <table class="ci-table">
+      <table class="if-table">
       <thead><tr>
         <th class="table-check"><input type="checkbox" id="select-all" class="form-check-input" style="width:15px;height:15px;cursor:pointer"></th>
         <th style="min-width:240px">文件名</th><th>类型</th><th>大小</th><th>尺寸</th><th>上传时间</th><th style="width:140px;text-align:center">操作</th>
       </tr></thead>
       <tbody><tr>
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
           <td>
             <div class="d-flex align-items-center gap-2">
-              <div class="ci-img-thumb"><img src="https://picsum.photos/seed/nature10/72/48" alt="" loading="lazy"></div>
-              <div><a href="image-edit.html" class="ci-link" style="font-size:.83rem">cover-vue3.jpg</a></div>
+              <div class="if-img-thumb"><img src="https://picsum.photos/seed/nature10/72/48" alt="" loading="lazy"></div>
+              <div class="if-cell-title"><a href="image-edit.html" class="if-link">cover-vue3.jpg</a></div>
             </div>
           </td>
-          <td><span class="ci-badge ci-badge-draft">JPG</span></td>
-          <td style="font-size:.8rem;color:var(--ci-gray-600)">1.2 MB</td>
-          <td style="font-size:.8rem;color:var(--ci-gray-600)">1920×1080</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-18</td>
+          <td><span class="if-badge if-badge-draft">JPG</span></td>
+          <td style="font-size:.8rem;color:var(--if-gray-600)">1.2 MB</td>
+          <td style="font-size:.8rem;color:var(--if-gray-600)">1920×1080</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-06-18</td>
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"><i class="bi bi-pencil"></i></a>
@@ -202,17 +202,17 @@
             </div>
           </td>
         </tr><tr>
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
           <td>
             <div class="d-flex align-items-center gap-2">
-              <div class="ci-img-thumb"><img src="https://picsum.photos/seed/forest20/72/48" alt="" loading="lazy"></div>
-              <div><a href="image-edit.html" class="ci-link" style="font-size:.83rem">design-trends.png</a></div>
+              <div class="if-img-thumb"><img src="https://picsum.photos/seed/forest20/72/48" alt="" loading="lazy"></div>
+              <div class="if-cell-title"><a href="image-edit.html" class="if-link">design-trends.png</a></div>
             </div>
           </td>
-          <td><span class="ci-badge ci-badge-draft">PNG</span></td>
-          <td style="font-size:.8rem;color:var(--ci-gray-600)">856 KB</td>
-          <td style="font-size:.8rem;color:var(--ci-gray-600)">1600×900</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-16</td>
+          <td><span class="if-badge if-badge-draft">PNG</span></td>
+          <td style="font-size:.8rem;color:var(--if-gray-600)">856 KB</td>
+          <td style="font-size:.8rem;color:var(--if-gray-600)">1600×900</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-06-16</td>
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"><i class="bi bi-pencil"></i></a>
@@ -222,17 +222,17 @@
             </div>
           </td>
         </tr><tr>
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
           <td>
             <div class="d-flex align-items-center gap-2">
-              <div class="ci-img-thumb"><img src="https://picsum.photos/seed/city30/72/48" alt="" loading="lazy"></div>
-              <div><a href="image-edit.html" class="ci-link" style="font-size:.83rem">docker-arch.png</a></div>
+              <div class="if-img-thumb"><img src="https://picsum.photos/seed/city30/72/48" alt="" loading="lazy"></div>
+              <div class="if-cell-title"><a href="image-edit.html" class="if-link">docker-arch.png</a></div>
             </div>
           </td>
-          <td><span class="ci-badge ci-badge-draft">PNG</span></td>
-          <td style="font-size:.8rem;color:var(--ci-gray-600)">442 KB</td>
-          <td style="font-size:.8rem;color:var(--ci-gray-600)">1200×800</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-14</td>
+          <td><span class="if-badge if-badge-draft">PNG</span></td>
+          <td style="font-size:.8rem;color:var(--if-gray-600)">442 KB</td>
+          <td style="font-size:.8rem;color:var(--if-gray-600)">1200×800</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-06-14</td>
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"><i class="bi bi-pencil"></i></a>
@@ -242,17 +242,17 @@
             </div>
           </td>
         </tr><tr>
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
           <td>
             <div class="d-flex align-items-center gap-2">
-              <div class="ci-img-thumb"><img src="https://picsum.photos/seed/tech40/72/48" alt="" loading="lazy"></div>
-              <div><a href="image-edit.html" class="ci-link" style="font-size:.83rem">llm-finetune.jpg</a></div>
+              <div class="if-img-thumb"><img src="https://picsum.photos/seed/tech40/72/48" alt="" loading="lazy"></div>
+              <div class="if-cell-title"><a href="image-edit.html" class="if-link">llm-finetune.jpg</a></div>
             </div>
           </td>
-          <td><span class="ci-badge ci-badge-draft">JPG</span></td>
-          <td style="font-size:.8rem;color:var(--ci-gray-600)">1.8 MB</td>
-          <td style="font-size:.8rem;color:var(--ci-gray-600)">2000×1125</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-12</td>
+          <td><span class="if-badge if-badge-draft">JPG</span></td>
+          <td style="font-size:.8rem;color:var(--if-gray-600)">1.8 MB</td>
+          <td style="font-size:.8rem;color:var(--if-gray-600)">2000×1125</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-06-12</td>
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"><i class="bi bi-pencil"></i></a>
@@ -262,17 +262,17 @@
             </div>
           </td>
         </tr><tr>
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
           <td>
             <div class="d-flex align-items-center gap-2">
-              <div class="ci-img-thumb"><img src="https://picsum.photos/seed/abstract50/72/48" alt="" loading="lazy"></div>
-              <div><a href="image-edit.html" class="ci-link" style="font-size:.83rem">typescript-types.png</a></div>
+              <div class="if-img-thumb"><img src="https://picsum.photos/seed/abstract50/72/48" alt="" loading="lazy"></div>
+              <div class="if-cell-title"><a href="image-edit.html" class="if-link">typescript-types.png</a></div>
             </div>
           </td>
-          <td><span class="ci-badge ci-badge-draft">PNG</span></td>
-          <td style="font-size:.8rem;color:var(--ci-gray-600)">328 KB</td>
-          <td style="font-size:.8rem;color:var(--ci-gray-600)">1400×900</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-10</td>
+          <td><span class="if-badge if-badge-draft">PNG</span></td>
+          <td style="font-size:.8rem;color:var(--if-gray-600)">328 KB</td>
+          <td style="font-size:.8rem;color:var(--if-gray-600)">1400×900</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-06-10</td>
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"><i class="bi bi-pencil"></i></a>
@@ -282,17 +282,17 @@
             </div>
           </td>
         </tr><tr>
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
           <td>
             <div class="d-flex align-items-center gap-2">
-              <div class="ci-img-thumb"><img src="https://picsum.photos/seed/mountain60/72/48" alt="" loading="lazy"></div>
-              <div><a href="image-edit.html" class="ci-link" style="font-size:.83rem">echarts-demo.gif</a></div>
+              <div class="if-img-thumb"><img src="https://picsum.photos/seed/mountain60/72/48" alt="" loading="lazy"></div>
+              <div class="if-cell-title"><a href="image-edit.html" class="if-link">echarts-demo.gif</a></div>
             </div>
           </td>
-          <td><span class="ci-badge ci-badge-draft">GIF</span></td>
-          <td style="font-size:.8rem;color:var(--ci-gray-600)">3.4 MB</td>
-          <td style="font-size:.8rem;color:var(--ci-gray-600)">800×600</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-08</td>
+          <td><span class="if-badge if-badge-draft">GIF</span></td>
+          <td style="font-size:.8rem;color:var(--if-gray-600)">3.4 MB</td>
+          <td style="font-size:.8rem;color:var(--if-gray-600)">800×600</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-06-08</td>
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"><i class="bi bi-pencil"></i></a>
@@ -302,17 +302,17 @@
             </div>
           </td>
         </tr><tr>
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
           <td>
             <div class="d-flex align-items-center gap-2">
-              <div class="ci-img-thumb"><img src="https://picsum.photos/seed/ocean70/72/48" alt="" loading="lazy"></div>
-              <div><a href="image-edit.html" class="ci-link" style="font-size:.83rem">security-banner.jpg</a></div>
+              <div class="if-img-thumb"><img src="https://picsum.photos/seed/ocean70/72/48" alt="" loading="lazy"></div>
+              <div class="if-cell-title"><a href="image-edit.html" class="if-link">security-banner.jpg</a></div>
             </div>
           </td>
-          <td><span class="ci-badge ci-badge-draft">JPG</span></td>
-          <td style="font-size:.8rem;color:var(--ci-gray-600)">944 KB</td>
-          <td style="font-size:.8rem;color:var(--ci-gray-600)">1920×1080</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-06-05</td>
+          <td><span class="if-badge if-badge-draft">JPG</span></td>
+          <td style="font-size:.8rem;color:var(--if-gray-600)">944 KB</td>
+          <td style="font-size:.8rem;color:var(--if-gray-600)">1920×1080</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-06-05</td>
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"><i class="bi bi-pencil"></i></a>
@@ -322,17 +322,17 @@
             </div>
           </td>
         </tr><tr>
-          <td><input type="checkbox" class="form-check-input ci-row-check" style="width:15px;height:15px;cursor:pointer"></td>
+          <td><input type="checkbox" class="form-check-input if-row-check" style="width:15px;height:15px;cursor:pointer"></td>
           <td>
             <div class="d-flex align-items-center gap-2">
-              <div class="ci-img-thumb"><img src="https://picsum.photos/seed/space80/72/48" alt="" loading="lazy"></div>
-              <div><a href="image-edit.html" class="ci-link" style="font-size:.83rem">avatar-admin.png</a></div>
+              <div class="if-img-thumb"><img src="https://picsum.photos/seed/space80/72/48" alt="" loading="lazy"></div>
+              <div class="if-cell-title"><a href="image-edit.html" class="if-link">avatar-admin.png</a></div>
             </div>
           </td>
-          <td><span class="ci-badge ci-badge-draft">PNG</span></td>
-          <td style="font-size:.8rem;color:var(--ci-gray-600)">24 KB</td>
-          <td style="font-size:.8rem;color:var(--ci-gray-600)">200×200</td>
-          <td style="font-size:.75rem;color:var(--ci-gray-500)">2025-05-20</td>
+          <td><span class="if-badge if-badge-draft">PNG</span></td>
+          <td style="font-size:.8rem;color:var(--if-gray-600)">24 KB</td>
+          <td style="font-size:.8rem;color:var(--if-gray-600)">200×200</td>
+          <td style="font-size:.75rem;color:var(--if-gray-500)">2025-05-20</td>
           <td>
             <div class="d-flex justify-content-center gap-1">
               <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"><i class="bi bi-pencil"></i></a>
@@ -346,7 +346,7 @@
     </div>
   </div>
   <div class="card-footer d-flex align-items-center justify-content-between">
-  <span style="font-size:.78rem;color:var(--ci-gray-500)">共 <strong>328</strong> 条记录，第 <strong>1</strong> / <strong>33</strong> 页</span>
+  <span style="font-size:.78rem;color:var(--if-gray-500)">共 <strong>328</strong> 条记录，第 <strong>1</strong> / <strong>33</strong> 页</span>
   <nav><ul class="pagination mb-0">
     <li class="page-item disabled"><a class="page-link" href="#"><i class="bi bi-chevron-left" style="font-size:.7rem"></i></a></li>
     <li class="page-item active"><a class="page-link" href="#">1</a></li>

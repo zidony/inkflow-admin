@@ -68,7 +68,7 @@
   </div>
   <div class="sidebar-footer">
     <div class="sidebar-user">
-      <div class="sidebar-user-avatar">AD</div>
+      <div class="if-avatar if-avatar-sm if-avatar-blue">AD</div>
       <div class="sidebar-user-info">
         <div class="sidebar-user-name">Admin</div>
         <div class="sidebar-user-role">超级管理员</div>
@@ -98,45 +98,45 @@
         <button class="topbar-icon-btn" title="通知"
                 data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
           <i class="bi bi-bell"></i>
-          <span class="ci-notif-badge" id="notif-badge">4</span>
+          <span class="if-notif-badge" id="notif-badge">4</span>
         </button>
-        <ul class="dropdown-menu dropdown-menu-end ci-notif-dropdown">
+        <ul class="dropdown-menu dropdown-menu-end if-notif-dropdown">
           <li>
-            <div class="ci-notif-header">
-              <span><i class="bi bi-bell ci-notif-header-icon"></i>通知中心</span>
+            <div class="if-notif-header">
+              <span><i class="bi bi-bell if-notif-header-icon"></i>通知中心</span>
               <button class="btn btn-light btn-sm" style="height:24px;font-size:.68rem;padding:0 8px"
                       data-action="read-all">全部已读</button>
             </div>
           </li>
           <li>
-            <ul class="ci-notif-list">
-              <li class="ci-notif-item unread">
-                <div class="ci-notif-icon" style="background:var(--ci-50);color:var(--ci-500)"><i class="bi bi-chat-left-dots"></i></div>
-                <div class="ci-notif-body">
-                  <div class="ci-notif-text"><strong>张三</strong> 评论了《Vue 3 Composition API》</div>
-                  <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
+            <ul class="if-notif-list">
+              <li class="if-notif-item unread">
+                <div class="if-notif-icon" style="background:var(--if-50);color:var(--if-500)"><i class="bi bi-chat-left-dots"></i></div>
+                <div class="if-notif-body">
+                  <div class="if-notif-text"><strong>张三</strong> 评论了《Vue 3 Composition API》</div>
+                  <div class="if-notif-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
                 </div>
-                <span class="ci-notif-dot"></span>
+                <span class="if-notif-dot"></span>
               </li>
-              <li class="ci-notif-item unread">
-                <div class="ci-notif-icon" style="background:#dcfce7;color:var(--ci-success-500)"><i class="bi bi-person-plus"></i></div>
-                <div class="ci-notif-body">
-                  <div class="ci-notif-text"><strong>新用户</strong> 李明 完成了注册</div>
-                  <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
+              <li class="if-notif-item unread">
+                <div class="if-notif-icon" style="background:#dcfce7;color:var(--if-success-500)"><i class="bi bi-person-plus"></i></div>
+                <div class="if-notif-body">
+                  <div class="if-notif-text"><strong>新用户</strong> 李明 完成了注册</div>
+                  <div class="if-notif-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
                 </div>
-                <span class="ci-notif-dot"></span>
+                <span class="if-notif-dot"></span>
               </li>
-              <li class="ci-notif-item">
-                <div class="ci-notif-icon" style="background:var(--ci-gray-100);color:var(--ci-gray-500)"><i class="bi bi-file-earmark-check"></i></div>
-                <div class="ci-notif-body">
-                  <div class="ci-notif-text">文章《TypeScript 高级类型》已成功发布</div>
-                  <div class="ci-notif-time"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
+              <li class="if-notif-item">
+                <div class="if-notif-icon" style="background:var(--if-gray-100);color:var(--if-gray-500)"><i class="bi bi-file-earmark-check"></i></div>
+                <div class="if-notif-body">
+                  <div class="if-notif-text">文章《TypeScript 高级类型》已成功发布</div>
+                  <div class="if-notif-time"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
                 </div>
               </li>
             </ul>
           </li>
           <li>
-            <div class="ci-notif-footer" data-action="navigate" data-href="notification-center.html">
+            <div class="if-notif-footer" data-action="navigate" data-href="notification-center.html">
               查看全部通知 <i class="bi bi-arrow-right ms-1"></i>
             </div>
           </li>
@@ -144,13 +144,13 @@
       </div>
       <div class="dropdown topbar-dropdown ms-1">
         <button class="topbar-user-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="border:none">
-          <div class="topbar-avatar">AD</div>
+          <div class="if-avatar if-avatar-sm if-avatar-blue">AD</div>
           <span class="topbar-user-name d-none d-md-inline">Admin</span>
         </button>
         <ul class="dropdown-menu dropdown-menu-end">
           <li>
             <div class="user-info-header">
-              <div class="user-info-avatar">AD</div>
+              <div class="if-avatar if-avatar-blue">AD</div>
               <div><div class="user-info-name">Admin User</div><div class="user-info-email">admin@inkflow.dev</div></div>
             </div>
           </li>
@@ -187,63 +187,63 @@
       <div class="col-12 col-xl-8">
 
         <!-- 筛选 tabs -->
-        <div class="card ci-card mb-0">
+        <div class="card if-card mb-0">
           <div class="card-body" style="padding:12px 18px">
             <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
-              <div class="ci-filter-tabs" id="notif-filter-tabs" role="tablist">
-                <button class="ci-filter-tab active" data-filter="all" data-action="filter-type" data-filter="all">
+              <div class="if-filter-tabs" id="notif-filter-tabs" role="tablist">
+                <button class="if-filter-tab active" data-filter="all" data-action="filter-type" data-filter="all">
                   全部 <span style="opacity:.7;font-weight:400" id="cnt-all">(24)</span>
                 </button>
-                <button class="ci-filter-tab" data-filter="unread" data-action="filter-type" data-filter="unread">
+                <button class="if-filter-tab" data-filter="unread" data-action="filter-type" data-filter="unread">
                   未读 <span style="opacity:.7;font-weight:400" id="cnt-unread">(4)</span>
                 </button>
-                <button class="ci-filter-tab" data-filter="comment" data-action="filter-type" data-filter="comment">
+                <button class="if-filter-tab" data-filter="comment" data-action="filter-type" data-filter="comment">
                   评论 <span style="opacity:.7;font-weight:400">(12)</span>
                 </button>
-                <button class="ci-filter-tab" data-filter="system" data-action="filter-type" data-filter="system">
+                <button class="if-filter-tab" data-filter="system" data-action="filter-type" data-filter="system">
                   系统 <span style="opacity:.7;font-weight:400">(6)</span>
                 </button>
-                <button class="ci-filter-tab" data-filter="user" data-action="filter-type" data-filter="user">
+                <button class="if-filter-tab" data-filter="user" data-action="filter-type" data-filter="user">
                   用户 <span style="opacity:.7;font-weight:400">(6)</span>
                 </button>
               </div>
-              <span style="font-size:.75rem;color:var(--ci-gray-400)">共 24 条通知</span>
+              <span style="font-size:.75rem;color:var(--if-gray-400)">共 24 条通知</span>
             </div>
           </div>
         </div>
 
         <!-- 通知列表卡片 -->
-        <div class="card ci-card mt-3" id="notif-list-card">
+        <div class="card if-card mt-3" id="notif-list-card">
           <div class="card-body p-0">
             <ul class="list-unstyled mb-0" id="notif-full-list">
 
               <!-- 今天 -->
               <li class="px-4 pt-3 pb-1">
-                <span class="ci-date-label">今天</span>
+                <span class="if-date-label">今天</span>
               </li>
 
               <!-- Item: unread comment -->
-              <li class="ci-notif-row unread" data-type="comment">
-                <div class="ci-notif-row-inner">
-                  <div class="ci-notif-icon-lg" style="background:var(--ci-50);color:var(--ci-500)">
+              <li class="if-notif-row unread" data-type="comment">
+                <div class="if-notif-row-inner">
+                  <div class="if-notif-icon-lg" style="background:var(--if-50);color:var(--if-500)">
                     <i class="bi bi-chat-left-dots"></i>
                   </div>
-                  <div class="ci-notif-content">
-                    <div class="ci-notif-title">
+                  <div class="if-notif-content">
+                    <div class="if-notif-title">
                       <strong>张三</strong> 评论了你的文章
-                      <span class="ci-badge ci-badge-blue ms-1">评论</span>
+                      <span class="if-badge if-badge-blue ms-1">评论</span>
                     </div>
-                    <div class="ci-notif-desc">「很棒的文章！Composition API 的解析非常清晰，对我帮助很大。」</div>
-                    <div class="ci-notif-meta">
+                    <div class="if-notif-desc">「很棒的文章！Composition API 的解析非常清晰，对我帮助很大。」</div>
+                    <div class="if-notif-meta">
                       <i class="bi bi-file-text me-1"></i>《Vue 3 Composition API 深入解析》
-                      <span class="ci-notif-sep">·</span>
+                      <span class="if-notif-sep">·</span>
                       <i class="bi bi-clock me-1"></i>10 分钟前
                     </div>
                   </div>
-                  <div class="ci-notif-actions">
-                    <div class="ci-unread-dot"></div>
+                  <div class="if-notif-actions">
+                    <div class="if-unread-dot"></div>
                     <div class="dropdown">
-                      <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown">
+                      <button class="btn btn-light btn-icon btn-sm if-notif-more" data-bs-toggle="dropdown">
                         <i class="bi bi-three-dots"></i>
                       </button>
                       <ul class="dropdown-menu dropdown-menu-end">
@@ -258,25 +258,25 @@
               </li>
 
               <!-- Item: unread user -->
-              <li class="ci-notif-row unread" data-type="user">
-                <div class="ci-notif-row-inner">
-                  <div class="ci-notif-icon-lg" style="background:#dcfce7;color:var(--ci-success-500)">
+              <li class="if-notif-row unread" data-type="user">
+                <div class="if-notif-row-inner">
+                  <div class="if-notif-icon-lg" style="background:#dcfce7;color:var(--if-success-500)">
                     <i class="bi bi-person-plus"></i>
                   </div>
-                  <div class="ci-notif-content">
-                    <div class="ci-notif-title">
+                  <div class="if-notif-content">
+                    <div class="if-notif-title">
                       新用户注册
-                      <span class="ci-badge ci-badge-green ms-1">用户</span>
+                      <span class="if-badge if-badge-green ms-1">用户</span>
                     </div>
-                    <div class="ci-notif-desc"><strong>李明</strong> (user@inkflow.dev) 完成了账号注册，等待审核激活。</div>
-                    <div class="ci-notif-meta">
+                    <div class="if-notif-desc"><strong>李明</strong> (user@inkflow.dev) 完成了账号注册，等待审核激活。</div>
+                    <div class="if-notif-meta">
                       <i class="bi bi-clock me-1"></i>32 分钟前
                     </div>
                   </div>
-                  <div class="ci-notif-actions">
-                    <div class="ci-unread-dot"></div>
+                  <div class="if-notif-actions">
+                    <div class="if-unread-dot"></div>
                     <div class="dropdown">
-                      <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown">
+                      <button class="btn btn-light btn-icon btn-sm if-notif-more" data-bs-toggle="dropdown">
                         <i class="bi bi-three-dots"></i>
                       </button>
                       <ul class="dropdown-menu dropdown-menu-end">
@@ -291,25 +291,25 @@
               </li>
 
               <!-- Item: unread system -->
-              <li class="ci-notif-row unread" data-type="system">
-                <div class="ci-notif-row-inner">
-                  <div class="ci-notif-icon-lg" style="background:#fef3c7;color:var(--ci-warning-500)">
+              <li class="if-notif-row unread" data-type="system">
+                <div class="if-notif-row-inner">
+                  <div class="if-notif-icon-lg" style="background:#fef3c7;color:var(--if-warning-500)">
                     <i class="bi bi-exclamation-triangle"></i>
                   </div>
-                  <div class="ci-notif-content">
-                    <div class="ci-notif-title">
+                  <div class="if-notif-content">
+                    <div class="if-notif-title">
                       磁盘空间提醒
-                      <span class="ci-badge ci-badge-amber ms-1">系统</span>
+                      <span class="if-badge if-badge-amber ms-1">系统</span>
                     </div>
-                    <div class="ci-notif-desc">服务器磁盘使用率已达到 <strong>42%</strong>，建议清理临时文件或扩容。</div>
-                    <div class="ci-notif-meta">
+                    <div class="if-notif-desc">服务器磁盘使用率已达到 <strong>42%</strong>，建议清理临时文件或扩容。</div>
+                    <div class="if-notif-meta">
                       <i class="bi bi-clock me-1"></i>1 小时前
                     </div>
                   </div>
-                  <div class="ci-notif-actions">
-                    <div class="ci-unread-dot"></div>
+                  <div class="if-notif-actions">
+                    <div class="if-unread-dot"></div>
                     <div class="dropdown">
-                      <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown">
+                      <button class="btn btn-light btn-icon btn-sm if-notif-more" data-bs-toggle="dropdown">
                         <i class="bi bi-three-dots"></i>
                       </button>
                       <ul class="dropdown-menu dropdown-menu-end">
@@ -324,27 +324,27 @@
               </li>
 
               <!-- Item: unread comment -->
-              <li class="ci-notif-row unread" data-type="comment">
-                <div class="ci-notif-row-inner">
-                  <div class="ci-notif-icon-lg" style="background:#ede9fe;color:#7c3aed">
+              <li class="if-notif-row unread" data-type="comment">
+                <div class="if-notif-row-inner">
+                  <div class="if-notif-icon-lg" style="background:#ede9fe;color:#7c3aed">
                     <i class="bi bi-chat-left-dots"></i>
                   </div>
-                  <div class="ci-notif-content">
-                    <div class="ci-notif-title">
+                  <div class="if-notif-content">
+                    <div class="if-notif-title">
                       <strong>王红</strong> 指出了文章中的一处错误
-                      <span class="ci-badge ci-badge-blue ms-1">评论</span>
+                      <span class="if-badge if-badge-blue ms-1">评论</span>
                     </div>
-                    <div class="ci-notif-desc">「第三节代码示例中 watchEffect 的用法有误，应该是…」</div>
-                    <div class="ci-notif-meta">
+                    <div class="if-notif-desc">「第三节代码示例中 watchEffect 的用法有误，应该是…」</div>
+                    <div class="if-notif-meta">
                       <i class="bi bi-file-text me-1"></i>《LLM Fine-tuning 实战》
-                      <span class="ci-notif-sep">·</span>
+                      <span class="if-notif-sep">·</span>
                       <i class="bi bi-clock me-1"></i>2 小时前
                     </div>
                   </div>
-                  <div class="ci-notif-actions">
-                    <div class="ci-unread-dot"></div>
+                  <div class="if-notif-actions">
+                    <div class="if-unread-dot"></div>
                     <div class="dropdown">
-                      <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown">
+                      <button class="btn btn-light btn-icon btn-sm if-notif-more" data-bs-toggle="dropdown">
                         <i class="bi bi-three-dots"></i>
                       </button>
                       <ul class="dropdown-menu dropdown-menu-end">
@@ -360,23 +360,23 @@
 
               <!-- 昨天 -->
               <li class="px-4 pt-3 pb-1">
-                <span class="ci-date-label">昨天</span>
+                <span class="if-date-label">昨天</span>
               </li>
 
               <!-- read items -->
-              <li class="ci-notif-row" data-type="system">
-                <div class="ci-notif-row-inner">
-                  <div class="ci-notif-icon-lg" style="background:var(--ci-gray-100);color:var(--ci-gray-500)">
+              <li class="if-notif-row" data-type="system">
+                <div class="if-notif-row-inner">
+                  <div class="if-notif-icon-lg" style="background:var(--if-gray-100);color:var(--if-gray-500)">
                     <i class="bi bi-file-earmark-check"></i>
                   </div>
-                  <div class="ci-notif-content">
-                    <div class="ci-notif-title">文章发布成功 <span class="ci-badge" style="background:var(--ci-gray-100);color:var(--ci-gray-600) ms-1">系统</span></div>
-                    <div class="ci-notif-desc">文章《TypeScript 高级类型完全指南》已成功发布，当前已获得 <strong>128</strong> 次阅读。</div>
-                    <div class="ci-notif-meta"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
+                  <div class="if-notif-content">
+                    <div class="if-notif-title">文章发布成功 <span class="if-badge" style="background:var(--if-gray-100);color:var(--if-gray-600) ms-1">系统</span></div>
+                    <div class="if-notif-desc">文章《TypeScript 高级类型完全指南》已成功发布，当前已获得 <strong>128</strong> 次阅读。</div>
+                    <div class="if-notif-meta"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
                   </div>
-                  <div class="ci-notif-actions">
+                  <div class="if-notif-actions">
                     <div class="dropdown">
-                      <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
+                      <button class="btn btn-light btn-icon btn-sm if-notif-more" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
                       <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="post-list.html"><i class="bi bi-file-text me-2"></i>查看文章</a></li>
                         <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
@@ -386,19 +386,19 @@
                 </div>
               </li>
 
-              <li class="ci-notif-row" data-type="system">
-                <div class="ci-notif-row-inner">
-                  <div class="ci-notif-icon-lg" style="background:var(--ci-gray-100);color:var(--ci-gray-500)">
+              <li class="if-notif-row" data-type="system">
+                <div class="if-notif-row-inner">
+                  <div class="if-notif-icon-lg" style="background:var(--if-gray-100);color:var(--if-gray-500)">
                     <i class="bi bi-shield-check"></i>
                   </div>
-                  <div class="ci-notif-content">
-                    <div class="ci-notif-title">SSL 证书到期提醒 <span class="ci-badge ci-badge-amber ms-1">系统</span></div>
-                    <div class="ci-notif-desc">域名 <strong>blog.inkflow.dev</strong> 的 SSL 证书将在 <strong>30 天</strong>后到期，请及时续签以避免服务中断。</div>
-                    <div class="ci-notif-meta"><i class="bi bi-clock me-1"></i>昨天 09:15</div>
+                  <div class="if-notif-content">
+                    <div class="if-notif-title">SSL 证书到期提醒 <span class="if-badge if-badge-amber ms-1">系统</span></div>
+                    <div class="if-notif-desc">域名 <strong>blog.inkflow.dev</strong> 的 SSL 证书将在 <strong>30 天</strong>后到期，请及时续签以避免服务中断。</div>
+                    <div class="if-notif-meta"><i class="bi bi-clock me-1"></i>昨天 09:15</div>
                   </div>
-                  <div class="ci-notif-actions">
+                  <div class="if-notif-actions">
                     <div class="dropdown">
-                      <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
+                      <button class="btn btn-light btn-icon btn-sm if-notif-more" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
                       <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="settings.html"><i class="bi bi-gear me-2"></i>前往设置</a></li>
                         <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
@@ -408,23 +408,23 @@
                 </div>
               </li>
 
-              <li class="ci-notif-row" data-type="comment">
-                <div class="ci-notif-row-inner">
-                  <div class="ci-notif-icon-lg" style="background:var(--ci-50);color:var(--ci-500)">
+              <li class="if-notif-row" data-type="comment">
+                <div class="if-notif-row-inner">
+                  <div class="if-notif-icon-lg" style="background:var(--if-50);color:var(--if-500)">
                     <i class="bi bi-chat-left-dots"></i>
                   </div>
-                  <div class="ci-notif-content">
-                    <div class="ci-notif-title"><strong>Alice Chen</strong> 回复了你的评论 <span class="ci-badge ci-badge-blue ms-1">评论</span></div>
-                    <div class="ci-notif-desc">「同意你的观点，Rust 的所有权系统确实有一定学习曲线，但值得投入。」</div>
-                    <div class="ci-notif-meta">
+                  <div class="if-notif-content">
+                    <div class="if-notif-title"><strong>Alice Chen</strong> 回复了你的评论 <span class="if-badge if-badge-blue ms-1">评论</span></div>
+                    <div class="if-notif-desc">「同意你的观点，Rust 的所有权系统确实有一定学习曲线，但值得投入。」</div>
+                    <div class="if-notif-meta">
                       <i class="bi bi-file-text me-1"></i>《Rust 所有权机制详解》
-                      <span class="ci-notif-sep">·</span>
+                      <span class="if-notif-sep">·</span>
                       <i class="bi bi-clock me-1"></i>昨天 14:20
                     </div>
                   </div>
-                  <div class="ci-notif-actions">
+                  <div class="if-notif-actions">
                     <div class="dropdown">
-                      <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
+                      <button class="btn btn-light btn-icon btn-sm if-notif-more" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
                       <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="comment-list.html"><i class="bi bi-eye me-2"></i>查看评论</a></li>
                         <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
@@ -436,20 +436,20 @@
 
               <!-- 更早 -->
               <li class="px-4 pt-3 pb-1">
-                <span class="ci-date-label">更早</span>
+                <span class="if-date-label">更早</span>
               </li>
 
-              <li class="ci-notif-row" data-type="user">
-                <div class="ci-notif-row-inner">
-                  <div class="ci-notif-icon-lg" style="background:#dcfce7;color:var(--ci-success-500)"><i class="bi bi-person-plus"></i></div>
-                  <div class="ci-notif-content">
-                    <div class="ci-notif-title">新用户注册 <span class="ci-badge ci-badge-green ms-1">用户</span></div>
-                    <div class="ci-notif-desc"><strong>Bob Wang</strong> (user@inkflow.dev) 完成注册。</div>
-                    <div class="ci-notif-meta"><i class="bi bi-clock me-1"></i>3 天前</div>
+              <li class="if-notif-row" data-type="user">
+                <div class="if-notif-row-inner">
+                  <div class="if-notif-icon-lg" style="background:#dcfce7;color:var(--if-success-500)"><i class="bi bi-person-plus"></i></div>
+                  <div class="if-notif-content">
+                    <div class="if-notif-title">新用户注册 <span class="if-badge if-badge-green ms-1">用户</span></div>
+                    <div class="if-notif-desc"><strong>Bob Wang</strong> (user@inkflow.dev) 完成注册。</div>
+                    <div class="if-notif-meta"><i class="bi bi-clock me-1"></i>3 天前</div>
                   </div>
-                  <div class="ci-notif-actions">
+                  <div class="if-notif-actions">
                     <div class="dropdown">
-                      <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
+                      <button class="btn btn-light btn-icon btn-sm if-notif-more" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
                       <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="user-list.html"><i class="bi bi-person me-2"></i>查看用户</a></li>
                         <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
@@ -459,17 +459,17 @@
                 </div>
               </li>
 
-              <li class="ci-notif-row" data-type="comment">
-                <div class="ci-notif-row-inner">
-                  <div class="ci-notif-icon-lg" style="background:var(--ci-50);color:var(--ci-500)"><i class="bi bi-chat-left-dots"></i></div>
-                  <div class="ci-notif-content">
-                    <div class="ci-notif-title"><strong>赵磊</strong> 赞了你的文章 <span class="ci-badge ci-badge-blue ms-1">评论</span></div>
-                    <div class="ci-notif-desc">《Docker 容器化部署最佳实践》获得了新的点赞。</div>
-                    <div class="ci-notif-meta"><i class="bi bi-clock me-1"></i>5 天前</div>
+              <li class="if-notif-row" data-type="comment">
+                <div class="if-notif-row-inner">
+                  <div class="if-notif-icon-lg" style="background:var(--if-50);color:var(--if-500)"><i class="bi bi-chat-left-dots"></i></div>
+                  <div class="if-notif-content">
+                    <div class="if-notif-title"><strong>赵磊</strong> 赞了你的文章 <span class="if-badge if-badge-blue ms-1">评论</span></div>
+                    <div class="if-notif-desc">《Docker 容器化部署最佳实践》获得了新的点赞。</div>
+                    <div class="if-notif-meta"><i class="bi bi-clock me-1"></i>5 天前</div>
                   </div>
-                  <div class="ci-notif-actions">
+                  <div class="if-notif-actions">
                     <div class="dropdown">
-                      <button class="btn btn-light btn-icon btn-sm ci-notif-more" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
+                      <button class="btn btn-light btn-icon btn-sm if-notif-more" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
                       <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="post-list.html"><i class="bi bi-file-text me-2"></i>查看文章</a></li>
                         <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
@@ -483,13 +483,13 @@
 
             <!-- Empty state (hidden by default) -->
             <div id="notif-empty" style="display:none;padding:60px 0;text-align:center">
-              <i class="bi bi-bell-slash" style="font-size:2.5rem;color:var(--ci-gray-300);display:block;margin-bottom:12px"></i>
-              <p style="color:var(--ci-gray-400);font-size:.875rem;margin:0">暂无符合条件的通知</p>
+              <i class="bi bi-bell-slash" style="font-size:2.5rem;color:var(--if-gray-300);display:block;margin-bottom:12px"></i>
+              <p style="color:var(--if-gray-400);font-size:.875rem;margin:0">暂无符合条件的通知</p>
             </div>
 
           </div>
           <div class="card-footer d-flex align-items-center justify-content-between">
-            <span style="font-size:.78rem;color:var(--ci-gray-500)">共 24 条 · 显示第 1–10 条</span>
+            <span style="font-size:.78rem;color:var(--if-gray-500)">共 24 条 · 显示第 1–10 条</span>
             <nav>
               <ul class="pagination pagination-sm mb-0">
                 <li class="page-item disabled"><a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a></li>
@@ -507,45 +507,45 @@
       <div class="col-12 col-xl-4">
 
         <!-- 未读统计 -->
-        <div class="ci-panel ci-anim">
-          <div class="ci-panel-header"><i class="bi bi-bar-chart-line"></i> 通知统计</div>
-          <div class="ci-panel-body">
+        <div class="if-panel if-anim">
+          <div class="if-panel-header"><i class="bi bi-bar-chart-line"></i> 通知统计</div>
+          <div class="if-panel-body">
             <div class="d-flex flex-column gap-2">
               <div class="d-flex align-items-center justify-content-between py-2"
-                   style="border-bottom:1px solid var(--ci-gray-100)">
+                   style="border-bottom:1px solid var(--if-gray-100)">
                 <div class="d-flex align-items-center gap-2">
-                  <span style="width:8px;height:8px;border-radius:50%;background:var(--ci-500);display:inline-block"></span>
+                  <span style="width:8px;height:8px;border-radius:50%;background:var(--if-500);display:inline-block"></span>
                   <span style="font-size:.82rem">未读通知</span>
                 </div>
-                <span class="ci-badge ci-badge-blue" id="stat-unread">4</span>
+                <span class="if-badge if-badge-blue" id="stat-unread">4</span>
               </div>
               <div class="d-flex align-items-center justify-content-between py-2"
-                   style="border-bottom:1px solid var(--ci-gray-100)">
+                   style="border-bottom:1px solid var(--if-gray-100)">
                 <div class="d-flex align-items-center gap-2">
-                  <span style="width:8px;height:8px;border-radius:50%;background:var(--ci-500);display:inline-block"></span>
+                  <span style="width:8px;height:8px;border-radius:50%;background:var(--if-500);display:inline-block"></span>
                   <span style="font-size:.82rem">评论通知</span>
                 </div>
-                <span style="font-size:.82rem;font-weight:600;color:var(--ci-gray-700)">12</span>
+                <span style="font-size:.82rem;font-weight:600;color:var(--if-gray-700)">12</span>
               </div>
               <div class="d-flex align-items-center justify-content-between py-2"
-                   style="border-bottom:1px solid var(--ci-gray-100)">
+                   style="border-bottom:1px solid var(--if-gray-100)">
                 <div class="d-flex align-items-center gap-2">
-                  <span style="width:8px;height:8px;border-radius:50%;background:var(--ci-success-500);display:inline-block"></span>
+                  <span style="width:8px;height:8px;border-radius:50%;background:var(--if-success-500);display:inline-block"></span>
                   <span style="font-size:.82rem">用户通知</span>
                 </div>
-                <span style="font-size:.82rem;font-weight:600;color:var(--ci-gray-700)">6</span>
+                <span style="font-size:.82rem;font-weight:600;color:var(--if-gray-700)">6</span>
               </div>
               <div class="d-flex align-items-center justify-content-between py-2"
-                   style="border-bottom:1px solid var(--ci-gray-100)">
+                   style="border-bottom:1px solid var(--if-gray-100)">
                 <div class="d-flex align-items-center gap-2">
-                  <span style="width:8px;height:8px;border-radius:50%;background:var(--ci-warning-500);display:inline-block"></span>
+                  <span style="width:8px;height:8px;border-radius:50%;background:var(--if-warning-500);display:inline-block"></span>
                   <span style="font-size:.82rem">系统通知</span>
                 </div>
-                <span style="font-size:.82rem;font-weight:600;color:var(--ci-gray-700)">6</span>
+                <span style="font-size:.82rem;font-weight:600;color:var(--if-gray-700)">6</span>
               </div>
               <div class="d-flex align-items-center justify-content-between py-2">
-                <span style="font-size:.82rem;color:var(--ci-gray-500)">总计</span>
-                <span style="font-size:.82rem;font-weight:700;color:var(--ci-gray-900)">24</span>
+                <span style="font-size:.82rem;color:var(--if-gray-500)">总计</span>
+                <span style="font-size:.82rem;font-weight:700;color:var(--if-gray-900)">24</span>
               </div>
             </div>
             <button class="btn btn-light w-100 mt-3" style="font-size:.78rem" data-action="read-all">
@@ -555,14 +555,14 @@
         </div>
 
         <!-- 通知偏好 -->
-        <div class="ci-panel ci-anim mt-3" style="--ci-delay:.05s">
-          <div class="ci-panel-header"><i class="bi bi-bell-slash"></i> 通知偏好设置</div>
-          <div class="ci-panel-body">
+        <div class="if-panel if-anim mt-3" style="--if-delay:.05s">
+          <div class="if-panel-header"><i class="bi bi-bell-slash"></i> 通知偏好设置</div>
+          <div class="if-panel-body">
             <div class="d-flex flex-column gap-3">
               <div class="d-flex align-items-center justify-content-between">
                 <div>
-                  <div style="font-size:.82rem;font-weight:600;color:var(--ci-gray-800)">评论通知</div>
-                  <div style="font-size:.72rem;color:var(--ci-gray-500)">新评论、回复时提醒</div>
+                  <div style="font-size:.82rem;font-weight:600;color:var(--if-gray-800)">评论通知</div>
+                  <div style="font-size:.72rem;color:var(--if-gray-500)">新评论、回复时提醒</div>
                 </div>
                 <div class="form-check form-switch mb-0">
                   <input class="form-check-input" type="checkbox" checked onchange="showToast('偏好已保存','success')">
@@ -570,8 +570,8 @@
               </div>
               <div class="d-flex align-items-center justify-content-between">
                 <div>
-                  <div style="font-size:.82rem;font-weight:600;color:var(--ci-gray-800)">用户注册通知</div>
-                  <div style="font-size:.72rem;color:var(--ci-gray-500)">新用户注册时提醒</div>
+                  <div style="font-size:.82rem;font-weight:600;color:var(--if-gray-800)">用户注册通知</div>
+                  <div style="font-size:.72rem;color:var(--if-gray-500)">新用户注册时提醒</div>
                 </div>
                 <div class="form-check form-switch mb-0">
                   <input class="form-check-input" type="checkbox" checked onchange="showToast('偏好已保存','success')">
@@ -579,8 +579,8 @@
               </div>
               <div class="d-flex align-items-center justify-content-between">
                 <div>
-                  <div style="font-size:.82rem;font-weight:600;color:var(--ci-gray-800)">系统告警</div>
-                  <div style="font-size:.72rem;color:var(--ci-gray-500)">磁盘、证书、安全提醒</div>
+                  <div style="font-size:.82rem;font-weight:600;color:var(--if-gray-800)">系统告警</div>
+                  <div style="font-size:.72rem;color:var(--if-gray-500)">磁盘、证书、安全提醒</div>
                 </div>
                 <div class="form-check form-switch mb-0">
                   <input class="form-check-input" type="checkbox" checked onchange="showToast('偏好已保存','success')">
@@ -588,8 +588,8 @@
               </div>
               <div class="d-flex align-items-center justify-content-between">
                 <div>
-                  <div style="font-size:.82rem;font-weight:600;color:var(--ci-gray-800)">邮件通知</div>
-                  <div style="font-size:.72rem;color:var(--ci-gray-500)">通知同时发送至邮箱</div>
+                  <div style="font-size:.82rem;font-weight:600;color:var(--if-gray-800)">邮件通知</div>
+                  <div style="font-size:.72rem;color:var(--if-gray-500)">通知同时发送至邮箱</div>
                 </div>
                 <div class="form-check form-switch mb-0">
                   <input class="form-check-input" type="checkbox" onchange="showToast('邮件通知已' + (this.checked ? '开启' : '关闭'),'info')">
