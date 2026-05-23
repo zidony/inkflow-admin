@@ -60,9 +60,9 @@
   <div class="sidebar-footer">
     <div class="sidebar-user">
       <div class="if-avatar if-avatar-sm if-avatar-blue">AD</div>
-      <div class="sidebar-user-info">
-        <div class="sidebar-user-name">Admin</div>
-        <div class="sidebar-user-role">超级管理员</div>
+      <div class="sidebar-user-info if-item-text">
+        <div class="if-title text-white">Admin</div>
+        <small >超级管理员</small>
       </div>
     </div>
   </div>
@@ -93,7 +93,7 @@
         <li>
           <ul class="if-notif-list">
             <li class="if-notif-item unread">
-              <div class="if-notif-icon" style="background:var(--if-50);color:var(--if-500)"><i class="bi bi-chat-left-dots"></i></div>
+              <div class="if-notif-icon u-text-primary" style="background:var(--if-50)"><i class="bi bi-chat-left-dots"></i></div>
               <div class="if-notif-body">
                 <div class="if-notif-text"><strong>张三</strong> 评论了《Vue 3 Composition API》</div>
                 <div class="if-notif-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
@@ -101,7 +101,7 @@
               <span class="if-notif-dot"></span>
             </li>
             <li class="if-notif-item unread">
-              <div class="if-notif-icon" style="background:#dcfce7;color:var(--if-success-500)"><i class="bi bi-person-plus"></i></div>
+              <div class="if-notif-icon u-text-success" style="background:#dcfce7"><i class="bi bi-person-plus"></i></div>
               <div class="if-notif-body">
                 <div class="if-notif-text"><strong>新用户</strong> 李明 完成了注册</div>
                 <div class="if-notif-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
@@ -109,7 +109,7 @@
               <span class="if-notif-dot"></span>
             </li>
             <li class="if-notif-item">
-              <div class="if-notif-icon" style="background:var(--if-gray-100);color:var(--if-gray-500)"><i class="bi bi-file-earmark-check"></i></div>
+              <div class="if-notif-icon u-text-gray-500" style="background:var(--if-gray-100)"><i class="bi bi-file-earmark-check"></i></div>
               <div class="if-notif-body">
                 <div class="if-notif-text">文章《TypeScript 高级类型》已成功发布</div>
                 <div class="if-notif-time"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
@@ -134,7 +134,9 @@
         <li>
           <div class="user-info-header">
             <div class="if-avatar if-avatar-blue">AD</div>
-            <div><div class="user-info-name">Admin User</div><div class="user-info-email">admin@inkflow.dev</div></div>
+            <div class="if-item-text">
+              <div class="if-title">Admin User</div><small>admin@inkflow.dev</small>
+            </div>
           </div>
         </li>
         <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> 个人资料</a></li>
@@ -198,11 +200,11 @@
             <div class="d-flex align-items-center gap-3">
               <div class="form-check form-switch mb-0">
                 <input class="form-check-input" type="checkbox" id="link-status" checked>
-                <label class="form-check-label" for="link-status" style="font-size:.82rem">启用该链接</label>
+                <label class="form-check-label u-text-body" for="link-status" >启用该链接</label>
               </div>
               <div class="form-check form-switch mb-0">
                 <input class="form-check-input" type="checkbox" id="link-nofollow">
-                <label class="form-check-label" for="link-nofollow" style="font-size:.82rem">添加 nofollow</label>
+                <label class="form-check-label u-text-body" for="link-nofollow" >添加 nofollow</label>
               </div>
             </div>
           </div>
@@ -220,11 +222,11 @@
       <div class="if-panel-body">
         <div style="border:1.5px solid var(--if-gray-200);border-radius:10px;padding:14px;background:var(--if-gray-50)">
           <div class="d-flex align-items-center gap-3">
-            <div class="if-link-favicon" style="width:40px;height:40px;border-radius:10px;font-size:1.1rem;color:var(--if-gray-600)"><i class="bi bi-github"></i></div>
+            <div class="if-link-favicon u-text-gray-600" style="width:40px;height:40px;border-radius:10px;font-size:1.1rem"><i class="bi bi-github"></i></div>
             <div>
-              <div style="font-size:.9rem;font-weight:700;color:var(--if-gray-800)">GitHub</div>
-              <div style="font-size:.75rem;color:var(--if-500)">https://github.com</div>
-              <div style="font-size:.72rem;color:var(--if-gray-400);margin-top:2px">代码托管平台，全球最大开源社区</div>
+              <div class="fw-bold u-text-gray-800" style="font-size:.9rem">GitHub</div>
+              <div class="u-text-xs u-text-primary" >https://github.com</div>
+              <div class="u-text-gray-400 u-text-xs" style="margin-top:2px">代码托管平台，全球最大开源社区</div>
             </div>
           </div>
         </div>
@@ -233,7 +235,7 @@
     <div class="if-panel if-anim" style="--if-delay:.15s">
       <div class="if-panel-header"><i class="bi bi-bar-chart-line"></i> 点击统计</div>
       <div class="if-panel-body">
-        <div class="d-flex flex-column gap-2" style="font-size:.82rem">
+        <div class="d-flex flex-column gap-2 u-text-body" >
           <div class="d-flex justify-content-between py-1" style="border-bottom:1px solid var(--if-gray-100)"><span class="text-muted">总点击数</span><strong>1,284</strong></div>
           <div class="d-flex justify-content-between py-1" style="border-bottom:1px solid var(--if-gray-100)"><span class="text-muted">本月点击</span><strong>128</strong></div>
           <div class="d-flex justify-content-between py-1"><span class="text-muted">添加时间</span><strong>2025-01-10</strong></div>

@@ -69,9 +69,9 @@
   <div class="sidebar-footer">
     <div class="sidebar-user">
       <div class="if-avatar if-avatar-sm if-avatar-blue">AD</div>
-      <div class="sidebar-user-info">
-        <div class="sidebar-user-name">Admin</div>
-        <div class="sidebar-user-role">超级管理员</div>
+      <div class="sidebar-user-info if-item-text">
+        <div class="if-title text-white">Admin</div>
+        <small >超级管理员</small>
       </div>
     </div>
   </div>
@@ -111,7 +111,7 @@
           <li>
             <ul class="if-notif-list">
               <li class="if-notif-item unread">
-                <div class="if-notif-icon" style="background:var(--if-50);color:var(--if-500)"><i class="bi bi-chat-left-dots"></i></div>
+                <div class="if-notif-icon u-text-primary" style="background:var(--if-50)"><i class="bi bi-chat-left-dots"></i></div>
                 <div class="if-notif-body">
                   <div class="if-notif-text"><strong>张三</strong> 评论了《Vue 3 Composition API》</div>
                   <div class="if-notif-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
@@ -119,7 +119,7 @@
                 <span class="if-notif-dot"></span>
               </li>
               <li class="if-notif-item unread">
-                <div class="if-notif-icon" style="background:#dcfce7;color:var(--if-success-500)"><i class="bi bi-person-plus"></i></div>
+                <div class="if-notif-icon u-text-success" style="background:#dcfce7"><i class="bi bi-person-plus"></i></div>
                 <div class="if-notif-body">
                   <div class="if-notif-text"><strong>新用户</strong> 李明 完成了注册</div>
                   <div class="if-notif-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
@@ -127,7 +127,7 @@
                 <span class="if-notif-dot"></span>
               </li>
               <li class="if-notif-item">
-                <div class="if-notif-icon" style="background:var(--if-gray-100);color:var(--if-gray-500)"><i class="bi bi-file-earmark-check"></i></div>
+                <div class="if-notif-icon u-text-gray-500" style="background:var(--if-gray-100)"><i class="bi bi-file-earmark-check"></i></div>
                 <div class="if-notif-body">
                   <div class="if-notif-text">文章《TypeScript 高级类型》已成功发布</div>
                   <div class="if-notif-time"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
@@ -151,7 +151,9 @@
           <li>
             <div class="user-info-header">
               <div class="if-avatar if-avatar-blue">AD</div>
-              <div><div class="user-info-name">Admin User</div><div class="user-info-email">admin@inkflow.dev</div></div>
+              <div class="if-item-text">
+              <div class="if-title">Admin User</div><small>admin@inkflow.dev</small>
+            </div>
             </div>
           </li>
           <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> 个人资料</a></li>
@@ -192,22 +194,22 @@
             <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
               <div class="if-filter-tabs" id="notif-filter-tabs" role="tablist">
                 <button class="if-filter-tab active" data-filter="all" data-action="filter-type" data-filter="all">
-                  全部 <span style="opacity:.7;font-weight:400" id="cnt-all">(24)</span>
+                  全部 <span class="u-opacity-70 fw-normal" id="cnt-all">(24)</span>
                 </button>
                 <button class="if-filter-tab" data-filter="unread" data-action="filter-type" data-filter="unread">
-                  未读 <span style="opacity:.7;font-weight:400" id="cnt-unread">(4)</span>
+                  未读 <span class="u-opacity-70 fw-normal" id="cnt-unread">(4)</span>
                 </button>
                 <button class="if-filter-tab" data-filter="comment" data-action="filter-type" data-filter="comment">
-                  评论 <span style="opacity:.7;font-weight:400">(12)</span>
+                  评论 <span class="u-opacity-70 fw-normal">(12)</span>
                 </button>
                 <button class="if-filter-tab" data-filter="system" data-action="filter-type" data-filter="system">
-                  系统 <span style="opacity:.7;font-weight:400">(6)</span>
+                  系统 <span class="u-opacity-70 fw-normal">(6)</span>
                 </button>
                 <button class="if-filter-tab" data-filter="user" data-action="filter-type" data-filter="user">
-                  用户 <span style="opacity:.7;font-weight:400">(6)</span>
+                  用户 <span class="u-opacity-70 fw-normal">(6)</span>
                 </button>
               </div>
-              <span style="font-size:.75rem;color:var(--if-gray-400)">共 24 条通知</span>
+              <span class="u-text-xs u-text-gray-400">共 24 条通知</span>
             </div>
           </div>
         </div>
@@ -225,7 +227,7 @@
               <!-- Item: unread comment -->
               <li class="if-notif-row unread" data-type="comment">
                 <div class="if-notif-row-inner">
-                  <div class="if-notif-icon-lg" style="background:var(--if-50);color:var(--if-500)">
+                  <div class="if-notif-icon-lg u-text-primary" style="background:var(--if-50)">
                     <i class="bi bi-chat-left-dots"></i>
                   </div>
                   <div class="if-notif-content">
@@ -260,7 +262,7 @@
               <!-- Item: unread user -->
               <li class="if-notif-row unread" data-type="user">
                 <div class="if-notif-row-inner">
-                  <div class="if-notif-icon-lg" style="background:#dcfce7;color:var(--if-success-500)">
+                  <div class="if-notif-icon-lg u-text-success" style="background:#dcfce7">
                     <i class="bi bi-person-plus"></i>
                   </div>
                   <div class="if-notif-content">
@@ -293,7 +295,7 @@
               <!-- Item: unread system -->
               <li class="if-notif-row unread" data-type="system">
                 <div class="if-notif-row-inner">
-                  <div class="if-notif-icon-lg" style="background:#fef3c7;color:var(--if-warning-500)">
+                  <div class="if-notif-icon-lg u-text-warning" style="background:#fef3c7">
                     <i class="bi bi-exclamation-triangle"></i>
                   </div>
                   <div class="if-notif-content">
@@ -366,7 +368,7 @@
               <!-- read items -->
               <li class="if-notif-row" data-type="system">
                 <div class="if-notif-row-inner">
-                  <div class="if-notif-icon-lg" style="background:var(--if-gray-100);color:var(--if-gray-500)">
+                  <div class="if-notif-icon-lg u-text-gray-500" style="background:var(--if-gray-100)">
                     <i class="bi bi-file-earmark-check"></i>
                   </div>
                   <div class="if-notif-content">
@@ -388,7 +390,7 @@
 
               <li class="if-notif-row" data-type="system">
                 <div class="if-notif-row-inner">
-                  <div class="if-notif-icon-lg" style="background:var(--if-gray-100);color:var(--if-gray-500)">
+                  <div class="if-notif-icon-lg u-text-gray-500" style="background:var(--if-gray-100)">
                     <i class="bi bi-shield-check"></i>
                   </div>
                   <div class="if-notif-content">
@@ -410,7 +412,7 @@
 
               <li class="if-notif-row" data-type="comment">
                 <div class="if-notif-row-inner">
-                  <div class="if-notif-icon-lg" style="background:var(--if-50);color:var(--if-500)">
+                  <div class="if-notif-icon-lg u-text-primary" style="background:var(--if-50)">
                     <i class="bi bi-chat-left-dots"></i>
                   </div>
                   <div class="if-notif-content">
@@ -441,7 +443,7 @@
 
               <li class="if-notif-row" data-type="user">
                 <div class="if-notif-row-inner">
-                  <div class="if-notif-icon-lg" style="background:#dcfce7;color:var(--if-success-500)"><i class="bi bi-person-plus"></i></div>
+                  <div class="if-notif-icon-lg u-text-success" style="background:#dcfce7"><i class="bi bi-person-plus"></i></div>
                   <div class="if-notif-content">
                     <div class="if-notif-title">新用户注册 <span class="if-badge if-badge-green ms-1">用户</span></div>
                     <div class="if-notif-desc"><strong>Bob Wang</strong> (user@inkflow.dev) 完成注册。</div>
@@ -461,7 +463,7 @@
 
               <li class="if-notif-row" data-type="comment">
                 <div class="if-notif-row-inner">
-                  <div class="if-notif-icon-lg" style="background:var(--if-50);color:var(--if-500)"><i class="bi bi-chat-left-dots"></i></div>
+                  <div class="if-notif-icon-lg u-text-primary" style="background:var(--if-50)"><i class="bi bi-chat-left-dots"></i></div>
                   <div class="if-notif-content">
                     <div class="if-notif-title"><strong>赵磊</strong> 赞了你的文章 <span class="if-badge if-badge-blue ms-1">评论</span></div>
                     <div class="if-notif-desc">《Docker 容器化部署最佳实践》获得了新的点赞。</div>
@@ -482,21 +484,21 @@
             </ul>
 
             <!-- Empty state (hidden by default) -->
-            <div id="notif-empty" style="display:none;padding:60px 0;text-align:center">
+            <div id="notif-empty" class="d-none text-center" style="padding:60px 0">
               <i class="bi bi-bell-slash" style="font-size:2.5rem;color:var(--if-gray-300);display:block;margin-bottom:12px"></i>
-              <p style="color:var(--if-gray-400);font-size:.875rem;margin:0">暂无符合条件的通知</p>
+              <p class="u-text-gray-400" style="font-size:.875rem;margin:0">暂无符合条件的通知</p>
             </div>
 
           </div>
           <div class="card-footer d-flex align-items-center justify-content-between">
-            <span style="font-size:.78rem;color:var(--if-gray-500)">共 24 条 · 显示第 1–10 条</span>
+            <span class="u-text-gray-500 u-text-sm" >共 24 条 · 显示第 1–10 条</span>
             <nav>
-              <ul class="pagination pagination-sm mb-0">
-                <li class="page-item disabled"><a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a></li>
+              <ul class="pagination mb-0">
+                <li class="page-item disabled"><a class="page-link" href="#"><i class="bi bi-chevron-left u-icon-xs"></i></a></li>
                 <li class="page-item active"><a class="page-link" href="#">1</a></li>
                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a></li>
+                <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right u-icon-xs"></i></a></li>
               </ul>
             </nav>
           </div>
@@ -515,7 +517,7 @@
                    style="border-bottom:1px solid var(--if-gray-100)">
                 <div class="d-flex align-items-center gap-2">
                   <span style="width:8px;height:8px;border-radius:50%;background:var(--if-500);display:inline-block"></span>
-                  <span style="font-size:.82rem">未读通知</span>
+                  <span class="u-text-body">未读通知</span>
                 </div>
                 <span class="if-badge if-badge-blue" id="stat-unread">4</span>
               </div>
@@ -523,32 +525,32 @@
                    style="border-bottom:1px solid var(--if-gray-100)">
                 <div class="d-flex align-items-center gap-2">
                   <span style="width:8px;height:8px;border-radius:50%;background:var(--if-500);display:inline-block"></span>
-                  <span style="font-size:.82rem">评论通知</span>
+                  <span class="u-text-body">评论通知</span>
                 </div>
-                <span style="font-size:.82rem;font-weight:600;color:var(--if-gray-700)">12</span>
+                <span class="fw-semibold u-text-gray-700 u-text-body" >12</span>
               </div>
               <div class="d-flex align-items-center justify-content-between py-2"
                    style="border-bottom:1px solid var(--if-gray-100)">
                 <div class="d-flex align-items-center gap-2">
                   <span style="width:8px;height:8px;border-radius:50%;background:var(--if-success-500);display:inline-block"></span>
-                  <span style="font-size:.82rem">用户通知</span>
+                  <span class="u-text-body">用户通知</span>
                 </div>
-                <span style="font-size:.82rem;font-weight:600;color:var(--if-gray-700)">6</span>
+                <span class="fw-semibold u-text-gray-700 u-text-body" >6</span>
               </div>
               <div class="d-flex align-items-center justify-content-between py-2"
                    style="border-bottom:1px solid var(--if-gray-100)">
                 <div class="d-flex align-items-center gap-2">
                   <span style="width:8px;height:8px;border-radius:50%;background:var(--if-warning-500);display:inline-block"></span>
-                  <span style="font-size:.82rem">系统通知</span>
+                  <span class="u-text-body">系统通知</span>
                 </div>
-                <span style="font-size:.82rem;font-weight:600;color:var(--if-gray-700)">6</span>
+                <span class="fw-semibold u-text-gray-700 u-text-body" >6</span>
               </div>
               <div class="d-flex align-items-center justify-content-between py-2">
-                <span style="font-size:.82rem;color:var(--if-gray-500)">总计</span>
-                <span style="font-size:.82rem;font-weight:700;color:var(--if-gray-900)">24</span>
+                <span class="u-text-gray-500 u-text-body" >总计</span>
+                <span class="fw-bold u-text-body" style="color:var(--if-gray-900)">24</span>
               </div>
             </div>
-            <button class="btn btn-light w-100 mt-3" style="font-size:.78rem" data-action="read-all">
+            <button class="btn btn-light w-100 mt-3 u-text-sm" data-action="read-all">
               <i class="bi bi-check2-all me-1"></i>全部标记已读
             </button>
           </div>
@@ -561,8 +563,8 @@
             <div class="d-flex flex-column gap-3">
               <div class="d-flex align-items-center justify-content-between">
                 <div>
-                  <div style="font-size:.82rem;font-weight:600;color:var(--if-gray-800)">评论通知</div>
-                  <div style="font-size:.72rem;color:var(--if-gray-500)">新评论、回复时提醒</div>
+                  <div class="fw-semibold u-text-gray-800 u-text-body" >评论通知</div>
+                  <div class="u-text-gray-500 u-text-xs" >新评论、回复时提醒</div>
                 </div>
                 <div class="form-check form-switch mb-0">
                   <input class="form-check-input" type="checkbox" checked onchange="showToast('偏好已保存','success')">
@@ -570,8 +572,8 @@
               </div>
               <div class="d-flex align-items-center justify-content-between">
                 <div>
-                  <div style="font-size:.82rem;font-weight:600;color:var(--if-gray-800)">用户注册通知</div>
-                  <div style="font-size:.72rem;color:var(--if-gray-500)">新用户注册时提醒</div>
+                  <div class="fw-semibold u-text-gray-800 u-text-body" >用户注册通知</div>
+                  <div class="u-text-gray-500 u-text-xs" >新用户注册时提醒</div>
                 </div>
                 <div class="form-check form-switch mb-0">
                   <input class="form-check-input" type="checkbox" checked onchange="showToast('偏好已保存','success')">
@@ -579,8 +581,8 @@
               </div>
               <div class="d-flex align-items-center justify-content-between">
                 <div>
-                  <div style="font-size:.82rem;font-weight:600;color:var(--if-gray-800)">系统告警</div>
-                  <div style="font-size:.72rem;color:var(--if-gray-500)">磁盘、证书、安全提醒</div>
+                  <div class="fw-semibold u-text-gray-800 u-text-body" >系统告警</div>
+                  <div class="u-text-gray-500 u-text-xs" >磁盘、证书、安全提醒</div>
                 </div>
                 <div class="form-check form-switch mb-0">
                   <input class="form-check-input" type="checkbox" checked onchange="showToast('偏好已保存','success')">
@@ -588,8 +590,8 @@
               </div>
               <div class="d-flex align-items-center justify-content-between">
                 <div>
-                  <div style="font-size:.82rem;font-weight:600;color:var(--if-gray-800)">邮件通知</div>
-                  <div style="font-size:.72rem;color:var(--if-gray-500)">通知同时发送至邮箱</div>
+                  <div class="fw-semibold u-text-gray-800 u-text-body" >邮件通知</div>
+                  <div class="u-text-gray-500 u-text-xs" >通知同时发送至邮箱</div>
                 </div>
                 <div class="form-check form-switch mb-0">
                   <input class="form-check-input" type="checkbox" onchange="showToast('邮件通知已' + (this.checked ? '开启' : '关闭'),'info')">

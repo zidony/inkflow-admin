@@ -100,9 +100,9 @@
   <div class="sidebar-footer">
     <div class="sidebar-user">
       <div class="if-avatar if-avatar-sm if-avatar-blue">AD</div>
-      <div class="sidebar-user-info">
-        <div class="sidebar-user-name">Admin</div>
-        <div class="sidebar-user-role">超级管理员</div>
+      <div class="sidebar-user-info if-item-text">
+        <div class="if-title text-white">Admin</div>
+        <small >超级管理员</small>
       </div>
     </div>
   </div>
@@ -166,27 +166,27 @@
   <div class="if-editor-sticky-bar">
     <div class="if-sticky-inner">
       <div class="d-flex align-items-center gap-3">
-        <a href="post-list.html" class="btn btn-light btn-sm"
-           style="height:32px;font-size:.78rem;padding:0 12px">
+        <a href="post-list.html" class="btn btn-light btn-sm u-text-sm"
+      style="height:32px;padding:0 12px">
           <i class="bi bi-arrow-left me-1"></i>返回列表
         </a>
-        <span style="font-size:.78rem;color:var(--if-gray-500)" id="save-status">
+        <span class="u-text-gray-500 u-text-sm" id="save-status">
           <i class="bi bi-check-circle-fill"
              style="color:var(--if-success-400);font-size:.7rem;vertical-align:middle;margin-right:3px"></i>
           草稿已自动保存 · 刚刚
         </span>
       </div>
       <div class="d-flex align-items-center gap-2">
-        <button class="btn btn-light btn-sm" id="btn-preview"
-                style="height:32px;font-size:.78rem;padding:0 12px">
+        <button class="btn btn-light btn-sm u-text-sm" id="btn-preview"
+         style="height:32px;padding:0 12px">
           <i class="bi bi-eye me-1"></i>预览
         </button>
-        <button class="btn btn-light btn-sm" id="btn-save-draft"
-                style="height:32px;font-size:.78rem;padding:0 12px">
+        <button class="btn btn-light btn-sm u-text-sm" id="btn-save-draft"
+         style="height:32px;padding:0 12px">
           <i class="bi bi-floppy me-1"></i>保存草稿
         </button>
-        <button class="btn btn-primary btn-sm" id="btn-publish"
-                style="height:32px;font-size:.78rem;padding:0 16px">
+        <button class="btn btn-primary btn-sm u-text-sm" id="btn-publish"
+         style="height:32px;padding:0 16px">
           <i class="bi bi-send-fill me-1"></i>发布文章
         </button>
       </div>
@@ -203,16 +203,15 @@
         <!-- 标题输入 -->
         <div class="if-panel if-anim">
           <div class="if-panel-body" style="padding:16px 20px">
-            <input type="text" id="post-title" class="form-control"
-              style="font-size:1.3rem;font-weight:700;border:none;padding:0;
-                     box-shadow:none;color:var(--if-gray-900);letter-spacing:-.3px"
-              value="深入理解 Vue 3 Composition API 与响应式原理"
-              placeholder="在此输入文章标题…">
+            <input type="text" id="post-title" class="form-control fw-bold"
+        style="font-size:1.3rem;border:none;padding:0;box-shadow:none;color:var(--if-gray-900);letter-spacing:-.3px"
+       value="深入理解 Vue 3 Composition API 与响应式原理"
+       placeholder="在此输入文章标题…">
             <div class="d-flex align-items-center flex-wrap gap-3 mt-2"
                  style="padding-top:10px;border-top:1px solid var(--if-gray-100)">
-              <div style="flex:1;min-width:200px;font-size:.78rem">
-                <span style="color:var(--if-gray-400);margin-right:6px">永久链接</span>
-                <span style="color:var(--if-500);font-family:var(--font-mono)">
+              <div class="u-text-sm" style="flex:1;min-width:200px">
+                <span class="u-text-gray-400" style="margin-right:6px">永久链接</span>
+                <span class="u-text-primary u-text-mono">
                   https://blog.inkflow.dev/post/
                   <span id="slug-preview"
                         style="border-bottom:1px dashed var(--if-300);cursor:pointer"
@@ -238,14 +237,14 @@
           <div class="if-panel-header">
             <i class="bi bi-pencil-square"></i> 文章内容
             <div class="ms-auto d-flex gap-2">
-              <button class="btn btn-light btn-sm"
-                      style="font-size:.72rem;height:26px;padding:0 8px"
-                      data-action="toast" data-toast-msg="已切换到源码模式" data-toast-type="info">
+              <button class="btn btn-light btn-sm u-text-xs"
+            style="height:26px;padding:0 8px"
+           data-action="toast" data-toast-msg="已切换到源码模式" data-toast-type="info">
                 <i class="bi bi-code-slash me-1"></i>源码
               </button>
-              <button class="btn btn-light btn-sm"
-                      style="font-size:.72rem;height:26px;padding:0 8px"
-                      data-action="toast" data-toast-msg="已切换到预览模式" data-toast-type="info">
+              <button class="btn btn-light btn-sm u-text-xs"
+            style="height:26px;padding:0 8px"
+           data-action="toast" data-toast-msg="已切换到预览模式" data-toast-type="info">
                 <i class="bi bi-eye me-1"></i>预览
               </button>
             </div>
@@ -254,9 +253,7 @@
             <!-- 工具栏 -->
             <div class="if-editor-toolbar">
               <div class="if-toolbar-group">
-                <select style="border:none;background:transparent;font-size:.78rem;
-                               font-family:var(--font-sans);color:var(--if-gray-700);
-                               height:28px;padding:0 4px;cursor:pointer;border-radius:4px">
+                <select class="u-text-gray-700 u-text-sm" style="border:none;background:transparent;font-family:var(--font-sans);height:28px;padding:0 4px;cursor:pointer;border-radius:4px">
                   <option>段落</option>
                   <option>标题 1</option>
                   <option>标题 2</option>
@@ -330,8 +327,8 @@
           <div class="if-panel-header" style="cursor:pointer"
                data-bs-toggle="collapse" data-bs-target="#seo-collapse">
             <i class="bi bi-search-heart"></i> SEO 优化设置
-            <i class="bi bi-chevron-down ms-auto"
-               style="font-size:.75rem;color:var(--if-gray-400)"></i>
+            <i class="bi bi-chevron-down ms-auto u-text-xs u-text-gray-400"
+        ></i>
           </div>
           <div id="seo-collapse" class="collapse show">
             <div class="if-panel-body">
@@ -380,7 +377,7 @@
                 <option value="private">私密</option>
               </select>
             </div>
-            <div class="mb-3" id="schedule-row" style="display:none">
+            <div class="mb-3 d-none" id="schedule-row" >
               <label class="form-label">定时发布时间</label>
               <input type="datetime-local" class="form-control">
             </div>
@@ -395,19 +392,19 @@
             </div>
             <div class="d-flex flex-column gap-2 mb-3">
               <div class="d-flex align-items-center justify-content-between">
-                <label class="form-label mb-0" style="font-size:.82rem">置顶文章</label>
+                <label class="form-label mb-0 u-text-body" >置顶文章</label>
                 <div class="form-check form-switch mb-0">
                   <input class="form-check-input" type="checkbox" checked>
                 </div>
               </div>
               <div class="d-flex align-items-center justify-content-between">
-                <label class="form-label mb-0" style="font-size:.82rem">允许评论</label>
+                <label class="form-label mb-0 u-text-body" >允许评论</label>
                 <div class="form-check form-switch mb-0">
                   <input class="form-check-input" type="checkbox" checked>
                 </div>
               </div>
               <div class="d-flex align-items-center justify-content-between">
-                <label class="form-label mb-0" style="font-size:.82rem">原创标记</label>
+                <label class="form-label mb-0 u-text-body" >原创标记</label>
                 <div class="form-check form-switch mb-0">
                   <input class="form-check-input" type="checkbox" checked>
                 </div>
@@ -434,7 +431,7 @@
                 <i class="bi bi-arrow-repeat"></i> 更换图片
               </div>
             </div>
-            <input type="file" id="cover-file-input" accept="image/*" style="display:none">
+            <input type="file" id="cover-file-input" accept="image/*" class="d-none">
             <div class="d-flex gap-2 mt-2">
               <button class="btn btn-light btn-sm flex-fill"
                       data-action="trigger" data-target="cover-file-input">
@@ -464,9 +461,9 @@
               <span class="if-pill">开源项目</span>
               <span class="if-pill">随笔日记</span>
             </div>
-            <button class="btn btn-light btn-sm w-100 mt-2"
-                    style="font-size:.75rem;height:28px"
-                    data-action="toast" data-toast-msg="请在栏目管理中新建分类" data-toast-type="info">
+            <button class="btn btn-light btn-sm w-100 mt-2 u-text-xs"
+           style="height:28px"
+          data-action="toast" data-toast-msg="请在栏目管理中新建分类" data-toast-type="info">
               <i class="bi bi-plus me-1"></i>新建栏目
             </button>
           </div>
@@ -482,9 +479,9 @@
               <span class="if-tag">响应式<button type="button"><i class="bi bi-x"></i></button></span>
               <span class="if-tag">前端<button type="button"><i class="bi bi-x"></i></button></span>
             </div>
-            <input type="text" id="tag-input" class="form-control mt-2"
-              placeholder="输入标签后按 Enter 确认"
-              style="height:32px;font-size:.78rem">
+            <input type="text" id="tag-input" class="form-control mt-2 u-text-sm"
+       placeholder="输入标签后按 Enter 确认"
+        style="height:32px">
             <div class="if-form-hint">按 Enter 或逗号添加标签</div>
           </div>
         </div>
@@ -495,10 +492,10 @@
             <i class="bi bi-blockquote-left"></i> 文章摘要
           </div>
           <div class="if-panel-body">
-            <textarea class="form-control" rows="3"
-              placeholder="不填则自动取正文前 150 字…"
-              style="resize:vertical;font-size:.82rem"
-              >Vue 3 带来了全新的 Composition API，提供了更灵活的代码组织方式与更强大的逻辑复用能力。</textarea>
+            <textarea class="form-control u-text-body" rows="3"
+       placeholder="不填则自动取正文前 150 字…"
+        style="resize:vertical"
+       >Vue 3 带来了全新的 Composition API，提供了更灵活的代码组织方式与更强大的逻辑复用能力。</textarea>
             <div class="d-flex align-items-center justify-content-between mt-1">
               <span class="if-form-hint mb-0">建议 50–150 字</span>
               <button class="btn btn-light btn-sm"
@@ -515,8 +512,8 @@
           <div class="if-panel-header" style="cursor:pointer"
                data-bs-toggle="collapse" data-bs-target="#more-collapse">
             <i class="bi bi-three-dots"></i> 更多设置
-            <i class="bi bi-chevron-down ms-auto"
-               style="font-size:.75rem;color:var(--if-gray-400)"></i>
+            <i class="bi bi-chevron-down ms-auto u-text-xs u-text-gray-400"
+        ></i>
           </div>
           <div id="more-collapse" class="collapse show">
             <div class="if-panel-body">

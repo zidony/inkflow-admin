@@ -60,9 +60,9 @@
   <div class="sidebar-footer">
     <div class="sidebar-user">
       <div class="if-avatar if-avatar-sm if-avatar-blue">AD</div>
-      <div class="sidebar-user-info">
-        <div class="sidebar-user-name">Admin</div>
-        <div class="sidebar-user-role">超级管理员</div>
+      <div class="sidebar-user-info if-item-text">
+        <div class="if-title text-white">Admin</div>
+        <small >超级管理员</small>
       </div>
     </div>
   </div>
@@ -93,7 +93,7 @@
         <li>
           <ul class="if-notif-list">
             <li class="if-notif-item unread">
-              <div class="if-notif-icon" style="background:var(--if-50);color:var(--if-500)"><i class="bi bi-chat-left-dots"></i></div>
+              <div class="if-notif-icon u-text-primary" style="background:var(--if-50)"><i class="bi bi-chat-left-dots"></i></div>
               <div class="if-notif-body">
                 <div class="if-notif-text"><strong>张三</strong> 评论了《Vue 3 Composition API》</div>
                 <div class="if-notif-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
@@ -101,7 +101,7 @@
               <span class="if-notif-dot"></span>
             </li>
             <li class="if-notif-item unread">
-              <div class="if-notif-icon" style="background:#dcfce7;color:var(--if-success-500)"><i class="bi bi-person-plus"></i></div>
+              <div class="if-notif-icon u-text-success" style="background:#dcfce7"><i class="bi bi-person-plus"></i></div>
               <div class="if-notif-body">
                 <div class="if-notif-text"><strong>新用户</strong> 李明 完成了注册</div>
                 <div class="if-notif-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
@@ -109,7 +109,7 @@
               <span class="if-notif-dot"></span>
             </li>
             <li class="if-notif-item">
-              <div class="if-notif-icon" style="background:var(--if-gray-100);color:var(--if-gray-500)"><i class="bi bi-file-earmark-check"></i></div>
+              <div class="if-notif-icon u-text-gray-500" style="background:var(--if-gray-100)"><i class="bi bi-file-earmark-check"></i></div>
               <div class="if-notif-body">
                 <div class="if-notif-text">文章《TypeScript 高级类型》已成功发布</div>
                 <div class="if-notif-time"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
@@ -134,7 +134,9 @@
         <li>
           <div class="user-info-header">
             <div class="if-avatar if-avatar-blue">AD</div>
-            <div><div class="user-info-name">Admin User</div><div class="user-info-email">admin@inkflow.dev</div></div>
+            <div class="if-item-text">
+              <div class="if-title">Admin User</div><small>admin@inkflow.dev</small>
+            </div>
           </div>
         </li>
         <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> 个人资料</a></li>
@@ -161,50 +163,48 @@
       <div class="if-panel-header">
         <i class="bi bi-image-fill"></i> 图片上传 / 预览
         <div class="ms-auto d-flex gap-2">
-          <button class="btn btn-primary btn-sm" style="height:28px;font-size:.75rem;padding:0 12px"
-                  data-action="trigger" data-target="img-file-input">
+          <button class="btn btn-primary btn-sm u-text-xs" style="height:28px;padding:0 12px"
+         data-action="trigger" data-target="img-file-input">
             <i class="bi bi-upload me-1"></i>选择图片上传
           </button>
-          <input type="file" id="img-file-input" accept="image/*" style="display:none">
+          <input type="file" id="img-file-input" accept="image/*" class="d-none">
         </div>
       </div>
       <div class="if-panel-body">
         <!-- Upload zone (shown when no image) -->
-        <div id="img-upload-zone" class="if-upload-zone" style="display:none"
-             data-action="trigger" data-target="img-file-input">
+        <div id="img-upload-zone" class="if-upload-zone d-none"
+       data-action="trigger" data-target="img-file-input">
           <i class="bi bi-cloud-arrow-up"></i>
           <p>点击或拖拽图片到此处上传<br>
           <small>支持 JPG、PNG、GIF、WebP、SVG，最大 20MB</small></p>
         </div>
         <!-- Preview (shown when image exists) -->
         <div id="img-preview-box"
-             style="background:var(--if-gray-100);border-radius:8px;overflow:hidden;text-align:center;padding:12px;position:relative">
+       class="text-center" style="background:var(--if-gray-100);border-radius:8px;overflow:hidden;padding:12px;position:relative">
           <img id="img-preview-img"
                src="https://picsum.photos/seed/vue3cover/800/450"
                alt="图片预览"
                style="max-width:100%;max-height:400px;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
           <div style="margin-top:10px;display:flex;justify-content:center;gap:8px">
-            <button class="btn btn-light btn-sm" style="font-size:.75rem"
-                    data-action="trigger" data-target="img-file-input">
+            <button class="btn btn-light btn-sm u-text-xs"
+          data-action="trigger" data-target="img-file-input">
               <i class="bi bi-arrow-repeat me-1"></i>替换图片
             </button>
-            <button class="btn btn-light btn-sm" style="font-size:.75rem"
-                    data-action="toast" data-toast-msg="图片裁剪功能已打开" data-toast-type="info">
+            <button class="btn btn-light btn-sm u-text-xs"
+          data-action="toast" data-toast-msg="图片裁剪功能已打开" data-toast-type="info">
               <i class="bi bi-crop me-1"></i>裁剪
             </button>
-            <button class="btn btn-danger-soft btn-sm" style="font-size:.75rem"
-                    data-action="clear-preview">
+            <button class="btn btn-danger-soft btn-sm u-text-xs"
+          data-action="clear-preview">
               <i class="bi bi-x-lg me-1"></i>移除
             </button>
           </div>
         </div>
         <!-- Drag & drop overlay -->
         <div id="img-drag-overlay"
-             style="display:none;position:fixed;inset:0;background:rgba(13,110,204,.15);
-                    z-index:9998;border:3px dashed var(--if-400);pointer-events:none;
-                    align-items:center;justify-content:center;flex-direction:column;gap:10px">
-          <i class="bi bi-cloud-arrow-up" style="font-size:3rem;color:var(--if-500)"></i>
-          <span style="font-size:1rem;font-weight:700;color:var(--if-600)">松开鼠标上传图片</span>
+       class="d-none" style="position:fixed;inset:0;background:rgba(13,110,204,.15);z-index:9998;border:3px dashed var(--if-400);pointer-events:none;align-items:center;justify-content:center;flex-direction:column;gap:10px">
+          <i class="bi bi-cloud-arrow-up u-text-primary" style="font-size:3rem"></i>
+          <span class="fw-bold" style="font-size:1rem;color:var(--if-600)">松开鼠标上传图片</span>
         </div>
       </div>
     </div>
@@ -239,7 +239,7 @@
       <div class="if-panel-header"><i class="bi bi-link-45deg"></i> 直链地址</div>
       <div class="if-panel-body">
         <div class="input-group">
-          <input type="text" class="form-control" value="https://cdn.inkflow.dev/uploads/2025/06/cover-vue3.jpg" readonly data-field="url" style="font-size:.8rem;font-family:var(--font-mono)">
+          <input type="text" class="form-control u-text-sm u-text-mono" value="https://cdn.inkflow.dev/uploads/2025/06/cover-vue3.jpg" readonly data-field="url" >
           <button class="btn btn-light" data-action="toast" data-toast-msg="已复制到剪贴板" data-toast-type="success"><i class="bi bi-clipboard"></i></button>
         </div>
       </div>
@@ -253,19 +253,19 @@
     <div class="if-panel if-anim" style="--if-delay:.05s">
       <div class="if-panel-header"><i class="bi bi-file-earmark-text"></i> 文件详情</div>
       <div class="if-panel-body">
-        <dl style="font-size:.82rem;margin:0">
-          <dt style="color:var(--if-gray-400);font-weight:500;margin-bottom:2px">文件名</dt>
-          <dd data-field="filename" style="font-family:var(--font-mono);font-size:.78rem;color:var(--if-gray-800);margin-bottom:10px">cover-vue3.jpg</dd>
-          <dt style="color:var(--if-gray-400);font-weight:500;margin-bottom:2px">文件类型</dt>
-          <dd style="color:var(--if-gray-800);margin-bottom:10px">image/jpeg</dd>
-          <dt style="color:var(--if-gray-400);font-weight:500;margin-bottom:2px">文件大小</dt>
-          <dd data-field="filesize" style="color:var(--if-gray-800);margin-bottom:10px">1.2 MB (1,258,496 字节)</dd>
-          <dt style="color:var(--if-gray-400);font-weight:500;margin-bottom:2px">尺寸</dt>
-          <dd style="color:var(--if-gray-800);margin-bottom:10px">1920 × 1080 px</dd>
-          <dt style="color:var(--if-gray-400);font-weight:500;margin-bottom:2px">上传时间</dt>
-          <dd style="color:var(--if-gray-800);margin-bottom:10px">2025-06-18 09:32:14</dd>
-          <dt style="color:var(--if-gray-400);font-weight:500;margin-bottom:2px">上传者</dt>
-          <dd style="color:var(--if-gray-800);margin-bottom:0">Admin</dd>
+        <dl class="u-text-body" style="margin:0">
+          <dt class="u-text-gray-400 fw-medium" style="margin-bottom:2px">文件名</dt>
+          <dd data-field="filename" class="u-text-gray-800 u-text-mono u-text-sm" style="margin-bottom:10px">cover-vue3.jpg</dd>
+          <dt class="u-text-gray-400 fw-medium" style="margin-bottom:2px">文件类型</dt>
+          <dd class="u-text-gray-800" style="margin-bottom:10px">image/jpeg</dd>
+          <dt class="u-text-gray-400 fw-medium" style="margin-bottom:2px">文件大小</dt>
+          <dd data-field="filesize" class="u-text-gray-800" style="margin-bottom:10px">1.2 MB (1,258,496 字节)</dd>
+          <dt class="u-text-gray-400 fw-medium" style="margin-bottom:2px">尺寸</dt>
+          <dd class="u-text-gray-800" style="margin-bottom:10px">1920 × 1080 px</dd>
+          <dt class="u-text-gray-400 fw-medium" style="margin-bottom:2px">上传时间</dt>
+          <dd class="u-text-gray-800" style="margin-bottom:10px">2025-06-18 09:32:14</dd>
+          <dt class="u-text-gray-400 fw-medium" style="margin-bottom:2px">上传者</dt>
+          <dd class="u-text-gray-800 mb-0" >Admin</dd>
         </dl>
       </div>
     </div>

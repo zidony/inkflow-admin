@@ -1,5 +1,5 @@
 /* ============================================================
-   InkFlow Admin — Shared JavaScript  v1.6
+   InkFlow Admin — Shared JavaScript  v1.8
    Vanilla JS, no external runtime dependencies
    ============================================================ */
 (function () {
@@ -294,7 +294,7 @@
   window.switchSettings = function (section) {
     ['site','post','comment','media','seo','smtp','security','cache','advanced'].forEach(function (s) {
       var el = document.getElementById('section-' + s);
-      if (el) el.style.display = (s === section) ? '' : 'none';
+      if (el) el.classList.toggle('d-none', s !== section);
     });
     document.querySelectorAll('.if-settings-nav-item').forEach(function (btn) {
       btn.classList.toggle('active', btn.dataset.section === section);

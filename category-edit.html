@@ -60,9 +60,9 @@
   <div class="sidebar-footer">
     <div class="sidebar-user">
       <div class="if-avatar if-avatar-sm if-avatar-blue">AD</div>
-      <div class="sidebar-user-info">
-        <div class="sidebar-user-name">Admin</div>
-        <div class="sidebar-user-role">超级管理员</div>
+      <div class="sidebar-user-info if-item-text">
+        <div class="if-title text-white">Admin</div>
+        <small >超级管理员</small>
       </div>
     </div>
   </div>
@@ -93,7 +93,7 @@
         <li>
           <ul class="if-notif-list">
             <li class="if-notif-item unread">
-              <div class="if-notif-icon" style="background:var(--if-50);color:var(--if-500)"><i class="bi bi-chat-left-dots"></i></div>
+              <div class="if-notif-icon u-text-primary" style="background:var(--if-50)"><i class="bi bi-chat-left-dots"></i></div>
               <div class="if-notif-body">
                 <div class="if-notif-text"><strong>张三</strong> 评论了《Vue 3 Composition API》</div>
                 <div class="if-notif-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
@@ -101,7 +101,7 @@
               <span class="if-notif-dot"></span>
             </li>
             <li class="if-notif-item unread">
-              <div class="if-notif-icon" style="background:#dcfce7;color:var(--if-success-500)"><i class="bi bi-person-plus"></i></div>
+              <div class="if-notif-icon u-text-success" style="background:#dcfce7"><i class="bi bi-person-plus"></i></div>
               <div class="if-notif-body">
                 <div class="if-notif-text"><strong>新用户</strong> 李明 完成了注册</div>
                 <div class="if-notif-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
@@ -109,7 +109,7 @@
               <span class="if-notif-dot"></span>
             </li>
             <li class="if-notif-item">
-              <div class="if-notif-icon" style="background:var(--if-gray-100);color:var(--if-gray-500)"><i class="bi bi-file-earmark-check"></i></div>
+              <div class="if-notif-icon u-text-gray-500" style="background:var(--if-gray-100)"><i class="bi bi-file-earmark-check"></i></div>
               <div class="if-notif-body">
                 <div class="if-notif-text">文章《TypeScript 高级类型》已成功发布</div>
                 <div class="if-notif-time"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
@@ -134,7 +134,9 @@
         <li>
           <div class="user-info-header">
             <div class="if-avatar if-avatar-blue">AD</div>
-            <div><div class="user-info-name">Admin User</div><div class="user-info-email">admin@inkflow.dev</div></div>
+            <div class="if-item-text">
+              <div class="if-title">Admin User</div><small>admin@inkflow.dev</small>
+            </div>
           </div>
         </li>
         <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> 个人资料</a></li>
@@ -167,7 +169,7 @@
           <div class="col-12 col-md-6">
             <label class="form-label">URL Slug</label>
             <div class="input-group">
-              <span class="input-group-text" style="font-size:.78rem">/</span>
+              <span class="input-group-text u-text-sm" >/</span>
               <input type="text" class="form-control" value="frontend-tech" placeholder="url-slug">
             </div>
             <div class="if-form-hint">用于 URL 中的标识符，建议英文小写加横线</div>
@@ -190,7 +192,7 @@
             <div class="d-flex align-items-center gap-3" style="height:38px">
               <div class="form-check form-switch mb-0">
                 <input class="form-check-input" type="checkbox" id="cat-status" checked>
-                <label class="form-check-label" for="cat-status" style="font-size:.82rem">启用该栏目</label>
+                <label class="form-check-label u-text-body" for="cat-status" >启用该栏目</label>
               </div>
             </div>
           </div>
@@ -229,7 +231,7 @@
           <img src="https://picsum.photos/seed/cat1/400/225" alt="封面">
           <div class="if-cover-overlay"><i class="bi bi-arrow-repeat"></i> 更换图片</div>
         </div>
-        <input type="file" id="cover-file-input" accept="image/*" style="display:none">
+        <input type="file" id="cover-file-input" accept="image/*" class="d-none">
         <div class="d-flex gap-2 mt-2">
           <button class="btn btn-light btn-sm flex-fill" data-action="trigger" data-target="cover-file-input"><i class="bi bi-upload me-1"></i>上传</button>
           <button class="btn btn-light btn-sm flex-fill" data-action="toast" data-toast-msg="已从媒体库选择" data-toast-type="info"><i class="bi bi-collection me-1"></i>媒体库</button>
@@ -239,7 +241,7 @@
     <div class="if-panel if-anim" style="--if-delay:.15s">
       <div class="if-panel-header"><i class="bi bi-bar-chart-line"></i> 栏目统计</div>
       <div class="if-panel-body">
-        <div class="d-flex flex-column gap-2" style="font-size:.82rem">
+        <div class="d-flex flex-column gap-2 u-text-body" >
           <div class="d-flex justify-content-between py-1" style="border-bottom:1px solid var(--if-gray-100)"><span class="text-muted">文章总数</span><strong>286</strong></div>
           <div class="d-flex justify-content-between py-1" style="border-bottom:1px solid var(--if-gray-100)"><span class="text-muted">已发布</span><strong>241</strong></div>
           <div class="d-flex justify-content-between py-1" style="border-bottom:1px solid var(--if-gray-100)"><span class="text-muted">草稿</span><strong>45</strong></div>
