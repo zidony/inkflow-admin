@@ -1,6 +1,6 @@
 # InkFlow Admin
 
-[English README](README.en.md) | **中文说明书**
+[English README](README.md) | **中文说明书**
 
 一套为博客 / 内容管理系统设计的精美、开箱即用的商用级后台管理面板主题模板。项目已完成现代化工程化升级，基于 **Vite + ES6 Modules + PostCSS** 驱动，拥有极速的本地开发体验和极致的生产环境包体积，并全新推出了高拟真、极具科技感的**全量暗黑模式（Dark Mode）**与 **动态 i18n 国际化引擎**。
 

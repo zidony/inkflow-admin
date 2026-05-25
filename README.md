@@ -1,6 +1,6 @@
 # InkFlow Admin
 
-**English README** | [中文说明书](README.md)
+**English README** | [中文说明书](README.zh-CN.md)
 
 A beautiful, out-of-the-box, commercial-grade HTML administration dashboard template designed for blogs and content management systems. The project has undergone a complete modern engineering overhaul driven by **Vite + ES6 Modules + PostCSS**, offering a blazing-fast local development experience and optimal bundle sizes for production. It also introduces a highly immersive, futuristic **Dark Mode** and an intelligent **i18n internationalization engine**.
 
