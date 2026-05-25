@@ -1,207 +1,147 @@
 # InkFlow Admin
 
-一套为博客 / 内容管理系统设计的精美后台管理面板 HTML 模板，基于 Bootstrap 5.3.8 + Bootstrap Icons 1.13.1 构建，纯原生 JS，无框架依赖，开箱即用。
+**English README** | [中文说明书](README.md)
+
+A beautiful, out-of-the-box, commercial-grade HTML administration dashboard template designed for blogs and content management systems. The project has undergone a complete modern engineering overhaul driven by **Vite + ES6 Modules + PostCSS**, offering a blazing-fast local development experience and optimal bundle sizes for production. It also introduces a highly immersive, futuristic **Dark Mode** and an intelligent **i18n internationalization engine**.
 
 ---
 
-## 🚀 在线预览 (Live Demo)
+## 🚀 Live Demo
 
-* 🌐 **InkFlow 博客主题演示:** [https://zidony.github.io/inkflow-theme](https://zidony.github.io/inkflow-theme)
+* 🌐 **InkFlow Blog Theme Demo:** [https://zidony.github.io/inkflow-theme](https://zidony.github.io/inkflow-theme)
 
-* ⚙️ **InkFlow 管理后台演示:** [https://zidony.github.io/inkflow-admin](https://zidony.github.io/inkflow-admin) 
-
----
-
-## ✨ 特性
-
-- **19 + 1 个完整页面**：覆盖博客后台所有核心功能场景
-- **响应式布局**：完美适配桌面、平板和移动端
-- **Bootstrap 5.3.8**：使用最新 Bootstrap 5 稳定版，支持原生 Popover / Dropdown / Modal
-- **统一设计语言**：深蓝主题（`#0d6ecc`），`ink-` 前缀 CSS 命名规范，`--ink-*` CSS 变量体系
-- **可折叠侧边栏**：支持手风琴子菜单、折叠态 Tooltip、状态持久化（`localStorage`）
-- **富文本编辑器 UI**：自定义工具栏、防溢出编辑区（长链接/宽图/宽表格/代码块均有保护）
-- **通知中心**：顶栏下拉快速预览 + 独立通知中心页面（分类筛选、搜索、已读/删除）
-- **图片上传**：拖拽上传、FileReader 本地预览、替换/裁剪/移除
-- **头像裁剪**：Bootstrap Modal + 缩放 Slider 圆形裁剪工作流
-- **轻量无依赖**：仅依赖 CDN 的 Bootstrap 5 和 Bootstrap Icons，无 jQuery、无 Vue、无 React
+* ⚙️ **InkFlow Admin Dashboard Demo:** [https://zidony.github.io/inkflow-admin](https://zidony.github.io/inkflow-admin) 
 
 ---
 
-## 📁 目录结构
+## ✨ Key Architectural Highlights & Engineering Features
 
-```
+- **🚀 Modern Build Pipeline**: Completely migrated to **Vite 5** to enjoy zero-delay Hot Module Replacement (HMR) during development and extreme production minification driven by Esbuild.
+- **📦 High-Cohesion ESM Architecture**: Fully decoupled the monolithic IIFE global script into clean, single-responsibility ES6 modules (`Sidebar`, `Theme`, `Search`, `Bulk`, `Toast`, `Editor`, `Chart`).
+- **🌙 Full-Scale Dark Mode**: Smooth theme toggling perfectly implemented via CSS Custom Properties. Includes a dynamic toggle button inside TopBars, transitions, and state caching using `localStorage`.
+- **🌐 Responsive i18n Engine**: Dynamic runtime translation that automatically senses the HTML `<html lang="...">` tag. Switching between `lang="zh-CN"` and `lang="en"` immediately adapts all delete confirms, loading indicators, toasts, and Chart.js dataset labels.
+- **📏 Strict Quality Standards**: Configured with ESLint (v9 Flat Config) + Prettier. Run `npm run lint` to guarantee 0 errors and 0 warnings.
+- **🗜️ Zero-Dependency ZIP Packaging**: Implemented a native Python packaging script with zero npm dependencies. Run `npm run release` to automatically compile and generate a pure distribution zip (~90 KB) at `release/inkflow-admin-v2.0.0.zip`, isolating node_modules and developer source files.
+- **🤖 GitHub Actions CI/CD**: Cloud release automation ready. Tagging `v*` automatically triggers云 pipeline builds, packaging, and uploads the ZIP archive directly as a GitHub Release asset.
+
+---
+
+## 📂 Directory Structure
+
+```text
 inkflow-admin/
-├── assets/
-│   ├── css/
-│   │   └── inkflow-admin.css          # 全局样式
-│   └── js/
-│       └── inkflow-admin.js           # 全局脚本
-├── index.html             # 仪表盘
-├── post-list.html             # 文章列表
-├── post-edit.html             # 发布 / 编辑文章
-├── comment-list.html          # 评论列表
-├── comment-edit.html          # 评论详情
-├── category-list.html         # 栏目列表
-├── category-edit.html         # 栏目编辑
-├── tag-list.html              # 标签列表
-├── tag-edit.html              # 标签编辑
-├── image-list.html            # 图片管理
-├── image-edit.html            # 图片上传 / 编辑
-├── link-list.html             # 链接管理
-├── link-edit.html             # 链接编辑
-├── user-list.html             # 用户列表
-├── user-edit.html             # 用户编辑（含头像裁剪）
-├── settings.html              # 系统设置
-├── notification-center.html   # 通知中心
-├── login.html                 # 登录页
-└── README.md
+├── .github/
+│   └── workflows/
+│       └── release.yml         # GitHub Actions automated release pipeline
+├── dist/                       # Compiled assets output (excluded from Git tracking)
+├── release/                    # Release ZIP archives (excluded from Git tracking)
+├── scripts/
+│   ├── migrate.py              # Automated source codebase refactoring script
+│   ├── add_theme_toggle.py     # Theme toggle button injector script
+│   └── release.py              # Zero-dependency ZIP packaging script (Python)
+├── src/                        # Core source files
+│   ├── assets/
+│   │   ├── css/
+│   │   │   └── inkflow-admin.css  # Core layout & styling system (CSS Variables)
+│   │   └── js/
+│   │       ├── modules/        # ES6 Modules
+│   │       │   ├── i18n.js     # Internationalization dictionary & translator
+│   │       │   ├── theme.js    # Theme mode manager (Light/Dark Mode)
+│   │       │   ├── sidebar.js  # Collapsible sidebar & sub-accordion manager
+│   │       │   ├── search.js   # Global hotkeys (Ctrl+K) & live table search
+│   │       │   ├── bulk.js     # Bulk row selections & actions sync
+│   │       │   ├── toast.js    # Premium toast notifications bubble
+│   │       │   ├── chart.js    # Responsive chart redrawing on theme events
+│   │       │   └── delegation.js # Centralized event delegation engine
+│   │       └── inkflow-admin.js   # Unified ESM entry point
+│   ├── category-edit.html      # 18 page templates
+│   ├── index.html
+│   └── ...
+├── eslint.config.js            # ESLint Flat Config
+├── .prettierrc                 # Prettier formatting rules
+├── postcss.config.js           # PostCSS (Autoprefixer + CSSNano) config
+├── package.json                # Project dependencies and script commands
+└── vite.config.js              # Vite bundler configurations
 ```
 
 ---
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-直接用浏览器打开 `index.html` 即可预览，无需构建工具或服务器。
+Developing this project requires Node.js (v18+) and Python 3.
 
+### 1. Clone & Install Dependencies
 ```bash
-# 克隆仓库
+# Clone the repository
 git clone https://github.com/your-username/inkflow-admin.git
+cd inkflow-admin
 
-# 直接在浏览器打开
-open inkflow-admin/index.html
+# Install devDependencies
+npm install
 ```
 
-如需本地开发服务（解决部分浏览器跨域限制），推荐使用：
-
+### 2. Launch Local Dev Server (with HMR)
 ```bash
-# VS Code Live Server 插件（推荐）
-# 或 Python 内置服务器
-python3 -m http.server 8080
-# 访问 http://localhost:8080/index.html
+npm run dev
+# Vite will launch the dev server, opening http://localhost:3000 in your browser.
+```
+Any modifications to HTML/CSS/JS inside `src/` will hot-reload instantly.
+
+### 3. Lint & Code Style Checks
+```bash
+npm run lint       # Run style analysis
+npm run lint:fix   # Auto-beautify and format all stylesheets, scripts, and pages
+```
+
+### 4. Build & Package Release
+```bash
+npm run release
+# Triggers Vite compilation and packages the dist output into release/*.zip
 ```
 
 ---
 
-## 🛠 技术栈
+## ⚙️ Event Delegation & JS API (`inkflow-admin.js`)
 
-| 依赖 | 版本 | 用途 |
-|------|------|------|
-| [Bootstrap](https://getbootstrap.com/) | 5.3.8 | 布局、组件、交互 |
-| [Bootstrap Icons](https://icons.getbootstrap.com/) | 1.13.1 | 图标库 |
-| 原生 JavaScript | ES5+ | 侧边栏、Toast、批量操作等 |
-| [Chart.js](https://www.chartjs.org/) | CDN | 访问量柱状图（dashboard） |
+The project utilizes a centralized event delegation system mapped to `data-action` attributes, eliminating raw inline `onclick` attributes completely to prevent XSS vulnerabilities.
 
-> 所有 CDN 资源均通过 [jsDelivr](https://www.jsdelivr.com/) 加载，无需本地安装。
+| data-action Attribute | Support Attributes | Description |
+| :--- | :--- | :--- |
+| `toast` | `data-toast-msg`, `data-toast-type` | Triggers custom safe toast notifications bubble |
+| `delete` | None | Intercepts delete actions on rows to display confirm |
+| `navigate` | `data-href` | Secure seamless page transitions |
+| `permanent-delete` | `data-href` | Double-check dialog for permanent deletion |
+| `toggle-theme` | None | Real-time theme mode toggle |
 
----
-
-## 📄 页面说明
-
-### 仪表盘 `index.html`
-- 4 张紧凑统计卡（文章 / 评论 / 浏览量 / 用户），8:4 比例与快捷操作并排
-- 年度访问趋势柱状图（Chart.js）
-- 内容概况 + 系统状态侧栏
-- 最新文章 / 最新评论列表
-- 顶栏通知下拉（含 6 条示例通知、全部已读功能）
-
-### 文章编辑 `post-edit.html`
-- 双列编辑器布局：左侧主编辑区，右侧粘性侧边栏
-- 自定义富文本工具栏（格式 / 插入 / 全屏）
-- 内容溢出防护（长链接断行、图片/视频最大宽度限制、表格横向滚动、代码块滚动）
-- SEO 设置折叠面板
-- 文章标签输入（Enter 添加）
-- 封面图本地上传预览
-- 粘性顶部操作栏（返回 / 草稿 / 发布）
-
-### 图片管理 `image-list.html` + `image-edit.html`
-- 图片列表支持拖拽排序 UI
-- 上传页支持拖拽上传、FileReader 预览、替换、移除
-
-### 用户编辑 `user-edit.html`
-- 头像上传 → FileReader → Bootstrap Modal 裁剪工作流
-- 圆形裁剪框 + 缩放 Slider
-
-### 通知中心 `notification-center.html`
-- 按类型筛选（评论 / 用户 / 系统）
-- 全文搜索
-- 单条已读 / 删除（带动画）
-- 右侧统计面板 + 通知偏好开关
+**Global Javascript Hooks (for inline page calls)**:
+* `window.showToast(message, type)`: Triggers toast alerts (types: `success` / `info` / `warning` / `danger`).
+* `window.inkflowT(key)`: Invokes the global i18n translator.
+* `window.inkflowToggleTheme()`: Triggers全 theme toggles.
 
 ---
 
-## 🎨 设计规范
+## 🗺️ Version History
 
-### 主色系
-```css
---ink-500: #0d6ecc   /* 主色 */
---ink-400: #3b8de0
---ink-300: #7ab3eb
---ink-100: #d0e6f9
---ink-50:  #e8f2fd
-```
-
-### CSS 命名规范
-- 所有自定义类使用 `ink-` 前缀（如 `.ink-panel`、`.ink-table`、`.ink-badge`）
-- CSS 变量使用 `--ink-` 前缀（如 `--ink-gray-500`、`--ink-card-shadow`）
-- JS 中的 `localStorage` key 使用 `inkflow_` 前缀
-
-### 常用组件类
-```
-.ink-panel / .ink-panel-header / .ink-panel-body   面板
-.ink-table                                        数据表格
-.ink-badge / .ink-badge-blue/green/amber           标签徽章
-.ink-filter-tabs / .ink-filter-tab                 筛选标签栏
-.ink-bulk-bar                                     批量操作栏
-.ink-editor-toolbar / .ink-editor-body            富文本编辑器
-.ink-cover-preview                                封面图预览
-.stat-card-compact                               紧凑统计卡
-.ink-notif-dropdown                              通知下拉
-.btn-danger-soft                                 危险操作软按钮
-```
-
----
-
-## ⚙️ 事件委托与 JS API（`inkflow-admin.js`）
-
-v1.6 引入了基于 `data-action` 的底层事件委托引擎，彻底剥离了内联的 `onclick` 事件。
-
-| data-action 属性 | 配合属性 | 说明 |
-|------|------|------|
-| `toast` | `data-toast-msg`, `data-toast-type` | 显示安全弹窗，从根源消除 XSS 攻击 |
-| `delete` | 无 | 自动拦截并处理表格/列表行的带弹窗删除交互 |
-| `navigate` | `data-href` | 实现安全的无感页面跳转 |
-| `permanent-delete` | `data-href` | 二次确认永久删除，完成后自动跳转页面 |
-
-**保留的全局可用方法**：
-| 函数 | 说明 |
-|------|------|
-| `showToast(message, type)` | 在自定义脚本中直接调用以显示 Toast 弹窗（类型支持：success/info/warning/danger） |
-
-侧边栏折叠状态持久化 key：`inkflow_sidebar_collapsed`
-
----
-
-## 🗺️ 版本历史
-
-| 版本 | 主要内容 |
-|------|----------|
-| v1.0 | 初始版本，基础页面结构 |
-| v1.1 | CSS 前缀规范化（`ink-`），富文本编辑器 UI，全站 JS 对齐 |
-| v1.2 | Dashboard 重构（8:4 布局）、图片上传、头像裁剪、通知下拉、picsum 修复 |
-| v1.3 | Dashboard 等高修复、filter-tabs 白底卡片、page-header 按钮统一、全站 CF 邮箱修复 |
-| v1.4 | 更名 CiCMS → **InkFlow**、Bootstrap 5.3.3 → **5.3.8**、资源移至 `assets/`、编辑器防溢出 CSS、通知中心独立页面、README |
-| v1.5 | 结构重构、移动端适配优化、样式清理 |
-| v1.6 | 底层重构：引入纯数据驱动的事件委托引擎，彻底移除内联 onClick 事件；重写 showToast 消除 XSS 安全隐患；兼容 BS5 标准面包屑结构。 |
-| v1.7 | UI架构统一：全站组件启用 `ink-` 前缀，构建全局 `ink-avatar` 高级头像渐变组件与 `ink-cell-title` 列表排版规范，肃清海量内联 HTML 样式代码，全面提升底层源码的整洁度与高级感。 |
-| v1.8 | 样式原子化与组件复用深度重构：全站大一统缩略图组件与双行图文排版组件（`ink-item-text`），提取 `u-` 前缀原子化工具类，消除大量内联样式，统一所有列表的分页结构与文字格式，代码更加精简和高级。 |
-| v1.9 | 品牌架构大统一与极客交互升级：全局组件与变量前缀从 `if-` 全面升级为 `ink-`；引入全局 `Ctrl+K` 搜索与 `ESC` 拦截快捷键；大幅增强 `localStorage` 调用的沙盒防御机制，确保极致无痕模式下的运行稳定性。 |
-| v1.9.1 | CSS架构深度解耦：采用“结构+颜色”的原子化模式重构徽章组件（`.ink-badge`），合并冗余的状态圆点至唯一的 `.ink-dot` 体系，提取全局焦点光环变量 `--ink-focus-ring`，从底层彻底肃清上百行高耦合冗余代码。 |
+| Version | Description |
+| :--- | :--- |
+| **v2.0.0** | **Major Milestone Upgrade**: Fully integrated Vite build tools with isolated `src/` and `dist/` directories, removing file hashes to allow stable static template integration; decomposed monolithic IIFE script into clean ES6 Modules; implemented responsive **Dark Mode** with CSS variables and transition animations; added dynamic **i18n translation engine** linked to `<html lang>`; configured ESLint v9 Flat Config and Prettier rules; introduced automated Python packaging scripts and cloud GitHub Actions CI/CD workflows. |
+| v1.9.1 | Decoupled badge `.ink-badge` into "structure + colors", refactored indicator dot into unified `.ink-dot`, extracted global focus ring variables `--ink-focus-ring`. |
+| v1.9 | Standardized prefix from `if-` to `ink-` globally, introduced global hotkeys `Ctrl+K` and `ESC` listener, enhanced sandboxing for无痕 `localStorage` calls. |
+| v1.8 | Refactored thumbnails and double-line list structures into unified utility `.ink-item-text`, added atomic `u-` classes, standardized list paginations. |
+| v1.7 | Enabled `ink-` prefix globally, built gradient avatar component `.ink-avatar` and table column layouts `.ink-cell-title`, cleared inline HTML styles. |
+| v1.6 | Restructured codebase with pure data-driven event delegation engines; rewrote safe showToast API; supported standard Bootstrap 5 breadcrumbs. |
+| v1.5 | Re-styled structures, optimized mobile responsive layouts, cleared redundant styles. |
+| v1.4 | Renamed CiCMS to **InkFlow**, upgraded Bootstrap to **5.3.8**, relocated assets folder to `assets/`, protected editor layout width overflows, built notification center page, updated README. |
+| v1.3 | Dashboard equal height grid alignment, white-background filter tabs, standard page headers. |
+| v1.2 | Compact dashboard row-1 design, dragging images uploading queue with local FileReader previews, bootstrap modals cropping workflow. |
+| v1.1 | Standardized CSS prefixes (`ink-`), built editor UI toolbar. |
+| v1.0 | Initial release, core static page templates. |
 
 ---
 
 ## 📜 License
 
-MIT License — 自由用于个人或商业项目，保留版权声明即可。
+MIT License — free to use in personal or commercial projects, provided the original copyright header is preserved.
 
 ---
 

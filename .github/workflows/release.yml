@@ -1,0 +1,63 @@
+name: Automate Release
+
+on:
+  push:
+    tags:
+      - 'v*' # Trigger workflow on tags matching v*, e.g., v2.0.0
+
+jobs:
+  build-and-release:
+    name: Build and Create Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Build Web Assets
+        run: npm run build
+
+      - name: Package Release ZIP
+        run: python scripts/release.py
+
+      - name: Extract Release Version & Info
+        id: get_tag
+        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release & Upload Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.get_tag.outputs.TAG_NAME }}
+          name: Release ${{ steps.get_tag.outputs.TAG_NAME }}
+          body: |
+            ## InkFlow Admin Official Release ${{ steps.get_tag.outputs.TAG_NAME }}
+            
+            Welcome to the modern, engineered, and production-ready release of **InkFlow Admin**!
+            
+            ### What's New in this Version:
+            - **Modern Build System**: Fully integrated with **Vite** for instantaneous development and optimized production bundling.
+            - **JavaScript Modularity**: Migrated from a single monolithic script to a high-cohesion, clean **ES6 Modules (ESM)** architecture.
+            - **Stunning Dark Mode**: Fully responsive dark theme switchable in real-time with smooth layout transitions and local storage cache.
+            - **Automated Workflows**: Clean distribution packages containing zero development clutter.
+            
+            Please download the pure, pre-built production template in the asset attachment below (`inkflow-admin-v*.zip`).
+          draft: false
+          prerelease: false
+          files: |
+            releases/inkflow-admin-*.zip
