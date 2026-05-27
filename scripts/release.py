@@ -32,7 +32,8 @@ def release():
         os.makedirs(release_dir)
         print("Created 'releases/' directory")
         
-    zip_filename = f"{name}-v{version}.zip"
+    folder_name = f"{name}-v{version}"
+    zip_filename = f"{folder_name}.zip"
     zip_path = os.path.join(release_dir, zip_filename)
     
     # Remove existing zip if it exists
@@ -43,7 +44,7 @@ def release():
     print(f"Creating ZIP archive: releases/{zip_filename}...")
     
     # 4. Perform zipping
-    # We will wrap the files in a folder named like the project (e.g. 'inkflow-admin/')
+    # We will wrap the files in a folder named like the project with its version (e.g. 'inkflow-admin-v2.0.0/')
     # inside the zip for neatness when the user extracts it.
     with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zip_file:
         for root, dirs, files in os.walk(dist_dir):
@@ -51,15 +52,15 @@ def release():
                 file_abs_path = os.path.join(root, file)
                 # Compute relative path in ZIP relative to the dist directory
                 rel_path = os.path.relpath(file_abs_path, dist_dir)
-                # Nest under 'inkflow-admin' root folder in ZIP
-                archive_name = os.path.join(name, rel_path)
+                # Nest under the versioned root folder in ZIP
+                archive_name = os.path.join(folder_name, rel_path)
                 zip_file.write(file_abs_path, archive_name)
                 
         # Copy any README*.md files in the root folder into the ZIP archive alongside compiled resources
         for file in os.listdir(root_dir):
             if file.lower().startswith("readme") and file.lower().endswith(".md"):
                 readme_path = os.path.join(root_dir, file)
-                zip_file.write(readme_path, os.path.join(name, file))
+                zip_file.write(readme_path, os.path.join(folder_name, file))
                 print(f"Added to ZIP: {file}")
                 
     print(f"=== Success! Package created: releases/{zip_filename} ===")

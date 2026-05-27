@@ -1,147 +1,147 @@
 # InkFlow Admin
 
-**English README** | [中文说明书](README.zh-CN.md)
+**中文说明书** | [English README](README.en.md)
 
-A beautiful, out-of-the-box, commercial-grade HTML administration dashboard template designed for blogs and content management systems. The project has undergone a complete modern engineering overhaul driven by **Vite + ES6 Modules + PostCSS**, offering a blazing-fast local development experience and optimal bundle sizes for production. It also introduces a highly immersive, futuristic **Dark Mode** and an intelligent **i18n internationalization engine**.
-
----
-
-## 🚀 Live Demo
-
-* 🌐 **InkFlow Blog Theme Demo:** [https://zidony.github.io/inkflow-theme](https://zidony.github.io/inkflow-theme)
-
-* ⚙️ **InkFlow Admin Dashboard Demo:** [https://zidony.github.io/inkflow-admin](https://zidony.github.io/inkflow-admin) 
+一套为博客 / 内容管理系统设计的精美、开箱即用的商用级后台管理面板主题模板。项目已完成现代化工程化升级，基于 **Vite + ES6 Modules + PostCSS** 驱动，拥有极速的本地开发体验和极致的生产环境包体积，并全新推出了高拟真、极具科技感的**全量暗黑模式（Dark Mode）**与 **动态 i18n 国际化引擎**。
 
 ---
 
-## ✨ Key Architectural Highlights & Engineering Features
+## 🚀 在线预览 (Live Demo)
 
-- **🚀 Modern Build Pipeline**: Completely migrated to **Vite 5** to enjoy zero-delay Hot Module Replacement (HMR) during development and extreme production minification driven by Esbuild.
-- **📦 High-Cohesion ESM Architecture**: Fully decoupled the monolithic IIFE global script into clean, single-responsibility ES6 modules (`Sidebar`, `Theme`, `Search`, `Bulk`, `Toast`, `Editor`, `Chart`).
-- **🌙 Full-Scale Dark Mode**: Smooth theme toggling perfectly implemented via CSS Custom Properties. Includes a dynamic toggle button inside TopBars, transitions, and state caching using `localStorage`.
-- **🌐 Responsive i18n Engine**: Dynamic runtime translation that automatically senses the HTML `<html lang="...">` tag. Switching between `lang="zh-CN"` and `lang="en"` immediately adapts all delete confirms, loading indicators, toasts, and Chart.js dataset labels.
-- **📏 Strict Quality Standards**: Configured with ESLint (v9 Flat Config) + Prettier. Run `npm run lint` to guarantee 0 errors and 0 warnings.
-- **🗜️ Zero-Dependency ZIP Packaging**: Implemented a native Python packaging script with zero npm dependencies. Run `npm run release` to automatically compile and generate a pure distribution zip (~90 KB) at `release/inkflow-admin-v2.0.0.zip`, isolating node_modules and developer source files.
-- **🤖 GitHub Actions CI/CD**: Cloud release automation ready. Tagging `v*` automatically triggers云 pipeline builds, packaging, and uploads the ZIP archive directly as a GitHub Release asset.
+* 🌐 **InkFlow 博客主题演示:** [https://zidony.github.io/inkflow-theme](https://zidony.github.io/inkflow-theme)
+
+* ⚙️ **InkFlow 管理后台演示:** [https://zidony.github.io/inkflow-admin](https://zidony.github.io/inkflow-admin) 
 
 ---
 
-## 📂 Directory Structure
+## ✨ 核心亮点与工程特性
+
+- **🚀 现代化构建系统**：完全迁移至 **Vite 5**，享受零延迟的热更新（HMR）开发体验，以及生产环境由 Esbuild 驱动的极致文件压缩。
+- **📦 高内聚 ESM 模块化**：将原来堆叠的 IIFE 全局脚本完全解耦，拆分为高内聚、职责单一的 ES6 模块（Sidebar、Theme、Search、Bulk、Toast、Editor、Chart）。
+- **🌙 全站级暗黑模式（Dark Mode）**：完美通过 CSS 变量体系覆写全站 UI。在顶栏提供极简优雅的切换按钮，配合 `localStorage` 缓存状态，支持全站过渡动画。
+- **🌐 智能 i18n 国际化引擎**：JS 模块全自动感应 HTML 的 `<html lang="...">` 属性。只需切换 `lang="zh-CN"` 或 `lang="en"`，全站的确认提示框、加载状态、通知气泡和 Chart.js 图表标签瞬间无缝双语切换。
+- **📏 国际一流代码规范**：完美配置 ESLint (v9 Flat Config) + Prettier。运行 `npm run lint` 保证 0 错误、0 警告。
+- **🗜️ 极致绿色发版打包**：编写了基于 Python 内置 zip 库的打包脚本，零外部 npm 依赖。运行 `npm run release` 一键生成仅 **90 KB 左右** 的纯净发版包 `release/inkflow-admin-v2.0.0.zip`，彻底隔离 `node_modules` 和源码。
+- **🤖 GitHub Actions CI/CD**：完美配置云端自动化流水线。在推送 `v*` 标签时，云端自动触发打包并将 ZIP 附件发布到 GitHub Release。
+
+---
+
+## 📁 目录结构
 
 ```text
 inkflow-admin/
 ├── .github/
 │   └── workflows/
-│       └── release.yml         # GitHub Actions automated release pipeline
-├── dist/                       # Compiled assets output (excluded from Git tracking)
-├── release/                    # Release ZIP archives (excluded from Git tracking)
+│       └── release.yml         # GitHub Actions 自动化发版流水线
+├── dist/                       # 编译产物目录（自动生成，不纳入 Git 追踪）
+├── release/                    # 发版压缩包目录（自动生成，不纳入 Git 追踪）
 ├── scripts/
-│   ├── migrate.py              # Automated source codebase refactoring script
-│   ├── add_theme_toggle.py     # Theme toggle button injector script
-│   └── release.py              # Zero-dependency ZIP packaging script (Python)
-├── src/                        # Core source files
+│   ├── migrate.py              # 一键工程化源码重构迁移脚本
+│   ├── add_theme_toggle.py     # 按钮自动注入脚本
+│   └── release.py              # 自动化打包发版脚本 (Python 编写)
+├── src/                        # 核心源码目录
 │   ├── assets/
 │   │   ├── css/
-│   │   │   └── inkflow-admin.css  # Core layout & styling system (CSS Variables)
+│   │   │   └── inkflow-admin.css  # 核心样式系统 (支持 CSS 变量)
 │   │   └── js/
-│   │       ├── modules/        # ES6 Modules
-│   │       │   ├── i18n.js     # Internationalization dictionary & translator
-│   │       │   ├── theme.js    # Theme mode manager (Light/Dark Mode)
-│   │       │   ├── sidebar.js  # Collapsible sidebar & sub-accordion manager
-│   │       │   ├── search.js   # Global hotkeys (Ctrl+K) & live table search
-│   │       │   ├── bulk.js     # Bulk row selections & actions sync
-│   │       │   ├── toast.js    # Premium toast notifications bubble
-│   │       │   ├── chart.js    # Responsive chart redrawing on theme events
-│   │       │   └── delegation.js # Centralized event delegation engine
-│   │       └── inkflow-admin.js   # Unified ESM entry point
-│   ├── category-edit.html      # 18 page templates
+│   │       ├── modules/        # ES6 模块拆分目录
+│   │       │   ├── i18n.js     # i18n 国际化字典与翻译器
+│   │       │   ├── theme.js    # 主题模式控制器 (Light/Dark Mode)
+│   │       │   ├── sidebar.js  # 侧边栏及菜单收缩管理器
+│   │       │   ├── search.js   # 全局键盘快捷键与数据过滤
+│   │       │   ├── bulk.js     # 批量操作与工具条状态同步
+│   │       │   ├── toast.js    # 消息气泡封装
+│   │       │   ├── chart.js    # 智能图表模块 (感应主题自动重绘)
+│   │       │   └── delegation.js # 核心事件委托引擎
+│   │       └── inkflow-admin.js   # 主入口脚本 (ES Module)
+│   ├── category-edit.html      # 18 个页面模板
 │   ├── index.html
 │   └── ...
-├── eslint.config.js            # ESLint Flat Config
-├── .prettierrc                 # Prettier formatting rules
-├── postcss.config.js           # PostCSS (Autoprefixer + CSSNano) config
-├── package.json                # Project dependencies and script commands
-└── vite.config.js              # Vite bundler configurations
+├── eslint.config.js            # 代码规范校验配置
+├── .prettierrc                 # Prettier 自动格式化配置
+├── postcss.config.js           # PostCSS (Autoprefixer + CSSNano) 配置
+├── package.json                # 项目依赖及自动化脚本配置
+└── vite.config.js              # Vite 现代化工程构建配置
 ```
 
 ---
 
-## 🚀 Quick Start
+## 🚀 快速开始
 
-Developing this project requires Node.js (v18+) and Python 3.
+开发本项目需要您本地具备 Node.js (v18+) 与 Python 3 环境。
 
-### 1. Clone & Install Dependencies
+### 1. 克隆并安装依赖
 ```bash
-# Clone the repository
+# 克隆仓库
 git clone https://github.com/your-username/inkflow-admin.git
 cd inkflow-admin
 
-# Install devDependencies
+# 安装开发依赖
 npm install
 ```
 
-### 2. Launch Local Dev Server (with HMR)
+### 2. 启动本地开发服务 (支持 HMR 热更新)
 ```bash
 npm run dev
-# Vite will launch the dev server, opening http://localhost:3000 in your browser.
+# Vite 将瞬间启动开发服务器，通常在浏览器打开 http://localhost:3000
 ```
-Any modifications to HTML/CSS/JS inside `src/` will hot-reload instantly.
+在 `src/` 下修改任何 HTML/CSS/JS 代码，浏览器均会局部秒级热更新，无需手动刷新。
 
-### 3. Lint & Code Style Checks
+### 3. 代码质量控制与规范化
 ```bash
-npm run lint       # Run style analysis
-npm run lint:fix   # Auto-beautify and format all stylesheets, scripts, and pages
+npm run lint       # 代码质量校验
+npm run lint:fix   # 自动对全量样式、脚本、页面进行美化排版与修复
 ```
 
-### 4. Build & Package Release
+### 4. 一键发版打包归档
 ```bash
 npm run release
-# Triggers Vite compilation and packages the dist output into release/*.zip
+# 自动触发 Vite 编译压缩，并打包输出纯净的发版 ZIP 包到 release/ 目录下
 ```
 
 ---
 
-## ⚙️ Event Delegation & JS API (`inkflow-admin.js`)
+## ⚙️ 事件委托与 JS API (`inkflow-admin.js`)
 
-The project utilizes a centralized event delegation system mapped to `data-action` attributes, eliminating raw inline `onclick` attributes completely to prevent XSS vulnerabilities.
+项目采用基于 `data-action` 的中央事件委托引擎，代码职责单一，且完全消除了内联 `onclick` 安全隐患。
 
-| data-action Attribute | Support Attributes | Description |
+| data-action 属性 | 配合属性 | 说明 |
 | :--- | :--- | :--- |
-| `toast` | `data-toast-msg`, `data-toast-type` | Triggers custom safe toast notifications bubble |
-| `delete` | None | Intercepts delete actions on rows to display confirm |
-| `navigate` | `data-href` | Secure seamless page transitions |
-| `permanent-delete` | `data-href` | Double-check dialog for permanent deletion |
-| `toggle-theme` | None | Real-time theme mode toggle |
+| `toast` | `data-toast-msg`, `data-toast-type` | 显示防 XSS 气泡弹窗 |
+| `delete` | 无 | 拦截表格/列表行的删除按钮，触发二次确认 |
+| `navigate` | `data-href` | 触发无感页面跳转 |
+| `permanent-delete` | `data-href` | 触发永久删除二次确认 |
+| `toggle-theme` | 无 | 触发暗黑/明亮模式切换 |
 
-**Global Javascript Hooks (for inline page calls)**:
-* `window.showToast(message, type)`: Triggers toast alerts (types: `success` / `info` / `warning` / `danger`).
-* `window.inkflowT(key)`: Invokes the global i18n translator.
-* `window.inkflowToggleTheme()`: Triggers全 theme toggles.
+**保留的全局可用 JS 方法 (方便 HTML 页面调用)**：
+* `window.showToast(message, type)`：弹出 Toast 通知（类型支持：success/info/warning/danger）。
+* `window.inkflowT(key)`：调用全局国际化翻译器。
+* `window.inkflowToggleTheme()`：切换全站主题模式。
 
 ---
 
-## 🗺️ Version History
+## 🗺️ 版本历史
 
-| Version | Description |
+| 版本 | 主要内容 |
 | :--- | :--- |
-| **v2.0.0** | **Major Milestone Upgrade**: Fully integrated Vite build tools with isolated `src/` and `dist/` directories, removing file hashes to allow stable static template integration; decomposed monolithic IIFE script into clean ES6 Modules; implemented responsive **Dark Mode** with CSS variables and transition animations; added dynamic **i18n translation engine** linked to `<html lang>`; configured ESLint v9 Flat Config and Prettier rules; introduced automated Python packaging scripts and cloud GitHub Actions CI/CD workflows. |
-| v1.9.1 | Decoupled badge `.ink-badge` into "structure + colors", refactored indicator dot into unified `.ink-dot`, extracted global focus ring variables `--ink-focus-ring`. |
-| v1.9 | Standardized prefix from `if-` to `ink-` globally, introduced global hotkeys `Ctrl+K` and `ESC` listener, enhanced sandboxing for无痕 `localStorage` calls. |
-| v1.8 | Refactored thumbnails and double-line list structures into unified utility `.ink-item-text`, added atomic `u-` classes, standardized list paginations. |
-| v1.7 | Enabled `ink-` prefix globally, built gradient avatar component `.ink-avatar` and table column layouts `.ink-cell-title`, cleared inline HTML styles. |
-| v1.6 | Restructured codebase with pure data-driven event delegation engines; rewrote safe showToast API; supported standard Bootstrap 5 breadcrumbs. |
-| v1.5 | Re-styled structures, optimized mobile responsive layouts, cleared redundant styles. |
-| v1.4 | Renamed CiCMS to **InkFlow**, upgraded Bootstrap to **5.3.8**, relocated assets folder to `assets/`, protected editor layout width overflows, built notification center page, updated README. |
-| v1.3 | Dashboard equal height grid alignment, white-background filter tabs, standard page headers. |
-| v1.2 | Compact dashboard row-1 design, dragging images uploading queue with local FileReader previews, bootstrap modals cropping workflow. |
-| v1.1 | Standardized CSS prefixes (`ink-`), built editor UI toolbar. |
-| v1.0 | Initial release, core static page templates. |
+| **v2.0.0** | **里程碑升级**：全面接入 Vite 构建工具，剥离 `src/` 与 `dist/`，去除了随机哈希码以方便买家无缝集成；将 JS 完全重构成 ES6 模块；全新推出支持 transition 过渡动画的**暗黑模式**与基于 `<html lang>` 感应的 **i18n 双语切换引擎**；配置 ESLint v9 Flat Config 与 Prettier 代码规范；引入 Python 极简绿色打包归档脚本与 GitHub Actions 自动化发版流水线。 |
+| v1.9.1 | CSS架构深度解耦：采用“结构+颜色”的原子化模式重构徽章组件（`.ink-badge`），合并冗余的状态圆点至唯一的 `.ink-dot` 体系，提取全局焦点光环变量 `--ink-focus-ring`，从底层彻底肃清上百行高耦合冗余代码。 |
+| v1.9 | 品牌架构大统一与极客交互升级：全局组件与变量前缀从 `if-` 全面升级为 `ink-`；引入全局 `Ctrl+K` 搜索与 `ESC` 拦截快捷键；大幅增强 `localStorage` 调用的沙盒防御机制，确保极致无痕模式下的运行稳定性。 |
+| v1.8 | 样式原子化与组件复用深度重构：全站大一统缩略图组件与双行图文排版组件（`ink-item-text`），提取 `u-` 前缀原子化工具类，消除大量内联样式，统一所有列表的分页结构与文字格式，代码更加精简和高级。 |
+| v1.7 | UI架构统一：全站组件启用 `ink-` 前缀，构建全局 `ink-avatar` 高级头像渐变组件与 `ink-cell-title` 列表排版规范，肃清海量内联 HTML 样式代码，全面提升底层源码的整洁度与高级感。 |
+| v1.6 | 底层重构：引入纯数据驱动的事件委托引擎，彻底移除内联 onClick 事件；重写 showToast 消除 XSS 安全隐患；兼容 BS5 标准面包屑结构。 |
+| v1.5 | 结构重构、移动端适配优化、样式清理 |
+| v1.4 | 更名 CiCMS → **InkFlow**、Bootstrap 5.3.3 → **5.3.8**、资源移至 `assets/`、编辑器防溢出 CSS、通知中心独立页面、README |
+| v1.3 | Dashboard 等高修复、filter-tabs 白底卡片、page-header 按钮统一、全站 CF 邮箱修复 |
+| v1.2 | Dashboard 重构（8:4 布局）、图片上传、头像裁剪、通知下拉、picsum 修复 |
+| v1.1 | CSS 前缀规范化（`ink-`），富文本编辑器 UI，全站 JS 对齐 |
+| v1.0 | 初始版本，基础页面结构 |
 
 ---
 
 ## 📜 License
 
-MIT License — free to use in personal or commercial projects, provided the original copyright header is preserved.
+MIT License — 自由用于个人或商业项目，保留版权声明即可。
 
 ---
 
