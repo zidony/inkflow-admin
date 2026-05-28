@@ -1,0 +1,115 @@
+<header id="topbar">
+      <button id="sidebar-toggle" title="收起/展开菜单"><i class="bi bi-layout-sidebar-inset"></i></button>
+      <nav aria-label="breadcrumb" class="topbar-breadcrumb mb-0">
+        <ol class="breadcrumb mb-0">
+          {{{breadcrumb}}}
+        </ol>
+      </nav>
+      <div class="topbar-search">
+        <i class="bi bi-search search-icon"></i>
+        <input type="text" id="list-search" placeholder="快速搜索… (Ctrl+K)">
+      </div>
+      <div class="topbar-actions">
+        <button class="topbar-icon-btn" id="theme-toggle-btn" data-action="toggle-theme" title="切换主题"><i class="bi bi-moon-stars"></i></button>
+        <div class="dropdown" id="notif-dropdown-wrap">
+          <button class="topbar-icon-btn" title="通知" data-bs-toggle="dropdown" data-bs-auto-close="outside"
+            aria-expanded="false">
+            <i class="bi bi-bell"></i><span class="ink-notif-badge" id="notif-badge">4</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end ink-notif-dropdown">
+            <li>
+              <div class="ink-notif-header">
+                <span><i class="bi bi-bell ink-notif-header-icon"></i>通知中心</span>
+                <button class="btn btn-light u-btn-xs" data-action="read-all">全部已读</button>
+              </div>
+            </li>
+            <li>
+              <ul class="ink-notif-list" id="notif-list">
+                <li class="ink-notif-item unread">
+                  <div class="ink-notif-icon u-text-primary bg-ink-50" ><i
+ class="bi bi-chat-left-dots"></i></div>
+                  <div class="ink-notif-body">
+                    <div class="ink-notif-text"><strong>张三</strong> 评论了《Vue 3 Composition API》</div>
+                    <div class="ink-notif-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
+                  </div>
+                  <span class="ink-notif-dot"></span>
+                </li>
+                <li class="ink-notif-item unread">
+                  <div class="ink-notif-icon u-text-success bg-success-subtle" ><i class="bi bi-person-plus"></i>
+                  </div>
+                  <div class="ink-notif-body">
+                    <div class="ink-notif-text"><strong>新用户</strong> 李明 完成了注册</div>
+                    <div class="ink-notif-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
+                  </div>
+                  <span class="ink-notif-dot"></span>
+                </li>
+                <li class="ink-notif-item unread">
+                  <div class="ink-notif-icon u-text-warning" style="background:#fef3c7"><i
+ class="bi bi-exclamation-triangle"></i></div>
+                  <div class="ink-notif-body">
+                    <div class="ink-notif-text"><strong>系统</strong> 磁盘使用率达到 42%，请注意</div>
+                    <div class="ink-notif-time"><i class="bi bi-clock me-1"></i>1 小时前</div>
+                  </div>
+                  <span class="ink-notif-dot"></span>
+                </li>
+                <li class="ink-notif-item unread">
+                  <div class="ink-notif-icon" style="background:#ede9fe;color:#7c3aed"><i
+ class="bi bi-chat-left-dots"></i></div>
+                  <div class="ink-notif-body">
+                    <div class="ink-notif-text"><strong>王红</strong> 评论了《LLM Fine-tuning》指出了一个错误</div>
+                    <div class="ink-notif-time"><i class="bi bi-clock me-1"></i>2 小时前</div>
+                  </div>
+                  <span class="ink-notif-dot"></span>
+                </li>
+                <li class="ink-notif-item">
+                  <div class="ink-notif-icon u-text-gray-500 bg-ink-gray-100" ><i
+ class="bi bi-file-earmark-check"></i></div>
+                  <div class="ink-notif-body">
+                    <div class="ink-notif-text">文章《TypeScript 高级类型》已成功发布</div>
+                    <div class="ink-notif-time"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
+                  </div>
+                </li>
+                <li class="ink-notif-item">
+                  <div class="ink-notif-icon u-text-gray-500 bg-ink-gray-100" ><i
+ class="bi bi-shield-check"></i></div>
+                  <div class="ink-notif-body">
+                    <div class="ink-notif-text"><strong>系统</strong> 安全证书将在 30 天后到期</div>
+                    <div class="ink-notif-time"><i class="bi bi-clock me-1"></i>昨天 09:15</div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <div class="ink-notif-footer" data-action="navigate" data-href="notification-center.html">
+                查看全部通知 <i class="bi bi-arrow-right ms-1"></i>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <a href="post-edit.html" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg"></i> 新建文章</a>
+        <div class="dropdown topbar-dropdown ms-1">
+          <button class="topbar-user-btn dropdown-toggle border-0" data-bs-toggle="dropdown" aria-expanded="false"
+            >
+            <div class="ink-avatar ink-avatar-sm ink-avatar-blue">AD</div>
+            <span class="topbar-user-name d-none d-md-inline">Admin</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+              <div class="user-info-header">
+                <div class="ink-avatar ink-avatar-blue">AD</div>
+                <div class="ink-item-text">
+              <div class="ink-title">Admin User</div><small>admin@inkflow.dev</small>
+            </div>
+              </div>
+            </li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> 个人资料</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-shield-check"></i> 账号安全</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item link-danger" href="login.html"><i class="bi bi-box-arrow-right"></i> 退出登录</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>

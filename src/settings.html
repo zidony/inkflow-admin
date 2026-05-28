@@ -2,188 +2,19 @@
 <html lang="zh-CN">
 
 <head>
-  <script>
-    // Prevent Flash of Unstyled Content (FOUC) on dark mode load
-    (function () {
-      try {
-        const theme = localStorage.getItem('inkflow_theme');
-        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        }
-      } catch (_) {}
-    })();
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>系统设置 — InkFlow</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="/assets/css/inkflow-admin.css">
+{{> head_assets }}
 </head>
 
 <body>
   <!-- SIDEBAR -->
-  <nav id="sidebar">
-    <a class="sidebar-logo" href="index.html">
-      <div class="sidebar-logo-icon"><i class="bi bi-journals"></i></div>
-      <div class="sidebar-logo-text">
-        <span class="sidebar-logo-title">InkFlow</span>
-        <span class="sidebar-logo-sub">InkFlow</span>
-      </div>
-    </a>
-    <div class="sidebar-nav-wrap">
-      <div class="nav-section-label">主菜单</div>
-      <div class="nav-item-wrapper">
-        <a href="index.html" class="nav-link-item " data-tooltip="仪表盘">
-          <i class="bi bi-grid-1x2 nav-icon"></i><span class="nav-label">仪表盘</span>
-        </a>
-      </div>
-      <div class="nav-section-label">内容管理</div>
-      <div class="nav-item-wrapper">
-        <button class="nav-link-item " data-toggle="submenu" data-target="sub-content" aria-expanded="false"
-          data-tooltip="内容管理">
-          <i class="bi bi-file-richtext nav-icon"></i><span class="nav-label">内容管理</span>
-          <i class="bi bi-chevron-right nav-arrow"></i>
-        </button>
-      </div>
-      <div class="submenu-wrap" id="sub-content">
-        <div class="submenu">
-          <div class="nav-item-wrapper"><a href="post-list.html" class="nav-link-item "><i
-                class="bi bi-file-text nav-icon"></i><span class="nav-label">文章管理</span></a></div>
-          <div class="nav-item-wrapper"><a href="comment-list.html" class="nav-link-item "><i
-                class="bi bi-chat-left-dots nav-icon"></i><span class="nav-label">评论管理</span></a></div>
-          <div class="nav-item-wrapper"><a href="category-list.html" class="nav-link-item "><i
-                class="bi bi-folder2 nav-icon"></i><span class="nav-label">栏目管理</span></a></div>
-          <div class="nav-item-wrapper"><a href="tag-list.html" class="nav-link-item "><i
-                class="bi bi-tags nav-icon"></i><span class="nav-label">标签管理</span></a></div>
-        </div>
-      </div>
-      <div class="nav-section-label">媒体</div>
-      <div class="nav-item-wrapper">
-        <button class="nav-link-item " data-toggle="submenu" data-target="sub-media" aria-expanded="false"
-          data-tooltip="媒体管理">
-          <i class="bi bi-collection nav-icon"></i><span class="nav-label">媒体管理</span>
-          <i class="bi bi-chevron-right nav-arrow"></i>
-        </button>
-      </div>
-      <div class="submenu-wrap" id="sub-media">
-        <div class="submenu">
-          <div class="nav-item-wrapper"><a href="image-list.html" class="nav-link-item "><i
-                class="bi bi-images nav-icon"></i><span class="nav-label">图片管理</span></a></div>
-          <div class="nav-item-wrapper"><a href="link-list.html" class="nav-link-item "><i
-                class="bi bi-link-45deg nav-icon"></i><span class="nav-label">链接管理</span></a></div>
-        </div>
-      </div>
-      <div class="nav-section-label">系统</div>
-      <div class="nav-item-wrapper"><a href="user-list.html" class="nav-link-item " data-tooltip="用户管理"><i
-            class="bi bi-people nav-icon"></i><span class="nav-label">用户管理</span></a></div>
-      <div class="nav-item-wrapper"><a href="settings.html" class="nav-link-item active" data-tooltip="系统设置"><i
-            class="bi bi-sliders nav-icon"></i><span class="nav-label">系统设置</span></a></div>
-    </div>
-    <div class="sidebar-footer">
-      <div class="sidebar-user">
-        <div class="ink-avatar ink-avatar-sm ink-avatar-blue">AD</div>
-        <div class="sidebar-user-info ink-item-text">
-          <div class="ink-title text-white">Admin</div>
-          <small >超级管理员</small>
-        </div>
-      </div>
-    </div>
-  </nav>
+  {{> sidebar }}
   <div id="sidebar-overlay"></div>
   <div id="main-wrapper">
     <!-- TOPBAR -->
-    <header id="topbar">
-      <button id="sidebar-toggle" title="收起/展开菜单"><i class="bi bi-layout-sidebar-inset"></i></button>
-      <nav aria-label="breadcrumb" class="topbar-breadcrumb mb-0">
-        <ol class="breadcrumb mb-0">
-          <li class="breadcrumb-item"><a href="index.html">首页</a></li>
-          <li class="breadcrumb-item active" aria-current="page">系统设置</li>
-        </ol>
-      </nav>
-      <div class="topbar-search">
-        <i class="bi bi-search search-icon"></i>
-        <input type="text" id="list-search" placeholder="快速搜索… (Ctrl+K)">
-      </div>
-      <div class="topbar-actions">
-        <button class="topbar-icon-btn" id="theme-toggle-btn" data-action="toggle-theme" title="切换主题"><i class="bi bi-moon-stars"></i></button>
-        <div class="dropdown">
-          <button class="topbar-icon-btn" title="通知" data-bs-toggle="dropdown" data-bs-auto-close="outside"
-            aria-expanded="false">
-            <i class="bi bi-bell"></i><span class="ink-notif-badge">4</span>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end ink-notif-dropdown">
-            <li>
-              <div class="ink-notif-header">
-                <span><i class="bi bi-bell ink-notif-header-icon"></i>通知中心</span>
-                <button class="btn btn-light u-btn-xs" data-action="toast" data-toast-msg="已全部标记已读"
-                  data-toast-type="success">全部已读</button>
-              </div>
-            </li>
-            <li>
-              <ul class="ink-notif-list">
-                <li class="ink-notif-item unread">
-                  <div class="ink-notif-icon u-text-primary" style="background:var(--ink-50)"><i
-                      class="bi bi-chat-left-dots"></i></div>
-                  <div class="ink-notif-body">
-                    <div class="ink-notif-text"><strong>张三</strong> 评论了《Vue 3 Composition API》</div>
-                    <div class="ink-notif-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
-                  </div>
-                  <span class="ink-notif-dot"></span>
-                </li>
-                <li class="ink-notif-item unread">
-                  <div class="ink-notif-icon u-text-success" style="background:#dcfce7"><i class="bi bi-person-plus"></i>
-                  </div>
-                  <div class="ink-notif-body">
-                    <div class="ink-notif-text"><strong>新用户</strong> 李明 完成了注册</div>
-                    <div class="ink-notif-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
-                  </div>
-                  <span class="ink-notif-dot"></span>
-                </li>
-                <li class="ink-notif-item">
-                  <div class="ink-notif-icon u-text-gray-500" style="background:var(--ink-gray-100)"><i
-                      class="bi bi-file-earmark-check"></i></div>
-                  <div class="ink-notif-body">
-                    <div class="ink-notif-text">文章《TypeScript 高级类型》已成功发布</div>
-                    <div class="ink-notif-time"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
-                  </div>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <div class="ink-notif-footer" data-action="navigate" data-href="notification-center.html">
-                查看全部通知 <i class="bi bi-arrow-right ms-1"></i>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="dropdown topbar-dropdown ms-1">
-          <button class="topbar-user-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
-            style="border:none">
-            <div class="ink-avatar ink-avatar-sm ink-avatar-blue">AD</div>
-            <span class="topbar-user-name d-none d-md-inline">Admin</span>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li>
-              <div class="user-info-header">
-                <div class="ink-avatar ink-avatar-blue">AD</div>
-                <div class="ink-item-text">
-              <div class="ink-title">Admin User</div><small>admin@inkflow.dev</small>
-            </div>
-              </div>
-            </li>
-            <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> 个人资料</a></li>
-            <li><a class="dropdown-item" href="#"><i class="bi bi-shield-check"></i> 账号安全</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item link-danger" href="login.html"><i class="bi bi-box-arrow-right"></i> 退出登录</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </header>
+    {{> topbar breadcrumb="<li class='breadcrumb-item'><a href='index.html'>首页</a></li> <li class='breadcrumb-item active' aria-current='page'>系统设置</li>" }}
     <main id="page-content">
       <div class="page-header">
         <div>
@@ -191,7 +22,7 @@
           <span class='page-subtitle'>管理 InkFlow 博客的全局配置</span>
         </div>
         <button class="btn btn-primary btn-sm" data-action="toast" data-toast-msg="所有设置已保存" data-toast-type="success"><i
-            class="bi bi-check-lg me-1"></i>保存所有设置</button>
+ class="bi bi-check-lg me-1"></i>保存所有设置</button>
       </div>
 
       <div class="ink-settings-layout">
@@ -201,22 +32,22 @@
             <div class="card-body" style="padding:8px">
               <div class="ink-settings-nav"><button class="ink-settings-nav-item active" data-action="switch-settings"
                   data-section="site" data-section="site"><i class="bi bi-house"></i>站点基本设置</button><button
-                  class="ink-settings-nav-item " data-action="switch-settings" data-section="post" data-section="post"><i
-                    class="bi bi-file-richtext"></i>文章设置</button><button class="ink-settings-nav-item "
+ class="ink-settings-nav-item " data-action="switch-settings" data-section="post" data-section="post"><i
+ class="bi bi-file-richtext"></i>文章设置</button><button class="ink-settings-nav-item "
                   data-action="switch-settings" data-section="comment" data-section="comment"><i
-                    class="bi bi-chat-left-dots"></i>评论设置</button><button class="ink-settings-nav-item "
+ class="bi bi-chat-left-dots"></i>评论设置</button><button class="ink-settings-nav-item "
                   data-action="switch-settings" data-section="media" data-section="media"><i
-                    class="bi bi-image"></i>媒体设置</button><button class="ink-settings-nav-item "
+ class="bi bi-image"></i>媒体设置</button><button class="ink-settings-nav-item "
                   data-action="switch-settings" data-section="seo" data-section="seo"><i
-                    class="bi bi-search-heart"></i>SEO 设置</button><button class="ink-settings-nav-item "
+ class="bi bi-search-heart"></i>SEO 设置</button><button class="ink-settings-nav-item "
                   data-action="switch-settings" data-section="smtp" data-section="smtp"><i
-                    class="bi bi-envelope-at"></i>邮件 SMTP</button><button class="ink-settings-nav-item "
+ class="bi bi-envelope-at"></i>邮件 SMTP</button><button class="ink-settings-nav-item "
                   data-action="switch-settings" data-section="security" data-section="security"><i
-                    class="bi bi-shield-lock"></i>安全设置</button><button class="ink-settings-nav-item "
+ class="bi bi-shield-lock"></i>安全设置</button><button class="ink-settings-nav-item "
                   data-action="switch-settings" data-section="cache" data-section="cache"><i
-                    class="bi bi-lightning-charge"></i>缓存与性能</button><button class="ink-settings-nav-item "
+ class="bi bi-lightning-charge"></i>缓存与性能</button><button class="ink-settings-nav-item "
                   data-action="switch-settings" data-section="advanced" data-section="advanced"><i
-                    class="bi bi-sliders"></i>高级设置</button></div>
+ class="bi bi-sliders"></i>高级设置</button></div>
             </div>
           </div>
         </div>
@@ -230,15 +61,15 @@
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12 col-md-6"><label class="form-label">站点名称</label><input type="text"
-                      class="form-control" value="InkFlow 技术博客"></div>
+ class="form-control" value="InkFlow 技术博客"></div>
                   <div class="col-12 col-md-6"><label class="form-label">站点副标题</label><input type="text"
-                      class="form-control" value="分享技术，记录成长"></div>
+ class="form-control" value="分享技术，记录成长"></div>
                   <div class="col-12 col-md-6"><label class="form-label">站点地址 (URL)</label><input type="url"
-                      class="form-control" value="https://blog.inkflow.dev"></div>
+ class="form-control" value="https://blog.inkflow.dev"></div>
                   <div class="col-12 col-md-6"><label class="form-label">管理后台地址</label><input type="url"
-                      class="form-control" value="https://blog.inkflow.dev/admin"></div>
+ class="form-control" value="https://blog.inkflow.dev/admin"></div>
                   <div class="col-12 col-md-6"><label class="form-label">管理员邮箱</label><input type="email"
-                      class="form-control" value="admin@inkflow.dev"></div>
+ class="form-control" value="admin@inkflow.dev"></div>
                   <div class="col-12 col-md-6"><label class="form-label">站点语言</label><select class="form-select">
                       <option selected>简体中文</option>
                       <option>繁體中文</option>
@@ -377,9 +208,9 @@
                     </div>
                   </div>
                   <div class="col-12 col-md-6"><label class="form-label">评论分页，每页条数</label><input type="number"
-                      class="form-control" value="20"></div>
+ class="form-control" value="20"></div>
                   <div class="col-12 col-md-6"><label class="form-label">评论关闭天数（0=永不关闭）</label><input type="number"
-                      class="form-control" value="0"></div>
+ class="form-control" value="0"></div>
                   <div class="col-12 col-md-6"><label class="form-label">评论头像来源</label><select class="form-select">
                       <option selected>Gravatar</option>
                       <option>本地头像</option>
@@ -404,22 +235,22 @@
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12 col-md-6"><label class="form-label">SMTP 服务器</label><input type="text"
-                      class="form-control" value="smtp.exmail.qq.com" placeholder="smtp.example.com"></div>
+ class="form-control" value="smtp.exmail.qq.com" placeholder="smtp.example.com"></div>
                   <div class="col-12 col-md-6"><label class="form-label">SMTP 端口</label><input type="number"
-                      class="form-control" value="465"></div>
+ class="form-control" value="465"></div>
                   <div class="col-12 col-md-6"><label class="form-label">加密方式</label><select class="form-select">
                       <option selected>SSL/TLS</option>
                       <option>STARTTLS</option>
                       <option>无加密</option>
                     </select></div>
                   <div class="col-12 col-md-6"><label class="form-label">发件人名称</label><input type="text"
-                      class="form-control" value="InkFlow 博客"></div>
+ class="form-control" value="InkFlow 博客"></div>
                   <div class="col-12 col-md-6"><label class="form-label">发件人邮箱</label><input type="email"
-                      class="form-control" value="noreply@inkflow.dev"></div>
+ class="form-control" value="noreply@inkflow.dev"></div>
                   <div class="col-12 col-md-6"><label class="form-label">SMTP 用户名</label><input type="text"
-                      class="form-control" value="noreply@inkflow.dev"></div>
+ class="form-control" value="noreply@inkflow.dev"></div>
                   <div class="col-12"><label class="form-label">SMTP 密码</label><input type="password"
-                      class="form-control" value="••••••••••••"></div>
+ class="form-control" value="••••••••••••"></div>
                   <div class="col-12">
                     <button class="btn btn-outline-primary" data-action="toast" data-toast-msg="测试邮件发送成功"
                       data-toast-type="success"><i class="bi bi-send me-1"></i>发送测试邮件</button>
@@ -436,13 +267,13 @@
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12 col-md-6"><label class="form-label">登录失败锁定次数</label><input type="number"
-                      class="form-control" value="5"></div>
+ class="form-control" value="5"></div>
                   <div class="col-12 col-md-6"><label class="form-label">锁定时间（分钟）</label><input type="number"
-                      class="form-control" value="30"></div>
+ class="form-control" value="30"></div>
                   <div class="col-12 col-md-6"><label class="form-label">Session 超时（分钟）</label><input type="number"
-                      class="form-control" value="120"></div>
+ class="form-control" value="120"></div>
                   <div class="col-12 col-md-6"><label class="form-label">密码最低长度</label><input type="number"
-                      class="form-control" value="8"></div>
+ class="form-control" value="8"></div>
                   <div class="col-12">
                     <div class="d-flex flex-wrap gap-4">
                       <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
@@ -474,7 +305,7 @@
                       <option>不缓存</option>
                     </select></div>
                   <div class="col-12 col-md-6"><label class="form-label">缓存过期时间（秒）</label><input type="number"
-                      class="form-control" value="3600"></div>
+ class="form-control" value="3600"></div>
                   <div class="col-12">
                     <div class="d-flex flex-wrap gap-4">
                       <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
@@ -506,13 +337,13 @@
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12"><label class="form-label">全站 Meta 关键词</label><input type="text"
-                      class="form-control" placeholder="Vue,TypeScript,前端技术,博客"></div>
+ class="form-control" placeholder="Vue,TypeScript,前端技术,博客"></div>
                   <div class="col-12"><label class="form-label">全站 Meta 描述</label><textarea class="form-control"
                       rows="2" placeholder="站点全局描述…"></textarea></div>
                   <div class="col-12 col-md-6"><label class="form-label">Google Analytics ID</label><input type="text"
-                      class="form-control" placeholder="G-XXXXXXXXXX"></div>
+ class="form-control" placeholder="G-XXXXXXXXXX"></div>
                   <div class="col-12 col-md-6"><label class="form-label">百度统计 ID</label><input type="text"
-                      class="form-control" placeholder="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"></div>
+ class="form-control" placeholder="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"></div>
                   <div class="col-12">
                     <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
                         id="seo-sitemap"><label class="form-check-label u-text-body" for="seo-sitemap">自动生成
@@ -533,15 +364,15 @@
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12 col-md-6"><label class="form-label">最大上传文件大小 (MB)</label><input type="number"
-                      class="form-control" value="20"></div>
+ class="form-control" value="20"></div>
                   <div class="col-12 col-md-6"><label class="form-label">允许的文件类型</label><input type="text"
-                      class="form-control" value="jpg,jpeg,png,gif,webp,svg,pdf,zip"></div>
+ class="form-control" value="jpg,jpeg,png,gif,webp,svg,pdf,zip"></div>
                   <div class="col-12 col-md-4"><label class="form-label">缩略图宽 (px)</label><input type="number"
-                      class="form-control" value="150"></div>
+ class="form-control" value="150"></div>
                   <div class="col-12 col-md-4"><label class="form-label">中等图宽 (px)</label><input type="number"
-                      class="form-control" value="800"></div>
+ class="form-control" value="800"></div>
                   <div class="col-12 col-md-4"><label class="form-label">大图宽 (px)</label><input type="number"
-                      class="form-control" value="1200"></div>
+ class="form-control" value="1200"></div>
                   <div class="col-12">
                     <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
                         id="m-webp"><label class="form-check-label u-text-body" for="m-webp">自动转换为 WebP 格式</label></div>
@@ -556,11 +387,11 @@
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12"><label class="form-label">自定义 CSS（注入到前台页面）</label><textarea
-                      class="form-control u-text-mono u-text-body" rows="4" placeholder="/* 自定义样式 */"></textarea></div>
+ class="form-control u-text-mono u-text-body" rows="4" placeholder="/* 自定义样式 */"></textarea></div>
                   <div class="col-12"><label class="form-label">自定义 JS（注入到前台页面 body 底部）</label><textarea
-                      class="form-control u-text-mono u-text-body" rows="4" placeholder="// 自定义脚本"></textarea></div>
+ class="form-control u-text-mono u-text-body" rows="4" placeholder="// 自定义脚本"></textarea></div>
                   <div class="col-12"><label class="form-label">robots.txt 内容</label><textarea
-                      class="form-control u-text-mono u-text-body" rows="4">User-agent: *
+ class="form-control u-text-mono u-text-body" rows="4">User-agent: *
 Allow: /
 Sitemap: https://blog.inkflow.dev/sitemap.xml</textarea></div>
                 </div>
@@ -569,9 +400,9 @@ Sitemap: https://blog.inkflow.dev/sitemap.xml</textarea></div>
           </div>
           <div class="d-flex gap-2 mt-3">
             <button class="btn btn-primary btn-sm" data-action="toast" data-toast-msg="设置已保存" data-toast-type="success"><i
-                class="bi bi-check-lg me-1"></i>保存设置</button>
+ class="bi bi-check-lg me-1"></i>保存设置</button>
             <button class="btn btn-light btn-sm" data-action="toast" data-toast-msg="已重置为默认值" data-toast-type="info"><i
-                class="bi bi-arrow-counterclockwise me-1"></i>重置默认</button>
+ class="bi bi-arrow-counterclockwise me-1"></i>重置默认</button>
           </div>
         </div>
       </div>

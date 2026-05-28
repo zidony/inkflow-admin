@@ -1,6 +1,6 @@
 /* ============================================================
-   InkFlow Admin — Unified Shared Entry Script (ES Module)
-   v2.0.0
+   InkFlow Admin — Core Application Module
+   v2.1.0
    ============================================================ */
 
 import { ThemeManager } from './modules/theme.js';

@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import fs from 'fs';
+import handlebars from 'vite-plugin-handlebars';
 
 // Dynamically discover all HTML files in the src directory
 function getHtmlEntries() {
@@ -22,6 +23,11 @@ function getHtmlEntries() {
 export default defineConfig({
   root: 'src',
   base: './', // Use relative paths for static hosting compatibility
+  plugins: [
+    handlebars({
+      partialDirectory: resolve(__dirname, 'src/partials'),
+    }),
+  ],
   esbuild: {
     drop: ['console', 'debugger']
   },

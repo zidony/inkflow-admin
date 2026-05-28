@@ -2,189 +2,19 @@
 <html lang="zh-CN">
 
 <head>
-  <script>
-    // Prevent Flash of Unstyled Content (FOUC) on dark mode load
-    (function () {
-      try {
-        const theme = localStorage.getItem('inkflow_theme');
-        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        }
-      } catch (_) {}
-    })();
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>标签管理 — InkFlow</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="/assets/css/inkflow-admin.css">
+{{> head_assets }}
 </head>
 
 <body>
   <!-- SIDEBAR -->
-  <nav id="sidebar">
-    <a class="sidebar-logo" href="index.html">
-      <div class="sidebar-logo-icon"><i class="bi bi-journals"></i></div>
-      <div class="sidebar-logo-text">
-        <span class="sidebar-logo-title">InkFlow</span>
-        <span class="sidebar-logo-sub">InkFlow</span>
-      </div>
-    </a>
-    <div class="sidebar-nav-wrap">
-      <div class="nav-section-label">主菜单</div>
-      <div class="nav-item-wrapper">
-        <a href="index.html" class="nav-link-item " data-tooltip="仪表盘">
-          <i class="bi bi-grid-1x2 nav-icon"></i><span class="nav-label">仪表盘</span>
-        </a>
-      </div>
-      <div class="nav-section-label">内容管理</div>
-      <div class="nav-item-wrapper">
-        <button class="nav-link-item active" data-toggle="submenu" data-target="sub-content" aria-expanded="true"
-          data-tooltip="内容管理">
-          <i class="bi bi-file-richtext nav-icon"></i><span class="nav-label">内容管理</span>
-          <i class="bi bi-chevron-right nav-arrow"></i>
-        </button>
-      </div>
-      <div class="submenu-wrap" id="sub-content">
-        <div class="submenu">
-          <div class="nav-item-wrapper"><a href="post-list.html" class="nav-link-item "><i
-                class="bi bi-file-text nav-icon"></i><span class="nav-label">文章管理</span></a></div>
-          <div class="nav-item-wrapper"><a href="comment-list.html" class="nav-link-item "><i
-                class="bi bi-chat-left-dots nav-icon"></i><span class="nav-label">评论管理</span></a></div>
-          <div class="nav-item-wrapper"><a href="category-list.html" class="nav-link-item "><i
-                class="bi bi-folder2 nav-icon"></i><span class="nav-label">栏目管理</span></a></div>
-          <div class="nav-item-wrapper"><a href="tag-list.html" class="nav-link-item active"><i
-                class="bi bi-tags nav-icon"></i><span class="nav-label">标签管理</span></a></div>
-        </div>
-      </div>
-      <div class="nav-section-label">媒体</div>
-      <div class="nav-item-wrapper">
-        <button class="nav-link-item " data-toggle="submenu" data-target="sub-media" aria-expanded="false"
-          data-tooltip="媒体管理">
-          <i class="bi bi-collection nav-icon"></i><span class="nav-label">媒体管理</span>
-          <i class="bi bi-chevron-right nav-arrow"></i>
-        </button>
-      </div>
-      <div class="submenu-wrap" id="sub-media">
-        <div class="submenu">
-          <div class="nav-item-wrapper"><a href="image-list.html" class="nav-link-item "><i
-                class="bi bi-images nav-icon"></i><span class="nav-label">图片管理</span></a></div>
-          <div class="nav-item-wrapper"><a href="link-list.html" class="nav-link-item "><i
-                class="bi bi-link-45deg nav-icon"></i><span class="nav-label">链接管理</span></a></div>
-        </div>
-      </div>
-      <div class="nav-section-label">系统</div>
-      <div class="nav-item-wrapper"><a href="user-list.html" class="nav-link-item " data-tooltip="用户管理"><i
-            class="bi bi-people nav-icon"></i><span class="nav-label">用户管理</span></a></div>
-      <div class="nav-item-wrapper"><a href="settings.html" class="nav-link-item " data-tooltip="系统设置"><i
-            class="bi bi-sliders nav-icon"></i><span class="nav-label">系统设置</span></a></div>
-    </div>
-    <div class="sidebar-footer">
-      <div class="sidebar-user">
-        <div class="ink-avatar ink-avatar-sm ink-avatar-blue">AD</div>
-        <div class="sidebar-user-info ink-item-text">
-          <div class="ink-title text-white">Admin</div>
-          <small >超级管理员</small>
-        </div>
-      </div>
-    </div>
-  </nav>
+  {{> sidebar }}
   <div id="sidebar-overlay"></div>
   <div id="main-wrapper">
     <!-- TOPBAR -->
-    <header id="topbar">
-      <button id="sidebar-toggle" title="收起/展开菜单"><i class="bi bi-layout-sidebar-inset"></i></button>
-      <nav aria-label="breadcrumb" class="topbar-breadcrumb mb-0">
-        <ol class="breadcrumb mb-0">
-          <li class="breadcrumb-item"><a href="index.html">首页</a></li>
-          <li class="breadcrumb-item"><a href="#">内容管理</a></li>
-          <li class="breadcrumb-item active" aria-current="page">标签管理</li>
-        </ol>
-      </nav>
-      <div class="topbar-search">
-        <i class="bi bi-search search-icon"></i>
-        <input type="text" id="list-search" placeholder="快速搜索… (Ctrl+K)">
-      </div>
-      <div class="topbar-actions">
-        <button class="topbar-icon-btn" id="theme-toggle-btn" data-action="toggle-theme" title="切换主题"><i class="bi bi-moon-stars"></i></button>
-        <div class="dropdown">
-          <button class="topbar-icon-btn" title="通知" data-bs-toggle="dropdown" data-bs-auto-close="outside"
-            aria-expanded="false">
-            <i class="bi bi-bell"></i><span class="ink-notif-badge">4</span>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end ink-notif-dropdown">
-            <li>
-              <div class="ink-notif-header">
-                <span><i class="bi bi-bell ink-notif-header-icon"></i>通知中心</span>
-                <button class="btn btn-light u-btn-xs" data-action="toast" data-toast-msg="已全部标记已读"
-                  data-toast-type="success">全部已读</button>
-              </div>
-            </li>
-            <li>
-              <ul class="ink-notif-list">
-                <li class="ink-notif-item unread">
-                  <div class="ink-notif-icon u-text-primary" style="background:var(--ink-50)"><i
-                      class="bi bi-chat-left-dots"></i></div>
-                  <div class="ink-notif-body">
-                    <div class="ink-notif-text"><strong>张三</strong> 评论了《Vue 3 Composition API》</div>
-                    <div class="ink-notif-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
-                  </div>
-                  <span class="ink-notif-dot"></span>
-                </li>
-                <li class="ink-notif-item unread">
-                  <div class="ink-notif-icon u-text-success" style="background:#dcfce7"><i class="bi bi-person-plus"></i>
-                  </div>
-                  <div class="ink-notif-body">
-                    <div class="ink-notif-text"><strong>新用户</strong> 李明 完成了注册</div>
-                    <div class="ink-notif-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
-                  </div>
-                  <span class="ink-notif-dot"></span>
-                </li>
-                <li class="ink-notif-item">
-                  <div class="ink-notif-icon u-text-gray-500" style="background:var(--ink-gray-100)"><i
-                      class="bi bi-file-earmark-check"></i></div>
-                  <div class="ink-notif-body">
-                    <div class="ink-notif-text">文章《TypeScript 高级类型》已成功发布</div>
-                    <div class="ink-notif-time"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
-                  </div>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <div class="ink-notif-footer" data-action="navigate" data-href="notification-center.html">
-                查看全部通知 <i class="bi bi-arrow-right ms-1"></i>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <a href="post-edit.html" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg"></i> 新建文章</a>
-        <div class="dropdown topbar-dropdown ms-1">
-          <button class="topbar-user-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
-            style="border:none">
-            <div class="ink-avatar ink-avatar-sm ink-avatar-blue">AD</div>
-            <span class="topbar-user-name d-none d-md-inline">Admin</span>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li>
-              <div class="user-info-header">
-                <div class="ink-avatar ink-avatar-blue">AD</div>
-                <div class="ink-item-text">
-              <div class="ink-title">Admin User</div><small>admin@inkflow.dev</small>
-            </div>
-              </div>
-            </li>
-            <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> 个人资料</a></li>
-            <li><a class="dropdown-item" href="#"><i class="bi bi-shield-check"></i> 账号安全</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item link-danger" href="login.html"><i class="bi bi-box-arrow-right"></i> 退出登录</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </header>
+    {{> topbar breadcrumb="<li class='breadcrumb-item'><a href='index.html'>首页</a></li> <li class='breadcrumb-item'><a href='#'>内容管理</a></li> <li class='breadcrumb-item active' aria-current='page'>标签管理</li>" }}
     <main id="page-content">
       <div class="page-header">
         <div>
@@ -210,19 +40,19 @@
             <table class="ink-table">
               <thead>
                 <tr>
-                  <th class="table-check"><input type="checkbox" id="select-all" class="form-check-input"
-                      style="width:15px;height:15px;cursor:pointer"></th>
+                  <th class="table-check"><input type="checkbox" id="select-all" class="form-check-input table-check-box"
+                      ></th>
                   <th>标签名称</th>
                   <th>URL Slug</th>
                   <th>文章数</th>
                   <th>创建时间</th>
-                  <th class="text-center" style="width:100px">操作</th>
+                  <th class="text-center w-100px" >操作</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><input type="checkbox" class="form-check-input ink-row-check"
-                      style="width:15px;height:15px;cursor:pointer"></td>
+                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
+                      ></td>
                   <td>
                     <div class="ink-item-text"><a href="tag-edit.html" class="ink-link">Vue 3</a></div>
                   </td>
@@ -234,13 +64,13 @@
                       <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
                       <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
-                          class="bi bi-trash3"></i></button>
+ class="bi bi-trash3"></i></button>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td><input type="checkbox" class="form-check-input ink-row-check"
-                      style="width:15px;height:15px;cursor:pointer"></td>
+                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
+                      ></td>
                   <td>
                     <div class="ink-item-text"><a href="tag-edit.html" class="ink-link">TypeScript</a></div>
                   </td>
@@ -252,13 +82,13 @@
                       <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
                       <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
-                          class="bi bi-trash3"></i></button>
+ class="bi bi-trash3"></i></button>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td><input type="checkbox" class="form-check-input ink-row-check"
-                      style="width:15px;height:15px;cursor:pointer"></td>
+                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
+                      ></td>
                   <td>
                     <div class="ink-item-text"><a href="tag-edit.html" class="ink-link">React</a></div>
                   </td>
@@ -270,13 +100,13 @@
                       <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
                       <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
-                          class="bi bi-trash3"></i></button>
+ class="bi bi-trash3"></i></button>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td><input type="checkbox" class="form-check-input ink-row-check"
-                      style="width:15px;height:15px;cursor:pointer"></td>
+                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
+                      ></td>
                   <td>
                     <div class="ink-item-text"><a href="tag-edit.html" class="ink-link">Docker</a></div>
                   </td>
@@ -288,13 +118,13 @@
                       <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
                       <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
-                          class="bi bi-trash3"></i></button>
+ class="bi bi-trash3"></i></button>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td><input type="checkbox" class="form-check-input ink-row-check"
-                      style="width:15px;height:15px;cursor:pointer"></td>
+                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
+                      ></td>
                   <td>
                     <div class="ink-item-text"><a href="tag-edit.html" class="ink-link">Python</a></div>
                   </td>
@@ -306,13 +136,13 @@
                       <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
                       <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
-                          class="bi bi-trash3"></i></button>
+ class="bi bi-trash3"></i></button>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td><input type="checkbox" class="form-check-input ink-row-check"
-                      style="width:15px;height:15px;cursor:pointer"></td>
+                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
+                      ></td>
                   <td>
                     <div class="ink-item-text"><a href="tag-edit.html" class="ink-link">机器学习</a></div>
                   </td>
@@ -324,13 +154,13 @@
                       <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
                       <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
-                          class="bi bi-trash3"></i></button>
+ class="bi bi-trash3"></i></button>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td><input type="checkbox" class="form-check-input ink-row-check"
-                      style="width:15px;height:15px;cursor:pointer"></td>
+                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
+                      ></td>
                   <td>
                     <div class="ink-item-text"><a href="tag-edit.html" class="ink-link">Webpack</a></div>
                   </td>
@@ -342,13 +172,13 @@
                       <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
                       <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
-                          class="bi bi-trash3"></i></button>
+ class="bi bi-trash3"></i></button>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td><input type="checkbox" class="form-check-input ink-row-check"
-                      style="width:15px;height:15px;cursor:pointer"></td>
+                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
+                      ></td>
                   <td>
                     <div class="ink-item-text"><a href="tag-edit.html" class="ink-link">Node.js</a></div>
                   </td>
@@ -360,13 +190,13 @@
                       <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
                       <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
-                          class="bi bi-trash3"></i></button>
+ class="bi bi-trash3"></i></button>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td><input type="checkbox" class="form-check-input ink-row-check"
-                      style="width:15px;height:15px;cursor:pointer"></td>
+                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
+                      ></td>
                   <td>
                     <div class="ink-item-text"><a href="tag-edit.html" class="ink-link">CSS</a></div>
                   </td>
@@ -378,13 +208,13 @@
                       <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
                       <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
-                          class="bi bi-trash3"></i></button>
+ class="bi bi-trash3"></i></button>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td><input type="checkbox" class="form-check-input ink-row-check"
-                      style="width:15px;height:15px;cursor:pointer"></td>
+                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
+                      ></td>
                   <td>
                     <div class="ink-item-text"><a href="tag-edit.html" class="ink-link">Git</a></div>
                   </td>
@@ -396,13 +226,13 @@
                       <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
                       <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
-                          class="bi bi-trash3"></i></button>
+ class="bi bi-trash3"></i></button>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td><input type="checkbox" class="form-check-input ink-row-check"
-                      style="width:15px;height:15px;cursor:pointer"></td>
+                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
+                      ></td>
                   <td>
                     <div class="ink-item-text"><a href="tag-edit.html" class="ink-link">Linux</a></div>
                   </td>
@@ -414,13 +244,13 @@
                       <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
                       <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
-                          class="bi bi-trash3"></i></button>
+ class="bi bi-trash3"></i></button>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td><input type="checkbox" class="form-check-input ink-row-check"
-                      style="width:15px;height:15px;cursor:pointer"></td>
+                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
+                      ></td>
                   <td>
                     <div class="ink-item-text"><a href="tag-edit.html" class="ink-link">ECharts</a></div>
                   </td>
@@ -432,7 +262,7 @@
                       <a href="tag-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
 
                       <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
-                          class="bi bi-trash3"></i></button>
+ class="bi bi-trash3"></i></button>
                     </div>
                   </td>
                 </tr>
@@ -445,7 +275,7 @@
           <nav>
             <ul class="pagination mb-0">
               <li class="page-item disabled"><a class="page-link" href="#"><i
-                    class="bi bi-chevron-left u-icon-xs"></i></a></li>
+ class="bi bi-chevron-left u-icon-xs"></i></a></li>
               <li class="page-item active"><a class="page-link" href="#">1</a></li>
               <li class="page-item"><a class="page-link" href="#">2</a></li>
               <li class="page-item"><a class="page-link" href="#">3</a></li>

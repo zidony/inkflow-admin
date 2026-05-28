@@ -63,7 +63,25 @@ export class SidebarManager {
       }
     });
 
-    // 5. Setup Submenu Accordions
+    // 5. Highlight active menu based on current URL
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    
+    // Remove default active classes in case they were left in HTML
+    document.querySelectorAll('.nav-link-item').forEach(link => {
+      link.classList.remove('active');
+    });
+
+    const activeLink = document.querySelector(`.sidebar-nav-wrap a[href="${currentPath}"]`);
+    if (activeLink) {
+      activeLink.classList.add('active');
+      const submenuWrap = activeLink.closest('.submenu-wrap');
+      if (submenuWrap) {
+        const toggleBtn = document.querySelector(`.nav-link-item[data-target="${submenuWrap.id}"]`);
+        if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    // 6. Setup Submenu Accordions
     document.querySelectorAll('.nav-link-item[data-toggle="submenu"]').forEach(btn => {
       const targetEl = document.getElementById(btn.getAttribute('data-target'));
       if (targetEl) {

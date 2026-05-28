@@ -21,7 +21,7 @@
 - **🌙 全站级暗黑模式（Dark Mode）**：完美通过 CSS 变量体系覆写全站 UI。在顶栏提供极简优雅的切换按钮，配合 `localStorage` 缓存状态，支持全站过渡动画。
 - **🌐 智能 i18n 国际化引擎**：JS 模块全自动感应 HTML 的 `<html lang="...">` 属性。只需切换 `lang="zh-CN"` 或 `lang="en"`，全站的确认提示框、加载状态、通知气泡和 Chart.js 图表标签瞬间无缝双语切换。
 - **📏 国际一流代码规范**：完美配置 ESLint (v9 Flat Config) + Prettier。运行 `npm run lint` 保证 0 错误、0 警告。
-- **🗜️ 极致绿色发版打包**：编写了基于 Python 内置 zip 库的打包脚本，零外部 npm 依赖。运行 `npm run release` 一键生成仅 **90 KB 左右** 的纯净发版包 `release/inkflow-admin-v2.0.0.zip`，彻底隔离 `node_modules` 和源码。
+- **🗜️ 极致绿色发版打包**：编写了基于 Python 内置 zip 库的打包脚本，零外部 npm 依赖。运行 `npm run release` 一键生成仅 **90 KB 左右** 的纯净发版包 `release/inkflow-admin-v2.1.0.zip`，彻底隔离 `node_modules` 和源码。
 - **🤖 GitHub Actions CI/CD**：完美配置云端自动化流水线。在推送 `v*` 标签时，云端自动触发打包并将 ZIP 附件发布到 GitHub Release。
 
 ---
@@ -124,6 +124,7 @@ npm run release
 
 | 版本 | 主要内容 |
 | :--- | :--- |
+| **v2.1.0** | **工程化进阶**：引入 Vite Handlebars 模板引擎实现 HTML 组件化（抽离公用头部与侧边栏）；全面重构并模块化拆分 1600 行臃肿 CSS；建立数十个实用工具类（Utility Classes）彻底消灭全局超 300 处内联样式；修复侧边栏静态路由高亮问题；配置 Stylelint 与 Husky 提供更严格的代码规范检查。 |
 | **v2.0.0** | **里程碑升级**：全面接入 Vite 构建工具，剥离 `src/` 与 `dist/`，去除了随机哈希码以方便买家无缝集成；将 JS 完全重构成 ES6 模块；全新推出支持 transition 过渡动画的**暗黑模式**与基于 `<html lang>` 感应的 **i18n 双语切换引擎**；配置 ESLint v9 Flat Config 与 Prettier 代码规范；引入 Python 极简绿色打包归档脚本与 GitHub Actions 自动化发版流水线。 |
 | v1.9.1 | CSS架构深度解耦：采用“结构+颜色”的原子化模式重构徽章组件（`.ink-badge`），合并冗余的状态圆点至唯一的 `.ink-dot` 体系，提取全局焦点光环变量 `--ink-focus-ring`，从底层彻底肃清上百行高耦合冗余代码。 |
 | v1.9 | 品牌架构大统一与极客交互升级：全局组件与变量前缀从 `if-` 全面升级为 `ink-`；引入全局 `Ctrl+K` 搜索与 `ESC` 拦截快捷键；大幅增强 `localStorage` 调用的沙盒防御机制，确保极致无痕模式下的运行稳定性。 |

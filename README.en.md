@@ -21,7 +21,7 @@ A beautiful, out-of-the-box, commercial-grade HTML administration dashboard temp
 - **🌙 Full-Scale Dark Mode**: Smooth theme toggling perfectly implemented via CSS Custom Properties. Includes a dynamic toggle button inside TopBars, transitions, and state caching using `localStorage`.
 - **🌐 Responsive i18n Engine**: Dynamic runtime translation that automatically senses the HTML `<html lang="...">` tag. Switching between `lang="zh-CN"` and `lang="en"` immediately adapts all delete confirms, loading indicators, toasts, and Chart.js dataset labels.
 - **📏 Strict Quality Standards**: Configured with ESLint (v9 Flat Config) + Prettier. Run `npm run lint` to guarantee 0 errors and 0 warnings.
-- **🗜️ Zero-Dependency ZIP Packaging**: Implemented a native Python packaging script with zero npm dependencies. Run `npm run release` to automatically compile and generate a pure distribution zip (~90 KB) at `release/inkflow-admin-v2.0.0.zip`, isolating node_modules and developer source files.
+- **🗜️ Zero-Dependency ZIP Packaging**: Implemented a native Python packaging script with zero npm dependencies. Run `npm run release` to automatically compile and generate a pure distribution zip (~90 KB) at `release/inkflow-admin-v2.1.0.zip`, isolating node_modules and developer source files.
 - **🤖 GitHub Actions CI/CD**: Cloud release automation ready. Tagging `v*` automatically triggers云 pipeline builds, packaging, and uploads the ZIP archive directly as a GitHub Release asset.
 
 ---
@@ -124,6 +124,7 @@ The project utilizes a centralized event delegation system mapped to `data-actio
 
 | Version | Description |
 | :--- | :--- |
+| **v2.1.0** | **Engineering Architecture**: Introduced Handlebars templating for HTML componentization (extracting common headers/sidebars); comprehensively refactored and modularized 1600+ lines of CSS; eradicated 300+ inline styles using new utility classes; fixed sidebar active state dynamic routing; configured Stylelint and Husky for stricter CI/CD code quality. |
 | **v2.0.0** | **Major Milestone Upgrade**: Fully integrated Vite build tools with isolated `src/` and `dist/` directories, removing file hashes to allow stable static template integration; decomposed monolithic IIFE script into clean ES6 Modules; implemented responsive **Dark Mode** with CSS variables and transition animations; added dynamic **i18n translation engine** linked to `<html lang>`; configured ESLint v9 Flat Config and Prettier rules; introduced automated Python packaging scripts and cloud GitHub Actions CI/CD workflows. |
 | v1.9.1 | Decoupled badge `.ink-badge` into "structure + colors", refactored indicator dot into unified `.ink-dot`, extracted global focus ring variables `--ink-focus-ring`. |
 | v1.9 | Standardized prefix from `if-` to `ink-` globally, introduced global hotkeys `Ctrl+K` and `ESC` listener, enhanced sandboxing for无痕 `localStorage` calls. |
