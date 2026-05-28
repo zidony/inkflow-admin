@@ -43,13 +43,9 @@
    ============================================================ */
 .table-check-box { width: 15px; height: 15px; cursor: pointer; }
 .border-ink-gray-100 { border-color: var(--ink-gray-100) !important; }
-.mb-2px { margin-bottom: 2px !important; }
-.mb-10px { margin-bottom: 10px !important; }
 .wh-28px { width: 28px !important; height: 28px !important; }
-.p-12-18 { padding: 12px 18px !important; }
 .mw-260px { max-width: 260px !important; }
 .mw-240px { max-width: 240px !important; }
-.text-inherit { color: inherit !important; }
 .wh-110-32 { width: 110px !important; height: 32px !important; }
 .bg-ink-50 { background-color: var(--ink-50) !important; }
 .min-w-240px { min-width: 240px !important; }
@@ -64,7 +60,5 @@
 .h-38px { height: 38px !important; }
 .fs-90 { font-size: 0.9rem !important; }
 .fs-70 { font-size: 0.7rem !important; }
-.p-20px { padding: 20px !important; }
 .form-select-sm-custom { width: auto !important; height: 30px !important; padding: 3px 10px !important; }
 .btn-h28px { height: 28px !important; padding: 0 10px !important; }
-.px-20px-imp { padding-left: 20px !important; padding-right: 20px !important; }

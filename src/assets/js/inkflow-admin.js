@@ -10,6 +10,7 @@ import { BulkSelectManager } from './modules/bulk.js';
 import { EditorManager } from './modules/editor.js';
 import { ChartManager } from './modules/chart.js';
 import { DelegationManager } from './modules/delegation.js';
+import { FilterManager } from './modules/filter.js';
 
 class InkFlowAdmin {
   constructor() {
@@ -26,6 +27,7 @@ class InkFlowAdmin {
       this.editor = new EditorManager();
       this.chart = new ChartManager();
       this.delegation = new DelegationManager();
+      this.filter = new FilterManager();
 
       // Bind theme toggle directly to global scope so TopBar button can call it
       window.inkflowToggleTheme = () => this.theme.toggleTheme();
