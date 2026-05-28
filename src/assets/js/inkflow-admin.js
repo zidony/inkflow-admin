@@ -1,6 +1,6 @@
 /* ============================================================
    InkFlow Admin — Core Application Module
-   v2.1.0
+   v2.1.1
    ============================================================ */
 
 import { ThemeManager } from './modules/theme.js';
