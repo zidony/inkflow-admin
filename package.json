@@ -1,6 +1,6 @@
 {
   "name": "inkflow-admin",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "InkFlow Admin — Premium, Commercial-Grade Web Administration Template",
   "type": "module",
   "scripts": {
@@ -12,7 +12,7 @@
     "format:check": "prettier --check \"src/assets/js/**/*.js\" \"src/assets/css/**/*.css\"",
     "quality": "npm run lint && npm run lint:css && npm run format:check",
     "lint:fix": "eslint \"src/assets/js/**/*.js\" --fix && stylelint \"src/assets/css/**/*.css\" --fix && prettier --write \"src/assets/js/**/*.js\" \"src/assets/css/**/*.css\"",
-    "release": "npm run build && python scripts/release.py"
+    "release": "npm run build && node scripts/release.mjs"
   },
   "keywords": [
     "admin",

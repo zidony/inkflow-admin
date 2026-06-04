@@ -27,11 +27,6 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-
       - name: Run Quality Gates
         run: npm run quality
 
@@ -39,7 +34,7 @@ jobs:
         run: npm run build
 
       - name: Package Release ZIP
-        run: python scripts/release.py
+        run: node scripts/release.mjs
 
       - name: Extract Release Version & Info
         id: get_tag
