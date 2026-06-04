@@ -65,7 +65,7 @@ export class SidebarManager {
 
     // 5. Highlight active menu based on current URL
     const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-    
+
     // Remove default active classes in case they were left in HTML
     document.querySelectorAll('.nav-link-item').forEach(link => {
       link.classList.remove('active');
@@ -87,12 +87,11 @@ export class SidebarManager {
       if (targetEl) {
         targetEl.style.transition = 'max-height 0.25s cubic-bezier(.4,0,.2,1)';
         targetEl.style.overflow = 'hidden';
-        targetEl.style.maxHeight = btn.getAttribute('aria-expanded') === 'true'
-          ? targetEl.scrollHeight + 'px'
-          : '0';
+        targetEl.style.maxHeight =
+          btn.getAttribute('aria-expanded') === 'true' ? targetEl.scrollHeight + 'px' : '0';
       }
 
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', e => {
         e.preventDefault();
         const target = document.getElementById(btn.getAttribute('data-target'));
         if (!target) return;

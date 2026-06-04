@@ -3,7 +3,7 @@
    ============================================================ */
 :root {
   /* Brand primary — teal-blue */
-  --ink-50 : #e8f4fd;
+  --ink-50: #e8f4fd;
   --ink-100: #c5e3f9;
   --ink-200: #8ec7f3;
   --ink-300: #4da6eb;
@@ -21,10 +21,10 @@
   --ink-success-500: #16a34a;
   --ink-warning-400: #f59e0b;
   --ink-warning-500: #d97706;
-  --ink-danger-400 : #f87171;
-  --ink-danger-500 : #ef4444;
+  --ink-danger-400: #f87171;
+  --ink-danger-500: #ef4444;
   /* Neutrals */
-  --ink-gray-50 : #f8fafc;
+  --ink-gray-50: #f8fafc;
   --ink-gray-100: #f1f5f9;
   --ink-gray-150: #eaeff6;
   --ink-gray-200: #e2e8f0;
@@ -36,25 +36,25 @@
   --ink-gray-800: #1e293b;
   --ink-gray-900: #0f172a;
   /* Layout */
-  --sidebar-width          : 260px;
+  --sidebar-width: 260px;
   --sidebar-collapsed-width: 68px;
-  --topbar-height          : 62px;
-  --sidebar-transition     : 0.28s cubic-bezier(.4,0,.2,1);
+  --topbar-height: 62px;
+  --sidebar-transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   /* Sidebar palette */
-  --sidebar-bg        : #0d1b2e;
-  --sidebar-border    : rgba(255,255,255,.06);
-  --sidebar-text      : rgba(255,255,255,.72);
-  --sidebar-text-muted: rgba(255,255,255,.38);
-  --sidebar-active-bg : rgba(13,110,204,.28);
-  --sidebar-hover-bg  : rgba(255,255,255,.06);
-  --sidebar-logo-bg   : #061120;
+  --sidebar-bg: #0d1b2e;
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+  --sidebar-text: rgba(255, 255, 255, 0.72);
+  --sidebar-text-muted: rgba(255, 255, 255, 0.38);
+  --sidebar-active-bg: rgba(13, 110, 204, 0.28);
+  --sidebar-hover-bg: rgba(255, 255, 255, 0.06);
+  --sidebar-logo-bg: #061120;
   /* Surface */
-  --ink-card-bg          : #ffffff;
-  --ink-card-border      : var(--ink-gray-200);
-  --ink-card-shadow      : 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
-  --ink-card-shadow-hover: 0 8px 24px rgba(13,110,204,.10), 0 2px 6px rgba(0,0,0,.06);
-  --ink-card-radius      : 12px;
-  --ink-focus-ring       : 0 0 0 3px rgba(13,110,204,.1);
+  --ink-card-bg: #ffffff;
+  --ink-card-border: var(--ink-gray-200);
+  --ink-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --ink-card-shadow-hover: 0 8px 24px rgba(13, 110, 204, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
+  --ink-card-radius: 12px;
+  --ink-focus-ring: 0 0 0 3px rgba(13, 110, 204, 0.1);
   /* Typography */
   --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;

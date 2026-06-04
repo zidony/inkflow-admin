@@ -1,57 +1,101 @@
 <nav id="sidebar">
-    <a class="sidebar-logo" href="index.html">
-      <div class="sidebar-logo-icon"><i class="bi bi-journals"></i></div>
-      <div class="sidebar-logo-text">
-        <span class="sidebar-logo-title">InkFlow</span>
-        <span class="sidebar-logo-sub">InkFlow</span>
-      </div>
-    </a>
-    <ul class="sidebar-nav-wrap list-unstyled">
-      <li class="nav-section-label">主菜单</li>
-      <li class="nav-item-wrapper">
-        <a href="index.html" class="nav-link-item " data-tooltip="仪表盘">
-          <i class="bi bi-grid-1x2 nav-icon"></i><span class="nav-label">仪表盘</span>
-        </a>
-      </li>
-      <li class="nav-section-label">内容管理</li>
-      <li class="nav-item-wrapper">
-        <button class="nav-link-item " data-toggle="submenu" data-target="sub-content" aria-expanded="false" data-tooltip="内容管理">
-          <i class="bi bi-file-richtext nav-icon"></i><span class="nav-label">内容管理</span>
-          <i class="bi bi-chevron-right nav-arrow"></i>
-        </button>
-      </li>
-      <li class="submenu-wrap" id="sub-content">
-        <ul class="submenu list-unstyled">
-          <li class="nav-item-wrapper"><a href="post-list.html" class="nav-link-item "><i class="bi bi-file-text nav-icon"></i><span class="nav-label">文章管理</span></a></li>
-          <li class="nav-item-wrapper"><a href="comment-list.html" class="nav-link-item "><i class="bi bi-chat-left-dots nav-icon"></i><span class="nav-label">评论管理</span></a></li>
-          <li class="nav-item-wrapper"><a href="category-list.html" class="nav-link-item "><i class="bi bi-folder2 nav-icon"></i><span class="nav-label">栏目管理</span></a></li>
-          <li class="nav-item-wrapper"><a href="tag-list.html" class="nav-link-item "><i class="bi bi-tags nav-icon"></i><span class="nav-label">标签管理</span></a></li>
-        </ul>
-      </li>
-      <li class="nav-section-label">媒体</li>
-      <li class="nav-item-wrapper">
-        <button class="nav-link-item " data-toggle="submenu" data-target="sub-media" aria-expanded="false" data-tooltip="媒体管理">
-          <i class="bi bi-collection nav-icon"></i><span class="nav-label">媒体管理</span>
-          <i class="bi bi-chevron-right nav-arrow"></i>
-        </button>
-      </li>
-      <li class="submenu-wrap" id="sub-media">
-        <ul class="submenu list-unstyled">
-          <li class="nav-item-wrapper"><a href="image-list.html" class="nav-link-item "><i class="bi bi-images nav-icon"></i><span class="nav-label">图片管理</span></a></li>
-          <li class="nav-item-wrapper"><a href="link-list.html" class="nav-link-item "><i class="bi bi-link-45deg nav-icon"></i><span class="nav-label">链接管理</span></a></li>
-        </ul>
-      </li>
-      <li class="nav-section-label">系统</li>
-      <li class="nav-item-wrapper"><a href="user-list.html" class="nav-link-item " data-tooltip="用户管理"><i class="bi bi-people nav-icon"></i><span class="nav-label">用户管理</span></a></li>
-      <li class="nav-item-wrapper"><a href="settings.html" class="nav-link-item " data-tooltip="系统设置"><i class="bi bi-sliders nav-icon"></i><span class="nav-label">系统设置</span></a></li>
-    </ul>
-    <div class="sidebar-footer">
-      <div class="sidebar-user">
-        <div class="ink-avatar ink-avatar-sm ink-avatar-blue">AD</div>
-        <div class="sidebar-user-info ink-item-text">
-          <div class="ink-title text-white">Admin</div>
-          <small class="u-text-sidebar-muted">超级管理员</small>
-        </div>
+  <a class="sidebar-logo" href="index.html">
+    <div class="sidebar-logo-icon"><i class="bi bi-journals"></i></div>
+    <div class="sidebar-logo-text">
+      <span class="sidebar-logo-title">InkFlow</span>
+      <span class="sidebar-logo-sub">InkFlow</span>
+    </div>
+  </a>
+  <ul class="sidebar-nav-wrap list-unstyled">
+    <li class="nav-section-label">主菜单</li>
+    <li class="nav-item-wrapper">
+      <a href="index.html" class="nav-link-item" data-tooltip="仪表盘">
+        <i class="bi bi-grid-1x2 nav-icon"></i><span class="nav-label">仪表盘</span>
+      </a>
+    </li>
+    <li class="nav-section-label">内容管理</li>
+    <li class="nav-item-wrapper">
+      <button
+        class="nav-link-item"
+        data-toggle="submenu"
+        data-target="sub-content"
+        aria-expanded="false"
+        data-tooltip="内容管理"
+      >
+        <i class="bi bi-file-richtext nav-icon"></i><span class="nav-label">内容管理</span>
+        <i class="bi bi-chevron-right nav-arrow"></i>
+      </button>
+    </li>
+    <li class="submenu-wrap" id="sub-content">
+      <ul class="submenu list-unstyled">
+        <li class="nav-item-wrapper">
+          <a href="post-list.html" class="nav-link-item"
+            ><i class="bi bi-file-text nav-icon"></i><span class="nav-label">文章管理</span></a
+          >
+        </li>
+        <li class="nav-item-wrapper">
+          <a href="comment-list.html" class="nav-link-item"
+            ><i class="bi bi-chat-left-dots nav-icon"></i><span class="nav-label">评论管理</span></a
+          >
+        </li>
+        <li class="nav-item-wrapper">
+          <a href="category-list.html" class="nav-link-item"
+            ><i class="bi bi-folder2 nav-icon"></i><span class="nav-label">栏目管理</span></a
+          >
+        </li>
+        <li class="nav-item-wrapper">
+          <a href="tag-list.html" class="nav-link-item"
+            ><i class="bi bi-tags nav-icon"></i><span class="nav-label">标签管理</span></a
+          >
+        </li>
+      </ul>
+    </li>
+    <li class="nav-section-label">媒体</li>
+    <li class="nav-item-wrapper">
+      <button
+        class="nav-link-item"
+        data-toggle="submenu"
+        data-target="sub-media"
+        aria-expanded="false"
+        data-tooltip="媒体管理"
+      >
+        <i class="bi bi-collection nav-icon"></i><span class="nav-label">媒体管理</span>
+        <i class="bi bi-chevron-right nav-arrow"></i>
+      </button>
+    </li>
+    <li class="submenu-wrap" id="sub-media">
+      <ul class="submenu list-unstyled">
+        <li class="nav-item-wrapper">
+          <a href="image-list.html" class="nav-link-item"
+            ><i class="bi bi-images nav-icon"></i><span class="nav-label">图片管理</span></a
+          >
+        </li>
+        <li class="nav-item-wrapper">
+          <a href="link-list.html" class="nav-link-item"
+            ><i class="bi bi-link-45deg nav-icon"></i><span class="nav-label">链接管理</span></a
+          >
+        </li>
+      </ul>
+    </li>
+    <li class="nav-section-label">系统</li>
+    <li class="nav-item-wrapper">
+      <a href="user-list.html" class="nav-link-item" data-tooltip="用户管理"
+        ><i class="bi bi-people nav-icon"></i><span class="nav-label">用户管理</span></a
+      >
+    </li>
+    <li class="nav-item-wrapper">
+      <a href="settings.html" class="nav-link-item" data-tooltip="系统设置"
+        ><i class="bi bi-sliders nav-icon"></i><span class="nav-label">系统设置</span></a
+      >
+    </li>
+  </ul>
+  <div class="sidebar-footer">
+    <div class="sidebar-user">
+      <div class="ink-avatar ink-avatar-sm ink-avatar-blue">AD</div>
+      <div class="sidebar-user-info ink-item-text">
+        <div class="ink-title text-white">Admin</div>
+        <small class="u-text-sidebar-muted">超级管理员</small>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>

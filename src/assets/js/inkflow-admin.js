@@ -3,6 +3,7 @@
    v2.1.1
    ============================================================ */
 
+import * as bootstrap from 'bootstrap';
 import { ThemeManager } from './modules/theme.js';
 import { SidebarManager } from './modules/sidebar.js';
 import { SearchManager } from './modules/search.js';
@@ -11,6 +12,10 @@ import { EditorManager } from './modules/editor.js';
 import { ChartManager } from './modules/chart.js';
 import { DelegationManager } from './modules/delegation.js';
 import { FilterManager } from './modules/filter.js';
+import { LoginManager } from './modules/login.js';
+import { UserAvatarManager } from './modules/user-avatar.js';
+
+window.bootstrap = bootstrap;
 
 class InkFlowAdmin {
   constructor() {
@@ -28,6 +33,8 @@ class InkFlowAdmin {
       this.chart = new ChartManager();
       this.delegation = new DelegationManager();
       this.filter = new FilterManager();
+      this.login = new LoginManager();
+      this.userAvatar = new UserAvatarManager();
 
       // Bind theme toggle directly to global scope so TopBar button can call it
       window.inkflowToggleTheme = () => this.theme.toggleTheme();

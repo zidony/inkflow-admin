@@ -9,16 +9,16 @@ export function showToast(message, type = 'success') {
     warning: 'bi-exclamation-triangle-fill',
     info: 'bi-info-circle-fill'
   };
-  
+
   const colors = {
     success: '#16a34a',
     danger: '#ef4444',
     warning: '#d97706',
     info: '#0d6ecc'
   };
-  
+
   const toast = document.createElement('div');
-  
+
   // Apply premium styling
   Object.assign(toast.style, {
     position: 'fixed',
@@ -42,7 +42,7 @@ export function showToast(message, type = 'success') {
     borderLeftColor: colors[type],
     animation: 'ink-fade-up .3s ease both'
   });
-  
+
   const iconEl = document.createElement('i');
   iconEl.className = 'bi ' + icons[type];
   Object.assign(iconEl.style, {
@@ -50,13 +50,13 @@ export function showToast(message, type = 'success') {
     fontSize: '1rem',
     flexShrink: '0'
   });
-  
+
   const msgEl = document.createElement('span');
   msgEl.style.flex = '1';
   msgEl.textContent = message; // Safe DOM text node insertion
-  
+
   const closeBtn = document.createElement('button');
-  closeBtn.innerHTML = '&times;';
+  closeBtn.textContent = '×';
   Object.assign(closeBtn.style, {
     border: 'none',
     background: 'transparent',
@@ -68,12 +68,12 @@ export function showToast(message, type = 'success') {
     marginLeft: '4px'
   });
   closeBtn.addEventListener('click', () => toast.remove());
-  
+
   toast.appendChild(iconEl);
   toast.appendChild(msgEl);
   toast.appendChild(closeBtn);
   document.body.appendChild(toast);
-  
+
   // Auto dismiss after 3.5 seconds
   setTimeout(() => {
     toast.style.animation = 'ink-fade-up .3s ease reverse forwards';

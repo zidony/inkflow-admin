@@ -22,7 +22,7 @@ export class SearchManager {
     }
 
     // 2. Global keyboard shortcuts
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', e => {
       // Ctrl/Cmd + K: Focus Search
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
         if (this.listSearch) {

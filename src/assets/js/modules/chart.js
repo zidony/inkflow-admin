@@ -1,4 +1,5 @@
 import { t } from './i18n.js';
+import Chart from 'chart.js/auto';
 
 export class ChartManager {
   constructor() {
@@ -18,7 +19,7 @@ export class ChartManager {
 
   renderChart(theme) {
     const canvas = document.getElementById('visits-chart');
-    if (!canvas || !window.Chart) return;
+    if (!canvas) return;
 
     // Destroy existing chart to prevent canvas redraw bugs
     if (this.chartInstance) {
@@ -27,24 +28,44 @@ export class ChartManager {
 
     const colors = this.getThemeColors(theme);
 
-    this.chartInstance = new window.Chart(canvas, {
+    this.chartInstance = new Chart(canvas, {
       type: 'bar',
       data: {
-        labels: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-        datasets: [{
-          label: t('visitsLabel'),
-          data: [1200, 1900, 1500, 2800, 2200, 3100, 2600, 3800, 3200, 4100, 3700, 4800],
-          backgroundColor: function (ctx) {
-            const chart = ctx.chart;
-            if (!chart.chartArea) return colors.barColorStart;
-            const gradient = chart.ctx.createLinearGradient(0, chart.chartArea.top, 0, chart.chartArea.bottom);
-            gradient.addColorStop(0, colors.barColorStart);
-            gradient.addColorStop(1, colors.barColorEnd);
-            return gradient;
-          },
-          borderRadius: 5,
-          borderSkipped: false
-        }]
+        labels: [
+          '1月',
+          '2月',
+          '3月',
+          '4月',
+          '5月',
+          '6月',
+          '7月',
+          '8月',
+          '9月',
+          '10月',
+          '11月',
+          '12月'
+        ],
+        datasets: [
+          {
+            label: t('visitsLabel'),
+            data: [1200, 1900, 1500, 2800, 2200, 3100, 2600, 3800, 3200, 4100, 3700, 4800],
+            backgroundColor: function (ctx) {
+              const chart = ctx.chart;
+              if (!chart.chartArea) return colors.barColorStart;
+              const gradient = chart.ctx.createLinearGradient(
+                0,
+                chart.chartArea.top,
+                0,
+                chart.chartArea.bottom
+              );
+              gradient.addColorStop(0, colors.barColorStart);
+              gradient.addColorStop(1, colors.barColorEnd);
+              return gradient;
+            },
+            borderRadius: 5,
+            borderSkipped: false
+          }
+        ]
       },
       options: {
         responsive: true,
@@ -81,7 +102,7 @@ export class ChartManager {
 
   init() {
     const initialTheme = document.documentElement.getAttribute('data-theme') || 'light';
-    
+
     // Render initially on window load or immediately if document is already ready
     if (document.readyState === 'complete') {
       this.renderChart(initialTheme);
@@ -90,7 +111,7 @@ export class ChartManager {
     }
 
     // Dynamic redraw on theme change
-    window.addEventListener('inkflowThemeChanged', (e) => {
+    window.addEventListener('inkflowThemeChanged', e => {
       this.renderChart(e.detail.theme);
     });
   }

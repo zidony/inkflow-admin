@@ -1,228 +1,506 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>图片管理 — InkFlow</title>
-{{> head_assets }}
-</head>
-<body>
-<!-- SIDEBAR -->
-{{> sidebar }}
-<div id="sidebar-overlay"></div>
-<div id="main-wrapper">
-<!-- TOPBAR -->
-{{> topbar breadcrumb="<li class='breadcrumb-item'><a href='index.html'>首页</a></li><li class='breadcrumb-item'><a href='#'>媒体管理</a></li><li class='breadcrumb-item active' aria-current='page'>图片管理</li>" }}
-<main id="page-content">
-<div class="page-header">
-  <div>
-    <h1 class="page-title">图片管理</h1>
-    <span class='page-subtitle'>共 328 个文件 · 2.8 GB</span>
-  </div>
-
-</div>
-<div class="ink-bulk-bar" id="bulk-action-bar">
-  <i class="bi bi-check2-all u-text-primary" ></i>
-  <span>已选 <strong id="bulk-count">0</strong> 项</span>
-  <div class="ms-auto d-flex gap-2">
-    <button class="btn btn-light btn-sm u-text-sm" data-action="toast" data-toast-msg="操作成功" data-toast-type="success"><i class="bi bi-check-lg me-1"></i>批量操作</button>
-    <button class="btn btn-danger-soft btn-sm u-text-sm" data-action="toast" data-toast-msg="已删除" data-toast-type="danger"><i class="bi bi-trash3 me-1"></i>批量删除</button>
-  </div>
-</div>
-<div class="card ink-card mt-3">
-        <div class="card-header border-bottom-0 px-3 py-2">
-    <div class="d-flex align-items-center gap-2 flex-wrap w-100">
-      <div class="ink-filter-tabs" id="filter-tabs" role="tablist"><button class="ink-filter-tab active" data-filter="all">全部 <span class="u-opacity-70 fw-normal">(328)</span></button><button class="ink-filter-tab" data-filter="image">图片 <span class="u-opacity-70 fw-normal">(284)</span></button><button class="ink-filter-tab" data-filter="document">文档 <span class="u-opacity-70 fw-normal">(32)</span></button><button class="ink-filter-tab" data-filter="other">其他 <span class="u-opacity-70 fw-normal">(12)</span></button></div>
-      <div class="d-flex align-items-center gap-2 ms-auto flex-wrap">
-        <select class="form-select u-text-sm wh-110-32" ><option>全部类型</option><option>JPG/PNG</option><option>GIF</option><option>SVG</option><option>WebP</option></select>
-        <select class="form-select u-text-sm wh-110-32" ><option>最新上传</option><option>最大文件</option><option>最早上传</option></select>
-        <button class="btn btn-primary btn-sm"  data-action="navigate" data-href="image-edit.html"><i class="bi bi-upload me-1"></i>上传图片</button>
-      </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>图片管理 — InkFlow</title>
+    {{> head_assets }}
+  </head>
+  <body>
+    <!-- SIDEBAR -->
+    {{> sidebar }}
+    <div id="sidebar-overlay"></div>
+    <div id="main-wrapper">
+      <!-- TOPBAR -->
+      {{#> topbar}}
+        <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item"><a href="#">媒体管理</a></li> <li class="breadcrumb-item active" aria-current="page">图片管理</li>
+      {{/topbar}}
+      <main id="page-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">图片管理</h1>
+            <span class="page-subtitle">共 328 个文件 · 2.8 GB</span>
+          </div>
+        </div>
+        <div class="ink-bulk-bar" id="bulk-action-bar">
+          <i class="bi bi-check2-all u-text-primary"></i>
+          <span>已选 <strong id="bulk-count">0</strong> 项</span>
+          <div class="ms-auto d-flex gap-2">
+            <button
+              class="btn btn-light btn-sm u-text-sm"
+              data-action="toast"
+              data-toast-msg="操作成功"
+              data-toast-type="success"
+            >
+              <i class="bi bi-check-lg me-1"></i>批量操作
+            </button>
+            <button
+              class="btn btn-danger-soft btn-sm u-text-sm"
+              data-action="toast"
+              data-toast-msg="已删除"
+              data-toast-type="danger"
+            >
+              <i class="bi bi-trash3 me-1"></i>批量删除
+            </button>
+          </div>
+        </div>
+        <div class="card ink-card mt-3">
+          <div class="card-header border-bottom-0 px-3 py-2">
+            <div class="d-flex align-items-center gap-2 flex-wrap w-100">
+              <div class="ink-filter-tabs" id="filter-tabs" role="tablist">
+                <button class="ink-filter-tab active" data-filter="all">
+                  全部 <span class="u-opacity-70 fw-normal">(328)</span></button
+                ><button class="ink-filter-tab" data-filter="image">
+                  图片 <span class="u-opacity-70 fw-normal">(284)</span></button
+                ><button class="ink-filter-tab" data-filter="document">
+                  文档 <span class="u-opacity-70 fw-normal">(32)</span></button
+                ><button class="ink-filter-tab" data-filter="other">
+                  其他 <span class="u-opacity-70 fw-normal">(12)</span>
+                </button>
+              </div>
+              <div class="d-flex align-items-center gap-2 ms-auto flex-wrap">
+                <select class="form-select u-text-sm wh-110-32">
+                  <option>全部类型</option>
+                  <option>JPG/PNG</option>
+                  <option>GIF</option>
+                  <option>SVG</option>
+                  <option>WebP</option>
+                </select>
+                <select class="form-select u-text-sm wh-110-32">
+                  <option>最新上传</option>
+                  <option>最大文件</option>
+                  <option>最早上传</option>
+                </select>
+                <button
+                  class="btn btn-primary btn-sm"
+                  data-action="navigate"
+                  data-href="image-edit.html"
+                >
+                  <i class="bi bi-upload me-1"></i>上传图片
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="ink-table">
+              <thead>
+                <tr>
+                  <th class="table-check">
+                    <input
+                      type="checkbox"
+                      id="select-all"
+                      class="form-check-input table-check-box"
+                    />
+                  </th>
+                  <th class="min-w-240px">文件名</th>
+                  <th>类型</th>
+                  <th>大小</th>
+                  <th>尺寸</th>
+                  <th>上传时间</th>
+                  <th class="text-center w-140px">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ink-thumb ink-thumb-wide">
+                        <img
+                          src="https://picsum.photos/seed/nature10/72/48"
+                          alt=""
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="ink-item-text">
+                        <a href="image-edit.html" class="ink-link">cover-vue3.jpg</a>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="ink-badge u-tint-slate">JPG</span></td>
+                  <td class="u-text-sm u-text-gray-600">1.2 MB</td>
+                  <td class="u-text-sm u-text-gray-600">1920×1080</td>
+                  <td class="u-text-xs u-text-gray-500">2025-06-18</td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="复制链接"
+                        data-action="toast"
+                        data-toast-msg="链接已复制到剪贴板"
+                        data-toast-type="success"
+                      >
+                        <i class="bi bi-clipboard"></i>
+                      </button>
+                      <button class="btn btn-light btn-icon" title="预览">
+                        <i class="bi bi-eye"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ink-thumb ink-thumb-wide">
+                        <img
+                          src="https://picsum.photos/seed/forest20/72/48"
+                          alt=""
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="ink-item-text">
+                        <a href="image-edit.html" class="ink-link">design-trends.png</a>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="ink-badge u-tint-slate">PNG</span></td>
+                  <td class="u-text-sm u-text-gray-600">856 KB</td>
+                  <td class="u-text-sm u-text-gray-600">1600×900</td>
+                  <td class="u-text-xs u-text-gray-500">2025-06-16</td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="复制链接"
+                        data-action="toast"
+                        data-toast-msg="链接已复制到剪贴板"
+                        data-toast-type="success"
+                      >
+                        <i class="bi bi-clipboard"></i>
+                      </button>
+                      <button class="btn btn-light btn-icon" title="预览">
+                        <i class="bi bi-eye"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ink-thumb ink-thumb-wide">
+                        <img src="https://picsum.photos/seed/city30/72/48" alt="" loading="lazy" />
+                      </div>
+                      <div class="ink-item-text">
+                        <a href="image-edit.html" class="ink-link">docker-arch.png</a>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="ink-badge u-tint-slate">PNG</span></td>
+                  <td class="u-text-sm u-text-gray-600">442 KB</td>
+                  <td class="u-text-sm u-text-gray-600">1200×800</td>
+                  <td class="u-text-xs u-text-gray-500">2025-06-14</td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="复制链接"
+                        data-action="toast"
+                        data-toast-msg="链接已复制到剪贴板"
+                        data-toast-type="success"
+                      >
+                        <i class="bi bi-clipboard"></i>
+                      </button>
+                      <button class="btn btn-light btn-icon" title="预览">
+                        <i class="bi bi-eye"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ink-thumb ink-thumb-wide">
+                        <img src="https://picsum.photos/seed/tech40/72/48" alt="" loading="lazy" />
+                      </div>
+                      <div class="ink-item-text">
+                        <a href="image-edit.html" class="ink-link">llm-finetune.jpg</a>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="ink-badge u-tint-slate">JPG</span></td>
+                  <td class="u-text-sm u-text-gray-600">1.8 MB</td>
+                  <td class="u-text-sm u-text-gray-600">2000×1125</td>
+                  <td class="u-text-xs u-text-gray-500">2025-06-12</td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="复制链接"
+                        data-action="toast"
+                        data-toast-msg="链接已复制到剪贴板"
+                        data-toast-type="success"
+                      >
+                        <i class="bi bi-clipboard"></i>
+                      </button>
+                      <button class="btn btn-light btn-icon" title="预览">
+                        <i class="bi bi-eye"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ink-thumb ink-thumb-wide">
+                        <img
+                          src="https://picsum.photos/seed/abstract50/72/48"
+                          alt=""
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="ink-item-text">
+                        <a href="image-edit.html" class="ink-link">typescript-types.png</a>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="ink-badge u-tint-slate">PNG</span></td>
+                  <td class="u-text-sm u-text-gray-600">328 KB</td>
+                  <td class="u-text-sm u-text-gray-600">1400×900</td>
+                  <td class="u-text-xs u-text-gray-500">2025-06-10</td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="复制链接"
+                        data-action="toast"
+                        data-toast-msg="链接已复制到剪贴板"
+                        data-toast-type="success"
+                      >
+                        <i class="bi bi-clipboard"></i>
+                      </button>
+                      <button class="btn btn-light btn-icon" title="预览">
+                        <i class="bi bi-eye"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ink-thumb ink-thumb-wide">
+                        <img
+                          src="https://picsum.photos/seed/mountain60/72/48"
+                          alt=""
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="ink-item-text">
+                        <a href="image-edit.html" class="ink-link">echarts-demo.gif</a>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="ink-badge u-tint-slate">GIF</span></td>
+                  <td class="u-text-sm u-text-gray-600">3.4 MB</td>
+                  <td class="u-text-sm u-text-gray-600">800×600</td>
+                  <td class="u-text-xs u-text-gray-500">2025-06-08</td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="复制链接"
+                        data-action="toast"
+                        data-toast-msg="链接已复制到剪贴板"
+                        data-toast-type="success"
+                      >
+                        <i class="bi bi-clipboard"></i>
+                      </button>
+                      <button class="btn btn-light btn-icon" title="预览">
+                        <i class="bi bi-eye"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ink-thumb ink-thumb-wide">
+                        <img src="https://picsum.photos/seed/ocean70/72/48" alt="" loading="lazy" />
+                      </div>
+                      <div class="ink-item-text">
+                        <a href="image-edit.html" class="ink-link">security-banner.jpg</a>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="ink-badge u-tint-slate">JPG</span></td>
+                  <td class="u-text-sm u-text-gray-600">944 KB</td>
+                  <td class="u-text-sm u-text-gray-600">1920×1080</td>
+                  <td class="u-text-xs u-text-gray-500">2025-06-05</td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="复制链接"
+                        data-action="toast"
+                        data-toast-msg="链接已复制到剪贴板"
+                        data-toast-type="success"
+                      >
+                        <i class="bi bi-clipboard"></i>
+                      </button>
+                      <button class="btn btn-light btn-icon" title="预览">
+                        <i class="bi bi-eye"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ink-thumb ink-thumb-wide">
+                        <img src="https://picsum.photos/seed/space80/72/48" alt="" loading="lazy" />
+                      </div>
+                      <div class="ink-item-text">
+                        <a href="image-edit.html" class="ink-link">avatar-admin.png</a>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="ink-badge u-tint-slate">PNG</span></td>
+                  <td class="u-text-sm u-text-gray-600">24 KB</td>
+                  <td class="u-text-sm u-text-gray-600">200×200</td>
+                  <td class="u-text-xs u-text-gray-500">2025-05-20</td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="复制链接"
+                        data-action="toast"
+                        data-toast-msg="链接已复制到剪贴板"
+                        data-toast-type="success"
+                      >
+                        <i class="bi bi-clipboard"></i>
+                      </button>
+                      <button class="btn btn-light btn-icon" title="预览">
+                        <i class="bi bi-eye"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer d-flex align-items-center justify-content-between">
+            <span class="u-text-gray-500 u-text-sm"
+              >共 <strong>328</strong> 条记录，第 <strong>1 / 33</strong> 页</span
+            >
+            <nav>
+              <ul class="pagination mb-0">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#"><i class="bi bi-chevron-left u-icon-xs"></i></a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#"><i class="bi bi-chevron-right u-icon-xs"></i></a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </main>
     </div>
-  </div>
-  <div class="table-responsive">
-      <table class="ink-table">
-      <thead><tr>
-        <th class="table-check"><input type="checkbox" id="select-all" class="form-check-input table-check-box" ></th>
-        <th class="min-w-240px">文件名</th><th>类型</th><th>大小</th><th>尺寸</th><th>上传时间</th><th class="text-center w-140px" >操作</th>
-      </tr></thead>
-      <tbody><tr>
-          <td><input type="checkbox" class="form-check-input ink-row-check table-check-box" ></td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div class="ink-thumb ink-thumb-wide"><img src="https://picsum.photos/seed/nature10/72/48" alt="" loading="lazy"></div>
-              <div class="ink-item-text"><a href="image-edit.html" class="ink-link">cover-vue3.jpg</a></div>
-            </div>
-          </td>
-          <td><span class="ink-badge u-tint-slate">JPG</span></td>
-          <td class="u-text-sm u-text-gray-600">1.2 MB</td>
-          <td class="u-text-sm u-text-gray-600">1920×1080</td>
-          <td class="u-text-xs u-text-gray-500">2025-06-18</td>
-          <td>
-            <div class="d-flex justify-content-center gap-1">
-              <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"><i class="bi bi-pencil"></i></a>
-              <button class="btn btn-light btn-icon" title="复制链接" data-action="toast" data-toast-msg="链接已复制到剪贴板" data-toast-type="success"><i class="bi bi-clipboard"></i></button>
-              <button class="btn btn-light btn-icon" title="预览"><i class="bi bi-eye"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
-            </div>
-          </td>
-        </tr><tr>
-          <td><input type="checkbox" class="form-check-input ink-row-check table-check-box" ></td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div class="ink-thumb ink-thumb-wide"><img src="https://picsum.photos/seed/forest20/72/48" alt="" loading="lazy"></div>
-              <div class="ink-item-text"><a href="image-edit.html" class="ink-link">design-trends.png</a></div>
-            </div>
-          </td>
-          <td><span class="ink-badge u-tint-slate">PNG</span></td>
-          <td class="u-text-sm u-text-gray-600">856 KB</td>
-          <td class="u-text-sm u-text-gray-600">1600×900</td>
-          <td class="u-text-xs u-text-gray-500">2025-06-16</td>
-          <td>
-            <div class="d-flex justify-content-center gap-1">
-              <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"><i class="bi bi-pencil"></i></a>
-              <button class="btn btn-light btn-icon" title="复制链接" data-action="toast" data-toast-msg="链接已复制到剪贴板" data-toast-type="success"><i class="bi bi-clipboard"></i></button>
-              <button class="btn btn-light btn-icon" title="预览"><i class="bi bi-eye"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
-            </div>
-          </td>
-        </tr><tr>
-          <td><input type="checkbox" class="form-check-input ink-row-check table-check-box" ></td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div class="ink-thumb ink-thumb-wide"><img src="https://picsum.photos/seed/city30/72/48" alt="" loading="lazy"></div>
-              <div class="ink-item-text"><a href="image-edit.html" class="ink-link">docker-arch.png</a></div>
-            </div>
-          </td>
-          <td><span class="ink-badge u-tint-slate">PNG</span></td>
-          <td class="u-text-sm u-text-gray-600">442 KB</td>
-          <td class="u-text-sm u-text-gray-600">1200×800</td>
-          <td class="u-text-xs u-text-gray-500">2025-06-14</td>
-          <td>
-            <div class="d-flex justify-content-center gap-1">
-              <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"><i class="bi bi-pencil"></i></a>
-              <button class="btn btn-light btn-icon" title="复制链接" data-action="toast" data-toast-msg="链接已复制到剪贴板" data-toast-type="success"><i class="bi bi-clipboard"></i></button>
-              <button class="btn btn-light btn-icon" title="预览"><i class="bi bi-eye"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
-            </div>
-          </td>
-        </tr><tr>
-          <td><input type="checkbox" class="form-check-input ink-row-check table-check-box" ></td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div class="ink-thumb ink-thumb-wide"><img src="https://picsum.photos/seed/tech40/72/48" alt="" loading="lazy"></div>
-              <div class="ink-item-text"><a href="image-edit.html" class="ink-link">llm-finetune.jpg</a></div>
-            </div>
-          </td>
-          <td><span class="ink-badge u-tint-slate">JPG</span></td>
-          <td class="u-text-sm u-text-gray-600">1.8 MB</td>
-          <td class="u-text-sm u-text-gray-600">2000×1125</td>
-          <td class="u-text-xs u-text-gray-500">2025-06-12</td>
-          <td>
-            <div class="d-flex justify-content-center gap-1">
-              <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"><i class="bi bi-pencil"></i></a>
-              <button class="btn btn-light btn-icon" title="复制链接" data-action="toast" data-toast-msg="链接已复制到剪贴板" data-toast-type="success"><i class="bi bi-clipboard"></i></button>
-              <button class="btn btn-light btn-icon" title="预览"><i class="bi bi-eye"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
-            </div>
-          </td>
-        </tr><tr>
-          <td><input type="checkbox" class="form-check-input ink-row-check table-check-box" ></td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div class="ink-thumb ink-thumb-wide"><img src="https://picsum.photos/seed/abstract50/72/48" alt="" loading="lazy"></div>
-              <div class="ink-item-text"><a href="image-edit.html" class="ink-link">typescript-types.png</a></div>
-            </div>
-          </td>
-          <td><span class="ink-badge u-tint-slate">PNG</span></td>
-          <td class="u-text-sm u-text-gray-600">328 KB</td>
-          <td class="u-text-sm u-text-gray-600">1400×900</td>
-          <td class="u-text-xs u-text-gray-500">2025-06-10</td>
-          <td>
-            <div class="d-flex justify-content-center gap-1">
-              <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"><i class="bi bi-pencil"></i></a>
-              <button class="btn btn-light btn-icon" title="复制链接" data-action="toast" data-toast-msg="链接已复制到剪贴板" data-toast-type="success"><i class="bi bi-clipboard"></i></button>
-              <button class="btn btn-light btn-icon" title="预览"><i class="bi bi-eye"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
-            </div>
-          </td>
-        </tr><tr>
-          <td><input type="checkbox" class="form-check-input ink-row-check table-check-box" ></td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div class="ink-thumb ink-thumb-wide"><img src="https://picsum.photos/seed/mountain60/72/48" alt="" loading="lazy"></div>
-              <div class="ink-item-text"><a href="image-edit.html" class="ink-link">echarts-demo.gif</a></div>
-            </div>
-          </td>
-          <td><span class="ink-badge u-tint-slate">GIF</span></td>
-          <td class="u-text-sm u-text-gray-600">3.4 MB</td>
-          <td class="u-text-sm u-text-gray-600">800×600</td>
-          <td class="u-text-xs u-text-gray-500">2025-06-08</td>
-          <td>
-            <div class="d-flex justify-content-center gap-1">
-              <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"><i class="bi bi-pencil"></i></a>
-              <button class="btn btn-light btn-icon" title="复制链接" data-action="toast" data-toast-msg="链接已复制到剪贴板" data-toast-type="success"><i class="bi bi-clipboard"></i></button>
-              <button class="btn btn-light btn-icon" title="预览"><i class="bi bi-eye"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
-            </div>
-          </td>
-        </tr><tr>
-          <td><input type="checkbox" class="form-check-input ink-row-check table-check-box" ></td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div class="ink-thumb ink-thumb-wide"><img src="https://picsum.photos/seed/ocean70/72/48" alt="" loading="lazy"></div>
-              <div class="ink-item-text"><a href="image-edit.html" class="ink-link">security-banner.jpg</a></div>
-            </div>
-          </td>
-          <td><span class="ink-badge u-tint-slate">JPG</span></td>
-          <td class="u-text-sm u-text-gray-600">944 KB</td>
-          <td class="u-text-sm u-text-gray-600">1920×1080</td>
-          <td class="u-text-xs u-text-gray-500">2025-06-05</td>
-          <td>
-            <div class="d-flex justify-content-center gap-1">
-              <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"><i class="bi bi-pencil"></i></a>
-              <button class="btn btn-light btn-icon" title="复制链接" data-action="toast" data-toast-msg="链接已复制到剪贴板" data-toast-type="success"><i class="bi bi-clipboard"></i></button>
-              <button class="btn btn-light btn-icon" title="预览"><i class="bi bi-eye"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
-            </div>
-          </td>
-        </tr><tr>
-          <td><input type="checkbox" class="form-check-input ink-row-check table-check-box" ></td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div class="ink-thumb ink-thumb-wide"><img src="https://picsum.photos/seed/space80/72/48" alt="" loading="lazy"></div>
-              <div class="ink-item-text"><a href="image-edit.html" class="ink-link">avatar-admin.png</a></div>
-            </div>
-          </td>
-          <td><span class="ink-badge u-tint-slate">PNG</span></td>
-          <td class="u-text-sm u-text-gray-600">24 KB</td>
-          <td class="u-text-sm u-text-gray-600">200×200</td>
-          <td class="u-text-xs u-text-gray-500">2025-05-20</td>
-          <td>
-            <div class="d-flex justify-content-center gap-1">
-              <a href="image-edit.html" class="btn btn-light btn-icon" title="编辑信息"><i class="bi bi-pencil"></i></a>
-              <button class="btn btn-light btn-icon" title="复制链接" data-action="toast" data-toast-msg="链接已复制到剪贴板" data-toast-type="success"><i class="bi bi-clipboard"></i></button>
-              <button class="btn btn-light btn-icon" title="预览"><i class="bi bi-eye"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
-            </div>
-          </td>
-        </tr></tbody>
-    </table>
-    </div>
-  <div class="card-footer d-flex align-items-center justify-content-between">
-  <span class="u-text-gray-500 u-text-sm">共 <strong>328</strong> 条记录，第 <strong>1 / 33</strong> 页</span>
-  <nav><ul class="pagination mb-0">
-    <li class="page-item disabled"><a class="page-link" href="#"><i class="bi bi-chevron-left u-icon-xs"></i></a></li>
-    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right u-icon-xs"></i></a></li>
-  </ul></nav>
-</div>
-</div>
-</main>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script type="module" src="/assets/js/inkflow-admin.js"></script>
-</body>
+    <script type="module" src="/assets/js/inkflow-admin.js"></script>
+  </body>
 </html>

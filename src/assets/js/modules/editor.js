@@ -4,6 +4,18 @@
 import { showToast } from './toast.js';
 import { t } from './i18n.js';
 
+function setIconText(element, iconClass, text) {
+  const icon = document.createElement('i');
+  icon.className = iconClass;
+  element.replaceChildren(icon, document.createTextNode(text));
+}
+
+function setSpinnerText(element, text) {
+  const spinner = document.createElement('span');
+  spinner.className = 'spinner-border spinner-border-sm me-1';
+  element.replaceChildren(spinner, document.createTextNode(text));
+}
+
 export class EditorManager {
   constructor() {
     this.init();
@@ -21,8 +33,16 @@ export class EditorManager {
           const text = this.value.trim().replace(/,+$/, '');
           const span = document.createElement('span');
           span.className = 'ink-tag';
-          span.innerHTML = text + '<button type="button"><i class="bi bi-x"></i></button>';
-          span.querySelector('button').addEventListener('click', () => span.remove());
+          span.appendChild(document.createTextNode(text));
+
+          const removeBtn = document.createElement('button');
+          removeBtn.type = 'button';
+          const removeIcon = document.createElement('i');
+          removeIcon.className = 'bi bi-x';
+          removeBtn.appendChild(removeIcon);
+          removeBtn.addEventListener('click', () => span.remove());
+          span.appendChild(removeBtn);
+
           tagList.appendChild(span);
           this.value = '';
         }
@@ -41,10 +61,19 @@ export class EditorManager {
         if (this.files && this.files[0]) {
           const reader = new FileReader();
           reader.onload = function (e) {
-            coverPreview.innerHTML = `
-              <img src="${e.target.result}" alt="cover">
-              <div class="ink-cover-overlay"><i class="bi bi-arrow-repeat"></i> ${t("changeCover")}</div>
-            `;
+            const image = document.createElement('img');
+            image.src = e.target.result;
+            image.alt = 'cover';
+
+            const overlay = document.createElement('div');
+            overlay.className = 'ink-cover-overlay';
+
+            const icon = document.createElement('i');
+            icon.className = 'bi bi-arrow-repeat';
+            overlay.appendChild(icon);
+            overlay.appendChild(document.createTextNode(' ' + t('changeCover')));
+
+            coverPreview.replaceChildren(image, overlay);
           };
           reader.readAsDataURL(this.files[0]);
         }
@@ -63,11 +92,11 @@ export class EditorManager {
     if (publishBtn) {
       publishBtn.addEventListener('click', function () {
         this.disabled = true;
-        this.innerHTML = `<span class="spinner-border spinner-border-sm me-1"></span>${t("publishing")}`;
+        setSpinnerText(this, t('publishing'));
         setTimeout(() => {
           this.disabled = false;
-          this.innerHTML = `<i class="bi bi-send-fill me-1"></i>${t("publishBtn")}`;
-          showToast(t("published"), 'success');
+          setIconText(this, 'bi bi-send-fill me-1', t('publishBtn'));
+          showToast(t('published'), 'success');
         }, 1200);
       });
     }
@@ -75,14 +104,14 @@ export class EditorManager {
     const saveDraftBtn = document.getElementById('btn-save-draft');
     if (saveDraftBtn) {
       saveDraftBtn.addEventListener('click', () => {
-        showToast(t("draftSaved"), 'info');
+        showToast(t('draftSaved'), 'info');
       });
     }
 
     const previewBtn = document.getElementById('btn-preview');
     if (previewBtn) {
       previewBtn.addEventListener('click', () => {
-        showToast(t("previewOpened"), 'info');
+        showToast(t('previewOpened'), 'info');
       });
     }
 
@@ -102,16 +131,20 @@ export class EditorManager {
       let asTimer;
       const triggerAS = () => {
         clearTimeout(asTimer);
-        saveStatus.innerHTML = `
-          <i class="bi bi-circle-fill" style="color:var(--ink-warning-400);font-size:.45rem;vertical-align:middle;margin-right:3px"></i>${t("unsaved")}
-        `;
+        setIconText(
+          saveStatus,
+          'bi bi-circle-fill ink-save-status-icon ink-save-status-icon-warning',
+          t('unsaved')
+        );
         asTimer = setTimeout(() => {
-          saveStatus.innerHTML = `
-            <i class="bi bi-check-circle-fill" style="color:var(--ink-success-400);font-size:.7rem;vertical-align:middle;margin-right:3px"></i>${t("draftAutoSaved")}
-          `;
+          setIconText(
+            saveStatus,
+            'bi bi-check-circle-fill ink-save-status-icon ink-save-status-icon-success',
+            t('draftAutoSaved')
+          );
         }, 1800);
       };
-      
+
       const titleInp = document.getElementById('post-title');
       if (titleInp) titleInp.addEventListener('input', triggerAS);
       if (editorBody) editorBody.addEventListener('input', triggerAS);
@@ -121,7 +154,12 @@ export class EditorManager {
     document.querySelectorAll('.ink-toolbar-btn').forEach(btn => {
       btn.addEventListener('click', function () {
         const t = this.title || '';
-        if (!t.includes('插入') && !t.includes('撤销') && !t.includes('重做') && !t.includes('全屏')) {
+        if (
+          !t.includes('插入') &&
+          !t.includes('撤销') &&
+          !t.includes('重做') &&
+          !t.includes('全屏')
+        ) {
           this.classList.toggle('active');
         }
       });
@@ -129,10 +167,12 @@ export class EditorManager {
 
     // 8. Bind Settings Switcher to global window scope for inline calls
     window.switchSettings = function (section) {
-      ['site', 'post', 'comment', 'media', 'seo', 'smtp', 'security', 'cache', 'advanced'].forEach(s => {
-        const el = document.getElementById('section-' + s);
-        if (el) el.classList.toggle('d-none', s !== section);
-      });
+      ['site', 'post', 'comment', 'media', 'seo', 'smtp', 'security', 'cache', 'advanced'].forEach(
+        s => {
+          const el = document.getElementById('section-' + s);
+          if (el) el.classList.toggle('d-none', s !== section);
+        }
+      );
       document.querySelectorAll('.ink-settings-nav-item').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.section === section);
       });

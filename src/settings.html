@@ -1,416 +1,765 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>系统设置 — InkFlow</title>
+    {{> head_assets }}
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>系统设置 — InkFlow</title>
-{{> head_assets }}
-</head>
-
-<body>
-  <!-- SIDEBAR -->
-  {{> sidebar }}
-  <div id="sidebar-overlay"></div>
-  <div id="main-wrapper">
-    <!-- TOPBAR -->
-    {{> topbar breadcrumb="<li class='breadcrumb-item'><a href='index.html'>首页</a></li> <li class='breadcrumb-item active' aria-current='page'>系统设置</li>" }}
-    <main id="page-content">
-      <div class="page-header">
-        <div>
-          <h1 class="page-title">系统设置</h1>
-          <span class='page-subtitle'>管理 InkFlow 博客的全局配置</span>
-        </div>
-        <button class="btn btn-primary btn-sm" data-action="toast" data-toast-msg="所有设置已保存" data-toast-type="success"><i
- class="bi bi-check-lg me-1"></i>保存所有设置</button>
-      </div>
-
-      <div class="ink-settings-layout">
-        <!-- Left nav -->
-        <div>
-          <div class="card ink-card">
-            <div class="card-body" style="padding:8px">
-              <div class="ink-settings-nav"><button class="ink-settings-nav-item active" data-action="switch-settings"
-                  data-section="site" data-section="site"><i class="bi bi-house"></i>站点基本设置</button><button
- class="ink-settings-nav-item " data-action="switch-settings" data-section="post" data-section="post"><i
- class="bi bi-file-richtext"></i>文章设置</button><button class="ink-settings-nav-item "
-                  data-action="switch-settings" data-section="comment" data-section="comment"><i
- class="bi bi-chat-left-dots"></i>评论设置</button><button class="ink-settings-nav-item "
-                  data-action="switch-settings" data-section="media" data-section="media"><i
- class="bi bi-image"></i>媒体设置</button><button class="ink-settings-nav-item "
-                  data-action="switch-settings" data-section="seo" data-section="seo"><i
- class="bi bi-search-heart"></i>SEO 设置</button><button class="ink-settings-nav-item "
-                  data-action="switch-settings" data-section="smtp" data-section="smtp"><i
- class="bi bi-envelope-at"></i>邮件 SMTP</button><button class="ink-settings-nav-item "
-                  data-action="switch-settings" data-section="security" data-section="security"><i
- class="bi bi-shield-lock"></i>安全设置</button><button class="ink-settings-nav-item "
-                  data-action="switch-settings" data-section="cache" data-section="cache"><i
- class="bi bi-lightning-charge"></i>缓存与性能</button><button class="ink-settings-nav-item "
-                  data-action="switch-settings" data-section="advanced" data-section="advanced"><i
- class="bi bi-sliders"></i>高级设置</button></div>
-            </div>
+  <body>
+    <!-- SIDEBAR -->
+    {{> sidebar }}
+    <div id="sidebar-overlay"></div>
+    <div id="main-wrapper">
+      <!-- TOPBAR -->
+      {{#> topbar}}
+        <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item active" aria-current="page">系统设置</li>
+      {{/topbar}}
+      <main id="page-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">系统设置</h1>
+            <span class="page-subtitle">管理 InkFlow 博客的全局配置</span>
           </div>
+          <button
+            class="btn btn-primary btn-sm"
+            data-action="toast"
+            data-toast-msg="所有设置已保存"
+            data-toast-type="success"
+          >
+            <i class="bi bi-check-lg me-1"></i>保存所有设置
+          </button>
         </div>
 
-        <!-- Right content -->
-        <div>
-          <!-- SITE -->
-          <div id="section-site" class="ink-anim">
-            <div class="ink-panel">
-              <div class="ink-panel-header"><i class="bi bi-house"></i> 站点基本设置</div>
-              <div class="ink-panel-body">
-                <div class="row g-3">
-                  <div class="col-12 col-md-6"><label class="form-label">站点名称</label><input type="text"
- class="form-control" value="InkFlow 技术博客"></div>
-                  <div class="col-12 col-md-6"><label class="form-label">站点副标题</label><input type="text"
- class="form-control" value="分享技术，记录成长"></div>
-                  <div class="col-12 col-md-6"><label class="form-label">站点地址 (URL)</label><input type="url"
- class="form-control" value="https://blog.inkflow.dev"></div>
-                  <div class="col-12 col-md-6"><label class="form-label">管理后台地址</label><input type="url"
- class="form-control" value="https://blog.inkflow.dev/admin"></div>
-                  <div class="col-12 col-md-6"><label class="form-label">管理员邮箱</label><input type="email"
- class="form-control" value="admin@inkflow.dev"></div>
-                  <div class="col-12 col-md-6"><label class="form-label">站点语言</label><select class="form-select">
-                      <option selected>简体中文</option>
-                      <option>繁體中文</option>
-                      <option>English</option>
-                    </select></div>
-                  <div class="col-12 col-md-6"><label class="form-label">时区</label><select class="form-select">
-                      <option selected>Asia/Shanghai (UTC+8)</option>
-                      <option>Asia/Tokyo (UTC+9)</option>
-                      <option>UTC</option>
-                    </select></div>
-                  <div class="col-12 col-md-6"><label class="form-label">日期格式</label><select class="form-select">
-                      <option selected>2025-06-18</option>
-                      <option>2025/06/18</option>
-                      <option>June 18, 2025</option>
-                    </select></div>
-                  <div class="col-12"><label class="form-label">站点描述</label><textarea class="form-control"
-                      rows="3">专注于前端技术、AI 技术、运维部署等领域的技术博客，分享实战经验与学习心得。</textarea></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="ink-panel">
-              <div class="ink-panel-header"><i class="bi bi-image"></i> 站点 Logo 与图标</div>
-              <div class="ink-panel-body">
-                <div class="row g-3">
-                  <div class="col-12 col-md-6">
-                    <label class="form-label">站点 Logo</label>
-                    <div class="ink-upload-zone" data-action="toast" data-toast-msg="请选择 Logo 图片" data-toast-type="info">
-                      <i class="bi bi-image-fill"></i>
-                      <p>点击上传 Logo<br><small>建议尺寸 200×60px，支持 PNG/SVG</small></p>
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <label class="form-label">网站图标 (Favicon)</label>
-                    <div class="ink-upload-zone" data-action="toast" data-toast-msg="请选择 Favicon 图标"
-                      data-toast-type="info">
-                      <i class="bi bi-grid-3x3-gap-fill"></i>
-                      <p>点击上传 Favicon<br><small>建议 32×32px，支持 ICO/PNG</small></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="ink-panel">
-              <div class="ink-panel-header"><i class="bi bi-layout-text-window-reverse"></i> 首页与阅读设置</div>
-              <div class="ink-panel-body">
-                <div class="row g-3">
-                  <div class="col-12 col-md-6">
-                    <label class="form-label">首页显示</label>
-                    <select class="form-select">
-                      <option selected>最新文章列表</option>
-                      <option>固定页面</option>
-                    </select>
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <label class="form-label">每页显示文章数</label>
-                    <input type="number" class="form-control" value="10">
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <label class="form-label">RSS 输出条数</label>
-                    <input type="number" class="form-control" value="20">
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <label class="form-label">摘要字数限制</label>
-                    <input type="number" class="form-control" value="150">
-                  </div>
+        <div class="ink-settings-layout">
+          <!-- Left nav -->
+          <div>
+            <div class="card ink-card">
+              <div class="card-body" style="padding: 8px">
+                <div class="ink-settings-nav">
+                  <button
+                    class="ink-settings-nav-item active"
+                    data-action="switch-settings"
+                    data-section="site"
+                    data-section="site"
+                  >
+                    <i class="bi bi-house"></i>站点基本设置</button
+                  ><button
+                    class="ink-settings-nav-item"
+                    data-action="switch-settings"
+                    data-section="post"
+                    data-section="post"
+                  >
+                    <i class="bi bi-file-richtext"></i>文章设置</button
+                  ><button
+                    class="ink-settings-nav-item"
+                    data-action="switch-settings"
+                    data-section="comment"
+                    data-section="comment"
+                  >
+                    <i class="bi bi-chat-left-dots"></i>评论设置</button
+                  ><button
+                    class="ink-settings-nav-item"
+                    data-action="switch-settings"
+                    data-section="media"
+                    data-section="media"
+                  >
+                    <i class="bi bi-image"></i>媒体设置</button
+                  ><button
+                    class="ink-settings-nav-item"
+                    data-action="switch-settings"
+                    data-section="seo"
+                    data-section="seo"
+                  >
+                    <i class="bi bi-search-heart"></i>SEO 设置</button
+                  ><button
+                    class="ink-settings-nav-item"
+                    data-action="switch-settings"
+                    data-section="smtp"
+                    data-section="smtp"
+                  >
+                    <i class="bi bi-envelope-at"></i>邮件 SMTP</button
+                  ><button
+                    class="ink-settings-nav-item"
+                    data-action="switch-settings"
+                    data-section="security"
+                    data-section="security"
+                  >
+                    <i class="bi bi-shield-lock"></i>安全设置</button
+                  ><button
+                    class="ink-settings-nav-item"
+                    data-action="switch-settings"
+                    data-section="cache"
+                    data-section="cache"
+                  >
+                    <i class="bi bi-lightning-charge"></i>缓存与性能</button
+                  ><button
+                    class="ink-settings-nav-item"
+                    data-action="switch-settings"
+                    data-section="advanced"
+                    data-section="advanced"
+                  >
+                    <i class="bi bi-sliders"></i>高级设置
+                  </button>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- POST (hidden by default) -->
-          <div id="section-post" class="d-none">
-            <div class="ink-panel ink-anim">
-              <div class="ink-panel-header"><i class="bi bi-file-richtext"></i> 文章默认设置</div>
-              <div class="ink-panel-body">
-                <div class="row g-3">
-                  <div class="col-12 col-md-6"><label class="form-label">默认文章分类</label><select class="form-select">
-                      <option selected>前端技术</option>
-                      <option>AI 技术</option>
-                      <option>运维部署</option>
-                    </select></div>
-                  <div class="col-12 col-md-6"><label class="form-label">默认文章状态</label><select class="form-select">
-                      <option selected>草稿</option>
-                      <option>待审核</option>
-                      <option>发布</option>
-                    </select></div>
-                  <div class="col-12 col-md-6"><label class="form-label">文章 URL 格式</label><select class="form-select">
-                      <option>/?p=ID</option>
-                      <option selected>/post/slug</option>
-                      <option>/YYYY/MM/slug</option>
-                    </select></div>
-                  <div class="col-12 col-md-6"><label class="form-label">代码高亮主题</label><select class="form-select">
-                      <option selected>GitHub Dark</option>
-                      <option>Dracula</option>
-                      <option>Monokai</option>
-                    </select></div>
-                  <div class="col-12">
-                    <div class="d-flex flex-wrap gap-4">
-                      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
-                          id="p-pingback"><label class="form-check-label u-text-body" for="p-pingback">允许
-                          Pingback</label></div>
-                      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
-                          id="p-toc"><label class="form-check-label u-text-body" for="p-toc">自动生成目录</label></div>
-                      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
-                          id="p-copyright"><label class="form-check-label u-text-body" for="p-copyright">添加版权声明</label>
+          <!-- Right content -->
+          <div>
+            <!-- SITE -->
+            <div id="section-site" class="ink-anim">
+              <div class="ink-panel">
+                <div class="ink-panel-header"><i class="bi bi-house"></i> 站点基本设置</div>
+                <div class="ink-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">站点名称</label
+                      ><input type="text" class="form-control" value="InkFlow 技术博客" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">站点副标题</label
+                      ><input type="text" class="form-control" value="分享技术，记录成长" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">站点地址 (URL)</label
+                      ><input type="url" class="form-control" value="https://blog.inkflow.dev" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">管理后台地址</label
+                      ><input
+                        type="url"
+                        class="form-control"
+                        value="https://blog.inkflow.dev/admin"
+                      />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">管理员邮箱</label
+                      ><input type="email" class="form-control" value="admin@inkflow.dev" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">站点语言</label
+                      ><select class="form-select">
+                        <option selected>简体中文</option>
+                        <option>繁體中文</option>
+                        <option>English</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">时区</label
+                      ><select class="form-select">
+                        <option selected>Asia/Shanghai (UTC+8)</option>
+                        <option>Asia/Tokyo (UTC+9)</option>
+                        <option>UTC</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">日期格式</label
+                      ><select class="form-select">
+                        <option selected>2025-06-18</option>
+                        <option>2025/06/18</option>
+                        <option>June 18, 2025</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">站点描述</label
+                      ><textarea class="form-control" rows="3">
+专注于前端技术、AI 技术、运维部署等领域的技术博客，分享实战经验与学习心得。</textarea
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ink-panel">
+                <div class="ink-panel-header"><i class="bi bi-image"></i> 站点 Logo 与图标</div>
+                <div class="ink-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">站点 Logo</label>
+                      <div
+                        class="ink-upload-zone"
+                        data-action="toast"
+                        data-toast-msg="请选择 Logo 图片"
+                        data-toast-type="info"
+                      >
+                        <i class="bi bi-image-fill"></i>
+                        <p>点击上传 Logo<br /><small>建议尺寸 200×60px，支持 PNG/SVG</small></p>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">网站图标 (Favicon)</label>
+                      <div
+                        class="ink-upload-zone"
+                        data-action="toast"
+                        data-toast-msg="请选择 Favicon 图标"
+                        data-toast-type="info"
+                      >
+                        <i class="bi bi-grid-3x3-gap-fill"></i>
+                        <p>点击上传 Favicon<br /><small>建议 32×32px，支持 ICO/PNG</small></p>
                       </div>
                     </div>
                   </div>
-                  <div class="col-12"><label class="form-label">版权声明模板</label><textarea class="form-control"
-                      rows="3">本文为 InkFlow 原创文章，遵循 CC BY-NC-SA 4.0 版权协议，转载请附上原文出处链接及本声明。</textarea></div>
                 </div>
               </div>
-            </div>
-          </div>
 
-          <!-- COMMENT (hidden) -->
-          <div id="section-comment" class="d-none">
-            <div class="ink-panel ink-anim">
-              <div class="ink-panel-header"><i class="bi bi-chat-left-dots"></i> 评论设置</div>
-              <div class="ink-panel-body">
-                <div class="row g-3">
-                  <div class="col-12">
-                    <div class="d-flex flex-wrap gap-4">
-                      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
-                          id="c-enable"><label class="form-check-label u-text-body" for="c-enable">开启评论功能</label></div>
-                      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
-                          id="c-register"><label class="form-check-label u-text-body" for="c-register">需要注册才能评论</label>
-                      </div>
-                      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
-                          id="c-review"><label class="form-check-label u-text-body" for="c-review">评论需审核后显示</label>
-                      </div>
-                      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox"
-                          id="c-nested"><label class="form-check-label u-text-body" for="c-nested">允许嵌套评论</label></div>
+              <div class="ink-panel">
+                <div class="ink-panel-header">
+                  <i class="bi bi-layout-text-window-reverse"></i> 首页与阅读设置
+                </div>
+                <div class="ink-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">首页显示</label>
+                      <select class="form-select">
+                        <option selected>最新文章列表</option>
+                        <option>固定页面</option>
+                      </select>
                     </div>
-                  </div>
-                  <div class="col-12 col-md-6"><label class="form-label">评论分页，每页条数</label><input type="number"
- class="form-control" value="20"></div>
-                  <div class="col-12 col-md-6"><label class="form-label">评论关闭天数（0=永不关闭）</label><input type="number"
- class="form-control" value="0"></div>
-                  <div class="col-12 col-md-6"><label class="form-label">评论头像来源</label><select class="form-select">
-                      <option selected>Gravatar</option>
-                      <option>本地头像</option>
-                      <option>随机生成</option>
-                    </select></div>
-                  <div class="col-12 col-md-6"><label class="form-label">黑名单检测</label><select class="form-select">
-                      <option selected>关键词过滤</option>
-                      <option>Akismet 反垃圾</option>
-                      <option>两者均用</option>
-                    </select></div>
-                  <div class="col-12"><label class="form-label">评论黑名单关键词（每行一个）</label><textarea class="form-control"
-                      rows="3" placeholder="广告&#10;赌博&#10;xx网站"></textarea></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- SMTP (hidden) -->
-          <div id="section-smtp" class="d-none">
-            <div class="ink-panel ink-anim">
-              <div class="ink-panel-header"><i class="bi bi-envelope-at"></i> 邮件 SMTP 设置</div>
-              <div class="ink-panel-body">
-                <div class="row g-3">
-                  <div class="col-12 col-md-6"><label class="form-label">SMTP 服务器</label><input type="text"
- class="form-control" value="smtp.exmail.qq.com" placeholder="smtp.example.com"></div>
-                  <div class="col-12 col-md-6"><label class="form-label">SMTP 端口</label><input type="number"
- class="form-control" value="465"></div>
-                  <div class="col-12 col-md-6"><label class="form-label">加密方式</label><select class="form-select">
-                      <option selected>SSL/TLS</option>
-                      <option>STARTTLS</option>
-                      <option>无加密</option>
-                    </select></div>
-                  <div class="col-12 col-md-6"><label class="form-label">发件人名称</label><input type="text"
- class="form-control" value="InkFlow 博客"></div>
-                  <div class="col-12 col-md-6"><label class="form-label">发件人邮箱</label><input type="email"
- class="form-control" value="noreply@inkflow.dev"></div>
-                  <div class="col-12 col-md-6"><label class="form-label">SMTP 用户名</label><input type="text"
- class="form-control" value="noreply@inkflow.dev"></div>
-                  <div class="col-12"><label class="form-label">SMTP 密码</label><input type="password"
- class="form-control" value="••••••••••••"></div>
-                  <div class="col-12">
-                    <button class="btn btn-outline-primary" data-action="toast" data-toast-msg="测试邮件发送成功"
-                      data-toast-type="success"><i class="bi bi-send me-1"></i>发送测试邮件</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Security (hidden) -->
-          <div id="section-security" class="d-none">
-            <div class="ink-panel ink-anim">
-              <div class="ink-panel-header"><i class="bi bi-shield-lock"></i> 安全设置</div>
-              <div class="ink-panel-body">
-                <div class="row g-3">
-                  <div class="col-12 col-md-6"><label class="form-label">登录失败锁定次数</label><input type="number"
- class="form-control" value="5"></div>
-                  <div class="col-12 col-md-6"><label class="form-label">锁定时间（分钟）</label><input type="number"
- class="form-control" value="30"></div>
-                  <div class="col-12 col-md-6"><label class="form-label">Session 超时（分钟）</label><input type="number"
- class="form-control" value="120"></div>
-                  <div class="col-12 col-md-6"><label class="form-label">密码最低长度</label><input type="number"
- class="form-control" value="8"></div>
-                  <div class="col-12">
-                    <div class="d-flex flex-wrap gap-4">
-                      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
-                          id="s-2fa"><label class="form-check-label u-text-body" for="s-2fa">强制管理员启用两步验证</label></div>
-                      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
-                          id="s-csrf"><label class="form-check-label u-text-body" for="s-csrf">启用 CSRF 保护</label></div>
-                      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox"
-                          id="s-ipwhite"><label class="form-check-label u-text-body" for="s-ipwhite">启用后台 IP 白名单</label>
-                      </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">每页显示文章数</label>
+                      <input type="number" class="form-control" value="10" />
                     </div>
-                  </div>
-                  <div class="col-12"><label class="form-label">IP 白名单（每行一个）</label><textarea class="form-control"
-                      rows="3" placeholder="127.0.0.1&#10;192.168.1.0/24"></textarea></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Cache (hidden) -->
-          <div id="section-cache" class="d-none">
-            <div class="ink-panel ink-anim">
-              <div class="ink-panel-header"><i class="bi bi-lightning-charge"></i> 缓存与性能设置</div>
-              <div class="ink-panel-body">
-                <div class="row g-3">
-                  <div class="col-12 col-md-6"><label class="form-label">页面缓存驱动</label><select class="form-select">
-                      <option selected>文件缓存</option>
-                      <option>Redis</option>
-                      <option>Memcached</option>
-                      <option>不缓存</option>
-                    </select></div>
-                  <div class="col-12 col-md-6"><label class="form-label">缓存过期时间（秒）</label><input type="number"
- class="form-control" value="3600"></div>
-                  <div class="col-12">
-                    <div class="d-flex flex-wrap gap-4">
-                      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
-                          id="ch-gzip"><label class="form-check-label u-text-body" for="ch-gzip">启用 Gzip 压缩</label>
-                      </div>
-                      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
-                          id="ch-lazyimg"><label class="form-check-label u-text-body" for="ch-lazyimg">图片懒加载</label>
-                      </div>
-                      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox"
-                          id="ch-minjs"><label class="form-check-label u-text-body" for="ch-minjs">JS/CSS 压缩合并</label>
-                      </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">RSS 输出条数</label>
+                      <input type="number" class="form-control" value="20" />
                     </div>
-                  </div>
-                  <div class="col-12">
-                    <button class="btn btn-outline-primary me-2" data-action="toast" data-toast-msg="缓存已全部清除"
-                      data-toast-type="success"><i class="bi bi-arrow-repeat me-1"></i>清除全部缓存</button>
-                    <button class="btn btn-light" data-action="toast" data-toast-msg="CSS/JS 资源已重新生成"
-                      data-toast-type="info"><i class="bi bi-gear me-1"></i>重新生成静态资源</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Placeholders for other sections -->
-          <div id="section-seo" class="d-none">
-            <div class="ink-panel ink-anim">
-              <div class="ink-panel-header"><i class="bi bi-search-heart"></i> SEO 全局设置</div>
-              <div class="ink-panel-body">
-                <div class="row g-3">
-                  <div class="col-12"><label class="form-label">全站 Meta 关键词</label><input type="text"
- class="form-control" placeholder="Vue,TypeScript,前端技术,博客"></div>
-                  <div class="col-12"><label class="form-label">全站 Meta 描述</label><textarea class="form-control"
-                      rows="2" placeholder="站点全局描述…"></textarea></div>
-                  <div class="col-12 col-md-6"><label class="form-label">Google Analytics ID</label><input type="text"
- class="form-control" placeholder="G-XXXXXXXXXX"></div>
-                  <div class="col-12 col-md-6"><label class="form-label">百度统计 ID</label><input type="text"
- class="form-control" placeholder="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"></div>
-                  <div class="col-12">
-                    <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
-                        id="seo-sitemap"><label class="form-check-label u-text-body" for="seo-sitemap">自动生成
-                        Sitemap</label></div>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
-                        id="seo-robots"><label class="form-check-label u-text-body" for="seo-robots">允许搜索引擎索引</label>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">摘要字数限制</label>
+                      <input type="number" class="form-control" value="150" />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div id="section-media" class="d-none">
-            <div class="ink-panel ink-anim">
-              <div class="ink-panel-header"><i class="bi bi-image"></i> 媒体上传设置</div>
-              <div class="ink-panel-body">
-                <div class="row g-3">
-                  <div class="col-12 col-md-6"><label class="form-label">最大上传文件大小 (MB)</label><input type="number"
- class="form-control" value="20"></div>
-                  <div class="col-12 col-md-6"><label class="form-label">允许的文件类型</label><input type="text"
- class="form-control" value="jpg,jpeg,png,gif,webp,svg,pdf,zip"></div>
-                  <div class="col-12 col-md-4"><label class="form-label">缩略图宽 (px)</label><input type="number"
- class="form-control" value="150"></div>
-                  <div class="col-12 col-md-4"><label class="form-label">中等图宽 (px)</label><input type="number"
- class="form-control" value="800"></div>
-                  <div class="col-12 col-md-4"><label class="form-label">大图宽 (px)</label><input type="number"
- class="form-control" value="1200"></div>
-                  <div class="col-12">
-                    <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
-                        id="m-webp"><label class="form-check-label u-text-body" for="m-webp">自动转换为 WebP 格式</label></div>
+
+            <!-- POST (hidden by default) -->
+            <div id="section-post" class="d-none">
+              <div class="ink-panel ink-anim">
+                <div class="ink-panel-header"><i class="bi bi-file-richtext"></i> 文章默认设置</div>
+                <div class="ink-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">默认文章分类</label
+                      ><select class="form-select">
+                        <option selected>前端技术</option>
+                        <option>AI 技术</option>
+                        <option>运维部署</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">默认文章状态</label
+                      ><select class="form-select">
+                        <option selected>草稿</option>
+                        <option>待审核</option>
+                        <option>发布</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">文章 URL 格式</label
+                      ><select class="form-select">
+                        <option>/?p=ID</option>
+                        <option selected>/post/slug</option>
+                        <option>/YYYY/MM/slug</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">代码高亮主题</label
+                      ><select class="form-select">
+                        <option selected>GitHub Dark</option>
+                        <option>Dracula</option>
+                        <option>Monokai</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <div class="d-flex flex-wrap gap-4">
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            checked
+                            id="p-pingback"
+                          /><label class="form-check-label u-text-body" for="p-pingback"
+                            >允许 Pingback</label
+                          >
+                        </div>
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            checked
+                            id="p-toc"
+                          /><label class="form-check-label u-text-body" for="p-toc"
+                            >自动生成目录</label
+                          >
+                        </div>
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            checked
+                            id="p-copyright"
+                          /><label class="form-check-label u-text-body" for="p-copyright"
+                            >添加版权声明</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">版权声明模板</label
+                      ><textarea class="form-control" rows="3">
+本文为 InkFlow 原创文章，遵循 CC BY-NC-SA 4.0 版权协议，转载请附上原文出处链接及本声明。</textarea
+                      >
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div id="section-advanced" class="d-none">
-            <div class="ink-panel ink-anim">
-              <div class="ink-panel-header"><i class="bi bi-sliders"></i> 高级设置</div>
-              <div class="ink-panel-body">
-                <div class="row g-3">
-                  <div class="col-12"><label class="form-label">自定义 CSS（注入到前台页面）</label><textarea
- class="form-control u-text-mono u-text-body" rows="4" placeholder="/* 自定义样式 */"></textarea></div>
-                  <div class="col-12"><label class="form-label">自定义 JS（注入到前台页面 body 底部）</label><textarea
- class="form-control u-text-mono u-text-body" rows="4" placeholder="// 自定义脚本"></textarea></div>
-                  <div class="col-12"><label class="form-label">robots.txt 内容</label><textarea
- class="form-control u-text-mono u-text-body" rows="4">User-agent: *
+
+            <!-- COMMENT (hidden) -->
+            <div id="section-comment" class="d-none">
+              <div class="ink-panel ink-anim">
+                <div class="ink-panel-header"><i class="bi bi-chat-left-dots"></i> 评论设置</div>
+                <div class="ink-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <div class="d-flex flex-wrap gap-4">
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            checked
+                            id="c-enable"
+                          /><label class="form-check-label u-text-body" for="c-enable"
+                            >开启评论功能</label
+                          >
+                        </div>
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            checked
+                            id="c-register"
+                          /><label class="form-check-label u-text-body" for="c-register"
+                            >需要注册才能评论</label
+                          >
+                        </div>
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            checked
+                            id="c-review"
+                          /><label class="form-check-label u-text-body" for="c-review"
+                            >评论需审核后显示</label
+                          >
+                        </div>
+                        <div class="form-check form-switch mb-0">
+                          <input class="form-check-input" type="checkbox" id="c-nested" /><label
+                            class="form-check-label u-text-body"
+                            for="c-nested"
+                            >允许嵌套评论</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">评论分页，每页条数</label
+                      ><input type="number" class="form-control" value="20" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">评论关闭天数（0=永不关闭）</label
+                      ><input type="number" class="form-control" value="0" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">评论头像来源</label
+                      ><select class="form-select">
+                        <option selected>Gravatar</option>
+                        <option>本地头像</option>
+                        <option>随机生成</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">黑名单检测</label
+                      ><select class="form-select">
+                        <option selected>关键词过滤</option>
+                        <option>Akismet 反垃圾</option>
+                        <option>两者均用</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">评论黑名单关键词（每行一个）</label
+                      ><textarea
+                        class="form-control"
+                        rows="3"
+                        placeholder="广告&#10;赌博&#10;xx网站"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SMTP (hidden) -->
+            <div id="section-smtp" class="d-none">
+              <div class="ink-panel ink-anim">
+                <div class="ink-panel-header"><i class="bi bi-envelope-at"></i> 邮件 SMTP 设置</div>
+                <div class="ink-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">SMTP 服务器</label
+                      ><input
+                        type="text"
+                        class="form-control"
+                        value="smtp.exmail.qq.com"
+                        placeholder="smtp.example.com"
+                      />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">SMTP 端口</label
+                      ><input type="number" class="form-control" value="465" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">加密方式</label
+                      ><select class="form-select">
+                        <option selected>SSL/TLS</option>
+                        <option>STARTTLS</option>
+                        <option>无加密</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">发件人名称</label
+                      ><input type="text" class="form-control" value="InkFlow 博客" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">发件人邮箱</label
+                      ><input type="email" class="form-control" value="noreply@inkflow.dev" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">SMTP 用户名</label
+                      ><input type="text" class="form-control" value="noreply@inkflow.dev" />
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">SMTP 密码</label
+                      ><input type="password" class="form-control" value="••••••••••••" />
+                    </div>
+                    <div class="col-12">
+                      <button
+                        class="btn btn-outline-primary"
+                        data-action="toast"
+                        data-toast-msg="测试邮件发送成功"
+                        data-toast-type="success"
+                      >
+                        <i class="bi bi-send me-1"></i>发送测试邮件
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Security (hidden) -->
+            <div id="section-security" class="d-none">
+              <div class="ink-panel ink-anim">
+                <div class="ink-panel-header"><i class="bi bi-shield-lock"></i> 安全设置</div>
+                <div class="ink-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">登录失败锁定次数</label
+                      ><input type="number" class="form-control" value="5" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">锁定时间（分钟）</label
+                      ><input type="number" class="form-control" value="30" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">Session 超时（分钟）</label
+                      ><input type="number" class="form-control" value="120" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">密码最低长度</label
+                      ><input type="number" class="form-control" value="8" />
+                    </div>
+                    <div class="col-12">
+                      <div class="d-flex flex-wrap gap-4">
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            checked
+                            id="s-2fa"
+                          /><label class="form-check-label u-text-body" for="s-2fa"
+                            >强制管理员启用两步验证</label
+                          >
+                        </div>
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            checked
+                            id="s-csrf"
+                          /><label class="form-check-label u-text-body" for="s-csrf"
+                            >启用 CSRF 保护</label
+                          >
+                        </div>
+                        <div class="form-check form-switch mb-0">
+                          <input class="form-check-input" type="checkbox" id="s-ipwhite" /><label
+                            class="form-check-label u-text-body"
+                            for="s-ipwhite"
+                            >启用后台 IP 白名单</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">IP 白名单（每行一个）</label
+                      ><textarea
+                        class="form-control"
+                        rows="3"
+                        placeholder="127.0.0.1&#10;192.168.1.0/24"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cache (hidden) -->
+            <div id="section-cache" class="d-none">
+              <div class="ink-panel ink-anim">
+                <div class="ink-panel-header">
+                  <i class="bi bi-lightning-charge"></i> 缓存与性能设置
+                </div>
+                <div class="ink-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">页面缓存驱动</label
+                      ><select class="form-select">
+                        <option selected>文件缓存</option>
+                        <option>Redis</option>
+                        <option>Memcached</option>
+                        <option>不缓存</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">缓存过期时间（秒）</label
+                      ><input type="number" class="form-control" value="3600" />
+                    </div>
+                    <div class="col-12">
+                      <div class="d-flex flex-wrap gap-4">
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            checked
+                            id="ch-gzip"
+                          /><label class="form-check-label u-text-body" for="ch-gzip"
+                            >启用 Gzip 压缩</label
+                          >
+                        </div>
+                        <div class="form-check form-switch mb-0">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            checked
+                            id="ch-lazyimg"
+                          /><label class="form-check-label u-text-body" for="ch-lazyimg"
+                            >图片懒加载</label
+                          >
+                        </div>
+                        <div class="form-check form-switch mb-0">
+                          <input class="form-check-input" type="checkbox" id="ch-minjs" /><label
+                            class="form-check-label u-text-body"
+                            for="ch-minjs"
+                            >JS/CSS 压缩合并</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <button
+                        class="btn btn-outline-primary me-2"
+                        data-action="toast"
+                        data-toast-msg="缓存已全部清除"
+                        data-toast-type="success"
+                      >
+                        <i class="bi bi-arrow-repeat me-1"></i>清除全部缓存
+                      </button>
+                      <button
+                        class="btn btn-light"
+                        data-action="toast"
+                        data-toast-msg="CSS/JS 资源已重新生成"
+                        data-toast-type="info"
+                      >
+                        <i class="bi bi-gear me-1"></i>重新生成静态资源
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Placeholders for other sections -->
+            <div id="section-seo" class="d-none">
+              <div class="ink-panel ink-anim">
+                <div class="ink-panel-header"><i class="bi bi-search-heart"></i> SEO 全局设置</div>
+                <div class="ink-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label class="form-label">全站 Meta 关键词</label
+                      ><input
+                        type="text"
+                        class="form-control"
+                        placeholder="Vue,TypeScript,前端技术,博客"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">全站 Meta 描述</label
+                      ><textarea
+                        class="form-control"
+                        rows="2"
+                        placeholder="站点全局描述…"
+                      ></textarea>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">Google Analytics ID</label
+                      ><input type="text" class="form-control" placeholder="G-XXXXXXXXXX" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">百度统计 ID</label
+                      ><input
+                        type="text"
+                        class="form-control"
+                        placeholder="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <div class="form-check form-switch mb-0">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          checked
+                          id="seo-sitemap"
+                        /><label class="form-check-label u-text-body" for="seo-sitemap"
+                          >自动生成 Sitemap</label
+                        >
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-check form-switch mb-0">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          checked
+                          id="seo-robots"
+                        /><label class="form-check-label u-text-body" for="seo-robots"
+                          >允许搜索引擎索引</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="section-media" class="d-none">
+              <div class="ink-panel ink-anim">
+                <div class="ink-panel-header"><i class="bi bi-image"></i> 媒体上传设置</div>
+                <div class="ink-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">最大上传文件大小 (MB)</label
+                      ><input type="number" class="form-control" value="20" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <label class="form-label">允许的文件类型</label
+                      ><input
+                        type="text"
+                        class="form-control"
+                        value="jpg,jpeg,png,gif,webp,svg,pdf,zip"
+                      />
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <label class="form-label">缩略图宽 (px)</label
+                      ><input type="number" class="form-control" value="150" />
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <label class="form-label">中等图宽 (px)</label
+                      ><input type="number" class="form-control" value="800" />
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <label class="form-label">大图宽 (px)</label
+                      ><input type="number" class="form-control" value="1200" />
+                    </div>
+                    <div class="col-12">
+                      <div class="form-check form-switch mb-0">
+                        <input class="form-check-input" type="checkbox" checked id="m-webp" /><label
+                          class="form-check-label u-text-body"
+                          for="m-webp"
+                          >自动转换为 WebP 格式</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="section-advanced" class="d-none">
+              <div class="ink-panel ink-anim">
+                <div class="ink-panel-header"><i class="bi bi-sliders"></i> 高级设置</div>
+                <div class="ink-panel-body">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label class="form-label">自定义 CSS（注入到前台页面）</label
+                      ><textarea
+                        class="form-control u-text-mono u-text-body"
+                        rows="4"
+                        placeholder="/* 自定义样式 */"
+                      ></textarea>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">自定义 JS（注入到前台页面 body 底部）</label
+                      ><textarea
+                        class="form-control u-text-mono u-text-body"
+                        rows="4"
+                        placeholder="// 自定义脚本"
+                      ></textarea>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">robots.txt 内容</label
+                      ><textarea class="form-control u-text-mono u-text-body" rows="4">
+User-agent: *
 Allow: /
-Sitemap: https://blog.inkflow.dev/sitemap.xml</textarea></div>
+Sitemap: https://blog.inkflow.dev/sitemap.xml</textarea
+                      >
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="d-flex gap-2 mt-3">
-            <button class="btn btn-primary btn-sm" data-action="toast" data-toast-msg="设置已保存" data-toast-type="success"><i
- class="bi bi-check-lg me-1"></i>保存设置</button>
-            <button class="btn btn-light btn-sm" data-action="toast" data-toast-msg="已重置为默认值" data-toast-type="info"><i
- class="bi bi-arrow-counterclockwise me-1"></i>重置默认</button>
+            <div class="d-flex gap-2 mt-3">
+              <button
+                class="btn btn-primary btn-sm"
+                data-action="toast"
+                data-toast-msg="设置已保存"
+                data-toast-type="success"
+              >
+                <i class="bi bi-check-lg me-1"></i>保存设置
+              </button>
+              <button
+                class="btn btn-light btn-sm"
+                data-action="toast"
+                data-toast-msg="已重置为默认值"
+                data-toast-type="info"
+              >
+                <i class="bi bi-arrow-counterclockwise me-1"></i>重置默认
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-
-    </main>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <script type="module" src="/assets/js/inkflow-admin.js"></script>
-</body>
-
+      </main>
+    </div>
+    <script type="module" src="/assets/js/inkflow-admin.js"></script>
+  </body>
 </html>

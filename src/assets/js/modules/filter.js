@@ -4,7 +4,7 @@ export class FilterManager {
   }
 
   init() {
-    document.body.addEventListener('click', (e) => {
+    document.body.addEventListener('click', e => {
       const filterTab = e.target.closest('.ink-filter-tab');
       if (!filterTab) return;
 

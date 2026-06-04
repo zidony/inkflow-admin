@@ -1,200 +1,453 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>评论列表 — InkFlow</title>
-{{> head_assets }}
-</head>
-<body>
-<!-- SIDEBAR -->
-{{> sidebar }}
-<div id="sidebar-overlay"></div>
-<div id="main-wrapper">
-<!-- TOPBAR -->
-{{> topbar breadcrumb="<li class='breadcrumb-item'><a href='index.html'>首页</a></li><li class='breadcrumb-item'><a href='#'>内容管理</a></li><li class='breadcrumb-item active' aria-current='page'>评论管理</li>" }}
-<main id="page-content">
-<div class="page-header">
-  <div>
-    <h1 class="page-title">评论管理</h1>
-    <span class='page-subtitle'>共 8,731 条评论 · 127 待审核</span>
-  </div>
-
-</div>
-<div class="ink-bulk-bar" id="bulk-action-bar">
-  <i class="bi bi-check2-all u-text-primary" ></i>
-  <span>已选 <strong id="bulk-count">0</strong> 项</span>
-  <div class="ms-auto d-flex gap-2">
-    <button class="btn btn-light btn-sm u-text-sm" data-action="toast" data-toast-msg="操作成功" data-toast-type="success"><i class="bi bi-check-lg me-1"></i>批量操作</button>
-    <button class="btn btn-danger-soft btn-sm u-text-sm" data-action="toast" data-toast-msg="已删除" data-toast-type="danger"><i class="bi bi-trash3 me-1"></i>批量删除</button>
-  </div>
-</div>
-<div class="card ink-card mt-3">
-        <div class="card-header border-bottom-0 px-3 py-2">
-    <div class="ink-filter-tabs" id="filter-tabs" role="tablist"><button class="ink-filter-tab active" data-filter="all">全部 <span class="u-opacity-70 fw-normal">(8731)</span></button><button class="ink-filter-tab" data-filter="pending">待审核 <span class="u-opacity-70 fw-normal">(127)</span></button><button class="ink-filter-tab" data-filter="approved">已审核 <span class="u-opacity-70 fw-normal">(8560)</span></button><button class="ink-filter-tab" data-filter="spam">垃圾 <span class="u-opacity-70 fw-normal">(44)</span></button></div>
-  </div>
-  <div class="table-responsive">
-      <table class="ink-table">
-      <thead><tr>
-        <th class="table-check"><input type="checkbox" id="select-all" class="form-check-input table-check-box" ></th>
-        <th style="min-width:140px">评论者</th><th style="min-width:280px">评论内容</th><th>IP 地址</th><th>时间</th><th>状态</th><th class="text-center w-140px" >操作</th>
-      </tr></thead>
-      <tbody><tr data-status="pending">
-          <td><input type="checkbox" class="form-check-input ink-row-check table-check-box" ></td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div class="ink-avatar ink-avatar-green">张</div>
-              <div class="ink-item-text"><span class="ink-title">张三</span><small>zhangsan@example.com</small></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>评论列表 — InkFlow</title>
+    {{> head_assets }}
+  </head>
+  <body>
+    <!-- SIDEBAR -->
+    {{> sidebar }}
+    <div id="sidebar-overlay"></div>
+    <div id="main-wrapper">
+      <!-- TOPBAR -->
+      {{#> topbar}}
+        <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item"><a href="#">内容管理</a></li> <li class="breadcrumb-item active" aria-current="page">评论管理</li>
+      {{/topbar}}
+      <main id="page-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">评论管理</h1>
+            <span class="page-subtitle">共 8,731 条评论 · 127 待审核</span>
+          </div>
+        </div>
+        <div class="ink-bulk-bar" id="bulk-action-bar">
+          <i class="bi bi-check2-all u-text-primary"></i>
+          <span>已选 <strong id="bulk-count">0</strong> 项</span>
+          <div class="ms-auto d-flex gap-2">
+            <button
+              class="btn btn-light btn-sm u-text-sm"
+              data-action="toast"
+              data-toast-msg="操作成功"
+              data-toast-type="success"
+            >
+              <i class="bi bi-check-lg me-1"></i>批量操作
+            </button>
+            <button
+              class="btn btn-danger-soft btn-sm u-text-sm"
+              data-action="toast"
+              data-toast-msg="已删除"
+              data-toast-type="danger"
+            >
+              <i class="bi bi-trash3 me-1"></i>批量删除
+            </button>
+          </div>
+        </div>
+        <div class="card ink-card mt-3">
+          <div class="card-header border-bottom-0 px-3 py-2">
+            <div class="ink-filter-tabs" id="filter-tabs" role="tablist">
+              <button class="ink-filter-tab active" data-filter="all">
+                全部 <span class="u-opacity-70 fw-normal">(8731)</span></button
+              ><button class="ink-filter-tab" data-filter="pending">
+                待审核 <span class="u-opacity-70 fw-normal">(127)</span></button
+              ><button class="ink-filter-tab" data-filter="approved">
+                已审核 <span class="u-opacity-70 fw-normal">(8560)</span></button
+              ><button class="ink-filter-tab" data-filter="spam">
+                垃圾 <span class="u-opacity-70 fw-normal">(44)</span>
+              </button>
             </div>
-          </td>
-          <td class="u-text-sm u-text-gray-700 mw-260px" >
-            <div class="text-truncate mw-240px">讲得非常清楚，一看就懂！收藏了这篇文章。</div>
-            <div class="u-text-gray-400 u-text-xs" style="margin-top:2px">回复于：<a href="post-edit.html" class="ink-link u-text-xs" >《Vue 3 Composition API》</a></div>
-          </td>
-          <td class="u-text-xs u-text-gray-400">120.88.xx.xx</td>
-          <td class="u-text-xs u-text-gray-500">2025-06-18 14:32</td>
-          <td><span class="ink-badge u-tint-amber"><span class="ink-badge-dot"></span>待审核</span></td>
-          <td>
-            <div class="d-flex justify-content-center gap-1">
-              <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"><i class="bi bi-chat-quote"></i></a>
-              <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check-circle u-text-success" ></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="标记垃圾" data-action="toast" data-toast-msg="已标记为垃圾" data-toast-type="warning"><i class="bi bi-ban"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
-            </div>
-          </td>
-        </tr><tr data-status="approved">
-          <td><input type="checkbox" class="form-check-input ink-row-check table-check-box" ></td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div class="ink-avatar ink-avatar-blue">李</div>
-              <div class="ink-item-text"><span class="ink-title">李明</span><small>user@inkflow.dev</small></div>
-            </div>
-          </td>
-          <td class="u-text-sm u-text-gray-700 mw-260px" >
-            <div class="text-truncate mw-240px">能否补充 Kubernetes 相关内容？期待更新。</div>
-            <div class="u-text-gray-400 u-text-xs" style="margin-top:2px">回复于：<a href="post-edit.html" class="ink-link u-text-xs" >《Docker 最佳实践》</a></div>
-          </td>
-          <td class="u-text-xs u-text-gray-400">116.24.xx.xx</td>
-          <td class="u-text-xs u-text-gray-500">2025-06-18 13:10</td>
-          <td><span class="ink-badge u-tint-green"><span class="ink-badge-dot"></span>已审核</span></td>
-          <td>
-            <div class="d-flex justify-content-center gap-1">
-              <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"><i class="bi bi-chat-quote"></i></a>
-              <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check-circle u-text-success" ></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="标记垃圾" data-action="toast" data-toast-msg="已标记为垃圾" data-toast-type="warning"><i class="bi bi-ban"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
-            </div>
-          </td>
-        </tr><tr data-status="pending">
-          <td><input type="checkbox" class="form-check-input ink-row-check table-check-box" ></td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div class="ink-avatar ink-avatar-purple">王</div>
-              <div class="ink-item-text"><span class="ink-title">王红</span><small>user@inkflow.dev</small></div>
-            </div>
-          </td>
-          <td class="u-text-sm u-text-gray-700 mw-260px" >
-            <div class="text-truncate mw-240px">数据集处理部分好像有个小错误，第三步…</div>
-            <div class="u-text-gray-400 u-text-xs" style="margin-top:2px">回复于：<a href="post-edit.html" class="ink-link u-text-xs" >《LLM Fine-tuning 指南》</a></div>
-          </td>
-          <td class="u-text-xs u-text-gray-400">202.96.xx.xx</td>
-          <td class="u-text-xs u-text-gray-500">2025-06-18 11:45</td>
-          <td><span class="ink-badge u-tint-amber"><span class="ink-badge-dot"></span>待审核</span></td>
-          <td>
-            <div class="d-flex justify-content-center gap-1">
-              <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"><i class="bi bi-chat-quote"></i></a>
-              <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check-circle u-text-success" ></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="标记垃圾" data-action="toast" data-toast-msg="已标记为垃圾" data-toast-type="warning"><i class="bi bi-ban"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
-            </div>
-          </td>
-        </tr><tr data-status="approved">
-          <td><input type="checkbox" class="form-check-input ink-row-check table-check-box" ></td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div class="ink-avatar ink-avatar-red">陈</div>
-              <div class="ink-item-text"><span class="ink-title">陈凯</span><small>user@inkflow.dev</small></div>
-            </div>
-          </td>
-          <td class="u-text-sm u-text-gray-700 mw-260px" >
-            <div class="text-truncate mw-240px">太硬核了！已收藏，强烈推荐给同事看。</div>
-            <div class="u-text-gray-400 u-text-xs" style="margin-top:2px">回复于：<a href="post-edit.html" class="ink-link u-text-xs" >《TypeScript 高级类型》</a></div>
-          </td>
-          <td class="u-text-xs u-text-gray-400">61.135.xx.xx</td>
-          <td class="u-text-xs u-text-gray-500">2025-06-18 10:20</td>
-          <td><span class="ink-badge u-tint-green"><span class="ink-badge-dot"></span>已审核</span></td>
-          <td>
-            <div class="d-flex justify-content-center gap-1">
-              <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"><i class="bi bi-chat-quote"></i></a>
-              <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check-circle u-text-success" ></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="标记垃圾" data-action="toast" data-toast-msg="已标记为垃圾" data-toast-type="warning"><i class="bi bi-ban"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
-            </div>
-          </td>
-        </tr><tr data-status="approved">
-          <td><input type="checkbox" class="form-check-input ink-row-check table-check-box" ></td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div class="ink-avatar ink-avatar-amber">赵</div>
-              <div class="ink-item-text"><span class="ink-title">赵磊</span><small>user@inkflow.dev</small></div>
-            </div>
-          </td>
-          <td class="u-text-sm u-text-gray-700 mw-260px" >
-            <div class="text-truncate mw-240px">代码可以直接用，感谢分享！</div>
-            <div class="u-text-gray-400 u-text-xs" style="margin-top:2px">回复于：<a href="post-edit.html" class="ink-link u-text-xs" >《ECharts 数据大屏》</a></div>
-          </td>
-          <td class="u-text-xs u-text-gray-400">59.37.xx.xx</td>
-          <td class="u-text-xs u-text-gray-500">2025-06-18 09:05</td>
-          <td><span class="ink-badge u-tint-green"><span class="ink-badge-dot"></span>已审核</span></td>
-          <td>
-            <div class="d-flex justify-content-center gap-1">
-              <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"><i class="bi bi-chat-quote"></i></a>
-              <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过" data-toast-type="success"><i class="bi bi-check-circle u-text-success" ></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="标记垃圾" data-action="toast" data-toast-msg="已标记为垃圾" data-toast-type="warning"><i class="bi bi-ban"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
-            </div>
-          </td>
-        </tr><tr data-status="spam">
-          <td><input type="checkbox" class="form-check-input ink-row-check table-check-box" ></td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div class="ink-avatar ink-avatar-slate">孙</div>
-              <div class="ink-item-text"><span class="ink-title">孙燕</span><small>user@inkflow.dev</small></div>
-            </div>
-          </td>
-          <td class="u-text-sm u-text-gray-700 mw-260px" >
-            <div class="text-truncate mw-240px">CSRF token 那部分能展开讲讲吗？</div>
-            <div class="u-text-gray-400 u-text-xs" style="margin-top:2px">回复于：<a href="post-edit.html" class="ink-link u-text-xs" >《Web 安全防护》</a></div>
-          </td>
-          <td class="u-text-xs u-text-gray-400">182.61.xx.xx</td>
-          <td class="u-text-xs u-text-gray-500">2025-06-17 22:40</td>
-          <td><span class="ink-badge u-tint-red"><span class="ink-badge-dot"></span>垃圾</span></td>
-          <td>
-            <div class="d-flex justify-content-center gap-1">
-              <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"><i class="bi bi-chat-quote"></i></a>
-              <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i class="bi bi-trash3"></i></button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="card-footer d-flex align-items-center justify-content-between">
-    <span class="u-text-gray-500 u-text-sm">共 <strong>127</strong> 条记录，第 <strong>1 / 13</strong> 页</span>
-    <nav>
-      <ul class="pagination mb-0">
-        <li class="page-item disabled"><a class="page-link" href="#"><i class="bi bi-chevron-left u-icon-xs"></i></a></li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right u-icon-xs"></i></a></li>
-      </ul>
-    </nav>
-  </div>
-</div>
-</main>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script type="module" src="/assets/js/inkflow-admin.js"></script>
-</body>
+          </div>
+          <div class="table-responsive">
+            <table class="ink-table">
+              <thead>
+                <tr>
+                  <th class="table-check">
+                    <input
+                      type="checkbox"
+                      id="select-all"
+                      class="form-check-input table-check-box"
+                    />
+                  </th>
+                  <th style="min-width: 140px">评论者</th>
+                  <th style="min-width: 280px">评论内容</th>
+                  <th>IP 地址</th>
+                  <th>时间</th>
+                  <th>状态</th>
+                  <th class="text-center w-140px">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-status="pending">
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ink-avatar ink-avatar-green">张</div>
+                      <div class="ink-item-text">
+                        <span class="ink-title">张三</span><small>zhangsan@example.com</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="u-text-sm u-text-gray-700 mw-260px">
+                    <div class="text-truncate mw-240px">
+                      讲得非常清楚，一看就懂！收藏了这篇文章。
+                    </div>
+                    <div class="u-text-gray-400 u-text-xs" style="margin-top: 2px">
+                      回复于：<a href="post-edit.html" class="ink-link u-text-xs"
+                        >《Vue 3 Composition API》</a
+                      >
+                    </div>
+                  </td>
+                  <td class="u-text-xs u-text-gray-400">120.88.xx.xx</td>
+                  <td class="u-text-xs u-text-gray-500">2025-06-18 14:32</td>
+                  <td>
+                    <span class="ink-badge u-tint-amber"
+                      ><span class="ink-badge-dot"></span>待审核</span
+                    >
+                  </td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"
+                        ><i class="bi bi-chat-quote"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="通过审核"
+                        data-action="toast"
+                        data-toast-msg="已审核通过"
+                        data-toast-type="success"
+                      >
+                        <i class="bi bi-check-circle u-text-success"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="标记垃圾"
+                        data-action="toast"
+                        data-toast-msg="已标记为垃圾"
+                        data-toast-type="warning"
+                      >
+                        <i class="bi bi-ban"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-status="approved">
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ink-avatar ink-avatar-blue">李</div>
+                      <div class="ink-item-text">
+                        <span class="ink-title">李明</span><small>user@inkflow.dev</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="u-text-sm u-text-gray-700 mw-260px">
+                    <div class="text-truncate mw-240px">
+                      能否补充 Kubernetes 相关内容？期待更新。
+                    </div>
+                    <div class="u-text-gray-400 u-text-xs" style="margin-top: 2px">
+                      回复于：<a href="post-edit.html" class="ink-link u-text-xs"
+                        >《Docker 最佳实践》</a
+                      >
+                    </div>
+                  </td>
+                  <td class="u-text-xs u-text-gray-400">116.24.xx.xx</td>
+                  <td class="u-text-xs u-text-gray-500">2025-06-18 13:10</td>
+                  <td>
+                    <span class="ink-badge u-tint-green"
+                      ><span class="ink-badge-dot"></span>已审核</span
+                    >
+                  </td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"
+                        ><i class="bi bi-chat-quote"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="通过审核"
+                        data-action="toast"
+                        data-toast-msg="已审核通过"
+                        data-toast-type="success"
+                      >
+                        <i class="bi bi-check-circle u-text-success"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="标记垃圾"
+                        data-action="toast"
+                        data-toast-msg="已标记为垃圾"
+                        data-toast-type="warning"
+                      >
+                        <i class="bi bi-ban"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-status="pending">
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ink-avatar ink-avatar-purple">王</div>
+                      <div class="ink-item-text">
+                        <span class="ink-title">王红</span><small>user@inkflow.dev</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="u-text-sm u-text-gray-700 mw-260px">
+                    <div class="text-truncate mw-240px">数据集处理部分好像有个小错误，第三步…</div>
+                    <div class="u-text-gray-400 u-text-xs" style="margin-top: 2px">
+                      回复于：<a href="post-edit.html" class="ink-link u-text-xs"
+                        >《LLM Fine-tuning 指南》</a
+                      >
+                    </div>
+                  </td>
+                  <td class="u-text-xs u-text-gray-400">202.96.xx.xx</td>
+                  <td class="u-text-xs u-text-gray-500">2025-06-18 11:45</td>
+                  <td>
+                    <span class="ink-badge u-tint-amber"
+                      ><span class="ink-badge-dot"></span>待审核</span
+                    >
+                  </td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"
+                        ><i class="bi bi-chat-quote"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="通过审核"
+                        data-action="toast"
+                        data-toast-msg="已审核通过"
+                        data-toast-type="success"
+                      >
+                        <i class="bi bi-check-circle u-text-success"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="标记垃圾"
+                        data-action="toast"
+                        data-toast-msg="已标记为垃圾"
+                        data-toast-type="warning"
+                      >
+                        <i class="bi bi-ban"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-status="approved">
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ink-avatar ink-avatar-red">陈</div>
+                      <div class="ink-item-text">
+                        <span class="ink-title">陈凯</span><small>user@inkflow.dev</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="u-text-sm u-text-gray-700 mw-260px">
+                    <div class="text-truncate mw-240px">太硬核了！已收藏，强烈推荐给同事看。</div>
+                    <div class="u-text-gray-400 u-text-xs" style="margin-top: 2px">
+                      回复于：<a href="post-edit.html" class="ink-link u-text-xs"
+                        >《TypeScript 高级类型》</a
+                      >
+                    </div>
+                  </td>
+                  <td class="u-text-xs u-text-gray-400">61.135.xx.xx</td>
+                  <td class="u-text-xs u-text-gray-500">2025-06-18 10:20</td>
+                  <td>
+                    <span class="ink-badge u-tint-green"
+                      ><span class="ink-badge-dot"></span>已审核</span
+                    >
+                  </td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"
+                        ><i class="bi bi-chat-quote"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="通过审核"
+                        data-action="toast"
+                        data-toast-msg="已审核通过"
+                        data-toast-type="success"
+                      >
+                        <i class="bi bi-check-circle u-text-success"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="标记垃圾"
+                        data-action="toast"
+                        data-toast-msg="已标记为垃圾"
+                        data-toast-type="warning"
+                      >
+                        <i class="bi bi-ban"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-status="approved">
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ink-avatar ink-avatar-amber">赵</div>
+                      <div class="ink-item-text">
+                        <span class="ink-title">赵磊</span><small>user@inkflow.dev</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="u-text-sm u-text-gray-700 mw-260px">
+                    <div class="text-truncate mw-240px">代码可以直接用，感谢分享！</div>
+                    <div class="u-text-gray-400 u-text-xs" style="margin-top: 2px">
+                      回复于：<a href="post-edit.html" class="ink-link u-text-xs"
+                        >《ECharts 数据大屏》</a
+                      >
+                    </div>
+                  </td>
+                  <td class="u-text-xs u-text-gray-400">59.37.xx.xx</td>
+                  <td class="u-text-xs u-text-gray-500">2025-06-18 09:05</td>
+                  <td>
+                    <span class="ink-badge u-tint-green"
+                      ><span class="ink-badge-dot"></span>已审核</span
+                    >
+                  </td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"
+                        ><i class="bi bi-chat-quote"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="通过审核"
+                        data-action="toast"
+                        data-toast-msg="已审核通过"
+                        data-toast-type="success"
+                      >
+                        <i class="bi bi-check-circle u-text-success"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="标记垃圾"
+                        data-action="toast"
+                        data-toast-msg="已标记为垃圾"
+                        data-toast-type="warning"
+                      >
+                        <i class="bi bi-ban"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-status="spam">
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ink-avatar ink-avatar-slate">孙</div>
+                      <div class="ink-item-text">
+                        <span class="ink-title">孙燕</span><small>user@inkflow.dev</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="u-text-sm u-text-gray-700 mw-260px">
+                    <div class="text-truncate mw-240px">CSRF token 那部分能展开讲讲吗？</div>
+                    <div class="u-text-gray-400 u-text-xs" style="margin-top: 2px">
+                      回复于：<a href="post-edit.html" class="ink-link u-text-xs"
+                        >《Web 安全防护》</a
+                      >
+                    </div>
+                  </td>
+                  <td class="u-text-xs u-text-gray-400">182.61.xx.xx</td>
+                  <td class="u-text-xs u-text-gray-500">2025-06-17 22:40</td>
+                  <td>
+                    <span class="ink-badge u-tint-red"
+                      ><span class="ink-badge-dot"></span>垃圾</span
+                    >
+                  </td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <a href="comment-edit.html" class="btn btn-light btn-icon" title="查看/回复"
+                        ><i class="bi bi-chat-quote"></i
+                      ></a>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer d-flex align-items-center justify-content-between">
+            <span class="u-text-gray-500 u-text-sm"
+              >共 <strong>127</strong> 条记录，第 <strong>1 / 13</strong> 页</span
+            >
+            <nav>
+              <ul class="pagination mb-0">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#"><i class="bi bi-chevron-left u-icon-xs"></i></a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#"><i class="bi bi-chevron-right u-icon-xs"></i></a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="/assets/js/inkflow-admin.js"></script>
+  </body>
 </html>

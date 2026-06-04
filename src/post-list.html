@@ -1,95 +1,123 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>文章列表 — InkFlow</title>
+    {{> head_assets }}
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>文章列表 — InkFlow</title>
-{{> head_assets }}
-</head>
-
-<body>
-  <!-- SIDEBAR -->
-  {{> sidebar }}
-  <div id="sidebar-overlay"></div>
-  <div id="main-wrapper">
-    <!-- TOPBAR -->
-    {{> topbar breadcrumb="<li class='breadcrumb-item'><a href='index.html'>首页</a></li> <li class='breadcrumb-item'><a href='#'>内容管理</a></li> <li class='breadcrumb-item active' aria-current='page'>文章管理</li>" }}
-    <main id="page-content">
-      <div class="page-header">
-        <div>
-          <h1 class="page-title">文章管理</h1>
-          <span class='page-subtitle'>共 1,284 篇 · 978 已发布 · 180 草稿 · 127 待审核</span>
+  <body>
+    <!-- SIDEBAR -->
+    {{> sidebar }}
+    <div id="sidebar-overlay"></div>
+    <div id="main-wrapper">
+      <!-- TOPBAR -->
+      {{#> topbar}}
+        <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item"><a href="#">内容管理</a></li> <li class="breadcrumb-item active" aria-current="page">文章管理</li>
+      {{/topbar}}
+      <main id="page-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">文章管理</h1>
+            <span class="page-subtitle">共 1,284 篇 · 978 已发布 · 180 草稿 · 127 待审核</span>
+          </div>
+          <a href="post-edit.html" class="btn btn-primary btn-sm"
+            ><i class="bi bi-plus-lg"></i> 写新文章</a
+          >
         </div>
-        <a href="post-edit.html" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg"></i> 写新文章</a>
-      </div>
-      <div class="ink-bulk-bar" id="bulk-action-bar">
-        <i class="bi bi-check2-all u-text-primary" ></i>
-        <span>已选 <strong id="bulk-count">0</strong> 项</span>
-        <div class="ms-auto d-flex gap-2">
-          <button class="btn btn-light btn-sm u-text-sm" data-action="toast"
-      data-toast-msg="操作成功" data-toast-type="success"><i class="bi bi-check-lg me-1"></i>批量操作</button>
-          <button class="btn btn-danger-soft btn-sm u-text-sm" data-action="toast"
-      data-toast-msg="已删除" data-toast-type="danger"><i class="bi bi-trash3 me-1"></i>批量删除</button>
-        </div>
-      </div>
-      <div class="card ink-card mt-3">
-        <div class="card-header border-bottom-0 px-3 py-2">
-          <div class="d-flex align-items-center gap-2 flex-wrap w-100">
-            <div class="ink-filter-tabs" id="filter-tabs" role="tablist"><button class="ink-filter-tab active"
-                data-filter="all">全部 <span class="u-opacity-70 fw-normal">(1284)</span></button><button
- class="ink-filter-tab" data-filter="published">已发布 <span
- class="u-opacity-70 fw-normal">(978)</span></button><button class="ink-filter-tab"
-                data-filter="draft">草稿 <span class="u-opacity-70 fw-normal">(180)</span></button><button
- class="ink-filter-tab" data-filter="pending">待审核 <span
- class="u-opacity-70 fw-normal">(127)</span></button></div>
-            <div class="d-flex align-items-center gap-2 ms-auto flex-wrap">
-              <select class="form-select u-text-sm" style="width:120px;height:32px">
-                <option value="">全部分类</option>
-                <option>前端技术</option>
-                <option>AI 技术</option>
-                <option>运维部署</option>
-                <option>设计灵感</option>
-              </select>
-              <select class="form-select u-text-sm wh-110-32" >
-                <option>全部时间</option>
-                <option>今天</option>
-                <option>本周</option>
-                <option>本月</option>
-              </select>
-              <select class="form-select u-text-sm wh-110-32" >
-                <option>最新发布</option>
-                <option>最多浏览</option>
-                <option>最多评论</option>
-              </select>
-            </div>
+        <div class="ink-bulk-bar" id="bulk-action-bar">
+          <i class="bi bi-check2-all u-text-primary"></i>
+          <span>已选 <strong id="bulk-count">0</strong> 项</span>
+          <div class="ms-auto d-flex gap-2">
+            <button
+              class="btn btn-light btn-sm u-text-sm"
+              data-action="toast"
+              data-toast-msg="操作成功"
+              data-toast-type="success"
+            >
+              <i class="bi bi-check-lg me-1"></i>批量操作
+            </button>
+            <button
+              class="btn btn-danger-soft btn-sm u-text-sm"
+              data-action="toast"
+              data-toast-msg="已删除"
+              data-toast-type="danger"
+            >
+              <i class="bi bi-trash3 me-1"></i>批量删除
+            </button>
           </div>
         </div>
-        <div class="table-responsive">
+        <div class="card ink-card mt-3">
+          <div class="card-header border-bottom-0 px-3 py-2">
+            <div class="d-flex align-items-center gap-2 flex-wrap w-100">
+              <div class="ink-filter-tabs" id="filter-tabs" role="tablist">
+                <button class="ink-filter-tab active" data-filter="all">
+                  全部 <span class="u-opacity-70 fw-normal">(1284)</span></button
+                ><button class="ink-filter-tab" data-filter="published">
+                  已发布 <span class="u-opacity-70 fw-normal">(978)</span></button
+                ><button class="ink-filter-tab" data-filter="draft">
+                  草稿 <span class="u-opacity-70 fw-normal">(180)</span></button
+                ><button class="ink-filter-tab" data-filter="pending">
+                  待审核 <span class="u-opacity-70 fw-normal">(127)</span>
+                </button>
+              </div>
+              <div class="d-flex align-items-center gap-2 ms-auto flex-wrap">
+                <select class="form-select u-text-sm" style="width: 120px; height: 32px">
+                  <option value="">全部分类</option>
+                  <option>前端技术</option>
+                  <option>AI 技术</option>
+                  <option>运维部署</option>
+                  <option>设计灵感</option>
+                </select>
+                <select class="form-select u-text-sm wh-110-32">
+                  <option>全部时间</option>
+                  <option>今天</option>
+                  <option>本周</option>
+                  <option>本月</option>
+                </select>
+                <select class="form-select u-text-sm wh-110-32">
+                  <option>最新发布</option>
+                  <option>最多浏览</option>
+                  <option>最多评论</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
             <table class="ink-table">
               <thead>
                 <tr>
-                  <th class="table-check"><input type="checkbox" id="select-all" class="form-check-input table-check-box"
-                      ></th>
-                  <th style="min-width:300px">文章标题</th>
+                  <th class="table-check">
+                    <input
+                      type="checkbox"
+                      id="select-all"
+                      class="form-check-input table-check-box"
+                    />
+                  </th>
+                  <th style="min-width: 300px">文章标题</th>
                   <th>分类</th>
                   <th>作者</th>
                   <th>评论</th>
                   <th>浏览量</th>
                   <th>发布时间</th>
                   <th>状态</th>
-                  <th class="text-center" style="width:110px">操作</th>
+                  <th class="text-center" style="width: 110px">操作</th>
                 </tr>
               </thead>
               <tbody>
                 <tr data-status="published">
-                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
-                      ></td>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
                   <td>
                     <div class="ink-item-cell">
                       <div class="ink-thumb u-tint-blue"><i class="bi bi-file-code"></i></div>
-                      <div class="ink-item-text"><a href="post-edit.html" class="ink-link">深入理解 Vue 3 Composition API
-                          与响应式原理</a><small>技术教程</small></div>
+                      <div class="ink-item-text">
+                        <a href="post-edit.html" class="ink-link"
+                          >深入理解 Vue 3 Composition API 与响应式原理</a
+                        ><small>技术教程</small>
+                      </div>
                     </div>
                   </td>
                   <td><span class="ink-tag-sm u-tint-blue">前端技术</span></td>
@@ -97,25 +125,39 @@
                   <td class="u-text-sm u-text-gray-600">48</td>
                   <td class="u-text-sm fw-semibold u-text-gray-800">3,821</td>
                   <td class="u-text-xs u-text-gray-500">2025-06-18</td>
-                  <td><span class="ink-badge u-tint-green"><span class="ink-badge-dot"></span>已发布</span></td>
+                  <td>
+                    <span class="ink-badge u-tint-green"
+                      ><span class="ink-badge-dot"></span>已发布</span
+                    >
+                  </td>
                   <td>
                     <div class="d-flex justify-content-center gap-1">
-                      <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"><i
- class="bi bi-pencil"></i></a>
+                      <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
 
-                      <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
- class="bi bi-trash3"></i></button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
                     </div>
                   </td>
                 </tr>
                 <tr data-status="published">
-                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
-                      ></td>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
                   <td>
                     <div class="ink-item-cell">
                       <div class="ink-thumb u-tint-amber"><i class="bi bi-palette"></i></div>
-                      <div class="ink-item-text"><a href="post-edit.html"
- class="ink-link">2025年产品设计趋势全解析：从扁平到沉浸式体验</a><small>设计专题</small></div>
+                      <div class="ink-item-text">
+                        <a href="post-edit.html" class="ink-link"
+                          >2025年产品设计趋势全解析：从扁平到沉浸式体验</a
+                        ><small>设计专题</small>
+                      </div>
                     </div>
                   </td>
                   <td><span class="ink-tag-sm u-tint-amber">设计灵感</span></td>
@@ -123,25 +165,39 @@
                   <td class="u-text-sm u-text-gray-600">32</td>
                   <td class="u-text-sm fw-semibold u-text-gray-800">2,156</td>
                   <td class="u-text-xs u-text-gray-500">2025-06-16</td>
-                  <td><span class="ink-badge u-tint-green"><span class="ink-badge-dot"></span>已发布</span></td>
+                  <td>
+                    <span class="ink-badge u-tint-green"
+                      ><span class="ink-badge-dot"></span>已发布</span
+                    >
+                  </td>
                   <td>
                     <div class="d-flex justify-content-center gap-1">
-                      <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"><i
- class="bi bi-pencil"></i></a>
+                      <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
 
-                      <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
- class="bi bi-trash3"></i></button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
                     </div>
                   </td>
                 </tr>
                 <tr data-status="pending">
-                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
-                      ></td>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
                   <td>
                     <div class="ink-item-cell">
                       <div class="ink-thumb u-tint-green"><i class="bi bi-cloud"></i></div>
-                      <div class="ink-item-text"><a href="post-edit.html" class="ink-link">Docker
-                          容器化生产部署最佳实践与常见坑</a><small>运维分享</small></div>
+                      <div class="ink-item-text">
+                        <a href="post-edit.html" class="ink-link"
+                          >Docker 容器化生产部署最佳实践与常见坑</a
+                        ><small>运维分享</small>
+                      </div>
                     </div>
                   </td>
                   <td><span class="ink-tag-sm u-tint-green">运维部署</span></td>
@@ -149,27 +205,47 @@
                   <td class="u-text-sm u-text-gray-600">19</td>
                   <td class="u-text-sm fw-semibold u-text-gray-800">1,877</td>
                   <td class="u-text-xs u-text-gray-500">2025-06-14</td>
-                  <td><span class="ink-badge u-tint-amber"><span class="ink-badge-dot"></span>待审核</span></td>
+                  <td>
+                    <span class="ink-badge u-tint-amber"
+                      ><span class="ink-badge-dot"></span>待审核</span
+                    >
+                  </td>
                   <td>
                     <div class="d-flex justify-content-center gap-1">
-                      <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"><i
- class="bi bi-pencil"></i></a>
-                      <button class="btn btn-light btn-icon" title="通过审核" data-action="toast" data-toast-msg="已审核通过"
-                        data-toast-type="success"><i class="bi bi-check-circle u-text-success"
-             ></i></button>
-                      <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
- class="bi bi-trash3"></i></button>
+                      <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="通过审核"
+                        data-action="toast"
+                        data-toast-msg="已审核通过"
+                        data-toast-type="success"
+                      >
+                        <i class="bi bi-check-circle u-text-success"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
                     </div>
                   </td>
                 </tr>
                 <tr data-status="draft">
-                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
-                      ></td>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
                   <td>
                     <div class="ink-item-cell">
                       <div class="ink-thumb u-tint-purple"><i class="bi bi-cpu"></i></div>
-                      <div class="ink-item-text"><a href="post-edit.html" class="ink-link">大语言模型 Fine-tuning
-                          全流程入门指南</a><small>AI 研究</small></div>
+                      <div class="ink-item-text">
+                        <a href="post-edit.html" class="ink-link"
+                          >大语言模型 Fine-tuning 全流程入门指南</a
+                        ><small>AI 研究</small>
+                      </div>
                     </div>
                   </td>
                   <td><span class="ink-tag-sm u-tint-purple">AI 技术</span></td>
@@ -177,26 +253,47 @@
                   <td class="u-text-sm u-text-gray-600">—</td>
                   <td class="u-text-sm fw-semibold u-text-gray-800">—</td>
                   <td class="u-text-xs u-text-gray-500">2025-06-12</td>
-                  <td><span class="ink-badge u-tint-slate"><span class="ink-badge-dot"></span>草稿</span></td>
+                  <td>
+                    <span class="ink-badge u-tint-slate"
+                      ><span class="ink-badge-dot"></span>草稿</span
+                    >
+                  </td>
                   <td>
                     <div class="d-flex justify-content-center gap-1">
-                      <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"><i
- class="bi bi-pencil"></i></a>
-                      <button class="btn btn-light btn-icon" title="发布" data-action="toast" data-toast-msg="发布成功"
-                        data-toast-type="success"><i class="bi bi-send u-text-primary" ></i></button>
-                      <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
- class="bi bi-trash3"></i></button>
+                      <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="发布"
+                        data-action="toast"
+                        data-toast-msg="发布成功"
+                        data-toast-type="success"
+                      >
+                        <i class="bi bi-send u-text-primary"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
                     </div>
                   </td>
                 </tr>
                 <tr data-status="published">
-                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
-                      ></td>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
                   <td>
                     <div class="ink-item-cell">
                       <div class="ink-thumb u-tint-cyan"><i class="bi bi-terminal"></i></div>
-                      <div class="ink-item-text"><a href="post-edit.html" class="ink-link">TypeScript 高级类型体操：泛型 + infer
-                          实战技巧</a><small>前端进阶</small></div>
+                      <div class="ink-item-text">
+                        <a href="post-edit.html" class="ink-link"
+                          >TypeScript 高级类型体操：泛型 + infer 实战技巧</a
+                        ><small>前端进阶</small>
+                      </div>
                     </div>
                   </td>
                   <td><span class="ink-tag-sm u-tint-blue">前端技术</span></td>
@@ -204,25 +301,39 @@
                   <td class="u-text-sm u-text-gray-600">67</td>
                   <td class="u-text-sm fw-semibold u-text-gray-800">4,603</td>
                   <td class="u-text-xs u-text-gray-500">2025-06-10</td>
-                  <td><span class="ink-badge u-tint-green"><span class="ink-badge-dot"></span>已发布</span></td>
+                  <td>
+                    <span class="ink-badge u-tint-green"
+                      ><span class="ink-badge-dot"></span>已发布</span
+                    >
+                  </td>
                   <td>
                     <div class="d-flex justify-content-center gap-1">
-                      <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"><i
- class="bi bi-pencil"></i></a>
+                      <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
 
-                      <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
- class="bi bi-trash3"></i></button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
                     </div>
                   </td>
                 </tr>
                 <tr data-status="published">
-                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
-                      ></td>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
                   <td>
                     <div class="ink-item-cell">
                       <div class="ink-thumb u-tint-pink"><i class="bi bi-bar-chart"></i></div>
-                      <div class="ink-item-text"><a href="post-edit.html" class="ink-link">从零搭建数据可视化大屏：ECharts
-                          完整实战</a><small>数据分析</small></div>
+                      <div class="ink-item-text">
+                        <a href="post-edit.html" class="ink-link"
+                          >从零搭建数据可视化大屏：ECharts 完整实战</a
+                        ><small>数据分析</small>
+                      </div>
                     </div>
                   </td>
                   <td><span class="ink-tag-sm u-tint-pink">数据可视化</span></td>
@@ -230,25 +341,39 @@
                   <td class="u-text-sm u-text-gray-600">41</td>
                   <td class="u-text-sm fw-semibold u-text-gray-800">5,128</td>
                   <td class="u-text-xs u-text-gray-500">2025-06-08</td>
-                  <td><span class="ink-badge u-tint-green"><span class="ink-badge-dot"></span>已发布</span></td>
+                  <td>
+                    <span class="ink-badge u-tint-green"
+                      ><span class="ink-badge-dot"></span>已发布</span
+                    >
+                  </td>
                   <td>
                     <div class="d-flex justify-content-center gap-1">
-                      <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"><i
- class="bi bi-pencil"></i></a>
+                      <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
 
-                      <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
- class="bi bi-trash3"></i></button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
                     </div>
                   </td>
                 </tr>
                 <tr data-status="draft">
-                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
-                      ></td>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
                   <td>
                     <div class="ink-item-cell">
                       <div class="ink-thumb u-tint-gray"><i class="bi bi-shield-check"></i></div>
-                      <div class="ink-item-text"><a href="post-edit.html" class="ink-link">Web 应用安全防护：XSS、CSRF
-                          全攻略</a><small>安全专题</small></div>
+                      <div class="ink-item-text">
+                        <a href="post-edit.html" class="ink-link"
+                          >Web 应用安全防护：XSS、CSRF 全攻略</a
+                        ><small>安全专题</small>
+                      </div>
                     </div>
                   </td>
                   <td><span class="ink-tag-sm u-tint-gray">安全技术</span></td>
@@ -256,38 +381,59 @@
                   <td class="u-text-sm u-text-gray-600">—</td>
                   <td class="u-text-sm fw-semibold u-text-gray-800">—</td>
                   <td class="u-text-xs u-text-gray-500">2025-06-05</td>
-                  <td><span class="ink-badge u-tint-slate"><span class="ink-badge-dot"></span>草稿</span></td>
+                  <td>
+                    <span class="ink-badge u-tint-slate"
+                      ><span class="ink-badge-dot"></span>草稿</span
+                    >
+                  </td>
                   <td>
                     <div class="d-flex justify-content-center gap-1">
-                      <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"><i
- class="bi bi-pencil"></i></a>
-                      <button class="btn btn-light btn-icon" title="发布" data-action="toast" data-toast-msg="发布成功"
-                        data-toast-type="success"><i class="bi bi-send u-text-primary" ></i></button>
-                      <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
- class="bi bi-trash3"></i></button>
+                      <a href="post-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="发布"
+                        data-action="toast"
+                        data-toast-msg="发布成功"
+                        data-toast-type="success"
+                      >
+                        <i class="bi bi-send u-text-primary"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
                     </div>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-        <div class="card-footer d-flex align-items-center justify-content-between">
-          <span class="u-text-gray-500 u-text-sm">共 <strong>1,284</strong> 条记录，第 <strong>1 / 129</strong> 页</span>
-          <nav>
-            <ul class="pagination mb-0">
-              <li class="page-item disabled"><a class="page-link" href="#"><i class="bi bi-chevron-left u-icon-xs"></i></a></li>
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right u-icon-xs"></i></a></li>
-            </ul>
-          </nav>
+          <div class="card-footer d-flex align-items-center justify-content-between">
+            <span class="u-text-gray-500 u-text-sm"
+              >共 <strong>1,284</strong> 条记录，第 <strong>1 / 129</strong> 页</span
+            >
+            <nav>
+              <ul class="pagination mb-0">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#"><i class="bi bi-chevron-left u-icon-xs"></i></a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#"><i class="bi bi-chevron-right u-icon-xs"></i></a>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
-      </div>
-    </main>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <script type="module" src="/assets/js/inkflow-admin.js"></script>
-</body>
-
+      </main>
+    </div>
+    <script type="module" src="/assets/js/inkflow-admin.js"></script>
+  </body>
 </html>

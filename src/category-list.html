@@ -1,277 +1,404 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>栏目列表 — InkFlow</title>
+    {{> head_assets }}
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>栏目列表 — InkFlow</title>
-{{> head_assets }}
-</head>
-
-<body>
-  <!-- SIDEBAR -->
-  {{> sidebar }}
-  <div id="sidebar-overlay"></div>
-  <div id="main-wrapper">
-    <!-- TOPBAR -->
-    {{> topbar breadcrumb="<li class='breadcrumb-item'><a href='index.html'>首页</a></li> <li class='breadcrumb-item'><a href='#'>内容管理</a></li> <li class='breadcrumb-item active' aria-current='page'>栏目管理</li>" }}
-    <main id="page-content">
-      <div class="page-header">
-        <div>
-          <h1 class="page-title">栏目管理</h1>
-          <span class='page-subtitle'>共 8 个栏目</span>
+  <body>
+    <!-- SIDEBAR -->
+    {{> sidebar }}
+    <div id="sidebar-overlay"></div>
+    <div id="main-wrapper">
+      <!-- TOPBAR -->
+      {{#> topbar}}
+        <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item"><a href="#">内容管理</a></li> <li class="breadcrumb-item active" aria-current="page">栏目管理</li>
+      {{/topbar}}
+      <main id="page-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">栏目管理</h1>
+            <span class="page-subtitle">共 8 个栏目</span>
+          </div>
+          <a href="category-edit.html" class="btn btn-primary btn-sm"
+            ><i class="bi bi-plus-lg"></i> 新建栏目</a
+          >
         </div>
-        <a href="category-edit.html" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg"></i> 新建栏目</a>
-      </div>
-      <div class="ink-bulk-bar" id="bulk-action-bar">
-        <i class="bi bi-check2-all u-text-primary"></i>
-        <span>已选 <strong id="bulk-count">0</strong> 项</span>
-        <div class="ms-auto d-flex gap-2">
-          <button class="btn btn-light btn-sm u-text-sm" data-action="toast" data-toast-msg="操作成功"
-            data-toast-type="success"><i class="bi bi-check-lg me-1"></i>批量操作</button>
-          <button class="btn btn-danger-soft btn-sm u-text-sm" data-action="toast"
-            data-toast-msg="已删除" data-toast-type="danger"><i class="bi bi-trash3 me-1"></i>批量删除</button>
+        <div class="ink-bulk-bar" id="bulk-action-bar">
+          <i class="bi bi-check2-all u-text-primary"></i>
+          <span>已选 <strong id="bulk-count">0</strong> 项</span>
+          <div class="ms-auto d-flex gap-2">
+            <button
+              class="btn btn-light btn-sm u-text-sm"
+              data-action="toast"
+              data-toast-msg="操作成功"
+              data-toast-type="success"
+            >
+              <i class="bi bi-check-lg me-1"></i>批量操作
+            </button>
+            <button
+              class="btn btn-danger-soft btn-sm u-text-sm"
+              data-action="toast"
+              data-toast-msg="已删除"
+              data-toast-type="danger"
+            >
+              <i class="bi bi-trash3 me-1"></i>批量删除
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div class="card ink-card mt-3">
-        <div class="table-responsive">
+        <div class="card ink-card mt-3">
+          <div class="table-responsive">
             <table class="ink-table">
               <thead>
                 <tr>
-                  <th class="table-check"><input type="checkbox" id="select-all" class="form-check-input table-check-box"
-                      ></th>
+                  <th class="table-check">
+                    <input
+                      type="checkbox"
+                      id="select-all"
+                      class="form-check-input table-check-box"
+                    />
+                  </th>
                   <th class="w-50px">ID</th>
                   <th class="min-w-240px">栏目名称</th>
                   <th>URL Slug</th>
                   <th>文章数</th>
                   <th>创建时间</th>
                   <th>状态</th>
-                  <th class="text-center w-100px" >操作</th>
+                  <th class="text-center w-100px">操作</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
-                      ></td>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
                   <td class="u-text-gray-500 u-text-body fw-medium">1</td>
                   <td>
                     <div class="ink-item-cell">
                       <div class="ink-thumb u-tint-blue"><i class="bi bi-code-slash"></i></div>
-                      <div class="ink-item-text"><a href="category-edit.html"
- class="ink-link">前端技术</a><small>专注前端开发技术分享</small></div>
+                      <div class="ink-item-text">
+                        <a href="category-edit.html" class="ink-link">前端技术</a
+                        ><small>专注前端开发技术分享</small>
+                      </div>
                     </div>
                   </td>
                   <td class="u-text-sm u-text-gray-500 u-text-mono">frontend-tech</td>
                   <td class="u-text-sm fw-semibold u-text-gray-800">286</td>
                   <td class="u-text-xs u-text-gray-500">2025-01-10</td>
-                  <td><span class="ink-badge u-tint-green"><span class="ink-badge-dot"></span>启用</span></td>
+                  <td>
+                    <span class="ink-badge u-tint-green"
+                      ><span class="ink-badge-dot"></span>启用</span
+                    >
+                  </td>
                   <td>
                     <div class="d-flex justify-content-center gap-1">
-                      <a href="category-edit.html" class="btn btn-light btn-icon" title="编辑"><i
- class="bi bi-pencil"></i></a>
+                      <a href="category-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
 
-                      <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
- class="bi bi-trash3"></i></button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
-                      ></td>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
                   <td class="u-text-gray-500 u-text-body fw-medium">2</td>
                   <td>
                     <div class="ink-item-cell">
                       <div class="ink-thumb u-tint-purple"><i class="bi bi-cpu"></i></div>
-                      <div class="ink-item-text"><a href="category-edit.html" class="ink-link">AI
-                          技术</a><small>人工智能与机器学习相关内容</small></div>
+                      <div class="ink-item-text">
+                        <a href="category-edit.html" class="ink-link">AI 技术</a
+                        ><small>人工智能与机器学习相关内容</small>
+                      </div>
                     </div>
                   </td>
                   <td class="u-text-sm u-text-gray-500 u-text-mono">ai-tech</td>
                   <td class="u-text-sm fw-semibold u-text-gray-800">142</td>
                   <td class="u-text-xs u-text-gray-500">2025-01-15</td>
-                  <td><span class="ink-badge u-tint-green"><span class="ink-badge-dot"></span>启用</span></td>
+                  <td>
+                    <span class="ink-badge u-tint-green"
+                      ><span class="ink-badge-dot"></span>启用</span
+                    >
+                  </td>
                   <td>
                     <div class="d-flex justify-content-center gap-1">
-                      <a href="category-edit.html" class="btn btn-light btn-icon" title="编辑"><i
- class="bi bi-pencil"></i></a>
+                      <a href="category-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
 
-                      <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
- class="bi bi-trash3"></i></button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
-                      ></td>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
                   <td class="u-text-gray-500 u-text-body fw-medium">3</td>
                   <td>
                     <div class="ink-item-cell">
                       <div class="ink-thumb u-tint-green"><i class="bi bi-cloud"></i></div>
-                      <div class="ink-item-text"><a href="category-edit.html"
- class="ink-link">运维部署</a><small>服务器运维、Docker、K8s</small></div>
+                      <div class="ink-item-text">
+                        <a href="category-edit.html" class="ink-link">运维部署</a
+                        ><small>服务器运维、Docker、K8s</small>
+                      </div>
                     </div>
                   </td>
                   <td class="u-text-sm u-text-gray-500 u-text-mono">devops</td>
                   <td class="u-text-sm fw-semibold u-text-gray-800">98</td>
                   <td class="u-text-xs u-text-gray-500">2025-02-01</td>
-                  <td><span class="ink-badge u-tint-green"><span class="ink-badge-dot"></span>启用</span></td>
+                  <td>
+                    <span class="ink-badge u-tint-green"
+                      ><span class="ink-badge-dot"></span>启用</span
+                    >
+                  </td>
                   <td>
                     <div class="d-flex justify-content-center gap-1">
-                      <a href="category-edit.html" class="btn btn-light btn-icon" title="编辑"><i
- class="bi bi-pencil"></i></a>
+                      <a href="category-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
 
-                      <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
- class="bi bi-trash3"></i></button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
-                      ></td>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
                   <td class="u-text-gray-500 u-text-body fw-medium">4</td>
                   <td>
                     <div class="ink-item-cell">
                       <div class="ink-thumb u-tint-amber"><i class="bi bi-palette"></i></div>
-                      <div class="ink-item-text"><a href="category-edit.html" class="ink-link">设计灵感</a><small>UI/UX
-                          设计思路与灵感分享</small></div>
+                      <div class="ink-item-text">
+                        <a href="category-edit.html" class="ink-link">设计灵感</a
+                        ><small>UI/UX 设计思路与灵感分享</small>
+                      </div>
                     </div>
                   </td>
                   <td class="u-text-sm u-text-gray-500 u-text-mono">design</td>
                   <td class="u-text-sm fw-semibold u-text-gray-800">76</td>
                   <td class="u-text-xs u-text-gray-500">2025-02-10</td>
-                  <td><span class="ink-badge u-tint-green"><span class="ink-badge-dot"></span>启用</span></td>
+                  <td>
+                    <span class="ink-badge u-tint-green"
+                      ><span class="ink-badge-dot"></span>启用</span
+                    >
+                  </td>
                   <td>
                     <div class="d-flex justify-content-center gap-1">
-                      <a href="category-edit.html" class="btn btn-light btn-icon" title="编辑"><i
- class="bi bi-pencil"></i></a>
+                      <a href="category-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
 
-                      <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
- class="bi bi-trash3"></i></button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
-                      ></td>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
                   <td class="u-text-gray-500 u-text-body fw-medium">5</td>
                   <td>
                     <div class="ink-item-cell">
                       <div class="ink-thumb u-tint-pink"><i class="bi bi-bar-chart"></i></div>
-                      <div class="ink-item-text"><a href="category-edit.html"
- class="ink-link">数据可视化</a><small>ECharts、D3.js 等可视化技术</small></div>
+                      <div class="ink-item-text">
+                        <a href="category-edit.html" class="ink-link">数据可视化</a
+                        ><small>ECharts、D3.js 等可视化技术</small>
+                      </div>
                     </div>
                   </td>
                   <td class="u-text-sm u-text-gray-500 u-text-mono">data-viz</td>
                   <td class="u-text-sm fw-semibold u-text-gray-800">54</td>
                   <td class="u-text-xs u-text-gray-500">2025-03-01</td>
-                  <td><span class="ink-badge u-tint-green"><span class="ink-badge-dot"></span>启用</span></td>
+                  <td>
+                    <span class="ink-badge u-tint-green"
+                      ><span class="ink-badge-dot"></span>启用</span
+                    >
+                  </td>
                   <td>
                     <div class="d-flex justify-content-center gap-1">
-                      <a href="category-edit.html" class="btn btn-light btn-icon" title="编辑"><i
- class="bi bi-pencil"></i></a>
+                      <a href="category-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
 
-                      <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
- class="bi bi-trash3"></i></button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
-                      ></td>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
                   <td class="u-text-gray-500 u-text-body fw-medium">6</td>
                   <td>
                     <div class="ink-item-cell">
                       <div class="ink-thumb u-tint-slate"><i class="bi bi-shield-check"></i></div>
-                      <div class="ink-item-text"><a href="category-edit.html"
- class="ink-link">安全技术</a><small>bi-shield-check</small></div>
+                      <div class="ink-item-text">
+                        <a href="category-edit.html" class="ink-link">安全技术</a
+                        ><small>bi-shield-check</small>
+                      </div>
                     </div>
                   </td>
                   <td class="u-text-sm u-text-gray-500 u-text-mono">security</td>
                   <td class="u-text-sm fw-semibold u-text-gray-800">38</td>
                   <td class="u-text-xs u-text-gray-500">2025-03-15</td>
-                  <td><span class="ink-badge u-tint-slate"><span class="ink-badge-dot"></span>禁用</span></td>
+                  <td>
+                    <span class="ink-badge u-tint-slate"
+                      ><span class="ink-badge-dot"></span>禁用</span
+                    >
+                  </td>
                   <td>
                     <div class="d-flex justify-content-center gap-1">
-                      <a href="category-edit.html" class="btn btn-light btn-icon" title="编辑"><i
- class="bi bi-pencil"></i></a>
+                      <a href="category-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
 
-                      <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
- class="bi bi-trash3"></i></button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
-                      ></td>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
                   <td class="u-text-gray-500 u-text-body fw-medium">7</td>
                   <td>
                     <div class="ink-item-cell">
                       <div class="ink-thumb u-tint-cyan"><i class="bi bi-github"></i></div>
-                      <div class="ink-item-text"><a href="category-edit.html"
- class="ink-link">开源项目</a><small>开源项目推荐与源码分析</small></div>
+                      <div class="ink-item-text">
+                        <a href="category-edit.html" class="ink-link">开源项目</a
+                        ><small>开源项目推荐与源码分析</small>
+                      </div>
                     </div>
                   </td>
                   <td class="u-text-sm u-text-gray-500 u-text-mono">open-source</td>
                   <td class="u-text-sm fw-semibold u-text-gray-800">62</td>
                   <td class="u-text-xs u-text-gray-500">2025-04-01</td>
-                  <td><span class="ink-badge u-tint-green"><span class="ink-badge-dot"></span>启用</span></td>
+                  <td>
+                    <span class="ink-badge u-tint-green"
+                      ><span class="ink-badge-dot"></span>启用</span
+                    >
+                  </td>
                   <td>
                     <div class="d-flex justify-content-center gap-1">
-                      <a href="category-edit.html" class="btn btn-light btn-icon" title="编辑"><i
- class="bi bi-pencil"></i></a>
+                      <a href="category-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
 
-                      <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
- class="bi bi-trash3"></i></button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td><input type="checkbox" class="form-check-input ink-row-check table-check-box"
-                      ></td>
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
                   <td class="u-text-gray-500 u-text-body fw-medium">8</td>
                   <td>
                     <div class="ink-item-cell">
                       <div class="ink-thumb u-tint-yellow"><i class="bi bi-book"></i></div>
-                      <div class="ink-item-text"><a href="category-edit.html"
- class="ink-link">随笔日记</a><small>生活随笔与学习心得</small></div>
+                      <div class="ink-item-text">
+                        <a href="category-edit.html" class="ink-link">随笔日记</a
+                        ><small>生活随笔与学习心得</small>
+                      </div>
                     </div>
                   </td>
                   <td class="u-text-sm u-text-gray-500 u-text-mono">diary</td>
                   <td class="u-text-sm fw-semibold u-text-gray-800">32</td>
                   <td class="u-text-xs u-text-gray-500">2025-04-20</td>
-                  <td><span class="ink-badge u-tint-green"><span class="ink-badge-dot"></span>启用</span></td>
+                  <td>
+                    <span class="ink-badge u-tint-green"
+                      ><span class="ink-badge-dot"></span>启用</span
+                    >
+                  </td>
                   <td>
                     <div class="d-flex justify-content-center gap-1">
-                      <a href="category-edit.html" class="btn btn-light btn-icon" title="编辑"><i
- class="bi bi-pencil"></i></a>
+                      <a href="category-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
 
-                      <button class="btn btn-danger-soft btn-icon" title="删除" data-action="delete"><i
- class="bi bi-trash3"></i></button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="删除"
+                        data-action="delete"
+                      >
+                        <i class="bi bi-trash3"></i>
+                      </button>
                     </div>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-        <div class="card-footer d-flex align-items-center justify-content-between">
-          <span class="u-text-gray-500 u-text-sm">共 <strong>8</strong> 条记录，第 <strong>1 / 1</strong> 页</span>
-          <nav>
-            <ul class="pagination mb-0">
-              <li class="page-item disabled"><a class="page-link" href="#"><i
- class="bi bi-chevron-left u-icon-xs"></i></a></li>
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right u-icon-xs"></i></a></li>
-            </ul>
-          </nav>
+          <div class="card-footer d-flex align-items-center justify-content-between">
+            <span class="u-text-gray-500 u-text-sm"
+              >共 <strong>8</strong> 条记录，第 <strong>1 / 1</strong> 页</span
+            >
+            <nav>
+              <ul class="pagination mb-0">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#"><i class="bi bi-chevron-left u-icon-xs"></i></a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#"><i class="bi bi-chevron-right u-icon-xs"></i></a>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
-      </div>
-    </main>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <script type="module" src="/assets/js/inkflow-admin.js"></script>
-</body>
-
+      </main>
+    </div>
+    <script type="module" src="/assets/js/inkflow-admin.js"></script>
+  </body>
 </html>

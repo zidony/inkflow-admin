@@ -1,184 +1,397 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>用户管理 — InkFlow</title>
-{{> head_assets }}
-</head>
-<body>
-<!-- SIDEBAR -->
-{{> sidebar }}
-<div id="sidebar-overlay"></div>
-<div id="main-wrapper">
-<!-- TOPBAR -->
-{{> topbar breadcrumb="<li class='breadcrumb-item'><a href='index.html'>首页</a></li><li class='breadcrumb-item active' aria-current='page'>用户管理</li>" }}
-<main id="page-content">
-<div class="page-header">
-  <div>
-    <h1 class="page-title">用户管理</h1>
-    <span class='page-subtitle'>共 4,210 名用户</span>
-  </div>
-  <a href="user-edit.html" class="btn btn-primary btn-sm"><i class="bi bi-person-plus"></i> 新建用户</a>
-</div>
-<div class="ink-bulk-bar" id="bulk-action-bar">
-  <i class="bi bi-check2-all u-text-primary" ></i>
-  <span>已选 <strong id="bulk-count">0</strong> 项</span>
-  <div class="ms-auto d-flex gap-2">
-    <button class="btn btn-light btn-sm u-text-sm" data-action="toast" data-toast-msg="操作成功" data-toast-type="success"><i class="bi bi-check-lg me-1"></i>批量操作</button>
-    <button class="btn btn-danger-soft btn-sm u-text-sm" data-action="toast" data-toast-msg="已删除" data-toast-type="danger"><i class="bi bi-trash3 me-1"></i>批量删除</button>
-  </div>
-</div>
-<div class="card ink-card mt-3">
-        <div class="card-header border-bottom-0 px-3 py-2">
-    <div class="ink-filter-tabs" id="filter-tabs" role="tablist"><button class="ink-filter-tab active" data-filter="all">全部 <span class="u-opacity-70 fw-normal">(4210)</span></button><button class="ink-filter-tab" data-filter="active">正常 <span class="u-opacity-70 fw-normal">(4080)</span></button><button class="ink-filter-tab" data-filter="inactive">禁用 <span class="u-opacity-70 fw-normal">(86)</span></button><button class="ink-filter-tab" data-filter="banned">待审 <span class="u-opacity-70 fw-normal">(44)</span></button></div>
-  </div>
-  <div class="table-responsive">
-      <table class="ink-table">
-      <thead><tr>
-        <th class="table-check"><input type="checkbox" id="select-all" class="form-check-input table-check-box" ></th>
-        <th class="min-w-200px">用户名</th><th>角色</th><th>文章数</th><th>注册时间</th><th>最后登录</th><th>状态</th><th class="text-center w-120px" >操作</th>
-      </tr></thead>
-      <tbody><tr data-status="active">
-          <td><input type="checkbox" class="form-check-input ink-row-check table-check-box" ></td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div class="ink-avatar ink-avatar-blue">AD</div>
-              <div class="ink-item-text"><a href="user-edit.html" class="ink-link">Admin</a><small>admin@inkflow.dev</small></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>用户管理 — InkFlow</title>
+    {{> head_assets }}
+  </head>
+  <body>
+    <!-- SIDEBAR -->
+    {{> sidebar }}
+    <div id="sidebar-overlay"></div>
+    <div id="main-wrapper">
+      <!-- TOPBAR -->
+      {{#> topbar}}
+        <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item active" aria-current="page">用户管理</li>
+      {{/topbar}}
+      <main id="page-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">用户管理</h1>
+            <span class="page-subtitle">共 4,210 名用户</span>
+          </div>
+          <a href="user-edit.html" class="btn btn-primary btn-sm"
+            ><i class="bi bi-person-plus"></i> 新建用户</a
+          >
+        </div>
+        <div class="ink-bulk-bar" id="bulk-action-bar">
+          <i class="bi bi-check2-all u-text-primary"></i>
+          <span>已选 <strong id="bulk-count">0</strong> 项</span>
+          <div class="ms-auto d-flex gap-2">
+            <button
+              class="btn btn-light btn-sm u-text-sm"
+              data-action="toast"
+              data-toast-msg="操作成功"
+              data-toast-type="success"
+            >
+              <i class="bi bi-check-lg me-1"></i>批量操作
+            </button>
+            <button
+              class="btn btn-danger-soft btn-sm u-text-sm"
+              data-action="toast"
+              data-toast-msg="已删除"
+              data-toast-type="danger"
+            >
+              <i class="bi bi-trash3 me-1"></i>批量删除
+            </button>
+          </div>
+        </div>
+        <div class="card ink-card mt-3">
+          <div class="card-header border-bottom-0 px-3 py-2">
+            <div class="ink-filter-tabs" id="filter-tabs" role="tablist">
+              <button class="ink-filter-tab active" data-filter="all">
+                全部 <span class="u-opacity-70 fw-normal">(4210)</span></button
+              ><button class="ink-filter-tab" data-filter="active">
+                正常 <span class="u-opacity-70 fw-normal">(4080)</span></button
+              ><button class="ink-filter-tab" data-filter="inactive">
+                禁用 <span class="u-opacity-70 fw-normal">(86)</span></button
+              ><button class="ink-filter-tab" data-filter="banned">
+                待审 <span class="u-opacity-70 fw-normal">(44)</span>
+              </button>
             </div>
-          </td>
-          <td><span class="ink-badge u-tint-slate">超级管理员</span></td>
-          <td class="u-text-sm fw-semibold u-text-gray-800">1,284</td>
-          <td class="u-text-xs u-text-gray-500">2024-01-01</td>
-          <td class="u-text-xs u-text-gray-500">2025-06-18 09:32</td>
-          <td><span class="ink-badge u-tint-green"><span class="ink-badge-dot"></span>正常</span></td>
-          <td>
-            <div class="d-flex justify-content-center gap-1">
-              <a href="user-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
-              <button class="btn btn-light btn-icon" title="发送消息" data-action="toast" data-toast-msg="消息功能开发中" data-toast-type="info"><i class="bi bi-envelope"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="封禁用户" data-action="toast" data-toast-msg="用户已被封禁" data-toast-type="danger"><i class="bi bi-person-x"></i></button>
-            </div>
-          </td>
-        </tr><tr data-status="active">
-          <td><input type="checkbox" class="form-check-input ink-row-check table-check-box" ></td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div class="ink-avatar ink-avatar-green">ED</div>
-              <div class="ink-item-text"><a href="user-edit.html" class="ink-link">Editor</a><small>editor@inkflow.dev</small></div>
-            </div>
-          </td>
-          <td><span class="ink-badge u-tint-slate">内容编辑</span></td>
-          <td class="u-text-sm fw-semibold u-text-gray-800">168</td>
-          <td class="u-text-xs u-text-gray-500">2024-02-15</td>
-          <td class="u-text-xs u-text-gray-500">2025-06-17 16:45</td>
-          <td><span class="ink-badge u-tint-green"><span class="ink-badge-dot"></span>正常</span></td>
-          <td>
-            <div class="d-flex justify-content-center gap-1">
-              <a href="user-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
-              <button class="btn btn-light btn-icon" title="发送消息" data-action="toast" data-toast-msg="消息功能开发中" data-toast-type="info"><i class="bi bi-envelope"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="封禁用户" data-action="toast" data-toast-msg="用户已被封禁" data-toast-type="danger"><i class="bi bi-person-x"></i></button>
-            </div>
-          </td>
-        </tr><tr data-status="active">
-          <td><input type="checkbox" class="form-check-input ink-row-check table-check-box" ></td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div class="ink-avatar ink-avatar-amber">OP</div>
-              <div class="ink-item-text"><a href="user-edit.html" class="ink-link">Ops</a><small>ops@inkflow.dev</small></div>
-            </div>
-          </td>
-          <td><span class="ink-badge u-tint-slate">运维工程师</span></td>
-          <td class="u-text-sm fw-semibold u-text-gray-800">42</td>
-          <td class="u-text-xs u-text-gray-500">2024-03-20</td>
-          <td class="u-text-xs u-text-gray-500">2025-06-16 11:20</td>
-          <td><span class="ink-badge u-tint-green"><span class="ink-badge-dot"></span>正常</span></td>
-          <td>
-            <div class="d-flex justify-content-center gap-1">
-              <a href="user-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
-              <button class="btn btn-light btn-icon" title="发送消息" data-action="toast" data-toast-msg="消息功能开发中" data-toast-type="info"><i class="bi bi-envelope"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="封禁用户" data-action="toast" data-toast-msg="用户已被封禁" data-toast-type="danger"><i class="bi bi-person-x"></i></button>
-            </div>
-          </td>
-        </tr><tr data-status="inactive">
-          <td><input type="checkbox" class="form-check-input ink-row-check table-check-box" ></td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div class="ink-avatar ink-avatar-slate">RV</div>
-              <div class="ink-item-text"><a href="user-edit.html" class="ink-link">Reviewer</a><small>reviewer@inkflow.dev</small></div>
-            </div>
-          </td>
-          <td><span class="ink-badge u-tint-slate">审核员</span></td>
-          <td class="u-text-sm fw-semibold u-text-gray-800">0</td>
-          <td class="u-text-xs u-text-gray-500">2024-06-10</td>
-          <td class="u-text-xs u-text-gray-500">2025-06-10 08:00</td>
-          <td><span class="ink-badge u-tint-slate"><span class="ink-badge-dot"></span>禁用</span></td>
-          <td>
-            <div class="d-flex justify-content-center gap-1">
-              <a href="user-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
-              <button class="btn btn-light btn-icon" title="发送消息" data-action="toast" data-toast-msg="消息功能开发中" data-toast-type="info"><i class="bi bi-envelope"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="封禁用户" data-action="toast" data-toast-msg="用户已被封禁" data-toast-type="danger"><i class="bi bi-person-x"></i></button>
-            </div>
-          </td>
-        </tr><tr data-status="active">
-          <td><input type="checkbox" class="form-check-input ink-row-check table-check-box" ></td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div class="ink-avatar ink-avatar-slate">张</div>
-              <div class="ink-item-text"><a href="user-edit.html" class="ink-link">张三</a><small>zhangsan@example.com</small></div>
-            </div>
-          </td>
-          <td><span class="ink-badge u-tint-slate">普通用户</span></td>
-          <td class="u-text-sm fw-semibold u-text-gray-800">0</td>
-          <td class="u-text-xs u-text-gray-500">2025-01-15</td>
-          <td class="u-text-xs u-text-gray-500">2025-06-18 14:32</td>
-          <td><span class="ink-badge u-tint-green"><span class="ink-badge-dot"></span>正常</span></td>
-          <td>
-            <div class="d-flex justify-content-center gap-1">
-              <a href="user-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
-              <button class="btn btn-light btn-icon" title="发送消息" data-action="toast" data-toast-msg="消息功能开发中" data-toast-type="info"><i class="bi bi-envelope"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="封禁用户" data-action="toast" data-toast-msg="用户已被封禁" data-toast-type="danger"><i class="bi bi-person-x"></i></button>
-            </div>
-          </td>
-        </tr><tr data-status="banned">
-          <td><input type="checkbox" class="form-check-input ink-row-check table-check-box" ></td>
-          <td>
-            <div class="d-flex align-items-center gap-2">
-              <div class="ink-avatar ink-avatar-slate">李</div>
-              <div class="ink-item-text"><a href="user-edit.html" class="ink-link">李明</a><small>user@inkflow.dev</small></div>
-            </div>
-          </td>
-          <td><span class="ink-badge u-tint-slate">普通用户</span></td>
-          <td class="u-text-sm fw-semibold u-text-gray-800">0</td>
-          <td class="u-text-xs u-text-gray-500">2025-02-20</td>
-          <td class="u-text-xs u-text-gray-500">2025-06-18 13:10</td>
-          <td><span class="ink-badge u-tint-red"><span class="ink-badge-dot"></span>封禁</span></td>
-          <td>
-            <div class="d-flex justify-content-center gap-1">
-              <a href="user-edit.html" class="btn btn-light btn-icon" title="编辑"><i class="bi bi-pencil"></i></a>
-              <button class="btn btn-light btn-icon" title="发送消息" data-action="toast" data-toast-msg="消息功能开发中" data-toast-type="info"><i class="bi bi-envelope"></i></button>
-              <button class="btn btn-danger-soft btn-icon" title="解封用户" data-action="toast" data-toast-msg="用户已解封" data-toast-type="success"><i class="bi bi-person-check"></i></button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="card-footer d-flex align-items-center justify-content-between">
-    <span class="u-text-gray-500 u-text-sm" >共 4,210 名用户 · 显示第 1–10 条</span>
-    <nav>
-      <ul class="pagination mb-0">
-        <li class="page-item disabled"><a class="page-link" href="#"><i class="bi bi-chevron-left u-icon-xs"></i></a></li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right u-icon-xs"></i></a></li>
-      </ul>
-    </nav>
-  </div>
-</div>
-</main>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script type="module" src="/assets/js/inkflow-admin.js"></script>
-</body>
+          </div>
+          <div class="table-responsive">
+            <table class="ink-table">
+              <thead>
+                <tr>
+                  <th class="table-check">
+                    <input
+                      type="checkbox"
+                      id="select-all"
+                      class="form-check-input table-check-box"
+                    />
+                  </th>
+                  <th class="min-w-200px">用户名</th>
+                  <th>角色</th>
+                  <th>文章数</th>
+                  <th>注册时间</th>
+                  <th>最后登录</th>
+                  <th>状态</th>
+                  <th class="text-center w-120px">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-status="active">
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ink-avatar ink-avatar-blue">AD</div>
+                      <div class="ink-item-text">
+                        <a href="user-edit.html" class="ink-link">Admin</a
+                        ><small>admin@inkflow.dev</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="ink-badge u-tint-slate">超级管理员</span></td>
+                  <td class="u-text-sm fw-semibold u-text-gray-800">1,284</td>
+                  <td class="u-text-xs u-text-gray-500">2024-01-01</td>
+                  <td class="u-text-xs u-text-gray-500">2025-06-18 09:32</td>
+                  <td>
+                    <span class="ink-badge u-tint-green"
+                      ><span class="ink-badge-dot"></span>正常</span
+                    >
+                  </td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <a href="user-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="发送消息"
+                        data-action="toast"
+                        data-toast-msg="消息功能开发中"
+                        data-toast-type="info"
+                      >
+                        <i class="bi bi-envelope"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="封禁用户"
+                        data-action="toast"
+                        data-toast-msg="用户已被封禁"
+                        data-toast-type="danger"
+                      >
+                        <i class="bi bi-person-x"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-status="active">
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ink-avatar ink-avatar-green">ED</div>
+                      <div class="ink-item-text">
+                        <a href="user-edit.html" class="ink-link">Editor</a
+                        ><small>editor@inkflow.dev</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="ink-badge u-tint-slate">内容编辑</span></td>
+                  <td class="u-text-sm fw-semibold u-text-gray-800">168</td>
+                  <td class="u-text-xs u-text-gray-500">2024-02-15</td>
+                  <td class="u-text-xs u-text-gray-500">2025-06-17 16:45</td>
+                  <td>
+                    <span class="ink-badge u-tint-green"
+                      ><span class="ink-badge-dot"></span>正常</span
+                    >
+                  </td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <a href="user-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="发送消息"
+                        data-action="toast"
+                        data-toast-msg="消息功能开发中"
+                        data-toast-type="info"
+                      >
+                        <i class="bi bi-envelope"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="封禁用户"
+                        data-action="toast"
+                        data-toast-msg="用户已被封禁"
+                        data-toast-type="danger"
+                      >
+                        <i class="bi bi-person-x"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-status="active">
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ink-avatar ink-avatar-amber">OP</div>
+                      <div class="ink-item-text">
+                        <a href="user-edit.html" class="ink-link">Ops</a
+                        ><small>ops@inkflow.dev</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="ink-badge u-tint-slate">运维工程师</span></td>
+                  <td class="u-text-sm fw-semibold u-text-gray-800">42</td>
+                  <td class="u-text-xs u-text-gray-500">2024-03-20</td>
+                  <td class="u-text-xs u-text-gray-500">2025-06-16 11:20</td>
+                  <td>
+                    <span class="ink-badge u-tint-green"
+                      ><span class="ink-badge-dot"></span>正常</span
+                    >
+                  </td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <a href="user-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="发送消息"
+                        data-action="toast"
+                        data-toast-msg="消息功能开发中"
+                        data-toast-type="info"
+                      >
+                        <i class="bi bi-envelope"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="封禁用户"
+                        data-action="toast"
+                        data-toast-msg="用户已被封禁"
+                        data-toast-type="danger"
+                      >
+                        <i class="bi bi-person-x"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-status="inactive">
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ink-avatar ink-avatar-slate">RV</div>
+                      <div class="ink-item-text">
+                        <a href="user-edit.html" class="ink-link">Reviewer</a
+                        ><small>reviewer@inkflow.dev</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="ink-badge u-tint-slate">审核员</span></td>
+                  <td class="u-text-sm fw-semibold u-text-gray-800">0</td>
+                  <td class="u-text-xs u-text-gray-500">2024-06-10</td>
+                  <td class="u-text-xs u-text-gray-500">2025-06-10 08:00</td>
+                  <td>
+                    <span class="ink-badge u-tint-slate"
+                      ><span class="ink-badge-dot"></span>禁用</span
+                    >
+                  </td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <a href="user-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="发送消息"
+                        data-action="toast"
+                        data-toast-msg="消息功能开发中"
+                        data-toast-type="info"
+                      >
+                        <i class="bi bi-envelope"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="封禁用户"
+                        data-action="toast"
+                        data-toast-msg="用户已被封禁"
+                        data-toast-type="danger"
+                      >
+                        <i class="bi bi-person-x"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-status="active">
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ink-avatar ink-avatar-slate">张</div>
+                      <div class="ink-item-text">
+                        <a href="user-edit.html" class="ink-link">张三</a
+                        ><small>zhangsan@example.com</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="ink-badge u-tint-slate">普通用户</span></td>
+                  <td class="u-text-sm fw-semibold u-text-gray-800">0</td>
+                  <td class="u-text-xs u-text-gray-500">2025-01-15</td>
+                  <td class="u-text-xs u-text-gray-500">2025-06-18 14:32</td>
+                  <td>
+                    <span class="ink-badge u-tint-green"
+                      ><span class="ink-badge-dot"></span>正常</span
+                    >
+                  </td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <a href="user-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="发送消息"
+                        data-action="toast"
+                        data-toast-msg="消息功能开发中"
+                        data-toast-type="info"
+                      >
+                        <i class="bi bi-envelope"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="封禁用户"
+                        data-action="toast"
+                        data-toast-msg="用户已被封禁"
+                        data-toast-type="danger"
+                      >
+                        <i class="bi bi-person-x"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-status="banned">
+                  <td>
+                    <input type="checkbox" class="form-check-input ink-row-check table-check-box" />
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ink-avatar ink-avatar-slate">李</div>
+                      <div class="ink-item-text">
+                        <a href="user-edit.html" class="ink-link">李明</a
+                        ><small>user@inkflow.dev</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="ink-badge u-tint-slate">普通用户</span></td>
+                  <td class="u-text-sm fw-semibold u-text-gray-800">0</td>
+                  <td class="u-text-xs u-text-gray-500">2025-02-20</td>
+                  <td class="u-text-xs u-text-gray-500">2025-06-18 13:10</td>
+                  <td>
+                    <span class="ink-badge u-tint-red"
+                      ><span class="ink-badge-dot"></span>封禁</span
+                    >
+                  </td>
+                  <td>
+                    <div class="d-flex justify-content-center gap-1">
+                      <a href="user-edit.html" class="btn btn-light btn-icon" title="编辑"
+                        ><i class="bi bi-pencil"></i
+                      ></a>
+                      <button
+                        class="btn btn-light btn-icon"
+                        title="发送消息"
+                        data-action="toast"
+                        data-toast-msg="消息功能开发中"
+                        data-toast-type="info"
+                      >
+                        <i class="bi bi-envelope"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger-soft btn-icon"
+                        title="解封用户"
+                        data-action="toast"
+                        data-toast-msg="用户已解封"
+                        data-toast-type="success"
+                      >
+                        <i class="bi bi-person-check"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer d-flex align-items-center justify-content-between">
+            <span class="u-text-gray-500 u-text-sm">共 4,210 名用户 · 显示第 1–10 条</span>
+            <nav>
+              <ul class="pagination mb-0">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#"><i class="bi bi-chevron-left u-icon-xs"></i></a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#"><i class="bi bi-chevron-right u-icon-xs"></i></a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="/assets/js/inkflow-admin.js"></script>
+  </body>
 </html>

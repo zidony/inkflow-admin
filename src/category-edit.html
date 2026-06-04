@@ -1,125 +1,182 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>编辑栏目 — InkFlow</title>
-{{> head_assets }}
-</head>
-<body>
-<!-- SIDEBAR -->
-{{> sidebar }}
-<div id="sidebar-overlay"></div>
-<div id="main-wrapper">
-<!-- TOPBAR -->
-{{> topbar breadcrumb="<li class='breadcrumb-item'><a href='index.html'>首页</a></li><li class='breadcrumb-item'><a href='category-list.html'>栏目列表</a></li><li class='breadcrumb-item active' aria-current='page'>编辑栏目</li>" }}
-<main id="page-content">
-
-<div class="page-header">
-  <div>
-    <h1 class="page-title">编辑栏目</h1>
-
-  </div>
-  <a href="category-list.html" class="btn btn-light"><i class="bi bi-arrow-left"></i> 返回列表</a>
-</div>
-<div class="row g-3">
-  <div class="col-12 col-xl-8">
-    <div class="ink-panel ink-anim">
-      <div class="ink-panel-header"><i class="bi bi-folder2-open"></i> 基本信息</div>
-      <div class="ink-panel-body">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>编辑栏目 — InkFlow</title>
+    {{> head_assets }}
+  </head>
+  <body>
+    <!-- SIDEBAR -->
+    {{> sidebar }}
+    <div id="sidebar-overlay"></div>
+    <div id="main-wrapper">
+      <!-- TOPBAR -->
+      {{#> topbar}}
+        <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item"><a href="category-list.html">栏目列表</a></li> <li class="breadcrumb-item active" aria-current="page">编辑栏目</li>
+      {{/topbar}}
+      <main id="page-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">编辑栏目</h1>
+          </div>
+          <a href="category-list.html" class="btn btn-light"
+            ><i class="bi bi-arrow-left"></i> 返回列表</a
+          >
+        </div>
         <div class="row g-3">
-          <div class="col-12">
-            <label class="form-label">栏目名称 <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" value="前端技术" placeholder="请输入栏目名称">
-          </div>
-          <div class="col-12 col-md-6">
-            <label class="form-label">URL Slug</label>
-            <div class="input-group">
-              <span class="input-group-text u-text-sm" >/</span>
-              <input type="text" class="form-control" value="frontend-tech" placeholder="url-slug">
+          <div class="col-12 col-xl-8">
+            <div class="ink-panel ink-anim">
+              <div class="ink-panel-header"><i class="bi bi-folder2-open"></i> 基本信息</div>
+              <div class="ink-panel-body">
+                <div class="row g-3">
+                  <div class="col-12">
+                    <label class="form-label">栏目名称 <span class="text-danger">*</span></label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      value="前端技术"
+                      placeholder="请输入栏目名称"
+                    />
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label">URL Slug</label>
+                    <div class="input-group">
+                      <span class="input-group-text u-text-sm">/</span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        value="frontend-tech"
+                        placeholder="url-slug"
+                      />
+                    </div>
+                    <div class="ink-form-hint">用于 URL 中的标识符，建议英文小写加横线</div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label">父级栏目</label>
+                    <select class="form-select">
+                      <option value="" selected>无（顶级栏目）</option>
+                      <option>前端技术</option>
+                      <option>AI 技术</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">栏目描述</label>
+                    <textarea class="form-control" rows="3" placeholder="简短描述该栏目的内容方向…">
+专注前端开发技术分享，涵盖 HTML、CSS、JavaScript、Vue、React 等主流技术的深度教程与实践经验。</textarea
+                    >
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label">排序权重</label>
+                    <input type="number" class="form-control" value="100" />
+                    <div class="ink-form-hint">数值越大越靠前</div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label">状态</label>
+                    <div class="d-flex align-items-center gap-3 h-38px">
+                      <div class="form-check form-switch mb-0">
+                        <input class="form-check-input" type="checkbox" id="cat-status" checked />
+                        <label class="form-check-label u-text-body" for="cat-status"
+                          >启用该栏目</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="ink-form-hint">用于 URL 中的标识符，建议英文小写加横线</div>
+
+            <!-- SEO -->
+            <div class="ink-panel ink-anim" style="--ink-delay: 0.1s">
+              <div class="ink-panel-header"><i class="bi bi-search-heart"></i> SEO 设置</div>
+              <div class="ink-panel-body">
+                <div class="row g-3">
+                  <div class="col-12">
+                    <label class="form-label">SEO 标题</label>
+                    <input type="text" class="form-control" value="前端技术 | InkFlow 博客" />
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Meta 描述</label>
+                    <textarea class="form-control" rows="2">
+专注前端开发技术分享的博客栏目，包含 Vue、React、TypeScript 等主流框架的深度教程。</textarea
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex gap-2">
+              <button
+                class="btn btn-primary btn-sm"
+                data-action="toast"
+                data-toast-msg="栏目保存成功"
+                data-toast-type="success"
+              >
+                <i class="bi bi-check-lg me-1"></i>保存栏目
+              </button>
+              <button class="btn btn-light" data-action="navigate" data-href="category-list.html">
+                取消
+              </button>
+            </div>
           </div>
-          <div class="col-12 col-md-6">
-            <label class="form-label">父级栏目</label>
-            <select class="form-select"><option value="" selected>无（顶级栏目）</option><option>前端技术</option><option>AI 技术</option></select>
-          </div>
-          <div class="col-12">
-            <label class="form-label">栏目描述</label>
-            <textarea class="form-control" rows="3" placeholder="简短描述该栏目的内容方向…">专注前端开发技术分享，涵盖 HTML、CSS、JavaScript、Vue、React 等主流技术的深度教程与实践经验。</textarea>
-          </div>
-          <div class="col-12 col-md-6">
-            <label class="form-label">排序权重</label>
-            <input type="number" class="form-control" value="100">
-            <div class="ink-form-hint">数值越大越靠前</div>
-          </div>
-          <div class="col-12 col-md-6">
-            <label class="form-label">状态</label>
-            <div class="d-flex align-items-center gap-3 h-38px" >
-              <div class="form-check form-switch mb-0">
-                <input class="form-check-input" type="checkbox" id="cat-status" checked>
-                <label class="form-check-label u-text-body" for="cat-status" >启用该栏目</label>
+
+          <div class="col-12 col-xl-4">
+            <div class="ink-panel ink-anim" style="--ink-delay: 0.05s">
+              <div class="ink-panel-header"><i class="bi bi-image"></i> 栏目封面</div>
+              <div class="ink-panel-body">
+                <div class="ink-cover-preview ratio ratio-16x9" id="cover-preview">
+                  <img src="https://picsum.photos/seed/cat1/400/225" alt="封面" />
+                  <div class="ink-cover-overlay"><i class="bi bi-arrow-repeat"></i> 更换图片</div>
+                </div>
+                <input type="file" id="cover-file-input" accept="image/*" class="d-none" />
+                <div class="d-flex gap-2 mt-2">
+                  <button
+                    class="btn btn-light btn-sm flex-fill"
+                    data-action="trigger"
+                    data-target="cover-file-input"
+                  >
+                    <i class="bi bi-upload me-1"></i>上传
+                  </button>
+                  <button
+                    class="btn btn-light btn-sm flex-fill"
+                    data-action="toast"
+                    data-toast-msg="已从媒体库选择"
+                    data-toast-type="info"
+                  >
+                    <i class="bi bi-collection me-1"></i>媒体库
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="ink-panel ink-anim" style="--ink-delay: 0.15s">
+              <div class="ink-panel-header"><i class="bi bi-bar-chart-line"></i> 栏目统计</div>
+              <div class="ink-panel-body">
+                <div class="d-flex flex-column gap-2 u-text-body">
+                  <div
+                    class="d-flex justify-content-between py-1 border-bottom border-ink-gray-100"
+                  >
+                    <span class="text-muted">文章总数</span><strong>286</strong>
+                  </div>
+                  <div
+                    class="d-flex justify-content-between py-1 border-bottom border-ink-gray-100"
+                  >
+                    <span class="text-muted">已发布</span><strong>241</strong>
+                  </div>
+                  <div
+                    class="d-flex justify-content-between py-1 border-bottom border-ink-gray-100"
+                  >
+                    <span class="text-muted">草稿</span><strong>45</strong>
+                  </div>
+                  <div class="d-flex justify-content-between py-1">
+                    <span class="text-muted">创建时间</span><strong>2025-01-10</strong>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </main>
     </div>
-
-    <!-- SEO -->
-    <div class="ink-panel ink-anim" style="--ink-delay:.1s">
-      <div class="ink-panel-header"><i class="bi bi-search-heart"></i> SEO 设置</div>
-      <div class="ink-panel-body">
-        <div class="row g-3">
-          <div class="col-12">
-            <label class="form-label">SEO 标题</label>
-            <input type="text" class="form-control" value="前端技术 | InkFlow 博客">
-          </div>
-          <div class="col-12">
-            <label class="form-label">Meta 描述</label>
-            <textarea class="form-control" rows="2">专注前端开发技术分享的博客栏目，包含 Vue、React、TypeScript 等主流框架的深度教程。</textarea>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="d-flex gap-2">
-      <button class="btn btn-primary btn-sm" data-action="toast" data-toast-msg="栏目保存成功" data-toast-type="success"><i class="bi bi-check-lg me-1"></i>保存栏目</button>
-      <button class="btn btn-light" data-action="navigate" data-href="category-list.html">取消</button>
-    </div>
-  </div>
-
-  <div class="col-12 col-xl-4">
-    <div class="ink-panel ink-anim" style="--ink-delay:.05s">
-      <div class="ink-panel-header"><i class="bi bi-image"></i> 栏目封面</div>
-      <div class="ink-panel-body">
-        <div class="ink-cover-preview ratio ratio-16x9" id="cover-preview" >
-          <img src="https://picsum.photos/seed/cat1/400/225" alt="封面">
-          <div class="ink-cover-overlay"><i class="bi bi-arrow-repeat"></i> 更换图片</div>
-        </div>
-        <input type="file" id="cover-file-input" accept="image/*" class="d-none">
-        <div class="d-flex gap-2 mt-2">
-          <button class="btn btn-light btn-sm flex-fill" data-action="trigger" data-target="cover-file-input"><i class="bi bi-upload me-1"></i>上传</button>
-          <button class="btn btn-light btn-sm flex-fill" data-action="toast" data-toast-msg="已从媒体库选择" data-toast-type="info"><i class="bi bi-collection me-1"></i>媒体库</button>
-        </div>
-      </div>
-    </div>
-    <div class="ink-panel ink-anim" style="--ink-delay:.15s">
-      <div class="ink-panel-header"><i class="bi bi-bar-chart-line"></i> 栏目统计</div>
-      <div class="ink-panel-body">
-        <div class="d-flex flex-column gap-2 u-text-body" >
-          <div class="d-flex justify-content-between py-1 border-bottom border-ink-gray-100" ><span class="text-muted">文章总数</span><strong>286</strong></div>
-          <div class="d-flex justify-content-between py-1 border-bottom border-ink-gray-100" ><span class="text-muted">已发布</span><strong>241</strong></div>
-          <div class="d-flex justify-content-between py-1 border-bottom border-ink-gray-100" ><span class="text-muted">草稿</span><strong>45</strong></div>
-          <div class="d-flex justify-content-between py-1"><span class="text-muted">创建时间</span><strong>2025-01-10</strong></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</main>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script type="module" src="/assets/js/inkflow-admin.js"></script>
-</body>
+    <script type="module" src="/assets/js/inkflow-admin.js"></script>
+  </body>
 </html>

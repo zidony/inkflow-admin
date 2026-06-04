@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -16,7 +16,9 @@
 <div id="main-wrapper">
 
   <!-- TOPBAR -->
-  {{> topbar breadcrumb="<li class='breadcrumb-item'><a href='index.html'>首页</a></li> <li class='breadcrumb-item active' aria-current='page'>通知中心</li>" }}
+      {{#> topbar}}
+        <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item active" aria-current="page">通知中心</li>
+      {{/topbar}}
 
   <!-- PAGE CONTENT -->
   <main id="page-content">
@@ -225,7 +227,7 @@
                     <i class="bi bi-file-earmark-check"></i>
                   </div>
                   <div class="ink-notif-content">
-                    <div class="ink-notif-title">文章发布成功 <span class="ink-badge" style="background:var(--ink-gray-100);color:var(--ink-gray-600) ms-1">系统</span></div>
+                    <div class="ink-notif-title">文章发布成功 <span class="ink-badge ms-1" style="background:var(--ink-gray-100);color:var(--ink-gray-600)">系统</span></div>
                     <div class="ink-notif-desc">文章《TypeScript 高级类型完全指南》已成功发布，当前已获得 <strong>128</strong> 次阅读。</div>
                     <div class="ink-notif-meta"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
                   </div>
@@ -418,7 +420,7 @@
                   <div class="u-text-gray-500 u-text-xs" >新评论、回复时提醒</div>
                 </div>
                 <div class="form-check form-switch mb-0">
-                  <input class="form-check-input" type="checkbox" checked onchange="showToast('偏好已保存','success')">
+                  <input class="form-check-input" type="checkbox" checked data-action="save-notification-pref">
                 </div>
               </div>
               <div class="d-flex align-items-center justify-content-between">
@@ -427,7 +429,7 @@
                   <div class="u-text-gray-500 u-text-xs" >新用户注册时提醒</div>
                 </div>
                 <div class="form-check form-switch mb-0">
-                  <input class="form-check-input" type="checkbox" checked onchange="showToast('偏好已保存','success')">
+                  <input class="form-check-input" type="checkbox" checked data-action="save-notification-pref">
                 </div>
               </div>
               <div class="d-flex align-items-center justify-content-between">
@@ -436,7 +438,7 @@
                   <div class="u-text-gray-500 u-text-xs" >磁盘、证书、安全提醒</div>
                 </div>
                 <div class="form-check form-switch mb-0">
-                  <input class="form-check-input" type="checkbox" checked onchange="showToast('偏好已保存','success')">
+                  <input class="form-check-input" type="checkbox" checked data-action="save-notification-pref">
                 </div>
               </div>
               <div class="d-flex align-items-center justify-content-between">
@@ -445,7 +447,7 @@
                   <div class="u-text-gray-500 u-text-xs" >通知同时发送至邮箱</div>
                 </div>
                 <div class="form-check form-switch mb-0">
-                  <input class="form-check-input" type="checkbox" onchange="showToast('邮件通知已' + (this.checked ? '开启' : '关闭'),'info')">
+                  <input class="form-check-input" type="checkbox" data-action="toggle-mail-pref">
                 </div>
               </div>
             </div>
@@ -457,7 +459,6 @@
 
   </main>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <script type="module" src="/assets/js/inkflow-admin.js"></script>
 </body>
 </html>

@@ -8,7 +8,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint \"src/assets/js/**/*.js\"",
-    "lint:fix": "eslint \"src/assets/js/**/*.js\" --fix && prettier --write \"src/assets/js/**/*.js\" \"src/assets/css/**/*.css\" \"src/**/*.html\"",
+    "lint:css": "stylelint \"src/assets/css/**/*.css\"",
+    "format:check": "prettier --check \"src/assets/js/**/*.js\" \"src/assets/css/**/*.css\"",
+    "quality": "npm run lint && npm run lint:css && npm run format:check",
+    "lint:fix": "eslint \"src/assets/js/**/*.js\" --fix && stylelint \"src/assets/css/**/*.css\" --fix && prettier --write \"src/assets/js/**/*.js\" \"src/assets/css/**/*.css\"",
     "release": "npm run build && python scripts/release.py"
   },
   "keywords": [
@@ -22,6 +25,13 @@
   ],
   "author": "InkFlow Team",
   "license": "MIT",
+  "dependencies": {
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "@fontsource/plus-jakarta-sans": "^5.2.8",
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
+    "chart.js": "^4.4.1"
+  },
   "devDependencies": {
     "autoprefixer": "^10.4.19",
     "cssnano": "^7.0.1",
@@ -40,7 +50,6 @@
   },
   "lint-staged": {
     "src/assets/css/**/*.css": "stylelint --fix",
-    "src/assets/js/**/*.js": "eslint --fix",
-    "src/**/*.html": "prettier --write"
+    "src/assets/js/**/*.js": "eslint --fix"
   }
 }
