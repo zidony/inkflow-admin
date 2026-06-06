@@ -10,8 +10,12 @@ export class FilterManager {
 
       const container = filterTab.closest('.ink-filter-tabs');
       if (container) {
-        container.querySelectorAll('.ink-filter-tab').forEach(t => t.classList.remove('active'));
+        container.querySelectorAll('.ink-filter-tab').forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
         filterTab.classList.add('active');
+        filterTab.setAttribute('aria-selected', 'true');
       }
 
       const filter = filterTab.getAttribute('data-filter');

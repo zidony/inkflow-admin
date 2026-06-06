@@ -174,7 +174,9 @@ export class EditorManager {
         }
       );
       document.querySelectorAll('.ink-settings-nav-item').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.section === section);
+        const isActive = btn.dataset.section === section;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
       });
     };
   }

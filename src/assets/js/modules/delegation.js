@@ -4,6 +4,28 @@
 import { showToast } from './toast.js';
 import { t } from './i18n.js';
 
+const clickActionHandlers = {
+  'toggle-theme': manager => manager.toggleTheme(),
+  delete: manager => manager.confirmDelete(),
+  toast: manager => manager.showToast(),
+  'read-all': manager => manager.readAll(),
+  'permanent-delete': manager => manager.permanentDelete(),
+  navigate: manager => manager.navigate(),
+  trigger: manager => manager.triggerTarget(),
+  'read-one': manager => manager.callWindowHandler('markOneRead'),
+  'delete-notif': manager => manager.callWindowHandler('deleteNotif'),
+  'toggle-pwd': manager => manager.callWindowHandler('togglePwd'),
+  'do-login': manager => manager.callWindowHandler('doLogin'),
+  'clear-preview': manager => manager.callWindowHandler('clearPreview'),
+  'switch-settings': manager => manager.switchSettings(),
+  'filter-type': manager => manager.callWindowHandler('filterByType', ['data-filter'])
+};
+
+const changeActionHandlers = {
+  'save-notification-pref': manager => manager.saveNotificationPreference(),
+  'toggle-mail-pref': manager => manager.toggleMailPreference()
+};
+
 export class DelegationManager {
   constructor() {
     this.init();
@@ -27,124 +49,162 @@ export class DelegationManager {
         el.style.setProperty('--ink-delay', i * 0.04 + 's');
       }
     });
-    // 3. Central Event Delegation
-    document.body.addEventListener('click', e => {
-      // Theme toggle
-      const themeBtn = e.target.closest('[data-action="toggle-theme"]');
-      if (themeBtn && typeof window.inkflowToggleTheme === 'function') {
-        window.inkflowToggleTheme();
-        return;
-      }
 
-      // Confirm Delete
-      const deleteBtn = e.target.closest("[data-action='delete']");
-      if (deleteBtn) {
-        if (!confirm(t('confirmDelete'))) return;
-        const row = deleteBtn.closest('tr') || deleteBtn.closest('.ink-item-container');
-        if (row) {
-          row.style.transition = 'opacity .3s';
-          row.style.opacity = '0';
-          setTimeout(() => {
-            row.remove();
-          }, 320);
+    // 3. Baseline accessibility semantics for template controls.
+    this.enhanceControlSemantics();
+
+    // 4. Central Event Delegation
+    document.body.addEventListener('click', e => this.handleClick(e));
+    document.body.addEventListener('change', e => this.handleChange(e));
+  }
+
+  handleClick(event) {
+    const actionEl = event.target.closest('[data-action]');
+    if (!actionEl) return;
+
+    const action = actionEl.getAttribute('data-action');
+    const handler = clickActionHandlers[action];
+    if (!handler) return;
+
+    handler({
+      event,
+      element: actionEl,
+      toggleTheme: () => {
+        if (typeof window.inkflowToggleTheme === 'function') {
+          window.inkflowToggleTheme();
         }
-        showToast(t('deleted'), 'danger');
-        return;
-      }
+      },
+      confirmDelete: () => this.confirmDelete(actionEl),
+      showToast: () => this.showToast(actionEl),
+      readAll: () => showToast(t('allRead'), 'success'),
+      permanentDelete: () => this.permanentDelete(actionEl),
+      navigate: () => this.navigate(actionEl),
+      triggerTarget: () => this.triggerTarget(actionEl),
+      callWindowHandler: (handlerName, dataAttributes = []) =>
+        this.callWindowHandler(handlerName, actionEl, dataAttributes),
+      switchSettings: () => this.switchSettings(actionEl),
+      saveNotificationPreference: () => this.saveNotificationPreference(),
+      toggleMailPreference: () => this.toggleMailPreference(actionEl)
+    });
+  }
 
-      // Toast triggers
-      const toastBtn = e.target.closest("[data-action='toast']");
-      if (toastBtn) {
-        const msg = toastBtn.getAttribute('data-toast-msg') || t('toastSuccess');
-        const type = toastBtn.getAttribute('data-toast-type') || 'success';
-        showToast(msg, type);
-      }
+  handleChange(event) {
+    const actionEl = event.target.closest('[data-action]');
+    if (!actionEl) return;
 
-      // Notification close / read all
-      const readAllBtn = e.target.closest("[data-action='read-all']");
-      if (readAllBtn) {
-        showToast(t('allRead'), 'success');
-      }
+    const action = actionEl.getAttribute('data-action');
+    const handler = changeActionHandlers[action];
+    if (!handler) return;
 
-      // Permanent delete
-      const permDelBtn = e.target.closest('[data-action="permanent-delete"]');
-      if (permDelBtn) {
-        if (confirm(t('permDeleteConfirm'))) {
-          showToast(t('fileDeleted'), 'danger');
-          const href = permDelBtn.getAttribute('data-href');
-          if (href)
-            setTimeout(() => {
-              window.location = href;
-            }, 800);
-        }
-      }
+    handler({
+      element: actionEl,
+      saveNotificationPreference: () => this.saveNotificationPreference(),
+      toggleMailPreference: () => this.toggleMailPreference(actionEl)
+    });
+  }
 
-      // Navigate
-      const navBtn = e.target.closest('[data-action="navigate"]');
-      if (navBtn) {
-        const href = navBtn.getAttribute('data-href');
-        if (href) window.location = href;
-      }
-
-      // Trigger click on another element
-      const triggerBtn = e.target.closest('[data-action="trigger"]');
-      if (triggerBtn) {
-        const targetId = triggerBtn.getAttribute('data-target');
-        if (targetId) {
-          const t = document.getElementById(targetId);
-          if (t) t.click();
-        }
-      }
-
-      // Custom dispatchers for page-specific inline functions
-      const readOneBtn = e.target.closest('[data-action="read-one"]');
-      if (readOneBtn && typeof window.markOneRead === 'function') {
-        window.markOneRead(readOneBtn);
-      }
-
-      const delNotifBtn = e.target.closest('[data-action="delete-notif"]');
-      if (delNotifBtn && typeof window.deleteNotif === 'function') {
-        window.deleteNotif(delNotifBtn);
-      }
-
-      if (
-        e.target.closest('[data-action="toggle-pwd"]') &&
-        typeof window.togglePwd === 'function'
-      ) {
-        window.togglePwd();
-      }
-
-      if (e.target.closest('[data-action="do-login"]') && typeof window.doLogin === 'function') {
-        window.doLogin();
-      }
-
-      if (
-        e.target.closest('[data-action="clear-preview"]') &&
-        typeof window.clearPreview === 'function'
-      ) {
-        window.clearPreview();
-      }
-
-      const switchSetBtn = e.target.closest('[data-action="switch-settings"]');
-      if (switchSetBtn && typeof window.switchSettings === 'function') {
-        window.switchSettings(switchSetBtn.getAttribute('data-section'));
-      }
-
-      const filterBtn = e.target.closest('[data-action="filter-type"]');
-      if (filterBtn && typeof window.filterByType === 'function') {
-        window.filterByType(filterBtn.getAttribute('data-filter'), filterBtn);
-      }
+  enhanceControlSemantics() {
+    document.querySelectorAll('button:not([type])').forEach(button => {
+      button.setAttribute('type', 'button');
     });
 
-    document.body.addEventListener('change', e => {
-      if (e.target.closest('[data-action="save-notification-pref"]')) {
-        showToast('偏好已保存', 'success');
-      }
+    document
+      .querySelectorAll('button[title], a.btn-icon[title], .ink-toolbar-btn[title]')
+      .forEach(el => {
+        if (!el.getAttribute('aria-label')) {
+          el.setAttribute('aria-label', el.getAttribute('title'));
+        }
+      });
 
-      const mailPref = e.target.closest('[data-action="toggle-mail-pref"]');
-      if (mailPref) {
-        showToast('邮件通知已' + (mailPref.checked ? '开启' : '关闭'), 'info');
-      }
+    document.querySelectorAll('.btn-icon i, .ink-toolbar-btn i').forEach(icon => {
+      icon.setAttribute('aria-hidden', 'true');
     });
+
+    document.querySelectorAll('.ink-filter-tabs').forEach(tabList => {
+      tabList.setAttribute('role', 'tablist');
+      tabList.querySelectorAll('.ink-filter-tab').forEach(tab => {
+        tab.setAttribute('role', 'tab');
+        tab.setAttribute('aria-selected', tab.classList.contains('active') ? 'true' : 'false');
+      });
+    });
+
+    const settingsNav = document.querySelector('.ink-settings-nav');
+    if (settingsNav) {
+      settingsNav.setAttribute('role', 'tablist');
+      settingsNav.querySelectorAll('.ink-settings-nav-item').forEach(btn => {
+        btn.setAttribute('role', 'tab');
+        btn.setAttribute('aria-selected', btn.classList.contains('active') ? 'true' : 'false');
+      });
+    }
+  }
+
+  confirmDelete(deleteBtn) {
+    if (!confirm(t('confirmDelete'))) return;
+    const row = deleteBtn.closest('tr') || deleteBtn.closest('.ink-item-container');
+    if (row) {
+      row.style.transition = 'opacity .3s';
+      row.style.opacity = '0';
+      setTimeout(() => {
+        row.remove();
+      }, 320);
+    }
+    showToast(t('deleted'), 'danger');
+  }
+
+  showToast(toastBtn) {
+    const msg = toastBtn.getAttribute('data-toast-msg') || t('toastSuccess');
+    const type = toastBtn.getAttribute('data-toast-type') || 'success';
+    showToast(msg, type);
+  }
+
+  permanentDelete(permDelBtn) {
+    if (!confirm(t('permDeleteConfirm'))) return;
+
+    showToast(t('fileDeleted'), 'danger');
+    const href = permDelBtn.getAttribute('data-href');
+    if (href) {
+      setTimeout(() => {
+        window.location = href;
+      }, 800);
+    }
+  }
+
+  navigate(navBtn) {
+    const href = navBtn.getAttribute('data-href');
+    if (href) window.location = href;
+  }
+
+  triggerTarget(triggerBtn) {
+    const targetId = triggerBtn.getAttribute('data-target');
+    if (!targetId) return;
+
+    const target = document.getElementById(targetId);
+    if (target) target.click();
+  }
+
+  callWindowHandler(handlerName, actionEl, dataAttributes = []) {
+    if (typeof window[handlerName] !== 'function') return;
+
+    const args = dataAttributes.map(attribute => actionEl.getAttribute(attribute));
+    if (handlerName === 'filterByType') {
+      args.push(actionEl);
+    } else if (!args.length) {
+      args.push(actionEl);
+    }
+
+    window[handlerName](...args);
+  }
+
+  switchSettings(switchSetBtn) {
+    if (typeof window.switchSettings !== 'function') return;
+    window.switchSettings(switchSetBtn.getAttribute('data-section'));
+  }
+
+  saveNotificationPreference() {
+    showToast('偏好已保存', 'success');
+  }
+
+  toggleMailPreference(mailPref) {
+    showToast('邮件通知已' + (mailPref.checked ? '开启' : '关闭'), 'info');
   }
 }
