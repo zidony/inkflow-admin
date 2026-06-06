@@ -21,7 +21,7 @@ A beautiful, out-of-the-box, commercial-grade HTML administration dashboard temp
 - **🌙 Full-Scale Dark Mode**: Smooth theme toggling perfectly implemented via CSS Custom Properties. Includes a dynamic toggle button inside TopBars, transitions, and state caching using `localStorage`.
 - **🌐 Responsive i18n Engine**: Dynamic runtime translation that automatically senses the HTML `<html lang="...">` tag. Switching between `lang="zh-CN"` and `lang="en"` immediately adapts all delete confirms, loading indicators, toasts, and Chart.js dataset labels.
 - **📏 Strict Quality Standards**: Configured with ESLint (v9 Flat Config) + Prettier. Run `npm run lint` to guarantee 0 errors and 0 warnings.
-- **🗜️ Zero-Dependency ZIP Packaging**: Implemented a native Python packaging script with zero npm dependencies. Run `npm run release` to automatically compile and generate a pure distribution zip (~90 KB) at `release/inkflow-admin-v2.1.1.zip`, isolating node_modules and developer source files.
+- **🗜️ Zero-Dependency ZIP Packaging**: Implemented a Node.js standard-library ZIP packaging script with no extra packaging dependencies. Run `npm run release` to generate a clean distribution archive at `releases/inkflow-admin-v*.zip`, isolating node_modules and developer source files.
 - **🤖 GitHub Actions CI/CD**: Cloud release automation ready. Tagging `v*` automatically triggers云 pipeline builds, packaging, and uploads the ZIP archive directly as a GitHub Release asset.
 
 ---
@@ -34,11 +34,11 @@ inkflow-admin/
 │   └── workflows/
 │       └── release.yml         # GitHub Actions automated release pipeline
 ├── dist/                       # Compiled assets output (excluded from Git tracking)
-├── release/                    # Release ZIP archives (excluded from Git tracking)
+├── releases/                   # Release ZIP archives (excluded from Git tracking)
 ├── scripts/
 │   ├── migrate.py              # Automated source codebase refactoring script
 │   ├── add_theme_toggle.py     # Theme toggle button injector script
-│   └── release.py              # Zero-dependency ZIP packaging script (Python)
+│   └── release.mjs             # Zero-dependency ZIP packaging script (Node.js standard library)
 ├── src/                        # Core source files
 │   ├── assets/
 │   │   ├── css/
@@ -68,7 +68,7 @@ inkflow-admin/
 
 ## 🚀 Quick Start
 
-Developing this project requires Node.js (v18+) and Python 3.
+Developing this project requires Node.js (v18+).
 
 ### 1. Clone & Install Dependencies
 ```bash
@@ -96,7 +96,7 @@ npm run lint:fix   # Auto-beautify and format all stylesheets, scripts, and page
 ### 4. Build & Package Release
 ```bash
 npm run release
-# Triggers Vite compilation and packages the dist output into release/*.zip
+# Triggers Vite compilation and packages the dist output into releases/*.zip
 ```
 
 ---

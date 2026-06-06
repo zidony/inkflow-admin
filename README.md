@@ -21,7 +21,7 @@
 - **🌙 全站级暗黑模式（Dark Mode）**：完美通过 CSS 变量体系覆写全站 UI。在顶栏提供极简优雅的切换按钮，配合 `localStorage` 缓存状态，支持全站过渡动画。
 - **🌐 智能 i18n 国际化引擎**：JS 模块全自动感应 HTML 的 `<html lang="...">` 属性。只需切换 `lang="zh-CN"` 或 `lang="en"`，全站的确认提示框、加载状态、通知气泡和 Chart.js 图表标签瞬间无缝双语切换。
 - **📏 国际一流代码规范**：完美配置 ESLint (v9 Flat Config) + Prettier。运行 `npm run lint` 保证 0 错误、0 警告。
-- **🗜️ 极致绿色发版打包**：编写了基于 Python 内置 zip 库的打包脚本，零外部 npm 依赖。运行 `npm run release` 一键生成仅 **90 KB 左右** 的纯净发版包 `release/inkflow-admin-v2.1.1.zip`，彻底隔离 `node_modules` 和源码。
+- **🗜️ 极致绿色发版打包**：编写了基于 Node.js 标准库的 ZIP 打包脚本，零额外打包依赖。运行 `npm run release` 一键生成纯净发版包 `releases/inkflow-admin-v*.zip`，彻底隔离 `node_modules` 和源码。
 - **🤖 GitHub Actions CI/CD**：完美配置云端自动化流水线。在推送 `v*` 标签时，云端自动触发打包并将 ZIP 附件发布到 GitHub Release。
 
 ---
@@ -34,11 +34,11 @@ inkflow-admin/
 │   └── workflows/
 │       └── release.yml         # GitHub Actions 自动化发版流水线
 ├── dist/                       # 编译产物目录（自动生成，不纳入 Git 追踪）
-├── release/                    # 发版压缩包目录（自动生成，不纳入 Git 追踪）
+├── releases/                   # 发版压缩包目录（自动生成，不纳入 Git 追踪）
 ├── scripts/
 │   ├── migrate.py              # 一键工程化源码重构迁移脚本
 │   ├── add_theme_toggle.py     # 按钮自动注入脚本
-│   └── release.py              # 自动化打包发版脚本 (Python 编写)
+│   └── release.mjs             # 自动化打包发版脚本 (Node.js 标准库)
 ├── src/                        # 核心源码目录
 │   ├── assets/
 │   │   ├── css/
@@ -68,7 +68,7 @@ inkflow-admin/
 
 ## 🚀 快速开始
 
-开发本项目需要您本地具备 Node.js (v18+) 与 Python 3 环境。
+开发本项目需要您本地具备 Node.js (v18+) 环境。
 
 ### 1. 克隆并安装依赖
 ```bash
@@ -96,7 +96,7 @@ npm run lint:fix   # 自动对全量样式、脚本、页面进行美化排版�
 ### 4. 一键发版打包归档
 ```bash
 npm run release
-# 自动触发 Vite 编译压缩，并打包输出纯净的发版 ZIP 包到 release/ 目录下
+# 自动触发 Vite 编译压缩，并打包输出纯净的发版 ZIP 包到 releases/ 目录下
 ```
 
 ---
