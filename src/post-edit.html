@@ -87,7 +87,7 @@
                   <div class="u-text-sm" style="flex: 1; min-width: 200px">
                     <span class="u-text-gray-400" style="margin-right: 6px">永久链接</span>
                     <span class="u-text-primary u-text-mono">
-                      https://blog.inkflow.dev/post/
+                      /post/
                       <span
                         id="slug-preview"
                         style="border-bottom: 1px dashed var(--ink-300); cursor: pointer"
@@ -398,7 +398,10 @@
               <div class="ink-panel-header"><i class="bi bi-image"></i> 封面图片</div>
               <div class="ink-panel-body">
                 <div class="ink-cover-preview" id="cover-preview">
-                  <img src="https://picsum.photos/seed/vue3cover/600/200" alt="封面" />
+                  <img
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 200'%3E%3Crect width='600' height='200' fill='%23e2e8f0'/%3E%3Cpath d='M0 155 130 88l96 52 78-36 296 96H0z' fill='%2394a3b8'/%3E%3Ccircle cx='492' cy='58' r='32' fill='%23f8fafc'/%3E%3C/svg%3E"
+                    alt="封面"
+                  />
                   <div class="ink-cover-overlay"><i class="bi bi-arrow-repeat"></i> 更换图片</div>
                 </div>
                 <input type="file" id="cover-file-input" accept="image/*" class="d-none" />

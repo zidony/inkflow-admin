@@ -36,6 +36,9 @@ jobs:
       - name: Package Release ZIP
         run: node scripts/release.mjs
 
+      - name: Validate Release Package
+        run: npm run release:check
+
       - name: Extract Release Version & Info
         id: get_tag
         run: |

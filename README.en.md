@@ -99,6 +99,15 @@ npm run release
 # Runs the Vite build and packages dist plus README files into releases/
 ```
 
+### 5. Release Package Check
+```bash
+npm run release:check
+# Checks version consistency, README version entries, dist/ZIP contents, and external resource references
+```
+
+### 6. Integration & Deployment
+`INSTALL.md` explains how to integrate the `dist/` output with Nginx, Apache, GitHub Pages, backend template directories, custom theme colors, logo changes, menu changes, and permission entry points.
+
 ---
 
 ## ⚙️ Event Delegation & JS API (`inkflow-admin.js`)
@@ -124,6 +133,7 @@ The project uses centralized event delegation mapped to `data-action` attributes
 
 | Version | Description |
 | :--- | :--- |
+| **v2.2.3** | **Maintenance Update**: Added standalone `npm run release:check` validation for version consistency, README version entries, dist/ZIP contents, and external resource references; included `INSTALL.md` in release packages; added baseline accessibility attributes for sidebar, theme toggle, search, and dropdown controls. |
 | **v2.2.2** | **Release Package Checks & Documentation Revision**: Consolidated Bootstrap Icons to woff2-only font declarations; added release package content checks to block source files, temporary files, Python scripts, and duplicate font formats from the ZIP; revised English and Chinese README wording to use more neutral engineering descriptions. |
 | **v2.2.1** | **Release Pipeline & Project Font Optimization**: Consolidated project font declarations to woff2-only output; removed the deprecated Python release script and standardized ZIP packaging on the Node.js standard library; synchronized English and Chinese README release directory, runtime requirement, and packaging workflow docs. |
 | **v2.2.0** | **Security Baseline & Release Workflow Update**: Moved core UI libraries and fonts to local build assets for offline or intranet deployment; removed native event bindings and DOM string concatenation in areas such as the login page and avatar cropping; refactored ZIP packaging to use the Node.js standard library; added pre-release quality checks to CI. |

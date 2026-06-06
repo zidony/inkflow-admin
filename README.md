@@ -99,6 +99,15 @@ npm run release
 # 运行 Vite 构建，并将 dist 与 README 打包到 releases/ 目录
 ```
 
+### 5. 发布包校验
+```bash
+npm run release:check
+# 校验版本一致性、README 最新版本记录、dist/ZIP 内容和外链资源
+```
+
+### 6. 集成与部署
+`INSTALL.md` 提供 `dist/` 产物接入说明，覆盖 Nginx、Apache、GitHub Pages、普通后端模板目录、自定义主题色、Logo、菜单和权限入口。
+
 ---
 
 ## ⚙️ 事件委托与 JS API (`inkflow-admin.js`)
@@ -124,6 +133,7 @@ npm run release
 
 | 版本 | 主要内容 |
 | :--- | :--- |
+| **v2.2.3** | **维护版优化**：新增独立 `npm run release:check` 发布校验脚本，检查版本一致性、README 版本记录、dist/ZIP 内容和外链资源；发布包补充 `INSTALL.md` 集成说明；为侧边栏、主题切换、搜索和下拉菜单补齐基础可访问性属性。 |
 | **v2.2.2** | **发布包校验与文档修订**：将 Bootstrap Icons 字体声明收敛为 woff2-only；新增发布包内容校验，阻止源码、临时文件、Python 脚本和重复字体格式进入 ZIP；修订中英文 README，移除夸大表述并统一为更客观的工程说明。 |
 | **v2.2.1** | **发布链路与项目字体优化**：将项目字体声明收敛为 woff2-only；删除已废弃的 Python 发版脚本，统一使用 Node.js 标准库完成 ZIP 打包；同步中英文 README 的发版目录、运行环境与发布流程说明。 |
 | **v2.2.0** | **安全基线与发布流程更新**：核心 UI 库与字体改为本地构建资源，支持内网环境部署；移除登录页内联脚本、头像裁剪等位置的原生事件绑定与 DOM 字符串拼接；使用 Node.js 标准库重构 ZIP 打包逻辑；CI 流程增加发布前质量检查。 |

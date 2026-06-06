@@ -21,6 +21,9 @@ export class SidebarManager {
     if (this.sidebar) {
       this.sidebar.classList.toggle('collapsed', collapsed);
     }
+    if (this.toggle) {
+      this.toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+    }
     document.body.classList.toggle('sidebar-collapsed', collapsed);
     try {
       localStorage.setItem(this.COLLAPSED_KEY, collapsed ? '1' : '0');
@@ -34,6 +37,10 @@ export class SidebarManager {
         if (this.isMobile()) {
           this.sidebar.classList.toggle('mobile-open');
           if (this.overlay) this.overlay.classList.toggle('active');
+          this.toggle.setAttribute(
+            'aria-expanded',
+            this.sidebar.classList.contains('mobile-open') ? 'true' : 'false'
+          );
         } else {
           this.applySidebarState(!this.sidebar.classList.contains('collapsed'));
         }
@@ -45,6 +52,7 @@ export class SidebarManager {
       this.overlay.addEventListener('click', () => {
         if (this.sidebar) this.sidebar.classList.remove('mobile-open');
         this.overlay.classList.remove('active');
+        if (this.toggle) this.toggle.setAttribute('aria-expanded', 'false');
       });
     }
 

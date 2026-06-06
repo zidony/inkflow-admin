@@ -48,9 +48,13 @@ export class ThemeManager {
         if (this.currentTheme === 'dark') {
           icon.className = 'bi bi-sun';
           btn.setAttribute('title', t('toggleLightMode'));
+          btn.setAttribute('aria-label', t('toggleLightMode'));
+          btn.setAttribute('aria-pressed', 'true');
         } else {
           icon.className = 'bi bi-moon-stars';
           btn.setAttribute('title', t('toggleDarkMode'));
+          btn.setAttribute('aria-label', t('toggleDarkMode'));
+          btn.setAttribute('aria-pressed', 'false');
         }
       }
     });
