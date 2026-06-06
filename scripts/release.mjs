@@ -88,6 +88,43 @@ function toZipPath(filePath) {
   return filePath.split(path.sep).join('/');
 }
 
+function assertReleaseEntries(entries, folderName) {
+  const archiveNames = new Set(entries.map(entry => entry.archiveName));
+  const requiredFiles = [
+    `${folderName}/index.html`,
+    `${folderName}/assets/css/inkflow-admin.css`,
+    `${folderName}/assets/js/inkflow-admin.js`,
+    `${folderName}/README.md`,
+    `${folderName}/README.en.md`
+  ];
+  const missingFiles = requiredFiles.filter(file => !archiveNames.has(file));
+
+  if (missingFiles.length) {
+    throw new Error(`Release package is missing required files: ${missingFiles.join(', ')}`);
+  }
+
+  const blockedFiles = [...archiveNames].filter(file => {
+    const lowerFile = file.toLowerCase();
+    const fileName = path.posix.basename(lowerFile);
+    const isProjectFontWoff =
+      lowerFile.endsWith('.woff') &&
+      (fileName.startsWith('plus-jakarta-sans') || fileName.startsWith('jetbrains-mono'));
+
+    return (
+      lowerFile.endsWith('.py') ||
+      lowerFile.includes('/node_modules/') ||
+      lowerFile.includes('/src/') ||
+      lowerFile.includes('/temp/') ||
+      lowerFile.includes('/.git/') ||
+      isProjectFontWoff
+    );
+  });
+
+  if (blockedFiles.length) {
+    throw new Error(`Release package contains blocked files: ${blockedFiles.join(', ')}`);
+  }
+}
+
 function createLocalFileHeader({ nameBuffer, crc, compressedSize, uncompressedSize, dosDate, dosTime }) {
   return Buffer.concat([
     uint32(0x04034b50),
@@ -234,6 +271,8 @@ async function release() {
     });
     console.log(`Added to ZIP: ${file}`);
   }
+
+  assertReleaseEntries(entries, folderName);
 
   console.log(`Creating ZIP archive: releases/${zipFilename}...`);
   await createZip(zipPath, entries);

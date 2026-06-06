@@ -2,7 +2,7 @@
 
 **English README** | [中文说明书](README.md)
 
-A beautiful, out-of-the-box, commercial-grade HTML administration dashboard template designed for blogs and content management systems. The project has undergone a complete modern engineering overhaul driven by **Vite + ES6 Modules + PostCSS**, offering a blazing-fast local development experience and optimal bundle sizes for production. It also introduces a highly immersive, futuristic **Dark Mode** and an intelligent **i18n internationalization engine**.
+An HTML administration dashboard template designed for blogs and content management systems. The project uses **Vite + ES6 Modules + PostCSS** for local development and static builds, with dark mode and basic runtime i18n text switching.
 
 ---
 
@@ -14,15 +14,15 @@ A beautiful, out-of-the-box, commercial-grade HTML administration dashboard temp
 
 ---
 
-## ✨ Key Architectural Highlights & Engineering Features
+## ✨ Core Features
 
-- **🚀 Modern Build Pipeline**: Completely migrated to **Vite 5** to enjoy zero-delay Hot Module Replacement (HMR) during development and extreme production minification driven by Esbuild.
-- **📦 High-Cohesion ESM Architecture**: Fully decoupled the monolithic IIFE global script into clean, single-responsibility ES6 modules (`Sidebar`, `Theme`, `Search`, `Bulk`, `Toast`, `Editor`, `Chart`).
-- **🌙 Full-Scale Dark Mode**: Smooth theme toggling perfectly implemented via CSS Custom Properties. Includes a dynamic toggle button inside TopBars, transitions, and state caching using `localStorage`.
-- **🌐 Responsive i18n Engine**: Dynamic runtime translation that automatically senses the HTML `<html lang="...">` tag. Switching between `lang="zh-CN"` and `lang="en"` immediately adapts all delete confirms, loading indicators, toasts, and Chart.js dataset labels.
-- **📏 Strict Quality Standards**: Configured with ESLint (v9 Flat Config) + Prettier. Run `npm run lint` to guarantee 0 errors and 0 warnings.
-- **🗜️ Zero-Dependency ZIP Packaging**: Implemented a Node.js standard-library ZIP packaging script with no extra packaging dependencies. Run `npm run release` to generate a clean distribution archive at `releases/inkflow-admin-v*.zip`, isolating node_modules and developer source files.
-- **🤖 GitHub Actions CI/CD**: Cloud release automation ready. Tagging `v*` automatically triggers云 pipeline builds, packaging, and uploads the ZIP archive directly as a GitHub Release asset.
+- **🚀 Vite Build Workflow**: Uses **Vite 5** for local development and production builds, including development HMR and production asset minification.
+- **📦 ESM JavaScript Modules**: Splits global behavior into ES Modules, including Sidebar, Theme, Search, Bulk, Toast, Editor, and Chart modules.
+- **🌙 Dark Mode**: Uses CSS custom properties for light/dark theme switching and stores the user preference in `localStorage`.
+- **🌐 Runtime i18n Text Switching**: Reads the HTML `<html lang="...">` attribute to switch runtime text for confirms, loading states, toasts, and Chart.js labels.
+- **📏 Code Quality Tooling**: Configures ESLint, Stylelint, and Prettier. Run `npm run quality` before publishing.
+- **🗜️ Release Packaging**: Uses the Node.js standard library to generate `releases/inkflow-admin-v*.zip`, containing the built assets and README files.
+- **🤖 GitHub Actions Release Workflow**: A `v*` tag runs quality checks, builds the project, packages the release ZIP, and uploads it to GitHub Release.
 
 ---
 
@@ -50,7 +50,7 @@ inkflow-admin/
 │   │       │   ├── sidebar.js  # Collapsible sidebar & sub-accordion manager
 │   │       │   ├── search.js   # Global hotkeys (Ctrl+K) & live table search
 │   │       │   ├── bulk.js     # Bulk row selections & actions sync
-│   │       │   ├── toast.js    # Premium toast notifications bubble
+│   │       │   ├── toast.js    # Toast notification helper
 │   │       │   ├── chart.js    # Responsive chart redrawing on theme events
 │   │       │   └── delegation.js # Centralized event delegation engine
 │   │       └── inkflow-admin.js   # Unified ESM entry point
@@ -83,40 +83,40 @@ npm install
 ### 2. Launch Local Dev Server (with HMR)
 ```bash
 npm run dev
-# Vite will launch the dev server, opening http://localhost:3000 in your browser.
+# Vite will launch a dev server. The port depends on your local environment.
 ```
-Any modifications to HTML/CSS/JS inside `src/` will hot-reload instantly.
+Changes to HTML/CSS/JS inside `src/` trigger HMR or a page reload when supported by Vite.
 
 ### 3. Lint & Code Style Checks
 ```bash
-npm run lint       # Run style analysis
-npm run lint:fix   # Auto-beautify and format all stylesheets, scripts, and pages
+npm run quality    # Run ESLint, Stylelint, and Prettier checks
+npm run lint:fix   # Fix supported script/style issues and format source files
 ```
 
 ### 4. Build & Package Release
 ```bash
 npm run release
-# Triggers Vite compilation and packages the dist output into releases/*.zip
+# Runs the Vite build and packages dist plus README files into releases/
 ```
 
 ---
 
 ## ⚙️ Event Delegation & JS API (`inkflow-admin.js`)
 
-The project utilizes a centralized event delegation system mapped to `data-action` attributes, eliminating raw inline `onclick` attributes completely to prevent XSS vulnerabilities.
+The project uses centralized event delegation mapped to `data-action` attributes to reduce inline event bindings in page templates.
 
 | data-action Attribute | Support Attributes | Description |
 | :--- | :--- | :--- |
-| `toast` | `data-toast-msg`, `data-toast-type` | Triggers custom safe toast notifications bubble |
+| `toast` | `data-toast-msg`, `data-toast-type` | Triggers toast notifications |
 | `delete` | None | Intercepts delete actions on rows to display confirm |
-| `navigate` | `data-href` | Secure seamless page transitions |
+| `navigate` | `data-href` | Navigates to the configured URL |
 | `permanent-delete` | `data-href` | Double-check dialog for permanent deletion |
-| `toggle-theme` | None | Real-time theme mode toggle |
+| `toggle-theme` | None | Toggles the theme mode |
 
-**Global Javascript Hooks (for inline page calls)**:
+**Global JavaScript Hooks (for page calls)**:
 * `window.showToast(message, type)`: Triggers toast alerts (types: `success` / `info` / `warning` / `danger`).
 * `window.inkflowT(key)`: Invokes the global i18n translator.
-* `window.inkflowToggleTheme()`: Triggers全 theme toggles.
+* `window.inkflowToggleTheme()`: Toggles the current theme.
 
 ---
 
@@ -124,13 +124,14 @@ The project utilizes a centralized event delegation system mapped to `data-actio
 
 | Version | Description |
 | :--- | :--- |
-| **v2.2.1** | **Release Pipeline & Font Asset Optimization**: Consolidated project font declarations to woff2-only output, removing duplicate woff font assets; removed the deprecated Python release script and standardized ZIP packaging on the Node.js standard library; synchronized English and Chinese README release directory, runtime requirement, and packaging workflow docs. |
-| **v2.2.0** | **Security Baseline Elevation & Zero-Dependency Release**: Migrated core UI libraries and fonts to local builds for full offline/intranet support; eradicated high-risk native event bindings and DOM concatenations (e.g., login page inline scripts, avatar cropping); refactored the packaging logic using Node's native zlib to replace Python, delivering an out-of-the-box template for pure Node environments; fortified the CI pipeline by introducing pre-release Quality Gates. |
-| **v2.1.1** | **Deep Optimization & Bugfixes**: Merged standalone filter panels into `.card-header` to flatten DOM depth; refactored sidebar navigation into standard semantic `ul/li` tags; restored and extracted `filter.js` to fix broken table filtering; eradicated redundant custom CSS utility classes by adopting native Bootstrap 5 equivalents. |
-| **v2.1.0** | **Engineering Architecture**: Introduced Handlebars templating for HTML componentization (extracting common headers/sidebars); comprehensively refactored and modularized 1600+ lines of CSS; eradicated 300+ inline styles using new utility classes; fixed sidebar active state dynamic routing; configured Stylelint and Husky for stricter CI/CD code quality. |
-| **v2.0.0** | **Major Milestone Upgrade**: Fully integrated Vite build tools with isolated `src/` and `dist/` directories, removing file hashes to allow stable static template integration; decomposed monolithic IIFE script into clean ES6 Modules; implemented responsive **Dark Mode** with CSS variables and transition animations; added dynamic **i18n translation engine** linked to `<html lang>`; configured ESLint v9 Flat Config and Prettier rules; introduced automated Python packaging scripts and cloud GitHub Actions CI/CD workflows. |
+| **v2.2.2** | **Release Package Checks & Documentation Revision**: Consolidated Bootstrap Icons to woff2-only font declarations; added release package content checks to block source files, temporary files, Python scripts, and duplicate font formats from the ZIP; revised English and Chinese README wording to use more neutral engineering descriptions. |
+| **v2.2.1** | **Release Pipeline & Project Font Optimization**: Consolidated project font declarations to woff2-only output; removed the deprecated Python release script and standardized ZIP packaging on the Node.js standard library; synchronized English and Chinese README release directory, runtime requirement, and packaging workflow docs. |
+| **v2.2.0** | **Security Baseline & Release Workflow Update**: Moved core UI libraries and fonts to local build assets for offline or intranet deployment; removed native event bindings and DOM string concatenation in areas such as the login page and avatar cropping; refactored ZIP packaging to use the Node.js standard library; added pre-release quality checks to CI. |
+| **v2.1.1** | **Optimization & Bug Fixes**: Merged standalone filter panels into `.card-header` to flatten DOM depth; refactored sidebar navigation into standard semantic `ul/li` tags; restored and extracted `filter.js` to fix table filtering; replaced redundant custom CSS utility classes with Bootstrap 5 equivalents where practical. |
+| **v2.1.0** | **Engineering Architecture**: Introduced Handlebars templating for HTML componentization (extracting common headers/sidebars); split and organized more than 1600 lines of CSS; added utility classes to reduce inline styles; fixed sidebar active state routing; configured Stylelint and Husky for code quality checks. |
+| **v2.0.0** | **Build System Upgrade**: Integrated Vite build tooling with separate `src/` and `dist/` directories, removed generated file hashes for stable static template integration, split the IIFE script into ES Modules, added CSS-variable dark mode, added runtime i18n text switching based on `<html lang>`, configured ESLint and Prettier, and introduced packaging scripts plus GitHub Actions release workflows. |
 | v1.9.1 | Decoupled badge `.ink-badge` into "structure + colors", refactored indicator dot into unified `.ink-dot`, extracted global focus ring variables `--ink-focus-ring`. |
-| v1.9 | Standardized prefix from `if-` to `ink-` globally, introduced global hotkeys `Ctrl+K` and `ESC` listener, enhanced sandboxing for无痕 `localStorage` calls. |
+| v1.9 | Standardized prefix from `if-` to `ink-` globally, introduced global hotkeys `Ctrl+K` and `ESC` listener, and improved fallback handling for private-browsing `localStorage` access. |
 | v1.8 | Refactored thumbnails and double-line list structures into unified utility `.ink-item-text`, added atomic `u-` classes, standardized list paginations. |
 | v1.7 | Enabled `ink-` prefix globally, built gradient avatar component `.ink-avatar` and table column layouts `.ink-cell-title`, cleared inline HTML styles. |
 | v1.6 | Restructured codebase with pure data-driven event delegation engines; rewrote safe showToast API; supported standard Bootstrap 5 breadcrumbs. |

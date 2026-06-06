@@ -6,7 +6,7 @@
 
 /* Vendor styles */
 @import 'bootstrap/dist/css/bootstrap.min.css';
-@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import '../vendor/bootstrap-icons.woff2.css';
 @import './_fonts.css';
 
 /* Modules */

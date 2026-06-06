@@ -2,7 +2,7 @@
 
 **中文说明书** | [English README](README.en.md)
 
-一套为博客 / 内容管理系统设计的精美、开箱即用的商用级后台管理面板主题模板。项目已完成现代化工程化升级，基于 **Vite + ES6 Modules + PostCSS** 驱动，拥有极速的本地开发体验和极致的生产环境包体积，并全新推出了高拟真、极具科技感的**全量暗黑模式（Dark Mode）**与 **动态 i18n 国际化引擎**。
+一套为博客 / 内容管理系统设计的后台管理面板主题模板。项目基于 **Vite + ES6 Modules + PostCSS** 构建，提供本地开发、静态页面构建、暗黑模式和基础 i18n 文案切换能力。
 
 ---
 
@@ -14,15 +14,15 @@
 
 ---
 
-## ✨ 核心亮点与工程特性
+## ✨ 核心特性
 
-- **🚀 现代化构建系统**：完全迁移至 **Vite 5**，享受零延迟的热更新（HMR）开发体验，以及生产环境由 Esbuild 驱动的极致文件压缩。
-- **📦 高内聚 ESM 模块化**：将原来堆叠的 IIFE 全局脚本完全解耦，拆分为高内聚、职责单一的 ES6 模块（Sidebar、Theme、Search、Bulk、Toast、Editor、Chart）。
-- **🌙 全站级暗黑模式（Dark Mode）**：完美通过 CSS 变量体系覆写全站 UI。在顶栏提供极简优雅的切换按钮，配合 `localStorage` 缓存状态，支持全站过渡动画。
-- **🌐 智能 i18n 国际化引擎**：JS 模块全自动感应 HTML 的 `<html lang="...">` 属性。只需切换 `lang="zh-CN"` 或 `lang="en"`，全站的确认提示框、加载状态、通知气泡和 Chart.js 图表标签瞬间无缝双语切换。
-- **📏 国际一流代码规范**：完美配置 ESLint (v9 Flat Config) + Prettier。运行 `npm run lint` 保证 0 错误、0 警告。
-- **🗜️ 极致绿色发版打包**：编写了基于 Node.js 标准库的 ZIP 打包脚本，零额外打包依赖。运行 `npm run release` 一键生成纯净发版包 `releases/inkflow-admin-v*.zip`，彻底隔离 `node_modules` 和源码。
-- **🤖 GitHub Actions CI/CD**：完美配置云端自动化流水线。在推送 `v*` 标签时，云端自动触发打包并将 ZIP 附件发布到 GitHub Release。
+- **🚀 Vite 构建流程**：使用 **Vite 5** 进行本地开发和生产构建，支持开发阶段 HMR 与生产资源压缩。
+- **📦 ESM 模块化脚本**：将全局脚本拆分为多个 ES Modules，包括 Sidebar、Theme、Search、Bulk、Toast、Editor 和 Chart 等模块。
+- **🌙 暗黑模式**：基于 CSS 变量实现明暗主题切换，并通过 `localStorage` 记录用户选择。
+- **🌐 i18n 文案切换**：根据 HTML 的 `<html lang="...">` 属性切换确认提示、加载状态、通知气泡和 Chart.js 图表标签等运行时文案。
+- **📏 代码质量工具**：配置 ESLint、Stylelint 和 Prettier，可通过 `npm run quality` 运行发布前检查。
+- **🗜️ 发布打包**：使用 Node.js 标准库生成 `releases/inkflow-admin-v*.zip`，发布包只包含构建产物和 README 文档。
+- **🤖 GitHub Actions 发布流程**：推送 `v*` 标签时运行质量检查、构建、打包并上传 ZIP 到 GitHub Release。
 
 ---
 
@@ -83,27 +83,27 @@ npm install
 ### 2. 启动本地开发服务 (支持 HMR 热更新)
 ```bash
 npm run dev
-# Vite 将瞬间启动开发服务器，通常在浏览器打开 http://localhost:3000
+# Vite 将启动开发服务器，默认端口取决于本地环境
 ```
-在 `src/` 下修改任何 HTML/CSS/JS 代码，浏览器均会局部秒级热更新，无需手动刷新。
+在 `src/` 下修改 HTML/CSS/JS 代码时，Vite 会在支持的场景下触发热更新或页面刷新。
 
 ### 3. 代码质量控制与规范化
 ```bash
-npm run lint       # 代码质量校验
-npm run lint:fix   # 自动对全量样式、脚本、页面进行美化排版与修复
+npm run quality    # 运行 ESLint、Stylelint 和 Prettier 检查
+npm run lint:fix   # 自动修复可修复的脚本和样式问题，并格式化源码
 ```
 
 ### 4. 一键发版打包归档
 ```bash
 npm run release
-# 自动触发 Vite 编译压缩，并打包输出纯净的发版 ZIP 包到 releases/ 目录下
+# 运行 Vite 构建，并将 dist 与 README 打包到 releases/ 目录
 ```
 
 ---
 
 ## ⚙️ 事件委托与 JS API (`inkflow-admin.js`)
 
-项目采用基于 `data-action` 的中央事件委托引擎，代码职责单一，且完全消除了内联 `onclick` 安全隐患。
+项目采用基于 `data-action` 的中央事件委托方式，减少页面模板中的内联事件绑定。
 
 | data-action 属性 | 配合属性 | 说明 |
 | :--- | :--- | :--- |
@@ -124,16 +124,17 @@ npm run release
 
 | 版本 | 主要内容 |
 | :--- | :--- |
-| **v2.2.1** | **发布链路与字体产物优化**：将项目字体声明收敛为 woff2-only，移除重复 woff 字体产物；删除已废弃的 Python 发版脚本，统一使用 Node.js 标准库完成 ZIP 打包；同步中英文 README 的发版目录、运行环境与发布流程说明。 |
-| **v2.2.0** | **安全基线提升与零依赖发布**：核心 UI 库与字体全面切至本地构建，实现纯内网环境可用；肃清登录页内联脚本、头像裁剪等高风险原生事件绑定与 DOM 拼接；使用 Node 原生 zlib 替代 Python 重构打包逻辑，实现模板产物纯 Node 环境开箱即用；强化 CI 流程，新增发布前置质量门禁（Quality Gates）。 |
+| **v2.2.2** | **发布包校验与文档修订**：将 Bootstrap Icons 字体声明收敛为 woff2-only；新增发布包内容校验，阻止源码、临时文件、Python 脚本和重复字体格式进入 ZIP；修订中英文 README，移除夸大表述并统一为更客观的工程说明。 |
+| **v2.2.1** | **发布链路与项目字体优化**：将项目字体声明收敛为 woff2-only；删除已废弃的 Python 发版脚本，统一使用 Node.js 标准库完成 ZIP 打包；同步中英文 README 的发版目录、运行环境与发布流程说明。 |
+| **v2.2.0** | **安全基线与发布流程更新**：核心 UI 库与字体改为本地构建资源，支持内网环境部署；移除登录页内联脚本、头像裁剪等位置的原生事件绑定与 DOM 字符串拼接；使用 Node.js 标准库重构 ZIP 打包逻辑；CI 流程增加发布前质量检查。 |
 | **v2.1.1** | **深度架构优化与修复**：将列表筛选区域并入表格 Header 降低 DOM 深度；侧边栏菜单重构为标准 `ul/li` 语义化标签；修复并独立抽离 `filter.js` 解决列表状态过滤失效问题；全面清理冗余 CSS 工具类并接入 Bootstrap 5 原生样式。 |
-| **v2.1.0** | **工程化进阶**：引入 Vite Handlebars 模板引擎实现 HTML 组件化（抽离公用头部与侧边栏）；全面重构并模块化拆分 1600 行臃肿 CSS；建立数十个实用工具类（Utility Classes）彻底消灭全局超 300 处内联样式；修复侧边栏静态路由高亮问题；配置 Stylelint 与 Husky 提供更严格的代码规范检查。 |
+| **v2.1.0** | **工程化进阶**：引入 Vite Handlebars 模板引擎实现 HTML 组件化（抽离公用头部与侧边栏）；拆分并整理 1600 行以上 CSS；建立实用工具类以减少页面内联样式；修复侧边栏静态路由高亮问题；配置 Stylelint 与 Husky 提供代码规范检查。 |
 | **v2.0.0** | **里程碑升级**：全面接入 Vite 构建工具，剥离 `src/` 与 `dist/`，去除了随机哈希码以方便买家无缝集成；将 JS 完全重构成 ES6 模块；全新推出支持 transition 过渡动画的**暗黑模式**与基于 `<html lang>` 感应的 **i18n 双语切换引擎**；配置 ESLint v9 Flat Config 与 Prettier 代码规范；引入 Python 极简绿色打包归档脚本与 GitHub Actions 自动化发版流水线。 |
-| v1.9.1 | CSS架构深度解耦：采用“结构+颜色”的原子化模式重构徽章组件（`.ink-badge`），合并冗余的状态圆点至唯一的 `.ink-dot` 体系，提取全局焦点光环变量 `--ink-focus-ring`，从底层彻底肃清上百行高耦合冗余代码。 |
-| v1.9 | 品牌架构大统一与极客交互升级：全局组件与变量前缀从 `if-` 全面升级为 `ink-`；引入全局 `Ctrl+K` 搜索与 `ESC` 拦截快捷键；大幅增强 `localStorage` 调用的沙盒防御机制，确保极致无痕模式下的运行稳定性。 |
+| v1.9.1 | CSS 架构整理：按“结构 + 颜色”拆分徽章组件（`.ink-badge`），合并状态圆点为 `.ink-dot`，提取全局焦点光环变量 `--ink-focus-ring`，减少重复样式。 |
+| v1.9 | 组件前缀与交互更新：全局组件与变量前缀从 `if-` 调整为 `ink-`；引入全局 `Ctrl+K` 搜索与 `ESC` 快捷键；增强 `localStorage` 调用的异常处理。 |
 | v1.8 | 样式原子化与组件复用深度重构：全站大一统缩略图组件与双行图文排版组件（`ink-item-text`），提取 `u-` 前缀原子化工具类，消除大量内联样式，统一所有列表的分页结构与文字格式，代码更加精简和高级。 |
-| v1.7 | UI架构统一：全站组件启用 `ink-` 前缀，构建全局 `ink-avatar` 高级头像渐变组件与 `ink-cell-title` 列表排版规范，肃清海量内联 HTML 样式代码，全面提升底层源码的整洁度与高级感。 |
-| v1.6 | 底层重构：引入纯数据驱动的事件委托引擎，彻底移除内联 onClick 事件；重写 showToast 消除 XSS 安全隐患；兼容 BS5 标准面包屑结构。 |
+| v1.7 | UI 结构统一：全站组件启用 `ink-` 前缀，构建 `ink-avatar` 头像组件与 `ink-cell-title` 列表排版规范，减少内联 HTML 样式。 |
+| v1.6 | 底层重构：引入基于数据属性的事件委托；重写 showToast 以使用安全的文本插入方式；兼容 Bootstrap 5 标准面包屑结构。 |
 | v1.5 | 结构重构、移动端适配优化、样式清理 |
 | v1.4 | 更名 CiCMS → **InkFlow**、Bootstrap 5.3.3 → **5.3.8**、资源移至 `assets/`、编辑器防溢出 CSS、通知中心独立页面、README |
 | v1.3 | Dashboard 等高修复、filter-tabs 白底卡片、page-header 按钮统一、全站 CF 邮箱修复 |
