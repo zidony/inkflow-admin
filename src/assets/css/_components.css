@@ -1570,9 +1570,19 @@ textarea.form-control {
     align-items: flex-start;
     gap: 10px;
   }
+  .page-header > .d-flex {
+    width: 100%;
+    flex-wrap: wrap;
+    margin-left: 0 !important;
+  }
   .page-header > .btn,
   .page-header > a.btn {
     width: 100%;
+    justify-content: center;
+  }
+  .page-header > .d-flex > .btn,
+  .page-header > .d-flex > a.btn {
+    flex: 1 1 140px;
     justify-content: center;
   }
 
@@ -1656,10 +1666,25 @@ textarea.form-control {
   .ink-card > .card-body.p-0 {
     padding: 0 !important;
   }
+  .ink-card > .card-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .ink-card > .card-header > .d-flex,
+  .ink-card > .card-header .d-flex {
+    min-width: 0;
+  }
+  .ink-card > .card-header .ms-auto {
+    margin-left: 0 !important;
+  }
 
   /* Filter tabs: allow wrapping */
   .ink-filter-tabs {
     flex-wrap: wrap;
+    min-width: 0;
+  }
+  .ink-filter-tab {
+    flex: 0 1 auto;
   }
 
   /* Bulk action bar */
