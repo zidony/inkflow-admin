@@ -61,7 +61,14 @@ const requiredCssGuards = [
   ['_layout.css', layoutCss, /#main-wrapper\s*{[^}]*min-width:\s*0;/s],
   ['_layout.css', layoutCss, /\.topbar-actions\s*{[^}]*margin-left:\s*auto;/s],
   ['_layout.css', layoutCss, /\.ink-card\s*>\s*\.card-body\.p-0\s*{[^}]*padding:\s*0\s*!important;/s],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*991\.98px\)[\s\S]*#main-wrapper\s*{[^}]*max-width:\s*100vw;/],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.table-responsive\s*{[^}]*overflow-x:\s*auto;/],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.table-responsive\s*>\s*\.ink-table[\s\S]*min-width:\s*720px;/],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-dashboard-quick-card\s+\.card-body\s*>\s*\.d-flex\s*{[^}]*flex-wrap:\s*wrap;/],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-activity-item\s*{[^}]*flex-wrap:\s*wrap;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*479\.98px\)[\s\S]*\.topbar-create-btn\s*{/],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*479\.98px\)[\s\S]*\.topbar-actions\s*{[^}]*justify-content:\s*flex-end;[^}]*margin-left:\s*auto;/],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*479\.98px\)[\s\S]*\.ink-dashboard-quick-card\s+\.ink-quick-btn-sm[\s\S]*min-width:\s*100%;/],
 ];
 
 for (const [fileName, source, pattern] of requiredCssGuards) {
