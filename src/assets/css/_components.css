@@ -1575,14 +1575,44 @@ textarea.form-control {
 .ink-delay-50 {
   --ink-delay: 0.05s;
 }
+.ink-delay-20 {
+  --ink-delay: 0.02s;
+}
+.ink-delay-60 {
+  --ink-delay: 0.06s;
+}
 .ink-delay-100 {
   --ink-delay: 0.1s;
+}
+.ink-delay-140 {
+  --ink-delay: 0.14s;
 }
 .ink-delay-150 {
   --ink-delay: 0.15s;
 }
+.ink-delay-180 {
+  --ink-delay: 0.18s;
+}
 .ink-delay-200 {
   --ink-delay: 0.2s;
+}
+.ink-delay-220 {
+  --ink-delay: 0.22s;
+}
+.ink-delay-250 {
+  --ink-delay: 0.25s;
+}
+.ink-delay-300 {
+  --ink-delay: 0.3s;
+}
+.ink-delay-350 {
+  --ink-delay: 0.35s;
+}
+.ink-delay-400 {
+  --ink-delay: 0.4s;
+}
+.ink-delay-450 {
+  --ink-delay: 0.45s;
 }
 
 .ink-save-status-icon {
