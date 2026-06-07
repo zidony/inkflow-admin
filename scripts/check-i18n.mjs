@@ -1,7 +1,6 @@
-import fs from 'node:fs';
 import path from 'node:path';
+import { lineNumberFor, listFiles, readText, rootDir } from './lib/files.mjs';
 
-const rootDir = process.cwd();
 const modulesDir = path.join(rootDir, 'src', 'assets', 'js', 'modules');
 const failures = [];
 const userFacingCallPattern =
@@ -10,25 +9,10 @@ const stringLiteralPattern = /(['"`])((?:\\.|(?!\1)[\s\S])*?)\1/g;
 const cjkPattern = /[\u3400-\u9fff]/;
 const ignoredFiles = new Set(['i18n.js']);
 
-function listJsFiles(dir) {
-  return fs
-    .readdirSync(dir, { withFileTypes: true })
-    .flatMap(entry => {
-      const fullPath = path.join(dir, entry.name);
-      if (entry.isDirectory()) return listJsFiles(fullPath);
-      return entry.isFile() && entry.name.endsWith('.js') ? [fullPath] : [];
-    })
-    .sort();
-}
-
-function lineNumberFor(source, index) {
-  return source.slice(0, index).split(/\r?\n/).length;
-}
-
-for (const filePath of listJsFiles(modulesDir)) {
+for (const filePath of listFiles(modulesDir, file => file.endsWith('.js'))) {
   if (ignoredFiles.has(path.basename(filePath))) continue;
 
-  const source = fs.readFileSync(filePath, 'utf8');
+  const source = readText(filePath);
   let callMatch;
 
   while ((callMatch = userFacingCallPattern.exec(source))) {

@@ -1,30 +1,10 @@
-import fs from 'node:fs';
 import path from 'node:path';
+import { lineNumberFor, listFiles, readText, rootDir } from './lib/files.mjs';
 
-const rootDir = process.cwd();
 const srcDir = path.join(rootDir, 'src');
 const cssDir = path.join(srcDir, 'assets', 'css');
 
 const failures = [];
-
-function readText(filePath) {
-  return fs.readFileSync(filePath, 'utf8');
-}
-
-function listFiles(dir, predicate) {
-  return fs
-    .readdirSync(dir, { withFileTypes: true })
-    .flatMap((entry) => {
-      const fullPath = path.join(dir, entry.name);
-      if (entry.isDirectory()) return listFiles(fullPath, predicate);
-      return predicate(fullPath) ? [fullPath] : [];
-    })
-    .sort();
-}
-
-function lineNumberFor(source, index) {
-  return source.slice(0, index).split(/\r?\n/).length;
-}
 
 function hasNearbyResponsiveWrapper(source, tableIndex) {
   const beforeTable = source.slice(0, tableIndex);

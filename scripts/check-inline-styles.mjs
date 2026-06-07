@@ -1,27 +1,11 @@
-import fs from 'node:fs';
 import path from 'node:path';
+import { lineNumberFor, listFiles, readText, rootDir } from './lib/files.mjs';
 
-const rootDir = process.cwd();
 const srcDir = path.join(rootDir, 'src');
 const failures = [];
 
-function listHtmlFiles(dir) {
-  return fs
-    .readdirSync(dir, { withFileTypes: true })
-    .flatMap((entry) => {
-      const fullPath = path.join(dir, entry.name);
-      if (entry.isDirectory()) return listHtmlFiles(fullPath);
-      return entry.isFile() && entry.name.endsWith('.html') ? [fullPath] : [];
-    })
-    .sort();
-}
-
-function lineNumberFor(source, index) {
-  return source.slice(0, index).split(/\r?\n/).length;
-}
-
-for (const filePath of listHtmlFiles(srcDir)) {
-  const source = fs.readFileSync(filePath, 'utf8');
+for (const filePath of listFiles(srcDir, file => file.endsWith('.html'))) {
+  const source = readText(filePath);
   const relativePath = path.relative(rootDir, filePath);
 
   for (const match of source.matchAll(/\sstyle\s*=/gi)) {

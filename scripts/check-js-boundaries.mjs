@@ -1,7 +1,6 @@
-import fs from 'node:fs';
 import path from 'node:path';
+import { lineNumberFor, listFiles, readText, rootDir } from './lib/files.mjs';
 
-const rootDir = process.cwd();
 const jsDir = path.join(rootDir, 'src', 'assets', 'js');
 const failures = [];
 const bannedPatterns = [
@@ -15,23 +14,8 @@ const bannedPatterns = [
   }
 ];
 
-function listJsFiles(dir) {
-  return fs
-    .readdirSync(dir, { withFileTypes: true })
-    .flatMap(entry => {
-      const fullPath = path.join(dir, entry.name);
-      if (entry.isDirectory()) return listJsFiles(fullPath);
-      return entry.isFile() && entry.name.endsWith('.js') ? [fullPath] : [];
-    })
-    .sort();
-}
-
-function lineNumberFor(source, index) {
-  return source.slice(0, index).split(/\r?\n/).length;
-}
-
-for (const filePath of listJsFiles(jsDir)) {
-  const source = fs.readFileSync(filePath, 'utf8');
+for (const filePath of listFiles(jsDir, file => file.endsWith('.js'))) {
+  const source = readText(filePath);
 
   for (const { pattern, message } of bannedPatterns) {
     let match;
