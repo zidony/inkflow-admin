@@ -41,6 +41,14 @@ function isTableCheckBox(tag) {
   return getAttribute(tag, 'type') === 'checkbox' && hasClass(tag, 'table-check-box');
 }
 
+function isNamedLoginInput(tag) {
+  return ['login-user', 'login-pass'].includes(getAttribute(tag, 'id'));
+}
+
+function isNotificationPreferenceInput(tag) {
+  return ['save-notification-pref', 'toggle-mail-pref'].includes(getAttribute(tag, 'data-action'));
+}
+
 function checkFile(relativePath, html) {
   const errors = [];
   const tagPattern = /<(button|a)\b[^>]*>/gi;
@@ -71,6 +79,10 @@ function checkFile(relativePath, html) {
       errors.push(`${location} theme toggle needs aria-pressed.`);
     }
 
+    if (getAttribute(tag, 'data-action') === 'toggle-pwd' && !hasAccessibleName(tag)) {
+      errors.push(`${location} password toggle needs aria-label or aria-labelledby.`);
+    }
+
     if (getAttribute(tag, 'data-toggle') === 'submenu') {
       if (!hasAttribute(tag, 'aria-expanded')) {
         errors.push(`${location} submenu toggle needs aria-expanded.`);
@@ -95,12 +107,30 @@ function checkFile(relativePath, html) {
   const inputPattern = /<input\b[^>]*>/gi;
   while ((match = inputPattern.exec(html))) {
     const tag = match[0];
-    if (!isTableCheckBox(tag) || hasAccessibleName(tag)) {
+    const line = lineNumberFor(html, match.index);
+
+    if (isTableCheckBox(tag) && !hasAccessibleName(tag)) {
+      errors.push(`${relativePath}:${line} table checkbox needs aria-label or aria-labelledby.`);
+    }
+
+    if (isNamedLoginInput(tag) && !hasAccessibleName(tag)) {
+      errors.push(`${relativePath}:${line} login input needs aria-label or aria-labelledby.`);
+    }
+
+    if (isNotificationPreferenceInput(tag) && !hasAccessibleName(tag)) {
+      errors.push(`${relativePath}:${line} notification preference input needs aria-label or aria-labelledby.`);
+    }
+  }
+
+  const imagePattern = /<img\b[^>]*>/gi;
+  while ((match = imagePattern.exec(html))) {
+    const tag = match[0];
+    if (hasAttribute(tag, 'alt')) {
       continue;
     }
 
     const line = lineNumberFor(html, match.index);
-    errors.push(`${relativePath}:${line} table checkbox needs aria-label or aria-labelledby.`);
+    errors.push(`${relativePath}:${line} image needs an alt attribute.`);
   }
 
   return errors;
