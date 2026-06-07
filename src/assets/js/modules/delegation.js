@@ -12,9 +12,7 @@ const clickActionHandlers = {
   'permanent-delete': manager => manager.permanentDelete(),
   navigate: manager => manager.navigate(),
   trigger: manager => manager.triggerTarget(),
-  'toggle-pwd': manager => manager.callWindowHandler('togglePwd'),
-  'do-login': manager => manager.callWindowHandler('doLogin'),
-  'clear-preview': manager => manager.callWindowHandler('clearPreview')
+  'clear-preview': manager => manager.clearPreview()
 };
 
 const changeActionHandlers = {
@@ -76,8 +74,7 @@ export class DelegationManager {
       permanentDelete: () => this.permanentDelete(actionEl),
       navigate: () => this.navigate(actionEl),
       triggerTarget: () => this.triggerTarget(actionEl),
-      callWindowHandler: (handlerName, dataAttributes = []) =>
-        this.callWindowHandler(handlerName, actionEl, dataAttributes),
+      clearPreview: () => this.clearPreview(actionEl),
       saveNotificationPreference: () => this.saveNotificationPreference(),
       toggleMailPreference: () => this.toggleMailPreference(actionEl)
     });
@@ -177,17 +174,16 @@ export class DelegationManager {
     if (target) target.click();
   }
 
-  callWindowHandler(handlerName, actionEl, dataAttributes = []) {
-    if (typeof window[handlerName] !== 'function') return;
-
-    const args = dataAttributes.map(attribute => actionEl.getAttribute(attribute));
-    if (handlerName === 'filterByType') {
-      args.push(actionEl);
-    } else if (!args.length) {
-      args.push(actionEl);
+  clearPreview(clearBtn) {
+    const previewBox = clearBtn.closest('.ink-image-preview-box');
+    if (previewBox) {
+      previewBox.classList.add('d-none');
     }
 
-    window[handlerName](...args);
+    const fileInput = document.getElementById('img-file-input');
+    if (fileInput) {
+      fileInput.value = '';
+    }
   }
 
   saveNotificationPreference() {
