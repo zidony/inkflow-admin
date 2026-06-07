@@ -1919,7 +1919,27 @@ textarea.form-control {
   }
 }
 
-/* LINK CARD components merged into .ink-thumb */
+/* Link edit preview */
+.ink-link-preview-card {
+  border: 1.5px solid var(--ink-gray-200);
+  border-radius: 10px;
+  padding: 14px;
+  background: var(--ink-gray-50);
+}
+.ink-link-preview-card .ink-link-favicon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+}
+.ink-link-preview-desc {
+  margin-top: 2px;
+}
+
+/* Settings */
+.ink-settings-nav-card > .card-body {
+  padding: 8px;
+}
 
 /* ============================================================
    POST EDITOR LAYOUT
