@@ -1027,6 +1027,48 @@ textarea.form-control {
   color: var(--ink-gray-500);
   margin: 8px 0 0;
 }
+.ink-image-preview-box {
+  position: relative;
+  overflow: hidden;
+  padding: 12px;
+  border-radius: var(--ink-radius-md);
+  background: var(--ink-gray-100);
+  text-align: center;
+}
+.ink-image-preview-img {
+  max-width: 100%;
+  max-height: 400px;
+  border-radius: var(--ink-radius-sm);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+.ink-image-preview-actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+.ink-upload-drag-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 3px dashed var(--ink-400);
+  background: rgba(13, 110, 204, 0.15);
+  pointer-events: none;
+}
+.ink-upload-drag-icon {
+  color: var(--ink-500);
+  font-size: 3rem;
+}
+.ink-upload-drag-text {
+  color: var(--ink-600);
+  font-size: 1rem;
+  font-weight: 700;
+}
 
 /* Media grid */
 .ink-media-grid {
