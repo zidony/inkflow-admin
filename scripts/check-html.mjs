@@ -248,6 +248,18 @@ function checkBreadcrumbPartialUsage(filePath, html) {
   return errors;
 }
 
+function checkBulkActionBarPartialUsage(filePath, html) {
+  if (filePath === 'src/partials/bulk_action_bar.html') {
+    return [];
+  }
+
+  if (!html.includes('<div class="ink-bulk-bar"')) {
+    return [];
+  }
+
+  return [`Use {{> bulk_action_bar }} partial instead of raw bulk action bar markup at ${filePath}`];
+}
+
 async function checkHtml() {
   const files = (await Promise.all(templateDirs.map(collectHtmlFiles))).flat();
   const allErrors = [];
@@ -262,6 +274,7 @@ async function checkHtml() {
     allErrors.push(...checkSuspiciousPlaceholderText(relativePath, html));
     allErrors.push(...checkPageHeaderPartialUsage(relativePath, html));
     allErrors.push(...checkBreadcrumbPartialUsage(relativePath, html));
+    allErrors.push(...checkBulkActionBarPartialUsage(relativePath, html));
   }
 
   if (allErrors.length) {
