@@ -19,10 +19,15 @@
   /* Semantic */
   --ink-success-400: #22c55e;
   --ink-success-500: #16a34a;
+  --ink-success-soft: #dcfce7;
   --ink-warning-400: #f59e0b;
   --ink-warning-500: #d97706;
+  --ink-warning-soft: #fef3c7;
   --ink-danger-400: #f87171;
   --ink-danger-500: #ef4444;
+  --ink-danger-600: #b91c1c;
+  --ink-danger-soft: #fee2e2;
+  --ink-danger-soft-hover: #fecaca;
   /* Neutrals */
   --ink-gray-50: #f8fafc;
   --ink-gray-100: #f1f5f9;
@@ -48,13 +53,43 @@
   --sidebar-active-bg: rgba(13, 110, 204, 0.28);
   --sidebar-hover-bg: rgba(255, 255, 255, 0.06);
   --sidebar-logo-bg: #061120;
+  --sidebar-logo-shadow: 0 2px 8px rgba(6, 182, 212, 0.35);
   /* Surface */
-  --ink-card-bg: #ffffff;
+  --ink-white: #ffffff;
+  --ink-surface-bg: #ffffff;
+  --ink-surface-muted: var(--ink-gray-50);
+  --ink-surface-raised: #ffffff;
+  --ink-surface-overlay: rgba(255, 255, 255, 0.92);
+  --ink-text-on-brand: #ffffff;
+  --ink-card-bg: var(--ink-surface-bg);
   --ink-card-border: var(--ink-gray-200);
-  --ink-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --ink-card-shadow-hover: 0 8px 24px rgba(13, 110, 204, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
-  --ink-card-radius: 12px;
+  --ink-shadow-xs: 0 1px 0 var(--ink-gray-200);
+  --ink-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --ink-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --ink-shadow-lg: 0 8px 24px rgba(13, 110, 204, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
+  --ink-shadow-popover: 0 12px 40px rgba(0, 0, 0, 0.14), 0 4px 12px rgba(0, 0, 0, 0.06);
+  --ink-shadow-brand: 0 4px 14px rgba(13, 110, 204, 0.4);
+  --ink-shadow-brand-soft: 0 4px 12px rgba(13, 110, 204, 0.1);
+  --ink-card-shadow: var(--ink-shadow-sm);
+  --ink-card-shadow-hover: var(--ink-shadow-lg);
+  --ink-radius-xs: 4px;
+  --ink-radius-sm: 6px;
+  --ink-radius-md: 8px;
+  --ink-radius-lg: 10px;
+  --ink-radius-xl: 12px;
+  --ink-radius-2xl: 14px;
+  --ink-card-radius: var(--ink-radius-xl);
   --ink-focus-ring: 0 0 0 3px rgba(13, 110, 204, 0.1);
+  /* Reusable tint backgrounds */
+  --ink-tint-blue-bg: var(--ink-50);
+  --ink-tint-cyan-bg: #e0f9ff;
+  --ink-tint-green-bg: var(--ink-success-soft);
+  --ink-tint-amber-bg: var(--ink-warning-soft);
+  --ink-tint-red-bg: var(--ink-danger-soft);
+  --ink-tint-slate-bg: var(--ink-gray-100);
+  --ink-dark-control-bg: #1f2937;
+  --ink-dark-control-border: #374151;
+  --ink-dark-focus-ring: 0 0 0 3px rgba(112, 150, 219, 0.25);
   /* Typography */
   --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;

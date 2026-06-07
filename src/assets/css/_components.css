@@ -32,19 +32,19 @@
   color: var(--ink-500);
 }
 .stat-icon-cyan {
-  background: #e0f9ff;
+  background: var(--ink-tint-cyan-bg);
   color: var(--ink-accent-500);
 }
 .stat-icon-green {
-  background: #dcfce7;
+  background: var(--ink-tint-green-bg);
   color: var(--ink-success-500);
 }
 .stat-icon-amber {
-  background: #fef3c7;
+  background: var(--ink-tint-amber-bg);
   color: var(--ink-warning-500);
 }
 .stat-icon-red {
-  background: #fee2e2;
+  background: var(--ink-tint-red-bg);
   color: var(--ink-danger-500);
 }
 .stat-value {
@@ -186,7 +186,7 @@
   padding: 10px 8px;
   border: 1.5px solid var(--ink-gray-200);
   border-radius: 10px;
-  background: #fff;
+  background: var(--ink-surface-raised);
   cursor: pointer;
   transition:
     border-color 0.15s,
@@ -201,7 +201,7 @@
   background: var(--ink-50);
   color: var(--ink-600);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(13, 110, 204, 0.1);
+  box-shadow: var(--ink-shadow-brand-soft);
 }
 .ink-quick-btn-sm .ink-quick-icon-sm {
   width: 30px;
@@ -234,10 +234,8 @@
   max-width: 360px;
   padding: 0;
   border: 1px solid var(--ink-gray-200);
-  border-radius: 14px;
-  box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.14),
-    0 4px 12px rgba(0, 0, 0, 0.06);
+  border-radius: var(--ink-radius-2xl);
+  box-shadow: var(--ink-shadow-popover);
   font-family: var(--font-sans);
   overflow: hidden;
 }
@@ -590,13 +588,13 @@
 }
 
 .btn-danger-soft {
-  background: #fee2e2;
+  background: var(--ink-danger-soft);
   border: none;
   color: var(--ink-danger-500);
 }
 .btn-danger-soft:hover {
-  background: #fecaca;
-  color: #b91c1c;
+  background: var(--ink-danger-soft-hover);
+  color: var(--ink-danger-600);
 }
 
 .btn-icon {
@@ -623,7 +621,7 @@
   /* Use symmetric vertical padding so text never clips in fixed-height selects */
   padding: 5px 13px;
   color: var(--ink-gray-800);
-  background: #fff;
+  background: var(--ink-surface-raised);
   transition:
     border-color 0.15s,
     box-shadow 0.15s;
@@ -2300,8 +2298,8 @@ textarea.form-control {
 
 /* Soothing Form Checkbox & Switch overrides in dark mode */
 [data-theme='dark'] .form-check-input {
-  background-color: #1f2937 !important;
-  border-color: #374151 !important;
+  background-color: var(--ink-dark-control-bg) !important;
+  border-color: var(--ink-dark-control-border) !important;
 }
 
 [data-theme='dark'] .form-check-input:checked {
@@ -2312,7 +2310,7 @@ textarea.form-control {
 
 [data-theme='dark'] .form-check-input:focus {
   border-color: var(--ink-500) !important;
-  box-shadow: 0 0 0 3px rgba(112, 150, 219, 0.25) !important;
+  box-shadow: var(--ink-dark-focus-ring) !important;
 }
 
 [data-theme='dark'] .form-switch .form-check-input:checked {

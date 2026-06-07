@@ -65,7 +65,7 @@ For frameworks such as Laravel, Django, Rails, Express, Spring Boot, or ASP.NET:
 
 ### Theme Colors
 
-Primary theme variables live in `src/assets/css/_variables.css`. Start with brand, state, gray scale, radius, spacing, and shadow variables before changing component CSS.
+Primary theme variables live in `src/assets/css/_variables.css`. Start with brand, state, gray scale, radius, spacing, and shadow variables before changing component CSS. See `docs/theme-customization.md` for the recommended override map.
 
 After changing source CSS, rebuild:
 
