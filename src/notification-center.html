@@ -150,7 +150,7 @@
               <!-- Item: unread system -->
               <li class="ink-notif-row unread" data-type="system">
                 <div class="ink-notif-row-inner">
-                  <div class="ink-notif-icon-lg u-text-warning" style="background:#fef3c7">
+                  <div class="ink-notif-icon-lg u-tint-amber">
                     <i class="bi bi-exclamation-triangle"></i>
                   </div>
                   <div class="ink-notif-content">
@@ -183,7 +183,7 @@
               <!-- Item: unread comment -->
               <li class="ink-notif-row unread" data-type="comment">
                 <div class="ink-notif-row-inner">
-                  <div class="ink-notif-icon-lg" style="background:#ede9fe;color:#7c3aed">
+                  <div class="ink-notif-icon-lg u-tint-purple">
                     <i class="bi bi-chat-left-dots"></i>
                   </div>
                   <div class="ink-notif-content">
@@ -227,7 +227,7 @@
                     <i class="bi bi-file-earmark-check"></i>
                   </div>
                   <div class="ink-notif-content">
-                    <div class="ink-notif-title">文章发布成功 <span class="ink-badge ms-1" style="background:var(--ink-gray-100);color:var(--ink-gray-600)">系统</span></div>
+                    <div class="ink-notif-title">文章发布成功 <span class="ink-badge u-tint-gray ms-1">系统</span></div>
                     <div class="ink-notif-desc">文章《TypeScript 高级类型完全指南》已成功发布，当前已获得 <strong>128</strong> 次阅读。</div>
                     <div class="ink-notif-meta"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
                   </div>
@@ -343,6 +343,7 @@
               <i class="bi bi-bell-slash"></i>
               <p>暂无符合条件的通知</p>
             </div>
+          </div>
           {{> pagination summary="共 24 条 · 显示第 1–10 条" ariaLabel="通知列表分页" nextLabel="下一页" }}
         </div>
       </div>
@@ -358,7 +359,7 @@
               <div class="d-flex align-items-center justify-content-between py-2 border-bottom border-ink-gray-100"
                    >
                 <div class="d-flex align-items-center gap-2">
-                  <span style="width:8px;height:8px;border-radius:50%;background:var(--ink-500);display:inline-block"></span>
+                  <span class="ink-dot ink-dot-blue"></span>
                   <span class="u-text-body">未读通知</span>
                 </div>
                 <span class="ink-badge u-tint-blue" id="stat-unread">4</span>
@@ -366,7 +367,7 @@
               <div class="d-flex align-items-center justify-content-between py-2 border-bottom border-ink-gray-100"
                    >
                 <div class="d-flex align-items-center gap-2">
-                  <span style="width:8px;height:8px;border-radius:50%;background:var(--ink-500);display:inline-block"></span>
+                  <span class="ink-dot ink-dot-blue"></span>
                   <span class="u-text-body">评论通知</span>
                 </div>
                 <span class="fw-semibold u-text-gray-700 u-text-body" >12</span>
@@ -374,7 +375,7 @@
               <div class="d-flex align-items-center justify-content-between py-2 border-bottom border-ink-gray-100"
                    >
                 <div class="d-flex align-items-center gap-2">
-                  <span style="width:8px;height:8px;border-radius:50%;background:var(--ink-success-500);display:inline-block"></span>
+                  <span class="ink-dot ink-dot-green"></span>
                   <span class="u-text-body">用户通知</span>
                 </div>
                 <span class="fw-semibold u-text-gray-700 u-text-body" >6</span>
@@ -382,14 +383,14 @@
               <div class="d-flex align-items-center justify-content-between py-2 border-bottom border-ink-gray-100"
                    >
                 <div class="d-flex align-items-center gap-2">
-                  <span style="width:8px;height:8px;border-radius:50%;background:var(--ink-warning-500);display:inline-block"></span>
+                  <span class="ink-dot ink-dot-amber"></span>
                   <span class="u-text-body">系统通知</span>
                 </div>
                 <span class="fw-semibold u-text-gray-700 u-text-body" >6</span>
               </div>
               <div class="d-flex align-items-center justify-content-between py-2">
                 <span class="u-text-gray-500 u-text-body" >总计</span>
-                <span class="fw-bold u-text-body" style="color:var(--ink-gray-900)">24</span>
+                <span class="fw-bold u-text-body u-text-gray-900">24</span>
               </div>
             </div>
             <button class="btn btn-light w-100 mt-3 u-text-sm" data-action="read-all">

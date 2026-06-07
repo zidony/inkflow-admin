@@ -10,6 +10,10 @@
   color: var(--ink-500);
 }
 
+.u-text-gray-900 {
+  color: var(--ink-gray-900);
+}
+
 .ink-notif-badge {
   position: absolute;
   top: -2px;
