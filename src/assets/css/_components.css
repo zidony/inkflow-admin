@@ -1652,6 +1652,14 @@ textarea.form-control {
   text-align: center;
   margin-bottom: 28px;
 }
+.ink-login-error {
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  border: 1px solid var(--ink-danger-soft-hover);
+  border-radius: var(--ink-radius-md);
+  background: var(--ink-danger-soft);
+  color: var(--ink-danger-600);
+}
 
 .ink-login-input-wrap {
   position: relative;
@@ -1744,6 +1752,9 @@ textarea.form-control {
 }
 .ink-login-footer a:hover {
   text-decoration: underline;
+}
+.ink-login-version {
+  margin: 4px 0 0;
 }
 
 .ink-login-dots {
