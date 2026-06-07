@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>编辑文章 — InkFlow</title>
     {{> head_assets }}
-    <style>
-      #page-content {
-        padding-top: 0;
-      }
-    </style>
   </head>
   <body>
     <!-- ==================== SIDEBAR ==================== -->
@@ -32,13 +27,7 @@
             </a>
             <span class="u-text-gray-500 u-text-sm" id="save-status">
               <i
-                class="bi bi-check-circle-fill"
-                style="
-                  color: var(--ink-success-400);
-                  font-size: 0.7rem;
-                  vertical-align: middle;
-                  margin-right: 3px;
-                "
+                class="ink-save-status-icon ink-save-status-icon-success bi bi-check-circle-fill"
               ></i>
               草稿已自动保存 · 刚刚
             </span>
@@ -58,39 +47,28 @@
       </div>
 
       <!-- PAGE CONTENT -->
-      <main id="page-content" style="padding-top: 20px">
+      <main id="page-content" class="ink-editor-page">
         <div class="ink-editor-layout">
           <!-- ===== LEFT: 主编辑区 ===== -->
           <div>
             <!-- 标题输入 -->
             <div class="ink-panel ink-anim">
-              <div class="ink-panel-body" style="padding: 16px 20px">
+              <div class="ink-panel-body ink-post-title-panel-body">
                 <input
                   type="text"
                   id="post-title"
-                  class="form-control fw-bold"
-                  style="
-                    font-size: 1.3rem;
-                    border: none;
-                    padding: 0;
-                    box-shadow: none;
-                    color: var(--ink-gray-900);
-                    letter-spacing: -0.3px;
-                  "
+                  class="form-control fw-bold ink-post-title-input"
                   value="深入理解 Vue 3 Composition API 与响应式原理"
                   placeholder="在此输入文章标题…"
                 />
-                <div
-                  class="d-flex align-items-center flex-wrap gap-3 mt-2"
-                  style="padding-top: 10px; border-top: 1px solid var(--ink-gray-100)"
-                >
-                  <div class="u-text-sm" style="flex: 1; min-width: 200px">
-                    <span class="u-text-gray-400" style="margin-right: 6px">永久链接</span>
+                <div class="ink-post-meta-row d-flex align-items-center flex-wrap gap-3 mt-2">
+                  <div class="ink-post-permalink u-text-sm">
+                    <span class="ink-post-permalink-label u-text-gray-400">永久链接</span>
                     <span class="u-text-primary u-text-mono">
                       /post/
                       <span
                         id="slug-preview"
-                        style="border-bottom: 1px dashed var(--ink-300); cursor: pointer"
+                        class="ink-post-slug-preview"
                         data-action="toast"
                         data-toast-msg="请在下方修改 Slug"
                         data-toast-type="info"
@@ -99,8 +77,7 @@
                       </span>
                     </span>
                     <button
-                      class="btn btn-light btn-sm ms-2"
-                      style="height: 22px; font-size: 0.68rem; padding: 0 8px"
+                      class="btn btn-light btn-sm ink-post-slug-btn ms-2"
                       data-action="toast"
                       data-toast-msg="Slug 已可编辑"
                       data-toast-type="info"
@@ -122,8 +99,7 @@
                 <i class="bi bi-pencil-square"></i> 文章内容
                 <div class="ms-auto d-flex gap-2">
                   <button
-                    class="btn btn-light btn-sm u-text-xs"
-                    style="height: 26px; padding: 0 8px"
+                    class="btn btn-light btn-sm ink-editor-mode-btn u-text-xs"
                     data-action="toast"
                     data-toast-msg="已切换到源码模式"
                     data-toast-type="info"
@@ -131,8 +107,7 @@
                     <i class="bi bi-code-slash me-1"></i>源码
                   </button>
                   <button
-                    class="btn btn-light btn-sm u-text-xs"
-                    style="height: 26px; padding: 0 8px"
+                    class="btn btn-light btn-sm ink-editor-mode-btn u-text-xs"
                     data-action="toast"
                     data-toast-msg="已切换到预览模式"
                     data-toast-type="info"
@@ -145,18 +120,7 @@
                 <!-- 工具栏 -->
                 <div class="ink-editor-toolbar">
                   <div class="ink-toolbar-group">
-                    <select
-                      class="u-text-gray-700 u-text-sm"
-                      style="
-                        border: none;
-                        background: transparent;
-                        font-family: var(--font-sans);
-                        height: 28px;
-                        padding: 0 4px;
-                        cursor: pointer;
-                        border-radius: 4px;
-                      "
-                    >
+                    <select class="ink-toolbar-select u-text-gray-700 u-text-sm">
                       <option>段落</option>
                       <option>标题 1</option>
                       <option>标题 2</option>
@@ -440,8 +404,7 @@
                   <span class="ink-pill">随笔日记</span>
                 </div>
                 <button
-                  class="btn btn-light btn-sm w-100 mt-2 u-text-xs"
-                  style="height: 28px"
+                  class="btn btn-light btn-sm btn-h28px w-100 mt-2 u-text-xs"
                   data-action="toast"
                   data-toast-msg="请在栏目管理中新建分类"
                   data-toast-type="info"
@@ -472,9 +435,8 @@
                 <input
                   type="text"
                   id="tag-input"
-                  class="form-control mt-2 u-text-sm"
+                  class="form-control h-32px mt-2 u-text-sm"
                   placeholder="输入标签后按 Enter 确认"
-                  style="height: 32px"
                 />
                 <div class="ink-form-hint">按 Enter 或逗号添加标签</div>
               </div>
@@ -485,18 +447,16 @@
               <div class="ink-panel-header"><i class="bi bi-blockquote-left"></i> 文章摘要</div>
               <div class="ink-panel-body">
                 <textarea
-                  class="form-control u-text-body"
+                  class="form-control ink-post-summary-textarea u-text-body"
                   rows="3"
                   placeholder="不填则自动取正文前 150 字…"
-                  style="resize: vertical"
                 >
 Vue 3 带来了全新的 Composition API，提供了更灵活的代码组织方式与更强大的逻辑复用能力。</textarea
                 >
                 <div class="d-flex align-items-center justify-content-between mt-1">
                   <span class="ink-form-hint mb-0">建议 50–150 字</span>
                   <button
-                    class="btn btn-light btn-sm"
-                    style="height: 24px; font-size: 0.68rem; padding: 0 8px"
+                    class="btn btn-light btn-sm ink-post-summary-ai-btn"
                     data-action="toast"
                     data-toast-msg="已自动生成摘要"
                     data-toast-type="info"
