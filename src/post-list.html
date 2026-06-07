@@ -14,7 +14,9 @@
     <div id="main-wrapper">
       <!-- TOPBAR -->
       {{#> topbar}}
-        <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item"><a href="#">内容管理</a></li> <li class="breadcrumb-item active" aria-current="page">文章管理</li>
+        {{#> breadcrumb}}
+          <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item"><a href="#">内容管理</a></li> <li class="breadcrumb-item active" aria-current="page">文章管理</li>
+        {{/breadcrumb}}
       {{/topbar}}
       <main id="page-content">
         {{#> page_header title="文章管理" subtitle="共 1,284 篇 · 978 已发布 · 180 草稿 · 127 待审核"}}

@@ -14,7 +14,9 @@
     <div id="main-wrapper">
       <!-- TOPBAR -->
       {{#> topbar}}
-        <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item"><a href="#">内容管理</a></li> <li class="breadcrumb-item active" aria-current="page">栏目管理</li>
+        {{#> breadcrumb}}
+          <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item"><a href="#">内容管理</a></li> <li class="breadcrumb-item active" aria-current="page">栏目管理</li>
+        {{/breadcrumb}}
       {{/topbar}}
       <main id="page-content">
         {{#> page_header title="栏目管理" subtitle="共 8 个栏目"}}

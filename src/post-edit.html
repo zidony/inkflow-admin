@@ -15,7 +15,9 @@
     <div id="main-wrapper">
       <!-- TOPBAR -->
       {{#> topbar}}
-        <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item"><a href="post-list.html">文章列表</a></li> <li class="breadcrumb-item active" aria-current="page">编辑文章</li>
+        {{#> breadcrumb}}
+          <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item"><a href="post-list.html">文章列表</a></li> <li class="breadcrumb-item active" aria-current="page">编辑文章</li>
+        {{/breadcrumb}}
       {{/topbar}}
 
       <!-- STICKY ACTION BAR -->

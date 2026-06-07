@@ -13,7 +13,9 @@
     <div id="main-wrapper">
       <!-- TOPBAR -->
       {{#> topbar}}
-        <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item"><a href="#">媒体管理</a></li> <li class="breadcrumb-item active" aria-current="page">图片管理</li>
+        {{#> breadcrumb}}
+          <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item"><a href="#">媒体管理</a></li> <li class="breadcrumb-item active" aria-current="page">图片管理</li>
+        {{/breadcrumb}}
       {{/topbar}}
       <main id="page-content">
         {{#> page_header title="图片管理" subtitle="共 328 个文件 · 2.8 GB"}}

@@ -17,7 +17,9 @@
 
   <!-- TOPBAR -->
       {{#> topbar}}
-        <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item active" aria-current="page">通知中心</li>
+        {{#> breadcrumb}}
+          <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item active" aria-current="page">通知中心</li>
+        {{/breadcrumb}}
       {{/topbar}}
 
   <!-- PAGE CONTENT -->

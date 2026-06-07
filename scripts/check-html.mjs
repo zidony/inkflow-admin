@@ -222,6 +222,32 @@ function checkPageHeaderPartialUsage(filePath, html) {
   return [`Use {{#> page_header}} partial instead of raw page-header markup at ${filePath}`];
 }
 
+function checkBreadcrumbPartialUsage(filePath, html) {
+  if (filePath === 'src/partials/breadcrumb.html') {
+    return [];
+  }
+
+  const errors = [];
+
+  if (html.includes('aria-label="breadcrumb"')) {
+    errors.push(`Use {{#> breadcrumb}} partial instead of raw breadcrumb nav at ${filePath}`);
+  }
+
+  const topbarBlockPattern = /{{#>\s*topbar\s*}}([\s\S]*?){{\/topbar}}/g;
+  let match;
+
+  while ((match = topbarBlockPattern.exec(html))) {
+    if (match[1].includes('{{#> breadcrumb')) {
+      continue;
+    }
+
+    const line = lineNumberForIndex(html, match.index);
+    errors.push(`Wrap topbar breadcrumb content with {{#> breadcrumb}} at ${filePath}:${line}`);
+  }
+
+  return errors;
+}
+
 async function checkHtml() {
   const files = (await Promise.all(templateDirs.map(collectHtmlFiles))).flat();
   const allErrors = [];
@@ -235,6 +261,7 @@ async function checkHtml() {
     allErrors.push(...checkDataActions(relativePath, html));
     allErrors.push(...checkSuspiciousPlaceholderText(relativePath, html));
     allErrors.push(...checkPageHeaderPartialUsage(relativePath, html));
+    allErrors.push(...checkBreadcrumbPartialUsage(relativePath, html));
   }
 
   if (allErrors.length) {
