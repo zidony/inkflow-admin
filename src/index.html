@@ -234,9 +234,9 @@
                       <th>标题</th>
                       <th>分类</th>
                       <th>浏览量</th>
-                      <th>发布时间</th>
-                      <th>状态</th>
-                      <th class="text-center">操作</th>
+                      <th class="w-120px">发布时间</th>
+                      <th class="w-100px">状态</th>
+                      <th class="text-center w-100px">操作</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -430,129 +430,247 @@
                   ><span class="ink-badge-dot"></span>127 待审</span
                 >
               </div>
-              <div class="card-body p-0 px-3">
-                <ul class="ink-activity-list">
-                  <li class="ink-activity-item">
-                    <div class="ink-avatar ink-avatar-green">张S</div>
-                    <div class="ink-activity-body">
-                      <div class="ink-activity-text">
-                        <strong>张三</strong> 评论了
-                        <strong>《Vue 3 Composition API》</strong>：讲得非常清楚，一看就懂！
-                      </div>
-                      <div class="ink-activity-time"><i class="bi bi-clock me-1"></i>10 分钟前</div>
-                    </div>
-                    <div class="d-flex gap-1 ms-2 align-items-center">
-                      <button
-                        class="btn btn-light btn-icon wh-28px"
-                        title="通过审核"
-                        aria-label="通过审核"
-                        data-action="toast"
-                        data-toast-msg="已审核通过"
-                        data-toast-type="success"
-                      >
-                        <i class="bi bi-check u-text-success"></i></button
-                      ><button class="btn btn-danger-soft btn-icon wh-28px" title="删除评论" aria-label="删除评论" data-action="delete">
-                        <i class="bi bi-trash3"></i>
-                      </button>
-                    </div>
-                  </li>
-                  <li class="ink-activity-item">
-                    <div class="ink-avatar ink-avatar-blue">李M</div>
-                    <div class="ink-activity-body">
-                      <div class="ink-activity-text">
-                        <strong>李明</strong> 回复了 <strong>《Docker 最佳实践》</strong>：能否补充
-                        K8s 部分？
-                      </div>
-                      <div class="ink-activity-time"><i class="bi bi-clock me-1"></i>32 分钟前</div>
-                    </div>
-                    <div class="d-flex gap-1 ms-2 align-items-center">
-                      <button
-                        class="btn btn-light btn-icon wh-28px"
-                        title="通过审核"
-                        aria-label="通过审核"
-                        data-action="toast"
-                        data-toast-msg="已审核通过"
-                        data-toast-type="success"
-                      >
-                        <i class="bi bi-check u-text-success"></i></button
-                      ><button class="btn btn-danger-soft btn-icon wh-28px" title="删除评论" aria-label="删除评论" data-action="delete">
-                        <i class="bi bi-trash3"></i>
-                      </button>
-                    </div>
-                  </li>
-                  <li class="ink-activity-item">
-                    <div class="ink-avatar ink-avatar-amber">王H</div>
-                    <div class="ink-activity-body">
-                      <div class="ink-activity-text">
-                        <strong>王红</strong> 评论了
-                        <strong>《LLM Fine-tuning 指南》</strong>：数据集处理部分有误
-                      </div>
-                      <div class="ink-activity-time"><i class="bi bi-clock me-1"></i>1 小时前</div>
-                    </div>
-                    <div class="d-flex gap-1 ms-2 align-items-center">
-                      <button
-                        class="btn btn-light btn-icon wh-28px"
-                        title="通过审核"
-                        aria-label="通过审核"
-                        data-action="toast"
-                        data-toast-msg="已审核通过"
-                        data-toast-type="success"
-                      >
-                        <i class="bi bi-check u-text-success"></i></button
-                      ><button class="btn btn-danger-soft btn-icon wh-28px" title="删除评论" aria-label="删除评论" data-action="delete">
-                        <i class="bi bi-trash3"></i>
-                      </button>
-                    </div>
-                  </li>
-                  <li class="ink-activity-item">
-                    <div class="ink-avatar ink-avatar-purple">陈K</div>
-                    <div class="ink-activity-body">
-                      <div class="ink-activity-text">
-                        <strong>陈凯</strong> 评论了
-                        <strong>《TypeScript 高级类型》</strong>：太硬核了！已收藏
-                      </div>
-                      <div class="ink-activity-time"><i class="bi bi-clock me-1"></i>2 小时前</div>
-                    </div>
-                    <div class="d-flex gap-1 ms-2 align-items-center">
-                      <button
-                        class="btn btn-light btn-icon wh-28px"
-                        title="通过审核"
-                        aria-label="通过审核"
-                        data-action="toast"
-                        data-toast-msg="已审核通过"
-                        data-toast-type="success"
-                      >
-                        <i class="bi bi-check u-text-success"></i></button
-                      ><button class="btn btn-danger-soft btn-icon wh-28px" title="删除评论" aria-label="删除评论" data-action="delete">
-                        <i class="bi bi-trash3"></i>
-                      </button>
-                    </div>
-                  </li>
-                  <li class="ink-activity-item">
-                    <div class="ink-avatar ink-avatar-blue">赵L</div>
-                    <div class="ink-activity-body">
-                      <div class="ink-activity-text">
-                        <strong>赵磊</strong> 评论了
-                        <strong>《ECharts 数据大屏》</strong>：感谢分享，代码可以直接用！
-                      </div>
-                      <div class="ink-activity-time"><i class="bi bi-clock me-1"></i>3 小时前</div>
-                    </div>
-                    <div class="d-flex gap-1 ms-2 align-items-center">
-                      <button
-                        class="btn btn-light btn-icon wh-28px"
-                        title="通过审核"
-                        aria-label="通过审核"
-                        data-action="toast"
-                        data-toast-msg="已审核通过"
-                        data-toast-type="success"
-                      >
-                        <i class="bi bi-check u-text-success"></i></button
-                      ><button class="btn btn-danger-soft btn-icon wh-28px" title="删除评论" aria-label="删除评论" data-action="delete">
-                        <i class="bi bi-trash3"></i>
-                      </button>
-                    </div>
-                  </li>
-                </ul>
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="ink-table">
+                    <thead>
+                      <tr>
+                        <th class="min-w-140px">评论者</th>
+                        <th>评论内容</th>
+                        <th class="w-120px">时间</th>
+                        <th class="w-100px">状态</th>
+                        <th class="text-center w-100px">操作</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="ink-item-cell">
+                            <div class="ink-avatar ink-avatar-green">张S</div>
+                            <div class="ink-item-text">
+                              <span class="ink-title">张三</span>
+                              <small>评论</small>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="ink-item-text">
+                            <span class="ink-title">《Vue 3 Composition API》</span>
+                            <small>讲得非常清楚，一看就懂！</small>
+                          </div>
+                        </td>
+                        <td><span class="u-text-gray-500 u-text-sm">10 分钟前</span></td>
+                        <td>
+                          <span class="ink-badge u-tint-amber"
+                            ><span class="ink-badge-dot"></span>待审核</span
+                          >
+                        </td>
+                        <td>
+                          <div class="d-flex justify-content-center gap-1">
+                            <button
+                              class="btn btn-light btn-icon"
+                              title="通过审核"
+                              aria-label="通过审核"
+                              data-action="toast"
+                              data-toast-msg="已审核通过"
+                              data-toast-type="success"
+                            >
+                              <i class="bi bi-check u-text-success"></i>
+                            </button>
+                            <button
+                              class="btn btn-danger-soft btn-icon"
+                              title="删除评论"
+                              aria-label="删除评论"
+                              data-action="delete"
+                            >
+                              <i class="bi bi-trash3"></i>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="ink-item-cell">
+                            <div class="ink-avatar ink-avatar-blue">李M</div>
+                            <div class="ink-item-text">
+                              <span class="ink-title">李明</span>
+                              <small>回复</small>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="ink-item-text">
+                            <span class="ink-title">《Docker 最佳实践》</span>
+                            <small>能否补充 K8s 部分？</small>
+                          </div>
+                        </td>
+                        <td><span class="u-text-gray-500 u-text-sm">32 分钟前</span></td>
+                        <td>
+                          <span class="ink-badge u-tint-amber"
+                            ><span class="ink-badge-dot"></span>待审核</span
+                          >
+                        </td>
+                        <td>
+                          <div class="d-flex justify-content-center gap-1">
+                            <button
+                              class="btn btn-light btn-icon"
+                              title="通过审核"
+                              aria-label="通过审核"
+                              data-action="toast"
+                              data-toast-msg="已审核通过"
+                              data-toast-type="success"
+                            >
+                              <i class="bi bi-check u-text-success"></i>
+                            </button>
+                            <button
+                              class="btn btn-danger-soft btn-icon"
+                              title="删除评论"
+                              aria-label="删除评论"
+                              data-action="delete"
+                            >
+                              <i class="bi bi-trash3"></i>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="ink-item-cell">
+                            <div class="ink-avatar ink-avatar-amber">王H</div>
+                            <div class="ink-item-text">
+                              <span class="ink-title">王红</span>
+                              <small>评论</small>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="ink-item-text">
+                            <span class="ink-title">《LLM Fine-tuning 指南》</span>
+                            <small>数据集处理部分有误</small>
+                          </div>
+                        </td>
+                        <td><span class="u-text-gray-500 u-text-sm">1 小时前</span></td>
+                        <td>
+                          <span class="ink-badge u-tint-amber"
+                            ><span class="ink-badge-dot"></span>待审核</span
+                          >
+                        </td>
+                        <td>
+                          <div class="d-flex justify-content-center gap-1">
+                            <button
+                              class="btn btn-light btn-icon"
+                              title="通过审核"
+                              aria-label="通过审核"
+                              data-action="toast"
+                              data-toast-msg="已审核通过"
+                              data-toast-type="success"
+                            >
+                              <i class="bi bi-check u-text-success"></i>
+                            </button>
+                            <button
+                              class="btn btn-danger-soft btn-icon"
+                              title="删除评论"
+                              aria-label="删除评论"
+                              data-action="delete"
+                            >
+                              <i class="bi bi-trash3"></i>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="ink-item-cell">
+                            <div class="ink-avatar ink-avatar-purple">陈K</div>
+                            <div class="ink-item-text">
+                              <span class="ink-title">陈凯</span>
+                              <small>评论</small>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="ink-item-text">
+                            <span class="ink-title">《TypeScript 高级类型》</span>
+                            <small>太硬核了！已收藏</small>
+                          </div>
+                        </td>
+                        <td><span class="u-text-gray-500 u-text-sm">2 小时前</span></td>
+                        <td>
+                          <span class="ink-badge u-tint-green"
+                            ><span class="ink-badge-dot"></span>已通过</span
+                          >
+                        </td>
+                        <td>
+                          <div class="d-flex justify-content-center gap-1">
+                            <button
+                              class="btn btn-light btn-icon"
+                              title="通过审核"
+                              aria-label="通过审核"
+                              data-action="toast"
+                              data-toast-msg="已审核通过"
+                              data-toast-type="success"
+                            >
+                              <i class="bi bi-check u-text-success"></i>
+                            </button>
+                            <button
+                              class="btn btn-danger-soft btn-icon"
+                              title="删除评论"
+                              aria-label="删除评论"
+                              data-action="delete"
+                            >
+                              <i class="bi bi-trash3"></i>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="ink-item-cell">
+                            <div class="ink-avatar ink-avatar-blue">赵L</div>
+                            <div class="ink-item-text">
+                              <span class="ink-title">赵磊</span>
+                              <small>评论</small>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="ink-item-text">
+                            <span class="ink-title">《ECharts 数据大屏》</span>
+                            <small>感谢分享，代码可以直接用！</small>
+                          </div>
+                        </td>
+                        <td><span class="u-text-gray-500 u-text-sm">3 小时前</span></td>
+                        <td>
+                          <span class="ink-badge u-tint-green"
+                            ><span class="ink-badge-dot"></span>已通过</span
+                          >
+                        </td>
+                        <td>
+                          <div class="d-flex justify-content-center gap-1">
+                            <button
+                              class="btn btn-light btn-icon"
+                              title="通过审核"
+                              aria-label="通过审核"
+                              data-action="toast"
+                              data-toast-msg="已审核通过"
+                              data-toast-type="success"
+                            >
+                              <i class="bi bi-check u-text-success"></i>
+                            </button>
+                            <button
+                              class="btn btn-danger-soft btn-icon"
+                              title="删除评论"
+                              aria-label="删除评论"
+                              data-action="delete"
+                            >
+                              <i class="bi bi-trash3"></i>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
               <div class="card-footer d-flex justify-content-center">
                 <a

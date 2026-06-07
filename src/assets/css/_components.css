@@ -1710,9 +1710,6 @@ textarea.form-control {
   .ink-activity-body {
     min-width: 0;
   }
-  .ink-activity-item > .d-flex:last-child {
-    margin-left: 44px !important;
-  }
   .ink-settings-nav-card {
     position: sticky;
     top: var(--topbar-height);
