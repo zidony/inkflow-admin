@@ -122,10 +122,6 @@
 .border-ink-gray-100 {
   border-color: var(--ink-gray-100) !important;
 }
-.wh-28px {
-  width: 28px !important;
-  height: 28px !important;
-}
 .mw-260px {
   max-width: 260px !important;
 }

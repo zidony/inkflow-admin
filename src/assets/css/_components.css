@@ -1274,62 +1274,6 @@ textarea.form-control {
 }
 
 /* ============================================================
-   QUICK ACTIONS GRID
-   ============================================================ */
-.ink-quick-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-.ink-quick-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 16px 10px;
-  border: 1.5px solid var(--ink-gray-200);
-  border-radius: 10px;
-  background: #fff;
-  cursor: pointer;
-  transition:
-    border-color 0.15s,
-    background 0.15s,
-    transform 0.15s;
-  text-decoration: none;
-  color: var(--ink-gray-700);
-}
-.ink-quick-btn:hover {
-  border-color: var(--ink-300);
-  background: var(--ink-50);
-  color: var(--ink-600);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(13, 110, 204, 0.1);
-}
-.ink-quick-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  background: var(--ink-gray-100);
-  color: var(--ink-gray-600);
-  transition:
-    background 0.15s,
-    color 0.15s;
-}
-.ink-quick-btn:hover .ink-quick-icon {
-  background: var(--ink-100);
-  color: var(--ink-600);
-}
-.ink-quick-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-align: center;
-}
-
-/* ============================================================
    PAGINATION
    ============================================================ */
 .pagination .page-link {
@@ -2537,19 +2481,16 @@ textarea.form-control {
   border-color: #374151 !important;
 }
 
-[data-theme='dark'] .ink-quick-btn,
 [data-theme='dark'] .ink-quick-btn-sm {
   background-color: #111827 !important;
   border-color: #374151 !important;
 }
 
-[data-theme='dark'] .ink-quick-btn:hover,
 [data-theme='dark'] .ink-quick-btn-sm:hover {
   border-color: var(--ink-500) !important;
   background-color: rgba(112, 150, 219, 0.1) !important;
 }
 
-[data-theme='dark'] .ink-quick-btn .ink-quick-icon,
 [data-theme='dark'] .ink-quick-btn-sm .ink-quick-icon-sm {
   background-color: #1f2937 !important;
 }
