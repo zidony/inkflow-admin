@@ -17,15 +17,11 @@
         <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item active" aria-current="page">仪表盘</li>
       {{/topbar}}
       <main id="page-content">
-        <div class="page-header">
-          <div>
-            <h1 class="page-title">仪表盘</h1>
-            <span class="page-subtitle" id="topbar-date"></span>
-          </div>
+        {{#> page_header title="仪表盘" subtitleId="topbar-date"}}
           <a href="post-edit.html" class="btn btn-primary btn-sm"
             ><i class="bi bi-pencil-square"></i> 新建文章</a
           >
-        </div>
+        {{/page_header}}
 
         <!-- 第一行：统计卡 col-8 + 快捷操作 col-4（8:4 等高单行） -->
         <div class="row g-3 mb-4 align-items-stretch">

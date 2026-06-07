@@ -17,11 +17,7 @@
         <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item active" aria-current="page">系统设置</li>
       {{/topbar}}
       <main id="page-content">
-        <div class="page-header">
-          <div>
-            <h1 class="page-title">系统设置</h1>
-            <span class="page-subtitle">管理 InkFlow 博客的全局配置</span>
-          </div>
+        {{#> page_header title="系统设置" subtitle="管理 InkFlow 博客的全局配置"}}
           <button
             class="btn btn-primary btn-sm"
             data-action="toast"
@@ -30,7 +26,7 @@
           >
             <i class="bi bi-check-lg me-1"></i>保存所有设置
           </button>
-        </div>
+        {{/page_header}}
 
         <div class="ink-settings-layout">
           <!-- Left nav -->

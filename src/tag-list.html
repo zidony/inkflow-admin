@@ -17,15 +17,11 @@
         <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item"><a href="#">内容管理</a></li> <li class="breadcrumb-item active" aria-current="page">标签管理</li>
       {{/topbar}}
       <main id="page-content">
-        <div class="page-header">
-          <div>
-            <h1 class="page-title">标签管理</h1>
-            <span class="page-subtitle">共 12 个标签</span>
-          </div>
+        {{#> page_header title="标签管理" subtitle="共 12 个标签"}}
           <a href="tag-edit.html" class="btn btn-primary btn-sm"
             ><i class="bi bi-plus-lg"></i> 新建标签</a
           >
-        </div>
+        {{/page_header}}
         <div class="ink-bulk-bar" id="bulk-action-bar">
           <i class="bi bi-check2-all u-text-primary"></i>
           <span>已选 <strong id="bulk-count">0</strong> 项</span>

@@ -196,6 +196,32 @@ function checkDataActions(filePath, html) {
   return errors;
 }
 
+function checkSuspiciousPlaceholderText(filePath, html) {
+  const content = stripIgnoredContent(html);
+  const errors = [];
+  const placeholderPattern = /\?{3,}/g;
+  let match;
+
+  while ((match = placeholderPattern.exec(content))) {
+    const line = lineNumberForIndex(content, match.index);
+    errors.push(`Suspicious placeholder text "${match[0]}" at ${filePath}:${line}`);
+  }
+
+  return errors;
+}
+
+function checkPageHeaderPartialUsage(filePath, html) {
+  if (filePath === 'src/partials/page_header.html') {
+    return [];
+  }
+
+  if (!html.includes('<div class="page-header">')) {
+    return [];
+  }
+
+  return [`Use {{#> page_header}} partial instead of raw page-header markup at ${filePath}`];
+}
+
 async function checkHtml() {
   const files = (await Promise.all(templateDirs.map(collectHtmlFiles))).flat();
   const allErrors = [];
@@ -207,6 +233,8 @@ async function checkHtml() {
     allErrors.push(...checkDuplicateAttributes(relativePath, html));
     allErrors.push(...checkDuplicateIds(relativePath, html));
     allErrors.push(...checkDataActions(relativePath, html));
+    allErrors.push(...checkSuspiciousPlaceholderText(relativePath, html));
+    allErrors.push(...checkPageHeaderPartialUsage(relativePath, html));
   }
 
   if (allErrors.length) {

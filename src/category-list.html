@@ -17,15 +17,11 @@
         <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item"><a href="#">内容管理</a></li> <li class="breadcrumb-item active" aria-current="page">栏目管理</li>
       {{/topbar}}
       <main id="page-content">
-        <div class="page-header">
-          <div>
-            <h1 class="page-title">栏目管理</h1>
-            <span class="page-subtitle">共 8 个栏目</span>
-          </div>
+        {{#> page_header title="栏目管理" subtitle="共 8 个栏目"}}
           <a href="category-edit.html" class="btn btn-primary btn-sm"
             ><i class="bi bi-plus-lg"></i> 新建栏目</a
           >
-        </div>
+        {{/page_header}}
         <div class="ink-bulk-bar" id="bulk-action-bar">
           <i class="bi bi-check2-all u-text-primary"></i>
           <span>已选 <strong id="bulk-count">0</strong> 项</span>

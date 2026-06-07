@@ -16,12 +16,8 @@
         <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item"><a href="#">媒体管理</a></li> <li class="breadcrumb-item active" aria-current="page">图片管理</li>
       {{/topbar}}
       <main id="page-content">
-        <div class="page-header">
-          <div>
-            <h1 class="page-title">图片管理</h1>
-            <span class="page-subtitle">共 328 个文件 · 2.8 GB</span>
-          </div>
-        </div>
+        {{#> page_header title="图片管理" subtitle="共 328 个文件 · 2.8 GB"}}
+        {{/page_header}}
         <div class="ink-bulk-bar" id="bulk-action-bar">
           <i class="bi bi-check2-all u-text-primary"></i>
           <span>已选 <strong id="bulk-count">0</strong> 项</span>

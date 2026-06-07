@@ -16,15 +16,11 @@
         <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item active" aria-current="page">用户管理</li>
       {{/topbar}}
       <main id="page-content">
-        <div class="page-header">
-          <div>
-            <h1 class="page-title">用户管理</h1>
-            <span class="page-subtitle">共 4,210 名用户</span>
-          </div>
+        {{#> page_header title="用户管理" subtitle="共 4,210 名用户"}}
           <a href="user-edit.html" class="btn btn-primary btn-sm"
             ><i class="bi bi-person-plus"></i> 新建用户</a
           >
-        </div>
+        {{/page_header}}
         <div class="ink-bulk-bar" id="bulk-action-bar">
           <i class="bi bi-check2-all u-text-primary"></i>
           <span>已选 <strong id="bulk-count">0</strong> 项</span>

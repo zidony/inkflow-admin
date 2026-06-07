@@ -16,14 +16,11 @@
         <li class="breadcrumb-item"><a href="index.html">首页</a></li> <li class="breadcrumb-item"><a href="comment-list.html">评论列表</a></li> <li class="breadcrumb-item active" aria-current="page">评论详情</li>
       {{/topbar}}
       <main id="page-content">
-        <div class="page-header">
-          <div>
-            <h1 class="page-title">评论详情 / 回复</h1>
-          </div>
+        {{#> page_header title="评论详情 / 回复"}}
           <a href="comment-list.html" class="btn btn-light"
             ><i class="bi bi-arrow-left"></i> 返回列表</a
           >
-        </div>
+        {{/page_header}}
         <div class="row g-3">
           <div class="col-12 col-xl-8">
             <!-- Original comment -->

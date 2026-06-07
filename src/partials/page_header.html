@@ -1,0 +1,12 @@
+<div class="page-header">
+  <div>
+    <h1 class="page-title">{{title}}</h1>
+    {{#if subtitle}}
+      <span class="page-subtitle">{{{subtitle}}}</span>
+    {{/if}}
+    {{#if subtitleId}}
+      <span class="page-subtitle" id="{{subtitleId}}"></span>
+    {{/if}}
+  </div>
+  {{> @partial-block }}
+</div>
