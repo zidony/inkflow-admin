@@ -20,7 +20,7 @@ An HTML administration dashboard template designed for blogs and content managem
 - **📦 ESM JavaScript Modules**: Splits global behavior into ES Modules, including Sidebar, Theme, Search, Bulk, Toast, Editor, and Chart modules.
 - **🌙 Dark Mode**: Uses CSS custom properties for light/dark theme switching and stores the user preference in `localStorage`.
 - **🌐 Runtime i18n Text Switching**: Reads the HTML `<html lang="...">` attribute to switch runtime text for confirms, loading states, toasts, and Chart.js labels.
-- **📏 Code Quality Tooling**: Configures ESLint, Stylelint, Prettier, HTML structure checks, accessibility checks, responsive guards, inline-style checks, and template action validation. Run `npm run quality` before publishing.
+- **📏 Code Quality Tooling**: Configures ESLint, Stylelint, Prettier, HTML structure checks, accessibility checks, responsive guards, inline-style checks, runtime i18n checks, JS boundary checks, and template action validation. Run `npm run quality` before publishing.
 - **🗜️ Release Packaging**: Uses the Node.js standard library to generate `releases/inkflow-admin-v*.zip`, containing the built assets and README files.
 - **🤖 GitHub Actions Release Workflow**: A `v*` tag runs quality checks, builds the project, packages the release ZIP, and uploads it to GitHub Release.
 
@@ -90,10 +90,12 @@ Changes to HTML/CSS/JS inside `src/` trigger HMR or a page reload when supported
 ### 3. Lint & Code Style Checks
 ```bash
 npm run quality    # Run ESLint, Stylelint, and Prettier checks
+npm run check:i18n # Check runtime text localization boundaries
+npm run check:js-boundaries # Check module/global JS boundary rules
 npm run lint:fix   # Fix supported script/style issues and format source files
 ```
 
-`npm run quality` also validates HTML tag balance, duplicate attributes, duplicate IDs, supported `data-action` values, baseline accessibility attributes, responsive layout guards, and inline style cleanup.
+`npm run quality` also validates HTML tag balance, duplicate attributes, duplicate IDs, supported `data-action` values, baseline accessibility attributes, responsive layout guards, inline style cleanup, runtime text localization, and JS module boundary rules.
 
 ### 4. Build & Package Release
 ```bash
@@ -136,6 +138,7 @@ The project uses centralized event delegation mapped to `data-action` attributes
 
 | Version | Description |
 | :--- | :--- |
+| **v2.2.4** | **Mobile Stability & Quality Guard Update**: Improved mobile layout behavior for dashboards, headers, filters, settings navigation, notification rows, editor sidebars, and avatar cropping; expanded automated checks for responsive layout guards, runtime i18n text, and JS module boundary rules. |
 | **v2.2.3** | **Maintenance Update**: Added standalone `npm run release:check` validation for version consistency, README version entries, dist/ZIP contents, and external resource references; included `INSTALL.md` in release packages; added baseline accessibility attributes for sidebar, theme toggle, search, and dropdown controls. |
 | **v2.2.2** | **Release Package Checks & Documentation Revision**: Consolidated Bootstrap Icons to woff2-only font declarations; added release package content checks to block source files, temporary files, Python scripts, and duplicate font formats from the ZIP; revised English and Chinese README wording to use more neutral engineering descriptions. |
 | **v2.2.1** | **Release Pipeline & Project Font Optimization**: Consolidated project font declarations to woff2-only output; removed the deprecated Python release script and standardized ZIP packaging on the Node.js standard library; synchronized English and Chinese README release directory, runtime requirement, and packaging workflow docs. |

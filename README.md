@@ -20,7 +20,7 @@
 - **📦 ESM 模块化脚本**：将全局脚本拆分为多个 ES Modules，包括 Sidebar、Theme、Search、Bulk、Toast、Editor 和 Chart 等模块。
 - **🌙 暗黑模式**：基于 CSS 变量实现明暗主题切换，并通过 `localStorage` 记录用户选择。
 - **🌐 i18n 文案切换**：根据 HTML 的 `<html lang="...">` 属性切换确认提示、加载状态、通知气泡和 Chart.js 图表标签等运行时文案。
-- **📏 代码质量工具**：配置 ESLint、Stylelint、Prettier、HTML 结构检查、可访问性检查、响应式守卫、内联样式检查和模板动作校验，可通过 `npm run quality` 运行发布前检查。
+- **📏 代码质量工具**：配置 ESLint、Stylelint、Prettier、HTML 结构检查、可访问性检查、响应式守卫、内联样式检查、运行时 i18n 检查、JS 边界检查和模板动作校验，可通过 `npm run quality` 运行发布前检查。
 - **🗜️ 发布打包**：使用 Node.js 标准库生成 `releases/inkflow-admin-v*.zip`，发布包只包含构建产物和 README 文档。
 - **🤖 GitHub Actions 发布流程**：推送 `v*` 标签时运行质量检查、构建、打包并上传 ZIP 到 GitHub Release。
 
@@ -90,10 +90,12 @@ npm run dev
 ### 3. 代码质量控制与规范化
 ```bash
 npm run quality    # 运行 ESLint、Stylelint 和 Prettier 检查
+npm run check:i18n # 检查运行时文案国际化边界
+npm run check:js-boundaries # 检查模块与全局 JS 边界规则
 npm run lint:fix   # 自动修复可修复的脚本和样式问题，并格式化源码
 ```
 
-`npm run quality` 还会校验 HTML 标签闭合、重复属性、重复 ID、受支持的 `data-action` 值、基础可访问性属性、响应式布局守卫和内联样式清理状态。
+`npm run quality` 还会校验 HTML 标签闭合、重复属性、重复 ID、受支持的 `data-action` 值、基础可访问性属性、响应式布局守卫、内联样式清理状态、运行时文案国际化和 JS 模块边界规则。
 
 ### 4. 一键发版打包归档
 ```bash
@@ -136,6 +138,7 @@ npm run check:release
 
 | 版本 | 主要内容 |
 | :--- | :--- |
+| **v2.2.4** | **移动端稳定性与质量守卫更新**：优化仪表盘、页面头部、筛选栏、设置导航、通知列表、编辑页侧栏和头像裁剪在移动端的布局表现；扩展响应式布局、运行时 i18n 文案和 JS 模块边界的自动化检查。 |
 | **v2.2.3** | **维护版优化**：新增独立 `npm run release:check` 发布校验脚本，检查版本一致性、README 版本记录、dist/ZIP 内容和外链资源；发布包补充 `INSTALL.md` 集成说明；为侧边栏、主题切换、搜索和下拉菜单补齐基础可访问性属性。 |
 | **v2.2.2** | **发布包校验与文档修订**：将 Bootstrap Icons 字体声明收敛为 woff2-only；新增发布包内容校验，阻止源码、临时文件、Python 脚本和重复字体格式进入 ZIP；修订中英文 README，移除夸大表述并统一为更客观的工程说明。 |
 | **v2.2.1** | **发布链路与项目字体优化**：将项目字体声明收敛为 woff2-only；删除已废弃的 Python 发版脚本，统一使用 Node.js 标准库完成 ZIP 打包；同步中英文 README 的发版目录、运行环境与发布流程说明。 |
