@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { deflateRawSync } from 'node:zlib';
-import { fileExistsAsync, listFilesAsync, readTextAsync } from './lib/files.mjs';
+import { fileExistsAsync, listFilesAsync, readTextAsync, rootDir, toPosixPath } from './lib/files.mjs';
 
 const textEncoder = new TextEncoder();
 
@@ -51,7 +51,7 @@ function uint32(value) {
 }
 
 function toZipPath(filePath) {
-  return filePath.split(path.sep).join('/');
+  return toPosixPath(filePath);
 }
 
 function assertReleaseEntries(entries, folderName) {
@@ -195,7 +195,6 @@ async function createZip(zipPath, entries) {
 async function release() {
   console.log('=== Starting inkflow-admin automated release packaging ===');
 
-  const rootDir = path.resolve(import.meta.dirname, '..');
   const distDir = path.join(rootDir, 'dist');
   const releaseDir = path.join(rootDir, 'releases');
   const packageJsonPath = path.join(rootDir, 'package.json');

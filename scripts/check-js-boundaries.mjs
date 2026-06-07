@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { lineNumberFor, listFiles, readText, rootDir } from './lib/files.mjs';
+import { lineNumberFor, listFiles, readText, relativeToRoot, rootDir } from './lib/files.mjs';
 
 const jsDir = path.join(rootDir, 'src', 'assets', 'js');
 const failures = [];
@@ -22,7 +22,7 @@ for (const filePath of listFiles(jsDir, file => file.endsWith('.js'))) {
     pattern.lastIndex = 0;
     while ((match = pattern.exec(source))) {
       failures.push(
-        `${path.relative(rootDir, filePath)}:${lineNumberFor(source, match.index)} ${message}`
+        `${relativeToRoot(filePath)}:${lineNumberFor(source, match.index)} ${message}`
       );
     }
   }

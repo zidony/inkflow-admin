@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { lineNumberFor, listFiles, readText, rootDir } from './lib/files.mjs';
+import { lineNumberFor, listFiles, readText, relativeToRoot, rootDir } from './lib/files.mjs';
 
 const srcDir = path.join(rootDir, 'src');
 const cssDir = path.join(srcDir, 'assets', 'css');
@@ -46,7 +46,7 @@ for (const filePath of htmlFiles) {
   for (const match of source.matchAll(tablePattern)) {
     if (!hasNearbyResponsiveWrapper(source, match.index)) {
       failures.push(
-        `${path.relative(rootDir, filePath)}:${lineNumberFor(source, match.index)} .ink-table is missing a table-responsive or ink-table-wrap container`
+        `${relativeToRoot(filePath)}:${lineNumberFor(source, match.index)} .ink-table is missing a table-responsive or ink-table-wrap container`
       );
     }
   }
@@ -56,7 +56,7 @@ for (const filePath of htmlFiles) {
   for (const match of source.matchAll(fixedWidthSelectPattern)) {
     if (isInsideCardHeader(source, match.index) && !hasCardHeaderFlexWrap(source, match.index)) {
       failures.push(
-        `${path.relative(rootDir, filePath)}:${lineNumberFor(source, match.index)} fixed-width form control in card-header needs a flex-wrap container`
+        `${relativeToRoot(filePath)}:${lineNumberFor(source, match.index)} fixed-width form control in card-header needs a flex-wrap container`
       );
     }
   }

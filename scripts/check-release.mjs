@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { fileExistsAsync, listFilesAsync, readTextAsync, rootDir } from './lib/files.mjs';
+import { fileExistsAsync, listFilesAsync, readTextAsync, relativeToRoot, rootDir, toPosixPath } from './lib/files.mjs';
 
 const distDir = path.join(rootDir, 'dist');
 const releaseDir = path.join(rootDir, 'releases');
@@ -29,7 +29,7 @@ async function collectFiles(rootPath) {
 }
 
 function normalizeZipPath(filePath) {
-  return filePath.split(path.sep).join('/');
+  return toPosixPath(filePath);
 }
 
 function isProjectWoffFont(fileName) {
@@ -192,7 +192,7 @@ async function assertZipContents(packageJson) {
 async function assertRootExternalReferences() {
   const files = await collectFiles(rootDir);
   const scopedFiles = files.filter(file => {
-    const relativePath = normalizeZipPath(path.relative(rootDir, file));
+    const relativePath = relativeToRoot(file);
     if (relativePath.startsWith('node_modules/') || relativePath.startsWith('.git/')) return false;
     if (allowedExternalResourceFiles.has(relativePath)) return false;
     return relativePath.startsWith('src/') || relativePath.startsWith('dist/');
@@ -204,7 +204,7 @@ async function assertRootExternalReferences() {
 
     const content = await readTextAsync(file);
     if (hasExternalResourceReference(content)) {
-      externalFiles.push(normalizeZipPath(path.relative(rootDir, file)));
+      externalFiles.push(relativeToRoot(file));
     }
   }
 

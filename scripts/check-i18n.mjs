@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { lineNumberFor, listFiles, readText, rootDir } from './lib/files.mjs';
+import { lineNumberFor, listFiles, readText, relativeToRoot, rootDir } from './lib/files.mjs';
 
 const modulesDir = path.join(rootDir, 'src', 'assets', 'js', 'modules');
 const failures = [];
@@ -24,7 +24,7 @@ for (const filePath of listFiles(modulesDir, file => file.endsWith('.js'))) {
       if (!cjkPattern.test(literalValue)) continue;
 
       failures.push(
-        `${path.relative(rootDir, filePath)}:${lineNumberFor(
+        `${relativeToRoot(filePath)}:${lineNumberFor(
           source,
           callMatch.index
         )} move user-facing runtime text "${literalValue}" to i18n.js`

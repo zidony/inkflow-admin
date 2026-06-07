@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { lineNumberFor, listFilesAsync, readTextAsync, rootDir } from './lib/files.mjs';
+import { lineNumberFor, listFilesAsync, readTextAsync, relativeToRoot, rootDir } from './lib/files.mjs';
 
 const srcDir = path.join(rootDir, 'src');
 
@@ -59,7 +59,7 @@ async function checkA11y() {
   const errors = [];
 
   for (const file of files) {
-    const relativePath = path.relative(rootDir, file).split(path.sep).join('/');
+    const relativePath = relativeToRoot(file);
     const html = await readTextAsync(file);
     errors.push(...checkFile(relativePath, html));
   }

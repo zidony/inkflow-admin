@@ -1,12 +1,12 @@
 import path from 'node:path';
-import { lineNumberFor, listFiles, readText, rootDir } from './lib/files.mjs';
+import { lineNumberFor, listFiles, readText, relativeToRoot, rootDir } from './lib/files.mjs';
 
 const srcDir = path.join(rootDir, 'src');
 const failures = [];
 
 for (const filePath of listFiles(srcDir, file => file.endsWith('.html'))) {
   const source = readText(filePath);
-  const relativePath = path.relative(rootDir, filePath);
+  const relativePath = relativeToRoot(filePath);
 
   for (const match of source.matchAll(/\sstyle\s*=/gi)) {
     failures.push(`${relativePath}:${lineNumberFor(source, match.index)} inline style attribute found`);

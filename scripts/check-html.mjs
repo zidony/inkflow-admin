@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { lineNumberFor, listFilesAsync, readTextAsync, rootDir } from './lib/files.mjs';
+import { lineNumberFor, listFilesAsync, readTextAsync, relativeToRoot, rootDir } from './lib/files.mjs';
 
 const templateDirs = [path.join(rootDir, 'src')];
 const voidTags = new Set([
@@ -245,7 +245,7 @@ async function checkHtml() {
   const allErrors = [];
 
   for (const file of files) {
-    const relativePath = path.relative(rootDir, file).split(path.sep).join('/');
+    const relativePath = relativeToRoot(file);
     const html = await readTextAsync(file);
     allErrors.push(...checkHtmlBalance(relativePath, html));
     allErrors.push(...checkDuplicateAttributes(relativePath, html));

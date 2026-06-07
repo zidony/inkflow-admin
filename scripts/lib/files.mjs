@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import fsPromises from 'node:fs/promises';
 import path from 'node:path';
 
-export const rootDir = process.cwd();
+export const rootDir = path.resolve(import.meta.dirname, '..', '..');
 
 export function readText(filePath) {
   return fs.readFileSync(filePath, 'utf8');
@@ -46,6 +46,14 @@ export async function listFilesAsync(dir, predicate) {
   }
 
   return files.sort();
+}
+
+export function toPosixPath(filePath) {
+  return filePath.split(path.sep).join('/');
+}
+
+export function relativeToRoot(filePath) {
+  return toPosixPath(path.relative(rootDir, filePath));
 }
 
 export function lineNumberFor(source, index) {
