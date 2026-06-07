@@ -18,6 +18,25 @@ function hasClass(tag, className) {
     .includes(className);
 }
 
+function getClasses(tag) {
+  return getAttribute(tag, 'class').split(/\s+/).filter(Boolean);
+}
+
+function hasAccessibleName(tag) {
+  return hasAttribute(tag, 'aria-label') || hasAttribute(tag, 'aria-labelledby');
+}
+
+function isCompactSelect(tag) {
+  const classes = getClasses(tag);
+  return (
+    classes.includes('ink-toolbar-select') ||
+    classes.includes('form-select-sm-custom') ||
+    classes.some(className => /^wh-\d+(?:-\d+)?$/.test(className)) ||
+    (classes.some(className => /^w-\d+px$/.test(className)) &&
+      classes.some(className => /^h-\d+px$/.test(className)))
+  );
+}
+
 function checkFile(relativePath, html) {
   const errors = [];
   const tagPattern = /<(button|a)\b[^>]*>/gi;
@@ -56,6 +75,17 @@ function checkFile(relativePath, html) {
         errors.push(`${location} submenu toggle needs aria-controls.`);
       }
     }
+  }
+
+  const selectPattern = /<select\b[^>]*>/gi;
+  while ((match = selectPattern.exec(html))) {
+    const tag = match[0];
+    if (!isCompactSelect(tag) || hasAccessibleName(tag)) {
+      continue;
+    }
+
+    const line = lineNumberFor(html, match.index);
+    errors.push(`${relativePath}:${line} compact select needs aria-label or aria-labelledby.`);
   }
 
   return errors;
