@@ -1702,6 +1702,59 @@ textarea.form-control {
   .ink-activity-item > .d-flex:last-child {
     margin-left: 44px !important;
   }
+  .ink-settings-nav-card {
+    position: sticky;
+    top: var(--topbar-height);
+    z-index: 10;
+  }
+  .ink-settings-nav-card > .card-body {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ink-settings-nav {
+    flex-direction: row;
+    min-width: max-content;
+  }
+  .ink-settings-nav-item {
+    white-space: nowrap;
+  }
+  .ink-notif-row-inner {
+    gap: 10px;
+    padding: 14px 12px;
+  }
+  .ink-notif-icon-lg {
+    width: 36px;
+    height: 36px;
+  }
+  .ink-notif-title {
+    line-height: 1.45;
+  }
+  .ink-notif-desc {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+  .ink-notif-meta {
+    flex-wrap: wrap;
+    row-gap: 2px;
+  }
+  .ink-notif-actions {
+    gap: 4px;
+  }
+  .ink-notif-more {
+    opacity: 1;
+  }
+  .ink-editor-sidebar {
+    position: static;
+  }
+  .ink-avatar-crop-wrap {
+    width: min(240px, calc(100vw - 72px));
+    height: min(240px, calc(100vw - 72px));
+  }
+  .ink-avatar-crop-ring {
+    width: min(160px, calc(100vw - 152px));
+    height: min(160px, calc(100vw - 152px));
+  }
 }
 
 /* ── SMALL MOBILE (≤480px) ───────────────────────────────── */
