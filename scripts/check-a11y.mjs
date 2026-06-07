@@ -26,6 +26,11 @@ function hasAccessibleName(tag) {
   return hasAttribute(tag, 'aria-label') || hasAttribute(tag, 'aria-labelledby');
 }
 
+function hasAssociatedLabel(html, tag) {
+  const id = getAttribute(tag, 'id');
+  return id ? new RegExp(`<label\\b[^>]*\\sfor=(["'])${id}\\1`, 'i').test(html) : false;
+}
+
 function isCompactSelect(tag) {
   const classes = getClasses(tag);
   return (
@@ -47,6 +52,10 @@ function isNamedLoginInput(tag) {
 
 function isNotificationPreferenceInput(tag) {
   return ['save-notification-pref', 'toggle-mail-pref'].includes(getAttribute(tag, 'data-action'));
+}
+
+function isCheckableInput(tag) {
+  return ['checkbox', 'radio'].includes(getAttribute(tag, 'type'));
 }
 
 function checkFile(relativePath, html) {
@@ -111,6 +120,10 @@ function checkFile(relativePath, html) {
 
     if (isTableCheckBox(tag) && !hasAccessibleName(tag)) {
       errors.push(`${relativePath}:${line} table checkbox needs aria-label or aria-labelledby.`);
+    }
+
+    if (isCheckableInput(tag) && !hasAccessibleName(tag) && !hasAssociatedLabel(html, tag)) {
+      errors.push(`${relativePath}:${line} checkbox or radio needs an accessible name.`);
     }
 
     if (isNamedLoginInput(tag) && !hasAccessibleName(tag)) {
