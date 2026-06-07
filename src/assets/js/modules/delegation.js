@@ -12,13 +12,9 @@ const clickActionHandlers = {
   'permanent-delete': manager => manager.permanentDelete(),
   navigate: manager => manager.navigate(),
   trigger: manager => manager.triggerTarget(),
-  'read-one': manager => manager.callWindowHandler('markOneRead'),
-  'delete-notif': manager => manager.callWindowHandler('deleteNotif'),
   'toggle-pwd': manager => manager.callWindowHandler('togglePwd'),
   'do-login': manager => manager.callWindowHandler('doLogin'),
-  'clear-preview': manager => manager.callWindowHandler('clearPreview'),
-  'switch-settings': manager => manager.switchSettings(),
-  'filter-type': manager => manager.callWindowHandler('filterByType', ['data-filter'])
+  'clear-preview': manager => manager.callWindowHandler('clearPreview')
 };
 
 const changeActionHandlers = {
@@ -82,7 +78,6 @@ export class DelegationManager {
       triggerTarget: () => this.triggerTarget(actionEl),
       callWindowHandler: (handlerName, dataAttributes = []) =>
         this.callWindowHandler(handlerName, actionEl, dataAttributes),
-      switchSettings: () => this.switchSettings(actionEl),
       saveNotificationPreference: () => this.saveNotificationPreference(),
       toggleMailPreference: () => this.toggleMailPreference(actionEl)
     });
@@ -193,11 +188,6 @@ export class DelegationManager {
     }
 
     window[handlerName](...args);
-  }
-
-  switchSettings(switchSetBtn) {
-    if (typeof window.switchSettings !== 'function') return;
-    window.switchSettings(switchSetBtn.getAttribute('data-section'));
   }
 
   saveNotificationPreference() {

@@ -13,6 +13,8 @@ import { ChartManager } from './modules/chart.js';
 import { DelegationManager } from './modules/delegation.js';
 import { FilterManager } from './modules/filter.js';
 import { LoginManager } from './modules/login.js';
+import { NotificationManager } from './modules/notification.js';
+import { SettingsManager } from './modules/settings.js';
 import { UserAvatarManager } from './modules/user-avatar.js';
 
 window.bootstrap = bootstrap;
@@ -34,6 +36,8 @@ class InkFlowAdmin {
       this.delegation = new DelegationManager();
       this.filter = new FilterManager();
       this.login = new LoginManager();
+      this.notification = new NotificationManager();
+      this.settings = new SettingsManager();
       this.userAvatar = new UserAvatarManager();
 
       // Bind theme toggle directly to global scope so TopBar button can call it

@@ -1,0 +1,91 @@
+/* ============================================================
+   InkFlow Admin — Notification Center Module
+   ============================================================ */
+
+import { showToast } from './toast.js';
+import { t } from './i18n.js';
+
+export class NotificationManager {
+  constructor() {
+    this.list = document.getElementById('notif-full-list');
+    this.emptyState = document.getElementById('notif-empty');
+    this.filterTabs = document.getElementById('notif-filter-tabs');
+    this.init();
+  }
+
+  init() {
+    if (!this.list) return;
+
+    document.addEventListener('click', event => {
+      const readButton = event.target.closest('[data-action="read-one"]');
+      if (readButton) {
+        event.preventDefault();
+        this.markOneRead(readButton);
+        return;
+      }
+
+      const deleteButton = event.target.closest('[data-action="delete-notif"]');
+      if (deleteButton) {
+        event.preventDefault();
+        this.deleteNotification(deleteButton);
+        return;
+      }
+
+      const filterButton = event.target.closest('[data-action="filter-type"]');
+      if (filterButton) {
+        event.preventDefault();
+        this.filterByType(filterButton.getAttribute('data-filter'), filterButton);
+      }
+    });
+  }
+
+  markOneRead(button) {
+    const row = button.closest('.ink-notif-row');
+    if (!row) return;
+
+    row.classList.remove('unread');
+    row.querySelector('.ink-unread-dot')?.remove();
+    showToast(t('allRead'), 'success');
+  }
+
+  deleteNotification(button) {
+    const row = button.closest('.ink-notif-row');
+    if (!row) return;
+
+    row.remove();
+    this.updateEmptyState();
+    showToast(t('deleted'), 'danger');
+  }
+
+  filterByType(filter, button) {
+    if (!filter) return;
+
+    if (this.filterTabs) {
+      this.filterTabs.querySelectorAll('.ink-filter-tab').forEach(tab => {
+        const isActive = tab === button;
+        tab.classList.toggle('active', isActive);
+        tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+    }
+
+    this.list.querySelectorAll('.ink-notif-row').forEach(row => {
+      const shouldShow =
+        filter === 'all' ||
+        (filter === 'unread' && row.classList.contains('unread')) ||
+        row.getAttribute('data-type') === filter;
+
+      row.classList.toggle('d-none', !shouldShow);
+    });
+
+    this.updateEmptyState();
+  }
+
+  updateEmptyState() {
+    if (!this.emptyState) return;
+
+    const hasVisibleRows = [...this.list.querySelectorAll('.ink-notif-row')].some(
+      row => !row.classList.contains('d-none')
+    );
+    this.emptyState.classList.toggle('d-none', hasVisibleRows);
+  }
+}

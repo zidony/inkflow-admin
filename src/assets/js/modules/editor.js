@@ -164,20 +164,5 @@ export class EditorManager {
         }
       });
     });
-
-    // 8. Bind Settings Switcher to global window scope for inline calls
-    window.switchSettings = function (section) {
-      ['site', 'post', 'comment', 'media', 'seo', 'smtp', 'security', 'cache', 'advanced'].forEach(
-        s => {
-          const el = document.getElementById('section-' + s);
-          if (el) el.classList.toggle('d-none', s !== section);
-        }
-      );
-      document.querySelectorAll('.ink-settings-nav-item').forEach(btn => {
-        const isActive = btn.dataset.section === section;
-        btn.classList.toggle('active', isActive);
-        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
-      });
-    };
   }
 }
