@@ -239,6 +239,28 @@ function checkBulkActionBarPartialUsage(filePath, html) {
   return [`Use {{> bulk_action_bar }} partial instead of raw bulk action bar markup at ${filePath}`];
 }
 
+function checkListTableCardPartialUsage(filePath, html) {
+  if (filePath === 'src/partials/list_table_card.html') {
+    return [];
+  }
+
+  if (!/^src\/[^/]+-list\.html$/.test(filePath) || !html.includes('class="ink-table"')) {
+    return [];
+  }
+
+  const errors = [];
+
+  if (!html.includes('{{#> list_table_card')) {
+    errors.push(`Use {{#> list_table_card}} partial for list table card chrome at ${filePath}`);
+  }
+
+  if (html.includes('<div class="card ink-card mt-3">')) {
+    errors.push(`Do not duplicate raw list table card markup at ${filePath}`);
+  }
+
+  return errors;
+}
+
 async function checkHtml() {
   const isHtmlFile = file => file.endsWith('.html');
   const files = (await Promise.all(templateDirs.map(dir => listFilesAsync(dir, isHtmlFile)))).flat();
@@ -255,6 +277,7 @@ async function checkHtml() {
     allErrors.push(...checkPageHeaderPartialUsage(relativePath, html));
     allErrors.push(...checkBreadcrumbPartialUsage(relativePath, html));
     allErrors.push(...checkBulkActionBarPartialUsage(relativePath, html));
+    allErrors.push(...checkListTableCardPartialUsage(relativePath, html));
   }
 
   if (allErrors.length) {

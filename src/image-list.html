@@ -21,7 +21,7 @@
         {{#> page_header title="图片管理" subtitle="共 328 个文件 · 2.8 GB"}}
         {{/page_header}}
         {{> bulk_action_bar }}
-        <div class="card ink-card mt-3">
+        {{#> list_table_card summary="共 <strong>328</strong> 条记录，第 <strong>1 / 33</strong> 页" ariaLabel="图片列表分页" nextLabel="下一页" }}
           <div class="card-header border-bottom-0 px-3 py-2">
             <div class="d-flex align-items-center gap-2 flex-wrap w-100">
               <div class="ink-filter-tabs" id="filter-tabs" role="tablist">
@@ -473,8 +473,7 @@
               </tbody>
             </table>
           </div>
-          {{> pagination summary="共 <strong>328</strong> 条记录，第 <strong>1 / 33</strong> 页" ariaLabel="图片列表分页" nextLabel="下一页" }}
-        </div>
+        {{/list_table_card}}
       </main>
     </div>
     <script type="module" src="/assets/js/inkflow-admin.js"></script>

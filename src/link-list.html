@@ -24,7 +24,7 @@
           >
         {{/page_header}}
         {{> bulk_action_bar }}
-        <div class="card ink-card mt-3">
+        {{#> list_table_card summary="共 <strong>24</strong> 条记录，第 <strong>1 / 3</strong> 页" ariaLabel="链接列表分页" nextLabel="下一页" }}
           <div class="card-header border-bottom-0 px-3 py-2">
             <div class="ink-filter-tabs" id="filter-tabs" role="tablist">
               <button class="ink-filter-tab active" data-filter="all">
@@ -364,8 +364,7 @@
               </tbody>
             </table>
           </div>
-          {{> pagination summary="共 <strong>24</strong> 条记录，第 <strong>1 / 3</strong> 页" ariaLabel="链接列表分页" nextLabel="下一页" }}
-        </div>
+        {{/list_table_card}}
       </main>
     </div>
     <script type="module" src="/assets/js/inkflow-admin.js"></script>

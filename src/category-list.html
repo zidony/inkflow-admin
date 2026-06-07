@@ -26,7 +26,7 @@
         {{/page_header}}
         {{> bulk_action_bar }}
 
-        <div class="card ink-card mt-3">
+        {{#> list_table_card summary="共 <strong>8</strong> 条记录，第 <strong>1 / 1</strong> 页" ariaLabel="栏目列表分页" nextLabel="下一页" }}
           <div class="table-responsive">
             <table class="ink-table">
               <thead>
@@ -355,8 +355,7 @@
               </tbody>
             </table>
           </div>
-          {{> pagination summary="共 <strong>8</strong> 条记录，第 <strong>1 / 1</strong> 页" ariaLabel="栏目列表分页" nextLabel="下一页" }}
-        </div>
+        {{/list_table_card}}
       </main>
     </div>
     <script type="module" src="/assets/js/inkflow-admin.js"></script>
