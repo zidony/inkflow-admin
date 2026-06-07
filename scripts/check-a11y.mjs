@@ -37,6 +37,10 @@ function isCompactSelect(tag) {
   );
 }
 
+function isTableCheckBox(tag) {
+  return getAttribute(tag, 'type') === 'checkbox' && hasClass(tag, 'table-check-box');
+}
+
 function checkFile(relativePath, html) {
   const errors = [];
   const tagPattern = /<(button|a)\b[^>]*>/gi;
@@ -86,6 +90,17 @@ function checkFile(relativePath, html) {
 
     const line = lineNumberFor(html, match.index);
     errors.push(`${relativePath}:${line} compact select needs aria-label or aria-labelledby.`);
+  }
+
+  const inputPattern = /<input\b[^>]*>/gi;
+  while ((match = inputPattern.exec(html))) {
+    const tag = match[0];
+    if (!isTableCheckBox(tag) || hasAccessibleName(tag)) {
+      continue;
+    }
+
+    const line = lineNumberFor(html, match.index);
+    errors.push(`${relativePath}:${line} table checkbox needs aria-label or aria-labelledby.`);
   }
 
   return errors;
