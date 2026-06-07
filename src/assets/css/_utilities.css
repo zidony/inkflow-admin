@@ -142,8 +142,20 @@
 .min-w-240px {
   min-width: 240px !important;
 }
+.min-w-300px {
+  min-width: 300px !important;
+}
+.min-w-280px {
+  min-width: 280px !important;
+}
+.min-w-220px {
+  min-width: 220px !important;
+}
 .min-w-200px {
   min-width: 200px !important;
+}
+.min-w-140px {
+  min-width: 140px !important;
 }
 .w-100px {
   width: 100px !important;
@@ -154,8 +166,14 @@
 .w-120px {
   width: 120px !important;
 }
+.w-110px {
+  width: 110px !important;
+}
 .w-50px {
   width: 50px !important;
+}
+.h-32px {
+  height: 32px !important;
 }
 .bg-success-subtle {
   background-color: var(--ink-success-soft) !important;
@@ -174,6 +192,9 @@
 }
 .fs-70 {
   font-size: 0.7rem !important;
+}
+.mt-2px {
+  margin-top: 2px !important;
 }
 .form-select-sm-custom {
   width: auto !important;
