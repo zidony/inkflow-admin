@@ -1226,44 +1226,6 @@ textarea.form-control {
 }
 
 /* ============================================================
-   ACTIVITY FEED
-   ============================================================ */
-.ink-activity-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.ink-activity-item {
-  display: flex;
-  gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--ink-gray-100);
-}
-.ink-activity-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.ink-activity-body {
-  flex: 1;
-  min-width: 0;
-}
-.ink-activity-text {
-  font-size: 0.82rem;
-  color: var(--ink-gray-700);
-  line-height: 1.4;
-}
-.ink-activity-text strong {
-  color: var(--ink-gray-900);
-  font-weight: 600;
-}
-.ink-activity-time {
-  font-size: 0.72rem;
-  color: var(--ink-gray-400);
-  margin-top: 2px;
-}
-
-/* ============================================================
    PROGRESS BARS
    ============================================================ */
 .ink-progress {
@@ -1702,13 +1664,6 @@ textarea.form-control {
   .ink-bulk-bar .d-flex {
     flex-wrap: wrap;
     gap: 8px;
-  }
-  .ink-activity-item {
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-  .ink-activity-body {
-    min-width: 0;
   }
   .ink-settings-nav-card {
     position: sticky;
@@ -2686,10 +2641,6 @@ textarea.form-control {
 [data-theme='dark'] .card-footer {
   background-color: #0b0f19 !important;
   border-top: 1px solid #1f2937 !important;
-}
-
-[data-theme='dark'] .ink-activity-item {
-  border-bottom: 1px solid #1f2937 !important;
 }
 
 [data-theme='dark'] .ink-table thead th {
