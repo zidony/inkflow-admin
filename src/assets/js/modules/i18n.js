@@ -20,7 +20,12 @@ export const locales = {
     visitsLabel: '访问量',
     toggleLightMode: '切换到明亮模式',
     toggleDarkMode: '切换到暗黑模式',
-    changeCover: '更换图片'
+    changeCover: '更换图片',
+    notificationPreferenceSaved: '偏好已保存',
+    mailNotificationEnabled: '邮件通知已开启',
+    mailNotificationDisabled: '邮件通知已关闭',
+    loginVerifying: '验证中…',
+    loginButton: '登录后台'
   },
   en: {
     confirmDelete: 'Are you sure you want to delete this item? This action cannot be undone.',
@@ -40,7 +45,12 @@ export const locales = {
     visitsLabel: 'Visits',
     toggleLightMode: 'Switch to light mode',
     toggleDarkMode: 'Switch to dark mode',
-    changeCover: 'Change Image'
+    changeCover: 'Change Image',
+    notificationPreferenceSaved: 'Preference saved',
+    mailNotificationEnabled: 'Email notifications enabled',
+    mailNotificationDisabled: 'Email notifications disabled',
+    loginVerifying: 'Verifying...',
+    loginButton: 'Log in'
   }
 };
 

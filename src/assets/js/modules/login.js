@@ -1,6 +1,7 @@
 /* ============================================================
    InkFlow Admin — Login Page Module
    ============================================================ */
+import { t } from './i18n.js';
 
 function setButtonContent(button, iconClass, text) {
   const icon = document.createElement('i');
@@ -11,7 +12,7 @@ function setButtonContent(button, iconClass, text) {
 function setLoadingContent(button) {
   const spinner = document.createElement('span');
   spinner.className = 'spinner-border spinner-border-sm me-2';
-  button.replaceChildren(spinner, document.createTextNode('验证中…'));
+  button.replaceChildren(spinner, document.createTextNode(t('loginVerifying')));
 }
 
 export class LoginManager {
@@ -67,7 +68,7 @@ export class LoginManager {
 
     setTimeout(() => {
       this.loginButton.disabled = false;
-      setButtonContent(this.loginButton, 'bi bi-box-arrow-in-right', '登录后台');
+      setButtonContent(this.loginButton, 'bi bi-box-arrow-in-right', t('loginButton'));
 
       if (user && pass) {
         window.location.href = 'index.html';

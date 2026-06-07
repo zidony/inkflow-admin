@@ -191,10 +191,10 @@ export class DelegationManager {
   }
 
   saveNotificationPreference() {
-    showToast('偏好已保存', 'success');
+    showToast(t('notificationPreferenceSaved'), 'success');
   }
 
   toggleMailPreference(mailPref) {
-    showToast('邮件通知已' + (mailPref.checked ? '开启' : '关闭'), 'info');
+    showToast(t(mailPref.checked ? 'mailNotificationEnabled' : 'mailNotificationDisabled'), 'info');
   }
 }
