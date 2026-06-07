@@ -20,7 +20,7 @@ An HTML administration dashboard template designed for blogs and content managem
 - **📦 ESM JavaScript Modules**: Splits global behavior into ES Modules, including Sidebar, Theme, Search, Bulk, Toast, Editor, and Chart modules.
 - **🌙 Dark Mode**: Uses CSS custom properties for light/dark theme switching and stores the user preference in `localStorage`.
 - **🌐 Runtime i18n Text Switching**: Reads the HTML `<html lang="...">` attribute to switch runtime text for confirms, loading states, toasts, and Chart.js labels.
-- **📏 Code Quality Tooling**: Configures ESLint, Stylelint, and Prettier. Run `npm run quality` before publishing.
+- **📏 Code Quality Tooling**: Configures ESLint, Stylelint, Prettier, HTML structure checks, accessibility checks, responsive guards, inline-style checks, and template action validation. Run `npm run quality` before publishing.
 - **🗜️ Release Packaging**: Uses the Node.js standard library to generate `releases/inkflow-admin-v*.zip`, containing the built assets and README files.
 - **🤖 GitHub Actions Release Workflow**: A `v*` tag runs quality checks, builds the project, packages the release ZIP, and uploads it to GitHub Release.
 
@@ -93,6 +93,8 @@ npm run quality    # Run ESLint, Stylelint, and Prettier checks
 npm run lint:fix   # Fix supported script/style issues and format source files
 ```
 
+`npm run quality` also validates HTML tag balance, duplicate attributes, duplicate IDs, supported `data-action` values, baseline accessibility attributes, responsive layout guards, and inline style cleanup.
+
 ### 4. Build & Package Release
 ```bash
 npm run release
@@ -102,6 +104,7 @@ npm run release
 ### 5. Release Package Check
 ```bash
 npm run release:check
+npm run check:release
 # Checks version consistency, README version entries, dist/ZIP contents, and external resource references
 ```
 

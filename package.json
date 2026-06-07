@@ -13,6 +13,7 @@
     "check:a11y": "node scripts/check-a11y.mjs",
     "check:responsive": "node scripts/check-responsive.mjs",
     "check:inline-styles": "node scripts/check-inline-styles.mjs",
+    "check:release": "npm run release:check",
     "format:check": "prettier --check \"src/assets/js/**/*.js\" \"src/assets/css/**/*.css\"",
     "quality": "npm run lint && npm run lint:css && npm run check:html && npm run check:a11y && npm run check:responsive && npm run check:inline-styles && npm run format:check",
     "lint:fix": "eslint \"src/assets/js/**/*.js\" --fix && stylelint \"src/assets/css/**/*.css\" --fix && prettier --write \"src/assets/js/**/*.js\" \"src/assets/css/**/*.css\"",

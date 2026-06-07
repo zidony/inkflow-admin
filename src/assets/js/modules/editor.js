@@ -88,8 +88,8 @@ export class EditorManager {
     });
 
     // 4. Publish / Draft buttons
-    const publishBtn = document.getElementById('btn-publish');
-    if (publishBtn) {
+    const publishButtons = document.querySelectorAll('.js-publish-btn');
+    publishButtons.forEach(publishBtn => {
       publishBtn.addEventListener('click', function () {
         this.disabled = true;
         setSpinnerText(this, t('publishing'));
@@ -99,14 +99,14 @@ export class EditorManager {
           showToast(t('published'), 'success');
         }, 1200);
       });
-    }
+    });
 
-    const saveDraftBtn = document.getElementById('btn-save-draft');
-    if (saveDraftBtn) {
+    const saveDraftButtons = document.querySelectorAll('.js-save-draft-btn');
+    saveDraftButtons.forEach(saveDraftBtn => {
       saveDraftBtn.addEventListener('click', () => {
         showToast(t('draftSaved'), 'info');
       });
-    }
+    });
 
     const previewBtn = document.getElementById('btn-preview');
     if (previewBtn) {

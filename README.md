@@ -20,7 +20,7 @@
 - **📦 ESM 模块化脚本**：将全局脚本拆分为多个 ES Modules，包括 Sidebar、Theme、Search、Bulk、Toast、Editor 和 Chart 等模块。
 - **🌙 暗黑模式**：基于 CSS 变量实现明暗主题切换，并通过 `localStorage` 记录用户选择。
 - **🌐 i18n 文案切换**：根据 HTML 的 `<html lang="...">` 属性切换确认提示、加载状态、通知气泡和 Chart.js 图表标签等运行时文案。
-- **📏 代码质量工具**：配置 ESLint、Stylelint 和 Prettier，可通过 `npm run quality` 运行发布前检查。
+- **📏 代码质量工具**：配置 ESLint、Stylelint、Prettier、HTML 结构检查、可访问性检查、响应式守卫、内联样式检查和模板动作校验，可通过 `npm run quality` 运行发布前检查。
 - **🗜️ 发布打包**：使用 Node.js 标准库生成 `releases/inkflow-admin-v*.zip`，发布包只包含构建产物和 README 文档。
 - **🤖 GitHub Actions 发布流程**：推送 `v*` 标签时运行质量检查、构建、打包并上传 ZIP 到 GitHub Release。
 
@@ -93,6 +93,8 @@ npm run quality    # 运行 ESLint、Stylelint 和 Prettier 检查
 npm run lint:fix   # 自动修复可修复的脚本和样式问题，并格式化源码
 ```
 
+`npm run quality` 还会校验 HTML 标签闭合、重复属性、重复 ID、受支持的 `data-action` 值、基础可访问性属性、响应式布局守卫和内联样式清理状态。
+
 ### 4. 一键发版打包归档
 ```bash
 npm run release
@@ -102,6 +104,7 @@ npm run release
 ### 5. 发布包校验
 ```bash
 npm run release:check
+npm run check:release
 # 校验版本一致性、README 最新版本记录、dist/ZIP 内容和外链资源
 ```
 

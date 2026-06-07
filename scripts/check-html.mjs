@@ -19,6 +19,25 @@ const voidTags = new Set([
   'track',
   'wbr'
 ]);
+const allowedDataActions = new Set([
+  'apply-avatar-crop',
+  'clear-preview',
+  'delete',
+  'delete-notif',
+  'do-login',
+  'filter-type',
+  'navigate',
+  'permanent-delete',
+  'read-all',
+  'read-one',
+  'save-notification-pref',
+  'switch-settings',
+  'toast',
+  'toggle-mail-pref',
+  'toggle-pwd',
+  'toggle-theme',
+  'trigger'
+]);
 
 async function collectHtmlFiles(dir) {
   const files = [];
@@ -90,6 +109,93 @@ function checkHtmlBalance(filePath, html) {
   return errors;
 }
 
+function checkDuplicateAttributes(filePath, html) {
+  const content = stripIgnoredContent(html);
+  const errors = [];
+  const tagPattern = /<([a-zA-Z][a-zA-Z0-9:-]*)(\s[^<>]*?)?>/g;
+  let match;
+
+  while ((match = tagPattern.exec(content))) {
+    const rawTag = match[0];
+
+    if (rawTag.startsWith('</') || rawTag.startsWith('<!')) {
+      continue;
+    }
+
+    const line = lineNumberForIndex(content, match.index);
+    const attributes = match[2] ?? '';
+    const seen = new Set();
+    const duplicateNames = new Set();
+    const attributePattern = /(?:^|\s)([^\s"'<>/=]+)(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'=<>`]+))?/g;
+    let attributeMatch;
+
+    while ((attributeMatch = attributePattern.exec(attributes))) {
+      const attributeName = attributeMatch[1].toLowerCase();
+
+      if (seen.has(attributeName)) {
+        duplicateNames.add(attributeName);
+        continue;
+      }
+
+      seen.add(attributeName);
+    }
+
+    for (const attributeName of duplicateNames) {
+      errors.push(`Duplicate attribute "${attributeName}" on <${match[1]}> at ${filePath}:${line}`);
+    }
+  }
+
+  return errors;
+}
+
+function checkDuplicateIds(filePath, html) {
+  const content = stripIgnoredContent(html);
+  const errors = [];
+  const ids = new Map();
+  const idPattern = /\sid\s*=\s*(?:"([^"]+)"|'([^']+)')/gi;
+  let match;
+
+  while ((match = idPattern.exec(content))) {
+    const idValue = match[1] ?? match[2];
+    const line = lineNumberForIndex(content, match.index);
+
+    if (!ids.has(idValue)) {
+      ids.set(idValue, [line]);
+      continue;
+    }
+
+    ids.get(idValue).push(line);
+  }
+
+  for (const [idValue, lines] of ids) {
+    if (lines.length > 1) {
+      errors.push(`Duplicate id "${idValue}" at ${filePath}:${lines.join(', ')}`);
+    }
+  }
+
+  return errors;
+}
+
+function checkDataActions(filePath, html) {
+  const content = stripIgnoredContent(html);
+  const errors = [];
+  const actionPattern = /\sdata-action\s*=\s*(?:"([^"]+)"|'([^']+)'|([^\s"'=<>`]+))/gi;
+  let match;
+
+  while ((match = actionPattern.exec(content))) {
+    const action = match[1] ?? match[2] ?? match[3];
+
+    if (allowedDataActions.has(action)) {
+      continue;
+    }
+
+    const line = lineNumberForIndex(content, match.index);
+    errors.push(`Unknown data-action "${action}" at ${filePath}:${line}`);
+  }
+
+  return errors;
+}
+
 async function checkHtml() {
   const files = (await Promise.all(templateDirs.map(collectHtmlFiles))).flat();
   const allErrors = [];
@@ -98,6 +204,9 @@ async function checkHtml() {
     const relativePath = path.relative(rootDir, file).split(path.sep).join('/');
     const html = await fs.readFile(file, 'utf8');
     allErrors.push(...checkHtmlBalance(relativePath, html));
+    allErrors.push(...checkDuplicateAttributes(relativePath, html));
+    allErrors.push(...checkDuplicateIds(relativePath, html));
+    allErrors.push(...checkDataActions(relativePath, html));
   }
 
   if (allErrors.length) {

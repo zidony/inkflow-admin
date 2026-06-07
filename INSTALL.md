@@ -96,9 +96,10 @@ InkFlow Admin is designed to run from local build assets. Before shipping a rele
 ```bash
 npm run build
 npm run release:check
+npm run check:release
 ```
 
-The release check verifies version consistency, required release files, blocked package contents, and external resource references in source/build files.
+The release check verifies version consistency, required release files, blocked package contents, and external resource references in source/build files. Use `npm run check:release` as an equivalent alias when following check-first release workflows.
 
 ## Release Package Rules
 
