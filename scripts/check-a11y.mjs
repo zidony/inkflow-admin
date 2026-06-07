@@ -29,8 +29,8 @@ function checkFile(relativePath, html) {
     const location = `${relativePath}:${line}`;
     const isIconControl = hasClass(tag, 'btn-icon') || hasClass(tag, 'ink-toolbar-btn');
 
-    if (isIconControl && !hasAttribute(tag, 'aria-label') && !hasAttribute(tag, 'title')) {
-      errors.push(`${location} icon control needs title or aria-label.`);
+    if (isIconControl && !hasAttribute(tag, 'aria-label')) {
+      errors.push(`${location} icon control needs aria-label.`);
     }
 
     if (getAttribute(tag, 'data-bs-toggle') === 'dropdown' && !hasAttribute(tag, 'aria-expanded')) {
