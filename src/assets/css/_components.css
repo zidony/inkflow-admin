@@ -345,6 +345,64 @@
 }
 
 /* Avatar crop modal */
+.ink-avatar-preview-wrap {
+  position: relative;
+  width: 90px;
+  margin: 0 auto 14px;
+}
+.ink-avatar-preview {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.8rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+.ink-avatar-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.ink-avatar-edit-btn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 26px;
+  height: 26px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: var(--ink-500);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ink-avatar-upload-hint {
+  margin: 8px 0 0;
+}
+.ink-avatar-crop-modal {
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.ink-avatar-crop-modal .modal-header {
+  border-bottom: 1px solid var(--ink-gray-100);
+  padding: 14px 20px;
+}
+.ink-avatar-crop-modal .modal-title {
+  font-size: 0.95rem;
+}
+.ink-avatar-crop-modal .modal-footer {
+  border-top: 1px solid var(--ink-gray-100);
+  padding: 12px 20px;
+}
 .ink-avatar-crop-wrap {
   position: relative;
   width: 240px;
@@ -359,6 +417,9 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+.ink-avatar-crop-source {
+  object-fit: contain !important;
 }
 .ink-avatar-crop-ring {
   position: absolute;
