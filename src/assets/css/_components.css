@@ -1677,6 +1677,17 @@ textarea.form-control {
   .ink-card > .card-header .ms-auto {
     margin-left: 0 !important;
   }
+  .ink-card > .card-header .form-select {
+    flex: 1 1 110px;
+    width: auto !important;
+    min-width: 0;
+  }
+  .input-group {
+    min-width: 0;
+  }
+  .input-group > .form-control {
+    min-width: 0;
+  }
 
   /* Filter tabs: allow wrapping */
   .ink-filter-tabs {

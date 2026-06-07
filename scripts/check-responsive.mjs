@@ -41,6 +41,24 @@ function hasNearbyResponsiveWrapper(source, tableIndex) {
   return lastWrapperClose < wrapperIndex;
 }
 
+function isInsideCardHeader(source, index) {
+  const before = source.slice(0, index);
+  const headerIndex = before.lastIndexOf('card-header');
+  if (headerIndex === -1) return false;
+
+  const lastClosingDiv = before.lastIndexOf('</div>');
+  return lastClosingDiv < headerIndex;
+}
+
+function hasCardHeaderFlexWrap(source, index) {
+  const before = source.slice(0, index);
+  const headerIndex = before.lastIndexOf('card-header');
+  if (headerIndex === -1) return false;
+
+  const headerSource = source.slice(headerIndex, index);
+  return /\bflex-wrap\b/.test(headerSource);
+}
+
 const htmlFiles = listFiles(srcDir, (filePath) => filePath.endsWith('.html'));
 for (const filePath of htmlFiles) {
   const source = readText(filePath);
@@ -49,6 +67,16 @@ for (const filePath of htmlFiles) {
     if (!hasNearbyResponsiveWrapper(source, match.index)) {
       failures.push(
         `${path.relative(rootDir, filePath)}:${lineNumberFor(source, match.index)} .ink-table is missing a table-responsive or ink-table-wrap container`
+      );
+    }
+  }
+
+  const fixedWidthSelectPattern =
+    /<(?:select|input)\b[^>]*class=["'][^"']*\bform-(?:select|control)\b[^"']*\b(?:w-\d+px|wh-\d+(?:-\d+)?|min-w-\d+px)\b[^"']*["'][^>]*>/g;
+  for (const match of source.matchAll(fixedWidthSelectPattern)) {
+    if (isInsideCardHeader(source, match.index) && !hasCardHeaderFlexWrap(source, match.index)) {
+      failures.push(
+        `${path.relative(rootDir, filePath)}:${lineNumberFor(source, match.index)} fixed-width form control in card-header needs a flex-wrap container`
       );
     }
   }
@@ -68,6 +96,8 @@ const requiredCssGuards = [
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.table-responsive\s*>\s*\.ink-table[\s\S]*min-width:\s*720px;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-card\s*>\s*\.card-header\s*{[^}]*flex-wrap:\s*wrap;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-card\s*>\s*\.card-header\s+\.ms-auto\s*{[^}]*margin-left:\s*0\s*!important;/],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-card\s*>\s*\.card-header\s+\.form-select\s*{[^}]*flex:\s*1\s+1\s+110px;[^}]*width:\s*auto\s*!important;[^}]*min-width:\s*0;/],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.input-group\s*{[^}]*min-width:\s*0;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-filter-tabs\s*{[^}]*flex-wrap:\s*wrap;[^}]*min-width:\s*0;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-dashboard-quick-card\s+\.card-body\s*>\s*\.d-flex\s*{[^}]*flex-wrap:\s*wrap;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-activity-item\s*{[^}]*flex-wrap:\s*wrap;/],
