@@ -1,28 +1,7 @@
-import fs from 'node:fs/promises';
 import path from 'node:path';
+import { lineNumberFor, listFilesAsync, readTextAsync, rootDir } from './lib/files.mjs';
 
-const rootDir = path.resolve(import.meta.dirname, '..');
 const srcDir = path.join(rootDir, 'src');
-
-async function collectHtmlFiles(dir) {
-  const files = [];
-  const dirents = await fs.readdir(dir, { withFileTypes: true });
-
-  for (const dirent of dirents) {
-    const absolutePath = path.join(dir, dirent.name);
-    if (dirent.isDirectory()) {
-      files.push(...(await collectHtmlFiles(absolutePath)));
-    } else if (dirent.isFile() && dirent.name.endsWith('.html')) {
-      files.push(absolutePath);
-    }
-  }
-
-  return files;
-}
-
-function lineNumberForIndex(content, index) {
-  return content.slice(0, index).split('\n').length;
-}
 
 function getAttribute(tag, name) {
   const match = tag.match(new RegExp(`\\s${name}=(["'])(.*?)\\1`, 'i'));
@@ -46,7 +25,7 @@ function checkFile(relativePath, html) {
 
   while ((match = tagPattern.exec(html))) {
     const tag = match[0];
-    const line = lineNumberForIndex(html, match.index);
+    const line = lineNumberFor(html, match.index);
     const location = `${relativePath}:${line}`;
     const isIconControl = hasClass(tag, 'btn-icon') || hasClass(tag, 'ink-toolbar-btn');
 
@@ -76,12 +55,12 @@ function checkFile(relativePath, html) {
 }
 
 async function checkA11y() {
-  const files = await collectHtmlFiles(srcDir);
+  const files = await listFilesAsync(srcDir, file => file.endsWith('.html'));
   const errors = [];
 
   for (const file of files) {
     const relativePath = path.relative(rootDir, file).split(path.sep).join('/');
-    const html = await fs.readFile(file, 'utf8');
+    const html = await readTextAsync(file);
     errors.push(...checkFile(relativePath, html));
   }
 

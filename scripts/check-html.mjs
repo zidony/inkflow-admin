@@ -1,7 +1,6 @@
-import fs from 'node:fs/promises';
 import path from 'node:path';
+import { lineNumberFor, listFilesAsync, readTextAsync, rootDir } from './lib/files.mjs';
 
-const rootDir = path.resolve(import.meta.dirname, '..');
 const templateDirs = [path.join(rootDir, 'src')];
 const voidTags = new Set([
   'area',
@@ -39,32 +38,12 @@ const allowedDataActions = new Set([
   'trigger'
 ]);
 
-async function collectHtmlFiles(dir) {
-  const files = [];
-  const dirents = await fs.readdir(dir, { withFileTypes: true });
-
-  for (const dirent of dirents) {
-    const absolutePath = path.join(dir, dirent.name);
-    if (dirent.isDirectory()) {
-      files.push(...(await collectHtmlFiles(absolutePath)));
-    } else if (dirent.isFile() && dirent.name.endsWith('.html')) {
-      files.push(absolutePath);
-    }
-  }
-
-  return files;
-}
-
 function stripIgnoredContent(html) {
   return html
     .replace(/<!--[\s\S]*?-->/g, '')
     .replace(/<script\b[\s\S]*?<\/script>/gi, '')
     .replace(/<style\b[\s\S]*?<\/style>/gi, '')
     .replace(/{{[\s\S]*?}}/g, '');
-}
-
-function lineNumberForIndex(content, index) {
-  return content.slice(0, index).split('\n').length;
 }
 
 function checkHtmlBalance(filePath, html) {
@@ -82,7 +61,7 @@ function checkHtmlBalance(filePath, html) {
       continue;
     }
 
-    const line = lineNumberForIndex(content, match.index);
+    const line = lineNumberFor(content, match.index);
 
     if (!rawTag.startsWith('</')) {
       stack.push({ tagName, line });
@@ -122,7 +101,7 @@ function checkDuplicateAttributes(filePath, html) {
       continue;
     }
 
-    const line = lineNumberForIndex(content, match.index);
+    const line = lineNumberFor(content, match.index);
     const attributes = match[2] ?? '';
     const seen = new Set();
     const duplicateNames = new Set();
@@ -157,7 +136,7 @@ function checkDuplicateIds(filePath, html) {
 
   while ((match = idPattern.exec(content))) {
     const idValue = match[1] ?? match[2];
-    const line = lineNumberForIndex(content, match.index);
+    const line = lineNumberFor(content, match.index);
 
     if (!ids.has(idValue)) {
       ids.set(idValue, [line]);
@@ -189,7 +168,7 @@ function checkDataActions(filePath, html) {
       continue;
     }
 
-    const line = lineNumberForIndex(content, match.index);
+    const line = lineNumberFor(content, match.index);
     errors.push(`Unknown data-action "${action}" at ${filePath}:${line}`);
   }
 
@@ -203,7 +182,7 @@ function checkSuspiciousPlaceholderText(filePath, html) {
   let match;
 
   while ((match = placeholderPattern.exec(content))) {
-    const line = lineNumberForIndex(content, match.index);
+    const line = lineNumberFor(content, match.index);
     errors.push(`Suspicious placeholder text "${match[0]}" at ${filePath}:${line}`);
   }
 
@@ -241,7 +220,7 @@ function checkBreadcrumbPartialUsage(filePath, html) {
       continue;
     }
 
-    const line = lineNumberForIndex(html, match.index);
+    const line = lineNumberFor(html, match.index);
     errors.push(`Wrap topbar breadcrumb content with {{#> breadcrumb}} at ${filePath}:${line}`);
   }
 
@@ -261,12 +240,13 @@ function checkBulkActionBarPartialUsage(filePath, html) {
 }
 
 async function checkHtml() {
-  const files = (await Promise.all(templateDirs.map(collectHtmlFiles))).flat();
+  const isHtmlFile = file => file.endsWith('.html');
+  const files = (await Promise.all(templateDirs.map(dir => listFilesAsync(dir, isHtmlFile)))).flat();
   const allErrors = [];
 
   for (const file of files) {
     const relativePath = path.relative(rootDir, file).split(path.sep).join('/');
-    const html = await fs.readFile(file, 'utf8');
+    const html = await readTextAsync(file);
     allErrors.push(...checkHtmlBalance(relativePath, html));
     allErrors.push(...checkDuplicateAttributes(relativePath, html));
     allErrors.push(...checkDuplicateIds(relativePath, html));
