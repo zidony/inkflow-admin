@@ -70,47 +70,6 @@
   margin: 0;
 }
 
-/* Sparkbar (dashboard CSS chart) */
-.ink-sparkbar-group {
-  display: flex;
-  align-items: flex-end;
-  gap: 3px;
-  height: 40px;
-}
-.ink-sparkbar {
-  flex: 1;
-  background: var(--ink-200);
-  border-radius: 3px 3px 0 0;
-  transition: background 0.15s;
-}
-.ink-sparkbar:hover {
-  background: var(--ink-400);
-}
-.ink-sparkbar.active {
-  background: var(--ink-500);
-}
-
-/* Skeleton */
-.ink-skeleton {
-  background: linear-gradient(
-    90deg,
-    var(--ink-gray-100) 25%,
-    var(--ink-gray-150) 50%,
-    var(--ink-gray-100) 75%
-  );
-  background-size: 200% 100%;
-  animation: ink-shimmer 1.4s infinite;
-  border-radius: 6px;
-}
-@keyframes ink-shimmer {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
-
 /* ============================================================
    CUSTOM UTILITIES extracted from inline styles
    ============================================================ */

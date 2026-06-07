@@ -2202,9 +2202,6 @@ textarea.form-control {
 .u-text-body {
   font-size: 0.82rem;
 }
-.u-text-md {
-  font-size: 0.84rem;
-}
 .u-text-mono {
   font-family: var(--font-mono);
 }
@@ -2254,31 +2251,11 @@ textarea.form-control {
 .u-icon-xs {
   font-size: 0.65rem;
 }
-.u-icon-muted {
-  color: var(--ink-gray-400);
-}
-.u-icon-blue {
-  color: var(--ink-500);
-}
-
-/* Colour helpers */
-.u-c-blue {
-  color: var(--ink-500);
-}
-.u-c-muted {
-  color: var(--ink-gray-500);
-}
-
 /* Tiny button (notification header, etc.) */
 .u-btn-xs {
   height: 24px !important;
   font-size: 0.68rem !important;
   padding: 0 8px !important;
-}
-
-/* Separator */
-.u-sep {
-  color: var(--ink-gray-300);
 }
 
 /* Tint helpers */
