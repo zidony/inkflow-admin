@@ -10,8 +10,9 @@
     "lint": "eslint \"src/assets/js/**/*.js\"",
     "lint:css": "stylelint \"src/assets/css/**/*.css\"",
     "check:html": "node scripts/check-html.mjs",
+    "check:a11y": "node scripts/check-a11y.mjs",
     "format:check": "prettier --check \"src/assets/js/**/*.js\" \"src/assets/css/**/*.css\"",
-    "quality": "npm run lint && npm run lint:css && npm run check:html && npm run format:check",
+    "quality": "npm run lint && npm run lint:css && npm run check:html && npm run check:a11y && npm run format:check",
     "lint:fix": "eslint \"src/assets/js/**/*.js\" --fix && stylelint \"src/assets/css/**/*.css\" --fix && prettier --write \"src/assets/js/**/*.js\" \"src/assets/css/**/*.css\"",
     "release:check": "node scripts/check-release.mjs",
     "release": "npm run build && node scripts/release.mjs && npm run release:check"
