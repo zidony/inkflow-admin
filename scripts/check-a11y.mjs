@@ -33,6 +33,13 @@ function checkFile(relativePath, html) {
       errors.push(`${location} icon control needs aria-label.`);
     }
 
+    if (match[1].toLowerCase() === 'a' && getAttribute(tag, 'target') === '_blank') {
+      const relTokens = getAttribute(tag, 'rel').split(/\s+/);
+      if (!relTokens.includes('noopener') || !relTokens.includes('noreferrer')) {
+        errors.push(`${location} target="_blank" link needs rel="noopener noreferrer".`);
+      }
+    }
+
     if (getAttribute(tag, 'data-bs-toggle') === 'dropdown' && !hasAttribute(tag, 'aria-expanded')) {
       errors.push(`${location} dropdown trigger needs aria-expanded.`);
     }
