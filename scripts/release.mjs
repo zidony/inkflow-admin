@@ -1,7 +1,7 @@
-import { constants } from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { deflateRawSync } from 'node:zlib';
+import { fileExistsAsync, listFilesAsync, readTextAsync } from './lib/files.mjs';
 
 const textEncoder = new TextEncoder();
 
@@ -48,40 +48,6 @@ function uint32(value) {
   const buffer = Buffer.allocUnsafe(4);
   buffer.writeUInt32LE(value >>> 0);
   return buffer;
-}
-
-async function fileExists(filePath) {
-  try {
-    await fs.access(filePath, constants.F_OK);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-async function collectFiles(rootDir) {
-  const entries = [];
-
-  async function walk(currentDir) {
-    const dirents = await fs.readdir(currentDir, { withFileTypes: true });
-
-    for (const dirent of dirents) {
-      const absolutePath = path.join(currentDir, dirent.name);
-
-      if (dirent.isDirectory()) {
-        await walk(absolutePath);
-        continue;
-      }
-
-      if (dirent.isFile()) {
-        entries.push(absolutePath);
-      }
-    }
-  }
-
-  await walk(rootDir);
-  entries.sort((a, b) => a.localeCompare(b));
-  return entries;
 }
 
 function toZipPath(filePath) {
@@ -234,24 +200,24 @@ async function release() {
   const releaseDir = path.join(rootDir, 'releases');
   const packageJsonPath = path.join(rootDir, 'package.json');
 
-  if (!(await fileExists(distDir))) {
+  if (!(await fileExistsAsync(distDir))) {
     throw new Error("'dist/' directory does not exist. Please run 'npm run build' first.");
   }
 
-  const packageJson = JSON.parse(await fs.readFile(packageJsonPath, 'utf8'));
+  const packageJson = JSON.parse(await readTextAsync(packageJsonPath));
   const version = packageJson.version || '1.0.0';
   const name = packageJson.name || 'inkflow-admin';
   const folderName = `${name}-v${version}`;
   const zipFilename = `${folderName}.zip`;
   const zipPath = path.join(releaseDir, zipFilename);
 
-  if (await fileExists(zipPath)) {
+  if (await fileExistsAsync(zipPath)) {
     await fs.rm(zipPath, { force: true });
     console.log(`Removed old package: ${zipFilename}`);
   }
 
   const entries = [];
-  const distFiles = await collectFiles(distDir);
+  const distFiles = await listFilesAsync(distDir, () => true);
 
   for (const absolutePath of distFiles) {
     const relativePath = path.relative(distDir, absolutePath);

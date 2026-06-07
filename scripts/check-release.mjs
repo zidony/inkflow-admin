@@ -1,8 +1,7 @@
-import { constants } from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { fileExistsAsync, listFilesAsync, readTextAsync, rootDir } from './lib/files.mjs';
 
-const rootDir = path.resolve(import.meta.dirname, '..');
 const distDir = path.join(rootDir, 'dist');
 const releaseDir = path.join(rootDir, 'releases');
 const blockedPathSegments = ['/node_modules/', '/src/', '/temp/', '/.git/'];
@@ -24,36 +23,9 @@ const externalResourcePatterns = [
   /\b(?:src|href|poster|action)\s*=\s*["']https?:\/\/[^"']*cdn\./i
 ];
 
-async function fileExists(filePath) {
-  try {
-    await fs.access(filePath, constants.F_OK);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
 async function collectFiles(rootPath) {
-  if (!(await fileExists(rootPath))) return [];
-
-  const files = [];
-
-  async function walk(currentPath) {
-    const dirents = await fs.readdir(currentPath, { withFileTypes: true });
-
-    for (const dirent of dirents) {
-      const absolutePath = path.join(currentPath, dirent.name);
-      if (dirent.isDirectory()) {
-        await walk(absolutePath);
-      } else if (dirent.isFile()) {
-        files.push(absolutePath);
-      }
-    }
-  }
-
-  await walk(rootPath);
-  files.sort((a, b) => a.localeCompare(b));
-  return files;
+  if (!(await fileExistsAsync(rootPath))) return [];
+  return listFilesAsync(rootPath, () => true);
 }
 
 function normalizeZipPath(filePath) {
@@ -131,8 +103,8 @@ function readZipEntries(buffer) {
 }
 
 async function assertVersionConsistency() {
-  const packageJson = JSON.parse(await fs.readFile(path.join(rootDir, 'package.json'), 'utf8'));
-  const packageLock = JSON.parse(await fs.readFile(path.join(rootDir, 'package-lock.json'), 'utf8'));
+  const packageJson = JSON.parse(await readTextAsync(path.join(rootDir, 'package.json')));
+  const packageLock = JSON.parse(await readTextAsync(path.join(rootDir, 'package-lock.json')));
   const packageVersion = packageJson.version;
   const lockVersion = packageLock.version;
   const lockRootVersion = packageLock.packages?.['']?.version;
@@ -148,7 +120,7 @@ async function assertVersionConsistency() {
   }
 
   for (const readme of ['README.md', 'README.en.md']) {
-    const content = await fs.readFile(path.join(rootDir, readme), 'utf8');
+    const content = await readTextAsync(path.join(rootDir, readme));
     if (!content.includes(`**v${packageVersion}**`)) {
       throw new Error(`${readme} does not contain the latest version entry **v${packageVersion}**.`);
     }
@@ -174,7 +146,7 @@ async function assertDistContents() {
 
     if (!isTextFile(file)) continue;
 
-    const content = await fs.readFile(file, 'utf8');
+    const content = await readTextAsync(file);
     if (hasExternalResourceReference(content)) {
       externalFiles.push(relativePath);
     }
@@ -191,7 +163,7 @@ async function assertDistContents() {
 
 async function assertZipContents(packageJson) {
   const zipPath = path.join(releaseDir, `${packageJson.name}-v${packageJson.version}.zip`);
-  if (!(await fileExists(zipPath))) {
+  if (!(await fileExistsAsync(zipPath))) {
     console.log('Release ZIP not found; skipped ZIP content checks.');
     return;
   }
@@ -230,7 +202,7 @@ async function assertRootExternalReferences() {
   for (const file of scopedFiles) {
     if (!isTextFile(file)) continue;
 
-    const content = await fs.readFile(file, 'utf8');
+    const content = await readTextAsync(file);
     if (hasExternalResourceReference(content)) {
       externalFiles.push(normalizeZipPath(path.relative(rootDir, file)));
     }

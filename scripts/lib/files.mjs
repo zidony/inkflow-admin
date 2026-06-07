@@ -12,6 +12,15 @@ export async function readTextAsync(filePath) {
   return fsPromises.readFile(filePath, 'utf8');
 }
 
+export async function fileExistsAsync(filePath) {
+  try {
+    await fsPromises.access(filePath, fs.constants.F_OK);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export function listFiles(dir, predicate) {
   return fs
     .readdirSync(dir, { withFileTypes: true })
