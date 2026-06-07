@@ -31,21 +31,7 @@
               <div class="ink-panel-header"><i class="bi bi-chat-left-quote"></i> 原始评论</div>
               <div class="ink-panel-body">
                 <div class="d-flex align-items-center gap-3 mb-3">
-                  <div
-                    class="fw-bold"
-                    style="
-                      width: 44px;
-                      height: 44px;
-                      border-radius: 50%;
-                      background: var(--ink-100);
-                      display: flex;
-                      align-items: center;
-                      justify-content: center;
-                      font-size: 0.9rem;
-                      color: var(--ink-600);
-                      flex-shrink: 0;
-                    "
-                  >
+                  <div class="ink-comment-author-avatar fw-bold">
                     张
                   </div>
                   <div>
@@ -60,17 +46,7 @@
                     >
                   </div>
                 </div>
-                <div
-                  class="u-text-gray-700"
-                  style="
-                    background: var(--ink-gray-50);
-                    border-left: 3px solid var(--ink-300);
-                    border-radius: 0 8px 8px 0;
-                    padding: 14px 16px;
-                    font-size: 0.875rem;
-                    line-height: 1.7;
-                  "
-                >
+                <div class="ink-comment-quote u-text-gray-700">
                   讲得非常清楚，一看就懂！Composition API
                   的优势我现在终于明白了，特别是逻辑复用那部分，之前一直被 Mixins
                   搞得很困惑。收藏了这篇文章，强烈推荐给身边的同事看。
@@ -113,7 +89,7 @@
             </div>
 
             <!-- Editor reply -->
-            <div class="ink-panel ink-anim" style="--ink-delay: 0.1s">
+            <div class="ink-panel ink-anim ink-delay-100">
               <div class="ink-panel-header"><i class="bi bi-reply"></i> 管理员回复</div>
               <div class="ink-panel-body">
                 <div class="mb-3">
@@ -144,7 +120,7 @@
             </div>
 
             <!-- Previous replies -->
-            <div class="ink-panel ink-anim" style="--ink-delay: 0.2s">
+            <div class="ink-panel ink-anim ink-delay-200">
               <div class="ink-panel-header">
                 <i class="bi bi-chat-dots"></i> 历史回复
                 <span class="u-text-xs u-text-gray-400 fw-normal">(1 条)</span>
@@ -157,7 +133,7 @@
                       <span class="fw-bold u-text-gray-800 u-text-body">Admin</span>
                       <span class="u-text-gray-400 fs-70">2025-06-18 15:00</span>
                     </div>
-                    <div class="u-text-gray-700" style="font-size: 0.85rem; line-height: 1.6">
+                    <div class="ink-comment-reply-text u-text-gray-700">
                       感谢您的认可！
                     </div>
                   </div>
@@ -167,7 +143,7 @@
           </div>
 
           <div class="col-12 col-xl-4">
-            <div class="ink-panel ink-anim" style="--ink-delay: 0.05s">
+            <div class="ink-panel ink-anim ink-delay-50">
               <div class="ink-panel-header"><i class="bi bi-info-circle"></i> 评论信息</div>
               <div class="ink-panel-body">
                 <dl class="u-text-body">
@@ -186,7 +162,7 @@
                 </dl>
               </div>
             </div>
-            <div class="ink-panel ink-anim" style="--ink-delay: 0.15s">
+            <div class="ink-panel ink-anim ink-delay-150">
               <div class="ink-panel-header"><i class="bi bi-shield-check"></i> 快速处理</div>
               <div class="ink-panel-body d-flex flex-column gap-2">
                 <button
