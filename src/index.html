@@ -72,11 +72,11 @@
           </div>
           <!-- 快捷操作 4项紧凑版 -->
           <div class="col-12 col-xl-4 ink-anim ink-delay-100">
-            <div class="card ink-card h-100" style="min-height: 0">
-              <div class="card-header" style="padding: 10px 16px">
+            <div class="card ink-card ink-dashboard-quick-card h-100">
+              <div class="card-header">
                 <h6 class="ink-card-title"><i class="bi bi-lightning-charge"></i> 快捷操作</h6>
               </div>
-              <div class="card-body d-flex align-items-center" style="padding: 12px 16px">
+              <div class="card-body d-flex align-items-center">
                 <div class="d-flex gap-2 w-100">
                   <a href="post-edit.html" class="ink-quick-btn-sm">
                     <div class="ink-quick-icon-sm"><i class="bi bi-pencil-square"></i></div>
@@ -112,7 +112,7 @@
                   <option selected>2025 年</option>
                 </select>
               </div>
-              <div class="card-body" style="height: 220px; padding: 12px 16px 10px">
+              <div class="card-body ink-dashboard-chart-body">
                 <canvas id="visits-chart"></canvas>
               </div>
             </div>
@@ -133,8 +133,7 @@
                     </div>
                     <div class="ink-progress">
                       <div
-                        class="ink-progress-bar"
-                        style="width: 76%; background: var(--ink-500)"
+                        class="ink-progress-bar ink-progress-bar-published"
                       ></div>
                     </div>
                   </div>
@@ -145,8 +144,7 @@
                     </div>
                     <div class="ink-progress">
                       <div
-                        class="ink-progress-bar"
-                        style="width: 14%; background: var(--ink-warning-400)"
+                        class="ink-progress-bar ink-progress-bar-pending"
                       ></div>
                     </div>
                   </div>
@@ -157,8 +155,7 @@
                     </div>
                     <div class="ink-progress">
                       <div
-                        class="ink-progress-bar"
-                        style="width: 28%; background: var(--ink-accent-400)"
+                        class="ink-progress-bar ink-progress-bar-media"
                       ></div>
                     </div>
                   </div>
@@ -169,8 +166,7 @@
                     </div>
                     <div class="ink-progress">
                       <div
-                        class="ink-progress-bar"
-                        style="width: 75%; background: var(--ink-success-400)"
+                        class="ink-progress-bar ink-progress-bar-active-users"
                       ></div>
                     </div>
                   </div>
@@ -191,14 +187,14 @@
                     class="d-flex justify-content-between align-items-center py-1 border-bottom border-ink-gray-100"
                   >
                     <span class="text-muted"
-                      ><i class="bi bi-cpu me-2" style="color: var(--ink-400)"></i>CPU 使用率</span
+                      ><i class="bi bi-cpu me-2 ink-system-icon-cpu"></i>CPU 使用率</span
                     ><span class="fw-semibold">23%</span>
                   </div>
                   <div
                     class="d-flex justify-content-between align-items-center py-1 border-bottom border-ink-gray-100"
                   >
                     <span class="text-muted"
-                      ><i class="bi bi-memory me-2" style="color: var(--ink-accent-400)"></i
+                      ><i class="bi bi-memory me-2 ink-system-icon-memory"></i
                       >内存使用</span
                     ><span class="fw-semibold">1.8 / 8 GB</span>
                   </div>
@@ -206,13 +202,13 @@
                     class="d-flex justify-content-between align-items-center py-1 border-bottom border-ink-gray-100"
                   >
                     <span class="text-muted"
-                      ><i class="bi bi-hdd me-2" style="color: var(--ink-success-400)"></i
+                      ><i class="bi bi-hdd me-2 ink-system-icon-disk"></i
                       >磁盘空间</span
                     ><span class="fw-semibold">42 / 200 GB</span>
                   </div>
                   <div class="d-flex justify-content-between align-items-center py-1">
                     <span class="text-muted"
-                      ><i class="bi bi-clock-history me-2" style="color: var(--ink-warning-400)"></i
+                      ><i class="bi bi-clock-history me-2 ink-system-icon-uptime"></i
                       >系统运行</span
                     ><span class="fw-semibold">38 天 14 时</span>
                   </div>
@@ -560,15 +556,7 @@
                   </li>
                 </ul>
               </div>
-              <div
-                class="card-footer d-flex justify-content-center"
-                style="
-                  background: var(--ink-gray-50);
-                  border-top: 1px solid var(--ink-gray-100);
-                  padding: 12px 20px;
-                  border-radius: 0 0 var(--ink-card-radius) var(--ink-card-radius);
-                "
-              >
+              <div class="card-footer d-flex justify-content-center">
                 <a
                   href="comment-list.html"
                   class="fw-semibold u-text-sm u-text-primary text-decoration-none"
