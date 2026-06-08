@@ -2,6 +2,7 @@ import path from 'node:path';
 import { lineNumberFor, listFiles, readText, relativeToRoot, rootDir } from './lib/files.mjs';
 
 const jsDir = path.join(rootDir, 'src', 'assets', 'js');
+const srcDir = path.join(rootDir, 'src');
 const failures = [];
 const bannedPatterns = [
   {
@@ -18,7 +19,10 @@ const bannedPatterns = [
   }
 ];
 
-for (const filePath of listFiles(jsDir, file => file.endsWith('.js'))) {
+const jsFiles = listFiles(jsDir, file => file.endsWith('.js'));
+const jsSource = jsFiles.map(filePath => readText(filePath)).join('\n');
+
+for (const filePath of jsFiles) {
   const source = readText(filePath);
 
   for (const { pattern, message } of bannedPatterns) {
@@ -29,6 +33,25 @@ for (const filePath of listFiles(jsDir, file => file.endsWith('.js'))) {
         `${relativeToRoot(filePath)}:${lineNumberFor(source, match.index)} ${message}`
       );
     }
+  }
+}
+
+const actionPattern = /\sdata-action\s*=\s*(?:"([^"]+)"|'([^']+)'|([^\s"'=<>`]+))/gi;
+const actions = new Set();
+for (const filePath of listFiles(srcDir, file => file.endsWith('.html'))) {
+  const source = readText(filePath);
+  let match;
+
+  while ((match = actionPattern.exec(source))) {
+    actions.add(match[1] ?? match[2] ?? match[3]);
+  }
+}
+
+for (const action of actions) {
+  const escapedAction = action.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const actionReferencePattern = new RegExp(`(?:["']${escapedAction}["']|\\b${escapedAction}\\s*:)`);
+  if (!actionReferencePattern.test(jsSource)) {
+    failures.push(`data-action "${action}" is used in templates but not referenced by runtime JS`);
   }
 }
 
