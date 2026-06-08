@@ -67,7 +67,7 @@ export class DelegationManager {
       },
       confirmDelete: () => this.confirmDelete(actionEl),
       showToast: () => this.showToast(actionEl),
-      readAll: () => showToast(t('allRead'), 'success'),
+      readAll: () => this.readAllNotifications(),
       permanentDelete: () => this.permanentDelete(actionEl),
       navigate: () => this.navigate(actionEl),
       triggerTarget: () => this.triggerTarget(actionEl),
@@ -109,6 +109,44 @@ export class DelegationManager {
     const msg = toastBtn.getAttribute('data-toast-msg') || t('toastSuccess');
     const type = toastBtn.getAttribute('data-toast-type') || 'success';
     showToast(msg, type);
+  }
+
+  readAllNotifications() {
+    const activeFilter = document.querySelector('#notif-filter-tabs .ink-filter-tab.active')
+      ?.dataset.filter;
+
+    document.querySelectorAll('.ink-notif-item.unread, .ink-notif-row.unread').forEach(item => {
+      item.classList.remove('unread');
+      item.querySelector('.ink-notif-dot, .ink-unread-dot')?.remove();
+
+      if (activeFilter === 'unread' && item.classList.contains('ink-notif-row')) {
+        item.classList.add('d-none');
+      }
+    });
+
+    this.updateNotificationCount('notif-badge', '0');
+    this.updateNotificationCount('cnt-unread', '(0)');
+    this.updateNotificationCount('stat-unread', '0');
+    this.updateNotificationEmptyState();
+    showToast(t('allRead'), 'success');
+  }
+
+  updateNotificationCount(id, value) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.textContent = value;
+    }
+  }
+
+  updateNotificationEmptyState() {
+    const list = document.getElementById('notif-full-list');
+    const emptyState = document.getElementById('notif-empty');
+    if (!list || !emptyState) return;
+
+    const hasVisibleRows = [...list.querySelectorAll('.ink-notif-row')].some(
+      row => !row.classList.contains('d-none')
+    );
+    emptyState.classList.toggle('d-none', hasVisibleRows);
   }
 
   permanentDelete(permDelBtn) {
