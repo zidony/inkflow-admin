@@ -151,16 +151,25 @@ export class EditorManager {
     }
 
     // 7. Editor Toolbar
+    const isToggleToolbarButton = btn => {
+      const label = btn.title || '';
+      return (
+        !label.includes('插入') &&
+        !label.includes('撤销') &&
+        !label.includes('重做') &&
+        !label.includes('全屏')
+      );
+    };
+
     document.querySelectorAll('.ink-toolbar-btn').forEach(btn => {
+      if (isToggleToolbarButton(btn)) {
+        btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false');
+      }
+
       btn.addEventListener('click', function () {
-        const t = this.title || '';
-        if (
-          !t.includes('插入') &&
-          !t.includes('撤销') &&
-          !t.includes('重做') &&
-          !t.includes('全屏')
-        ) {
+        if (isToggleToolbarButton(this)) {
           this.classList.toggle('active');
+          this.setAttribute('aria-pressed', this.classList.contains('active') ? 'true' : 'false');
         }
       });
     });

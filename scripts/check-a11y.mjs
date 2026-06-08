@@ -193,6 +193,10 @@ function checkFile(relativePath, html) {
       errors.push(`${location} icon control needs aria-label.`);
     }
 
+    if (hasClass(tag, 'ink-toolbar-btn') && hasClass(tag, 'active') && !hasAttribute(tag, 'aria-pressed')) {
+      errors.push(`${location} active toolbar button needs aria-pressed.`);
+    }
+
     if (match[1].toLowerCase() === 'a' && getAttribute(tag, 'target') === '_blank') {
       const relTokens = getAttribute(tag, 'rel').split(/\s+/);
       if (!relTokens.includes('noopener') || !relTokens.includes('noreferrer')) {
