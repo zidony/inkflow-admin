@@ -45,6 +45,14 @@ export class NotificationManager {
 
     row.classList.remove('unread');
     row.querySelector('.ink-unread-dot')?.remove();
+    this.syncUnreadCounts();
+
+    const activeFilter = this.filterTabs?.querySelector('.ink-filter-tab.active')?.dataset.filter;
+    if (activeFilter === 'unread') {
+      row.classList.add('d-none');
+      this.updateEmptyState();
+    }
+
     showToast(t('allRead'), 'success');
   }
 
@@ -87,5 +95,22 @@ export class NotificationManager {
       row => !row.classList.contains('d-none')
     );
     this.emptyState.classList.toggle('d-none', hasVisibleRows);
+  }
+
+  syncUnreadCounts() {
+    const unreadCount = this.list.querySelectorAll('.ink-notif-row.unread').length;
+    this.updateCount('notif-badge', String(unreadCount));
+    this.updateCount('cnt-unread', `(${unreadCount})`);
+    this.updateCount('stat-unread', String(unreadCount));
+  }
+
+  updateCount(id, value) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.textContent = value;
+      if (id === 'notif-badge') {
+        element.classList.toggle('d-none', value === '0');
+      }
+    }
   }
 }

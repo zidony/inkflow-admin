@@ -135,6 +135,9 @@ export class DelegationManager {
     const element = document.getElementById(id);
     if (element) {
       element.textContent = value;
+      if (id === 'notif-badge') {
+        element.classList.toggle('d-none', value === '0');
+      }
     }
   }
 
