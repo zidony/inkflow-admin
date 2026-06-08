@@ -106,31 +106,31 @@
                   <div class="row g-3">
                     <div class="col-12 col-md-6">
                       <label class="form-label">站点名称</label
-                      ><input type="text" class="form-control" value="InkFlow 技术博客" />
+                      ><input type="text" class="form-control" value="InkFlow 技术博客" aria-label="站点名称" />
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">站点副标题</label
-                      ><input type="text" class="form-control" value="分享技术，记录成长" />
+                      ><input type="text" class="form-control" value="分享技术，记录成长" aria-label="站点副标题" />
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">站点地址 (URL)</label
-                      ><input type="url" class="form-control" value="/blog" />
+                      ><input type="url" class="form-control" value="/blog" aria-label="站点地址 (URL)" />
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">管理后台地址</label
                       ><input
                         type="url"
                         class="form-control"
-                        value="/admin"
+                        value="/admin" aria-label="管理后台地址"
                       />
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">管理员邮箱</label
-                      ><input type="email" class="form-control" value="admin@inkflow.dev" />
+                      ><input type="email" class="form-control" value="admin@inkflow.dev" aria-label="管理员邮箱" />
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">站点语言</label
-                      ><select class="form-select">
+                      ><select class="form-select" aria-label="站点语言">
                         <option selected>简体中文</option>
                         <option>繁體中文</option>
                         <option>English</option>
@@ -138,7 +138,7 @@
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">时区</label
-                      ><select class="form-select">
+                      ><select class="form-select" aria-label="时区">
                         <option selected>Asia/Shanghai (UTC+8)</option>
                         <option>Asia/Tokyo (UTC+9)</option>
                         <option>UTC</option>
@@ -146,7 +146,7 @@
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">日期格式</label
-                      ><select class="form-select">
+                      ><select class="form-select" aria-label="日期格式">
                         <option selected>2025-06-18</option>
                         <option>2025/06/18</option>
                         <option>June 18, 2025</option>
@@ -154,7 +154,7 @@
                     </div>
                     <div class="col-12">
                       <label class="form-label">站点描述</label
-                      ><textarea class="form-control" rows="3">
+                      ><textarea class="form-control" rows="3" aria-label="站点描述">
 专注于前端技术、AI 技术、运维部署等领域的技术博客，分享实战经验与学习心得。</textarea
                       >
                     </div>
@@ -202,22 +202,22 @@
                   <div class="row g-3">
                     <div class="col-12 col-md-6">
                       <label class="form-label">首页显示</label>
-                      <select class="form-select">
+                      <select class="form-select" aria-label="首页显示">
                         <option selected>最新文章列表</option>
                         <option>固定页面</option>
                       </select>
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">每页显示文章数</label>
-                      <input type="number" class="form-control" value="10" />
+                      <input type="number" class="form-control" value="10" aria-label="每页显示文章数" />
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">RSS 输出条数</label>
-                      <input type="number" class="form-control" value="20" />
+                      <input type="number" class="form-control" value="20" aria-label="RSS 输出条数" />
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">摘要字数限制</label>
-                      <input type="number" class="form-control" value="150" />
+                      <input type="number" class="form-control" value="150" aria-label="摘要字数限制" />
                     </div>
                   </div>
                 </div>
@@ -232,7 +232,7 @@
                   <div class="row g-3">
                     <div class="col-12 col-md-6">
                       <label class="form-label">默认文章分类</label
-                      ><select class="form-select">
+                      ><select class="form-select" aria-label="默认文章分类">
                         <option selected>前端技术</option>
                         <option>AI 技术</option>
                         <option>运维部署</option>
@@ -240,7 +240,7 @@
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">默认文章状态</label
-                      ><select class="form-select">
+                      ><select class="form-select" aria-label="默认文章状态">
                         <option selected>草稿</option>
                         <option>待审核</option>
                         <option>发布</option>
@@ -248,7 +248,7 @@
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">文章 URL 格式</label
-                      ><select class="form-select">
+                      ><select class="form-select" aria-label="文章 URL 格式">
                         <option>/?p=ID</option>
                         <option selected>/post/slug</option>
                         <option>/YYYY/MM/slug</option>
@@ -256,7 +256,7 @@
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">代码高亮主题</label
-                      ><select class="form-select">
+                      ><select class="form-select" aria-label="代码高亮主题">
                         <option selected>GitHub Dark</option>
                         <option>Dracula</option>
                         <option>Monokai</option>
@@ -298,7 +298,7 @@
                     </div>
                     <div class="col-12">
                       <label class="form-label">版权声明模板</label
-                      ><textarea class="form-control" rows="3">
+                      ><textarea class="form-control" rows="3" aria-label="版权声明模板">
 本文为 InkFlow 原创文章，遵循 CC BY-NC-SA 4.0 版权协议，转载请附上原文出处链接及本声明。</textarea
                       >
                     </div>
@@ -356,15 +356,15 @@
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">评论分页，每页条数</label
-                      ><input type="number" class="form-control" value="20" />
+                      ><input type="number" class="form-control" value="20" aria-label="评论分页，每页条数" />
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">评论关闭天数（0=永不关闭）</label
-                      ><input type="number" class="form-control" value="0" />
+                      ><input type="number" class="form-control" value="0" aria-label="评论关闭天数（0=永不关闭）" />
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">评论头像来源</label
-                      ><select class="form-select">
+                      ><select class="form-select" aria-label="评论头像来源">
                         <option selected>Gravatar</option>
                         <option>本地头像</option>
                         <option>随机生成</option>
@@ -372,7 +372,7 @@
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">黑名单检测</label
-                      ><select class="form-select">
+                      ><select class="form-select" aria-label="黑名单检测">
                         <option selected>关键词过滤</option>
                         <option>Akismet 反垃圾</option>
                         <option>两者均用</option>
@@ -383,7 +383,7 @@
                       ><textarea
                         class="form-control"
                         rows="3"
-                        placeholder="广告&#10;赌博&#10;xx网站"
+                        placeholder="广告&#10;赌博&#10;xx网站" aria-label="评论黑名单关键词（每行一个）"
                       ></textarea>
                     </div>
                   </div>
@@ -403,16 +403,16 @@
                         type="text"
                         class="form-control"
                         value="smtp.exmail.qq.com"
-                        placeholder="smtp.example.com"
+                        placeholder="smtp.example.com" aria-label="SMTP 服务器"
                       />
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">SMTP 端口</label
-                      ><input type="number" class="form-control" value="465" />
+                      ><input type="number" class="form-control" value="465" aria-label="SMTP 端口" />
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">加密方式</label
-                      ><select class="form-select">
+                      ><select class="form-select" aria-label="加密方式">
                         <option selected>SSL/TLS</option>
                         <option>STARTTLS</option>
                         <option>无加密</option>
@@ -420,19 +420,19 @@
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">发件人名称</label
-                      ><input type="text" class="form-control" value="InkFlow 博客" />
+                      ><input type="text" class="form-control" value="InkFlow 博客" aria-label="发件人名称" />
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">发件人邮箱</label
-                      ><input type="email" class="form-control" value="noreply@inkflow.dev" />
+                      ><input type="email" class="form-control" value="noreply@inkflow.dev" aria-label="发件人邮箱" />
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">SMTP 用户名</label
-                      ><input type="text" class="form-control" value="noreply@inkflow.dev" />
+                      ><input type="text" class="form-control" value="noreply@inkflow.dev" aria-label="SMTP 用户名" />
                     </div>
                     <div class="col-12">
                       <label class="form-label">SMTP 密码</label
-                      ><input type="password" class="form-control" value="••••••••••••" />
+                      ><input type="password" class="form-control" value="••••••••••••" aria-label="SMTP 密码" />
                     </div>
                     <div class="col-12">
                       <button
@@ -457,19 +457,19 @@
                   <div class="row g-3">
                     <div class="col-12 col-md-6">
                       <label class="form-label">登录失败锁定次数</label
-                      ><input type="number" class="form-control" value="5" />
+                      ><input type="number" class="form-control" value="5" aria-label="登录失败锁定次数" />
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">锁定时间（分钟）</label
-                      ><input type="number" class="form-control" value="30" />
+                      ><input type="number" class="form-control" value="30" aria-label="锁定时间（分钟）" />
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">Session 超时（分钟）</label
-                      ><input type="number" class="form-control" value="120" />
+                      ><input type="number" class="form-control" value="120" aria-label="Session 超时（分钟）" />
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">密码最低长度</label
-                      ><input type="number" class="form-control" value="8" />
+                      ><input type="number" class="form-control" value="8" aria-label="密码最低长度" />
                     </div>
                     <div class="col-12">
                       <div class="d-flex flex-wrap gap-4">
@@ -507,7 +507,7 @@
                       ><textarea
                         class="form-control"
                         rows="3"
-                        placeholder="127.0.0.1&#10;192.168.1.0/24"
+                        placeholder="127.0.0.1&#10;192.168.1.0/24" aria-label="IP 白名单（每行一个）"
                       ></textarea>
                     </div>
                   </div>
@@ -525,7 +525,7 @@
                   <div class="row g-3">
                     <div class="col-12 col-md-6">
                       <label class="form-label">页面缓存驱动</label
-                      ><select class="form-select">
+                      ><select class="form-select" aria-label="页面缓存驱动">
                         <option selected>文件缓存</option>
                         <option>Redis</option>
                         <option>Memcached</option>
@@ -534,7 +534,7 @@
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">缓存过期时间（秒）</label
-                      ><input type="number" class="form-control" value="3600" />
+                      ><input type="number" class="form-control" value="3600" aria-label="缓存过期时间（秒）" />
                     </div>
                     <div class="col-12">
                       <div class="d-flex flex-wrap gap-4">
@@ -601,7 +601,7 @@
                       ><input
                         type="text"
                         class="form-control"
-                        placeholder="Vue,TypeScript,前端技术,博客"
+                        placeholder="Vue,TypeScript,前端技术,博客" aria-label="全站 Meta 关键词"
                       />
                     </div>
                     <div class="col-12">
@@ -609,19 +609,19 @@
                       ><textarea
                         class="form-control"
                         rows="2"
-                        placeholder="站点全局描述…"
+                        placeholder="站点全局描述…" aria-label="全站 Meta 描述"
                       ></textarea>
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">Google Analytics ID</label
-                      ><input type="text" class="form-control" placeholder="G-XXXXXXXXXX" />
+                      ><input type="text" class="form-control" placeholder="G-XXXXXXXXXX" aria-label="Google Analytics ID" />
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">百度统计 ID</label
                       ><input
                         type="text"
                         class="form-control"
-                        placeholder="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                        placeholder="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" aria-label="百度统计 ID"
                       />
                     </div>
                     <div class="col-12">
@@ -659,27 +659,27 @@
                   <div class="row g-3">
                     <div class="col-12 col-md-6">
                       <label class="form-label">最大上传文件大小 (MB)</label
-                      ><input type="number" class="form-control" value="20" />
+                      ><input type="number" class="form-control" value="20" aria-label="最大上传文件大小 (MB)" />
                     </div>
                     <div class="col-12 col-md-6">
                       <label class="form-label">允许的文件类型</label
                       ><input
                         type="text"
                         class="form-control"
-                        value="jpg,jpeg,png,gif,webp,svg,pdf,zip"
+                        value="jpg,jpeg,png,gif,webp,svg,pdf,zip" aria-label="允许的文件类型"
                       />
                     </div>
                     <div class="col-12 col-md-4">
                       <label class="form-label">缩略图宽 (px)</label
-                      ><input type="number" class="form-control" value="150" />
+                      ><input type="number" class="form-control" value="150" aria-label="缩略图宽 (px)" />
                     </div>
                     <div class="col-12 col-md-4">
                       <label class="form-label">中等图宽 (px)</label
-                      ><input type="number" class="form-control" value="800" />
+                      ><input type="number" class="form-control" value="800" aria-label="中等图宽 (px)" />
                     </div>
                     <div class="col-12 col-md-4">
                       <label class="form-label">大图宽 (px)</label
-                      ><input type="number" class="form-control" value="1200" />
+                      ><input type="number" class="form-control" value="1200" aria-label="大图宽 (px)" />
                     </div>
                     <div class="col-12">
                       <div class="form-check form-switch mb-0">
@@ -704,7 +704,7 @@
                       ><textarea
                         class="form-control u-text-mono u-text-body"
                         rows="4"
-                        placeholder="/* 自定义样式 */"
+                        placeholder="/* 自定义样式 */" aria-label="自定义 CSS（注入到前台页面）"
                       ></textarea>
                     </div>
                     <div class="col-12">
@@ -712,12 +712,12 @@
                       ><textarea
                         class="form-control u-text-mono u-text-body"
                         rows="4"
-                        placeholder="// 自定义脚本"
+                        placeholder="// 自定义脚本" aria-label="自定义 JS（注入到前台页面 body 底部）"
                       ></textarea>
                     </div>
                     <div class="col-12">
                       <label class="form-label">robots.txt 内容</label
-                      ><textarea class="form-control u-text-mono u-text-body" rows="4">
+                      ><textarea class="form-control u-text-mono u-text-body" rows="4" aria-label="robots.txt 内容">
 User-agent: *
 Allow: /
 Sitemap: /sitemap.xml</textarea
