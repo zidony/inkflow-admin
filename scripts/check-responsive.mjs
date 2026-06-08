@@ -83,6 +83,8 @@ const requiredCssGuards = [
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-filter-tabs\s*{[^}]*flex-wrap:\s*wrap;[^}]*min-width:\s*0;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-dashboard-quick-card\s+\.card-body\s*>\s*\.d-flex\s*{[^}]*flex-wrap:\s*wrap;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-settings-nav\s*{[^}]*flex-direction:\s*row;[^}]*min-width:\s*max-content;/],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*767px\)[\s\S]*\.ink-settings-layout\s*{[^}]*grid-template-columns:\s*1fr;[^}]*min-width:\s*0;/],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*767px\)[\s\S]*\.ink-settings-layout\s*>\s*\*\s*{[^}]*min-width:\s*0;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-notif-desc\s*{[^}]*white-space:\s*normal;[^}]*overflow:\s*visible;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-notif-more\s*{[^}]*opacity:\s*1;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-editor-sidebar\s*{[^}]*position:\s*static;/],

@@ -2007,6 +2007,10 @@ textarea.form-control {
 @media (max-width: 767px) {
   .ink-settings-layout {
     grid-template-columns: 1fr;
+    min-width: 0;
+  }
+  .ink-settings-layout > * {
+    min-width: 0;
   }
 }
 
