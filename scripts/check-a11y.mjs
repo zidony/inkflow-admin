@@ -58,6 +58,14 @@ function isCheckableInput(tag) {
   return ['checkbox', 'radio'].includes(getAttribute(tag, 'type'));
 }
 
+function isTabButton(tag) {
+  return hasClass(tag, 'ink-filter-tab') || hasClass(tag, 'ink-settings-nav-item');
+}
+
+function isTabList(tag) {
+  return hasClass(tag, 'ink-filter-tabs') || hasClass(tag, 'ink-settings-nav');
+}
+
 function isStandardFormControl(tag) {
   const classes = getClasses(tag);
   return classes.includes('form-control') || classes.includes('form-select');
@@ -85,6 +93,19 @@ function shouldCheckEditFormControl(relativePath, tag) {
 
 function checkFile(relativePath, html) {
   const errors = [];
+  const divPattern = /<div\b[^>]*>/gi;
+  let divMatch;
+
+  while ((divMatch = divPattern.exec(html))) {
+    const tag = divMatch[0];
+    if (!isTabList(tag) || getAttribute(tag, 'role') === 'tablist') {
+      continue;
+    }
+
+    const line = lineNumberFor(html, divMatch.index);
+    errors.push(`${relativePath}:${line} tab list needs role="tablist".`);
+  }
+
   const tagPattern = /<(button|a)\b[^>]*>/gi;
   let match;
 
@@ -115,6 +136,15 @@ function checkFile(relativePath, html) {
 
     if (getAttribute(tag, 'data-action') === 'toggle-pwd' && !hasAccessibleName(tag)) {
       errors.push(`${location} password toggle needs aria-label or aria-labelledby.`);
+    }
+
+    if (isTabButton(tag)) {
+      if (getAttribute(tag, 'role') !== 'tab') {
+        errors.push(`${location} tab button needs role="tab".`);
+      }
+      if (!hasAttribute(tag, 'aria-selected')) {
+        errors.push(`${location} tab button needs aria-selected.`);
+      }
     }
 
     if (getAttribute(tag, 'data-toggle') === 'submenu') {
