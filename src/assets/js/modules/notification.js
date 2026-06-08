@@ -61,6 +61,7 @@ export class NotificationManager {
     if (!row) return;
 
     row.remove();
+    this.syncUnreadCounts();
     this.updateEmptyState();
     showToast(t('deleted'), 'danger');
   }
