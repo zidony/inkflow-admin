@@ -157,9 +157,23 @@
   --ink-tint-dark-yellow-text: #fef08a;
   --ink-tint-dark-gray-bg: rgba(100, 116, 139, 0.15);
   --ink-tint-dark-gray-text: var(--ink-gray-500);
+  --ink-dark-surface-bg: #111827;
+  --ink-dark-surface-muted: #1f2937;
+  --ink-dark-surface-deep: #0b0f19;
+  --ink-dark-border: #1f2937;
   --ink-dark-control-bg: #1f2937;
   --ink-dark-control-border: #374151;
+  --ink-dark-input-text: #f3f4f6;
+  --ink-dark-control-text: #d1d5db;
+  --ink-dark-control-muted-text: #9ca3af;
   --ink-dark-focus-ring: 0 0 0 3px rgba(112, 150, 219, 0.25);
+  --ink-dark-topbar-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  --ink-dark-brand-hover-bg: rgba(112, 150, 219, 0.1);
+  --ink-dark-brand-active-bg: rgba(112, 150, 219, 0.12);
+  --ink-dark-brand-emphasis-bg: rgba(112, 150, 219, 0.15);
+  --ink-dark-danger-bg: rgba(239, 68, 68, 0.15);
+  --ink-dark-danger-hover-bg: rgba(239, 68, 68, 0.25);
+  --ink-dark-table-hover-bg: rgba(112, 150, 219, 0.05);
   /* Typography */
   --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
