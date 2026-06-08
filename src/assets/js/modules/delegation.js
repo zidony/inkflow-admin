@@ -187,6 +187,11 @@ export class DelegationManager {
       previewBox.classList.add('d-none');
     }
 
+    const uploadZone = document.getElementById('img-upload-zone');
+    if (uploadZone) {
+      uploadZone.classList.remove('d-none');
+    }
+
     const fileInput = document.getElementById('img-file-input');
     if (fileInput) {
       fileInput.value = '';

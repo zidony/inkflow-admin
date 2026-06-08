@@ -11,6 +11,7 @@ import { EditorManager } from './modules/editor.js';
 import { ChartManager } from './modules/chart.js';
 import { DelegationManager } from './modules/delegation.js';
 import { FilterManager } from './modules/filter.js';
+import { ImageUploadManager } from './modules/image-upload.js';
 import { LoginManager } from './modules/login.js';
 import { NotificationManager } from './modules/notification.js';
 import { SettingsManager } from './modules/settings.js';
@@ -32,6 +33,7 @@ class InkFlowAdmin {
       this.chart = new ChartManager();
       this.delegation = new DelegationManager();
       this.filter = new FilterManager();
+      this.imageUpload = new ImageUploadManager();
       this.login = new LoginManager();
       this.notification = new NotificationManager();
       this.settings = new SettingsManager();
