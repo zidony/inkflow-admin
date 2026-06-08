@@ -37,6 +37,23 @@ const allowedDataActions = new Set([
   'toggle-theme',
   'trigger'
 ]);
+const requiredCdnAssets = [
+  {
+    filePath: 'src/partials/head_assets.html',
+    url: 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css',
+    integrity: 'sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB'
+  },
+  {
+    filePath: 'src/partials/head_assets.html',
+    url: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css',
+    integrity: 'sha384-CK2SzKma4jA5H/MXDUU7i1TqZlCFaD4T01vtyDFvPlD97JQyS+IsSh1nI2EFbpyk'
+  },
+  {
+    filePath: 'src/partials/scripts.html',
+    url: 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js',
+    integrity: 'sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI'
+  }
+];
 
 function stripIgnoredContent(html) {
   return html
@@ -317,6 +334,32 @@ function checkPaginationLabels(filePath, html) {
   return errors;
 }
 
+function checkCdnAssetIntegrity(filePath, html) {
+  const errors = [];
+  const requiredAssets = requiredCdnAssets.filter(asset => asset.filePath === filePath);
+
+  for (const asset of requiredAssets) {
+    const urlIndex = html.indexOf(asset.url);
+    if (urlIndex === -1) {
+      errors.push(`${filePath} is missing CDN asset ${asset.url}`);
+      continue;
+    }
+
+    const tagStart = html.lastIndexOf('<', urlIndex);
+    const tagEnd = html.indexOf('>', urlIndex);
+    const tag = tagStart === -1 || tagEnd === -1 ? '' : html.slice(tagStart, tagEnd + 1);
+
+    if (!tag.includes(`integrity="${asset.integrity}"`)) {
+      errors.push(`${filePath}:${lineNumberFor(html, urlIndex)} CDN asset needs expected SRI integrity.`);
+    }
+    if (!tag.includes('crossorigin="anonymous"')) {
+      errors.push(`${filePath}:${lineNumberFor(html, urlIndex)} CDN asset needs crossorigin="anonymous".`);
+    }
+  }
+
+  return errors;
+}
+
 async function checkHtml() {
   const isHtmlFile = file => file.endsWith('.html');
   const files = (await Promise.all(templateDirs.map(dir => listFilesAsync(dir, isHtmlFile)))).flat();
@@ -337,6 +380,7 @@ async function checkHtml() {
     allErrors.push(...checkBulkActionBarPartialUsage(relativePath, html));
     allErrors.push(...checkListTableCardPartialUsage(relativePath, html));
     allErrors.push(...checkPaginationLabels(relativePath, html));
+    allErrors.push(...checkCdnAssetIntegrity(relativePath, html));
   }
 
   if (allErrors.length) {

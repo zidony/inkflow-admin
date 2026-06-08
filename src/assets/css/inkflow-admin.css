@@ -1,12 +1,9 @@
 /* ============================================================
    InkFlow Admin — Shared Stylesheet  v1.9.1
-   Stack : Bootstrap 5.3.8 + Bootstrap Icons 1.13.1 + Custom
+   Stack : Bootstrap 5.3.8 CDN + Bootstrap Icons 1.13.1 CDN + Custom
    Theme : Deep Teal-Blue  (#0d6ecc primary)
    ============================================================ */
 
-/* Vendor styles */
-@import 'bootstrap/dist/css/bootstrap.min.css';
-@import '../vendor/bootstrap-icons.woff2.css';
 @import './_fonts.css';
 
 /* Modules */

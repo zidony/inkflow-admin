@@ -107,7 +107,7 @@ npm run release
 ```bash
 npm run release:check
 npm run check:release
-# Checks version consistency, README version entries, dist/ZIP contents, and external resource references
+# Checks version consistency, README version entries, dist/ZIP contents, and approved CDN asset integrity
 ```
 
 ### 6. Integration & Deployment

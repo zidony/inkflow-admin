@@ -3,7 +3,6 @@
    v2.1.1
    ============================================================ */
 
-import * as bootstrap from 'bootstrap';
 import { ThemeManager } from './modules/theme.js';
 import { SidebarManager } from './modules/sidebar.js';
 import { SearchManager } from './modules/search.js';
@@ -16,8 +15,6 @@ import { LoginManager } from './modules/login.js';
 import { NotificationManager } from './modules/notification.js';
 import { SettingsManager } from './modules/settings.js';
 import { UserAvatarManager } from './modules/user-avatar.js';
-
-window.bootstrap = bootstrap;
 
 class InkFlowAdmin {
   constructor() {

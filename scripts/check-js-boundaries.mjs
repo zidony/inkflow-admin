@@ -11,6 +11,10 @@ const bannedPatterns = [
   {
     pattern: /\bwindow\.(?:togglePwd|doLogin|clearPreview|filterByType)\b/,
     message: 'page behavior should stay inside modules instead of window globals'
+  },
+  {
+    pattern: /from\s+['"]bootstrap['"]|import\s+.*['"]bootstrap['"]/,
+    message: 'Bootstrap JS should stay external via CDN instead of being bundled'
   }
 ];
 

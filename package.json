@@ -36,12 +36,12 @@
   "dependencies": {
     "@fontsource/jetbrains-mono": "^5.2.8",
     "@fontsource/plus-jakarta-sans": "^5.2.8",
-    "bootstrap": "^5.3.8",
-    "bootstrap-icons": "^1.13.1",
     "chart.js": "^4.4.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
     "cssnano": "^7.0.1",
     "eslint": "^9.3.0",
     "eslint-config-prettier": "^9.1.0",

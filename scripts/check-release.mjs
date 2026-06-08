@@ -22,6 +22,20 @@ const externalResourcePatterns = [
   /url\(\s*["']?(?:https?:)?\/\//i,
   /\b(?:src|href|poster|action)\s*=\s*["']https?:\/\/[^"']*cdn\./i
 ];
+const allowedCdnAssets = [
+  {
+    url: 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css',
+    integrity: 'sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB'
+  },
+  {
+    url: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css',
+    integrity: 'sha384-CK2SzKma4jA5H/MXDUU7i1TqZlCFaD4T01vtyDFvPlD97JQyS+IsSh1nI2EFbpyk'
+  },
+  {
+    url: 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js',
+    integrity: 'sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI'
+  }
+];
 
 async function collectFiles(rootPath) {
   if (!(await fileExistsAsync(rootPath))) return [];
@@ -54,7 +68,26 @@ function isTextFile(filePath) {
 }
 
 function hasExternalResourceReference(content) {
-  return externalResourcePatterns.some(pattern => pattern.test(content));
+  return externalResourcePatterns.some(pattern => pattern.test(stripAllowedCdnAssets(content)));
+}
+
+function stripAllowedCdnAssets(content) {
+  let nextContent = content;
+
+  for (const asset of allowedCdnAssets) {
+    const tagPattern = new RegExp(`<[^>]+${escapeRegExp(asset.url)}[^>]+>`, 'g');
+    nextContent = nextContent.replace(tagPattern, tag => {
+      if (!tag.includes(`integrity="${asset.integrity}"`)) return tag;
+      if (!tag.includes('crossorigin="anonymous"')) return tag;
+      return '';
+    });
+  }
+
+  return nextContent;
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 function readUInt16(buffer, offset) {

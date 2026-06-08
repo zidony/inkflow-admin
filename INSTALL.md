@@ -89,9 +89,17 @@ Update `src/partials/sidebar.html` for navigation groups and page links. For col
 
 Use backend authorization to decide whether to render menu entries, action buttons, or form controls. Client-side hiding is useful for clarity, but it should not be treated as the permission boundary.
 
-## Offline and Intranet Delivery
+## Bootstrap Runtime Dependencies
 
-InkFlow Admin is designed to run from local build assets. Before shipping a release package, run:
+The template build keeps Bootstrap runtime dependencies external by default:
+
+- Bootstrap 5.3.8 CSS is loaded from jsDelivr with SRI.
+- Bootstrap 5.3.8 bundle JS is loaded from jsDelivr with SRI.
+- Bootstrap Icons 1.13.1 CSS is loaded from jsDelivr with SRI.
+
+When integrating the template into a backend project, replace these CDN URLs with your project's shared local Bootstrap and Bootstrap Icons files if your frontend and backend already provide the same dependencies. Keep the same load order: Bootstrap CSS, Bootstrap Icons CSS, `inkflow-admin.css`, Bootstrap bundle JS, then `inkflow-admin.js`.
+
+Before shipping a release package, run:
 
 ```bash
 npm run build
@@ -100,7 +108,7 @@ npm run release:check
 npm run check:release
 ```
 
-The quality check includes linting, HTML structure validation, accessibility guards, responsive layout guards, inline-style cleanup, runtime i18n checks, and JS boundary checks. The release check verifies version consistency, required release files, blocked package contents, and external resource references in source/build files. Use `npm run check:release` as an equivalent alias when following check-first release workflows.
+The quality check includes linting, HTML structure validation, accessibility guards, responsive layout guards, inline-style cleanup, runtime i18n checks, and JS boundary checks. The release check verifies version consistency, required release files, blocked package contents, and external resource references in source/build files. Only the approved jsDelivr Bootstrap and Bootstrap Icons assets are allowed, and they must include the expected SRI `integrity` values plus `crossorigin="anonymous"`. Use `npm run check:release` as an equivalent alias when following check-first release workflows.
 
 ## Release Package Rules
 
@@ -111,4 +119,4 @@ Release packages should not contain:
 - Temporary directories such as `temp/`
 - Python helper scripts
 - Project duplicate `.woff` font formats when `.woff2` is available
-- External runtime resource references inside built files
+- Unapproved external runtime resource references inside built files

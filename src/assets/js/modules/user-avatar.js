@@ -2,8 +2,6 @@
    InkFlow Admin — User Avatar Preview Module
    ============================================================ */
 
-import { Modal } from 'bootstrap';
-
 export class UserAvatarManager {
   constructor() {
     this.fileInput = document.getElementById('avatar-file-input');
@@ -49,7 +47,7 @@ export class UserAvatarManager {
         this.zoomInput.value = '100';
       }
 
-      Modal.getOrCreateInstance(this.modalEl).show();
+      this.getModal().show();
     });
     reader.readAsDataURL(file);
   }
@@ -64,6 +62,10 @@ export class UserAvatarManager {
       this.avatarInitials.classList.add('d-none');
     }
 
-    Modal.getOrCreateInstance(this.modalEl).hide();
+    this.getModal().hide();
+  }
+
+  getModal() {
+    return window.bootstrap.Modal.getOrCreateInstance(this.modalEl);
   }
 }
