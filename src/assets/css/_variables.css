@@ -54,6 +54,8 @@
   --sidebar-hover-bg: rgba(255, 255, 255, 0.06);
   --sidebar-logo-bg: #061120;
   --sidebar-logo-shadow: 0 2px 8px rgba(6, 182, 212, 0.35);
+  --sidebar-scroll-thumb: rgba(255, 255, 255, 0.1);
+  --sidebar-active-ring: inset 0 0 0 1px rgba(13, 110, 204, 0.3);
   /* Surface */
   --ink-white: #ffffff;
   --ink-surface-bg: #ffffff;
@@ -77,6 +79,8 @@
   --ink-shadow-brand: 0 4px 14px rgba(13, 110, 204, 0.4);
   --ink-shadow-brand-soft: 0 4px 12px rgba(13, 110, 204, 0.1);
   --ink-shadow-preview: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --ink-shadow-tooltip: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --ink-shadow-dropdown: 0 8px 30px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
   --ink-card-shadow: var(--ink-shadow-sm);
   --ink-card-shadow-hover: var(--ink-shadow-lg);
   --ink-radius-xs: 4px;
