@@ -37,58 +37,94 @@
               <div class="card-body">
                 <div class="ink-settings-nav" role="tablist">
                   <button
+                    id="settings-tab-site"
                     class="ink-settings-nav-item active"
                     data-action="switch-settings"
                     data-section="site"
-                   role="tab" aria-selected="true">
+                    role="tab"
+                    aria-controls="section-site"
+                    aria-selected="true"
+                  >
                     <i class="bi bi-house"></i>站点基本设置</button
                   ><button
+                    id="settings-tab-post"
                     class="ink-settings-nav-item"
                     data-action="switch-settings"
                     data-section="post"
-                   role="tab" aria-selected="false">
+                    role="tab"
+                    aria-controls="section-post"
+                    aria-selected="false"
+                  >
                     <i class="bi bi-file-richtext"></i>文章设置</button
                   ><button
+                    id="settings-tab-comment"
                     class="ink-settings-nav-item"
                     data-action="switch-settings"
                     data-section="comment"
-                   role="tab" aria-selected="false">
+                    role="tab"
+                    aria-controls="section-comment"
+                    aria-selected="false"
+                  >
                     <i class="bi bi-chat-left-dots"></i>评论设置</button
                   ><button
+                    id="settings-tab-media"
                     class="ink-settings-nav-item"
                     data-action="switch-settings"
                     data-section="media"
-                   role="tab" aria-selected="false">
+                    role="tab"
+                    aria-controls="section-media"
+                    aria-selected="false"
+                  >
                     <i class="bi bi-image"></i>媒体设置</button
                   ><button
+                    id="settings-tab-seo"
                     class="ink-settings-nav-item"
                     data-action="switch-settings"
                     data-section="seo"
-                   role="tab" aria-selected="false">
+                    role="tab"
+                    aria-controls="section-seo"
+                    aria-selected="false"
+                  >
                     <i class="bi bi-search-heart"></i>SEO 设置</button
                   ><button
+                    id="settings-tab-smtp"
                     class="ink-settings-nav-item"
                     data-action="switch-settings"
                     data-section="smtp"
-                   role="tab" aria-selected="false">
+                    role="tab"
+                    aria-controls="section-smtp"
+                    aria-selected="false"
+                  >
                     <i class="bi bi-envelope-at"></i>邮件 SMTP</button
                   ><button
+                    id="settings-tab-security"
                     class="ink-settings-nav-item"
                     data-action="switch-settings"
                     data-section="security"
-                   role="tab" aria-selected="false">
+                    role="tab"
+                    aria-controls="section-security"
+                    aria-selected="false"
+                  >
                     <i class="bi bi-shield-lock"></i>安全设置</button
                   ><button
+                    id="settings-tab-cache"
                     class="ink-settings-nav-item"
                     data-action="switch-settings"
                     data-section="cache"
-                   role="tab" aria-selected="false">
+                    role="tab"
+                    aria-controls="section-cache"
+                    aria-selected="false"
+                  >
                     <i class="bi bi-lightning-charge"></i>缓存与性能</button
                   ><button
+                    id="settings-tab-advanced"
                     class="ink-settings-nav-item"
                     data-action="switch-settings"
                     data-section="advanced"
-                   role="tab" aria-selected="false">
+                    role="tab"
+                    aria-controls="section-advanced"
+                    aria-selected="false"
+                  >
                     <i class="bi bi-sliders"></i>高级设置
                   </button>
                 </div>
@@ -99,7 +135,7 @@
           <!-- Right content -->
           <div>
             <!-- SITE -->
-            <div id="section-site" class="ink-anim">
+            <div id="section-site" class="ink-anim" role="tabpanel" aria-labelledby="settings-tab-site" tabindex="0">
               <div class="ink-panel">
                 <div class="ink-panel-header"><i class="bi bi-house"></i> 站点基本设置</div>
                 <div class="ink-panel-body">
@@ -225,7 +261,7 @@
             </div>
 
             <!-- POST (hidden by default) -->
-            <div id="section-post" class="d-none">
+            <div id="section-post" class="d-none" role="tabpanel" aria-labelledby="settings-tab-post" tabindex="0" hidden>
               <div class="ink-panel ink-anim">
                 <div class="ink-panel-header"><i class="bi bi-file-richtext"></i> 文章默认设置</div>
                 <div class="ink-panel-body">
@@ -308,7 +344,7 @@
             </div>
 
             <!-- COMMENT (hidden) -->
-            <div id="section-comment" class="d-none">
+            <div id="section-comment" class="d-none" role="tabpanel" aria-labelledby="settings-tab-comment" tabindex="0" hidden>
               <div class="ink-panel ink-anim">
                 <div class="ink-panel-header"><i class="bi bi-chat-left-dots"></i> 评论设置</div>
                 <div class="ink-panel-body">
@@ -392,7 +428,7 @@
             </div>
 
             <!-- SMTP (hidden) -->
-            <div id="section-smtp" class="d-none">
+            <div id="section-smtp" class="d-none" role="tabpanel" aria-labelledby="settings-tab-smtp" tabindex="0" hidden>
               <div class="ink-panel ink-anim">
                 <div class="ink-panel-header"><i class="bi bi-envelope-at"></i> 邮件 SMTP 设置</div>
                 <div class="ink-panel-body">
@@ -450,7 +486,7 @@
             </div>
 
             <!-- Security (hidden) -->
-            <div id="section-security" class="d-none">
+            <div id="section-security" class="d-none" role="tabpanel" aria-labelledby="settings-tab-security" tabindex="0" hidden>
               <div class="ink-panel ink-anim">
                 <div class="ink-panel-header"><i class="bi bi-shield-lock"></i> 安全设置</div>
                 <div class="ink-panel-body">
@@ -516,7 +552,7 @@
             </div>
 
             <!-- Cache (hidden) -->
-            <div id="section-cache" class="d-none">
+            <div id="section-cache" class="d-none" role="tabpanel" aria-labelledby="settings-tab-cache" tabindex="0" hidden>
               <div class="ink-panel ink-anim">
                 <div class="ink-panel-header">
                   <i class="bi bi-lightning-charge"></i> 缓存与性能设置
@@ -591,7 +627,7 @@
             </div>
 
             <!-- Placeholders for other sections -->
-            <div id="section-seo" class="d-none">
+            <div id="section-seo" class="d-none" role="tabpanel" aria-labelledby="settings-tab-seo" tabindex="0" hidden>
               <div class="ink-panel ink-anim">
                 <div class="ink-panel-header"><i class="bi bi-search-heart"></i> SEO 全局设置</div>
                 <div class="ink-panel-body">
@@ -652,7 +688,7 @@
                 </div>
               </div>
             </div>
-            <div id="section-media" class="d-none">
+            <div id="section-media" class="d-none" role="tabpanel" aria-labelledby="settings-tab-media" tabindex="0" hidden>
               <div class="ink-panel ink-anim">
                 <div class="ink-panel-header"><i class="bi bi-image"></i> 媒体上传设置</div>
                 <div class="ink-panel-body">
@@ -694,7 +730,7 @@
                 </div>
               </div>
             </div>
-            <div id="section-advanced" class="d-none">
+            <div id="section-advanced" class="d-none" role="tabpanel" aria-labelledby="settings-tab-advanced" tabindex="0" hidden>
               <div class="ink-panel ink-anim">
                 <div class="ink-panel-header"><i class="bi bi-sliders"></i> 高级设置</div>
                 <div class="ink-panel-body">

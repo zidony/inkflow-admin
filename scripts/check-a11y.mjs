@@ -66,6 +66,14 @@ function isTabList(tag) {
   return hasClass(tag, 'ink-filter-tabs') || hasClass(tag, 'ink-settings-nav');
 }
 
+function isSettingsTabButton(tag) {
+  return hasClass(tag, 'ink-settings-nav-item');
+}
+
+function isSettingsPanel(tag) {
+  return /^section-[a-z-]+$/.test(getAttribute(tag, 'id'));
+}
+
 function isStandardFormControl(tag) {
   const classes = getClasses(tag);
   return classes.includes('form-control') || classes.includes('form-select');
@@ -106,6 +114,32 @@ function checkFile(relativePath, html) {
     errors.push(`${relativePath}:${line} tab list needs role="tablist".`);
   }
 
+  const panelPattern = /<div\b[^>]*>/gi;
+  let panelMatch;
+
+  while ((panelMatch = panelPattern.exec(html))) {
+    const tag = panelMatch[0];
+    if (!isSettingsPanel(tag)) {
+      continue;
+    }
+
+    const line = lineNumberFor(html, panelMatch.index);
+    const location = `${relativePath}:${line}`;
+
+    if (getAttribute(tag, 'role') !== 'tabpanel') {
+      errors.push(`${location} settings section needs role="tabpanel".`);
+    }
+    if (!hasAttribute(tag, 'aria-labelledby')) {
+      errors.push(`${location} settings section needs aria-labelledby.`);
+    }
+    if (!hasAttribute(tag, 'tabindex')) {
+      errors.push(`${location} settings section needs tabindex.`);
+    }
+    if (hasClass(tag, 'd-none') && !hasAttribute(tag, 'hidden')) {
+      errors.push(`${location} hidden settings section needs hidden.`);
+    }
+  }
+
   const tagPattern = /<(button|a)\b[^>]*>/gi;
   let match;
 
@@ -144,6 +178,9 @@ function checkFile(relativePath, html) {
       }
       if (!hasAttribute(tag, 'aria-selected')) {
         errors.push(`${location} tab button needs aria-selected.`);
+      }
+      if (isSettingsTabButton(tag) && !hasAttribute(tag, 'aria-controls')) {
+        errors.push(`${location} settings tab button needs aria-controls.`);
       }
     }
 

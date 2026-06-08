@@ -36,7 +36,11 @@ export class SettingsManager {
 
     settingsSections.forEach(key => {
       const sectionEl = document.getElementById(`section-${key}`);
-      if (sectionEl) sectionEl.classList.toggle('d-none', key !== section);
+      if (!sectionEl) return;
+
+      const isActive = key === section;
+      sectionEl.classList.toggle('d-none', !isActive);
+      sectionEl.toggleAttribute('hidden', !isActive);
     });
 
     this.nav.querySelectorAll('.ink-settings-nav-item').forEach(button => {
