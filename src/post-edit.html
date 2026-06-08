@@ -60,6 +60,7 @@
                   type="text"
                   id="post-title"
                   class="form-control fw-bold ink-post-title-input"
+                  aria-label="文章标题"
                   value="深入理解 Vue 3 Composition API 与响应式原理"
                   placeholder="在此输入文章标题…"
                 />
@@ -261,9 +262,10 @@
                 <div class="ink-panel-body">
                   <div class="row g-3">
                     <div class="col-12">
-                      <label class="form-label">SEO 标题</label>
+                      <label class="form-label" for="post-seo-title">SEO 标题</label>
                       <input
                         type="text"
+                        id="post-seo-title"
                         class="form-control"
                         placeholder="留空则使用文章标题"
                         value="深入理解 Vue 3 Composition API 与响应式原理 | InkFlow"
@@ -273,9 +275,10 @@
                       </div>
                     </div>
                     <div class="col-12">
-                      <label class="form-label">Meta 描述</label>
+                      <label class="form-label" for="post-meta-description">Meta 描述</label>
                       <textarea
                         class="form-control"
+                        id="post-meta-description"
                         rows="2"
                         placeholder="页面摘要描述，显示在搜索结果中，建议 120–160 字符"
                       >
@@ -284,9 +287,10 @@
                       <div class="ink-form-hint">当前 <span>82</span> 字符（建议 120–160）</div>
                     </div>
                     <div class="col-12">
-                      <label class="form-label">Focus 关键词</label>
+                      <label class="form-label" for="post-focus-keyword">Focus 关键词</label>
                       <input
                         type="text"
+                        id="post-focus-keyword"
                         class="form-control"
                         placeholder="主关键词，如：Vue 3 Composition API"
                         value="Vue 3 Composition API"
@@ -306,7 +310,7 @@
               <div class="ink-panel-header"><i class="bi bi-send"></i> 发布设置</div>
               <div class="ink-panel-body">
                 <div class="mb-3">
-                  <label class="form-label">文章状态</label>
+                  <label class="form-label" for="post-status-sel">文章状态</label>
                   <select class="form-select" id="post-status-sel">
                     <option value="draft">草稿</option>
                     <option value="pending">待审核</option>
@@ -316,12 +320,12 @@
                   </select>
                 </div>
                 <div class="mb-3 d-none" id="schedule-row">
-                  <label class="form-label">定时发布时间</label>
-                  <input type="datetime-local" class="form-control" />
+                  <label class="form-label" for="post-schedule-time">定时发布时间</label>
+                  <input type="datetime-local" class="form-control" id="post-schedule-time" />
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">可见范围</label>
-                  <select class="form-select">
+                  <label class="form-label" for="post-visibility">可见范围</label>
+                  <select class="form-select" id="post-visibility">
                     <option selected>所有人可见</option>
                     <option>仅登录用户</option>
                     <option>仅管理员</option>
@@ -453,6 +457,7 @@
                   type="text"
                   id="tag-input"
                   class="form-control h-32px mt-2 u-text-sm"
+                  aria-label="添加文章标签"
                   placeholder="输入标签后按 Enter 确认"
                 />
                 <div class="ink-form-hint">按 Enter 或逗号添加标签</div>
@@ -465,6 +470,7 @@
               <div class="ink-panel-body">
                 <textarea
                   class="form-control ink-post-summary-textarea u-text-body"
+                  aria-label="文章摘要"
                   rows="3"
                   placeholder="不填则自动取正文前 150 字…"
                 >
@@ -497,17 +503,18 @@ Vue 3 带来了全新的 Composition API，提供了更灵活的代码组织方�
               <div id="more-collapse" class="collapse show">
                 <div class="ink-panel-body">
                   <div class="mb-3">
-                    <label class="form-label">文章作者</label>
-                    <select class="form-select form-select-sm">
+                    <label class="form-label" for="post-author">文章作者</label>
+                    <select class="form-select form-select-sm" id="post-author">
                       <option selected>Admin（超级管理员）</option>
                       <option>Editor（编辑）</option>
                     </select>
                   </div>
                   <div class="mb-3">
-                    <label class="form-label">排序权重</label>
+                    <label class="form-label" for="post-sort">排序权重</label>
                     <input
                       type="number"
                       class="form-control form-control-sm"
+                      id="post-sort"
                       value="100"
                       min="0"
                       max="999"
@@ -515,8 +522,8 @@ Vue 3 带来了全新的 Composition API，提供了更灵活的代码组织方�
                     <div class="ink-form-hint">数值越大越靠前，默认 100</div>
                   </div>
                   <div class="mb-0">
-                    <label class="form-label">自定义模板</label>
-                    <select class="form-select form-select-sm">
+                    <label class="form-label" for="post-template">自定义模板</label>
+                    <select class="form-select form-select-sm" id="post-template">
                       <option selected>默认模板</option>
                       <option>全宽无侧边栏</option>
                       <option>专栏长文模板</option>

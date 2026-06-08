@@ -73,6 +73,7 @@ function shouldCheckEditFormControl(relativePath, tag) {
       'src/category-edit.html',
       'src/image-edit.html',
       'src/link-edit.html',
+      'src/post-edit.html',
       'src/tag-edit.html',
       'src/user-edit.html'
     ].includes(relativePath) &&
