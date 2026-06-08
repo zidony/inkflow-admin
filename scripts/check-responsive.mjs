@@ -40,6 +40,11 @@ function hasCardHeaderFlexWrap(source, index) {
   return /\bflex-wrap\b/.test(headerSource);
 }
 
+function indexOfPattern(source, pattern) {
+  const match = pattern.exec(source);
+  return match ? match.index : -1;
+}
+
 const htmlFiles = listFiles(srcDir, (filePath) => filePath.endsWith('.html'));
 for (const filePath of htmlFiles) {
   const source = readText(filePath);
@@ -125,6 +130,14 @@ const forbiddenMobileCss = [
 
 for (const [pattern, message] of forbiddenMobileCss) {
   if (pattern.test(componentsCss)) failures.push(`${path.join('src/assets/css', '_components.css')} ${message}`);
+}
+
+const notifBaseRowIndex = indexOfPattern(componentsCss, /\.ink-notif-row-inner\s*{[^}]*display:\s*flex;/);
+const notifMobileGridIndex = componentsCss.lastIndexOf('.ink-notif-row-inner {\n    display: grid;');
+if (notifBaseRowIndex !== -1 && notifMobileGridIndex !== -1 && notifMobileGridIndex < notifBaseRowIndex) {
+  failures.push(
+    `${path.join('src/assets/css', '_components.css')} mobile notification row grid guard must follow the base notification row display rule`
+  );
 }
 
 if (failures.length > 0) {
