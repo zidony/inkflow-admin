@@ -92,10 +92,11 @@ Changes to HTML/CSS/JS inside `src/` trigger HMR or a page reload when supported
 npm run quality    # Run ESLint, Stylelint, and Prettier checks
 npm run check:i18n # Check runtime text localization boundaries
 npm run check:js-boundaries # Check module/global JS boundary rules
+npm run check:docs # Check README/INSTALL coverage for release scripts
 npm run lint:fix   # Fix supported script/style issues and format source files
 ```
 
-`npm run quality` also validates HTML tag balance, duplicate attributes, duplicate IDs, supported `data-action` values, baseline accessibility attributes, responsive layout guards, inline style cleanup, runtime text localization, and JS module boundary rules.
+`npm run quality` also validates HTML tag balance, duplicate attributes, duplicate IDs, supported `data-action` values, baseline accessibility attributes, responsive layout guards, inline style cleanup, runtime text localization, JS module boundary rules, and release-script documentation coverage.
 
 ### 4. Build & Package Release
 ```bash

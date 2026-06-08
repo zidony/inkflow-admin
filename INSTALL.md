@@ -104,11 +104,12 @@ Before shipping a release package, run:
 ```bash
 npm run build
 npm run quality
+npm run check:docs
 npm run release:check
 npm run check:release
 ```
 
-The quality check includes linting, HTML structure validation, accessibility guards, responsive layout guards, inline-style cleanup, runtime i18n checks, and JS boundary checks. The release check verifies version consistency, required release files, blocked package contents, and external resource references in source/build files. Only the approved jsDelivr Bootstrap and Bootstrap Icons assets are allowed, and they must include the expected SRI `integrity` values plus `crossorigin="anonymous"`. Use `npm run check:release` as an equivalent alias when following check-first release workflows.
+The quality check includes linting, HTML structure validation, accessibility guards, responsive layout guards, inline-style cleanup, runtime i18n checks, JS boundary checks, and release-script documentation coverage. The release check verifies version consistency, required release files, blocked package contents, and external resource references in source/build files. Only the approved jsDelivr Bootstrap and Bootstrap Icons assets are allowed, and they must include the expected SRI `integrity` values plus `crossorigin="anonymous"`. Use `npm run check:release` as an equivalent alias when following check-first release workflows.
 
 ## Release Package Rules
 
