@@ -261,6 +261,29 @@ function checkListTableCardPartialUsage(filePath, html) {
   return errors;
 }
 
+function hasHandlebarsParam(partialTag, paramName) {
+  return new RegExp(`\\s${paramName}=`).test(partialTag);
+}
+
+function checkPaginationLabels(filePath, html) {
+  const errors = [];
+  const partialPattern = /{{#?>\s*(pagination|list_table_card)\b[^}]*}}/g;
+  let match;
+
+  while ((match = partialPattern.exec(html))) {
+    const tag = match[0];
+    const line = lineNumberFor(html, match.index);
+
+    for (const paramName of ['ariaLabel', 'prevLabel', 'nextLabel']) {
+      if (!hasHandlebarsParam(tag, paramName)) {
+        errors.push(`${filePath}:${line} ${match[1]} partial needs ${paramName}.`);
+      }
+    }
+  }
+
+  return errors;
+}
+
 async function checkHtml() {
   const isHtmlFile = file => file.endsWith('.html');
   const files = (await Promise.all(templateDirs.map(dir => listFilesAsync(dir, isHtmlFile)))).flat();
@@ -278,6 +301,7 @@ async function checkHtml() {
     allErrors.push(...checkBreadcrumbPartialUsage(relativePath, html));
     allErrors.push(...checkBulkActionBarPartialUsage(relativePath, html));
     allErrors.push(...checkListTableCardPartialUsage(relativePath, html));
+    allErrors.push(...checkPaginationLabels(relativePath, html));
   }
 
   if (allErrors.length) {
