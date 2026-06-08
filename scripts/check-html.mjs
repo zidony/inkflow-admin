@@ -172,6 +172,58 @@ function checkDuplicateIds(filePath, html) {
   return errors;
 }
 
+function collectIds(html) {
+  const content = stripIgnoredContent(html);
+  const ids = new Set();
+  const idPattern = /\sid\s*=\s*(?:"([^"]+)"|'([^']+)')/gi;
+  let match;
+
+  while ((match = idPattern.exec(content))) {
+    ids.add(match[1] ?? match[2]);
+  }
+
+  return ids;
+}
+
+function getAttribute(tag, name) {
+  const escapedName = name.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+  const pattern = new RegExp(`\\s${escapedName}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s"'=<>` + '`' + `]+))`, 'i');
+  const match = tag.match(pattern);
+  return match ? (match[1] ?? match[2] ?? match[3] ?? '') : '';
+}
+
+function validateIdReferences(filePath, html, knownIds) {
+  const content = stripIgnoredContent(html);
+  const errors = [];
+  const tagPattern = /<([a-zA-Z][a-zA-Z0-9:-]*)(?:\s[^<>]*?)?>/g;
+  let match;
+
+  while ((match = tagPattern.exec(content))) {
+    const tag = match[0];
+    const line = lineNumberFor(content, match.index);
+    const location = `${filePath}:${line}`;
+    const ariaControls = getAttribute(tag, 'aria-controls');
+
+    for (const id of ariaControls.split(/\s+/).filter(Boolean)) {
+      if (!knownIds.has(id)) {
+        errors.push(`${location} aria-controls references missing id "${id}".`);
+      }
+    }
+
+    const dataTarget = getAttribute(tag, 'data-target');
+    const shouldTargetId =
+      getAttribute(tag, 'data-action') === 'trigger' || getAttribute(tag, 'data-toggle') === 'submenu';
+
+    if (shouldTargetId && !dataTarget) {
+      errors.push(`${location} action target needs data-target.`);
+    } else if (shouldTargetId && !knownIds.has(dataTarget)) {
+      errors.push(`${location} data-target references missing id "${dataTarget}".`);
+    }
+  }
+
+  return errors;
+}
+
 function checkDataActions(filePath, html) {
   const content = stripIgnoredContent(html);
   const errors = [];
@@ -364,13 +416,23 @@ async function checkHtml() {
   const isHtmlFile = file => file.endsWith('.html');
   const files = (await Promise.all(templateDirs.map(dir => listFilesAsync(dir, isHtmlFile)))).flat();
   const allErrors = [];
+  const htmlByFile = new Map();
+  const knownIds = new Set();
 
   for (const file of files) {
     const relativePath = relativeToRoot(file);
     const html = await readTextAsync(file);
+    htmlByFile.set(relativePath, html);
+    for (const id of collectIds(html)) {
+      knownIds.add(id);
+    }
+  }
+
+  for (const [relativePath, html] of htmlByFile) {
     allErrors.push(...checkHtmlBalance(relativePath, html));
     allErrors.push(...checkDuplicateAttributes(relativePath, html));
     allErrors.push(...checkDuplicateIds(relativePath, html));
+    allErrors.push(...validateIdReferences(relativePath, html, knownIds));
     allErrors.push(...checkDataActions(relativePath, html));
     allErrors.push(...checkButtonTypes(relativePath, html));
     allErrors.push(...checkPlaceholderLinks(relativePath, html));
