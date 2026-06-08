@@ -331,12 +331,14 @@
   flex-shrink: 0;
 }
 .ink-notif-footer {
+  display: block;
   padding: 10px 18px;
   text-align: center;
   border-top: 1px solid var(--ink-gray-100);
   font-size: 0.78rem;
   color: var(--ink-500);
   font-weight: 600;
+  text-decoration: none;
   cursor: pointer;
   transition: background 0.12s;
 }
@@ -353,6 +355,8 @@
 .ink-avatar-preview {
   width: 90px;
   height: 90px;
+  padding: 0;
+  border: none;
   border-radius: 50%;
   background: var(--ink-avatar-green-bg);
   display: flex;
@@ -1097,11 +1101,15 @@ textarea.form-control {
    UPLOAD ZONE
    ============================================================ */
 .ink-upload-zone {
+  display: block;
+  width: 100%;
   border: 2px dashed var(--ink-gray-300);
   border-radius: 10px;
   padding: 28px 20px;
   text-align: center;
   cursor: pointer;
+  font: inherit;
+  color: inherit;
   transition:
     border-color 0.15s,
     background 0.15s;
@@ -1119,7 +1127,9 @@ textarea.form-control {
 .ink-upload-zone:hover i {
   color: var(--ink-400);
 }
-.ink-upload-zone p {
+.ink-upload-zone p,
+.ink-upload-zone-text {
+  display: block;
   font-size: 0.82rem;
   color: var(--ink-gray-500);
   margin: 8px 0 0;
@@ -2078,7 +2088,12 @@ textarea.form-control {
   margin-right: 6px;
 }
 .ink-post-slug-preview {
+  padding: 0;
+  border: none;
   border-bottom: 1px dashed var(--ink-300);
+  background: transparent;
+  color: inherit;
+  font: inherit;
   cursor: pointer;
 }
 .ink-post-slug-btn {

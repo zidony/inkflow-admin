@@ -141,6 +141,7 @@ function shouldCheckEditFormControl(relativePath, tag) {
 
 function checkFile(relativePath, html) {
   const errors = [];
+  let match;
   const divPattern = /<div\b[^>]*>/gi;
   let divMatch;
 
@@ -180,8 +181,18 @@ function checkFile(relativePath, html) {
     }
   }
 
+  const nonNativeActionPattern = /<(div|span)\b[^>]*\bdata-action=(["'])[^"']+\2[^>]*>/gi;
+  while ((match = nonNativeActionPattern.exec(html))) {
+    const tag = match[0];
+    if (getAttribute(tag, 'role') === 'button' && hasAttribute(tag, 'tabindex')) {
+      continue;
+    }
+
+    const line = lineNumberFor(html, match.index);
+    errors.push(`${relativePath}:${line} non-native data-action control needs role="button" and tabindex, or use a button.`);
+  }
+
   const tagPattern = /<(button|a)\b[^>]*>/gi;
-  let match;
 
   while ((match = tagPattern.exec(html))) {
     const tag = match[0];

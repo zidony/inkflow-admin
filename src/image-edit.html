@@ -42,18 +42,19 @@
               </div>
               <div class="ink-panel-body">
                 <!-- Upload zone (shown when no image) -->
-                <div
+                <button
+                  type="button"
                   id="img-upload-zone"
                   class="ink-upload-zone d-none"
                   data-action="trigger"
                   data-target="img-file-input"
                 >
                   <i class="bi bi-cloud-arrow-up" aria-hidden="true"></i>
-                  <p>
+                  <span class="ink-upload-zone-text">
                     点击或拖拽图片到此处上传<br />
                     <small>支持 JPG、PNG、GIF、WebP、SVG，最大 20MB</small>
-                  </p>
-                </div>
+                  </span>
+                </button>
                 <!-- Preview (shown when image exists) -->
                 <div
                   id="img-preview-box"
