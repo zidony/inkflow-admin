@@ -80,6 +80,16 @@
   --ink-radius-2xl: 14px;
   --ink-card-radius: var(--ink-radius-xl);
   --ink-focus-ring: 0 0 0 3px rgba(13, 110, 204, 0.1);
+  --ink-focus-ring-brand: 0 0 0 3px rgba(13, 110, 204, 0.15);
+  --ink-primary-gradient: linear-gradient(135deg, var(--ink-500) 0%, var(--ink-600) 100%);
+  --ink-primary-gradient-hover: linear-gradient(135deg, var(--ink-400) 0%, var(--ink-500) 100%);
+  --ink-primary-shadow: 0 2px 8px rgba(13, 110, 204, 0.3);
+  --ink-primary-shadow-hover: 0 4px 14px rgba(13, 110, 204, 0.4);
+  --ink-primary-shadow-elevated: 0 4px 14px rgba(13, 110, 204, 0.35);
+  --ink-primary-shadow-elevated-hover: 0 6px 20px rgba(13, 110, 204, 0.45);
+  --ink-control-selected-shadow: 0 1px 4px rgba(13, 110, 204, 0.3);
+  --ink-control-hover-shadow: 0 4px 12px rgba(13, 110, 204, 0.15);
+  --ink-control-selected-ring: 0 0 0 3px rgba(13, 110, 204, 0.2);
   /* Reusable component states */
   --ink-avatar-blue-bg: linear-gradient(135deg, var(--ink-500), var(--ink-accent-400));
   --ink-avatar-green-bg: linear-gradient(135deg, #10b981, #059669);

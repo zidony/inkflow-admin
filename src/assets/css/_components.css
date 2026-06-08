@@ -646,17 +646,17 @@
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--ink-500) 0%, var(--ink-600) 100%);
+  background: var(--ink-primary-gradient);
   border-color: transparent;
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(13, 110, 204, 0.3);
+  color: var(--ink-text-on-brand);
+  box-shadow: var(--ink-primary-shadow);
 }
 .btn-primary:hover,
 .btn-primary:focus {
-  background: linear-gradient(135deg, var(--ink-400) 0%, var(--ink-500) 100%);
+  background: var(--ink-primary-gradient-hover);
   border-color: transparent;
-  color: #fff;
-  box-shadow: 0 4px 14px rgba(13, 110, 204, 0.4);
+  color: var(--ink-text-on-brand);
+  box-shadow: var(--ink-primary-shadow-hover);
   transform: translateY(-1px);
 }
 .btn-primary:active {
@@ -791,7 +791,7 @@ textarea.form-control {
   border-color: var(--ink-500);
 }
 .form-switch .form-check-input:focus {
-  box-shadow: 0 0 0 3px rgba(13, 110, 204, 0.15);
+  box-shadow: var(--ink-focus-ring-brand);
 }
 
 /* ============================================================
@@ -877,7 +877,7 @@ textarea.form-control {
   color: var(--ink-gray-600);
   cursor: pointer;
   transition: all 0.12s;
-  background: #fff;
+  background: var(--ink-surface-raised);
   user-select: none;
 }
 .ink-pill:hover {
@@ -888,7 +888,7 @@ textarea.form-control {
 .ink-pill.selected {
   border-color: var(--ink-500);
   background: var(--ink-500);
-  color: #fff;
+  color: var(--ink-text-on-brand);
 }
 
 /* ============================================================
@@ -1186,11 +1186,11 @@ textarea.form-control {
 }
 .ink-media-item:hover {
   border-color: var(--ink-400);
-  box-shadow: 0 4px 12px rgba(13, 110, 204, 0.15);
+  box-shadow: var(--ink-control-hover-shadow);
 }
 .ink-media-item.selected {
   border-color: var(--ink-500);
-  box-shadow: 0 0 0 3px rgba(13, 110, 204, 0.2);
+  box-shadow: var(--ink-control-selected-ring);
 }
 .ink-media-item img {
   width: 100%;
@@ -1205,7 +1205,7 @@ textarea.form-control {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  background: #fff;
+  background: var(--ink-surface-raised);
 }
 .ink-media-select-badge {
   position: absolute;
@@ -1214,7 +1214,7 @@ textarea.form-control {
   width: 20px;
   height: 20px;
   background: var(--ink-500);
-  color: #fff;
+  color: var(--ink-text-on-brand);
   border-radius: 50%;
   display: none;
   align-items: center;
@@ -1293,7 +1293,7 @@ textarea.form-control {
 .pagination .page-item.active .page-link {
   background: var(--ink-500);
   border-color: var(--ink-500);
-  color: #fff;
+  color: var(--ink-text-on-brand);
 }
 .pagination .page-item:first-child .page-link {
   border-radius: 8px 0 0 8px;
@@ -1333,8 +1333,8 @@ textarea.form-control {
 }
 .ink-filter-tab.active {
   background: var(--ink-500);
-  color: #fff;
-  box-shadow: 0 1px 4px rgba(13, 110, 204, 0.3);
+  color: var(--ink-text-on-brand);
+  box-shadow: var(--ink-control-selected-shadow);
 }
 
 /* ============================================================
@@ -1910,7 +1910,7 @@ textarea.form-control {
   outline: none;
   border-color: var(--ink-400);
   box-shadow: var(--ink-focus-ring);
-  background: #fff;
+  background: var(--ink-surface-raised);
 }
 .ink-login-input-wrap .ink-eye-btn {
   position: absolute;
@@ -1933,23 +1933,23 @@ textarea.form-control {
   width: 100%;
   height: 46px;
   margin-top: 6px;
-  background: linear-gradient(135deg, var(--ink-500), var(--ink-600));
+  background: var(--ink-primary-gradient);
   border: none;
   border-radius: 10px;
-  color: #fff;
+  color: var(--ink-text-on-brand);
   font-size: 0.9rem;
   font-weight: 700;
   font-family: var(--font-sans);
   cursor: pointer;
   transition: all 0.15s;
-  box-shadow: 0 4px 14px rgba(13, 110, 204, 0.35);
+  box-shadow: var(--ink-primary-shadow-elevated);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
 }
 .ink-login-btn:hover {
-  box-shadow: 0 6px 20px rgba(13, 110, 204, 0.45);
+  box-shadow: var(--ink-primary-shadow-elevated-hover);
   transform: translateY(-1px);
 }
 .ink-login-btn:active {
