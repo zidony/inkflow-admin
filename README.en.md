@@ -138,6 +138,7 @@ The project uses centralized event delegation mapped to `data-action` attributes
 
 | Version | Description |
 | :--- | :--- |
+| **v2.3.0** | **External Vendor Assets & Quality Guard Upgrade**: Loaded Bootstrap 5.3.8 CSS/JS and Bootstrap Icons 1.13.1 from jsDelivr with SRI; removed Bootstrap and icon font payloads from local app CSS/JS bundles; expanded HTML, accessibility, release, and JS boundary checks for button types, icon semantics, tab semantics, pagination labels, image dimensions, approved CDN assets, and mobile layout guards. |
 | **v2.2.4** | **Mobile Stability & Quality Guard Update**: Improved mobile layout behavior for dashboards, headers, filters, settings navigation, notification rows, editor sidebars, and avatar cropping; expanded automated checks for responsive layout guards, runtime i18n text, and JS module boundary rules. |
 | **v2.2.3** | **Maintenance Update**: Added standalone `npm run release:check` validation for version consistency, README version entries, dist/ZIP contents, and external resource references; included `INSTALL.md` in release packages; added baseline accessibility attributes for sidebar, theme toggle, search, and dropdown controls. |
 | **v2.2.2** | **Release Package Checks & Documentation Revision**: Consolidated Bootstrap Icons to woff2-only font declarations; added release package content checks to block source files, temporary files, Python scripts, and duplicate font formats from the ZIP; revised English and Chinese README wording to use more neutral engineering descriptions. |
