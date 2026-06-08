@@ -424,18 +424,29 @@ async function checkHtml() {
   const files = (await Promise.all(templateDirs.map(dir => listFilesAsync(dir, isHtmlFile)))).flat();
   const allErrors = [];
   const htmlByFile = new Map();
-  const knownIds = new Set();
+  const idsByFile = new Map();
+  const partialIds = new Set();
 
   for (const file of files) {
     const relativePath = relativeToRoot(file);
     const html = await readTextAsync(file);
+    const ids = collectIds(html);
     htmlByFile.set(relativePath, html);
-    for (const id of collectIds(html)) {
-      knownIds.add(id);
+    idsByFile.set(relativePath, ids);
+
+    if (relativePath.startsWith('src/partials/')) {
+      for (const id of ids) {
+        partialIds.add(id);
+      }
     }
   }
 
   for (const [relativePath, html] of htmlByFile) {
+    const knownIds = new Set(idsByFile.get(relativePath));
+    for (const id of partialIds) {
+      knownIds.add(id);
+    }
+
     allErrors.push(...checkHtmlBalance(relativePath, html));
     allErrors.push(...checkDuplicateAttributes(relativePath, html));
     allErrors.push(...checkDuplicateIds(relativePath, html));
