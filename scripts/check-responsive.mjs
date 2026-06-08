@@ -86,6 +86,8 @@ const requiredCssGuards = [
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767px\)[\s\S]*\.ink-settings-layout\s*{[^}]*grid-template-columns:\s*1fr;[^}]*min-width:\s*0;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767px\)[\s\S]*\.ink-settings-layout\s*>\s*\*\s*{[^}]*min-width:\s*0;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-notif-desc\s*{[^}]*white-space:\s*normal;[^}]*overflow:\s*visible;/],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-notif-content\s*{[^}]*min-width:\s*0;/],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-notif-meta\s*{[^}]*align-items:\s*flex-start;[^}]*flex-wrap:\s*wrap;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-notif-more\s*{[^}]*opacity:\s*1;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-editor-sidebar\s*{[^}]*position:\s*static;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-post-permalink\s*{[^}]*flex-basis:\s*100%;[^}]*min-width:\s*0;/],
@@ -95,6 +97,8 @@ const requiredCssGuards = [
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*560px\)[\s\S]*\.topbar-create-btn\s+i\s*{[^}]*font-size:\s*1rem;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*479\.98px\)[\s\S]*\.topbar-actions\s*{[^}]*justify-content:\s*flex-end;[^}]*margin-left:\s*auto;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*479\.98px\)[\s\S]*\.ink-notif-dropdown\s*{[^}]*min-width:\s*calc\(100vw\s*-\s*20px\);[^}]*max-width:\s*calc\(100vw\s*-\s*20px\);/],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*479\.98px\)[\s\S]*\.ink-notif-row-inner\s*{[^}]*display:\s*grid;[^}]*grid-template-columns:\s*36px\s+minmax\(0,\s*1fr\)\s+auto;/],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*479\.98px\)[\s\S]*\.ink-notif-actions\s*{[^}]*grid-column:\s*3;[^}]*grid-row:\s*1;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*479\.98px\)[\s\S]*\.ink-dashboard-quick-card\s+\.ink-quick-btn-sm[\s\S]*min-width:\s*100%;/],
 ];
 

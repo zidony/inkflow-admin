@@ -1625,32 +1625,6 @@ textarea.form-control {
   .ink-settings-nav-item {
     white-space: nowrap;
   }
-  .ink-notif-row-inner {
-    gap: 10px;
-    padding: 14px 12px;
-  }
-  .ink-notif-icon-lg {
-    width: 36px;
-    height: 36px;
-  }
-  .ink-notif-title {
-    line-height: 1.45;
-  }
-  .ink-notif-desc {
-    white-space: normal;
-    overflow: visible;
-    text-overflow: clip;
-  }
-  .ink-notif-meta {
-    flex-wrap: wrap;
-    row-gap: 2px;
-  }
-  .ink-notif-actions {
-    gap: 4px;
-  }
-  .ink-notif-more {
-    opacity: 1;
-  }
   .ink-editor-sidebar {
     position: static;
   }
@@ -2157,10 +2131,18 @@ textarea.form-control {
   min-width: 0;
 }
 .ink-notif-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
   font-size: 0.84rem;
   font-weight: 600;
   color: var(--ink-gray-900);
   margin-bottom: 4px;
+}
+.ink-notif-title .ink-badge {
+  flex-shrink: 0;
+  margin-left: 0 !important;
 }
 .ink-notif-desc {
   font-size: 0.8rem;
@@ -2177,6 +2159,7 @@ textarea.form-control {
   display: flex;
   align-items: center;
   gap: 4px;
+  min-width: 0;
 }
 .ink-notif-sep {
   color: var(--ink-gray-300);
@@ -2201,6 +2184,51 @@ textarea.form-control {
 }
 .ink-notif-row:hover .ink-notif-more {
   opacity: 1;
+}
+@media (max-width: 767.98px) {
+  .ink-notif-row-inner {
+    gap: 10px;
+    padding: 14px 12px;
+  }
+  .ink-notif-icon-lg {
+    width: 36px;
+    height: 36px;
+  }
+  .ink-notif-title {
+    line-height: 1.45;
+  }
+  .ink-notif-content {
+    min-width: 0;
+  }
+  .ink-notif-desc {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+  .ink-notif-meta {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    row-gap: 2px;
+  }
+  .ink-notif-actions {
+    align-self: flex-start;
+    gap: 4px;
+  }
+  .ink-notif-more {
+    opacity: 1;
+  }
+}
+@media (max-width: 479.98px) {
+  .ink-notif-row-inner {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr) auto;
+    align-items: start;
+  }
+  .ink-notif-actions {
+    grid-column: 3;
+    grid-row: 1;
+    padding-top: 0;
+  }
 }
 /* Badge color variants */
 
