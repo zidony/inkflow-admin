@@ -20,7 +20,7 @@
       <main id="page-content">
         {{#> page_header title="上传 / 编辑图片"}}
           <a href="image-list.html" class="btn btn-light"
-            ><i class="bi bi-arrow-left"></i> 返回列表</a
+            ><i class="bi bi-arrow-left" aria-hidden="true"></i> 返回列表</a
           >
         {{/page_header}}
         <div class="row g-3">
@@ -28,14 +28,14 @@
             <!-- 上传区域 / 图片预览 -->
             <div class="ink-panel ink-anim">
               <div class="ink-panel-header">
-                <i class="bi bi-image-fill"></i> 图片上传 / 预览
+                <i class="bi bi-image-fill" aria-hidden="true"></i> 图片上传 / 预览
                 <div class="ms-auto d-flex gap-2">
                   <button
                     class="btn btn-primary btn-sm u-text-xs btn-h28px"
                     data-action="trigger"
                     data-target="img-file-input"
                   >
-                    <i class="bi bi-upload me-1"></i>选择图片上传
+                    <i class="bi bi-upload me-1" aria-hidden="true"></i>选择图片上传
                   </button>
                   <input type="file" id="img-file-input" accept="image/*" class="d-none" />
                 </div>
@@ -48,7 +48,7 @@
                   data-action="trigger"
                   data-target="img-file-input"
                 >
-                  <i class="bi bi-cloud-arrow-up"></i>
+                  <i class="bi bi-cloud-arrow-up" aria-hidden="true"></i>
                   <p>
                     点击或拖拽图片到此处上传<br />
                     <small>支持 JPG、PNG、GIF、WebP、SVG，最大 20MB</small>
@@ -71,7 +71,7 @@
                       data-action="trigger"
                       data-target="img-file-input"
                     >
-                      <i class="bi bi-arrow-repeat me-1"></i>替换图片
+                      <i class="bi bi-arrow-repeat me-1" aria-hidden="true"></i>替换图片
                     </button>
                     <button
                       class="btn btn-light btn-sm u-text-xs"
@@ -79,13 +79,13 @@
                       data-toast-msg="图片裁剪功能已打开"
                       data-toast-type="info"
                     >
-                      <i class="bi bi-crop me-1"></i>裁剪
+                      <i class="bi bi-crop me-1" aria-hidden="true"></i>裁剪
                     </button>
                     <button
                       class="btn btn-danger-soft btn-sm u-text-xs"
                       data-action="clear-preview"
                     >
-                      <i class="bi bi-x-lg me-1"></i>移除
+                      <i class="bi bi-x-lg me-1" aria-hidden="true"></i>移除
                     </button>
                   </div>
                 </div>
@@ -94,13 +94,13 @@
                   id="img-drag-overlay"
                   class="ink-upload-drag-overlay d-none"
                 >
-                  <i class="bi bi-cloud-arrow-up ink-upload-drag-icon"></i>
+                  <i class="bi bi-cloud-arrow-up ink-upload-drag-icon" aria-hidden="true"></i>
                   <span class="ink-upload-drag-text">松开鼠标上传图片</span>
                 </div>
               </div>
             </div>
             <div class="ink-panel ink-anim ink-delay-100">
-              <div class="ink-panel-header"><i class="bi bi-info-circle"></i> 图片信息</div>
+              <div class="ink-panel-header"><i class="bi bi-info-circle" aria-hidden="true"></i> 图片信息</div>
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12">
@@ -154,7 +154,7 @@
               </div>
             </div>
             <div class="ink-panel ink-anim ink-delay-200">
-              <div class="ink-panel-header"><i class="bi bi-link-45deg"></i> 直链地址</div>
+              <div class="ink-panel-header"><i class="bi bi-link-45deg" aria-hidden="true"></i> 直链地址</div>
               <div class="ink-panel-body">
                 <div class="input-group">
                   <input
@@ -171,7 +171,7 @@
                     data-toast-msg="已复制到剪贴板"
                     data-toast-type="success"
                   >
-                    <i class="bi bi-clipboard"></i>
+                    <i class="bi bi-clipboard" aria-hidden="true"></i>
                   </button>
                 </div>
               </div>
@@ -183,7 +183,7 @@
                 data-toast-msg="图片信息已保存"
                 data-toast-type="success"
               >
-                <i class="bi bi-check-lg me-1"></i>保存信息
+                <i class="bi bi-check-lg me-1" aria-hidden="true"></i>保存信息
               </button>
               <button class="btn btn-light" data-action="navigate" data-href="image-list.html">
                 取消
@@ -192,7 +192,7 @@
           </div>
           <div class="col-12 col-xl-4">
             <div class="ink-panel ink-anim ink-delay-50">
-              <div class="ink-panel-header"><i class="bi bi-file-earmark-text"></i> 文件详情</div>
+              <div class="ink-panel-header"><i class="bi bi-file-earmark-text" aria-hidden="true"></i> 文件详情</div>
               <div class="ink-panel-body">
                 <dl class="u-text-body m-0">
                   <dt class="u-text-gray-400 fw-medium mb-1">文件名</dt>
@@ -215,7 +215,7 @@
               </div>
             </div>
             <div class="ink-panel ink-anim ink-delay-150">
-              <div class="ink-panel-header"><i class="bi bi-scissors"></i> 图片操作</div>
+              <div class="ink-panel-header"><i class="bi bi-scissors" aria-hidden="true"></i> 图片操作</div>
               <div class="ink-panel-body d-flex flex-column gap-2">
                 <button
                   class="btn btn-light w-100"
@@ -223,7 +223,7 @@
                   data-toast-msg="图片编辑器开发中"
                   data-toast-type="info"
                 >
-                  <i class="bi bi-crop me-1"></i>裁剪图片
+                  <i class="bi bi-crop me-1" aria-hidden="true"></i>裁剪图片
                 </button>
                 <button
                   class="btn btn-light w-100"
@@ -231,14 +231,14 @@
                   data-toast-msg="正在重新生成缩略图"
                   data-toast-type="info"
                 >
-                  <i class="bi bi-arrow-repeat me-1"></i>重新生成缩略图
+                  <i class="bi bi-arrow-repeat me-1" aria-hidden="true"></i>重新生成缩略图
                 </button>
                 <button
                   class="btn btn-danger-soft w-100 mt-2"
                   data-action="permanent-delete"
                   data-href="image-list.html"
                 >
-                  <i class="bi bi-trash3 me-1"></i>永久删除文件
+                  <i class="bi bi-trash3 me-1" aria-hidden="true"></i>永久删除文件
                 </button>
               </div>
             </div>

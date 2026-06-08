@@ -20,13 +20,13 @@
       <main id="page-content">
         {{#> page_header title="编辑栏目"}}
           <a href="category-list.html" class="btn btn-light"
-            ><i class="bi bi-arrow-left"></i> 返回列表</a
+            ><i class="bi bi-arrow-left" aria-hidden="true"></i> 返回列表</a
           >
         {{/page_header}}
         <div class="row g-3">
           <div class="col-12 col-xl-8">
             <div class="ink-panel ink-anim">
-              <div class="ink-panel-header"><i class="bi bi-folder2-open"></i> 基本信息</div>
+              <div class="ink-panel-header"><i class="bi bi-folder2-open" aria-hidden="true"></i> 基本信息</div>
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12">
@@ -89,7 +89,7 @@
 
             <!-- SEO -->
             <div class="ink-panel ink-anim ink-delay-100">
-              <div class="ink-panel-header"><i class="bi bi-search-heart"></i> SEO 设置</div>
+              <div class="ink-panel-header"><i class="bi bi-search-heart" aria-hidden="true"></i> SEO 设置</div>
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12">
@@ -113,7 +113,7 @@
                 data-toast-msg="栏目保存成功"
                 data-toast-type="success"
               >
-                <i class="bi bi-check-lg me-1"></i>保存栏目
+                <i class="bi bi-check-lg me-1" aria-hidden="true"></i>保存栏目
               </button>
               <button class="btn btn-light" data-action="navigate" data-href="category-list.html">
                 取消
@@ -123,14 +123,14 @@
 
           <div class="col-12 col-xl-4">
             <div class="ink-panel ink-anim ink-delay-50">
-              <div class="ink-panel-header"><i class="bi bi-image"></i> 栏目封面</div>
+              <div class="ink-panel-header"><i class="bi bi-image" aria-hidden="true"></i> 栏目封面</div>
               <div class="ink-panel-body">
                 <div class="ink-cover-preview ratio ratio-16x9" id="cover-preview">
                   <img
                     src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23e2e8f0'/%3E%3Cpath d='M0 165 95 92l70 55 53-38 182 116H0z' fill='%2394a3b8'/%3E%3Ccircle cx='310' cy='65' r='28' fill='%23f8fafc'/%3E%3C/svg%3E"
                     alt="封面"
                   />
-                  <div class="ink-cover-overlay"><i class="bi bi-arrow-repeat"></i> 更换图片</div>
+                  <div class="ink-cover-overlay"><i class="bi bi-arrow-repeat" aria-hidden="true"></i> 更换图片</div>
                 </div>
                 <input type="file" id="cover-file-input" accept="image/*" class="d-none" />
                 <div class="d-flex gap-2 mt-2">
@@ -139,7 +139,7 @@
                     data-action="trigger"
                     data-target="cover-file-input"
                   >
-                    <i class="bi bi-upload me-1"></i>上传
+                    <i class="bi bi-upload me-1" aria-hidden="true"></i>上传
                   </button>
                   <button
                     class="btn btn-light btn-sm flex-fill"
@@ -147,13 +147,13 @@
                     data-toast-msg="已从媒体库选择"
                     data-toast-type="info"
                   >
-                    <i class="bi bi-collection me-1"></i>媒体库
+                    <i class="bi bi-collection me-1" aria-hidden="true"></i>媒体库
                   </button>
                 </div>
               </div>
             </div>
             <div class="ink-panel ink-anim ink-delay-150">
-              <div class="ink-panel-header"><i class="bi bi-bar-chart-line"></i> 栏目统计</div>
+              <div class="ink-panel-header"><i class="bi bi-bar-chart-line" aria-hidden="true"></i> 栏目统计</div>
               <div class="ink-panel-body">
                 <div class="d-flex flex-column gap-2 u-text-body">
                   <div

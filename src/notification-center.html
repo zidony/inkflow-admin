@@ -28,10 +28,10 @@
     {{#> page_header title="通知中心" subtitle="管理所有系统通知、评论提醒和用户动态"}}
       <div class="d-flex gap-2">
         <button class="btn btn-light btn-sm" data-action="read-all">
-          <i class="bi bi-check2-all me-1"></i>全部已读
+          <i class="bi bi-check2-all me-1" aria-hidden="true"></i>全部已读
         </button>
         <button class="btn btn-light btn-sm" data-action="toast" data-toast-msg="已清除全部通知" data-toast-type="success">
-          <i class="bi bi-trash3 me-1"></i>清除已读
+          <i class="bi bi-trash3 me-1" aria-hidden="true"></i>清除已读
         </button>
       </div>
     {{/page_header}}
@@ -81,7 +81,7 @@
               <li class="ink-notif-row unread" data-type="comment">
                 <div class="ink-notif-row-inner">
                   <div class="ink-notif-icon-lg u-text-primary bg-ink-50" >
-                    <i class="bi bi-chat-left-dots"></i>
+                    <i class="bi bi-chat-left-dots" aria-hidden="true"></i>
                   </div>
                   <div class="ink-notif-content">
                     <div class="ink-notif-title">
@@ -90,22 +90,22 @@
                     </div>
                     <div class="ink-notif-desc">「很棒的文章！Composition API 的解析非常清晰，对我帮助很大。」</div>
                     <div class="ink-notif-meta">
-                      <i class="bi bi-file-text me-1"></i>《Vue 3 Composition API 深入解析》
+                      <i class="bi bi-file-text me-1" aria-hidden="true"></i>《Vue 3 Composition API 深入解析》
                       <span class="ink-notif-sep">·</span>
-                      <i class="bi bi-clock me-1"></i>10 分钟前
+                      <i class="bi bi-clock me-1" aria-hidden="true"></i>10 分钟前
                     </div>
                   </div>
                   <div class="ink-notif-actions">
                     <div class="ink-unread-dot"></div>
                     <div class="dropdown">
                       <button class="btn btn-light btn-icon btn-sm ink-notif-more" data-bs-toggle="dropdown" title="更多操作" aria-label="更多操作" aria-expanded="false">
-                        <i class="bi bi-three-dots"></i>
+                        <i class="bi bi-three-dots" aria-hidden="true"></i>
                       </button>
                       <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="comment-list.html"><i class="bi bi-eye me-2"></i>查看评论</a></li>
-                        <li><a class="dropdown-item" href="#" data-action="read-one"><i class="bi bi-check me-2"></i>标记已读</a></li>
+                        <li><a class="dropdown-item" href="comment-list.html"><i class="bi bi-eye me-2" aria-hidden="true"></i>查看评论</a></li>
+                        <li><a class="dropdown-item" href="#" data-action="read-one"><i class="bi bi-check me-2" aria-hidden="true"></i>标记已读</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2" aria-hidden="true"></i>删除通知</a></li>
                       </ul>
                     </div>
                   </div>
@@ -116,7 +116,7 @@
               <li class="ink-notif-row unread" data-type="user">
                 <div class="ink-notif-row-inner">
                   <div class="ink-notif-icon-lg u-text-success bg-success-subtle" >
-                    <i class="bi bi-person-plus"></i>
+                    <i class="bi bi-person-plus" aria-hidden="true"></i>
                   </div>
                   <div class="ink-notif-content">
                     <div class="ink-notif-title">
@@ -125,20 +125,20 @@
                     </div>
                     <div class="ink-notif-desc"><strong>李明</strong> (user@inkflow.dev) 完成了账号注册，等待审核激活。</div>
                     <div class="ink-notif-meta">
-                      <i class="bi bi-clock me-1"></i>32 分钟前
+                      <i class="bi bi-clock me-1" aria-hidden="true"></i>32 分钟前
                     </div>
                   </div>
                   <div class="ink-notif-actions">
                     <div class="ink-unread-dot"></div>
                     <div class="dropdown">
                       <button class="btn btn-light btn-icon btn-sm ink-notif-more" data-bs-toggle="dropdown" title="更多操作" aria-label="更多操作" aria-expanded="false">
-                        <i class="bi bi-three-dots"></i>
+                        <i class="bi bi-three-dots" aria-hidden="true"></i>
                       </button>
                       <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="user-list.html"><i class="bi bi-person me-2"></i>查看用户</a></li>
-                        <li><a class="dropdown-item" href="#" data-action="read-one"><i class="bi bi-check me-2"></i>标记已读</a></li>
+                        <li><a class="dropdown-item" href="user-list.html"><i class="bi bi-person me-2" aria-hidden="true"></i>查看用户</a></li>
+                        <li><a class="dropdown-item" href="#" data-action="read-one"><i class="bi bi-check me-2" aria-hidden="true"></i>标记已读</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2" aria-hidden="true"></i>删除通知</a></li>
                       </ul>
                     </div>
                   </div>
@@ -149,7 +149,7 @@
               <li class="ink-notif-row unread" data-type="system">
                 <div class="ink-notif-row-inner">
                   <div class="ink-notif-icon-lg u-tint-amber">
-                    <i class="bi bi-exclamation-triangle"></i>
+                    <i class="bi bi-exclamation-triangle" aria-hidden="true"></i>
                   </div>
                   <div class="ink-notif-content">
                     <div class="ink-notif-title">
@@ -158,20 +158,20 @@
                     </div>
                     <div class="ink-notif-desc">服务器磁盘使用率已达到 <strong>42%</strong>，建议清理临时文件或扩容。</div>
                     <div class="ink-notif-meta">
-                      <i class="bi bi-clock me-1"></i>1 小时前
+                      <i class="bi bi-clock me-1" aria-hidden="true"></i>1 小时前
                     </div>
                   </div>
                   <div class="ink-notif-actions">
                     <div class="ink-unread-dot"></div>
                     <div class="dropdown">
                       <button class="btn btn-light btn-icon btn-sm ink-notif-more" data-bs-toggle="dropdown" title="更多操作" aria-label="更多操作" aria-expanded="false">
-                        <i class="bi bi-three-dots"></i>
+                        <i class="bi bi-three-dots" aria-hidden="true"></i>
                       </button>
                       <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="settings.html"><i class="bi bi-gear me-2"></i>前往设置</a></li>
-                        <li><a class="dropdown-item" href="#" data-action="read-one"><i class="bi bi-check me-2"></i>标记已读</a></li>
+                        <li><a class="dropdown-item" href="settings.html"><i class="bi bi-gear me-2" aria-hidden="true"></i>前往设置</a></li>
+                        <li><a class="dropdown-item" href="#" data-action="read-one"><i class="bi bi-check me-2" aria-hidden="true"></i>标记已读</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2" aria-hidden="true"></i>删除通知</a></li>
                       </ul>
                     </div>
                   </div>
@@ -182,7 +182,7 @@
               <li class="ink-notif-row unread" data-type="comment">
                 <div class="ink-notif-row-inner">
                   <div class="ink-notif-icon-lg u-tint-purple">
-                    <i class="bi bi-chat-left-dots"></i>
+                    <i class="bi bi-chat-left-dots" aria-hidden="true"></i>
                   </div>
                   <div class="ink-notif-content">
                     <div class="ink-notif-title">
@@ -191,22 +191,22 @@
                     </div>
                     <div class="ink-notif-desc">「第三节代码示例中 watchEffect 的用法有误，应该是…」</div>
                     <div class="ink-notif-meta">
-                      <i class="bi bi-file-text me-1"></i>《LLM Fine-tuning 实战》
+                      <i class="bi bi-file-text me-1" aria-hidden="true"></i>《LLM Fine-tuning 实战》
                       <span class="ink-notif-sep">·</span>
-                      <i class="bi bi-clock me-1"></i>2 小时前
+                      <i class="bi bi-clock me-1" aria-hidden="true"></i>2 小时前
                     </div>
                   </div>
                   <div class="ink-notif-actions">
                     <div class="ink-unread-dot"></div>
                     <div class="dropdown">
                       <button class="btn btn-light btn-icon btn-sm ink-notif-more" data-bs-toggle="dropdown" title="更多操作" aria-label="更多操作" aria-expanded="false">
-                        <i class="bi bi-three-dots"></i>
+                        <i class="bi bi-three-dots" aria-hidden="true"></i>
                       </button>
                       <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="comment-list.html"><i class="bi bi-eye me-2"></i>查看评论</a></li>
-                        <li><a class="dropdown-item" href="#" data-action="read-one"><i class="bi bi-check me-2"></i>标记已读</a></li>
+                        <li><a class="dropdown-item" href="comment-list.html"><i class="bi bi-eye me-2" aria-hidden="true"></i>查看评论</a></li>
+                        <li><a class="dropdown-item" href="#" data-action="read-one"><i class="bi bi-check me-2" aria-hidden="true"></i>标记已读</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2" aria-hidden="true"></i>删除通知</a></li>
                       </ul>
                     </div>
                   </div>
@@ -222,19 +222,19 @@
               <li class="ink-notif-row" data-type="system">
                 <div class="ink-notif-row-inner">
                   <div class="ink-notif-icon-lg u-text-gray-500 bg-ink-gray-100" >
-                    <i class="bi bi-file-earmark-check"></i>
+                    <i class="bi bi-file-earmark-check" aria-hidden="true"></i>
                   </div>
                   <div class="ink-notif-content">
                     <div class="ink-notif-title">文章发布成功 <span class="ink-badge u-tint-gray ms-1">系统</span></div>
                     <div class="ink-notif-desc">文章《TypeScript 高级类型完全指南》已成功发布，当前已获得 <strong>128</strong> 次阅读。</div>
-                    <div class="ink-notif-meta"><i class="bi bi-clock me-1"></i>昨天 16:30</div>
+                    <div class="ink-notif-meta"><i class="bi bi-clock me-1" aria-hidden="true"></i>昨天 16:30</div>
                   </div>
                   <div class="ink-notif-actions">
                     <div class="dropdown">
-                      <button class="btn btn-light btn-icon btn-sm ink-notif-more" data-bs-toggle="dropdown" title="更多操作" aria-label="更多操作" aria-expanded="false"><i class="bi bi-three-dots"></i></button>
+                      <button class="btn btn-light btn-icon btn-sm ink-notif-more" data-bs-toggle="dropdown" title="更多操作" aria-label="更多操作" aria-expanded="false"><i class="bi bi-three-dots" aria-hidden="true"></i></button>
                       <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="post-list.html"><i class="bi bi-file-text me-2"></i>查看文章</a></li>
-                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                        <li><a class="dropdown-item" href="post-list.html"><i class="bi bi-file-text me-2" aria-hidden="true"></i>查看文章</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2" aria-hidden="true"></i>删除通知</a></li>
                       </ul>
                     </div>
                   </div>
@@ -244,19 +244,19 @@
               <li class="ink-notif-row" data-type="system">
                 <div class="ink-notif-row-inner">
                   <div class="ink-notif-icon-lg u-text-gray-500 bg-ink-gray-100" >
-                    <i class="bi bi-shield-check"></i>
+                    <i class="bi bi-shield-check" aria-hidden="true"></i>
                   </div>
                   <div class="ink-notif-content">
                     <div class="ink-notif-title">SSL 证书到期提醒 <span class="ink-badge u-tint-amber ms-1">系统</span></div>
                     <div class="ink-notif-desc">域名 <strong>blog.inkflow.dev</strong> 的 SSL 证书将在 <strong>30 天</strong>后到期，请及时续签以避免服务中断。</div>
-                    <div class="ink-notif-meta"><i class="bi bi-clock me-1"></i>昨天 09:15</div>
+                    <div class="ink-notif-meta"><i class="bi bi-clock me-1" aria-hidden="true"></i>昨天 09:15</div>
                   </div>
                   <div class="ink-notif-actions">
                     <div class="dropdown">
-                      <button class="btn btn-light btn-icon btn-sm ink-notif-more" data-bs-toggle="dropdown" title="更多操作" aria-label="更多操作" aria-expanded="false"><i class="bi bi-three-dots"></i></button>
+                      <button class="btn btn-light btn-icon btn-sm ink-notif-more" data-bs-toggle="dropdown" title="更多操作" aria-label="更多操作" aria-expanded="false"><i class="bi bi-three-dots" aria-hidden="true"></i></button>
                       <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="settings.html"><i class="bi bi-gear me-2"></i>前往设置</a></li>
-                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                        <li><a class="dropdown-item" href="settings.html"><i class="bi bi-gear me-2" aria-hidden="true"></i>前往设置</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2" aria-hidden="true"></i>删除通知</a></li>
                       </ul>
                     </div>
                   </div>
@@ -266,23 +266,23 @@
               <li class="ink-notif-row" data-type="comment">
                 <div class="ink-notif-row-inner">
                   <div class="ink-notif-icon-lg u-text-primary bg-ink-50" >
-                    <i class="bi bi-chat-left-dots"></i>
+                    <i class="bi bi-chat-left-dots" aria-hidden="true"></i>
                   </div>
                   <div class="ink-notif-content">
                     <div class="ink-notif-title"><strong>Alice Chen</strong> 回复了你的评论 <span class="ink-badge u-tint-blue ms-1">评论</span></div>
                     <div class="ink-notif-desc">「同意你的观点，Rust 的所有权系统确实有一定学习曲线，但值得投入。」</div>
                     <div class="ink-notif-meta">
-                      <i class="bi bi-file-text me-1"></i>《Rust 所有权机制详解》
+                      <i class="bi bi-file-text me-1" aria-hidden="true"></i>《Rust 所有权机制详解》
                       <span class="ink-notif-sep">·</span>
-                      <i class="bi bi-clock me-1"></i>昨天 14:20
+                      <i class="bi bi-clock me-1" aria-hidden="true"></i>昨天 14:20
                     </div>
                   </div>
                   <div class="ink-notif-actions">
                     <div class="dropdown">
-                      <button class="btn btn-light btn-icon btn-sm ink-notif-more" data-bs-toggle="dropdown" title="更多操作" aria-label="更多操作" aria-expanded="false"><i class="bi bi-three-dots"></i></button>
+                      <button class="btn btn-light btn-icon btn-sm ink-notif-more" data-bs-toggle="dropdown" title="更多操作" aria-label="更多操作" aria-expanded="false"><i class="bi bi-three-dots" aria-hidden="true"></i></button>
                       <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="comment-list.html"><i class="bi bi-eye me-2"></i>查看评论</a></li>
-                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                        <li><a class="dropdown-item" href="comment-list.html"><i class="bi bi-eye me-2" aria-hidden="true"></i>查看评论</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2" aria-hidden="true"></i>删除通知</a></li>
                       </ul>
                     </div>
                   </div>
@@ -296,18 +296,18 @@
 
               <li class="ink-notif-row" data-type="user">
                 <div class="ink-notif-row-inner">
-                  <div class="ink-notif-icon-lg u-text-success bg-success-subtle" ><i class="bi bi-person-plus"></i></div>
+                  <div class="ink-notif-icon-lg u-text-success bg-success-subtle" ><i class="bi bi-person-plus" aria-hidden="true"></i></div>
                   <div class="ink-notif-content">
                     <div class="ink-notif-title">新用户注册 <span class="ink-badge u-tint-green ms-1">用户</span></div>
                     <div class="ink-notif-desc"><strong>Bob Wang</strong> (user@inkflow.dev) 完成注册。</div>
-                    <div class="ink-notif-meta"><i class="bi bi-clock me-1"></i>3 天前</div>
+                    <div class="ink-notif-meta"><i class="bi bi-clock me-1" aria-hidden="true"></i>3 天前</div>
                   </div>
                   <div class="ink-notif-actions">
                     <div class="dropdown">
-                      <button class="btn btn-light btn-icon btn-sm ink-notif-more" data-bs-toggle="dropdown" title="更多操作" aria-label="更多操作" aria-expanded="false"><i class="bi bi-three-dots"></i></button>
+                      <button class="btn btn-light btn-icon btn-sm ink-notif-more" data-bs-toggle="dropdown" title="更多操作" aria-label="更多操作" aria-expanded="false"><i class="bi bi-three-dots" aria-hidden="true"></i></button>
                       <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="user-list.html"><i class="bi bi-person me-2"></i>查看用户</a></li>
-                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                        <li><a class="dropdown-item" href="user-list.html"><i class="bi bi-person me-2" aria-hidden="true"></i>查看用户</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2" aria-hidden="true"></i>删除通知</a></li>
                       </ul>
                     </div>
                   </div>
@@ -316,18 +316,18 @@
 
               <li class="ink-notif-row" data-type="comment">
                 <div class="ink-notif-row-inner">
-                  <div class="ink-notif-icon-lg u-text-primary bg-ink-50" ><i class="bi bi-chat-left-dots"></i></div>
+                  <div class="ink-notif-icon-lg u-text-primary bg-ink-50" ><i class="bi bi-chat-left-dots" aria-hidden="true"></i></div>
                   <div class="ink-notif-content">
                     <div class="ink-notif-title"><strong>赵磊</strong> 赞了你的文章 <span class="ink-badge u-tint-blue ms-1">评论</span></div>
                     <div class="ink-notif-desc">《Docker 容器化部署最佳实践》获得了新的点赞。</div>
-                    <div class="ink-notif-meta"><i class="bi bi-clock me-1"></i>5 天前</div>
+                    <div class="ink-notif-meta"><i class="bi bi-clock me-1" aria-hidden="true"></i>5 天前</div>
                   </div>
                   <div class="ink-notif-actions">
                     <div class="dropdown">
-                      <button class="btn btn-light btn-icon btn-sm ink-notif-more" data-bs-toggle="dropdown" title="更多操作" aria-label="更多操作" aria-expanded="false"><i class="bi bi-three-dots"></i></button>
+                      <button class="btn btn-light btn-icon btn-sm ink-notif-more" data-bs-toggle="dropdown" title="更多操作" aria-label="更多操作" aria-expanded="false"><i class="bi bi-three-dots" aria-hidden="true"></i></button>
                       <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="post-list.html"><i class="bi bi-file-text me-2"></i>查看文章</a></li>
-                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2"></i>删除通知</a></li>
+                        <li><a class="dropdown-item" href="post-list.html"><i class="bi bi-file-text me-2" aria-hidden="true"></i>查看文章</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" data-action="delete-notif"><i class="bi bi-trash3 me-2" aria-hidden="true"></i>删除通知</a></li>
                       </ul>
                     </div>
                   </div>
@@ -338,7 +338,7 @@
 
             <!-- Empty state (hidden by default) -->
             <div id="notif-empty" class="ink-empty-state d-none">
-              <i class="bi bi-bell-slash"></i>
+              <i class="bi bi-bell-slash" aria-hidden="true"></i>
               <p>暂无符合条件的通知</p>
             </div>
           </div>
@@ -351,7 +351,7 @@
 
         <!-- 未读统计 -->
         <div class="ink-panel ink-anim">
-          <div class="ink-panel-header"><i class="bi bi-bar-chart-line"></i> 通知统计</div>
+          <div class="ink-panel-header"><i class="bi bi-bar-chart-line" aria-hidden="true"></i> 通知统计</div>
           <div class="ink-panel-body">
             <div class="d-flex flex-column gap-2">
               <div class="d-flex align-items-center justify-content-between py-2 border-bottom border-ink-gray-100"
@@ -392,14 +392,14 @@
               </div>
             </div>
             <button class="btn btn-light w-100 mt-3 u-text-sm" data-action="read-all">
-              <i class="bi bi-check2-all me-1"></i>全部标记已读
+              <i class="bi bi-check2-all me-1" aria-hidden="true"></i>全部标记已读
             </button>
           </div>
         </div>
 
         <!-- 通知偏好 -->
         <div class="ink-panel ink-anim ink-delay-50 mt-3">
-          <div class="ink-panel-header"><i class="bi bi-bell-slash"></i> 通知偏好设置</div>
+          <div class="ink-panel-header"><i class="bi bi-bell-slash" aria-hidden="true"></i> 通知偏好设置</div>
           <div class="ink-panel-body">
             <div class="d-flex flex-column gap-3">
               <div class="d-flex align-items-center justify-content-between">

@@ -20,13 +20,13 @@
       <main id="page-content">
         {{#> page_header title="编辑用户"}}
           <a href="user-list.html" class="btn btn-light"
-            ><i class="bi bi-arrow-left"></i> 返回列表</a
+            ><i class="bi bi-arrow-left" aria-hidden="true"></i> 返回列表</a
           >
         {{/page_header}}
         <div class="row g-3">
           <div class="col-12 col-xl-8">
             <div class="ink-panel ink-anim">
-              <div class="ink-panel-header"><i class="bi bi-person-circle"></i> 基本信息</div>
+              <div class="ink-panel-header"><i class="bi bi-person-circle" aria-hidden="true"></i> 基本信息</div>
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12 col-md-6">
@@ -60,7 +60,7 @@
             </div>
 
             <div class="ink-panel ink-anim ink-delay-100">
-              <div class="ink-panel-header"><i class="bi bi-shield-lock"></i> 账号设置</div>
+              <div class="ink-panel-header"><i class="bi bi-shield-lock" aria-hidden="true"></i> 账号设置</div>
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12 col-md-6">
@@ -123,7 +123,7 @@
                 data-toast-msg="用户信息已保存"
                 data-toast-type="success"
               >
-                <i class="bi bi-check-lg me-1"></i>保存用户
+                <i class="bi bi-check-lg me-1" aria-hidden="true"></i>保存用户
               </button>
               <button class="btn btn-light" data-action="navigate" data-href="user-list.html">
                 取消
@@ -133,7 +133,7 @@
 
           <div class="col-12 col-xl-4">
             <div class="ink-panel ink-anim ink-delay-50">
-              <div class="ink-panel-header"><i class="bi bi-person-bounding-box"></i> 头像设置</div>
+              <div class="ink-panel-header"><i class="bi bi-person-bounding-box" aria-hidden="true"></i> 头像设置</div>
               <div class="ink-panel-body text-center">
                 <!-- Avatar preview -->
                 <div class="ink-avatar-preview-wrap">
@@ -158,7 +158,7 @@
                     class="ink-avatar-edit-btn u-text-xs"
                     title="更换头像"
                   >
-                    <i class="bi bi-camera-fill"></i>
+                    <i class="bi bi-camera-fill" aria-hidden="true"></i>
                   </button>
                 </div>
                 <input type="file" id="avatar-file-input" accept="image/*" class="d-none" />
@@ -168,7 +168,7 @@
                     data-action="trigger"
                     data-target="avatar-file-input"
                   >
-                    <i class="bi bi-upload me-1"></i>上传图片
+                    <i class="bi bi-upload me-1" aria-hidden="true"></i>上传图片
                   </button>
                   <button
                     class="btn btn-light btn-sm"
@@ -176,7 +176,7 @@
                     data-toast-msg="已使用邮箱 Gravatar 头像"
                     data-toast-type="info"
                   >
-                    <i class="bi bi-person-circle me-1"></i>Gravatar
+                    <i class="bi bi-person-circle me-1" aria-hidden="true"></i>Gravatar
                   </button>
                 </div>
                 <p class="ink-avatar-upload-hint u-text-gray-400 u-text-xs">
@@ -191,7 +191,7 @@
                 <div class="ink-avatar-crop-modal modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title fw-bold">
-                      <i class="bi bi-crop me-2 u-text-primary"></i>裁剪头像
+                      <i class="bi bi-crop me-2 u-text-primary" aria-hidden="true"></i>裁剪头像
                     </h5>
                     <button
                       type="button"
@@ -212,9 +212,9 @@
                       <div class="ink-avatar-crop-ring"></div>
                     </div>
                     <div class="d-flex justify-content-center gap-2 mt-3 u-text-gray-500 u-text-sm">
-                      <span><i class="bi bi-arrows-move me-1"></i>拖动图片调整位置</span>
+                      <span><i class="bi bi-arrows-move me-1" aria-hidden="true"></i>拖动图片调整位置</span>
                       <span>·</span>
-                      <span><i class="bi bi-zoom-in me-1"></i>滚轮缩放</span>
+                      <span><i class="bi bi-zoom-in me-1" aria-hidden="true"></i>滚轮缩放</span>
                     </div>
                     <!-- Zoom slider -->
                     <div class="mt-3">
@@ -235,14 +235,14 @@
                       取消
                     </button>
                     <button type="button" class="btn btn-primary" data-action="apply-avatar-crop">
-                      <i class="bi bi-check-lg me-1"></i>确认裁剪并使用
+                      <i class="bi bi-check-lg me-1" aria-hidden="true"></i>确认裁剪并使用
                     </button>
                   </div>
                 </div>
               </div>
             </div>
             <div class="ink-panel ink-anim ink-delay-150">
-              <div class="ink-panel-header"><i class="bi bi-bar-chart-line"></i> 用户统计</div>
+              <div class="ink-panel-header"><i class="bi bi-bar-chart-line" aria-hidden="true"></i> 用户统计</div>
               <div class="ink-panel-body">
                 <div class="d-flex flex-column gap-2 u-text-body">
                   <div
@@ -267,7 +267,7 @@
               </div>
             </div>
             <div class="ink-panel ink-anim ink-delay-250">
-              <div class="ink-panel-header"><i class="bi bi-key"></i> 安全操作</div>
+              <div class="ink-panel-header"><i class="bi bi-key" aria-hidden="true"></i> 安全操作</div>
               <div class="ink-panel-body d-flex flex-column gap-2">
                 <button
                   class="btn btn-light w-100"
@@ -275,7 +275,7 @@
                   data-toast-msg="重置密码邮件已发送"
                   data-toast-type="info"
                 >
-                  <i class="bi bi-envelope me-1"></i>发送密码重置邮件
+                  <i class="bi bi-envelope me-1" aria-hidden="true"></i>发送密码重置邮件
                 </button>
                 <button
                   class="btn btn-light w-100"
@@ -283,7 +283,7 @@
                   data-toast-msg="已强制退出所有登录"
                   data-toast-type="warning"
                 >
-                  <i class="bi bi-box-arrow-right me-1"></i>强制退出所有登录
+                  <i class="bi bi-box-arrow-right me-1" aria-hidden="true"></i>强制退出所有登录
                 </button>
                 <button
                   class="btn btn-danger-soft w-100 mt-2"
@@ -291,7 +291,7 @@
                   data-toast-msg="用户已封禁"
                   data-toast-type="danger"
                 >
-                  <i class="bi bi-person-x me-1"></i>封禁该用户
+                  <i class="bi bi-person-x me-1" aria-hidden="true"></i>封禁该用户
                 </button>
               </div>
             </div>

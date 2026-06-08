@@ -26,7 +26,7 @@
             data-toast-msg="所有设置已保存"
             data-toast-type="success"
           >
-            <i class="bi bi-check-lg me-1"></i>保存所有设置
+            <i class="bi bi-check-lg me-1" aria-hidden="true"></i>保存所有设置
           </button>
         {{/page_header}}
 
@@ -45,7 +45,7 @@
                     aria-controls="section-site"
                     aria-selected="true"
                   >
-                    <i class="bi bi-house"></i>站点基本设置</button
+                    <i class="bi bi-house" aria-hidden="true"></i>站点基本设置</button
                   ><button
                     id="settings-tab-post"
                     class="ink-settings-nav-item"
@@ -55,7 +55,7 @@
                     aria-controls="section-post"
                     aria-selected="false"
                   >
-                    <i class="bi bi-file-richtext"></i>文章设置</button
+                    <i class="bi bi-file-richtext" aria-hidden="true"></i>文章设置</button
                   ><button
                     id="settings-tab-comment"
                     class="ink-settings-nav-item"
@@ -65,7 +65,7 @@
                     aria-controls="section-comment"
                     aria-selected="false"
                   >
-                    <i class="bi bi-chat-left-dots"></i>评论设置</button
+                    <i class="bi bi-chat-left-dots" aria-hidden="true"></i>评论设置</button
                   ><button
                     id="settings-tab-media"
                     class="ink-settings-nav-item"
@@ -75,7 +75,7 @@
                     aria-controls="section-media"
                     aria-selected="false"
                   >
-                    <i class="bi bi-image"></i>媒体设置</button
+                    <i class="bi bi-image" aria-hidden="true"></i>媒体设置</button
                   ><button
                     id="settings-tab-seo"
                     class="ink-settings-nav-item"
@@ -85,7 +85,7 @@
                     aria-controls="section-seo"
                     aria-selected="false"
                   >
-                    <i class="bi bi-search-heart"></i>SEO 设置</button
+                    <i class="bi bi-search-heart" aria-hidden="true"></i>SEO 设置</button
                   ><button
                     id="settings-tab-smtp"
                     class="ink-settings-nav-item"
@@ -95,7 +95,7 @@
                     aria-controls="section-smtp"
                     aria-selected="false"
                   >
-                    <i class="bi bi-envelope-at"></i>邮件 SMTP</button
+                    <i class="bi bi-envelope-at" aria-hidden="true"></i>邮件 SMTP</button
                   ><button
                     id="settings-tab-security"
                     class="ink-settings-nav-item"
@@ -105,7 +105,7 @@
                     aria-controls="section-security"
                     aria-selected="false"
                   >
-                    <i class="bi bi-shield-lock"></i>安全设置</button
+                    <i class="bi bi-shield-lock" aria-hidden="true"></i>安全设置</button
                   ><button
                     id="settings-tab-cache"
                     class="ink-settings-nav-item"
@@ -115,7 +115,7 @@
                     aria-controls="section-cache"
                     aria-selected="false"
                   >
-                    <i class="bi bi-lightning-charge"></i>缓存与性能</button
+                    <i class="bi bi-lightning-charge" aria-hidden="true"></i>缓存与性能</button
                   ><button
                     id="settings-tab-advanced"
                     class="ink-settings-nav-item"
@@ -125,7 +125,7 @@
                     aria-controls="section-advanced"
                     aria-selected="false"
                   >
-                    <i class="bi bi-sliders"></i>高级设置
+                    <i class="bi bi-sliders" aria-hidden="true"></i>高级设置
                   </button>
                 </div>
               </div>
@@ -137,7 +137,7 @@
             <!-- SITE -->
             <div id="section-site" class="ink-anim" role="tabpanel" aria-labelledby="settings-tab-site" tabindex="0">
               <div class="ink-panel">
-                <div class="ink-panel-header"><i class="bi bi-house"></i> 站点基本设置</div>
+                <div class="ink-panel-header"><i class="bi bi-house" aria-hidden="true"></i> 站点基本设置</div>
                 <div class="ink-panel-body">
                   <div class="row g-3">
                     <div class="col-12 col-md-6">
@@ -199,7 +199,7 @@
               </div>
 
               <div class="ink-panel">
-                <div class="ink-panel-header"><i class="bi bi-image"></i> 站点 Logo 与图标</div>
+                <div class="ink-panel-header"><i class="bi bi-image" aria-hidden="true"></i> 站点 Logo 与图标</div>
                 <div class="ink-panel-body">
                   <div class="row g-3">
                     <div class="col-12 col-md-6">
@@ -210,7 +210,7 @@
                         data-toast-msg="请选择 Logo 图片"
                         data-toast-type="info"
                       >
-                        <i class="bi bi-image-fill"></i>
+                        <i class="bi bi-image-fill" aria-hidden="true"></i>
                         <p>点击上传 Logo<br /><small>建议尺寸 200×60px，支持 PNG/SVG</small></p>
                       </div>
                     </div>
@@ -222,7 +222,7 @@
                         data-toast-msg="请选择 Favicon 图标"
                         data-toast-type="info"
                       >
-                        <i class="bi bi-grid-3x3-gap-fill"></i>
+                        <i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i>
                         <p>点击上传 Favicon<br /><small>建议 32×32px，支持 ICO/PNG</small></p>
                       </div>
                     </div>
@@ -232,7 +232,7 @@
 
               <div class="ink-panel">
                 <div class="ink-panel-header">
-                  <i class="bi bi-layout-text-window-reverse"></i> 首页与阅读设置
+                  <i class="bi bi-layout-text-window-reverse" aria-hidden="true"></i> 首页与阅读设置
                 </div>
                 <div class="ink-panel-body">
                   <div class="row g-3">
@@ -263,7 +263,7 @@
             <!-- POST (hidden by default) -->
             <div id="section-post" class="d-none" role="tabpanel" aria-labelledby="settings-tab-post" tabindex="0" hidden>
               <div class="ink-panel ink-anim">
-                <div class="ink-panel-header"><i class="bi bi-file-richtext"></i> 文章默认设置</div>
+                <div class="ink-panel-header"><i class="bi bi-file-richtext" aria-hidden="true"></i> 文章默认设置</div>
                 <div class="ink-panel-body">
                   <div class="row g-3">
                     <div class="col-12 col-md-6">
@@ -346,7 +346,7 @@
             <!-- COMMENT (hidden) -->
             <div id="section-comment" class="d-none" role="tabpanel" aria-labelledby="settings-tab-comment" tabindex="0" hidden>
               <div class="ink-panel ink-anim">
-                <div class="ink-panel-header"><i class="bi bi-chat-left-dots"></i> 评论设置</div>
+                <div class="ink-panel-header"><i class="bi bi-chat-left-dots" aria-hidden="true"></i> 评论设置</div>
                 <div class="ink-panel-body">
                   <div class="row g-3">
                     <div class="col-12">
@@ -430,7 +430,7 @@
             <!-- SMTP (hidden) -->
             <div id="section-smtp" class="d-none" role="tabpanel" aria-labelledby="settings-tab-smtp" tabindex="0" hidden>
               <div class="ink-panel ink-anim">
-                <div class="ink-panel-header"><i class="bi bi-envelope-at"></i> 邮件 SMTP 设置</div>
+                <div class="ink-panel-header"><i class="bi bi-envelope-at" aria-hidden="true"></i> 邮件 SMTP 设置</div>
                 <div class="ink-panel-body">
                   <div class="row g-3">
                     <div class="col-12 col-md-6">
@@ -477,7 +477,7 @@
                         data-toast-msg="测试邮件发送成功"
                         data-toast-type="success"
                       >
-                        <i class="bi bi-send me-1"></i>发送测试邮件
+                        <i class="bi bi-send me-1" aria-hidden="true"></i>发送测试邮件
                       </button>
                     </div>
                   </div>
@@ -488,7 +488,7 @@
             <!-- Security (hidden) -->
             <div id="section-security" class="d-none" role="tabpanel" aria-labelledby="settings-tab-security" tabindex="0" hidden>
               <div class="ink-panel ink-anim">
-                <div class="ink-panel-header"><i class="bi bi-shield-lock"></i> 安全设置</div>
+                <div class="ink-panel-header"><i class="bi bi-shield-lock" aria-hidden="true"></i> 安全设置</div>
                 <div class="ink-panel-body">
                   <div class="row g-3">
                     <div class="col-12 col-md-6">
@@ -555,7 +555,7 @@
             <div id="section-cache" class="d-none" role="tabpanel" aria-labelledby="settings-tab-cache" tabindex="0" hidden>
               <div class="ink-panel ink-anim">
                 <div class="ink-panel-header">
-                  <i class="bi bi-lightning-charge"></i> 缓存与性能设置
+                  <i class="bi bi-lightning-charge" aria-hidden="true"></i> 缓存与性能设置
                 </div>
                 <div class="ink-panel-body">
                   <div class="row g-3">
@@ -610,7 +610,7 @@
                         data-toast-msg="缓存已全部清除"
                         data-toast-type="success"
                       >
-                        <i class="bi bi-arrow-repeat me-1"></i>清除全部缓存
+                        <i class="bi bi-arrow-repeat me-1" aria-hidden="true"></i>清除全部缓存
                       </button>
                       <button
                         class="btn btn-light"
@@ -618,7 +618,7 @@
                         data-toast-msg="CSS/JS 资源已重新生成"
                         data-toast-type="info"
                       >
-                        <i class="bi bi-gear me-1"></i>重新生成静态资源
+                        <i class="bi bi-gear me-1" aria-hidden="true"></i>重新生成静态资源
                       </button>
                     </div>
                   </div>
@@ -629,7 +629,7 @@
             <!-- Placeholders for other sections -->
             <div id="section-seo" class="d-none" role="tabpanel" aria-labelledby="settings-tab-seo" tabindex="0" hidden>
               <div class="ink-panel ink-anim">
-                <div class="ink-panel-header"><i class="bi bi-search-heart"></i> SEO 全局设置</div>
+                <div class="ink-panel-header"><i class="bi bi-search-heart" aria-hidden="true"></i> SEO 全局设置</div>
                 <div class="ink-panel-body">
                   <div class="row g-3">
                     <div class="col-12">
@@ -690,7 +690,7 @@
             </div>
             <div id="section-media" class="d-none" role="tabpanel" aria-labelledby="settings-tab-media" tabindex="0" hidden>
               <div class="ink-panel ink-anim">
-                <div class="ink-panel-header"><i class="bi bi-image"></i> 媒体上传设置</div>
+                <div class="ink-panel-header"><i class="bi bi-image" aria-hidden="true"></i> 媒体上传设置</div>
                 <div class="ink-panel-body">
                   <div class="row g-3">
                     <div class="col-12 col-md-6">
@@ -732,7 +732,7 @@
             </div>
             <div id="section-advanced" class="d-none" role="tabpanel" aria-labelledby="settings-tab-advanced" tabindex="0" hidden>
               <div class="ink-panel ink-anim">
-                <div class="ink-panel-header"><i class="bi bi-sliders"></i> 高级设置</div>
+                <div class="ink-panel-header"><i class="bi bi-sliders" aria-hidden="true"></i> 高级设置</div>
                 <div class="ink-panel-body">
                   <div class="row g-3">
                     <div class="col-12">
@@ -770,7 +770,7 @@ Sitemap: /sitemap.xml</textarea
                 data-toast-msg="设置已保存"
                 data-toast-type="success"
               >
-                <i class="bi bi-check-lg me-1"></i>保存设置
+                <i class="bi bi-check-lg me-1" aria-hidden="true"></i>保存设置
               </button>
               <button
                 class="btn btn-light btn-sm"
@@ -778,7 +778,7 @@ Sitemap: /sitemap.xml</textarea
                 data-toast-msg="已重置为默认值"
                 data-toast-type="info"
               >
-                <i class="bi bi-arrow-counterclockwise me-1"></i>重置默认
+                <i class="bi bi-arrow-counterclockwise me-1" aria-hidden="true"></i>重置默认
               </button>
             </div>
           </div>

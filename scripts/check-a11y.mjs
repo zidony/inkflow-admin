@@ -251,6 +251,17 @@ function checkFile(relativePath, html) {
     errors.push(`${relativePath}:${line} image needs an alt attribute.`);
   }
 
+  const bootstrapIconPattern = /<i\b[^>]*\bclass=(["'])[^"']*\bbi\b[^"']*\1[^>]*>/gi;
+  while ((match = bootstrapIconPattern.exec(html))) {
+    const tag = match[0];
+    if (getAttribute(tag, 'aria-hidden') === 'true') {
+      continue;
+    }
+
+    const line = lineNumberFor(html, match.index);
+    errors.push(`${relativePath}:${line} bootstrap icon needs aria-hidden="true".`);
+  }
+
   return errors;
 }
 

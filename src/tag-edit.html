@@ -20,13 +20,13 @@
       <main id="page-content">
         {{#> page_header title="编辑标签"}}
           <a href="tag-list.html" class="btn btn-light"
-            ><i class="bi bi-arrow-left"></i> 返回列表</a
+            ><i class="bi bi-arrow-left" aria-hidden="true"></i> 返回列表</a
           >
         {{/page_header}}
         <div class="row g-3">
           <div class="col-12 col-xl-8">
             <div class="ink-panel ink-anim">
-              <div class="ink-panel-header"><i class="bi bi-tag"></i> 标签信息</div>
+              <div class="ink-panel-header"><i class="bi bi-tag" aria-hidden="true"></i> 标签信息</div>
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12 col-md-6">
@@ -48,7 +48,7 @@ Vue.js 3.x 版本相关内容，包括 Composition API、响应式系统等新�
               </div>
             </div>
             <div class="ink-panel ink-anim ink-delay-100">
-              <div class="ink-panel-header"><i class="bi bi-search-heart"></i> SEO 设置</div>
+              <div class="ink-panel-header"><i class="bi bi-search-heart" aria-hidden="true"></i> SEO 设置</div>
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12">
@@ -71,7 +71,7 @@ Vue.js 3.x 版本相关内容，包括 Composition API、响应式系统等新�
                 data-toast-msg="标签保存成功"
                 data-toast-type="success"
               >
-                <i class="bi bi-check-lg me-1"></i>保存标签
+                <i class="bi bi-check-lg me-1" aria-hidden="true"></i>保存标签
               </button>
               <button class="btn btn-light" data-action="navigate" data-href="tag-list.html">
                 取消
@@ -80,7 +80,7 @@ Vue.js 3.x 版本相关内容，包括 Composition API、响应式系统等新�
           </div>
           <div class="col-12 col-xl-4">
             <div class="ink-panel ink-anim ink-delay-50">
-              <div class="ink-panel-header"><i class="bi bi-bar-chart-line"></i> 标签统计</div>
+              <div class="ink-panel-header"><i class="bi bi-bar-chart-line" aria-hidden="true"></i> 标签统计</div>
               <div class="ink-panel-body">
                 <div class="d-flex flex-column gap-2 u-text-body">
                   <div
@@ -100,7 +100,7 @@ Vue.js 3.x 版本相关内容，包括 Composition API、响应式系统等新�
               </div>
             </div>
             <div class="ink-panel ink-anim ink-delay-150">
-              <div class="ink-panel-header"><i class="bi bi-lightning"></i> 批量操作</div>
+              <div class="ink-panel-header"><i class="bi bi-lightning" aria-hidden="true"></i> 批量操作</div>
               <div class="ink-panel-body">
                 <p class="u-text-sm u-text-gray-500">
                   可批量导入标签，每行一个标签名，自动生成 Slug。
@@ -117,7 +117,7 @@ Vue.js 3.x 版本相关内容，包括 Composition API、响应式系统等新�
                   data-toast-msg="批量导入成功"
                   data-toast-type="success"
                 >
-                  <i class="bi bi-upload me-1"></i>批量导入
+                  <i class="bi bi-upload me-1" aria-hidden="true"></i>批量导入
                 </button>
               </div>
             </div>

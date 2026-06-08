@@ -20,13 +20,13 @@
       <main id="page-content">
         {{#> page_header title="编辑链接"}}
           <a href="link-list.html" class="btn btn-light"
-            ><i class="bi bi-arrow-left"></i> 返回列表</a
+            ><i class="bi bi-arrow-left" aria-hidden="true"></i> 返回列表</a
           >
         {{/page_header}}
         <div class="row g-3">
           <div class="col-12 col-xl-8">
             <div class="ink-panel ink-anim">
-              <div class="ink-panel-header"><i class="bi bi-link-45deg"></i> 链接信息</div>
+              <div class="ink-panel-header"><i class="bi bi-link-45deg" aria-hidden="true"></i> 链接信息</div>
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12">
@@ -36,7 +36,7 @@
                   <div class="col-12">
                     <label class="form-label" for="link-url">链接地址 <span class="text-danger">*</span></label>
                     <div class="input-group">
-                      <span class="input-group-text"><i class="bi bi-globe"></i></span>
+                      <span class="input-group-text"><i class="bi bi-globe" aria-hidden="true"></i></span>
                       <input
                         type="url"
                         class="form-control"
@@ -50,7 +50,7 @@
                         data-toast-msg="链接有效"
                         data-toast-type="success"
                       >
-                        <i class="bi bi-check-circle me-1"></i>验证
+                        <i class="bi bi-check-circle me-1" aria-hidden="true"></i>验证
                       </button>
                     </div>
                   </div>
@@ -116,7 +116,7 @@
                 data-toast-msg="链接保存成功"
                 data-toast-type="success"
               >
-                <i class="bi bi-check-lg me-1"></i>保存链接
+                <i class="bi bi-check-lg me-1" aria-hidden="true"></i>保存链接
               </button>
               <button class="btn btn-light" data-action="navigate" data-href="link-list.html">
                 取消
@@ -125,12 +125,12 @@
           </div>
           <div class="col-12 col-xl-4">
             <div class="ink-panel ink-anim ink-delay-50">
-              <div class="ink-panel-header"><i class="bi bi-eye"></i> 链接预览</div>
+              <div class="ink-panel-header"><i class="bi bi-eye" aria-hidden="true"></i> 链接预览</div>
               <div class="ink-panel-body">
                 <div class="ink-link-preview-card">
                   <div class="d-flex align-items-center gap-3">
                     <div class="ink-link-favicon u-text-gray-600">
-                      <i class="bi bi-github"></i>
+                      <i class="bi bi-github" aria-hidden="true"></i>
                     </div>
                     <div>
                       <div class="fw-bold u-text-gray-800 fs-90">GitHub</div>
@@ -144,7 +144,7 @@
               </div>
             </div>
             <div class="ink-panel ink-anim ink-delay-150">
-              <div class="ink-panel-header"><i class="bi bi-bar-chart-line"></i> 点击统计</div>
+              <div class="ink-panel-header"><i class="bi bi-bar-chart-line" aria-hidden="true"></i> 点击统计</div>
               <div class="ink-panel-body">
                 <div class="d-flex flex-column gap-2 u-text-body">
                   <div
