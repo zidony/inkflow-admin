@@ -35,6 +35,13 @@ export class NotificationManager {
       if (filterButton) {
         event.preventDefault();
         this.filterByType(filterButton.getAttribute('data-filter'), filterButton);
+        return;
+      }
+
+      const clearReadButton = event.target.closest('[data-action="clear-read-notifs"]');
+      if (clearReadButton) {
+        event.preventDefault();
+        this.clearReadNotifications(clearReadButton);
       }
     });
   }
@@ -64,6 +71,12 @@ export class NotificationManager {
     this.syncUnreadCounts();
     this.updateEmptyState();
     showToast(t('deleted'), 'danger');
+  }
+
+  clearReadNotifications(button) {
+    this.list.querySelectorAll('.ink-notif-row:not(.unread)').forEach(row => row.remove());
+    this.updateEmptyState();
+    showToast(button.getAttribute('data-toast-msg') || t('deleted'), 'success');
   }
 
   filterByType(filter, button) {

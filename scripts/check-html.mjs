@@ -20,6 +20,7 @@ const voidTags = new Set([
 ]);
 const allowedDataActions = new Set([
   'apply-avatar-crop',
+  'clear-read-notifs',
   'clear-preview',
   'delete',
   'delete-notif',
