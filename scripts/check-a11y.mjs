@@ -114,6 +114,10 @@ function isSettingsPanel(tag) {
   return /^section-[a-z-]+$/.test(getAttribute(tag, 'id'));
 }
 
+function isBootstrapModal(tag) {
+  return hasClass(tag, 'modal');
+}
+
 function isStandardFormControl(tag) {
   const classes = getClasses(tag);
   return classes.includes('form-control') || classes.includes('form-select');
@@ -161,6 +165,10 @@ function checkFile(relativePath, html) {
   while ((panelMatch = panelPattern.exec(html))) {
     const tag = panelMatch[0];
     if (!isSettingsPanel(tag)) {
+      if (isBootstrapModal(tag) && !hasAttribute(tag, 'aria-labelledby')) {
+        const line = lineNumberFor(html, panelMatch.index);
+        errors.push(`${relativePath}:${line} modal needs aria-labelledby.`);
+      }
       continue;
     }
 

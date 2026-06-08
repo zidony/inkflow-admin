@@ -191,18 +191,24 @@
             </div>
 
             <!-- Crop Modal -->
-            <div class="modal fade" id="avatarCropModal" tabindex="-1" aria-hidden="true">
+            <div
+              class="modal fade"
+              id="avatarCropModal"
+              tabindex="-1"
+              aria-labelledby="avatarCropModalTitle"
+              aria-hidden="true"
+            >
               <div class="modal-dialog modal-dialog-centered">
                 <div class="ink-avatar-crop-modal modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title fw-bold">
+                    <h5 class="modal-title fw-bold" id="avatarCropModalTitle">
                       <i class="bi bi-crop me-2 u-text-primary" aria-hidden="true"></i>裁剪头像
                     </h5>
                     <button
                       type="button"
                       class="btn-close"
                       data-bs-dismiss="modal"
-                      aria-label="Close"
+                      aria-label="关闭裁剪弹窗"
                     ></button>
                   </div>
                   <div class="modal-body text-center p-3">
