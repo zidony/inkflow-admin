@@ -85,6 +85,8 @@ const requiredCssGuards = [
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.table-responsive\s*{[^}]*overflow-x:\s*auto;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.table-responsive\s*>\s*\.ink-table[\s\S]*min-width:\s*720px;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-card\s*>\s*\.card-header\s*{[^}]*flex-wrap:\s*wrap;/],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-card\s*>\s*\.card-header\s+\.ink-card-title\s*{[^}]*min-width:\s*0;[^}]*overflow-wrap:\s*anywhere;/],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-card\s*>\s*\.card-header\s*>\s*\.btn[\s\S]*max-width:\s*100%;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-card\s*>\s*\.card-body\.p-0\s*{[^}]*overflow-x:\s*clip;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-card\s*>\s*\.card-header\s+\.ms-auto\s*{[^}]*margin-left:\s*0\s*!important;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-card\s*>\s*\.card-header\s+\.form-select\s*{[^}]*flex:\s*1\s+1\s+110px;[^}]*width:\s*auto\s*!important;[^}]*min-width:\s*0;/],

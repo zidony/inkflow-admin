@@ -1586,6 +1586,15 @@ textarea.form-control {
     flex-wrap: wrap;
     gap: 8px;
   }
+  .ink-card > .card-header .ink-card-title {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .ink-card > .card-header > .btn,
+  .ink-card > .card-header > a.btn {
+    flex: 0 1 auto;
+    max-width: 100%;
+  }
   .ink-card > .card-header > .d-flex,
   .ink-card > .card-header .d-flex {
     min-width: 0;
