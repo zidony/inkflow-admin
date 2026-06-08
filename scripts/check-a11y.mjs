@@ -348,6 +348,12 @@ async function checkA11y() {
     errors.push(`${relativeToRoot(toastModulePath)} toast notifications need live-region semantics and a named close button.`);
   }
 
+  const paginationPartialPath = path.join(srcDir, 'partials', 'pagination.html');
+  const paginationPartial = await readTextAsync(paginationPartialPath);
+  if (!/<button\b[^>]*\bclass=["'][^"']*\bpage-link\b[^"']*["'][^>]*\baria-disabled=["']true["'][^>]*\bdisabled\b/i.test(paginationPartial)) {
+    errors.push(`${relativeToRoot(paginationPartialPath)} disabled pagination button needs aria-disabled="true".`);
+  }
+
   if (errors.length) {
     throw new Error(`Accessibility check failed:\n${errors.join('\n')}`);
   }
