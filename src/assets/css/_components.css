@@ -354,7 +354,7 @@
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #22c55e, #16a34a);
+  background: var(--ink-avatar-green-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -554,22 +554,22 @@
 }
 
 .ink-avatar-blue {
-  background: linear-gradient(135deg, var(--ink-500), var(--ink-accent-400));
+  background: var(--ink-avatar-blue-bg);
 }
 .ink-avatar-green {
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: var(--ink-avatar-green-bg);
 }
 .ink-avatar-amber {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
+  background: var(--ink-avatar-amber-bg);
 }
 .ink-avatar-red {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
+  background: var(--ink-avatar-red-bg);
 }
 .ink-avatar-purple {
-  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  background: var(--ink-avatar-purple-bg);
 }
 .ink-avatar-slate {
-  background: linear-gradient(135deg, #94a3b8, #64748b);
+  background: var(--ink-avatar-slate-bg);
 }
 
 /* Comment detail page */
@@ -2117,10 +2117,10 @@ textarea.form-control {
   background: var(--ink-gray-50);
 }
 .ink-notif-row.unread {
-  background: #f5f9ff;
+  background: var(--ink-notif-unread-bg);
 }
 .ink-notif-row.unread:hover {
-  background: #edf4ff;
+  background: var(--ink-notif-unread-hover-bg);
 }
 .ink-notif-row-inner {
   display: flex;
@@ -2409,6 +2409,10 @@ textarea.form-control {
 
   /* Scrollbars */
   --scroll-thumb: #374151;
+
+  /* Component state overrides */
+  --ink-notif-unread-bg: rgba(112, 150, 219, 0.08);
+  --ink-notif-unread-hover-bg: rgba(112, 150, 219, 0.12);
 }
 
 /* Custom visual components under dark mode to enhance glow & neon aesthetics */
@@ -2516,11 +2520,11 @@ textarea.form-control {
 }
 
 [data-theme='dark'] .ink-notif-dropdown .ink-notif-item.unread {
-  background-color: rgba(112, 150, 219, 0.08) !important;
+  background-color: var(--ink-notif-unread-bg) !important;
 }
 
 [data-theme='dark'] .ink-notif-dropdown .ink-notif-item.unread:hover {
-  background-color: rgba(112, 150, 219, 0.12) !important;
+  background-color: var(--ink-notif-unread-hover-bg) !important;
 }
 
 [data-theme='dark'] .ink-notif-dropdown .ink-notif-footer,
