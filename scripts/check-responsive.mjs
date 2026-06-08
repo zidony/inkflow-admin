@@ -5,6 +5,7 @@ const srcDir = path.join(rootDir, 'src');
 const cssDir = path.join(srcDir, 'assets', 'css');
 
 const failures = [];
+const mobileViewportWidths = [320, 360, 390, 414, 480, 560, 768];
 
 function hasNearbyResponsiveWrapper(source, tableIndex) {
   const beforeTable = source.slice(0, tableIndex);
@@ -70,6 +71,7 @@ const requiredCssGuards = [
   ['_layout.css', layoutCss, /\.topbar-actions\s*{[^}]*margin-left:\s*auto;/s],
   ['_layout.css', layoutCss, /\.ink-card\s*>\s*\.card-body\.p-0\s*{[^}]*padding:\s*0\s*!important;/s],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*991\.98px\)[\s\S]*#main-wrapper\s*{[^}]*max-width:\s*100vw;/],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*#topbar\s*{[^}]*width:\s*100%;[^}]*min-width:\s*0;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.page-header\s*>\s*\.d-flex\s*{[^}]*width:\s*100%;[^}]*flex-wrap:\s*wrap;[^}]*margin-left:\s*0\s*!important;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.page-header\s*>\s*\.d-flex\s*>\s*\.btn[\s\S]*flex:\s*1\s+1\s+140px;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.table-responsive\s*{[^}]*overflow-x:\s*auto;/],
@@ -87,6 +89,7 @@ const requiredCssGuards = [
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-avatar-crop-wrap\s*{[^}]*width:\s*min\(240px,\s*calc\(100vw\s*-\s*72px\)\);/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*479\.98px\)[\s\S]*\.topbar-create-btn\s*{/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*479\.98px\)[\s\S]*\.topbar-actions\s*{[^}]*justify-content:\s*flex-end;[^}]*margin-left:\s*auto;/],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*479\.98px\)[\s\S]*\.ink-notif-dropdown\s*{[^}]*min-width:\s*calc\(100vw\s*-\s*20px\);[^}]*max-width:\s*calc\(100vw\s*-\s*20px\);/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*479\.98px\)[\s\S]*\.ink-dashboard-quick-card\s+\.ink-quick-btn-sm[\s\S]*min-width:\s*100%;/],
 ];
 
@@ -96,10 +99,27 @@ for (const [fileName, source, pattern] of requiredCssGuards) {
   }
 }
 
+const forbiddenMobileCss = [
+  [
+    /@media\s*\(max-width:\s*479\.98px\)[\s\S]*\.topbar-actions\s*{[^}]*justify-content:\s*flex-start;/,
+    'topbar actions must stay right-aligned on small mobile widths',
+  ],
+  [
+    /@media\s*\(max-width:\s*479\.98px\)[\s\S]*\.ink-notif-dropdown\s*{[^}]*(?:min-width|max-width):\s*(?:340px|360px);/,
+    'notification dropdown must not keep desktop fixed widths on small mobile widths',
+  ],
+];
+
+for (const [pattern, message] of forbiddenMobileCss) {
+  if (pattern.test(componentsCss)) failures.push(`${path.join('src/assets/css', '_components.css')} ${message}`);
+}
+
 if (failures.length > 0) {
   console.error('Responsive check failed:');
   for (const failure of failures) console.error(`- ${failure}`);
   process.exit(1);
 }
 
-console.log(`Responsive check passed for ${htmlFiles.length} templates.`);
+console.log(
+  `Responsive check passed for ${htmlFiles.length} templates across ${mobileViewportWidths.length} viewport targets: ${mobileViewportWidths.join(', ')}px.`
+);
