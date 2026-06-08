@@ -29,6 +29,8 @@ const bannedPatterns = [
 
 const jsFiles = listFiles(jsDir, file => file.endsWith('.js'));
 const jsSource = jsFiles.map(filePath => readText(filePath)).join('\n');
+const bulkModulePath = path.join(jsDir, 'modules', 'bulk.js');
+const bulkModule = readText(bulkModulePath);
 
 for (const filePath of jsFiles) {
   const source = readText(filePath);
@@ -61,6 +63,10 @@ for (const action of actions) {
   if (!actionReferencePattern.test(jsSource)) {
     failures.push(`data-action "${action}" is used in templates but not referenced by runtime JS`);
   }
+}
+
+if (!/dispatchEvent\(new CustomEvent\(['"]inkflow:rows-changed['"]\)\)/.test(bulkModule)) {
+  failures.push(`${relativeToRoot(bulkModulePath)} bulk deletion needs to broadcast row changes.`);
 }
 
 if (failures.length) {

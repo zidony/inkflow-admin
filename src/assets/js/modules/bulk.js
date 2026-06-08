@@ -62,6 +62,7 @@ export class BulkSelectManager {
     if (!confirm(t('confirmDelete'))) return;
 
     checkedRows.forEach(row => row.remove());
+    document.dispatchEvent(new CustomEvent('inkflow:rows-changed'));
     this.updateBulkBar();
     showToast(t('deleted'), 'danger');
   }
