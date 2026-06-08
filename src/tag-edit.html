@@ -30,17 +30,17 @@
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12 col-md-6">
-                    <label class="form-label">标签名称 <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" value="Vue 3" />
+                    <label class="form-label" for="tag-name">标签名称 <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="tag-name" value="Vue 3" />
                   </div>
                   <div class="col-12 col-md-6">
-                    <label class="form-label">URL Slug</label>
-                    <input type="text" class="form-control" value="vue3" />
+                    <label class="form-label" for="tag-slug">URL Slug</label>
+                    <input type="text" class="form-control" id="tag-slug" value="vue3" />
                     <div class="ink-form-hint">留空则自动生成</div>
                   </div>
                   <div class="col-12">
-                    <label class="form-label">标签描述</label>
-                    <textarea class="form-control" rows="2" placeholder="简短描述这个标签的含义…">
+                    <label class="form-label" for="tag-description">标签描述</label>
+                    <textarea class="form-control" id="tag-description" rows="2" placeholder="简短描述这个标签的含义…">
 Vue.js 3.x 版本相关内容，包括 Composition API、响应式系统等新特性。</textarea
                     >
                   </div>
@@ -52,12 +52,12 @@ Vue.js 3.x 版本相关内容，包括 Composition API、响应式系统等新�
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12">
-                    <label class="form-label">SEO 标题</label
-                    ><input type="text" class="form-control" value="Vue 3 标签 | InkFlow 博客" />
+                    <label class="form-label" for="tag-seo-title">SEO 标题</label
+                    ><input type="text" class="form-control" id="tag-seo-title" value="Vue 3 标签 | InkFlow 博客" />
                   </div>
                   <div class="col-12">
-                    <label class="form-label">Meta 描述</label
-                    ><textarea class="form-control" rows="2">
+                    <label class="form-label" for="tag-meta-description">Meta 描述</label
+                    ><textarea class="form-control" id="tag-meta-description" rows="2">
 汇聚所有 Vue 3 相关技术文章，涵盖入门到进阶的完整学习路径。</textarea
                     >
                   </div>
@@ -107,6 +107,7 @@ Vue.js 3.x 版本相关内容，包括 Composition API、响应式系统等新�
                 </p>
                 <textarea
                   class="form-control"
+                  aria-label="批量导入标签"
                   rows="4"
                   placeholder="每行一个标签名，如：&#10;JavaScript&#10;CSS3&#10;HTML5"
                 ></textarea>

@@ -58,6 +58,23 @@ function isCheckableInput(tag) {
   return ['checkbox', 'radio'].includes(getAttribute(tag, 'type'));
 }
 
+function isStandardFormControl(tag) {
+  const classes = getClasses(tag);
+  return classes.includes('form-control') || classes.includes('form-select');
+}
+
+function isSkippedStandardFormControl(tag) {
+  return ['file', 'hidden'].includes(getAttribute(tag, 'type'));
+}
+
+function shouldCheckEditFormControl(relativePath, tag) {
+  return (
+    ['src/category-edit.html', 'src/link-edit.html', 'src/tag-edit.html'].includes(relativePath) &&
+    isStandardFormControl(tag) &&
+    !isSkippedStandardFormControl(tag)
+  );
+}
+
 function checkFile(relativePath, html) {
   const errors = [];
   const tagPattern = /<(button|a)\b[^>]*>/gi;
@@ -111,6 +128,19 @@ function checkFile(relativePath, html) {
 
     const line = lineNumberFor(html, match.index);
     errors.push(`${relativePath}:${line} compact select needs aria-label or aria-labelledby.`);
+  }
+
+  const standardControlPattern = /<(input|select|textarea)\b[^>]*>/gi;
+  while ((match = standardControlPattern.exec(html))) {
+    const tag = match[0];
+    if (
+      shouldCheckEditFormControl(relativePath, tag) &&
+      !hasAccessibleName(tag) &&
+      !hasAssociatedLabel(html, tag)
+    ) {
+      const line = lineNumberFor(html, match.index);
+      errors.push(`${relativePath}:${line} edit form control needs an associated label or aria-label.`);
+    }
   }
 
   const inputPattern = /<input\b[^>]*>/gi;

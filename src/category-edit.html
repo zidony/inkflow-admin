@@ -30,21 +30,23 @@
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12">
-                    <label class="form-label">栏目名称 <span class="text-danger">*</span></label>
+                    <label class="form-label" for="category-name">栏目名称 <span class="text-danger">*</span></label>
                     <input
                       type="text"
                       class="form-control"
+                      id="category-name"
                       value="前端技术"
                       placeholder="请输入栏目名称"
                     />
                   </div>
                   <div class="col-12 col-md-6">
-                    <label class="form-label">URL Slug</label>
+                    <label class="form-label" for="category-slug">URL Slug</label>
                     <div class="input-group">
                       <span class="input-group-text u-text-sm">/</span>
                       <input
                         type="text"
                         class="form-control"
+                        id="category-slug"
                         value="frontend-tech"
                         placeholder="url-slug"
                       />
@@ -52,22 +54,22 @@
                     <div class="ink-form-hint">用于 URL 中的标识符，建议英文小写加横线</div>
                   </div>
                   <div class="col-12 col-md-6">
-                    <label class="form-label">父级栏目</label>
-                    <select class="form-select">
+                    <label class="form-label" for="category-parent">父级栏目</label>
+                    <select class="form-select" id="category-parent">
                       <option value="" selected>无（顶级栏目）</option>
                       <option>前端技术</option>
                       <option>AI 技术</option>
                     </select>
                   </div>
                   <div class="col-12">
-                    <label class="form-label">栏目描述</label>
-                    <textarea class="form-control" rows="3" placeholder="简短描述该栏目的内容方向…">
+                    <label class="form-label" for="category-description">栏目描述</label>
+                    <textarea class="form-control" id="category-description" rows="3" placeholder="简短描述该栏目的内容方向…">
 专注前端开发技术分享，涵盖 HTML、CSS、JavaScript、Vue、React 等主流技术的深度教程与实践经验。</textarea
                     >
                   </div>
                   <div class="col-12 col-md-6">
-                    <label class="form-label">排序权重</label>
-                    <input type="number" class="form-control" value="100" />
+                    <label class="form-label" for="category-sort">排序权重</label>
+                    <input type="number" class="form-control" id="category-sort" value="100" />
                     <div class="ink-form-hint">数值越大越靠前</div>
                   </div>
                   <div class="col-12 col-md-6">
@@ -91,12 +93,12 @@
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12">
-                    <label class="form-label">SEO 标题</label>
-                    <input type="text" class="form-control" value="前端技术 | InkFlow 博客" />
+                    <label class="form-label" for="category-seo-title">SEO 标题</label>
+                    <input type="text" class="form-control" id="category-seo-title" value="前端技术 | InkFlow 博客" />
                   </div>
                   <div class="col-12">
-                    <label class="form-label">Meta 描述</label>
-                    <textarea class="form-control" rows="2">
+                    <label class="form-label" for="category-meta-description">Meta 描述</label>
+                    <textarea class="form-control" id="category-meta-description" rows="2">
 专注前端开发技术分享的博客栏目，包含 Vue、React、TypeScript 等主流框架的深度教程。</textarea
                     >
                   </div>

@@ -30,16 +30,17 @@
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12">
-                    <label class="form-label">链接名称 <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" value="GitHub" />
+                    <label class="form-label" for="link-name">链接名称 <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="link-name" value="GitHub" />
                   </div>
                   <div class="col-12">
-                    <label class="form-label">链接地址 <span class="text-danger">*</span></label>
+                    <label class="form-label" for="link-url">链接地址 <span class="text-danger">*</span></label>
                     <div class="input-group">
                       <span class="input-group-text"><i class="bi bi-globe"></i></span>
                       <input
                         type="url"
                         class="form-control"
+                        id="link-url"
                         value="/links/example"
                         placeholder="/links/example"
                       />
@@ -54,8 +55,8 @@
                     </div>
                   </div>
                   <div class="col-12 col-md-6">
-                    <label class="form-label">链接分组</label>
-                    <select class="form-select">
+                    <label class="form-label" for="link-group">链接分组</label>
+                    <select class="form-select" id="link-group">
                       <option>友情链接</option>
                       <option selected>参考文档</option>
                       <option>框架官网</option>
@@ -64,26 +65,27 @@
                     </select>
                   </div>
                   <div class="col-12 col-md-6">
-                    <label class="form-label">排序权重</label>
-                    <input type="number" class="form-control" value="100" />
+                    <label class="form-label" for="link-sort">排序权重</label>
+                    <input type="number" class="form-control" id="link-sort" value="100" />
                   </div>
                   <div class="col-12">
-                    <label class="form-label">链接描述</label>
-                    <textarea class="form-control" rows="2" placeholder="一句话描述该链接…">
+                    <label class="form-label" for="link-description">链接描述</label>
+                    <textarea class="form-control" id="link-description" rows="2" placeholder="一句话描述该链接…">
 代码托管平台，全球最大开源社区，支持 Git 版本管理。</textarea
                     >
                   </div>
                   <div class="col-12 col-md-6">
-                    <label class="form-label">链接图标（Favicon URL）</label>
+                    <label class="form-label" for="link-icon-url">链接图标（Favicon URL）</label>
                     <input
                       type="url"
                       class="form-control"
+                      id="link-icon-url"
                       placeholder="/assets/favicon.ico"
                     />
                   </div>
                   <div class="col-12 col-md-6">
-                    <label class="form-label">打开方式</label>
-                    <select class="form-select">
+                    <label class="form-label" for="link-target">打开方式</label>
+                    <select class="form-select" id="link-target">
                       <option value="_blank" selected>新标签页打开</option>
                       <option value="_self">当前页打开</option>
                     </select>
