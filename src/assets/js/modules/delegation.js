@@ -3,6 +3,7 @@
    ============================================================ */
 import { showToast } from './toast.js';
 import { t } from './i18n.js';
+import { syncNotificationDateGroups } from './notification-dom.js';
 
 const clickActionHandlers = {
   'toggle-theme': manager => manager.toggleTheme(),
@@ -146,29 +147,12 @@ export class DelegationManager {
     const emptyState = document.getElementById('notif-empty');
     if (!list || !emptyState) return;
 
-    this.syncNotificationDateGroups(list);
+    syncNotificationDateGroups(list);
 
     const hasVisibleRows = [...list.querySelectorAll('.ink-notif-row')].some(
       row => !row.classList.contains('d-none')
     );
     emptyState.classList.toggle('d-none', hasVisibleRows);
-  }
-
-  syncNotificationDateGroups(list) {
-    list.querySelectorAll('.ink-notif-date-group').forEach(group => {
-      let cursor = group.nextElementSibling;
-      let hasVisibleRows = false;
-
-      while (cursor && !cursor.classList.contains('ink-notif-date-group')) {
-        if (cursor.classList.contains('ink-notif-row') && !cursor.classList.contains('d-none')) {
-          hasVisibleRows = true;
-          break;
-        }
-        cursor = cursor.nextElementSibling;
-      }
-
-      group.classList.toggle('d-none', !hasVisibleRows);
-    });
   }
 
   permanentDelete(permDelBtn) {
