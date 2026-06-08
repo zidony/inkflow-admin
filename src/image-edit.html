@@ -104,34 +104,37 @@
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12">
-                    <label class="form-label">文件标题</label>
+                    <label class="form-label" for="image-title">文件标题</label>
                     <input
                       type="text"
                       class="form-control"
+                      id="image-title"
                       value="cover-vue3.jpg"
                       data-field="title"
                     />
                   </div>
                   <div class="col-12">
-                    <label class="form-label">Alt 文本（描述）</label>
+                    <label class="form-label" for="image-alt-text">Alt 文本（描述）</label>
                     <input
                       type="text"
                       class="form-control"
+                      id="image-alt-text"
                       value="Vue 3 Composition API 封面图"
                       placeholder="图片的文字描述，有助于 SEO 和无障碍访问"
                     />
                   </div>
                   <div class="col-12">
-                    <label class="form-label">图片说明</label>
+                    <label class="form-label" for="image-caption">图片说明</label>
                     <textarea
                       class="form-control"
+                      id="image-caption"
                       rows="2"
                       placeholder="图片附加说明（可选）"
                     ></textarea>
                   </div>
                   <div class="col-12 col-md-6">
-                    <label class="form-label">链接到</label>
-                    <select class="form-select">
+                    <label class="form-label" for="image-link-target">链接到</label>
+                    <select class="form-select" id="image-link-target">
                       <option>无</option>
                       <option>媒体文件</option>
                       <option>附件页</option>
@@ -139,8 +142,8 @@
                     </select>
                   </div>
                   <div class="col-12 col-md-6">
-                    <label class="form-label">显示方式</label>
-                    <select class="form-select">
+                    <label class="form-label" for="image-display-size">显示方式</label>
+                    <select class="form-select" id="image-display-size">
                       <option>原始大小</option>
                       <option>缩略图</option>
                       <option>中等大小</option>
@@ -157,6 +160,7 @@
                   <input
                     type="text"
                     class="form-control u-text-sm u-text-mono"
+                    aria-label="图片直链地址"
                     value="/uploads/2025/06/cover-vue3.jpg"
                     readonly
                     data-field="url"

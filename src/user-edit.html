@@ -30,30 +30,30 @@
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12 col-md-6">
-                    <label class="form-label">用户名 <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" value="Editor" />
+                    <label class="form-label" for="user-name">用户名 <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="user-name" value="Editor" />
                   </div>
                   <div class="col-12 col-md-6">
-                    <label class="form-label">昵称</label>
-                    <input type="text" class="form-control" value="内容编辑君" />
+                    <label class="form-label" for="user-display-name">昵称</label>
+                    <input type="text" class="form-control" id="user-display-name" value="内容编辑君" />
                   </div>
                   <div class="col-12 col-md-6">
-                    <label class="form-label">邮箱 <span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" value="editor@inkflow.dev" />
+                    <label class="form-label" for="user-email">邮箱 <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" id="user-email" value="editor@inkflow.dev" />
                   </div>
                   <div class="col-12 col-md-6">
-                    <label class="form-label">手机号</label>
-                    <input type="tel" class="form-control" placeholder="选填" />
+                    <label class="form-label" for="user-phone">手机号</label>
+                    <input type="tel" class="form-control" id="user-phone" placeholder="选填" />
                   </div>
                   <div class="col-12">
-                    <label class="form-label">个人简介</label>
-                    <textarea class="form-control" rows="2" placeholder="用户简介（可选）">
+                    <label class="form-label" for="user-bio">个人简介</label>
+                    <textarea class="form-control" id="user-bio" rows="2" placeholder="用户简介（可选）">
 专注于前端技术内容的输出，Vue 爱好者。</textarea
                     >
                   </div>
                   <div class="col-12">
-                    <label class="form-label">个人网站</label>
-                    <input type="url" class="form-control" placeholder="https://" />
+                    <label class="form-label" for="user-website">个人网站</label>
+                    <input type="url" class="form-control" id="user-website" placeholder="https://" />
                   </div>
                 </div>
               </div>
@@ -64,8 +64,8 @@
               <div class="ink-panel-body">
                 <div class="row g-3">
                   <div class="col-12 col-md-6">
-                    <label class="form-label">用户角色</label>
-                    <select class="form-select">
+                    <label class="form-label" for="user-role">用户角色</label>
+                    <select class="form-select" id="user-role">
                       <option>超级管理员</option>
                       <option selected>内容编辑</option>
                       <option>审核员</option>
@@ -73,20 +73,30 @@
                     </select>
                   </div>
                   <div class="col-12 col-md-6">
-                    <label class="form-label">账号状态</label>
-                    <select class="form-select">
+                    <label class="form-label" for="user-status">账号状态</label>
+                    <select class="form-select" id="user-status">
                       <option>正常</option>
                       <option>禁用</option>
                       <option>封禁</option>
                     </select>
                   </div>
                   <div class="col-12 col-md-6">
-                    <label class="form-label">新密码</label>
-                    <input type="password" class="form-control" placeholder="留空则不修改" />
+                    <label class="form-label" for="user-new-password">新密码</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="user-new-password"
+                      placeholder="留空则不修改"
+                    />
                   </div>
                   <div class="col-12 col-md-6">
-                    <label class="form-label">确认新密码</label>
-                    <input type="password" class="form-control" placeholder="再次输入新密码" />
+                    <label class="form-label" for="user-confirm-password">确认新密码</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="user-confirm-password"
+                      placeholder="再次输入新密码"
+                    />
                   </div>
                   <div class="col-12">
                     <div class="d-flex gap-4 flex-wrap">

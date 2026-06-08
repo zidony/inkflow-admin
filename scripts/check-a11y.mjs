@@ -69,7 +69,13 @@ function isSkippedStandardFormControl(tag) {
 
 function shouldCheckEditFormControl(relativePath, tag) {
   return (
-    ['src/category-edit.html', 'src/link-edit.html', 'src/tag-edit.html'].includes(relativePath) &&
+    [
+      'src/category-edit.html',
+      'src/image-edit.html',
+      'src/link-edit.html',
+      'src/tag-edit.html',
+      'src/user-edit.html'
+    ].includes(relativePath) &&
     isStandardFormControl(tag) &&
     !isSkippedStandardFormControl(tag)
   );
