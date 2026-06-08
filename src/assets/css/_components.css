@@ -1522,7 +1522,7 @@ textarea.form-control {
   /* Editor sticky bar */
   .ink-editor-sticky-bar {
     padding: 8px 12px;
-    margin: 0 -12px 12px;
+    margin: 0 0 12px;
   }
   .ink-sticky-inner {
     flex-wrap: wrap;
@@ -1530,6 +1530,15 @@ textarea.form-control {
   }
   .ink-sticky-inner > div {
     flex: 1;
+    min-width: 0;
+  }
+  .ink-sticky-inner > div:last-child {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .ink-sticky-inner > div:last-child .btn {
+    flex: 1 1 88px;
+    justify-content: center;
     min-width: 0;
   }
 
@@ -1571,6 +1580,7 @@ textarea.form-control {
   }
   .ink-card > .card-body.p-0 {
     padding: 0 !important;
+    overflow-x: clip;
   }
   .ink-card > .card-header {
     flex-wrap: wrap;
