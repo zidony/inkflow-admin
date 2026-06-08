@@ -2355,63 +2355,6 @@ textarea.form-control {
   margin-bottom: 0;
 }
 
-/* ============================================================
-   DARK MODE SYSTEM
-   ============================================================ */
-[data-theme='dark'] {
-  /* Brand Override - Softer desaturated slate blue to eliminate all text link glare */
-  --ink-50: #0b162a;
-  --ink-100: #102140;
-  --ink-200: #183361;
-  --ink-300: #224888;
-  --ink-400: #a2c4f7; /* Very soothing, soft ice-blue for hover/active text highlights */
-  --ink-500: #7096db; /* Soft, desaturated pastel slate-blue primary (perfect for premium link & text readability) */
-  --ink-600: #4b75c4; /* Rich, comfortable hover brand blue */
-
-  /* Accent Override */
-  --ink-accent-400: #22d3ee;
-  --ink-accent-500: #06b6d4;
-
-  /* Dark Theme Neutral Colors - Slate-Optimized for Comfort & Premium Feel */
-  --ink-gray-50: #090d16;
-  --ink-gray-100: #0f172a;
-  --ink-gray-150: #1e293b;
-  --ink-gray-200: #334155;
-  --ink-gray-300: #475569;
-  --ink-gray-400: #64748b;
-  --ink-gray-500: #94a3b8;
-  --ink-gray-600: #cbd5e1;
-  --ink-gray-700: #e2e8f0;
-  --ink-gray-800: #f1f5f9;
-  --ink-gray-900: #ffffff;
-
-  /* Layout backgrounds */
-  --content-bg: #030712;
-  --ink-card-bg: var(--ink-dark-surface-bg);
-  --ink-card-border: var(--ink-dark-border);
-  --ink-surface-translucent: rgba(3, 7, 18, 0.92);
-  --topbar-bg: var(--ink-dark-surface-bg);
-  --topbar-border: var(--ink-dark-border);
-
-  /* Sidebar variables override */
-  --sidebar-bg: #030712;
-  --sidebar-border: var(--ink-dark-border);
-  --sidebar-logo-bg: #030712;
-  --sidebar-active-bg: var(--ink-dark-brand-emphasis-bg);
-  --sidebar-hover-bg: rgba(255, 255, 255, 0.05);
-
-  /* Shadows */
-  --ink-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
-  --ink-card-shadow-hover: 0 10px 30px rgba(112, 150, 219, 0.15), 0 4px 10px rgba(0, 0, 0, 0.5);
-
-  /* Scrollbars */
-  --scroll-thumb: var(--ink-dark-control-border);
-
-  /* Component state overrides */
-  --ink-notif-unread-bg: rgba(112, 150, 219, 0.08);
-  --ink-notif-unread-hover-bg: rgba(112, 150, 219, 0.12);
-}
-
 /* Custom visual components under dark mode to enhance glow & neon aesthetics */
 [data-theme='dark'] #topbar {
   background: var(--topbar-bg) !important;
