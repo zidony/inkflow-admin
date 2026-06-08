@@ -44,10 +44,7 @@ export class DelegationManager {
       }
     });
 
-    // 3. Baseline accessibility semantics for template controls.
-    this.enhanceControlSemantics();
-
-    // 4. Central Event Delegation
+    // 3. Central Event Delegation
     document.body.addEventListener('click', e => this.handleClick(e));
     document.body.addEventListener('change', e => this.handleChange(e));
   }
@@ -93,41 +90,6 @@ export class DelegationManager {
       saveNotificationPreference: () => this.saveNotificationPreference(),
       toggleMailPreference: () => this.toggleMailPreference(actionEl)
     });
-  }
-
-  enhanceControlSemantics() {
-    document.querySelectorAll('button:not([type])').forEach(button => {
-      button.setAttribute('type', 'button');
-    });
-
-    document
-      .querySelectorAll('button[title], a.btn-icon[title], .ink-toolbar-btn[title]')
-      .forEach(el => {
-        if (!el.getAttribute('aria-label')) {
-          el.setAttribute('aria-label', el.getAttribute('title'));
-        }
-      });
-
-    document.querySelectorAll('.btn-icon i, .ink-toolbar-btn i').forEach(icon => {
-      icon.setAttribute('aria-hidden', 'true');
-    });
-
-    document.querySelectorAll('.ink-filter-tabs').forEach(tabList => {
-      tabList.setAttribute('role', 'tablist');
-      tabList.querySelectorAll('.ink-filter-tab').forEach(tab => {
-        tab.setAttribute('role', 'tab');
-        tab.setAttribute('aria-selected', tab.classList.contains('active') ? 'true' : 'false');
-      });
-    });
-
-    const settingsNav = document.querySelector('.ink-settings-nav');
-    if (settingsNav) {
-      settingsNav.setAttribute('role', 'tablist');
-      settingsNav.querySelectorAll('.ink-settings-nav-item').forEach(btn => {
-        btn.setAttribute('role', 'tab');
-        btn.setAttribute('aria-selected', btn.classList.contains('active') ? 'true' : 'false');
-      });
-    }
   }
 
   confirmDelete(deleteBtn) {
