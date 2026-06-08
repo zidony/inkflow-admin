@@ -4,12 +4,52 @@ import { lineNumberFor, listFilesAsync, readTextAsync, relativeToRoot, rootDir }
 const srcDir = path.join(rootDir, 'src');
 
 function getAttribute(tag, name) {
-  const match = tag.match(new RegExp(`\\s${name}=(["'])(.*?)\\1`, 'i'));
-  return match ? match[2] : '';
+  return parseAttributes(tag).get(name.toLowerCase()) ?? '';
 }
 
 function hasAttribute(tag, name) {
-  return new RegExp(`\\s${name}(?:=|\\s|>|$)`, 'i').test(tag);
+  return parseAttributes(tag).has(name.toLowerCase());
+}
+
+function parseAttributes(tag) {
+  const attributes = new Map();
+  const source = tag.replace(/^<\/?[a-zA-Z][a-zA-Z0-9:-]*/, '').replace(/\/?>$/, '');
+  let index = 0;
+
+  while (index < source.length) {
+    while (/\s/.test(source[index] ?? '')) index += 1;
+    if (index >= source.length) break;
+
+    const nameStart = index;
+    while (index < source.length && !/[\s=]/.test(source[index])) index += 1;
+    const attrName = source.slice(nameStart, index).toLowerCase();
+    if (!attrName) break;
+
+    while (/\s/.test(source[index] ?? '')) index += 1;
+    if (source[index] !== '=') {
+      attributes.set(attrName, '');
+      continue;
+    }
+
+    index += 1;
+    while (/\s/.test(source[index] ?? '')) index += 1;
+
+    const quote = source[index];
+    if (quote === '"' || quote === "'") {
+      index += 1;
+      const valueStart = index;
+      while (index < source.length && source[index] !== quote) index += 1;
+      attributes.set(attrName, source.slice(valueStart, index));
+      index += 1;
+      continue;
+    }
+
+    const valueStart = index;
+    while (index < source.length && !/\s/.test(source[index])) index += 1;
+    attributes.set(attrName, source.slice(valueStart, index));
+  }
+
+  return attributes;
 }
 
 function hasClass(tag, className) {
@@ -243,12 +283,21 @@ function checkFile(relativePath, html) {
   const imagePattern = /<img\b[^>]*>/gi;
   while ((match = imagePattern.exec(html))) {
     const tag = match[0];
-    if (hasAttribute(tag, 'alt')) {
-      continue;
-    }
-
     const line = lineNumberFor(html, match.index);
-    errors.push(`${relativePath}:${line} image needs an alt attribute.`);
+    const location = `${relativePath}:${line}`;
+
+    if (!hasAttribute(tag, 'alt')) {
+      errors.push(`${location} image needs an alt attribute.`);
+    }
+    if (!hasAttribute(tag, 'width') || !hasAttribute(tag, 'height')) {
+      errors.push(`${location} image needs explicit width and height attributes.`);
+    }
+    if (getAttribute(tag, 'loading') !== 'lazy') {
+      errors.push(`${location} image needs loading="lazy".`);
+    }
+    if (getAttribute(tag, 'decoding') !== 'async') {
+      errors.push(`${location} image needs decoding="async".`);
+    }
   }
 
   const bootstrapIconPattern = /<i\b[^>]*\bclass=(["'])[^"']*\bbi\b[^"']*\1[^>]*>/gi;
