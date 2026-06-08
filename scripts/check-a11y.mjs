@@ -337,6 +337,17 @@ async function checkA11y() {
     errors.push(`${relativeToRoot(sidebarModulePath)} active sidebar link needs aria-current="page" synchronization.`);
   }
 
+  const toastModulePath = path.join(srcDir, 'assets', 'js', 'modules', 'toast.js');
+  const toastModule = await readTextAsync(toastModulePath);
+  if (
+    !/setAttribute\(['"]role['"],/.test(toastModule) ||
+    !/setAttribute\(['"]aria-live['"],/.test(toastModule) ||
+    !/setAttribute\(['"]aria-atomic['"],\s*['"]true['"]\)/.test(toastModule) ||
+    !/setAttribute\(['"]aria-label['"],\s*['"]关闭通知['"]\)/.test(toastModule)
+  ) {
+    errors.push(`${relativeToRoot(toastModulePath)} toast notifications need live-region semantics and a named close button.`);
+  }
+
   if (errors.length) {
     throw new Error(`Accessibility check failed:\n${errors.join('\n')}`);
   }

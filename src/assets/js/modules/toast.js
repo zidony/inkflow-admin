@@ -18,6 +18,9 @@ export function showToast(message, type = 'success') {
   };
 
   const toast = document.createElement('div');
+  toast.setAttribute('role', type === 'danger' || type === 'warning' ? 'alert' : 'status');
+  toast.setAttribute('aria-live', type === 'danger' || type === 'warning' ? 'assertive' : 'polite');
+  toast.setAttribute('aria-atomic', 'true');
 
   // Apply premium styling
   Object.assign(toast.style, {
@@ -57,6 +60,8 @@ export function showToast(message, type = 'success') {
 
   const closeBtn = document.createElement('button');
   closeBtn.textContent = '×';
+  closeBtn.setAttribute('type', 'button');
+  closeBtn.setAttribute('aria-label', '关闭通知');
   Object.assign(closeBtn.style, {
     border: 'none',
     background: 'transparent',
