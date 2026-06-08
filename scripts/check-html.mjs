@@ -210,6 +210,13 @@ function validateIdReferences(filePath, html, knownIds) {
       }
     }
 
+    const ariaLabelledBy = getAttribute(tag, 'aria-labelledby');
+    for (const id of ariaLabelledBy.split(/\s+/).filter(Boolean)) {
+      if (!knownIds.has(id)) {
+        errors.push(`${location} aria-labelledby references missing id "${id}".`);
+      }
+    }
+
     const dataTarget = getAttribute(tag, 'data-target');
     const shouldTargetId =
       getAttribute(tag, 'data-action') === 'trigger' || getAttribute(tag, 'data-toggle') === 'submenu';
