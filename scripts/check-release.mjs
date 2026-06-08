@@ -157,6 +157,13 @@ async function assertVersionConsistency() {
     if (!content.includes(`**v${packageVersion}**`)) {
       throw new Error(`${readme} does not contain the latest version entry **v${packageVersion}**.`);
     }
+
+    const latestVersionLine = content
+      .split(/\r?\n/)
+      .find(line => line.includes(`**v${packageVersion}**`));
+    if (latestVersionLine && /(?:\?{3,}|�)/.test(latestVersionLine)) {
+      throw new Error(`${readme} latest version entry contains mojibake or placeholder characters.`);
+    }
   }
 
   return packageJson;
