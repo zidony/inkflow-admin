@@ -77,11 +77,13 @@ export class SidebarManager {
     // Remove default active classes in case they were left in HTML
     document.querySelectorAll('.nav-link-item').forEach(link => {
       link.classList.remove('active');
+      link.removeAttribute('aria-current');
     });
 
     const activeLink = document.querySelector(`.sidebar-nav-wrap a[href="${currentPath}"]`);
     if (activeLink) {
       activeLink.classList.add('active');
+      activeLink.setAttribute('aria-current', 'page');
       const submenuWrap = activeLink.closest('.submenu-wrap');
       if (submenuWrap) {
         const toggleBtn = document.querySelector(`.nav-link-item[data-target="${submenuWrap.id}"]`);

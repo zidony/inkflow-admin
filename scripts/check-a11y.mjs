@@ -328,6 +328,15 @@ async function checkA11y() {
     errors.push(...checkFile(relativePath, html));
   }
 
+  const sidebarModulePath = path.join(srcDir, 'assets', 'js', 'modules', 'sidebar.js');
+  const sidebarModule = await readTextAsync(sidebarModulePath);
+  if (
+    !/removeAttribute\(['"]aria-current['"]\)/.test(sidebarModule) ||
+    !/setAttribute\(['"]aria-current['"],\s*['"]page['"]\)/.test(sidebarModule)
+  ) {
+    errors.push(`${relativeToRoot(sidebarModulePath)} active sidebar link needs aria-current="page" synchronization.`);
+  }
+
   if (errors.length) {
     throw new Error(`Accessibility check failed:\n${errors.join('\n')}`);
   }
