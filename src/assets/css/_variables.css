@@ -108,6 +108,14 @@
   --ink-notif-unread-hover-bg: #edf4ff;
   --ink-notif-dropdown-unread-bg: #f0f7ff;
   --ink-notif-dropdown-unread-hover-bg: #e6f1ff;
+  --ink-login-page-bg: linear-gradient(135deg, var(--ink-900) 0%, #0d2a4a 50%, #0a3a5c 100%);
+  --ink-login-page-orb-bg:
+    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(13, 110, 204, 0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 80% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
+  --ink-login-card-bg: rgba(255, 255, 255, 0.97);
+  --ink-login-card-shadow: 0 24px 60px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.2);
+  --ink-login-logo-shadow: 0 4px 12px rgba(13, 110, 204, 0.35);
+  --ink-login-dots-bg: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
   /* Reusable tint backgrounds */
   --ink-tint-blue-bg: var(--ink-50);
   --ink-tint-blue-text: var(--ink-500);

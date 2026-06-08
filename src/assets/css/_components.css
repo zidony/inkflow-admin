@@ -358,7 +358,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--ink-text-on-brand);
   font-size: 1.8rem;
   overflow: hidden;
   cursor: pointer;
@@ -375,10 +375,10 @@
   bottom: 0;
   width: 26px;
   height: 26px;
-  border: 2px solid #fff;
+  border: 2px solid var(--ink-text-on-brand);
   border-radius: 50%;
   background: var(--ink-500);
-  color: #fff;
+  color: var(--ink-text-on-brand);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -530,7 +530,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--ink-text-on-brand);
   font-size: 0.8rem;
   font-weight: 700;
   flex-shrink: 0;
@@ -1795,7 +1795,7 @@ textarea.form-control {
    ============================================================ */
 .ink-login-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--ink-900) 0%, #0d2a4a 50%, #0a3a5c 100%);
+  background: var(--ink-login-page-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1807,17 +1807,13 @@ textarea.form-control {
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(13, 110, 204, 0.25) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 30% at 80% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
+  background: var(--ink-login-page-orb-bg);
   pointer-events: none;
 }
 .ink-login-card {
-  background: rgba(255, 255, 255, 0.97);
+  background: var(--ink-login-card-bg);
   border-radius: 20px;
-  box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.35),
-    0 8px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--ink-login-card-shadow);
   padding: 44px 40px;
   width: 100%;
   max-width: 420px;
@@ -1834,14 +1830,14 @@ textarea.form-control {
 .ink-login-logo-icon {
   width: 44px;
   height: 44px;
-  background: linear-gradient(135deg, var(--ink-500), var(--ink-accent-400));
+  background: var(--ink-avatar-blue-bg);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--ink-text-on-brand);
   font-size: 1.2rem;
-  box-shadow: 0 4px 12px rgba(13, 110, 204, 0.35);
+  box-shadow: var(--ink-login-logo-shadow);
 }
 .ink-login-logo-name {
   font-size: 1.3rem;
@@ -1980,7 +1976,7 @@ textarea.form-control {
   right: 0;
   width: 200px;
   height: 200px;
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-image: var(--ink-login-dots-bg);
   background-size: 20px 20px;
   pointer-events: none;
   border-radius: 0 20px 0 0;
