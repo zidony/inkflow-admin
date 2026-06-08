@@ -60,7 +60,13 @@
   --ink-surface-muted: var(--ink-gray-50);
   --ink-surface-raised: #ffffff;
   --ink-surface-overlay: rgba(255, 255, 255, 0.92);
+  --ink-surface-translucent: rgba(240, 244, 250, 0.92);
   --ink-text-on-brand: #ffffff;
+  --ink-overlay-border: rgba(255, 255, 255, 0.9);
+  --ink-overlay-scrim: rgba(0, 0, 0, 0.4);
+  --ink-overlay-scrim-strong: rgba(0, 0, 0, 0.5);
+  --ink-overlay-scrim-hover: rgba(0, 0, 0, 0.45);
+  --ink-upload-drag-bg: rgba(13, 110, 204, 0.15);
   --ink-card-bg: var(--ink-surface-bg);
   --ink-card-border: var(--ink-gray-200);
   --ink-shadow-xs: 0 1px 0 var(--ink-gray-200);
@@ -70,6 +76,7 @@
   --ink-shadow-popover: 0 12px 40px rgba(0, 0, 0, 0.14), 0 4px 12px rgba(0, 0, 0, 0.06);
   --ink-shadow-brand: 0 4px 14px rgba(13, 110, 204, 0.4);
   --ink-shadow-brand-soft: 0 4px 12px rgba(13, 110, 204, 0.1);
+  --ink-shadow-preview: 0 4px 16px rgba(0, 0, 0, 0.12);
   --ink-card-shadow: var(--ink-shadow-sm);
   --ink-card-shadow-hover: var(--ink-shadow-lg);
   --ink-radius-xs: 4px;
@@ -99,6 +106,8 @@
   --ink-avatar-slate-bg: linear-gradient(135deg, var(--ink-gray-400), var(--ink-gray-500));
   --ink-notif-unread-bg: #f5f9ff;
   --ink-notif-unread-hover-bg: #edf4ff;
+  --ink-notif-dropdown-unread-bg: #f0f7ff;
+  --ink-notif-dropdown-unread-hover-bg: #e6f1ff;
   /* Reusable tint backgrounds */
   --ink-tint-blue-bg: var(--ink-50);
   --ink-tint-blue-text: var(--ink-500);
