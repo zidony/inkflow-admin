@@ -48,6 +48,7 @@ export function showToast(message, type = 'success') {
 
   const iconEl = document.createElement('i');
   iconEl.className = 'bi ' + icons[type];
+  iconEl.setAttribute('aria-hidden', 'true');
   Object.assign(iconEl.style, {
     color: colors[type],
     fontSize: '1rem',
