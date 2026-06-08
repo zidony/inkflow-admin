@@ -42,6 +42,8 @@ export class BulkSelectManager {
       cb.addEventListener('change', () => this.updateBulkBar());
     });
 
+    document.addEventListener('inkflow:rows-changed', () => this.updateBulkBar());
+
     document.addEventListener('click', event => {
       const bulkDeleteButton = event.target.closest('[data-action="bulk-delete"]');
       if (!bulkDeleteButton) return;

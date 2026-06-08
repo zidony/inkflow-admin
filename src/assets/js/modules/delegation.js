@@ -101,6 +101,7 @@ export class DelegationManager {
       row.style.opacity = '0';
       setTimeout(() => {
         row.remove();
+        document.dispatchEvent(new CustomEvent('inkflow:rows-changed'));
       }, 320);
     }
     showToast(t('deleted'), 'danger');
