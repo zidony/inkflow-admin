@@ -1654,6 +1654,16 @@ textarea.form-control {
   .ink-editor-sidebar {
     position: static;
   }
+  .ink-post-meta-row {
+    align-items: flex-start !important;
+  }
+  .ink-post-permalink {
+    flex-basis: 100%;
+    min-width: 0;
+  }
+  .ink-post-slug-preview {
+    overflow-wrap: anywhere;
+  }
   .ink-avatar-crop-wrap {
     width: min(240px, calc(100vw - 72px));
     height: min(240px, calc(100vw - 72px));

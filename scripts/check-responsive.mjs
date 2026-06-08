@@ -86,6 +86,8 @@ const requiredCssGuards = [
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-notif-desc\s*{[^}]*white-space:\s*normal;[^}]*overflow:\s*visible;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-notif-more\s*{[^}]*opacity:\s*1;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-editor-sidebar\s*{[^}]*position:\s*static;/],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-post-permalink\s*{[^}]*flex-basis:\s*100%;[^}]*min-width:\s*0;/],
+  ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-post-slug-preview\s*{[^}]*overflow-wrap:\s*anywhere;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*767\.98px\)[\s\S]*\.ink-avatar-crop-wrap\s*{[^}]*width:\s*min\(240px,\s*calc\(100vw\s*-\s*72px\)\);/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*560px\)[\s\S]*\.topbar-create-btn\s*{[^}]*width:\s*36px;[^}]*height:\s*36px;[^}]*font-size:\s*0;/],
   ['_components.css', componentsCss, /@media\s*\(max-width:\s*560px\)[\s\S]*\.topbar-create-btn\s+i\s*{[^}]*font-size:\s*1rem;/],
