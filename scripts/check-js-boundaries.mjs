@@ -16,6 +16,14 @@ const bannedPatterns = [
   {
     pattern: /from\s+['"]bootstrap['"]|import\s+.*['"]bootstrap['"]/,
     message: 'Bootstrap JS should stay external via CDN instead of being bundled'
+  },
+  {
+    pattern: /\b(?:innerHTML|outerHTML|insertAdjacentHTML|document\.write)\b/,
+    message: 'DOM updates should avoid HTML string injection APIs'
+  },
+  {
+    pattern: /\b(?:eval|Function)\s*\(/,
+    message: 'dynamic code execution should not be used in runtime modules'
   }
 ];
 
