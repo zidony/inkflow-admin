@@ -20,7 +20,7 @@
       {{/topbar}}
       <main id="page-content">
         {{#> page_header title="系统设置" subtitle="管理 InkFlow 博客的全局配置"}}
-          <button
+          <button type="button"
             class="btn btn-primary btn-sm"
             data-action="toast"
             data-toast-msg="所有设置已保存"
@@ -36,7 +36,7 @@
             <div class="card ink-card ink-settings-nav-card">
               <div class="card-body">
                 <div class="ink-settings-nav" role="tablist">
-                  <button
+                  <button type="button"
                     id="settings-tab-site"
                     class="ink-settings-nav-item active"
                     data-action="switch-settings"
@@ -46,7 +46,7 @@
                     aria-selected="true"
                   >
                     <i class="bi bi-house" aria-hidden="true"></i>站点基本设置</button
-                  ><button
+                  ><button type="button"
                     id="settings-tab-post"
                     class="ink-settings-nav-item"
                     data-action="switch-settings"
@@ -56,7 +56,7 @@
                     aria-selected="false"
                   >
                     <i class="bi bi-file-richtext" aria-hidden="true"></i>文章设置</button
-                  ><button
+                  ><button type="button"
                     id="settings-tab-comment"
                     class="ink-settings-nav-item"
                     data-action="switch-settings"
@@ -66,7 +66,7 @@
                     aria-selected="false"
                   >
                     <i class="bi bi-chat-left-dots" aria-hidden="true"></i>评论设置</button
-                  ><button
+                  ><button type="button"
                     id="settings-tab-media"
                     class="ink-settings-nav-item"
                     data-action="switch-settings"
@@ -76,7 +76,7 @@
                     aria-selected="false"
                   >
                     <i class="bi bi-image" aria-hidden="true"></i>媒体设置</button
-                  ><button
+                  ><button type="button"
                     id="settings-tab-seo"
                     class="ink-settings-nav-item"
                     data-action="switch-settings"
@@ -86,7 +86,7 @@
                     aria-selected="false"
                   >
                     <i class="bi bi-search-heart" aria-hidden="true"></i>SEO 设置</button
-                  ><button
+                  ><button type="button"
                     id="settings-tab-smtp"
                     class="ink-settings-nav-item"
                     data-action="switch-settings"
@@ -96,7 +96,7 @@
                     aria-selected="false"
                   >
                     <i class="bi bi-envelope-at" aria-hidden="true"></i>邮件 SMTP</button
-                  ><button
+                  ><button type="button"
                     id="settings-tab-security"
                     class="ink-settings-nav-item"
                     data-action="switch-settings"
@@ -106,7 +106,7 @@
                     aria-selected="false"
                   >
                     <i class="bi bi-shield-lock" aria-hidden="true"></i>安全设置</button
-                  ><button
+                  ><button type="button"
                     id="settings-tab-cache"
                     class="ink-settings-nav-item"
                     data-action="switch-settings"
@@ -116,7 +116,7 @@
                     aria-selected="false"
                   >
                     <i class="bi bi-lightning-charge" aria-hidden="true"></i>缓存与性能</button
-                  ><button
+                  ><button type="button"
                     id="settings-tab-advanced"
                     class="ink-settings-nav-item"
                     data-action="switch-settings"
@@ -471,7 +471,7 @@
                       ><input type="password" class="form-control" value="••••••••••••" aria-label="SMTP 密码" />
                     </div>
                     <div class="col-12">
-                      <button
+                      <button type="button"
                         class="btn btn-outline-primary"
                         data-action="toast"
                         data-toast-msg="测试邮件发送成功"
@@ -604,7 +604,7 @@
                       </div>
                     </div>
                     <div class="col-12">
-                      <button
+                      <button type="button"
                         class="btn btn-outline-primary me-2"
                         data-action="toast"
                         data-toast-msg="缓存已全部清除"
@@ -612,7 +612,7 @@
                       >
                         <i class="bi bi-arrow-repeat me-1" aria-hidden="true"></i>清除全部缓存
                       </button>
-                      <button
+                      <button type="button"
                         class="btn btn-light"
                         data-action="toast"
                         data-toast-msg="CSS/JS 资源已重新生成"
@@ -764,7 +764,7 @@ Sitemap: /sitemap.xml</textarea
               </div>
             </div>
             <div class="d-flex gap-2 mt-3">
-              <button
+              <button type="button"
                 class="btn btn-primary btn-sm"
                 data-action="toast"
                 data-toast-msg="设置已保存"
@@ -772,7 +772,7 @@ Sitemap: /sitemap.xml</textarea
               >
                 <i class="bi bi-check-lg me-1" aria-hidden="true"></i>保存设置
               </button>
-              <button
+              <button type="button"
                 class="btn btn-light btn-sm"
                 data-action="toast"
                 data-toast-msg="已重置为默认值"

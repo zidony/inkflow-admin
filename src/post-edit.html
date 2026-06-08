@@ -35,13 +35,13 @@
             </span>
           </div>
           <div class="d-flex align-items-center gap-2">
-            <button class="btn btn-light btn-sm u-text-sm" id="btn-preview">
+            <button type="button" class="btn btn-light btn-sm u-text-sm" id="btn-preview">
               <i class="bi bi-eye me-1" aria-hidden="true"></i>预览
             </button>
-            <button class="btn btn-light btn-sm u-text-sm js-save-draft-btn" id="btn-save-draft">
+            <button type="button" class="btn btn-light btn-sm u-text-sm js-save-draft-btn" id="btn-save-draft">
               <i class="bi bi-floppy me-1" aria-hidden="true"></i>保存草稿
             </button>
-            <button class="btn btn-primary btn-sm u-text-sm js-publish-btn" id="btn-publish">
+            <button type="button" class="btn btn-primary btn-sm u-text-sm js-publish-btn" id="btn-publish">
               <i class="bi bi-send-fill me-1" aria-hidden="true"></i>发布文章
             </button>
           </div>
@@ -79,7 +79,7 @@
                         vue3-composition-api
                       </span>
                     </span>
-                    <button
+                    <button type="button"
                       class="btn btn-light btn-sm ink-post-slug-btn ms-2"
                       data-action="toast"
                       data-toast-msg="Slug 已可编辑"
@@ -101,7 +101,7 @@
               <div class="ink-panel-header">
                 <i class="bi bi-pencil-square" aria-hidden="true"></i> 文章内容
                 <div class="ms-auto d-flex gap-2">
-                  <button
+                  <button type="button"
                     class="btn btn-light btn-sm ink-editor-mode-btn u-text-xs"
                     data-action="toast"
                     data-toast-msg="已切换到源码模式"
@@ -109,7 +109,7 @@
                   >
                     <i class="bi bi-code-slash me-1" aria-hidden="true"></i>源码
                   </button>
-                  <button
+                  <button type="button"
                     class="btn btn-light btn-sm ink-editor-mode-btn u-text-xs"
                     data-action="toast"
                     data-toast-msg="已切换到预览模式"
@@ -133,49 +133,49 @@
                     </select>
                   </div>
                   <div class="ink-toolbar-group">
-                    <button class="ink-toolbar-btn active" title="粗体" aria-label="粗体">
+                    <button type="button" class="ink-toolbar-btn active" title="粗体" aria-label="粗体">
                       <i class="bi bi-type-bold" aria-hidden="true"></i>
                     </button>
-                    <button class="ink-toolbar-btn" title="斜体" aria-label="斜体">
+                    <button type="button" class="ink-toolbar-btn" title="斜体" aria-label="斜体">
                       <i class="bi bi-type-italic" aria-hidden="true"></i>
                     </button>
-                    <button class="ink-toolbar-btn" title="下划线" aria-label="下划线">
+                    <button type="button" class="ink-toolbar-btn" title="下划线" aria-label="下划线">
                       <i class="bi bi-type-underline" aria-hidden="true"></i>
                     </button>
-                    <button class="ink-toolbar-btn" title="删除线" aria-label="删除线">
+                    <button type="button" class="ink-toolbar-btn" title="删除线" aria-label="删除线">
                       <i class="bi bi-type-strikethrough" aria-hidden="true"></i>
                     </button>
-                    <button class="ink-toolbar-btn" title="行内代码" aria-label="行内代码">
+                    <button type="button" class="ink-toolbar-btn" title="行内代码" aria-label="行内代码">
                       <i class="bi bi-code" aria-hidden="true"></i>
                     </button>
                   </div>
                   <div class="ink-toolbar-group">
-                    <button class="ink-toolbar-btn" title="左对齐" aria-label="左对齐">
+                    <button type="button" class="ink-toolbar-btn" title="左对齐" aria-label="左对齐">
                       <i class="bi bi-text-left" aria-hidden="true"></i>
                     </button>
-                    <button class="ink-toolbar-btn" title="居中对齐" aria-label="居中对齐">
+                    <button type="button" class="ink-toolbar-btn" title="居中对齐" aria-label="居中对齐">
                       <i class="bi bi-text-center" aria-hidden="true"></i>
                     </button>
-                    <button class="ink-toolbar-btn" title="右对齐" aria-label="右对齐">
+                    <button type="button" class="ink-toolbar-btn" title="右对齐" aria-label="右对齐">
                       <i class="bi bi-text-right" aria-hidden="true"></i>
                     </button>
                   </div>
                   <div class="ink-toolbar-group">
-                    <button class="ink-toolbar-btn" title="无序列表" aria-label="无序列表">
+                    <button type="button" class="ink-toolbar-btn" title="无序列表" aria-label="无序列表">
                       <i class="bi bi-list-ul" aria-hidden="true"></i>
                     </button>
-                    <button class="ink-toolbar-btn" title="有序列表" aria-label="有序列表">
+                    <button type="button" class="ink-toolbar-btn" title="有序列表" aria-label="有序列表">
                       <i class="bi bi-list-ol" aria-hidden="true"></i>
                     </button>
-                    <button class="ink-toolbar-btn" title="任务清单" aria-label="任务清单">
+                    <button type="button" class="ink-toolbar-btn" title="任务清单" aria-label="任务清单">
                       <i class="bi bi-list-check" aria-hidden="true"></i>
                     </button>
                   </div>
                   <div class="ink-toolbar-group">
-                    <button class="ink-toolbar-btn" title="插入链接" aria-label="插入链接">
+                    <button type="button" class="ink-toolbar-btn" title="插入链接" aria-label="插入链接">
                       <i class="bi bi-link-45deg" aria-hidden="true"></i>
                     </button>
-                    <button
+                    <button type="button"
                       class="ink-toolbar-btn"
                       title="插入图片" aria-label="插入图片"
                       data-action="toast"
@@ -184,26 +184,26 @@
                     >
                       <i class="bi bi-image" aria-hidden="true"></i>
                     </button>
-                    <button class="ink-toolbar-btn" title="插入代码块" aria-label="插入代码块">
+                    <button type="button" class="ink-toolbar-btn" title="插入代码块" aria-label="插入代码块">
                       <i class="bi bi-code-slash" aria-hidden="true"></i>
                     </button>
-                    <button class="ink-toolbar-btn" title="插入表格" aria-label="插入表格">
+                    <button type="button" class="ink-toolbar-btn" title="插入表格" aria-label="插入表格">
                       <i class="bi bi-table" aria-hidden="true"></i>
                     </button>
-                    <button class="ink-toolbar-btn" title="插入分割线" aria-label="插入分割线">
+                    <button type="button" class="ink-toolbar-btn" title="插入分割线" aria-label="插入分割线">
                       <i class="bi bi-dash-lg" aria-hidden="true"></i>
                     </button>
                   </div>
                   <div class="ink-toolbar-group">
-                    <button class="ink-toolbar-btn" title="撤销" aria-label="撤销">
+                    <button type="button" class="ink-toolbar-btn" title="撤销" aria-label="撤销">
                       <i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>
                     </button>
-                    <button class="ink-toolbar-btn" title="重做" aria-label="重做">
+                    <button type="button" class="ink-toolbar-btn" title="重做" aria-label="重做">
                       <i class="bi bi-arrow-clockwise" aria-hidden="true"></i>
                     </button>
                   </div>
                   <div class="ink-toolbar-group">
-                    <button
+                    <button type="button"
                       class="ink-toolbar-btn"
                       title="全屏" aria-label="全屏"
                       data-action="toast"
@@ -368,10 +368,10 @@
                   </div>
                 </div>
                 <div class="d-flex gap-2">
-                  <button class="btn btn-primary flex-fill js-publish-btn">
+                  <button type="button" class="btn btn-primary flex-fill js-publish-btn">
                     <i class="bi bi-send-fill me-1" aria-hidden="true"></i>发布文章
                   </button>
-                  <button class="btn btn-light flex-fill js-save-draft-btn">
+                  <button type="button" class="btn btn-light flex-fill js-save-draft-btn">
                     <i class="bi bi-floppy me-1" aria-hidden="true"></i>保存草稿
                   </button>
                 </div>
@@ -391,14 +391,14 @@
                 </div>
                 <input type="file" id="cover-file-input" accept="image/*" class="d-none" />
                 <div class="d-flex gap-2 mt-2">
-                  <button
+                  <button type="button"
                     class="btn btn-light btn-sm flex-fill"
                     data-action="trigger"
                     data-target="cover-file-input"
                   >
                     <i class="bi bi-upload me-1" aria-hidden="true"></i>上传图片
                   </button>
-                  <button
+                  <button type="button"
                     class="btn btn-light btn-sm flex-fill"
                     data-action="toast"
                     data-toast-msg="已从媒体库选择"
@@ -424,7 +424,7 @@
                   <span class="ink-pill">开源项目</span>
                   <span class="ink-pill">随笔日记</span>
                 </div>
-                <button
+                <button type="button"
                   class="btn btn-light btn-sm btn-h28px w-100 mt-2 u-text-xs"
                   data-action="toast"
                   data-toast-msg="请在栏目管理中新建分类"
@@ -478,7 +478,7 @@ Vue 3 带来了全新的 Composition API，提供了更灵活的代码组织方�
                 >
                 <div class="d-flex align-items-center justify-content-between mt-1">
                   <span class="ink-form-hint mb-0">建议 50–150 字</span>
-                  <button
+                  <button type="button"
                     class="btn btn-light btn-sm ink-post-summary-ai-btn"
                     data-action="toast"
                     data-toast-msg="已自动生成摘要"

@@ -30,7 +30,7 @@
               <div class="ink-panel-header">
                 <i class="bi bi-image-fill" aria-hidden="true"></i> 图片上传 / 预览
                 <div class="ms-auto d-flex gap-2">
-                  <button
+                  <button type="button"
                     class="btn btn-primary btn-sm u-text-xs btn-h28px"
                     data-action="trigger"
                     data-target="img-file-input"
@@ -66,14 +66,14 @@
                     class="ink-image-preview-img"
                   />
                   <div class="ink-image-preview-actions">
-                    <button
+                    <button type="button"
                       class="btn btn-light btn-sm u-text-xs"
                       data-action="trigger"
                       data-target="img-file-input"
                     >
                       <i class="bi bi-arrow-repeat me-1" aria-hidden="true"></i>替换图片
                     </button>
-                    <button
+                    <button type="button"
                       class="btn btn-light btn-sm u-text-xs"
                       data-action="toast"
                       data-toast-msg="图片裁剪功能已打开"
@@ -81,7 +81,7 @@
                     >
                       <i class="bi bi-crop me-1" aria-hidden="true"></i>裁剪
                     </button>
-                    <button
+                    <button type="button"
                       class="btn btn-danger-soft btn-sm u-text-xs"
                       data-action="clear-preview"
                     >
@@ -165,7 +165,7 @@
                     readonly
                     data-field="url"
                   />
-                  <button
+                  <button type="button"
                     class="btn btn-light"
                     data-action="toast"
                     data-toast-msg="已复制到剪贴板"
@@ -177,7 +177,7 @@
               </div>
             </div>
             <div class="d-flex gap-2">
-              <button
+              <button type="button"
                 class="btn btn-primary btn-sm"
                 data-action="toast"
                 data-toast-msg="图片信息已保存"
@@ -185,7 +185,7 @@
               >
                 <i class="bi bi-check-lg me-1" aria-hidden="true"></i>保存信息
               </button>
-              <button class="btn btn-light" data-action="navigate" data-href="image-list.html">
+              <button type="button" class="btn btn-light" data-action="navigate" data-href="image-list.html">
                 取消
               </button>
             </div>
@@ -217,7 +217,7 @@
             <div class="ink-panel ink-anim ink-delay-150">
               <div class="ink-panel-header"><i class="bi bi-scissors" aria-hidden="true"></i> 图片操作</div>
               <div class="ink-panel-body d-flex flex-column gap-2">
-                <button
+                <button type="button"
                   class="btn btn-light w-100"
                   data-action="toast"
                   data-toast-msg="图片编辑器开发中"
@@ -225,7 +225,7 @@
                 >
                   <i class="bi bi-crop me-1" aria-hidden="true"></i>裁剪图片
                 </button>
-                <button
+                <button type="button"
                   class="btn btn-light w-100"
                   data-action="toast"
                   data-toast-msg="正在重新生成缩略图"
@@ -233,7 +233,7 @@
                 >
                   <i class="bi bi-arrow-repeat me-1" aria-hidden="true"></i>重新生成缩略图
                 </button>
-                <button
+                <button type="button"
                   class="btn btn-danger-soft w-100 mt-2"
                   data-action="permanent-delete"
                   data-href="image-list.html"

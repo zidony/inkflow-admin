@@ -175,6 +175,25 @@ function checkDataActions(filePath, html) {
   return errors;
 }
 
+function checkButtonTypes(filePath, html) {
+  const content = stripIgnoredContent(html);
+  const errors = [];
+  const buttonPattern = /<button\b[^>]*>/gi;
+  let match;
+
+  while ((match = buttonPattern.exec(content))) {
+    const tag = match[0];
+    if (/\stype\s*=/.test(tag)) {
+      continue;
+    }
+
+    const line = lineNumberFor(content, match.index);
+    errors.push(`Button needs an explicit type at ${filePath}:${line}`);
+  }
+
+  return errors;
+}
+
 function checkSuspiciousPlaceholderText(filePath, html) {
   const content = stripIgnoredContent(html);
   const errors = [];
@@ -296,6 +315,7 @@ async function checkHtml() {
     allErrors.push(...checkDuplicateAttributes(relativePath, html));
     allErrors.push(...checkDuplicateIds(relativePath, html));
     allErrors.push(...checkDataActions(relativePath, html));
+    allErrors.push(...checkButtonTypes(relativePath, html));
     allErrors.push(...checkSuspiciousPlaceholderText(relativePath, html));
     allErrors.push(...checkPageHeaderPartialUsage(relativePath, html));
     allErrors.push(...checkBreadcrumbPartialUsage(relativePath, html));
