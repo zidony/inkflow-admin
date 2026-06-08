@@ -10,7 +10,8 @@ const docs = [
       'npm run check:js-boundaries',
       'npm run check:docs',
       'npm run release:check',
-      'npm run check:release'
+      'npm run check:release',
+      '`bulk-delete`'
     ]
   },
   {
@@ -21,7 +22,8 @@ const docs = [
       'npm run check:js-boundaries',
       'npm run check:docs',
       'npm run release:check',
-      'npm run check:release'
+      'npm run check:release',
+      '`bulk-delete`'
     ]
   },
   {
