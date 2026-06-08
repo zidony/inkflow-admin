@@ -194,6 +194,20 @@ function checkButtonTypes(filePath, html) {
   return errors;
 }
 
+function checkPlaceholderLinks(filePath, html) {
+  const content = stripIgnoredContent(html);
+  const errors = [];
+  const placeholderLinkPattern = /<a\b[^>]*\shref\s*=\s*(["'])#\1[^>]*>/gi;
+  let match;
+
+  while ((match = placeholderLinkPattern.exec(content))) {
+    const line = lineNumberFor(content, match.index);
+    errors.push(`Avoid placeholder href="#" links at ${filePath}:${line}`);
+  }
+
+  return errors;
+}
+
 function checkSuspiciousPlaceholderText(filePath, html) {
   const content = stripIgnoredContent(html);
   const errors = [];
@@ -316,6 +330,7 @@ async function checkHtml() {
     allErrors.push(...checkDuplicateIds(relativePath, html));
     allErrors.push(...checkDataActions(relativePath, html));
     allErrors.push(...checkButtonTypes(relativePath, html));
+    allErrors.push(...checkPlaceholderLinks(relativePath, html));
     allErrors.push(...checkSuspiciousPlaceholderText(relativePath, html));
     allErrors.push(...checkPageHeaderPartialUsage(relativePath, html));
     allErrors.push(...checkBreadcrumbPartialUsage(relativePath, html));
