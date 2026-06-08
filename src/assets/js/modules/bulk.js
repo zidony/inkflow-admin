@@ -2,6 +2,9 @@
    InkFlow Admin — Bulk Selection Manager Module
    ============================================================ */
 
+import { showToast } from './toast.js';
+import { t } from './i18n.js';
+
 export class BulkSelectManager {
   constructor() {
     this.selectAll = document.getElementById('select-all');
@@ -38,5 +41,26 @@ export class BulkSelectManager {
     document.querySelectorAll('.ink-row-check').forEach(cb => {
       cb.addEventListener('change', () => this.updateBulkBar());
     });
+
+    document.addEventListener('click', event => {
+      const bulkDeleteButton = event.target.closest('[data-action="bulk-delete"]');
+      if (!bulkDeleteButton) return;
+
+      event.preventDefault();
+      this.deleteSelectedRows();
+    });
+  }
+
+  deleteSelectedRows() {
+    const checkedRows = [...document.querySelectorAll('.ink-row-check:checked')]
+      .map(checkbox => checkbox.closest('tr') || checkbox.closest('.ink-item-container'))
+      .filter(Boolean);
+
+    if (!checkedRows.length) return;
+    if (!confirm(t('confirmDelete'))) return;
+
+    checkedRows.forEach(row => row.remove());
+    this.updateBulkBar();
+    showToast(t('deleted'), 'danger');
   }
 }
