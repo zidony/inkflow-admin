@@ -128,6 +128,7 @@ npm run check:release
 | `navigate` | `data-href` | 触发无感页面跳转 |
 | `permanent-delete` | `data-href` | 触发永久删除二次确认 |
 | `toggle-theme` | 无 | 触发暗黑/明亮模式切换 |
+| `toggle-user-status` | `data-toast-msg`, `data-toast-type` | 切换用户列表行的封禁/正常状态并显示反馈 |
 
 **保留的全局可用 JS 方法 (方便 HTML 页面调用)**：
 * `window.showToast(message, type)`：弹出 Toast 通知（类型支持：success/info/warning/danger）。

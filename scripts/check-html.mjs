@@ -37,6 +37,7 @@ const allowedDataActions = new Set([
   'toggle-mail-pref',
   'toggle-pwd',
   'toggle-theme',
+  'toggle-user-status',
   'trigger'
 ]);
 const requiredCdnAssets = [

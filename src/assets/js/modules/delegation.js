@@ -7,6 +7,7 @@ import { syncNotificationDateGroups } from './notification-dom.js';
 
 const clickActionHandlers = {
   'toggle-theme': manager => manager.toggleTheme(),
+  'toggle-user-status': manager => manager.toggleUserStatus(),
   delete: manager => manager.confirmDelete(),
   toast: manager => manager.showToast(),
   'read-all': manager => manager.readAll(),
@@ -66,6 +67,7 @@ export class DelegationManager {
           window.inkflowToggleTheme();
         }
       },
+      toggleUserStatus: () => this.toggleUserStatus(actionEl),
       confirmDelete: () => this.confirmDelete(actionEl),
       showToast: () => this.showToast(actionEl),
       readAll: () => this.readAllNotifications(),
@@ -111,6 +113,37 @@ export class DelegationManager {
     const msg = toastBtn.getAttribute('data-toast-msg') || t('toastSuccess');
     const type = toastBtn.getAttribute('data-toast-type') || 'success';
     showToast(msg, type);
+  }
+
+  toggleUserStatus(statusBtn) {
+    const row = statusBtn.closest('tr');
+    if (!row) return;
+
+    const nextBlocked = row.dataset.status !== 'blocked';
+    row.dataset.status = nextBlocked ? 'blocked' : 'active';
+
+    const statusBadge = row.querySelector('td:nth-last-child(2) .ink-badge');
+    if (statusBadge) {
+      statusBadge.classList.toggle('u-tint-green', !nextBlocked);
+      statusBadge.classList.toggle('u-tint-red', nextBlocked);
+
+      const dot = document.createElement('span');
+      dot.className = 'ink-badge-dot';
+      statusBadge.replaceChildren(dot, document.createTextNode(nextBlocked ? '已封禁' : '正常'));
+    }
+
+    const label = nextBlocked ? '解封用户' : '封禁用户';
+    statusBtn.setAttribute('title', label);
+    statusBtn.setAttribute('aria-label', label);
+    statusBtn.setAttribute('data-toast-msg', nextBlocked ? '用户已被封禁' : '用户已解封');
+    statusBtn.setAttribute('data-toast-type', nextBlocked ? 'danger' : 'success');
+
+    const icon = statusBtn.querySelector('i');
+    if (icon) {
+      icon.className = nextBlocked ? 'bi bi-person-check' : 'bi bi-person-x';
+    }
+
+    this.showToast(statusBtn);
   }
 
   readAllNotifications() {

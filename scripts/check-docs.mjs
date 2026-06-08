@@ -11,7 +11,8 @@ const docs = [
       'npm run check:docs',
       'npm run release:check',
       'npm run check:release',
-      '`bulk-delete`'
+      '`bulk-delete`',
+      '`toggle-user-status`'
     ]
   },
   {
@@ -23,7 +24,8 @@ const docs = [
       'npm run check:docs',
       'npm run release:check',
       'npm run check:release',
-      '`bulk-delete`'
+      '`bulk-delete`',
+      '`toggle-user-status`'
     ]
   },
   {

@@ -128,6 +128,7 @@ The project uses centralized event delegation mapped to `data-action` attributes
 | `navigate` | `data-href` | Navigates to the configured URL |
 | `permanent-delete` | `data-href` | Double-check dialog for permanent deletion |
 | `toggle-theme` | None | Toggles the theme mode |
+| `toggle-user-status` | `data-toast-msg`, `data-toast-type` | Toggles a user list row between blocked and active states with feedback |
 
 **Global JavaScript Hooks (for page calls)**:
 * `window.showToast(message, type)`: Triggers toast alerts (types: `success` / `info` / `warning` / `danger`).
