@@ -199,6 +199,15 @@ function checkFile(relativePath, html) {
     const line = lineNumberFor(html, match.index);
     const location = `${relativePath}:${line}`;
     const isIconControl = hasClass(tag, 'btn-icon') || hasClass(tag, 'ink-toolbar-btn');
+    const tagName = match[1].toLowerCase();
+
+    if (tagName === 'button' && !hasAttribute(tag, 'type')) {
+      errors.push(`${location} button needs an explicit type attribute.`);
+    }
+
+    if (tagName === 'a' && !hasAttribute(tag, 'href')) {
+      errors.push(`${location} link needs an href attribute.`);
+    }
 
     if (isIconControl && !hasAttribute(tag, 'aria-label')) {
       errors.push(`${location} icon control needs aria-label.`);
@@ -208,7 +217,7 @@ function checkFile(relativePath, html) {
       errors.push(`${location} active toolbar button needs aria-pressed.`);
     }
 
-    if (match[1].toLowerCase() === 'a' && getAttribute(tag, 'target') === '_blank') {
+    if (tagName === 'a' && getAttribute(tag, 'target') === '_blank') {
       const relTokens = getAttribute(tag, 'rel').split(/\s+/);
       if (!relTokens.includes('noopener') || !relTokens.includes('noreferrer')) {
         errors.push(`${location} target="_blank" link needs rel="noopener noreferrer".`);
