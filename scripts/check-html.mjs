@@ -21,6 +21,7 @@ const voidTags = new Set([
 const allowedDataActions = new Set([
   'apply-avatar-crop',
   'bulk-delete',
+  'clear-cache',
   'clear-selection',
   'clear-read-notifs',
   'clear-preview',
@@ -36,6 +37,7 @@ const allowedDataActions = new Set([
   'navigate',
   'permanent-delete',
   'preview-image',
+  'rebuild-assets',
   'regenerate-thumbnails',
   'read-all',
   'read-one',

@@ -125,6 +125,7 @@ The project uses centralized event delegation mapped to `data-action` attributes
 | `toast` | `data-toast-msg`, `data-toast-type` | Triggers toast notifications |
 | `delete` | None | Intercepts delete actions on rows to display confirm |
 | `bulk-delete` | None | Deletes checked rows in the current list and syncs bulk selection state |
+| `clear-cache` | None | Simulates cache clearing on the settings page and shows completion feedback |
 | `clear-selection` | None | Clears checked rows in the current list and hides the bulk toolbar |
 | `copy-field` | `data-target`, `data-copy-value`, `data-toast-msg`, `data-toast-type` | Copies the target input or configured text content to the clipboard |
 | `edit-slug` | None | Unlocks the post edit slug field and focuses the selected text |
@@ -134,6 +135,7 @@ The project uses centralized event delegation mapped to `data-action` attributes
 | `navigate` | `data-href` | Navigates to the configured URL |
 | `permanent-delete` | `data-href` | Double-check dialog for permanent deletion |
 | `preview-image` | None | Opens the current image row preview asset in a new tab |
+| `rebuild-assets` | None | Simulates rebuilding static assets on the settings page and shows completion feedback |
 | `regenerate-thumbnails` | None | Simulates thumbnail regeneration on the image edit page and shows completion feedback |
 | `toggle-editor-fullscreen` | None | Toggles the post editor panel fullscreen state and syncs button semantics |
 | `toggle-editor-mode` | `data-editor-mode` | Switches the post editor source/preview mode and syncs button state |

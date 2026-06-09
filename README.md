@@ -125,6 +125,7 @@ npm run check:release
 | `toast` | `data-toast-msg`, `data-toast-type` | 显示防 XSS 气泡弹窗 |
 | `delete` | 无 | 拦截表格/列表行的删除按钮，触发二次确认 |
 | `bulk-delete` | 无 | 删除当前列表中已勾选的行，并同步批量选择状态 |
+| `clear-cache` | 无 | 在设置页模拟清除缓存流程并显示完成反馈 |
 | `clear-selection` | 无 | 取消当前列表中的勾选状态并隐藏批量工具栏 |
 | `copy-field` | `data-target`, `data-copy-value`, `data-toast-msg`, `data-toast-type` | 复制目标输入框或指定文本内容到剪贴板 |
 | `edit-slug` | 无 | 解锁文章编辑页 Slug 字段并聚焦选中文本 |
@@ -134,6 +135,7 @@ npm run check:release
 | `navigate` | `data-href` | 触发无感页面跳转 |
 | `permanent-delete` | `data-href` | 触发永久删除二次确认 |
 | `preview-image` | 无 | 在新标签页打开当前图片行的预览资源 |
+| `rebuild-assets` | 无 | 在设置页模拟重新生成静态资源流程并显示完成反馈 |
 | `regenerate-thumbnails` | 无 | 在图片编辑页模拟缩略图重新生成过程并显示完成反馈 |
 | `toggle-editor-fullscreen` | 无 | 切换文章编辑器面板全屏状态并同步按钮语义 |
 | `toggle-editor-mode` | `data-editor-mode` | 切换文章编辑器的源码/预览模式并同步按钮状态 |
