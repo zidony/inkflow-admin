@@ -13,6 +13,7 @@ const clickActionHandlers = {
   toast: manager => manager.showToast(),
   'read-all': manager => manager.readAll(),
   'permanent-delete': manager => manager.permanentDelete(),
+  'preview-image': manager => manager.previewImage(),
   navigate: manager => manager.navigate(),
   trigger: manager => manager.triggerTarget(),
   'clear-preview': manager => manager.clearPreview()
@@ -74,6 +75,7 @@ export class DelegationManager {
       showToast: () => this.showToast(actionEl),
       readAll: () => this.readAllNotifications(),
       permanentDelete: () => this.permanentDelete(actionEl),
+      previewImage: () => this.previewImage(actionEl),
       navigate: () => this.navigate(actionEl),
       triggerTarget: () => this.triggerTarget(actionEl),
       clearPreview: () => this.clearPreview(actionEl),
@@ -226,6 +228,14 @@ export class DelegationManager {
         window.location = href;
       }, 800);
     }
+  }
+
+  previewImage(previewBtn) {
+    const image = previewBtn.closest('tr')?.querySelector('img');
+    if (!image?.src) return;
+
+    window.open(image.src, '_blank', 'noopener,noreferrer');
+    showToast(t('previewOpened'), 'info');
   }
 
   navigate(navBtn) {

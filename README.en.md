@@ -128,6 +128,7 @@ The project uses centralized event delegation mapped to `data-action` attributes
 | `copy-field` | `data-target`, `data-toast-msg`, `data-toast-type` | Copies the target input or text content to the clipboard |
 | `navigate` | `data-href` | Navigates to the configured URL |
 | `permanent-delete` | `data-href` | Double-check dialog for permanent deletion |
+| `preview-image` | None | Opens the current image row preview asset in a new tab |
 | `toggle-theme` | None | Toggles the theme mode |
 | `toggle-user-status` | `data-toast-msg`, `data-toast-type` | Toggles a user list row between blocked and active states with feedback |
 

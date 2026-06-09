@@ -13,6 +13,7 @@ const docs = [
       'npm run check:release',
       '`bulk-delete`',
       '`copy-field`',
+      '`preview-image`',
       '`toggle-user-status`'
     ]
   },
@@ -27,6 +28,7 @@ const docs = [
       'npm run check:release',
       '`bulk-delete`',
       '`copy-field`',
+      '`preview-image`',
       '`toggle-user-status`'
     ]
   },

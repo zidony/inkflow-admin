@@ -128,6 +128,7 @@ npm run check:release
 | `copy-field` | `data-target`, `data-toast-msg`, `data-toast-type` | 复制目标输入框或文本内容到剪贴板 |
 | `navigate` | `data-href` | 触发无感页面跳转 |
 | `permanent-delete` | `data-href` | 触发永久删除二次确认 |
+| `preview-image` | 无 | 在新标签页打开当前图片行的预览资源 |
 | `toggle-theme` | 无 | 触发暗黑/明亮模式切换 |
 | `toggle-user-status` | `data-toast-msg`, `data-toast-type` | 切换用户列表行的封禁/正常状态并显示反馈 |
 
