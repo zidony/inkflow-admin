@@ -36,6 +36,7 @@ const allowedDataActions = new Set([
   'save-notification-pref',
   'switch-settings',
   'toast',
+  'toggle-comment-status',
   'toggle-mail-pref',
   'toggle-pwd',
   'toggle-theme',

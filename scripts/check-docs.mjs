@@ -14,6 +14,7 @@ const docs = [
       '`bulk-delete`',
       '`copy-field`',
       '`preview-image`',
+      '`toggle-comment-status`',
       '`toggle-user-status`'
     ]
   },
@@ -29,6 +30,7 @@ const docs = [
       '`bulk-delete`',
       '`copy-field`',
       '`preview-image`',
+      '`toggle-comment-status`',
       '`toggle-user-status`'
     ]
   },

@@ -14,6 +14,7 @@ const clickActionHandlers = {
   'read-all': manager => manager.readAll(),
   'permanent-delete': manager => manager.permanentDelete(),
   'preview-image': manager => manager.previewImage(),
+  'toggle-comment-status': manager => manager.toggleCommentStatus(),
   navigate: manager => manager.navigate(),
   trigger: manager => manager.triggerTarget(),
   'clear-preview': manager => manager.clearPreview()
@@ -76,6 +77,7 @@ export class DelegationManager {
       readAll: () => this.readAllNotifications(),
       permanentDelete: () => this.permanentDelete(actionEl),
       previewImage: () => this.previewImage(actionEl),
+      toggleCommentStatus: () => this.toggleCommentStatus(actionEl),
       navigate: () => this.navigate(actionEl),
       triggerTarget: () => this.triggerTarget(actionEl),
       clearPreview: () => this.clearPreview(actionEl),
@@ -171,6 +173,41 @@ export class DelegationManager {
     const icon = statusBtn.querySelector('i');
     if (icon) {
       icon.className = nextBlocked ? 'bi bi-person-check' : 'bi bi-person-x';
+    }
+
+    this.showToast(statusBtn);
+  }
+
+  toggleCommentStatus(statusBtn) {
+    const row = statusBtn.closest('tr');
+    const nextStatus = statusBtn.getAttribute('data-comment-status');
+    if (!row || !nextStatus) return;
+
+    const statusMap = {
+      approved: { label: '已审核', className: 'u-tint-green' },
+      spam: { label: '垃圾', className: 'u-tint-red' },
+      pending: { label: '待审核', className: 'u-tint-amber' }
+    };
+    const status = statusMap[nextStatus];
+    if (!status) return;
+
+    row.dataset.status = nextStatus;
+
+    const statusBadge = row.querySelector('td:nth-last-child(2) .ink-badge');
+    if (statusBadge) {
+      statusBadge.classList.remove('u-tint-green', 'u-tint-red', 'u-tint-amber');
+      statusBadge.classList.add(status.className);
+
+      const dot = document.createElement('span');
+      dot.className = 'ink-badge-dot';
+      statusBadge.replaceChildren(dot, document.createTextNode(status.label));
+    }
+
+    const activeFilter = document
+      .querySelector('.ink-filter-tab.active')
+      ?.getAttribute('data-filter');
+    if (activeFilter && activeFilter !== 'all') {
+      row.style.display = row.dataset.status === activeFilter ? '' : 'none';
     }
 
     this.showToast(statusBtn);

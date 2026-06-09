@@ -131,6 +131,7 @@ The project uses centralized event delegation mapped to `data-action` attributes
 | `preview-image` | None | Opens the current image row preview asset in a new tab |
 | `toggle-theme` | None | Toggles the theme mode |
 | `toggle-user-status` | `data-toast-msg`, `data-toast-type` | Toggles a user list row between blocked and active states with feedback |
+| `toggle-comment-status` | `data-comment-status`, `data-toast-msg`, `data-toast-type` | Toggles a comment list row between moderation states and keeps filters aligned |
 
 **Global JavaScript Hooks (for page calls)**:
 * `window.showToast(message, type)`: Triggers toast alerts (types: `success` / `info` / `warning` / `danger`).
