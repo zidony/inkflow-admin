@@ -130,6 +130,7 @@ npm run check:release
 | `copy-field` | `data-target`, `data-copy-value`, `data-toast-msg`, `data-toast-type` | 复制目标输入框或指定文本内容到剪贴板 |
 | `edit-slug` | 无 | 解锁文章编辑页 Slug 字段并聚焦选中文本 |
 | `email-user` | 无 | 从当前用户列表行读取邮箱并打开系统邮件客户端 |
+| `force-user-logout` | 无 | 在用户编辑页模拟强制退出所有登录并显示按钮加载反馈 |
 | `focus-image-crop` | 无 | 聚焦图片编辑页预览区并高亮裁剪网格 |
 | `generate-excerpt` | 无 | 从文章编辑器正文抽取摘要并填入摘要字段 |
 | `import-tags` | 无 | 读取标签编辑页批量输入内容，去空行去重后显示导入数量 |
@@ -139,6 +140,7 @@ npm run check:release
 | `rebuild-assets` | 无 | 在设置页模拟重新生成静态资源流程并显示完成反馈 |
 | `regenerate-thumbnails` | 无 | 在图片编辑页模拟缩略图重新生成过程并显示完成反馈 |
 | `select-cover-media` | 无 | 在文章/栏目编辑页模拟从媒体库选择封面并更新预览 |
+| `send-password-reset` | 无 | 在用户编辑页模拟发送密码重置邮件并显示按钮加载反馈 |
 | `send-test-email` | 无 | 在设置页模拟发送 SMTP 测试邮件并显示按钮加载反馈 |
 | `toggle-editor-fullscreen` | 无 | 切换文章编辑器面板全屏状态并同步按钮语义 |
 | `toggle-editor-mode` | `data-editor-mode` | 切换文章编辑器的源码/预览模式并同步按钮状态 |

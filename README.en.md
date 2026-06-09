@@ -130,6 +130,7 @@ The project uses centralized event delegation mapped to `data-action` attributes
 | `copy-field` | `data-target`, `data-copy-value`, `data-toast-msg`, `data-toast-type` | Copies the target input or configured text content to the clipboard |
 | `edit-slug` | None | Unlocks the post edit slug field and focuses the selected text |
 | `email-user` | None | Reads the email address from the current user row and opens the system email composer |
+| `force-user-logout` | None | Simulates signing out all sessions on the user edit page with button loading feedback |
 | `focus-image-crop` | None | Focuses the image edit preview area and highlights the crop grid |
 | `generate-excerpt` | None | Extracts an excerpt from the post editor body and fills the excerpt field |
 | `import-tags` | None | Reads tag batch input, removes empty and duplicate lines, and reports the imported count |
@@ -139,6 +140,7 @@ The project uses centralized event delegation mapped to `data-action` attributes
 | `rebuild-assets` | None | Simulates rebuilding static assets on the settings page and shows completion feedback |
 | `regenerate-thumbnails` | None | Simulates thumbnail regeneration on the image edit page and shows completion feedback |
 | `select-cover-media` | None | Simulates selecting a cover from the media library and updates the preview on post/category edit pages |
+| `send-password-reset` | None | Simulates sending a password reset email on the user edit page with button loading feedback |
 | `send-test-email` | None | Simulates sending an SMTP test email on the settings page with button loading feedback |
 | `toggle-editor-fullscreen` | None | Toggles the post editor panel fullscreen state and syncs button semantics |
 | `toggle-editor-mode` | `data-editor-mode` | Switches the post editor source/preview mode and syncs button state |

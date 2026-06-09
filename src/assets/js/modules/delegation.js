@@ -11,6 +11,7 @@ const clickActionHandlers = {
   'copy-field': manager => manager.copyField(),
   delete: manager => manager.confirmDelete(),
   'email-user': manager => manager.emailUser(),
+  'force-user-logout': manager => manager.forceUserLogout(),
   'focus-image-crop': manager => manager.focusImageCrop(),
   'import-tags': manager => manager.importTags(),
   toast: manager => manager.showToast(),
@@ -19,6 +20,7 @@ const clickActionHandlers = {
   'preview-image': manager => manager.previewImage(),
   'regenerate-thumbnails': manager => manager.regenerateThumbnails(),
   'select-cover-media': manager => manager.selectCoverMedia(),
+  'send-password-reset': manager => manager.sendPasswordReset(),
   'toggle-comment-status': manager => manager.toggleCommentStatus(),
   'toggle-post-status': manager => manager.togglePostStatus(),
   'use-gravatar': manager => manager.useGravatar(),
@@ -82,6 +84,8 @@ export class DelegationManager {
       copyField: () => this.copyField(actionEl),
       confirmDelete: () => this.confirmDelete(actionEl),
       emailUser: () => this.emailUser(actionEl),
+      forceUserLogout: () =>
+        this.runAsyncButtonAction(actionEl, t('forcingUserLogout'), t('userLoggedOut'), 'warning'),
       focusImageCrop: () => this.focusImageCrop(),
       importTags: () => this.importTags(actionEl),
       showToast: () => this.showToast(actionEl),
@@ -90,6 +94,13 @@ export class DelegationManager {
       previewImage: () => this.previewImage(actionEl),
       regenerateThumbnails: () => this.regenerateThumbnails(actionEl),
       selectCoverMedia: () => this.selectCoverMedia(actionEl),
+      sendPasswordReset: () =>
+        this.runAsyncButtonAction(
+          actionEl,
+          t('sendingPasswordReset'),
+          t('passwordResetSent'),
+          'info'
+        ),
       toggleCommentStatus: () => this.toggleCommentStatus(actionEl),
       togglePostStatus: () => this.togglePostStatus(actionEl),
       useGravatar: () => this.useGravatar(actionEl),
@@ -135,6 +146,24 @@ export class DelegationManager {
     const msg = toastBtn.getAttribute('data-toast-msg') || t('toastSuccess');
     const type = toastBtn.getAttribute('data-toast-type') || 'success';
     showToast(msg, type);
+  }
+
+  runAsyncButtonAction(button, loadingText, doneText, type) {
+    if (button.disabled) return;
+
+    const originalContent = [...button.childNodes];
+    const spinner = document.createElement('span');
+    spinner.className = 'spinner-border spinner-border-sm me-1';
+    spinner.setAttribute('aria-hidden', 'true');
+
+    button.disabled = true;
+    button.replaceChildren(spinner, document.createTextNode(loadingText));
+
+    window.setTimeout(() => {
+      button.disabled = false;
+      button.replaceChildren(...originalContent);
+      showToast(doneText, type);
+    }, 900);
   }
 
   async copyField(copyBtn) {
