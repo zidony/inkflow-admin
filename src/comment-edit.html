@@ -58,7 +58,8 @@
                 <div class="d-flex gap-2 mt-3">
                   <button type="button"
                     class="btn btn-primary btn-sm"
-                    data-action="toast"
+                    data-action="toggle-comment-status"
+                    data-comment-status="approved"
                     data-toast-msg="审核通过"
                     data-toast-type="success"
                   >
@@ -66,7 +67,8 @@
                   </button>
                   <button type="button"
                     class="btn btn-light btn-sm"
-                    data-action="toast"
+                    data-action="toggle-comment-status"
+                    data-comment-status="pending"
                     data-toast-msg="已标记待审"
                     data-toast-type="info"
                   >
@@ -74,7 +76,8 @@
                   </button>
                   <button type="button"
                     class="btn btn-danger-soft btn-sm"
-                    data-action="toast"
+                    data-action="toggle-comment-status"
+                    data-comment-status="spam"
                     data-toast-msg="已标记垃圾"
                     data-toast-type="warning"
                   >
@@ -166,7 +169,8 @@
               <div class="ink-panel-body d-flex flex-column gap-2">
                 <button type="button"
                   class="btn btn-primary w-100"
-                  data-action="toast"
+                  data-action="toggle-comment-status"
+                  data-comment-status="approved"
                   data-toast-msg="审核通过"
                   data-toast-type="success"
                 >

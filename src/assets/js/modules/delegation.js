@@ -275,15 +275,21 @@ export class DelegationManager {
   toggleCommentStatus(statusBtn) {
     const row = statusBtn.closest('tr');
     const nextStatus = statusBtn.getAttribute('data-comment-status');
-    if (!row || !nextStatus) return;
+    if (!nextStatus) return;
 
     const statusMap = {
-      approved: { label: '已审核', className: 'u-tint-green' },
-      spam: { label: '垃圾', className: 'u-tint-red' },
-      pending: { label: '待审核', className: 'u-tint-amber' }
+      approved: { label: t('commentStatusApproved'), className: 'u-tint-green' },
+      spam: { label: t('commentStatusSpam'), className: 'u-tint-red' },
+      pending: { label: t('commentStatusPending'), className: 'u-tint-amber' }
     };
     const status = statusMap[nextStatus];
     if (!status) return;
+
+    if (!row) {
+      this.updateCommentDetailStatus(statusBtn, status);
+      this.showToast(statusBtn);
+      return;
+    }
 
     row.dataset.status = nextStatus;
 
@@ -305,6 +311,22 @@ export class DelegationManager {
     }
 
     this.showToast(statusBtn);
+  }
+
+  updateCommentDetailStatus(statusBtn, status) {
+    const detailBadge = statusBtn
+      .closest('main')
+      ?.querySelector('.ink-comment-author-avatar')
+      ?.closest('.d-flex')
+      ?.querySelector('.ink-badge');
+    if (!detailBadge) return;
+
+    detailBadge.classList.remove('u-tint-green', 'u-tint-red', 'u-tint-amber');
+    detailBadge.classList.add(status.className);
+
+    const dot = document.createElement('span');
+    dot.className = 'ink-badge-dot';
+    detailBadge.replaceChildren(dot, document.createTextNode(status.label));
   }
 
   togglePostStatus(statusBtn) {

@@ -146,7 +146,7 @@ The project uses centralized event delegation mapped to `data-action` attributes
 | `toggle-editor-mode` | `data-editor-mode` | Switches the post editor source/preview mode and syncs button state |
 | `toggle-theme` | None | Toggles the theme mode |
 | `toggle-user-status` | `data-toast-msg`, `data-toast-type` | Toggles a user list row between banned and active states with feedback |
-| `toggle-comment-status` | `data-comment-status`, `data-toast-msg`, `data-toast-type` | Toggles a comment list row between moderation states and keeps filters aligned |
+| `toggle-comment-status` | `data-comment-status`, `data-toast-msg`, `data-toast-type` | Toggles a comment row or detail page between moderation states |
 | `toggle-post-status` | `data-post-status`, `data-toast-msg`, `data-toast-type` | Toggles a post list row between publishing states and keeps filters aligned |
 | `use-gravatar` | None | Simulates applying an email Gravatar on the user edit page and updates the avatar preview |
 | `validate-link` | None | Validates the URL input format on the link edit page and shows button loading feedback |

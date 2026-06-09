@@ -146,7 +146,7 @@ npm run check:release
 | `toggle-editor-mode` | `data-editor-mode` | 切换文章编辑器的源码/预览模式并同步按钮状态 |
 | `toggle-theme` | 无 | 触发暗黑/明亮模式切换 |
 | `toggle-user-status` | `data-toast-msg`, `data-toast-type` | 切换用户列表行的封禁/正常状态并显示反馈 |
-| `toggle-comment-status` | `data-comment-status`, `data-toast-msg`, `data-toast-type` | 切换评论列表行的审核/垃圾状态并同步筛选状态 |
+| `toggle-comment-status` | `data-comment-status`, `data-toast-msg`, `data-toast-type` | 切换评论列表行或评论详情页的审核/待审/垃圾状态 |
 | `toggle-post-status` | `data-post-status`, `data-toast-msg`, `data-toast-type` | 切换文章列表行的发布状态并同步筛选状态 |
 | `use-gravatar` | 无 | 在用户编辑页模拟使用邮箱 Gravatar 头像并更新头像预览 |
 | `validate-link` | 无 | 在链接编辑页验证 URL 输入格式并显示按钮加载反馈 |
