@@ -1142,6 +1142,22 @@ textarea.form-control {
   background: var(--ink-gray-100);
   text-align: center;
 }
+.ink-image-preview-box.is-cropping {
+  outline: 2px solid var(--ink-500);
+  outline-offset: 3px;
+}
+.ink-image-preview-box.is-cropping::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border-radius: var(--ink-radius-sm);
+  pointer-events: none;
+  background:
+    linear-gradient(to right, transparent 32.9%, var(--ink-focus-ring) 33%, transparent 33.1%),
+    linear-gradient(to right, transparent 65.9%, var(--ink-focus-ring) 66%, transparent 66.1%),
+    linear-gradient(to bottom, transparent 32.9%, var(--ink-focus-ring) 33%, transparent 33.1%),
+    linear-gradient(to bottom, transparent 65.9%, var(--ink-focus-ring) 66%, transparent 66.1%);
+}
 .ink-image-preview-img {
   max-width: 100%;
   max-height: 400px;

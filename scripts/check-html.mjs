@@ -29,6 +29,7 @@ const allowedDataActions = new Set([
   'do-login',
   'email-user',
   'filter-type',
+  'focus-image-crop',
   'navigate',
   'permanent-delete',
   'preview-image',

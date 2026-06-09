@@ -11,6 +11,7 @@ const clickActionHandlers = {
   'copy-field': manager => manager.copyField(),
   delete: manager => manager.confirmDelete(),
   'email-user': manager => manager.emailUser(),
+  'focus-image-crop': manager => manager.focusImageCrop(),
   toast: manager => manager.showToast(),
   'read-all': manager => manager.readAll(),
   'permanent-delete': manager => manager.permanentDelete(),
@@ -76,6 +77,7 @@ export class DelegationManager {
       copyField: () => this.copyField(actionEl),
       confirmDelete: () => this.confirmDelete(actionEl),
       emailUser: () => this.emailUser(actionEl),
+      focusImageCrop: () => this.focusImageCrop(),
       showToast: () => this.showToast(actionEl),
       readAll: () => this.readAllNotifications(),
       permanentDelete: () => this.permanentDelete(actionEl),
@@ -158,6 +160,21 @@ export class DelegationManager {
 
     window.location.href = `mailto:${encodeURIComponent(email)}`;
     showToast(t('emailComposerOpened'), 'info');
+  }
+
+  focusImageCrop() {
+    const previewBox = document.getElementById('img-preview-box');
+    if (!previewBox) return;
+
+    previewBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    previewBox.classList.add('is-cropping');
+
+    window.clearTimeout(this.imageCropTimer);
+    this.imageCropTimer = window.setTimeout(() => {
+      previewBox.classList.remove('is-cropping');
+    }, 3600);
+
+    showToast(t('imageCropModeEnabled'), 'info');
   }
 
   toggleUserStatus(statusBtn) {
@@ -348,6 +365,7 @@ export class DelegationManager {
     const previewBox = clearBtn.closest('.ink-image-preview-box');
     if (previewBox) {
       previewBox.classList.add('d-none');
+      previewBox.classList.remove('is-cropping');
     }
 
     const uploadZone = document.getElementById('img-upload-zone');

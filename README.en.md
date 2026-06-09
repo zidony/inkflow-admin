@@ -127,6 +127,7 @@ The project uses centralized event delegation mapped to `data-action` attributes
 | `bulk-delete` | None | Deletes checked rows in the current list and syncs bulk selection state |
 | `copy-field` | `data-target`, `data-copy-value`, `data-toast-msg`, `data-toast-type` | Copies the target input or configured text content to the clipboard |
 | `email-user` | None | Reads the email address from the current user row and opens the system email composer |
+| `focus-image-crop` | None | Focuses the image edit preview area and highlights the crop grid |
 | `navigate` | `data-href` | Navigates to the configured URL |
 | `permanent-delete` | `data-href` | Double-check dialog for permanent deletion |
 | `preview-image` | None | Opens the current image row preview asset in a new tab |
