@@ -8,6 +8,7 @@ const docs = [
       'npm run quality',
       'npm run check:i18n',
       'npm run check:js-boundaries',
+      'npm run check:tokens',
       'npm run check:docs',
       'npm run release:check',
       'npm run check:release',
@@ -25,6 +26,7 @@ const docs = [
       'npm run quality',
       'npm run check:i18n',
       'npm run check:js-boundaries',
+      'npm run check:tokens',
       'npm run check:docs',
       'npm run release:check',
       'npm run check:release',
@@ -41,6 +43,7 @@ const docs = [
     requiredText: [
       'npm run build',
       'npm run quality',
+      'npm run check:tokens',
       'npm run check:docs',
       'npm run release:check',
       'npm run check:release',

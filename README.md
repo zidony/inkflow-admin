@@ -90,13 +90,14 @@ npm run dev
 ### 3. 代码质量控制与规范化
 ```bash
 npm run quality    # 运行 ESLint、Stylelint 和 Prettier 检查
+npm run check:tokens # 检查高频颜色与圆角是否通过设计变量引用
 npm run check:i18n # 检查运行时文案国际化边界
 npm run check:js-boundaries # 检查模块与全局 JS 边界规则
 npm run check:docs # 检查 README/INSTALL 是否覆盖关键发布脚本
 npm run lint:fix   # 自动修复可修复的脚本和样式问题，并格式化源码
 ```
 
-`npm run quality` 还会校验 HTML 标签闭合、重复属性、重复 ID、受支持的 `data-action` 值、基础可访问性属性、响应式布局守卫、内联样式清理状态、运行时文案国际化、JS 模块边界规则和文档脚本覆盖情况。
+`npm run quality` 还会校验 HTML 标签闭合、重复属性、重复 ID、受支持的 `data-action` 值、基础可访问性属性、响应式布局守卫、内联样式清理状态、设计变量边界、运行时文案国际化、JS 模块边界规则和文档脚本覆盖情况。
 
 ### 4. 一键发版打包归档
 ```bash

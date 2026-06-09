@@ -40,6 +40,16 @@
   --ink-gray-700: #334155;
   --ink-gray-800: #1e293b;
   --ink-gray-900: #0f172a;
+  /* Semantic surfaces */
+  --ink-bg-page: var(--content-bg);
+  --ink-bg-panel: var(--ink-surface-bg);
+  --ink-bg-panel-raised: var(--ink-surface-raised);
+  --ink-bg-muted: var(--ink-gray-50);
+  --ink-text-primary: var(--ink-gray-900);
+  --ink-text-secondary: var(--ink-gray-700);
+  --ink-text-muted: var(--ink-gray-500);
+  --ink-border-subtle: var(--ink-gray-200);
+  --ink-border-muted: var(--ink-gray-100);
   /* Layout */
   --sidebar-width: 260px;
   --sidebar-collapsed-width: 68px;
@@ -89,7 +99,16 @@
   --ink-radius-lg: 10px;
   --ink-radius-xl: 12px;
   --ink-radius-2xl: 14px;
+  --ink-radius-pill: 999px;
+  --ink-radius-circle: 50%;
   --ink-card-radius: var(--ink-radius-xl);
+  --ink-control-radius: var(--ink-radius-md);
+  --ink-control-radius-lg: var(--ink-radius-lg);
+  --ink-badge-radius: var(--ink-radius-pill);
+  --ink-avatar-radius: var(--ink-radius-circle);
+  --ink-control-height-sm: 32px;
+  --ink-control-height-md: 38px;
+  --ink-control-height-lg: 44px;
   --ink-focus-ring: 0 0 0 3px rgba(13, 110, 204, 0.1);
   --ink-focus-ring-brand: 0 0 0 3px rgba(13, 110, 204, 0.15);
   --ink-primary-gradient: linear-gradient(135deg, var(--ink-500) 0%, var(--ink-600) 100%);
@@ -217,6 +236,7 @@
 
   /* Layout backgrounds */
   --content-bg: #030712;
+  --ink-bg-page: var(--content-bg);
   --ink-card-bg: var(--ink-dark-surface-bg);
   --ink-card-border: var(--ink-dark-border);
   --ink-surface-translucent: rgba(3, 7, 18, 0.92);

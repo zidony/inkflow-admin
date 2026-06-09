@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    SIDEBAR
    ============================================================ */
 #sidebar {
@@ -102,7 +102,7 @@
   align-items: center;
   gap: 10px;
   padding: 9px 12px;
-  border-radius: 8px;
+  border-radius: var(--ink-radius-md);
   color: var(--sidebar-text);
   text-decoration: none;
   font-size: 0.875rem;
@@ -213,7 +213,7 @@
   align-items: center;
   gap: 10px;
   padding: 8px 12px;
-  border-radius: 8px;
+  border-radius: var(--ink-radius-md);
   cursor: pointer;
   transition: background 0.15s;
 }
@@ -285,7 +285,7 @@ body.sidebar-collapsed #main-wrapper {
   height: 36px;
   border: none;
   background: var(--ink-gray-100);
-  border-radius: 8px;
+  border-radius: var(--ink-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -361,7 +361,7 @@ body.sidebar-collapsed #main-wrapper {
   height: 36px;
   padding: 0 12px 0 36px;
   border: 1px solid var(--ink-gray-200);
-  border-radius: 8px;
+  border-radius: var(--ink-radius-md);
   background: var(--ink-gray-50);
   font-size: 0.82rem;
   font-family: var(--font-sans);
@@ -403,7 +403,7 @@ body.sidebar-collapsed #main-wrapper {
   height: 36px;
   border: none;
   background: transparent;
-  border-radius: 8px;
+  border-radius: var(--ink-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -427,7 +427,7 @@ body.sidebar-collapsed #main-wrapper {
   padding: 4px 10px 4px 4px;
   border: none;
   background: transparent;
-  border-radius: 10px;
+  border-radius: var(--ink-radius-lg);
   cursor: pointer;
   transition: background 0.15s;
   margin-left: 4px;
@@ -445,7 +445,7 @@ body.sidebar-collapsed #main-wrapper {
 
 .topbar-dropdown .dropdown-menu {
   border: 1px solid var(--ink-gray-200);
-  border-radius: 12px;
+  border-radius: var(--ink-radius-xl);
   box-shadow: var(--ink-shadow-dropdown);
   padding: 6px;
   min-width: 210px;
