@@ -15,6 +15,7 @@ const docs = [
       '`copy-field`',
       '`preview-image`',
       '`toggle-comment-status`',
+      '`toggle-post-status`',
       '`toggle-user-status`'
     ]
   },
@@ -31,6 +32,7 @@ const docs = [
       '`copy-field`',
       '`preview-image`',
       '`toggle-comment-status`',
+      '`toggle-post-status`',
       '`toggle-user-status`'
     ]
   },

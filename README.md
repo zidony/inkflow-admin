@@ -132,6 +132,7 @@ npm run check:release
 | `toggle-theme` | 无 | 触发暗黑/明亮模式切换 |
 | `toggle-user-status` | `data-toast-msg`, `data-toast-type` | 切换用户列表行的封禁/正常状态并显示反馈 |
 | `toggle-comment-status` | `data-comment-status`, `data-toast-msg`, `data-toast-type` | 切换评论列表行的审核/垃圾状态并同步筛选状态 |
+| `toggle-post-status` | `data-post-status`, `data-toast-msg`, `data-toast-type` | 切换文章列表行的发布状态并同步筛选状态 |
 
 **保留的全局可用 JS 方法 (方便 HTML 页面调用)**：
 * `window.showToast(message, type)`：弹出 Toast 通知（类型支持：success/info/warning/danger）。

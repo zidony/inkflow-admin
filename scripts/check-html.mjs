@@ -39,6 +39,7 @@ const allowedDataActions = new Set([
   'toggle-comment-status',
   'toggle-mail-pref',
   'toggle-pwd',
+  'toggle-post-status',
   'toggle-theme',
   'toggle-user-status',
   'trigger'
