@@ -64,12 +64,17 @@ export class EditorManager {
             const image = document.createElement('img');
             image.src = e.target.result;
             image.alt = 'cover';
+            image.width = coverPreview.classList.contains('ratio') ? 400 : 600;
+            image.height = coverPreview.classList.contains('ratio') ? 225 : 200;
+            image.loading = 'lazy';
+            image.decoding = 'async';
 
             const overlay = document.createElement('div');
             overlay.className = 'ink-cover-overlay';
 
             const icon = document.createElement('i');
             icon.className = 'bi bi-arrow-repeat';
+            icon.setAttribute('aria-hidden', 'true');
             overlay.appendChild(icon);
             overlay.appendChild(document.createTextNode(' ' + t('changeCover')));
 

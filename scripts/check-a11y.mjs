@@ -385,6 +385,20 @@ async function checkA11y() {
     errors.push(`${relativeToRoot(paginationPartialPath)} disabled pagination button needs aria-disabled="true".`);
   }
 
+  const editorModulePath = path.join(srcDir, 'assets', 'js', 'modules', 'editor.js');
+  const editorModule = await readTextAsync(editorModulePath);
+  if (
+    !/image\.width\s*=/.test(editorModule) ||
+    !/image\.height\s*=/.test(editorModule) ||
+    !/image\.loading\s*=\s*['"]lazy['"]/.test(editorModule) ||
+    !/image\.decoding\s*=\s*['"]async['"]/.test(editorModule) ||
+    !/icon\.setAttribute\(['"]aria-hidden['"],\s*['"]true['"]\)/.test(editorModule)
+  ) {
+    errors.push(
+      `${relativeToRoot(editorModulePath)} dynamic cover previews need stable image dimensions and hidden decorative icons.`
+    );
+  }
+
   if (errors.length) {
     throw new Error(`Accessibility check failed:\n${errors.join('\n')}`);
   }
