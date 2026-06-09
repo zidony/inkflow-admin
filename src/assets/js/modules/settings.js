@@ -53,6 +53,17 @@ export class SettingsManager {
           t('assetsRebuilt'),
           'info'
         );
+        return;
+      }
+
+      const testEmailButton = event.target.closest('[data-action="send-test-email"]');
+      if (testEmailButton) {
+        this.runMaintenanceAction(
+          testEmailButton,
+          t('sendingTestEmail'),
+          t('testEmailSent'),
+          'success'
+        );
       }
     });
   }

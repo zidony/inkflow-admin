@@ -137,6 +137,7 @@ The project uses centralized event delegation mapped to `data-action` attributes
 | `preview-image` | None | Opens the current image row preview asset in a new tab |
 | `rebuild-assets` | None | Simulates rebuilding static assets on the settings page and shows completion feedback |
 | `regenerate-thumbnails` | None | Simulates thumbnail regeneration on the image edit page and shows completion feedback |
+| `send-test-email` | None | Simulates sending an SMTP test email on the settings page with button loading feedback |
 | `toggle-editor-fullscreen` | None | Toggles the post editor panel fullscreen state and syncs button semantics |
 | `toggle-editor-mode` | `data-editor-mode` | Switches the post editor source/preview mode and syncs button state |
 | `toggle-theme` | None | Toggles the theme mode |
