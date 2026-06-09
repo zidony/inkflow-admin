@@ -130,6 +130,19 @@ export class EditorManager {
       });
     }
 
+    const excerptButton = document.querySelector('[data-action="generate-excerpt"]');
+    const excerptField = document.getElementById('post-excerpt');
+    if (excerptButton && excerptField && editorBody) {
+      excerptButton.addEventListener('click', () => {
+        const sourceText = (editorBody.textContent || '').replace(/\s+/g, ' ').trim();
+        if (!sourceText) return;
+
+        excerptField.value =
+          sourceText.length > 150 ? `${sourceText.slice(0, 150)}...` : sourceText;
+        showToast(t('excerptGenerated'), 'success');
+      });
+    }
+
     // 6. Auto-Save Status
     const saveStatus = document.getElementById('save-status');
     if (saveStatus) {

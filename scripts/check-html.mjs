@@ -31,6 +31,7 @@ const allowedDataActions = new Set([
   'email-user',
   'filter-type',
   'focus-image-crop',
+  'generate-excerpt',
   'navigate',
   'permanent-delete',
   'preview-image',

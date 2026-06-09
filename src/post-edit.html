@@ -474,6 +474,7 @@
               <div class="ink-panel-header"><i class="bi bi-blockquote-left" aria-hidden="true"></i> 文章摘要</div>
               <div class="ink-panel-body">
                 <textarea
+                  id="post-excerpt"
                   class="form-control ink-post-summary-textarea u-text-body"
                   aria-label="文章摘要"
                   rows="3"
@@ -485,9 +486,7 @@ Vue 3 带来了全新的 Composition API，提供了更灵活的代码组织方�
                   <span class="ink-form-hint mb-0">建议 50–150 字</span>
                   <button type="button"
                     class="btn btn-light btn-sm ink-post-summary-ai-btn"
-                    data-action="toast"
-                    data-toast-msg="已自动生成摘要"
-                    data-toast-type="info"
+                    data-action="generate-excerpt"
                   >
                     <i class="bi bi-magic me-1" aria-hidden="true"></i>自动生成
                   </button>
