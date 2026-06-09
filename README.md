@@ -137,8 +137,10 @@ npm run check:release
 | `navigate` | `data-href` | 触发无感页面跳转 |
 | `permanent-delete` | `data-href` | 触发永久删除二次确认 |
 | `preview-image` | 无 | 在新标签页打开当前图片行的预览资源 |
+| `publish-comment-reply` | 无 | 在评论详情页模拟发布管理员回复并显示按钮加载反馈 |
 | `rebuild-assets` | 无 | 在设置页模拟重新生成静态资源流程并显示完成反馈 |
 | `regenerate-thumbnails` | 无 | 在图片编辑页模拟缩略图重新生成过程并显示完成反馈 |
+| `save-comment-draft` | 无 | 在评论详情页模拟保存回复草稿并显示按钮加载反馈 |
 | `select-cover-media` | 无 | 在文章/栏目编辑页模拟从媒体库选择封面并更新预览 |
 | `send-password-reset` | 无 | 在用户编辑页模拟发送密码重置邮件并显示按钮加载反馈 |
 | `send-test-email` | 无 | 在设置页模拟发送 SMTP 测试邮件并显示按钮加载反馈 |

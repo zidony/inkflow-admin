@@ -137,8 +137,10 @@ The project uses centralized event delegation mapped to `data-action` attributes
 | `navigate` | `data-href` | Navigates to the configured URL |
 | `permanent-delete` | `data-href` | Double-check dialog for permanent deletion |
 | `preview-image` | None | Opens the current image row preview asset in a new tab |
+| `publish-comment-reply` | None | Simulates publishing an admin reply on the comment detail page with button loading feedback |
 | `rebuild-assets` | None | Simulates rebuilding static assets on the settings page and shows completion feedback |
 | `regenerate-thumbnails` | None | Simulates thumbnail regeneration on the image edit page and shows completion feedback |
+| `save-comment-draft` | None | Simulates saving a reply draft on the comment detail page with button loading feedback |
 | `select-cover-media` | None | Simulates selecting a cover from the media library and updates the preview on post/category edit pages |
 | `send-password-reset` | None | Simulates sending a password reset email on the user edit page with button loading feedback |
 | `send-test-email` | None | Simulates sending an SMTP test email on the settings page with button loading feedback |

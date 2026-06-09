@@ -18,7 +18,9 @@ const clickActionHandlers = {
   'read-all': manager => manager.readAll(),
   'permanent-delete': manager => manager.permanentDelete(),
   'preview-image': manager => manager.previewImage(),
+  'publish-comment-reply': manager => manager.publishCommentReply(),
   'regenerate-thumbnails': manager => manager.regenerateThumbnails(),
+  'save-comment-draft': manager => manager.saveCommentDraft(),
   'select-cover-media': manager => manager.selectCoverMedia(),
   'send-password-reset': manager => manager.sendPasswordReset(),
   'toggle-comment-status': manager => manager.toggleCommentStatus(),
@@ -92,7 +94,21 @@ export class DelegationManager {
       readAll: () => this.readAllNotifications(),
       permanentDelete: () => this.permanentDelete(actionEl),
       previewImage: () => this.previewImage(actionEl),
+      publishCommentReply: () =>
+        this.runAsyncButtonAction(
+          actionEl,
+          t('publishingCommentReply'),
+          t('commentReplyPublished'),
+          'success'
+        ),
       regenerateThumbnails: () => this.regenerateThumbnails(actionEl),
+      saveCommentDraft: () =>
+        this.runAsyncButtonAction(
+          actionEl,
+          t('savingCommentDraft'),
+          t('commentDraftSaved'),
+          'info'
+        ),
       selectCoverMedia: () => this.selectCoverMedia(actionEl),
       sendPasswordReset: () =>
         this.runAsyncButtonAction(
