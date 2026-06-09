@@ -23,6 +23,9 @@ export const locales = {
     linkUrlInvalid: '链接地址格式不正确',
     validatingLink: '正在验证...',
     linkValid: '链接有效',
+    tagsImportEmpty: '请先输入要导入的标签',
+    importingTags: '正在导入...',
+    tagsImported: '已导入 {count} 个标签',
     imageCropModeEnabled: '图片裁剪区域已高亮',
     thumbnailRegenerating: '正在重新生成...',
     thumbnailRegenerated: '缩略图已重新生成',
@@ -71,6 +74,9 @@ export const locales = {
     linkUrlInvalid: 'Link URL format is invalid',
     validatingLink: 'Validating...',
     linkValid: 'Link is valid',
+    tagsImportEmpty: 'Enter tags to import first',
+    importingTags: 'Importing...',
+    tagsImported: '{count} tags imported',
     imageCropModeEnabled: 'Image crop area highlighted',
     thumbnailRegenerating: 'Regenerating...',
     thumbnailRegenerated: 'Thumbnails regenerated',
@@ -122,15 +128,19 @@ export class I18nManager {
     return 'zh'; // Fallback default
   }
 
-  t(key) {
+  t(key, params = {}) {
     const dict = locales[this.lang] || locales.zh;
-    return dict[key] || key;
+    const text = dict[key] || key;
+    return Object.entries(params).reduce(
+      (message, [name, value]) => message.replaceAll(`{${name}}`, String(value)),
+      text
+    );
   }
 }
 
 // Instantiate and export a single global translator instance
 export const i18n = new I18nManager();
-export const t = key => i18n.t(key);
+export const t = (key, params) => i18n.t(key, params);
 
 // Bind to window for absolute customization & HTML inline backup
 window.inkflowT = t;

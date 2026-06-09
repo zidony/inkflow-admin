@@ -132,6 +132,7 @@ npm run check:release
 | `email-user` | 无 | 从当前用户列表行读取邮箱并打开系统邮件客户端 |
 | `focus-image-crop` | 无 | 聚焦图片编辑页预览区并高亮裁剪网格 |
 | `generate-excerpt` | 无 | 从文章编辑器正文抽取摘要并填入摘要字段 |
+| `import-tags` | 无 | 读取标签编辑页批量输入内容，去空行去重后显示导入数量 |
 | `navigate` | `data-href` | 触发无感页面跳转 |
 | `permanent-delete` | `data-href` | 触发永久删除二次确认 |
 | `preview-image` | 无 | 在新标签页打开当前图片行的预览资源 |

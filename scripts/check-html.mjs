@@ -34,6 +34,7 @@ const allowedDataActions = new Set([
   'filter-type',
   'focus-image-crop',
   'generate-excerpt',
+  'import-tags',
   'navigate',
   'permanent-delete',
   'preview-image',

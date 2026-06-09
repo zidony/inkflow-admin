@@ -12,6 +12,7 @@ const clickActionHandlers = {
   delete: manager => manager.confirmDelete(),
   'email-user': manager => manager.emailUser(),
   'focus-image-crop': manager => manager.focusImageCrop(),
+  'import-tags': manager => manager.importTags(),
   toast: manager => manager.showToast(),
   'read-all': manager => manager.readAll(),
   'permanent-delete': manager => manager.permanentDelete(),
@@ -80,6 +81,7 @@ export class DelegationManager {
       confirmDelete: () => this.confirmDelete(actionEl),
       emailUser: () => this.emailUser(actionEl),
       focusImageCrop: () => this.focusImageCrop(),
+      importTags: () => this.importTags(actionEl),
       showToast: () => this.showToast(actionEl),
       readAll: () => this.readAllNotifications(),
       permanentDelete: () => this.permanentDelete(actionEl),
@@ -401,6 +403,41 @@ export class DelegationManager {
       validateBtn.disabled = false;
       validateBtn.replaceChildren(...originalContent);
       showToast(t('linkValid'), 'success');
+    }, 800);
+  }
+
+  importTags(importBtn) {
+    if (importBtn.disabled) return;
+
+    const field = importBtn.closest('.ink-panel-body')?.querySelector('textarea');
+    const tags = [
+      ...new Set(
+        (field?.value || '')
+          .split(/\r?\n/)
+          .map(tag => tag.trim())
+          .filter(Boolean)
+      )
+    ];
+
+    if (!tags.length) {
+      field?.focus();
+      showToast(t('tagsImportEmpty'), 'warning');
+      return;
+    }
+
+    const originalContent = [...importBtn.childNodes];
+    const spinner = document.createElement('span');
+    spinner.className = 'spinner-border spinner-border-sm me-1';
+    spinner.setAttribute('aria-hidden', 'true');
+
+    importBtn.disabled = true;
+    importBtn.replaceChildren(spinner, document.createTextNode(t('importingTags')));
+
+    window.setTimeout(() => {
+      importBtn.disabled = false;
+      importBtn.replaceChildren(...originalContent);
+      if (field) field.value = '';
+      showToast(t('tagsImported', { count: tags.length }), 'success');
     }, 800);
   }
 
