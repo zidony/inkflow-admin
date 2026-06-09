@@ -53,7 +53,8 @@ const allowedDataActions = new Set([
   'toggle-post-status',
   'toggle-theme',
   'toggle-user-status',
-  'trigger'
+  'trigger',
+  'validate-link'
 ]);
 const requiredCdnAssets = [
   {

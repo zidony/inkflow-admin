@@ -19,6 +19,7 @@ const clickActionHandlers = {
   'regenerate-thumbnails': manager => manager.regenerateThumbnails(),
   'toggle-comment-status': manager => manager.toggleCommentStatus(),
   'toggle-post-status': manager => manager.togglePostStatus(),
+  'validate-link': manager => manager.validateLink(),
   navigate: manager => manager.navigate(),
   trigger: manager => manager.triggerTarget(),
   'clear-preview': manager => manager.clearPreview()
@@ -86,6 +87,7 @@ export class DelegationManager {
       regenerateThumbnails: () => this.regenerateThumbnails(actionEl),
       toggleCommentStatus: () => this.toggleCommentStatus(actionEl),
       togglePostStatus: () => this.togglePostStatus(actionEl),
+      validateLink: () => this.validateLink(actionEl),
       navigate: () => this.navigate(actionEl),
       triggerTarget: () => this.triggerTarget(actionEl),
       clearPreview: () => this.clearPreview(actionEl),
@@ -366,6 +368,40 @@ export class DelegationManager {
 
     window.open(image.src, '_blank', 'noopener,noreferrer');
     showToast(t('previewOpened'), 'info');
+  }
+
+  validateLink(validateBtn) {
+    if (validateBtn.disabled) return;
+
+    const field = validateBtn.closest('.input-group')?.querySelector('input[type="url"]');
+    const value = field?.value.trim();
+    if (!value) {
+      field?.focus();
+      showToast(t('linkUrlRequired'), 'danger');
+      return;
+    }
+
+    try {
+      new window.URL(value, window.location.origin);
+    } catch {
+      field?.focus();
+      showToast(t('linkUrlInvalid'), 'danger');
+      return;
+    }
+
+    const originalContent = [...validateBtn.childNodes];
+    const spinner = document.createElement('span');
+    spinner.className = 'spinner-border spinner-border-sm me-1';
+    spinner.setAttribute('aria-hidden', 'true');
+
+    validateBtn.disabled = true;
+    validateBtn.replaceChildren(spinner, document.createTextNode(t('validatingLink')));
+
+    window.setTimeout(() => {
+      validateBtn.disabled = false;
+      validateBtn.replaceChildren(...originalContent);
+      showToast(t('linkValid'), 'success');
+    }, 800);
   }
 
   navigate(navBtn) {
