@@ -2104,13 +2104,20 @@ textarea.form-control {
   margin-right: 6px;
 }
 .ink-post-slug-preview {
+  width: 160px;
   padding: 0;
   border: none;
   border-bottom: 1px dashed var(--ink-300);
   background: transparent;
   color: inherit;
   font: inherit;
-  cursor: pointer;
+}
+.ink-post-slug-preview[readonly] {
+  cursor: default;
+}
+.ink-post-slug-preview.is-editing {
+  border-bottom-style: solid;
+  outline: none;
 }
 .ink-post-slug-btn {
   height: 22px;

@@ -143,6 +143,23 @@ export class EditorManager {
       });
     }
 
+    const slugButton = document.querySelector('[data-action="edit-slug"]');
+    const slugField = document.getElementById('slug-preview');
+    if (slugButton && slugField) {
+      slugButton.addEventListener('click', () => {
+        slugField.readOnly = false;
+        slugField.classList.add('is-editing');
+        slugField.focus();
+        slugField.select();
+        showToast(t('slugEditable'), 'info');
+      });
+
+      slugField.addEventListener('blur', () => {
+        slugField.readOnly = true;
+        slugField.classList.remove('is-editing');
+      });
+    }
+
     // 6. Auto-Save Status
     const saveStatus = document.getElementById('save-status');
     if (saveStatus) {

@@ -28,6 +28,7 @@ const allowedDataActions = new Set([
   'delete',
   'delete-notif',
   'do-login',
+  'edit-slug',
   'email-user',
   'filter-type',
   'focus-image-crop',

@@ -69,22 +69,18 @@
                     <span class="ink-post-permalink-label u-text-gray-400">永久链接</span>
                     <span class="u-text-primary u-text-mono">
                       /post/
-                      <button
-                        type="button"
+                      <input
                         id="slug-preview"
                         class="ink-post-slug-preview"
-                        data-action="toast"
-                        data-toast-msg="请在下方修改 Slug"
-                        data-toast-type="info"
-                      >
-                        vue3-composition-api
-                      </button>
+                        type="text"
+                        value="vue3-composition-api"
+                        aria-label="文章 Slug"
+                        readonly
+                      />
                     </span>
                     <button type="button"
                       class="btn btn-light btn-sm ink-post-slug-btn ms-2"
-                      data-action="toast"
-                      data-toast-msg="Slug 已可编辑"
-                      data-toast-type="info"
+                      data-action="edit-slug"
                     >
                       修改
                     </button>

@@ -127,6 +127,7 @@ npm run check:release
 | `bulk-delete` | 无 | 删除当前列表中已勾选的行，并同步批量选择状态 |
 | `clear-selection` | 无 | 取消当前列表中的勾选状态并隐藏批量工具栏 |
 | `copy-field` | `data-target`, `data-copy-value`, `data-toast-msg`, `data-toast-type` | 复制目标输入框或指定文本内容到剪贴板 |
+| `edit-slug` | 无 | 解锁文章编辑页 Slug 字段并聚焦选中文本 |
 | `email-user` | 无 | 从当前用户列表行读取邮箱并打开系统邮件客户端 |
 | `focus-image-crop` | 无 | 聚焦图片编辑页预览区并高亮裁剪网格 |
 | `generate-excerpt` | 无 | 从文章编辑器正文抽取摘要并填入摘要字段 |
