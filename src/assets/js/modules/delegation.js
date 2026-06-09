@@ -18,6 +18,7 @@ const clickActionHandlers = {
   'permanent-delete': manager => manager.permanentDelete(),
   'preview-image': manager => manager.previewImage(),
   'regenerate-thumbnails': manager => manager.regenerateThumbnails(),
+  'select-cover-media': manager => manager.selectCoverMedia(),
   'toggle-comment-status': manager => manager.toggleCommentStatus(),
   'toggle-post-status': manager => manager.togglePostStatus(),
   'validate-link': manager => manager.validateLink(),
@@ -87,6 +88,7 @@ export class DelegationManager {
       permanentDelete: () => this.permanentDelete(actionEl),
       previewImage: () => this.previewImage(actionEl),
       regenerateThumbnails: () => this.regenerateThumbnails(actionEl),
+      selectCoverMedia: () => this.selectCoverMedia(actionEl),
       toggleCommentStatus: () => this.toggleCommentStatus(actionEl),
       togglePostStatus: () => this.togglePostStatus(actionEl),
       validateLink: () => this.validateLink(actionEl),
@@ -439,6 +441,36 @@ export class DelegationManager {
       if (field) field.value = '';
       showToast(t('tagsImported', { count: tags.length }), 'success');
     }, 800);
+  }
+
+  selectCoverMedia(mediaBtn) {
+    const coverPreview = mediaBtn.closest('.ink-panel-body')?.querySelector('#cover-preview');
+    if (!coverPreview) return;
+
+    const isRatioPreview = coverPreview.classList.contains('ratio');
+    const width = isRatioPreview ? 400 : 600;
+    const height = isRatioPreview ? 225 : 200;
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}"><defs><linearGradient id="coverGradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f766e"/><stop offset="0.52" stop-color="#2563eb"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs><rect width="${width}" height="${height}" fill="url(#coverGradient)"/><circle cx="${width * 0.78}" cy="${height * 0.3}" r="${height * 0.14}" fill="rgba(255,255,255,.72)"/><path d="M0 ${height * 0.78} ${width * 0.22} ${height * 0.42} ${width * 0.42} ${height * 0.66} ${width * 0.62} ${height * 0.48} ${width} ${height * 0.9} V${height} H0z" fill="rgba(255,255,255,.62)"/></svg>`;
+
+    const image = document.createElement('img');
+    image.src = `data:image/svg+xml,${encodeURIComponent(svg)}`;
+    image.alt = t('selectedCoverAlt');
+    image.width = width;
+    image.height = height;
+    image.loading = 'lazy';
+    image.decoding = 'async';
+
+    const overlay = document.createElement('div');
+    overlay.className = 'ink-cover-overlay';
+
+    const icon = document.createElement('i');
+    icon.className = 'bi bi-arrow-repeat';
+    icon.setAttribute('aria-hidden', 'true');
+    overlay.appendChild(icon);
+    overlay.appendChild(document.createTextNode(' ' + t('changeCover')));
+
+    coverPreview.replaceChildren(image, overlay);
+    showToast(t('coverMediaSelected'), 'info');
   }
 
   navigate(navBtn) {

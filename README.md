@@ -138,6 +138,7 @@ npm run check:release
 | `preview-image` | 无 | 在新标签页打开当前图片行的预览资源 |
 | `rebuild-assets` | 无 | 在设置页模拟重新生成静态资源流程并显示完成反馈 |
 | `regenerate-thumbnails` | 无 | 在图片编辑页模拟缩略图重新生成过程并显示完成反馈 |
+| `select-cover-media` | 无 | 在文章/栏目编辑页模拟从媒体库选择封面并更新预览 |
 | `send-test-email` | 无 | 在设置页模拟发送 SMTP 测试邮件并显示按钮加载反馈 |
 | `toggle-editor-fullscreen` | 无 | 切换文章编辑器面板全屏状态并同步按钮语义 |
 | `toggle-editor-mode` | `data-editor-mode` | 切换文章编辑器的源码/预览模式并同步按钮状态 |

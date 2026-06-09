@@ -43,6 +43,7 @@ const allowedDataActions = new Set([
   'read-all',
   'read-one',
   'save-notification-pref',
+  'select-cover-media',
   'send-test-email',
   'switch-settings',
   'toast',
