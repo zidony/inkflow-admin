@@ -21,6 +21,7 @@ const clickActionHandlers = {
   'select-cover-media': manager => manager.selectCoverMedia(),
   'toggle-comment-status': manager => manager.toggleCommentStatus(),
   'toggle-post-status': manager => manager.togglePostStatus(),
+  'use-gravatar': manager => manager.useGravatar(),
   'validate-link': manager => manager.validateLink(),
   navigate: manager => manager.navigate(),
   trigger: manager => manager.triggerTarget(),
@@ -91,6 +92,7 @@ export class DelegationManager {
       selectCoverMedia: () => this.selectCoverMedia(actionEl),
       toggleCommentStatus: () => this.toggleCommentStatus(actionEl),
       togglePostStatus: () => this.togglePostStatus(actionEl),
+      useGravatar: () => this.useGravatar(actionEl),
       validateLink: () => this.validateLink(actionEl),
       navigate: () => this.navigate(actionEl),
       triggerTarget: () => this.triggerTarget(actionEl),
@@ -471,6 +473,26 @@ export class DelegationManager {
 
     coverPreview.replaceChildren(image, overlay);
     showToast(t('coverMediaSelected'), 'info');
+  }
+
+  useGravatar(gravatarBtn) {
+    const panel = gravatarBtn.closest('.ink-panel-body');
+    const avatarImage = panel?.querySelector('#avatar-img');
+    const avatarInitials = panel?.querySelector('#avatar-initials');
+    if (!avatarImage) return;
+
+    const svg =
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 90"><rect width="90" height="90" rx="18" fill="#0f766e"/><circle cx="45" cy="33" r="17" fill="#ccfbf1"/><path d="M18 82c3-18 17-28 27-28s24 10 27 28" fill="#99f6e4"/><path d="M20 16h14v14H20zM56 16h14v14H56zM38 54h14v14H38z" fill="#f59e0b"/></svg>';
+
+    avatarImage.src = `data:image/svg+xml,${encodeURIComponent(svg)}`;
+    avatarImage.alt = t('gravatarAlt');
+    avatarImage.classList.remove('d-none');
+
+    if (avatarInitials) {
+      avatarInitials.classList.add('d-none');
+    }
+
+    showToast(t('gravatarApplied'), 'info');
   }
 
   navigate(navBtn) {

@@ -146,6 +146,7 @@ npm run check:release
 | `toggle-user-status` | `data-toast-msg`, `data-toast-type` | 切换用户列表行的封禁/正常状态并显示反馈 |
 | `toggle-comment-status` | `data-comment-status`, `data-toast-msg`, `data-toast-type` | 切换评论列表行的审核/垃圾状态并同步筛选状态 |
 | `toggle-post-status` | `data-post-status`, `data-toast-msg`, `data-toast-type` | 切换文章列表行的发布状态并同步筛选状态 |
+| `use-gravatar` | 无 | 在用户编辑页模拟使用邮箱 Gravatar 头像并更新头像预览 |
 | `validate-link` | 无 | 在链接编辑页验证 URL 输入格式并显示按钮加载反馈 |
 
 **保留的全局可用 JS 方法 (方便 HTML 页面调用)**：

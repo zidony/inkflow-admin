@@ -56,6 +56,7 @@ const allowedDataActions = new Set([
   'toggle-theme',
   'toggle-user-status',
   'trigger',
+  'use-gravatar',
   'validate-link'
 ]);
 const requiredCdnAssets = [
