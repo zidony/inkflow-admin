@@ -126,6 +126,7 @@ npm run check:release
 | `delete` | 无 | 拦截表格/列表行的删除按钮，触发二次确认 |
 | `bulk-delete` | 无 | 删除当前列表中已勾选的行，并同步批量选择状态 |
 | `copy-field` | `data-target`, `data-copy-value`, `data-toast-msg`, `data-toast-type` | 复制目标输入框或指定文本内容到剪贴板 |
+| `email-user` | 无 | 从当前用户列表行读取邮箱并打开系统邮件客户端 |
 | `navigate` | `data-href` | 触发无感页面跳转 |
 | `permanent-delete` | `data-href` | 触发永久删除二次确认 |
 | `preview-image` | 无 | 在新标签页打开当前图片行的预览资源 |

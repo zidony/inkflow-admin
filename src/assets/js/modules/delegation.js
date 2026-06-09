@@ -10,6 +10,7 @@ const clickActionHandlers = {
   'toggle-user-status': manager => manager.toggleUserStatus(),
   'copy-field': manager => manager.copyField(),
   delete: manager => manager.confirmDelete(),
+  'email-user': manager => manager.emailUser(),
   toast: manager => manager.showToast(),
   'read-all': manager => manager.readAll(),
   'permanent-delete': manager => manager.permanentDelete(),
@@ -74,6 +75,7 @@ export class DelegationManager {
       toggleUserStatus: () => this.toggleUserStatus(actionEl),
       copyField: () => this.copyField(actionEl),
       confirmDelete: () => this.confirmDelete(actionEl),
+      emailUser: () => this.emailUser(actionEl),
       showToast: () => this.showToast(actionEl),
       readAll: () => this.readAllNotifications(),
       permanentDelete: () => this.permanentDelete(actionEl),
@@ -147,6 +149,15 @@ export class DelegationManager {
     } catch {
       showToast(t('copyFailed'), 'danger');
     }
+  }
+
+  emailUser(emailBtn) {
+    const row = emailBtn.closest('tr');
+    const email = row?.querySelector('.ink-item-text small')?.textContent?.trim();
+    if (!email) return;
+
+    window.location.href = `mailto:${encodeURIComponent(email)}`;
+    showToast(t('emailComposerOpened'), 'info');
   }
 
   toggleUserStatus(statusBtn) {

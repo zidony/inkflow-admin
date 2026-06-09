@@ -27,6 +27,7 @@ const allowedDataActions = new Set([
   'delete',
   'delete-notif',
   'do-login',
+  'email-user',
   'filter-type',
   'navigate',
   'permanent-delete',
