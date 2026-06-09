@@ -203,30 +203,30 @@
                 <div class="ink-panel-body">
                   <div class="row g-3">
                     <div class="col-12 col-md-6">
-                      <label class="form-label">站点 Logo</label>
+                      <label class="form-label" for="site-logo-input">站点 Logo</label>
                       <button
                         type="button"
                         class="ink-upload-zone"
-                        data-action="toast"
-                        data-toast-msg="请选择 Logo 图片"
-                        data-toast-type="info"
+                        data-action="trigger"
+                        data-target="site-logo-input"
                       >
                         <i class="bi bi-image-fill" aria-hidden="true"></i>
                         <span class="ink-upload-zone-text">点击上传 Logo<br /><small>建议尺寸 200×60px，支持 PNG/SVG</small></span>
                       </button>
+                      <input type="file" id="site-logo-input" accept="image/png,image/svg+xml" class="d-none" />
                     </div>
                     <div class="col-12 col-md-6">
-                      <label class="form-label">网站图标 (Favicon)</label>
+                      <label class="form-label" for="site-favicon-input">网站图标 (Favicon)</label>
                       <button
                         type="button"
                         class="ink-upload-zone"
-                        data-action="toast"
-                        data-toast-msg="请选择 Favicon 图标"
-                        data-toast-type="info"
+                        data-action="trigger"
+                        data-target="site-favicon-input"
                       >
                         <i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i>
                         <span class="ink-upload-zone-text">点击上传 Favicon<br /><small>建议 32×32px，支持 ICO/PNG</small></span>
                       </button>
+                      <input type="file" id="site-favicon-input" accept="image/x-icon,image/png" class="d-none" />
                     </div>
                   </div>
                 </div>
