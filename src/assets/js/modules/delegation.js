@@ -153,28 +153,35 @@ export class DelegationManager {
     const row = statusBtn.closest('tr');
     if (!row) return;
 
-    const nextBlocked = row.dataset.status !== 'blocked';
-    row.dataset.status = nextBlocked ? 'blocked' : 'active';
+    const nextBanned = row.dataset.status !== 'banned';
+    row.dataset.status = nextBanned ? 'banned' : 'active';
 
     const statusBadge = row.querySelector('td:nth-last-child(2) .ink-badge');
     if (statusBadge) {
-      statusBadge.classList.toggle('u-tint-green', !nextBlocked);
-      statusBadge.classList.toggle('u-tint-red', nextBlocked);
+      statusBadge.classList.remove('u-tint-green', 'u-tint-red', 'u-tint-slate');
+      statusBadge.classList.add(nextBanned ? 'u-tint-red' : 'u-tint-green');
 
       const dot = document.createElement('span');
       dot.className = 'ink-badge-dot';
-      statusBadge.replaceChildren(dot, document.createTextNode(nextBlocked ? '已封禁' : '正常'));
+      statusBadge.replaceChildren(dot, document.createTextNode(nextBanned ? '已封禁' : '正常'));
     }
 
-    const label = nextBlocked ? '解封用户' : '封禁用户';
+    const label = nextBanned ? '解封用户' : '封禁用户';
     statusBtn.setAttribute('title', label);
     statusBtn.setAttribute('aria-label', label);
-    statusBtn.setAttribute('data-toast-msg', nextBlocked ? '用户已被封禁' : '用户已解封');
-    statusBtn.setAttribute('data-toast-type', nextBlocked ? 'danger' : 'success');
+    statusBtn.setAttribute('data-toast-msg', nextBanned ? '用户已被封禁' : '用户已解封');
+    statusBtn.setAttribute('data-toast-type', nextBanned ? 'danger' : 'success');
 
     const icon = statusBtn.querySelector('i');
     if (icon) {
-      icon.className = nextBlocked ? 'bi bi-person-check' : 'bi bi-person-x';
+      icon.className = nextBanned ? 'bi bi-person-check' : 'bi bi-person-x';
+    }
+
+    const activeFilter = document
+      .querySelector('.ink-filter-tab.active')
+      ?.getAttribute('data-filter');
+    if (activeFilter && activeFilter !== 'all') {
+      row.style.display = row.dataset.status === activeFilter ? '' : 'none';
     }
 
     this.showToast(statusBtn);

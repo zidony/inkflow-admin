@@ -31,6 +31,8 @@ const jsFiles = listFiles(jsDir, file => file.endsWith('.js'));
 const jsSource = jsFiles.map(filePath => readText(filePath)).join('\n');
 const bulkModulePath = path.join(jsDir, 'modules', 'bulk.js');
 const bulkModule = readText(bulkModulePath);
+const delegationModulePath = path.join(jsDir, 'modules', 'delegation.js');
+const delegationModule = readText(delegationModulePath);
 
 for (const filePath of jsFiles) {
   const source = readText(filePath);
@@ -67,6 +69,18 @@ for (const action of actions) {
 
 if (!/dispatchEvent\(new CustomEvent\(['"]inkflow:rows-changed['"]\)\)/.test(bulkModule)) {
   failures.push(`${relativeToRoot(bulkModulePath)} bulk deletion needs to broadcast row changes.`);
+}
+
+if (/\bblocked\b/.test(delegationModule)) {
+  failures.push(
+    `${relativeToRoot(delegationModulePath)} user status toggles must use the template filter value "banned", not "blocked".`
+  );
+}
+
+if (!/row\.dataset\.status\s*=\s*nextBanned\s*\?\s*['"]banned['"]\s*:\s*['"]active['"]/.test(delegationModule)) {
+  failures.push(
+    `${relativeToRoot(delegationModulePath)} user status toggles must keep row data-status aligned with user-list filters.`
+  );
 }
 
 if (failures.length) {
