@@ -125,6 +125,7 @@ npm run check:release
 | `toast` | `data-toast-msg`, `data-toast-type` | 显示防 XSS 气泡弹窗 |
 | `delete` | 无 | 拦截表格/列表行的删除按钮，触发二次确认 |
 | `bulk-delete` | 无 | 删除当前列表中已勾选的行，并同步批量选择状态 |
+| `clear-selection` | 无 | 取消当前列表中的勾选状态并隐藏批量工具栏 |
 | `copy-field` | `data-target`, `data-copy-value`, `data-toast-msg`, `data-toast-type` | 复制目标输入框或指定文本内容到剪贴板 |
 | `email-user` | 无 | 从当前用户列表行读取邮箱并打开系统邮件客户端 |
 | `focus-image-crop` | 无 | 聚焦图片编辑页预览区并高亮裁剪网格 |

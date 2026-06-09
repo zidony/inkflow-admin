@@ -125,6 +125,7 @@ The project uses centralized event delegation mapped to `data-action` attributes
 | `toast` | `data-toast-msg`, `data-toast-type` | Triggers toast notifications |
 | `delete` | None | Intercepts delete actions on rows to display confirm |
 | `bulk-delete` | None | Deletes checked rows in the current list and syncs bulk selection state |
+| `clear-selection` | None | Clears checked rows in the current list and hides the bulk toolbar |
 | `copy-field` | `data-target`, `data-copy-value`, `data-toast-msg`, `data-toast-type` | Copies the target input or configured text content to the clipboard |
 | `email-user` | None | Reads the email address from the current user row and opens the system email composer |
 | `focus-image-crop` | None | Focuses the image edit preview area and highlights the crop grid |

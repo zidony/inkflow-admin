@@ -21,6 +21,7 @@ const voidTags = new Set([
 const allowedDataActions = new Set([
   'apply-avatar-crop',
   'bulk-delete',
+  'clear-selection',
   'clear-read-notifs',
   'clear-preview',
   'copy-field',

@@ -45,12 +45,30 @@ export class BulkSelectManager {
     document.addEventListener('inkflow:rows-changed', () => this.updateBulkBar());
 
     document.addEventListener('click', event => {
+      const clearSelectionButton = event.target.closest('[data-action="clear-selection"]');
+      if (clearSelectionButton) {
+        event.preventDefault();
+        this.clearSelection();
+        return;
+      }
+
       const bulkDeleteButton = event.target.closest('[data-action="bulk-delete"]');
       if (!bulkDeleteButton) return;
 
       event.preventDefault();
       this.deleteSelectedRows();
     });
+  }
+
+  clearSelection() {
+    const checkedBoxes = document.querySelectorAll('.ink-row-check:checked');
+    if (!checkedBoxes.length) return;
+
+    checkedBoxes.forEach(checkbox => {
+      checkbox.checked = false;
+    });
+    this.updateBulkBar();
+    showToast(t('selectionCleared'), 'info');
   }
 
   deleteSelectedRows() {
