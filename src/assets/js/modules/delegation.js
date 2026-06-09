@@ -121,12 +121,13 @@ export class DelegationManager {
 
   async copyField(copyBtn) {
     const targetId = copyBtn.getAttribute('data-target');
+    const copyValue = copyBtn.getAttribute('data-copy-value');
     const field = targetId
       ? document.getElementById(targetId)
       : copyBtn.closest('.input-group')?.querySelector('input');
-    const value = field?.value || field?.textContent || '';
+    const value = copyValue || field?.value || field?.textContent || '';
 
-    if (!field || !value) return;
+    if (!value) return;
 
     try {
       if (window.navigator.clipboard?.writeText) {
