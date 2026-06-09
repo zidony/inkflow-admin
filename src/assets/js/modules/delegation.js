@@ -16,6 +16,7 @@ const clickActionHandlers = {
   'read-all': manager => manager.readAll(),
   'permanent-delete': manager => manager.permanentDelete(),
   'preview-image': manager => manager.previewImage(),
+  'regenerate-thumbnails': manager => manager.regenerateThumbnails(),
   'toggle-comment-status': manager => manager.toggleCommentStatus(),
   'toggle-post-status': manager => manager.togglePostStatus(),
   navigate: manager => manager.navigate(),
@@ -82,6 +83,7 @@ export class DelegationManager {
       readAll: () => this.readAllNotifications(),
       permanentDelete: () => this.permanentDelete(actionEl),
       previewImage: () => this.previewImage(actionEl),
+      regenerateThumbnails: () => this.regenerateThumbnails(actionEl),
       toggleCommentStatus: () => this.toggleCommentStatus(actionEl),
       togglePostStatus: () => this.togglePostStatus(actionEl),
       navigate: () => this.navigate(actionEl),
@@ -175,6 +177,24 @@ export class DelegationManager {
     }, 3600);
 
     showToast(t('imageCropModeEnabled'), 'info');
+  }
+
+  regenerateThumbnails(regenerateBtn) {
+    if (regenerateBtn.disabled) return;
+
+    const originalContent = [...regenerateBtn.childNodes];
+    const spinner = document.createElement('span');
+    spinner.className = 'spinner-border spinner-border-sm me-1';
+    spinner.setAttribute('aria-hidden', 'true');
+
+    regenerateBtn.disabled = true;
+    regenerateBtn.replaceChildren(spinner, document.createTextNode(t('thumbnailRegenerating')));
+
+    window.setTimeout(() => {
+      regenerateBtn.disabled = false;
+      regenerateBtn.replaceChildren(...originalContent);
+      showToast(t('thumbnailRegenerated'), 'success');
+    }, 1000);
   }
 
   toggleUserStatus(statusBtn) {

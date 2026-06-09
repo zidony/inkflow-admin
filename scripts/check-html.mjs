@@ -33,6 +33,7 @@ const allowedDataActions = new Set([
   'navigate',
   'permanent-delete',
   'preview-image',
+  'regenerate-thumbnails',
   'read-all',
   'read-one',
   'save-notification-pref',

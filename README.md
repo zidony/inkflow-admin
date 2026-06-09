@@ -131,6 +131,7 @@ npm run check:release
 | `navigate` | `data-href` | 触发无感页面跳转 |
 | `permanent-delete` | `data-href` | 触发永久删除二次确认 |
 | `preview-image` | 无 | 在新标签页打开当前图片行的预览资源 |
+| `regenerate-thumbnails` | 无 | 在图片编辑页模拟缩略图重新生成过程并显示完成反馈 |
 | `toggle-theme` | 无 | 触发暗黑/明亮模式切换 |
 | `toggle-user-status` | `data-toast-msg`, `data-toast-type` | 切换用户列表行的封禁/正常状态并显示反馈 |
 | `toggle-comment-status` | `data-comment-status`, `data-toast-msg`, `data-toast-type` | 切换评论列表行的审核/垃圾状态并同步筛选状态 |
