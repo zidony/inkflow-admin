@@ -165,6 +165,7 @@
                   <input
                     type="text"
                     class="form-control u-text-sm u-text-mono"
+                    id="image-url-field"
                     aria-label="图片直链地址"
                     value="/uploads/2025/06/cover-vue3.jpg"
                     readonly
@@ -172,7 +173,8 @@
                   />
                   <button type="button"
                     class="btn btn-light"
-                    data-action="toast"
+                    data-action="copy-field"
+                    data-target="image-url-field"
                     data-toast-msg="已复制到剪贴板"
                     data-toast-type="success"
                   >

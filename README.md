@@ -125,6 +125,7 @@ npm run check:release
 | `toast` | `data-toast-msg`, `data-toast-type` | 显示防 XSS 气泡弹窗 |
 | `delete` | 无 | 拦截表格/列表行的删除按钮，触发二次确认 |
 | `bulk-delete` | 无 | 删除当前列表中已勾选的行，并同步批量选择状态 |
+| `copy-field` | `data-target`, `data-toast-msg`, `data-toast-type` | 复制目标输入框或文本内容到剪贴板 |
 | `navigate` | `data-href` | 触发无感页面跳转 |
 | `permanent-delete` | `data-href` | 触发永久删除二次确认 |
 | `toggle-theme` | 无 | 触发暗黑/明亮模式切换 |

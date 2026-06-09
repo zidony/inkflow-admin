@@ -8,6 +8,7 @@ import { syncNotificationDateGroups } from './notification-dom.js';
 const clickActionHandlers = {
   'toggle-theme': manager => manager.toggleTheme(),
   'toggle-user-status': manager => manager.toggleUserStatus(),
+  'copy-field': manager => manager.copyField(),
   delete: manager => manager.confirmDelete(),
   toast: manager => manager.showToast(),
   'read-all': manager => manager.readAll(),
@@ -68,6 +69,7 @@ export class DelegationManager {
         }
       },
       toggleUserStatus: () => this.toggleUserStatus(actionEl),
+      copyField: () => this.copyField(actionEl),
       confirmDelete: () => this.confirmDelete(actionEl),
       showToast: () => this.showToast(actionEl),
       readAll: () => this.readAllNotifications(),
@@ -113,6 +115,31 @@ export class DelegationManager {
     const msg = toastBtn.getAttribute('data-toast-msg') || t('toastSuccess');
     const type = toastBtn.getAttribute('data-toast-type') || 'success';
     showToast(msg, type);
+  }
+
+  async copyField(copyBtn) {
+    const targetId = copyBtn.getAttribute('data-target');
+    const field = targetId
+      ? document.getElementById(targetId)
+      : copyBtn.closest('.input-group')?.querySelector('input');
+    const value = field?.value || field?.textContent || '';
+
+    if (!field || !value) return;
+
+    try {
+      if (window.navigator.clipboard?.writeText) {
+        await window.navigator.clipboard.writeText(value);
+      } else if (field.select) {
+        field.select();
+        document.execCommand('copy');
+      }
+      showToast(
+        copyBtn.getAttribute('data-toast-msg') || t('copied'),
+        copyBtn.getAttribute('data-toast-type') || 'success'
+      );
+    } catch {
+      showToast(t('copyFailed'), 'danger');
+    }
   }
 
   toggleUserStatus(statusBtn) {

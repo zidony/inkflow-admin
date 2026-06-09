@@ -23,6 +23,7 @@ const allowedDataActions = new Set([
   'bulk-delete',
   'clear-read-notifs',
   'clear-preview',
+  'copy-field',
   'delete',
   'delete-notif',
   'do-login',
