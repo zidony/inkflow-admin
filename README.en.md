@@ -135,6 +135,7 @@ The project uses centralized event delegation mapped to `data-action` attributes
 | `permanent-delete` | `data-href` | Double-check dialog for permanent deletion |
 | `preview-image` | None | Opens the current image row preview asset in a new tab |
 | `regenerate-thumbnails` | None | Simulates thumbnail regeneration on the image edit page and shows completion feedback |
+| `toggle-editor-fullscreen` | None | Toggles the post editor panel fullscreen state and syncs button semantics |
 | `toggle-editor-mode` | `data-editor-mode` | Switches the post editor source/preview mode and syncs button state |
 | `toggle-theme` | None | Toggles the theme mode |
 | `toggle-user-status` | `data-toast-msg`, `data-toast-type` | Toggles a user list row between banned and active states with feedback |

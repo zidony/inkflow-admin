@@ -201,6 +201,29 @@ export class EditorManager {
       });
     });
 
+    const fullscreenButton = document.querySelector('[data-action="toggle-editor-fullscreen"]');
+    if (fullscreenButton && editorBody) {
+      fullscreenButton.addEventListener('click', () => {
+        const editorPanel = editorBody.closest('.ink-panel');
+        if (!editorPanel) return;
+
+        const isFullscreen = !editorPanel.classList.contains('is-editor-fullscreen');
+        editorPanel.classList.toggle('is-editor-fullscreen', isFullscreen);
+        fullscreenButton.classList.toggle('active', isFullscreen);
+        fullscreenButton.setAttribute('aria-pressed', isFullscreen ? 'true' : 'false');
+        fullscreenButton.setAttribute('aria-label', isFullscreen ? '退出全屏' : '全屏');
+        fullscreenButton.setAttribute('title', isFullscreen ? '退出全屏' : '全屏');
+
+        const icon = fullscreenButton.querySelector('i');
+        if (icon) {
+          icon.className = isFullscreen ? 'bi bi-fullscreen-exit' : 'bi bi-fullscreen';
+        }
+
+        editorBody.focus();
+        showToast(t(isFullscreen ? 'fullscreenEnabled' : 'fullscreenDisabled'), 'info');
+      });
+    }
+
     // 6. Auto-Save Status
     const saveStatus = document.getElementById('save-status');
     if (saveStatus) {

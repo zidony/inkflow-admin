@@ -45,6 +45,7 @@ const allowedDataActions = new Set([
   'toggle-comment-status',
   'toggle-mail-pref',
   'toggle-editor-mode',
+  'toggle-editor-fullscreen',
   'toggle-pwd',
   'toggle-post-status',
   'toggle-theme',

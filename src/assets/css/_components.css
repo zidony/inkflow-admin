@@ -1005,6 +1005,27 @@ textarea.form-control {
   overflow-x: auto;
   display: block;
 }
+.ink-panel.is-editor-fullscreen {
+  position: fixed;
+  inset: 12px;
+  z-index: 1060;
+  display: flex;
+  flex-direction: column;
+  margin: 0 !important;
+  background: var(--ink-surface-raised);
+  box-shadow: var(--ink-shadow-xl);
+}
+.ink-panel.is-editor-fullscreen .ink-panel-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+}
+.ink-panel.is-editor-fullscreen .ink-editor-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
 
 .ink-editor-sticky-bar {
   position: sticky;
