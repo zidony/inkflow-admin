@@ -16,6 +16,17 @@ function setSpinnerText(element, text) {
   element.replaceChildren(spinner, document.createTextNode(text));
 }
 
+function serializeEditorSource(editorBody) {
+  const serializer = new window.XMLSerializer();
+  return [...editorBody.childNodes]
+    .map(node =>
+      node.nodeType === window.Node.ELEMENT_NODE
+        ? serializer.serializeToString(node)
+        : node.textContent
+    )
+    .join('\n');
+}
+
 export class EditorManager {
   constructor() {
     this.init();
@@ -159,6 +170,36 @@ export class EditorManager {
         slugField.classList.remove('is-editing');
       });
     }
+
+    document.querySelectorAll('[data-action="toggle-editor-mode"]').forEach(modeButton => {
+      modeButton.addEventListener('click', () => {
+        if (!editorBody) return;
+
+        const mode = modeButton.getAttribute('data-editor-mode') || 'preview';
+        const isSourceMode = mode === 'source';
+
+        document.querySelectorAll('[data-action="toggle-editor-mode"]').forEach(button => {
+          const isActive = button === modeButton;
+          button.classList.toggle('active', isActive);
+          button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        if (isSourceMode) {
+          editorBody.previewNodes = [...editorBody.childNodes].map(node => node.cloneNode(true));
+          editorBody.textContent = serializeEditorSource(editorBody);
+          editorBody.setAttribute('contenteditable', 'false');
+          showToast(t('sourceModeEnabled'), 'info');
+          return;
+        }
+
+        if (editorBody.previewNodes) {
+          editorBody.replaceChildren(...editorBody.previewNodes.map(node => node.cloneNode(true)));
+        }
+        editorBody.setAttribute('contenteditable', 'true');
+        editorBody.focus();
+        showToast(t('previewModeEnabled'), 'info');
+      });
+    });
 
     // 6. Auto-Save Status
     const saveStatus = document.getElementById('save-status');

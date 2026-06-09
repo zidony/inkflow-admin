@@ -100,17 +100,17 @@
                 <div class="ms-auto d-flex gap-2">
                   <button type="button"
                     class="btn btn-light btn-sm ink-editor-mode-btn u-text-xs"
-                    data-action="toast"
-                    data-toast-msg="已切换到源码模式"
-                    data-toast-type="info"
+                    data-action="toggle-editor-mode"
+                    data-editor-mode="source"
+                    aria-pressed="false"
                   >
                     <i class="bi bi-code-slash me-1" aria-hidden="true"></i>源码
                   </button>
                   <button type="button"
-                    class="btn btn-light btn-sm ink-editor-mode-btn u-text-xs"
-                    data-action="toast"
-                    data-toast-msg="已切换到预览模式"
-                    data-toast-type="info"
+                    class="btn btn-light btn-sm ink-editor-mode-btn u-text-xs active"
+                    data-action="toggle-editor-mode"
+                    data-editor-mode="preview"
+                    aria-pressed="true"
                   >
                     <i class="bi bi-eye me-1" aria-hidden="true"></i>预览
                   </button>
