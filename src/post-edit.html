@@ -246,14 +246,17 @@
 
             <!-- SEO 设置（可折叠） -->
             <div class="ink-panel ink-anim ink-delay-100 mt-3">
-              <div
+              <button
+                type="button"
                 class="ink-panel-header cursor-pointer"
                 data-bs-toggle="collapse"
                 data-bs-target="#seo-collapse"
+                aria-expanded="true"
+                aria-controls="seo-collapse"
               >
                 <i class="bi bi-search-heart" aria-hidden="true"></i> SEO 优化设置
                 <i class="bi bi-chevron-down ms-auto u-text-xs u-text-gray-400" aria-hidden="true"></i>
-              </div>
+              </button>
               <div id="seo-collapse" class="collapse show">
                 <div class="ink-panel-body">
                   <div class="row g-3">
@@ -491,14 +494,17 @@ Vue 3 带来了全新的 Composition API，提供了更灵活的代码组织方�
 
             <!-- 更多设置（可折叠） -->
             <div class="ink-panel ink-anim ink-delay-220">
-              <div
+              <button
+                type="button"
                 class="ink-panel-header cursor-pointer"
                 data-bs-toggle="collapse"
                 data-bs-target="#more-collapse"
+                aria-expanded="true"
+                aria-controls="more-collapse"
               >
                 <i class="bi bi-three-dots" aria-hidden="true"></i> 更多设置
                 <i class="bi bi-chevron-down ms-auto u-text-xs u-text-gray-400" aria-hidden="true"></i>
-              </div>
+              </button>
               <div id="more-collapse" class="collapse show">
                 <div class="ink-panel-body">
                   <div class="mb-3">

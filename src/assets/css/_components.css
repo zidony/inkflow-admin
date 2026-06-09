@@ -819,6 +819,14 @@ textarea.form-control {
   align-items: center;
   gap: 7px;
 }
+.ink-panel-header[type='button'] {
+  width: 100%;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  background: transparent;
+  text-align: left;
+}
 .ink-panel-header i {
   color: var(--ink-500);
   flex-shrink: 0;
