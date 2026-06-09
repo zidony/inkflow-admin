@@ -100,6 +100,7 @@ export class EditorManager {
     document.querySelectorAll('.ink-pill').forEach(pill => {
       pill.addEventListener('click', function () {
         this.classList.toggle('selected');
+        this.setAttribute('aria-pressed', this.classList.contains('selected') ? 'true' : 'false');
       });
     });
 
