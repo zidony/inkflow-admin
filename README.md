@@ -17,7 +17,7 @@
 ## ✨ 核心特性
 
 - **🚀 Vite 构建流程**：使用 **Vite 5** 进行本地开发和生产构建，支持开发阶段 HMR 与生产资源压缩。
-- **📦 ESM 模块化脚本**：将全局脚本拆分为多个 ES Modules，包括 Sidebar、Theme、Search、Bulk、Toast、Editor 和 Chart 等模块。
+- **📦 ESM 模块化脚本**：将全局脚本拆分为多个 ES Modules，包括 Sidebar、Theme、Search、Bulk、Toast、Editor 和 Chart 等模块。图表模块按需动态加载并在编译期独立为 `inkflow-chart.js`，非仪表盘页面不再加载 Chart.js，主包体积显著降低。
 - **🌙 暗黑模式**：基于 CSS 变量实现明暗主题切换，并通过 `localStorage` 记录用户选择。
 - **🌐 i18n 文案切换**：根据 HTML 的 `<html lang="...">` 属性切换确认提示、加载状态、通知气泡和 Chart.js 图表标签等运行时文案。
 - **📏 代码质量工具**：配置 ESLint、Stylelint、Prettier、HTML 结构检查、可访问性检查、响应式守卫、内联样式检查、运行时 i18n 检查、JS 边界检查和模板动作校验，可通过 `npm run quality` 运行发布前检查。
@@ -35,9 +35,9 @@ inkflow-admin/
 │       └── release.yml         # GitHub Actions 自动化发版流水线
 ├── dist/                       # 编译产物目录（自动生成，不纳入 Git 追踪）
 ├── releases/                   # 发版压缩包目录（自动生成，不纳入 Git 追踪）
-├── scripts/
-│   ├── migrate.py              # 一键工程化源码重构迁移脚本
-│   ├── add_theme_toggle.py     # 按钮自动注入脚本
+├── scripts/                    # 工程化脚本（质量门禁 + 自动发版）
+│   ├── lib/files.mjs           # 脚本共享的文件遍历工具
+│   ├── check-*.mjs             # 质量门禁脚本（HTML/可访问性/响应式/令牌/i18n/边界/文档/发布）
 │   └── release.mjs             # 自动化打包发版脚本 (Node.js 标准库)
 ├── src/                        # 核心源码目录
 │   ├── assets/
@@ -51,7 +51,7 @@ inkflow-admin/
 │   │       │   ├── search.js   # 全局键盘快捷键与数据过滤
 │   │       │   ├── bulk.js     # 批量操作与工具条状态同步
 │   │       │   ├── toast.js    # 消息气泡封装
-│   │       │   ├── chart.js    # 智能图表模块 (感应主题自动重绘)
+│   │       │   ├── chart.js    # 图表模块（按需动态加载，编译为独立 inkflow-chart.js）
 │   │       │   └── delegation.js # 核心事件委托引擎
 │   │       └── inkflow-admin.js   # 主入口脚本 (ES Module)
 │   ├── category-edit.html      # 18 个页面模板

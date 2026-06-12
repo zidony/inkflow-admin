@@ -212,8 +212,14 @@ export class EditorManager {
         editorPanel.classList.toggle('is-editor-fullscreen', isFullscreen);
         fullscreenButton.classList.toggle('active', isFullscreen);
         fullscreenButton.setAttribute('aria-pressed', isFullscreen ? 'true' : 'false');
-        fullscreenButton.setAttribute('aria-label', isFullscreen ? '退出全屏' : '全屏');
-        fullscreenButton.setAttribute('title', isFullscreen ? '退出全屏' : '全屏');
+        fullscreenButton.setAttribute(
+          'aria-label',
+          isFullscreen ? t('exitFullscreen') : t('enterFullscreen')
+        );
+        fullscreenButton.setAttribute(
+          'title',
+          isFullscreen ? t('exitFullscreen') : t('enterFullscreen')
+        );
 
         const icon = fullscreenButton.querySelector('i');
         if (icon) {

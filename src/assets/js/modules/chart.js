@@ -1,4 +1,4 @@
-import { t } from './i18n.js';
+import { t, i18n } from './i18n.js';
 import Chart from 'chart.js/auto';
 
 export class ChartManager {
@@ -31,20 +31,7 @@ export class ChartManager {
     this.chartInstance = new Chart(canvas, {
       type: 'bar',
       data: {
-        labels: [
-          '1月',
-          '2月',
-          '3月',
-          '4月',
-          '5月',
-          '6月',
-          '7月',
-          '8月',
-          '9月',
-          '10月',
-          '11月',
-          '12月'
-        ],
+        labels: i18n.list('months'),
         datasets: [
           {
             label: t('visitsLabel'),

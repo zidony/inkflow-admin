@@ -17,7 +17,7 @@ An HTML administration dashboard template designed for blogs and content managem
 ## ✨ Core Features
 
 - **🚀 Vite Build Workflow**: Uses **Vite 5** for local development and production builds, including development HMR and production asset minification.
-- **📦 ESM JavaScript Modules**: Splits global behavior into ES Modules, including Sidebar, Theme, Search, Bulk, Toast, Editor, and Chart modules.
+- **📦 ESM JavaScript Modules**: Splits global behavior into ES Modules, including Sidebar, Theme, Search, Bulk, Toast, Editor, and Chart modules. The chart module is dynamically imported on demand and compiled into a standalone `inkflow-chart.js`, so non-dashboard pages no longer ship Chart.js and the main bundle shrinks significantly.
 - **🌙 Dark Mode**: Uses CSS custom properties for light/dark theme switching and stores the user preference in `localStorage`.
 - **🌐 Runtime i18n Text Switching**: Reads the HTML `<html lang="...">` attribute to switch runtime text for confirms, loading states, toasts, and Chart.js labels.
 - **📏 Code Quality Tooling**: Configures ESLint, Stylelint, Prettier, HTML structure checks, accessibility checks, responsive guards, inline-style checks, runtime i18n checks, JS boundary checks, and template action validation. Run `npm run quality` before publishing.
@@ -35,9 +35,9 @@ inkflow-admin/
 │       └── release.yml         # GitHub Actions automated release pipeline
 ├── dist/                       # Compiled assets output (excluded from Git tracking)
 ├── releases/                   # Release ZIP archives (excluded from Git tracking)
-├── scripts/
-│   ├── migrate.py              # Automated source codebase refactoring script
-│   ├── add_theme_toggle.py     # Theme toggle button injector script
+├── scripts/                    # Engineering scripts (quality gates + release)
+│   ├── lib/files.mjs           # Shared file-traversal helpers for scripts
+│   ├── check-*.mjs             # Quality-gate scripts (HTML/a11y/responsive/tokens/i18n/boundaries/docs/release)
 │   └── release.mjs             # Zero-dependency ZIP packaging script (Node.js standard library)
 ├── src/                        # Core source files
 │   ├── assets/
@@ -51,7 +51,7 @@ inkflow-admin/
 │   │       │   ├── search.js   # Global hotkeys (Ctrl+K) & live table search
 │   │       │   ├── bulk.js     # Bulk row selections & actions sync
 │   │       │   ├── toast.js    # Toast notification helper
-│   │       │   ├── chart.js    # Responsive chart redrawing on theme events
+│   │       │   ├── chart.js    # Chart module (dynamically imported, compiled to standalone inkflow-chart.js)
 │   │       │   └── delegation.js # Centralized event delegation engine
 │   │       └── inkflow-admin.js   # Unified ESM entry point
 │   ├── category-edit.html      # 18 page templates

@@ -39,7 +39,12 @@ export default defineConfig({
       input: getHtmlEntries(),
       output: {
         entryFileNames: 'assets/js/[name].js',
-        chunkFileNames: 'assets/js/[name].js',
+        // The dashboard chart is the only dynamic import; it pulls in Chart.js,
+        // so emit that single lazy chunk under a stable, descriptive name.
+        chunkFileNames(chunkInfo) {
+          if (chunkInfo.name === 'chart') return 'assets/js/inkflow-chart.js';
+          return 'assets/js/[name].js';
+        },
         assetFileNames: 'assets/[ext]/[name].[ext]'
       }
     }

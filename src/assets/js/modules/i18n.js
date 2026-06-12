@@ -66,7 +66,19 @@ export const locales = {
     mailNotificationEnabled: '邮件通知已开启',
     mailNotificationDisabled: '邮件通知已关闭',
     loginVerifying: '验证中…',
-    loginButton: '登录后台'
+    loginButton: '登录后台',
+    userStatusActive: '正常',
+    userStatusBanned: '已封禁',
+    banUser: '封禁用户',
+    unbanUser: '解封用户',
+    userBanned: '用户已被封禁',
+    userUnbanned: '用户已解封',
+    postStatusPublished: '已发布',
+    postStatusDraft: '草稿',
+    postStatusPending: '待审核',
+    exitFullscreen: '退出全屏',
+    enterFullscreen: '全屏',
+    months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
   },
   en: {
     confirmDelete: 'Are you sure you want to delete this item? This action cannot be undone.',
@@ -132,7 +144,19 @@ export const locales = {
     mailNotificationEnabled: 'Email notifications enabled',
     mailNotificationDisabled: 'Email notifications disabled',
     loginVerifying: 'Verifying...',
-    loginButton: 'Log in'
+    loginButton: 'Log in',
+    userStatusActive: 'Active',
+    userStatusBanned: 'Banned',
+    banUser: 'Ban user',
+    unbanUser: 'Unban user',
+    userBanned: 'User has been banned',
+    userUnbanned: 'User has been unbanned',
+    postStatusPublished: 'Published',
+    postStatusDraft: 'Draft',
+    postStatusPending: 'Pending review',
+    exitFullscreen: 'Exit fullscreen',
+    enterFullscreen: 'Fullscreen',
+    months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   }
 };
 
@@ -165,6 +189,18 @@ export class I18nManager {
       (message, [name, value]) => message.replaceAll(`{${name}}`, String(value)),
       text
     );
+  }
+
+  // Resolve an array-valued locale entry (e.g. month labels) with a zh fallback.
+  list(key) {
+    const dict = locales[this.lang] || locales.zh;
+    const value = dict[key] ?? locales.zh[key];
+    return Array.isArray(value) ? value : [];
+  }
+
+  // BCP 47 tag for Intl/toLocale* APIs, derived from the active language.
+  get dateLocale() {
+    return this.lang === 'en' ? 'en-US' : 'zh-CN';
   }
 }
 

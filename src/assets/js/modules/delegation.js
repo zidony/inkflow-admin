@@ -2,7 +2,7 @@
    InkFlow Admin — Central Event Delegation & General Helpers
    ============================================================ */
 import { showToast } from './toast.js';
-import { t } from './i18n.js';
+import { t, i18n } from './i18n.js';
 import { syncNotificationDateGroups } from './notification-dom.js';
 
 const clickActionHandlers = {
@@ -46,7 +46,7 @@ export class DelegationManager {
     // 1. Setup topbar date
     const dateEl = document.getElementById('topbar-date');
     if (dateEl) {
-      dateEl.textContent = new Date().toLocaleDateString('zh-CN', {
+      dateEl.textContent = new Date().toLocaleDateString(i18n.dateLocale, {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
@@ -264,13 +264,16 @@ export class DelegationManager {
 
       const dot = document.createElement('span');
       dot.className = 'ink-badge-dot';
-      statusBadge.replaceChildren(dot, document.createTextNode(nextBanned ? '已封禁' : '正常'));
+      statusBadge.replaceChildren(
+        dot,
+        document.createTextNode(nextBanned ? t('userStatusBanned') : t('userStatusActive'))
+      );
     }
 
-    const label = nextBanned ? '解封用户' : '封禁用户';
+    const label = nextBanned ? t('unbanUser') : t('banUser');
     statusBtn.setAttribute('title', label);
     statusBtn.setAttribute('aria-label', label);
-    statusBtn.setAttribute('data-toast-msg', nextBanned ? '用户已被封禁' : '用户已解封');
+    statusBtn.setAttribute('data-toast-msg', nextBanned ? t('userBanned') : t('userUnbanned'));
     statusBtn.setAttribute('data-toast-type', nextBanned ? 'danger' : 'success');
 
     const icon = statusBtn.querySelector('i');
@@ -351,9 +354,9 @@ export class DelegationManager {
     if (!row || !nextStatus) return;
 
     const statusMap = {
-      published: { label: '已发布', className: 'u-tint-green' },
-      draft: { label: '草稿', className: 'u-tint-slate' },
-      pending: { label: '待审核', className: 'u-tint-amber' }
+      published: { label: t('postStatusPublished'), className: 'u-tint-green' },
+      draft: { label: t('postStatusDraft'), className: 'u-tint-slate' },
+      pending: { label: t('postStatusPending'), className: 'u-tint-amber' }
     };
     const status = statusMap[nextStatus];
     if (!status) return;

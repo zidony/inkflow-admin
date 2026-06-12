@@ -8,7 +8,6 @@ import { SidebarManager } from './modules/sidebar.js';
 import { SearchManager } from './modules/search.js';
 import { BulkSelectManager } from './modules/bulk.js';
 import { EditorManager } from './modules/editor.js';
-import { ChartManager } from './modules/chart.js';
 import { DelegationManager } from './modules/delegation.js';
 import { FilterManager } from './modules/filter.js';
 import { ImageUploadManager } from './modules/image-upload.js';
@@ -30,7 +29,6 @@ class InkFlowAdmin {
       this.search = new SearchManager();
       this.bulk = new BulkSelectManager();
       this.editor = new EditorManager();
-      this.chart = new ChartManager();
       this.delegation = new DelegationManager();
       this.filter = new FilterManager();
       this.imageUpload = new ImageUploadManager();
@@ -41,6 +39,15 @@ class InkFlowAdmin {
 
       // Bind theme toggle directly to global scope so TopBar button can call it
       window.inkflowToggleTheme = () => this.theme.toggleTheme();
+
+      // Lazy-load the charting bundle (Chart.js) only on pages that render a chart.
+      if (document.getElementById('visits-chart')) {
+        import('./modules/chart.js')
+          .then(({ ChartManager }) => {
+            this.chart = new ChartManager();
+          })
+          .catch(() => {});
+      }
     });
   }
 }
