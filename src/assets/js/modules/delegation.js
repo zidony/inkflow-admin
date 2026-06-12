@@ -3,39 +3,8 @@
    ============================================================ */
 import { showToast } from './toast.js';
 import { t, i18n } from './i18n.js';
+import { registerActions } from './action-bus.js';
 import { syncNotificationDateGroups } from './notification-dom.js';
-
-const clickActionHandlers = {
-  'toggle-theme': manager => manager.toggleTheme(),
-  'toggle-user-status': manager => manager.toggleUserStatus(),
-  'copy-field': manager => manager.copyField(),
-  delete: manager => manager.confirmDelete(),
-  'email-user': manager => manager.emailUser(),
-  'force-user-logout': manager => manager.forceUserLogout(),
-  'focus-image-crop': manager => manager.focusImageCrop(),
-  'import-tags': manager => manager.importTags(),
-  toast: manager => manager.showToast(),
-  'read-all': manager => manager.readAll(),
-  'permanent-delete': manager => manager.permanentDelete(),
-  'preview-image': manager => manager.previewImage(),
-  'publish-comment-reply': manager => manager.publishCommentReply(),
-  'regenerate-thumbnails': manager => manager.regenerateThumbnails(),
-  'save-comment-draft': manager => manager.saveCommentDraft(),
-  'select-cover-media': manager => manager.selectCoverMedia(),
-  'send-password-reset': manager => manager.sendPasswordReset(),
-  'toggle-comment-status': manager => manager.toggleCommentStatus(),
-  'toggle-post-status': manager => manager.togglePostStatus(),
-  'use-gravatar': manager => manager.useGravatar(),
-  'validate-link': manager => manager.validateLink(),
-  navigate: manager => manager.navigate(),
-  trigger: manager => manager.triggerTarget(),
-  'clear-preview': manager => manager.clearPreview()
-};
-
-const changeActionHandlers = {
-  'save-notification-pref': manager => manager.saveNotificationPreference(),
-  'toggle-mail-pref': manager => manager.toggleMailPreference()
-};
 
 export class DelegationManager {
   constructor() {
@@ -61,87 +30,55 @@ export class DelegationManager {
       }
     });
 
-    // 3. Central Event Delegation
-    document.body.addEventListener('click', e => this.handleClick(e));
-    document.body.addEventListener('change', e => this.handleChange(e));
-  }
-
-  handleClick(event) {
-    const actionEl = event.target.closest('[data-action]');
-    if (!actionEl) return;
-
-    const action = actionEl.getAttribute('data-action');
-    const handler = clickActionHandlers[action];
-    if (!handler) return;
-
-    handler({
-      event,
-      element: actionEl,
-      toggleTheme: () => {
-        if (typeof window.inkflowToggleTheme === 'function') {
-          window.inkflowToggleTheme();
-        }
-      },
-      toggleUserStatus: () => this.toggleUserStatus(actionEl),
-      copyField: () => this.copyField(actionEl),
-      confirmDelete: () => this.confirmDelete(actionEl),
-      emailUser: () => this.emailUser(actionEl),
-      forceUserLogout: () =>
-        this.runAsyncButtonAction(actionEl, t('forcingUserLogout'), t('userLoggedOut'), 'warning'),
-      focusImageCrop: () => this.focusImageCrop(),
-      importTags: () => this.importTags(actionEl),
-      showToast: () => this.showToast(actionEl),
-      readAll: () => this.readAllNotifications(),
-      permanentDelete: () => this.permanentDelete(actionEl),
-      previewImage: () => this.previewImage(actionEl),
-      publishCommentReply: () =>
+    // 3. Register this module's actions on the central action bus
+    registerActions({
+      'toggle-theme': () => window.inkflowToggleTheme?.(),
+      'toggle-user-status': ({ element }) => this.toggleUserStatus(element),
+      'copy-field': ({ element }) => this.copyField(element),
+      delete: ({ element }) => this.confirmDelete(element),
+      'email-user': ({ element }) => this.emailUser(element),
+      'force-user-logout': ({ element }) =>
+        this.runAsyncButtonAction(element, t('forcingUserLogout'), t('userLoggedOut'), 'warning'),
+      'focus-image-crop': () => this.focusImageCrop(),
+      'import-tags': ({ element }) => this.importTags(element),
+      toast: ({ element }) => this.showToast(element),
+      'read-all': () => this.readAllNotifications(),
+      'permanent-delete': ({ element }) => this.permanentDelete(element),
+      'preview-image': ({ element }) => this.previewImage(element),
+      'publish-comment-reply': ({ element }) =>
         this.runAsyncButtonAction(
-          actionEl,
+          element,
           t('publishingCommentReply'),
           t('commentReplyPublished'),
           'success'
         ),
-      regenerateThumbnails: () => this.regenerateThumbnails(actionEl),
-      saveCommentDraft: () =>
+      'regenerate-thumbnails': ({ element }) => this.regenerateThumbnails(element),
+      'save-comment-draft': ({ element }) =>
+        this.runAsyncButtonAction(element, t('savingCommentDraft'), t('commentDraftSaved'), 'info'),
+      'select-cover-media': ({ element }) => this.selectCoverMedia(element),
+      'send-password-reset': ({ element }) =>
         this.runAsyncButtonAction(
-          actionEl,
-          t('savingCommentDraft'),
-          t('commentDraftSaved'),
-          'info'
-        ),
-      selectCoverMedia: () => this.selectCoverMedia(actionEl),
-      sendPasswordReset: () =>
-        this.runAsyncButtonAction(
-          actionEl,
+          element,
           t('sendingPasswordReset'),
           t('passwordResetSent'),
           'info'
         ),
-      toggleCommentStatus: () => this.toggleCommentStatus(actionEl),
-      togglePostStatus: () => this.togglePostStatus(actionEl),
-      useGravatar: () => this.useGravatar(actionEl),
-      validateLink: () => this.validateLink(actionEl),
-      navigate: () => this.navigate(actionEl),
-      triggerTarget: () => this.triggerTarget(actionEl),
-      clearPreview: () => this.clearPreview(actionEl),
-      saveNotificationPreference: () => this.saveNotificationPreference(),
-      toggleMailPreference: () => this.toggleMailPreference(actionEl)
+      'toggle-comment-status': ({ element }) => this.toggleCommentStatus(element),
+      'toggle-post-status': ({ element }) => this.togglePostStatus(element),
+      'use-gravatar': ({ element }) => this.useGravatar(element),
+      'validate-link': ({ element }) => this.validateLink(element),
+      navigate: ({ element }) => this.navigate(element),
+      trigger: ({ element }) => this.triggerTarget(element),
+      'clear-preview': ({ element }) => this.clearPreview(element)
     });
-  }
 
-  handleChange(event) {
-    const actionEl = event.target.closest('[data-action]');
-    if (!actionEl) return;
-
-    const action = actionEl.getAttribute('data-action');
-    const handler = changeActionHandlers[action];
-    if (!handler) return;
-
-    handler({
-      element: actionEl,
-      saveNotificationPreference: () => this.saveNotificationPreference(),
-      toggleMailPreference: () => this.toggleMailPreference(actionEl)
-    });
+    registerActions(
+      {
+        'save-notification-pref': () => this.saveNotificationPreference(),
+        'toggle-mail-pref': ({ element }) => this.toggleMailPreference(element)
+      },
+      'change'
+    );
   }
 
   confirmDelete(deleteBtn) {
@@ -281,12 +218,8 @@ export class DelegationManager {
       icon.className = nextBanned ? 'bi bi-person-check' : 'bi bi-person-x';
     }
 
-    const activeFilter = document
-      .querySelector('.ink-filter-tab.active')
-      ?.getAttribute('data-filter');
-    if (activeFilter && activeFilter !== 'all') {
-      row.style.display = row.dataset.status === activeFilter ? '' : 'none';
-    }
+    // Re-evaluate row visibility against the active search query + filter tab.
+    document.dispatchEvent(new CustomEvent('inkflow:rows-changed'));
 
     this.showToast(statusBtn);
   }
@@ -322,12 +255,8 @@ export class DelegationManager {
       statusBadge.replaceChildren(dot, document.createTextNode(status.label));
     }
 
-    const activeFilter = document
-      .querySelector('.ink-filter-tab.active')
-      ?.getAttribute('data-filter');
-    if (activeFilter && activeFilter !== 'all') {
-      row.style.display = row.dataset.status === activeFilter ? '' : 'none';
-    }
+    // Re-evaluate row visibility against the active search query + filter tab.
+    document.dispatchEvent(new CustomEvent('inkflow:rows-changed'));
 
     this.showToast(statusBtn);
   }
@@ -373,12 +302,8 @@ export class DelegationManager {
       statusBadge.replaceChildren(dot, document.createTextNode(status.label));
     }
 
-    const activeFilter = document
-      .querySelector('.ink-filter-tab.active')
-      ?.getAttribute('data-filter');
-    if (activeFilter && activeFilter !== 'all') {
-      row.style.display = row.dataset.status === activeFilter ? '' : 'none';
-    }
+    // Re-evaluate row visibility against the active search query + filter tab.
+    document.dispatchEvent(new CustomEvent('inkflow:rows-changed'));
 
     this.showToast(statusBtn);
   }

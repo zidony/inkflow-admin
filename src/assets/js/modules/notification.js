@@ -4,6 +4,7 @@
 
 import { showToast } from './toast.js';
 import { t } from './i18n.js';
+import { registerActions } from './action-bus.js';
 import { syncNotificationDateGroups } from './notification-dom.js';
 
 export class NotificationManager {
@@ -17,32 +18,22 @@ export class NotificationManager {
   init() {
     if (!this.list) return;
 
-    document.addEventListener('click', event => {
-      const readButton = event.target.closest('[data-action="read-one"]');
-      if (readButton) {
+    registerActions({
+      'read-one': ({ event, element }) => {
         event.preventDefault();
-        this.markOneRead(readButton);
-        return;
-      }
-
-      const deleteButton = event.target.closest('[data-action="delete-notif"]');
-      if (deleteButton) {
+        this.markOneRead(element);
+      },
+      'delete-notif': ({ event, element }) => {
         event.preventDefault();
-        this.deleteNotification(deleteButton);
-        return;
-      }
-
-      const filterButton = event.target.closest('[data-action="filter-type"]');
-      if (filterButton) {
+        this.deleteNotification(element);
+      },
+      'filter-type': ({ event, element }) => {
         event.preventDefault();
-        this.filterByType(filterButton.getAttribute('data-filter'), filterButton);
-        return;
-      }
-
-      const clearReadButton = event.target.closest('[data-action="clear-read-notifs"]');
-      if (clearReadButton) {
+        this.filterByType(element.getAttribute('data-filter'), element);
+      },
+      'clear-read-notifs': ({ event, element }) => {
         event.preventDefault();
-        this.clearReadNotifications(clearReadButton);
+        this.clearReadNotifications(element);
       }
     });
   }

@@ -2,6 +2,8 @@
    InkFlow Admin — User Avatar Preview Module
    ============================================================ */
 
+import { registerActions } from './action-bus.js';
+
 export class UserAvatarManager {
   constructor() {
     this.fileInput = document.getElementById('avatar-file-input');
@@ -26,10 +28,8 @@ export class UserAvatarManager {
       });
     }
 
-    document.addEventListener('click', e => {
-      if (e.target.closest('[data-action="apply-avatar-crop"]')) {
-        this.applyCrop();
-      }
+    registerActions({
+      'apply-avatar-crop': () => this.applyCrop()
     });
   }
 

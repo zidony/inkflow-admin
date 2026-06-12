@@ -2,6 +2,7 @@
    InkFlow Admin — Login Page Module
    ============================================================ */
 import { t } from './i18n.js';
+import { registerActions } from './action-bus.js';
 
 function setButtonContent(button, iconClass, text) {
   const icon = document.createElement('i');
@@ -28,20 +29,15 @@ export class LoginManager {
   init() {
     if (!this.loginButton || !this.userInput || !this.passwordInput) return;
 
-    document.addEventListener('click', e => {
-      if (e.target.closest('[data-action="toggle-pwd"]')) {
-        this.togglePassword();
-      }
-
-      if (e.target.closest('[data-action="do-login"]')) {
-        this.login();
-      }
-    });
-
     document.addEventListener('keydown', e => {
       if (e.key === 'Enter') {
         this.login();
       }
+    });
+
+    registerActions({
+      'toggle-pwd': () => this.togglePassword(),
+      'do-login': () => this.login()
     });
   }
 

@@ -9,12 +9,13 @@ import { SearchManager } from './modules/search.js';
 import { BulkSelectManager } from './modules/bulk.js';
 import { EditorManager } from './modules/editor.js';
 import { DelegationManager } from './modules/delegation.js';
-import { FilterManager } from './modules/filter.js';
+import { ListFilterManager } from './modules/list-filter.js';
 import { ImageUploadManager } from './modules/image-upload.js';
 import { LoginManager } from './modules/login.js';
 import { NotificationManager } from './modules/notification.js';
 import { SettingsManager } from './modules/settings.js';
 import { UserAvatarManager } from './modules/user-avatar.js';
+import { startActionBus } from './modules/action-bus.js';
 
 class InkFlowAdmin {
   constructor() {
@@ -30,12 +31,16 @@ class InkFlowAdmin {
       this.bulk = new BulkSelectManager();
       this.editor = new EditorManager();
       this.delegation = new DelegationManager();
-      this.filter = new FilterManager();
+      this.listFilter = new ListFilterManager();
       this.imageUpload = new ImageUploadManager();
       this.login = new LoginManager();
       this.notification = new NotificationManager();
       this.settings = new SettingsManager();
       this.userAvatar = new UserAvatarManager();
+
+      // All modules have registered their data-action handlers; start the single
+      // delegated click/change listener for the whole page.
+      startActionBus();
 
       // Bind theme toggle directly to global scope so TopBar button can call it
       window.inkflowToggleTheme = () => this.theme.toggleTheme();

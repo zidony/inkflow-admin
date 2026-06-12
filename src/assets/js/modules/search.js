@@ -1,5 +1,9 @@
 /* ============================================================
-   InkFlow Admin — Search and Global Keyboard Shortcuts
+   InkFlow Admin — Global Keyboard Shortcuts
+
+   Live table filtering lives in ListFilterManager (list-filter.js); this
+   module only owns the keyboard UX: Ctrl/Cmd+K focuses search, ESC closes the
+   mobile sidebar.
    ============================================================ */
 
 export class SearchManager {
@@ -11,17 +15,6 @@ export class SearchManager {
   }
 
   init() {
-    // 1. Live search filtering
-    if (this.listSearch) {
-      this.listSearch.addEventListener('input', () => {
-        const q = this.listSearch.value.toLowerCase();
-        document.querySelectorAll('.ink-table tbody tr').forEach(row => {
-          row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
-        });
-      });
-    }
-
-    // 2. Global keyboard shortcuts
     document.addEventListener('keydown', e => {
       // Ctrl/Cmd + K: Focus Search
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') {

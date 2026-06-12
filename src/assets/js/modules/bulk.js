@@ -4,6 +4,7 @@
 
 import { showToast } from './toast.js';
 import { t } from './i18n.js';
+import { registerActions } from './action-bus.js';
 
 export class BulkSelectManager {
   constructor() {
@@ -44,19 +45,15 @@ export class BulkSelectManager {
 
     document.addEventListener('inkflow:rows-changed', () => this.updateBulkBar());
 
-    document.addEventListener('click', event => {
-      const clearSelectionButton = event.target.closest('[data-action="clear-selection"]');
-      if (clearSelectionButton) {
+    registerActions({
+      'clear-selection': ({ event }) => {
         event.preventDefault();
         this.clearSelection();
-        return;
+      },
+      'bulk-delete': ({ event }) => {
+        event.preventDefault();
+        this.deleteSelectedRows();
       }
-
-      const bulkDeleteButton = event.target.closest('[data-action="bulk-delete"]');
-      if (!bulkDeleteButton) return;
-
-      event.preventDefault();
-      this.deleteSelectedRows();
     });
   }
 

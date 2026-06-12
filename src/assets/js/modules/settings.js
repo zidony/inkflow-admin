@@ -4,6 +4,7 @@
 
 import { showToast } from './toast.js';
 import { t } from './i18n.js';
+import { registerActions } from './action-bus.js';
 
 const settingsSections = [
   'site',
@@ -26,45 +27,14 @@ export class SettingsManager {
   init() {
     if (!this.nav) return;
 
-    this.nav.addEventListener('click', event => {
-      const switchButton = event.target.closest('[data-action="switch-settings"]');
-      if (!switchButton) return;
-
-      this.switchSection(switchButton.getAttribute('data-section'));
-    });
-
-    document.addEventListener('click', event => {
-      const clearCacheButton = event.target.closest('[data-action="clear-cache"]');
-      if (clearCacheButton) {
-        this.runMaintenanceAction(
-          clearCacheButton,
-          t('clearingCache'),
-          t('cacheCleared'),
-          'success'
-        );
-        return;
-      }
-
-      const rebuildAssetsButton = event.target.closest('[data-action="rebuild-assets"]');
-      if (rebuildAssetsButton) {
-        this.runMaintenanceAction(
-          rebuildAssetsButton,
-          t('rebuildingAssets'),
-          t('assetsRebuilt'),
-          'info'
-        );
-        return;
-      }
-
-      const testEmailButton = event.target.closest('[data-action="send-test-email"]');
-      if (testEmailButton) {
-        this.runMaintenanceAction(
-          testEmailButton,
-          t('sendingTestEmail'),
-          t('testEmailSent'),
-          'success'
-        );
-      }
+    registerActions({
+      'switch-settings': ({ element }) => this.switchSection(element.getAttribute('data-section')),
+      'clear-cache': ({ element }) =>
+        this.runMaintenanceAction(element, t('clearingCache'), t('cacheCleared'), 'success'),
+      'rebuild-assets': ({ element }) =>
+        this.runMaintenanceAction(element, t('rebuildingAssets'), t('assetsRebuilt'), 'info'),
+      'send-test-email': ({ element }) =>
+        this.runMaintenanceAction(element, t('sendingTestEmail'), t('testEmailSent'), 'success')
     });
   }
 
