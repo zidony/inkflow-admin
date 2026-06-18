@@ -1,4 +1,10 @@
+import { readFileSync } from 'node:fs';
 import { PAGES, results, check, setup, teardown, sleep, connectPage, ORIGIN } from './harness.mjs';
+
+// Bootstrap JS ships from a CDN that is slow/unreachable in headless CI. The
+// confirm modal needs it, so we inject the local node_modules bundle to keep
+// the modal test deterministic offline (matches the same Bootstrap users get).
+const BOOTSTRAP_BUNDLE = readFileSync('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js', 'utf8');
 
 async function run() {
   await setup();
@@ -67,24 +73,59 @@ async function run() {
   })()`);
   check('ActionBus: theme toggle flips data-theme', theme.before !== theme.after, theme);
 
-  // ---- 3) ActionBus + service layer: optimistic delete on a list ----
+  // ---- 3) ActionBus + service layer: optimistic delete via confirm modal ----
   await navigate('post-list.html');
-  const del = await evaluate(`(()=>{
-    window.confirm=()=>true;
-    const before=document.querySelectorAll('.ink-table tbody tr').length;
-    document.querySelector('.ink-table tbody tr [data-action="delete"]')?.click();
-    return { before };
+
+  // The confirm modal needs Bootstrap (CDN) loaded; it can be slow/blocked in
+  // headless CI. Briefly wait, then inject the local bundle if absent so the
+  // modal test is deterministic. (If we clicked delete with no Bootstrap,
+  // confirmDialog would fall back to native confirm() and hang headless.)
+  let bootstrapReady = await evaluate(`(async ()=>{
+    for (let i=0;i<8;i++){ if (window.bootstrap?.Modal) return true; await new Promise(r=>setTimeout(r,250)); }
+    return false;
   })()`);
-  await evaluate('new Promise(r=>setTimeout(r,500))'); // 320ms fade + removal
-  const delAfter = await evaluate(`({
-    after: document.querySelectorAll('.ink-table tbody tr').length,
-    toast: !!document.querySelector('[role="status"],[role="alert"]')
-  })`);
-  check(
-    'ActionBus+service: optimistic delete removes row + toast',
-    delAfter.after === del.before - 1 && delAfter.toast,
-    { ...del, ...delAfter }
-  );
+  if (!bootstrapReady) {
+    await send('Runtime.evaluate', { expression: BOOTSTRAP_BUNDLE });
+    bootstrapReady = await evaluate('!!window.bootstrap?.Modal');
+  }
+  check('Confirm modal: Bootstrap available (CDN or injected)', bootstrapReady === true);
+
+  if (bootstrapReady) {
+    // 3a) Cancel path: open the confirm modal, cancel, row count unchanged.
+    const cancelPath = await evaluate(`(async ()=>{
+      const before=document.querySelectorAll('.ink-table tbody tr').length;
+      document.querySelector('.ink-table tbody tr [data-action="delete"]')?.click();
+      await new Promise(r=>setTimeout(r,500)); // modal show animation
+      const modalShown=!!document.querySelector('#ink-confirm-modal.show');
+      document.querySelector('#ink-confirm-modal [data-ink-confirm-cancel]')?.click();
+      await new Promise(r=>setTimeout(r,500)); // modal hide animation
+      return { before, modalShown, after: document.querySelectorAll('.ink-table tbody tr').length };
+    })()`);
+    check(
+      'Confirm modal: cancel keeps the row',
+      cancelPath.modalShown && cancelPath.after === cancelPath.before,
+      cancelPath
+    );
+
+    // 3b) Confirm path: open the modal, confirm, row is removed + toast.
+    const del = await evaluate(`(async ()=>{
+      const before=document.querySelectorAll('.ink-table tbody tr').length;
+      document.querySelector('.ink-table tbody tr [data-action="delete"]')?.click();
+      await new Promise(r=>setTimeout(r,500));
+      document.querySelector('#ink-confirm-modal [data-ink-confirm-ok]')?.click();
+      return { before };
+    })()`);
+    await evaluate('new Promise(r=>setTimeout(r,700))', true); // modal hide + 320ms fade + removal
+    const delAfter = await evaluate(`({
+      after: document.querySelectorAll('.ink-table tbody tr').length,
+      toast: !!document.querySelector('[role="status"],[role="alert"]')
+    })`);
+    check(
+      'ActionBus+service: confirm modal delete removes row + toast',
+      delAfter.after === del.before - 1 && delAfter.toast,
+      { ...del, ...delAfter }
+    );
+  }
 
   // ---- 4) ListFilter: #4 fix — "all" tab keeps an active search ----
   const filt = await evaluate(`(()=>{

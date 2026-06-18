@@ -5,6 +5,7 @@
 import { showToast } from './toast.js';
 import { t } from './i18n.js';
 import { registerActions } from './action-bus.js';
+import { confirmDialog } from './confirm-dialog.js';
 import { api } from '../services/api.js';
 
 export class BulkSelectManager {
@@ -69,13 +70,21 @@ export class BulkSelectManager {
     showToast(t('selectionCleared'), 'info');
   }
 
-  deleteSelectedRows() {
+  async deleteSelectedRows() {
     const checkedRows = [...document.querySelectorAll('.ink-row-check:checked')]
       .map(checkbox => checkbox.closest('tr') || checkbox.closest('.ink-item-container'))
       .filter(Boolean);
 
     if (!checkedRows.length) return;
-    if (!confirm(t('confirmDelete'))) return;
+    if (
+      !(await confirmDialog({
+        title: t('confirmTitle'),
+        message: t('confirmDelete'),
+        confirmText: t('confirmOk'),
+        cancelText: t('confirmCancel')
+      }))
+    )
+      return;
 
     // Optimistic UI: remove the rows now, persist the deletes in the background.
     const ids = checkedRows.map(row => row.dataset.id);

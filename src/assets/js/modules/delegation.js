@@ -4,6 +4,7 @@
 import { showToast } from './toast.js';
 import { t, i18n } from './i18n.js';
 import { registerActions } from './action-bus.js';
+import { confirmDialog } from './confirm-dialog.js';
 import { api } from '../services/api.js';
 import { syncNotificationDateGroups } from './notification-dom.js';
 
@@ -92,8 +93,16 @@ export class DelegationManager {
     );
   }
 
-  confirmDelete(deleteBtn) {
-    if (!confirm(t('confirmDelete'))) return;
+  async confirmDelete(deleteBtn) {
+    if (
+      !(await confirmDialog({
+        title: t('confirmTitle'),
+        message: t('confirmDelete'),
+        confirmText: t('confirmOk'),
+        cancelText: t('confirmCancel')
+      }))
+    )
+      return;
     const row = deleteBtn.closest('tr') || deleteBtn.closest('.ink-item-container');
 
     // Optimistic UI: drop the row immediately, persist the delete in the background.
@@ -393,8 +402,16 @@ export class DelegationManager {
     emptyState.classList.toggle('d-none', hasVisibleRows);
   }
 
-  permanentDelete(permDelBtn) {
-    if (!confirm(t('permDeleteConfirm'))) return;
+  async permanentDelete(permDelBtn) {
+    if (
+      !(await confirmDialog({
+        title: t('confirmTitle'),
+        message: t('permDeleteConfirm'),
+        confirmText: t('confirmOk'),
+        cancelText: t('confirmCancel')
+      }))
+    )
+      return;
 
     api.media.remove(this.entityId(permDelBtn)).catch(() => showToast(t('actionFailed'), 'danger'));
 
