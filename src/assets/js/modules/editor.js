@@ -3,6 +3,7 @@
    ============================================================ */
 import { showToast } from './toast.js';
 import { t } from './i18n.js';
+import { api } from '../services/api.js';
 
 function setIconText(element, iconClass, text) {
   const icon = document.createElement('i');
@@ -107,20 +108,26 @@ export class EditorManager {
     // 4. Publish / Draft buttons
     const publishButtons = document.querySelectorAll('.js-publish-btn');
     publishButtons.forEach(publishBtn => {
-      publishBtn.addEventListener('click', function () {
+      publishBtn.addEventListener('click', async function () {
+        if (this.disabled) return;
         this.disabled = true;
         setSpinnerText(this, t('publishing'));
-        setTimeout(() => {
+        try {
+          await api.posts.publish({});
+          showToast(t('published'), 'success');
+        } catch {
+          showToast(t('actionFailed'), 'danger');
+        } finally {
           this.disabled = false;
           setIconText(this, 'bi bi-send-fill me-1', t('publishBtn'));
-          showToast(t('published'), 'success');
-        }, 1200);
+        }
       });
     });
 
     const saveDraftButtons = document.querySelectorAll('.js-save-draft-btn');
     saveDraftButtons.forEach(saveDraftBtn => {
       saveDraftBtn.addEventListener('click', () => {
+        api.posts.saveDraft({}).catch(() => showToast(t('actionFailed'), 'danger'));
         showToast(t('draftSaved'), 'info');
       });
     });

@@ -3,6 +3,7 @@
    ============================================================ */
 import { t } from './i18n.js';
 import { registerActions } from './action-bus.js';
+import { api } from '../services/api.js';
 
 function setButtonContent(button, iconClass, text) {
   const icon = document.createElement('i');
@@ -49,7 +50,7 @@ export class LoginManager {
     this.eyeIcon.className = nextType === 'password' ? 'bi bi-eye-slash' : 'bi bi-eye';
   }
 
-  login() {
+  async login() {
     if (!this.loginButton || this.loginButton.disabled) return;
 
     const user = this.userInput.value.trim();
@@ -62,9 +63,8 @@ export class LoginManager {
     this.loginButton.disabled = true;
     setLoadingContent(this.loginButton);
 
-    setTimeout(() => {
-      this.loginButton.disabled = false;
-      setButtonContent(this.loginButton, 'bi bi-box-arrow-in-right', t('loginButton'));
+    try {
+      await api.auth.login({ user, pass });
 
       if (user && pass) {
         window.location.href = 'index.html';
@@ -74,6 +74,13 @@ export class LoginManager {
       if (this.errorBox) {
         this.errorBox.classList.remove('d-none');
       }
-    }, 900);
+    } catch {
+      if (this.errorBox) {
+        this.errorBox.classList.remove('d-none');
+      }
+    } finally {
+      this.loginButton.disabled = false;
+      setButtonContent(this.loginButton, 'bi bi-box-arrow-in-right', t('loginButton'));
+    }
   }
 }

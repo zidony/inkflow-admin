@@ -5,6 +5,7 @@
 import { showToast } from './toast.js';
 import { t } from './i18n.js';
 import { registerActions } from './action-bus.js';
+import { api } from '../services/api.js';
 import { syncNotificationDateGroups } from './notification-dom.js';
 
 export class NotificationManager {
@@ -46,6 +47,8 @@ export class NotificationManager {
     row.querySelector('.ink-unread-dot')?.remove();
     this.syncUnreadCounts();
 
+    api.notifications.markRead(row.dataset.id).catch(() => showToast(t('actionFailed'), 'danger'));
+
     const activeFilter = this.filterTabs?.querySelector('.ink-filter-tab.active')?.dataset.filter;
     if (activeFilter === 'unread') {
       row.classList.add('d-none');
@@ -59,6 +62,8 @@ export class NotificationManager {
     const row = button.closest('.ink-notif-row');
     if (!row) return;
 
+    api.notifications.remove(row.dataset.id).catch(() => showToast(t('actionFailed'), 'danger'));
+
     row.remove();
     this.syncUnreadCounts();
     this.updateEmptyState();
@@ -66,6 +71,7 @@ export class NotificationManager {
   }
 
   clearReadNotifications(button) {
+    api.notifications.clearRead().catch(() => showToast(t('actionFailed'), 'danger'));
     this.list.querySelectorAll('.ink-notif-row:not(.unread)').forEach(row => row.remove());
     this.updateEmptyState();
     showToast(button.getAttribute('data-toast-msg') || t('deleted'), 'success');

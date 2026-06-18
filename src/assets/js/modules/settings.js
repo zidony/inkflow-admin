@@ -5,6 +5,7 @@
 import { showToast } from './toast.js';
 import { t } from './i18n.js';
 import { registerActions } from './action-bus.js';
+import { api } from '../services/api.js';
 
 const settingsSections = [
   'site',
@@ -30,15 +31,25 @@ export class SettingsManager {
     registerActions({
       'switch-settings': ({ element }) => this.switchSection(element.getAttribute('data-section')),
       'clear-cache': ({ element }) =>
-        this.runMaintenanceAction(element, t('clearingCache'), t('cacheCleared'), 'success'),
+        this.runMaintenanceAction(element, t('clearingCache'), t('cacheCleared'), 'success', () =>
+          api.maintenance.clearCache()
+        ),
       'rebuild-assets': ({ element }) =>
-        this.runMaintenanceAction(element, t('rebuildingAssets'), t('assetsRebuilt'), 'info'),
+        this.runMaintenanceAction(element, t('rebuildingAssets'), t('assetsRebuilt'), 'info', () =>
+          api.maintenance.rebuildAssets()
+        ),
       'send-test-email': ({ element }) =>
-        this.runMaintenanceAction(element, t('sendingTestEmail'), t('testEmailSent'), 'success')
+        this.runMaintenanceAction(
+          element,
+          t('sendingTestEmail'),
+          t('testEmailSent'),
+          'success',
+          () => api.maintenance.sendTestEmail()
+        )
     });
   }
 
-  runMaintenanceAction(button, loadingText, doneText, type) {
+  async runMaintenanceAction(button, loadingText, doneText, type, task) {
     if (button.disabled) return;
 
     const originalContent = [...button.childNodes];
@@ -49,11 +60,15 @@ export class SettingsManager {
     button.disabled = true;
     button.replaceChildren(spinner, document.createTextNode(loadingText));
 
-    window.setTimeout(() => {
+    try {
+      await task();
+      showToast(doneText, type);
+    } catch {
+      showToast(t('actionFailed'), 'danger');
+    } finally {
       button.disabled = false;
       button.replaceChildren(...originalContent);
-      showToast(doneText, type);
-    }, 1000);
+    }
   }
 
   switchSection(section) {

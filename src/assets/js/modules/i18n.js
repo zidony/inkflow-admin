@@ -78,6 +78,7 @@ export const locales = {
     postStatusPending: '待审核',
     exitFullscreen: '退出全屏',
     enterFullscreen: '全屏',
+    actionFailed: '操作失败，请重试',
     months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
   },
   en: {
@@ -156,6 +157,7 @@ export const locales = {
     postStatusPending: 'Pending review',
     exitFullscreen: 'Exit fullscreen',
     enterFullscreen: 'Fullscreen',
+    actionFailed: 'Action failed, please try again',
     months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   }
 };

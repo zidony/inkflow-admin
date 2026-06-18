@@ -5,6 +5,7 @@
 import { showToast } from './toast.js';
 import { t } from './i18n.js';
 import { registerActions } from './action-bus.js';
+import { api } from '../services/api.js';
 
 export class BulkSelectManager {
   constructor() {
@@ -76,9 +77,15 @@ export class BulkSelectManager {
     if (!checkedRows.length) return;
     if (!confirm(t('confirmDelete'))) return;
 
+    // Optimistic UI: remove the rows now, persist the deletes in the background.
+    const ids = checkedRows.map(row => row.dataset.id);
     checkedRows.forEach(row => row.remove());
     document.dispatchEvent(new CustomEvent('inkflow:rows-changed'));
     this.updateBulkBar();
     showToast(t('deleted'), 'danger');
+
+    Promise.all(ids.map(id => api.remove('items', id))).catch(() =>
+      showToast(t('actionFailed'), 'danger')
+    );
   }
 }

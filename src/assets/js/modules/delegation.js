@@ -4,6 +4,7 @@
 import { showToast } from './toast.js';
 import { t, i18n } from './i18n.js';
 import { registerActions } from './action-bus.js';
+import { api } from '../services/api.js';
 import { syncNotificationDateGroups } from './notification-dom.js';
 
 export class DelegationManager {
@@ -38,7 +39,12 @@ export class DelegationManager {
       delete: ({ element }) => this.confirmDelete(element),
       'email-user': ({ element }) => this.emailUser(element),
       'force-user-logout': ({ element }) =>
-        this.runAsyncButtonAction(element, t('forcingUserLogout'), t('userLoggedOut'), 'warning'),
+        this.runAsyncButtonAction(element, {
+          pending: t('forcingUserLogout'),
+          done: t('userLoggedOut'),
+          type: 'warning',
+          task: () => api.users.forceLogout(this.entityId(element))
+        }),
       'focus-image-crop': () => this.focusImageCrop(),
       'import-tags': ({ element }) => this.importTags(element),
       toast: ({ element }) => this.showToast(element),
@@ -46,23 +52,28 @@ export class DelegationManager {
       'permanent-delete': ({ element }) => this.permanentDelete(element),
       'preview-image': ({ element }) => this.previewImage(element),
       'publish-comment-reply': ({ element }) =>
-        this.runAsyncButtonAction(
-          element,
-          t('publishingCommentReply'),
-          t('commentReplyPublished'),
-          'success'
-        ),
+        this.runAsyncButtonAction(element, {
+          pending: t('publishingCommentReply'),
+          done: t('commentReplyPublished'),
+          type: 'success',
+          task: () => api.comments.publishReply({ id: this.entityId(element) })
+        }),
       'regenerate-thumbnails': ({ element }) => this.regenerateThumbnails(element),
       'save-comment-draft': ({ element }) =>
-        this.runAsyncButtonAction(element, t('savingCommentDraft'), t('commentDraftSaved'), 'info'),
+        this.runAsyncButtonAction(element, {
+          pending: t('savingCommentDraft'),
+          done: t('commentDraftSaved'),
+          type: 'info',
+          task: () => api.comments.saveDraft({ id: this.entityId(element) })
+        }),
       'select-cover-media': ({ element }) => this.selectCoverMedia(element),
       'send-password-reset': ({ element }) =>
-        this.runAsyncButtonAction(
-          element,
-          t('sendingPasswordReset'),
-          t('passwordResetSent'),
-          'info'
-        ),
+        this.runAsyncButtonAction(element, {
+          pending: t('sendingPasswordReset'),
+          done: t('passwordResetSent'),
+          type: 'info',
+          task: () => api.users.sendPasswordReset(this.entityId(element))
+        }),
       'toggle-comment-status': ({ element }) => this.toggleCommentStatus(element),
       'toggle-post-status': ({ element }) => this.togglePostStatus(element),
       'use-gravatar': ({ element }) => this.useGravatar(element),
@@ -84,6 +95,13 @@ export class DelegationManager {
   confirmDelete(deleteBtn) {
     if (!confirm(t('confirmDelete'))) return;
     const row = deleteBtn.closest('tr') || deleteBtn.closest('.ink-item-container');
+
+    // Optimistic UI: drop the row immediately, persist the delete in the background.
+    const resource = deleteBtn.getAttribute('data-resource') || 'items';
+    api
+      .remove(resource, this.entityId(deleteBtn))
+      .catch(() => showToast(t('actionFailed'), 'danger'));
+
     if (row) {
       row.style.transition = 'opacity .3s';
       row.style.opacity = '0';
@@ -101,7 +119,18 @@ export class DelegationManager {
     showToast(msg, type);
   }
 
-  runAsyncButtonAction(button, loadingText, doneText, type) {
+  // Best-effort entity id for service calls (demo rows may not carry one).
+  entityId(element) {
+    return (
+      element.getAttribute('data-id') ||
+      element.closest('[data-id]')?.getAttribute('data-id') ||
+      undefined
+    );
+  }
+
+  // Pending-button pattern: disable + spinner, await the backend task, then run
+  // onDone (success side effects) or surface an error toast; always restore.
+  async withPendingButton(button, pendingText, task, onDone) {
     if (button.disabled) return;
 
     const originalContent = [...button.childNodes];
@@ -110,13 +139,21 @@ export class DelegationManager {
     spinner.setAttribute('aria-hidden', 'true');
 
     button.disabled = true;
-    button.replaceChildren(spinner, document.createTextNode(loadingText));
+    button.replaceChildren(spinner, document.createTextNode(pendingText));
 
-    window.setTimeout(() => {
+    try {
+      const result = await task();
+      onDone?.(result);
+    } catch {
+      showToast(t('actionFailed'), 'danger');
+    } finally {
       button.disabled = false;
       button.replaceChildren(...originalContent);
-      showToast(doneText, type);
-    }, 900);
+    }
+  }
+
+  runAsyncButtonAction(button, { pending, done, type = 'success', task }) {
+    return this.withPendingButton(button, pending, task, () => showToast(done, type));
   }
 
   async copyField(copyBtn) {
@@ -170,21 +207,12 @@ export class DelegationManager {
   }
 
   regenerateThumbnails(regenerateBtn) {
-    if (regenerateBtn.disabled) return;
-
-    const originalContent = [...regenerateBtn.childNodes];
-    const spinner = document.createElement('span');
-    spinner.className = 'spinner-border spinner-border-sm me-1';
-    spinner.setAttribute('aria-hidden', 'true');
-
-    regenerateBtn.disabled = true;
-    regenerateBtn.replaceChildren(spinner, document.createTextNode(t('thumbnailRegenerating')));
-
-    window.setTimeout(() => {
-      regenerateBtn.disabled = false;
-      regenerateBtn.replaceChildren(...originalContent);
-      showToast(t('thumbnailRegenerated'), 'success');
-    }, 1000);
+    this.withPendingButton(
+      regenerateBtn,
+      t('thumbnailRegenerating'),
+      () => api.media.regenerateThumbnails(this.entityId(regenerateBtn)),
+      () => showToast(t('thumbnailRegenerated'), 'success')
+    );
   }
 
   toggleUserStatus(statusBtn) {
@@ -218,6 +246,11 @@ export class DelegationManager {
       icon.className = nextBanned ? 'bi bi-person-check' : 'bi bi-person-x';
     }
 
+    // Persist in the background; demo mock always succeeds.
+    api.users
+      .setBanned(this.entityId(statusBtn), nextBanned)
+      .catch(() => showToast(t('actionFailed'), 'danger'));
+
     // Re-evaluate row visibility against the active search query + filter tab.
     document.dispatchEvent(new CustomEvent('inkflow:rows-changed'));
 
@@ -236,6 +269,10 @@ export class DelegationManager {
     };
     const status = statusMap[nextStatus];
     if (!status) return;
+
+    api.comments
+      .setStatus(this.entityId(statusBtn), nextStatus)
+      .catch(() => showToast(t('actionFailed'), 'danger'));
 
     if (!row) {
       this.updateCommentDetailStatus(statusBtn, status);
@@ -290,6 +327,10 @@ export class DelegationManager {
     const status = statusMap[nextStatus];
     if (!status) return;
 
+    api.posts
+      .setStatus(this.entityId(statusBtn), nextStatus)
+      .catch(() => showToast(t('actionFailed'), 'danger'));
+
     row.dataset.status = nextStatus;
 
     const statusBadge = row.querySelector('td:nth-last-child(2) .ink-badge');
@@ -325,6 +366,7 @@ export class DelegationManager {
     this.updateNotificationCount('cnt-unread', '(0)');
     this.updateNotificationCount('stat-unread', '0');
     this.updateNotificationEmptyState();
+    api.notifications.markAllRead().catch(() => showToast(t('actionFailed'), 'danger'));
     showToast(t('allRead'), 'success');
   }
 
@@ -353,6 +395,8 @@ export class DelegationManager {
 
   permanentDelete(permDelBtn) {
     if (!confirm(t('permDeleteConfirm'))) return;
+
+    api.media.remove(this.entityId(permDelBtn)).catch(() => showToast(t('actionFailed'), 'danger'));
 
     showToast(t('fileDeleted'), 'danger');
     const href = permDelBtn.getAttribute('data-href');
@@ -390,19 +434,12 @@ export class DelegationManager {
       return;
     }
 
-    const originalContent = [...validateBtn.childNodes];
-    const spinner = document.createElement('span');
-    spinner.className = 'spinner-border spinner-border-sm me-1';
-    spinner.setAttribute('aria-hidden', 'true');
-
-    validateBtn.disabled = true;
-    validateBtn.replaceChildren(spinner, document.createTextNode(t('validatingLink')));
-
-    window.setTimeout(() => {
-      validateBtn.disabled = false;
-      validateBtn.replaceChildren(...originalContent);
-      showToast(t('linkValid'), 'success');
-    }, 800);
+    this.withPendingButton(
+      validateBtn,
+      t('validatingLink'),
+      () => api.links.validate(value),
+      () => showToast(t('linkValid'), 'success')
+    );
   }
 
   importTags(importBtn) {
@@ -424,20 +461,15 @@ export class DelegationManager {
       return;
     }
 
-    const originalContent = [...importBtn.childNodes];
-    const spinner = document.createElement('span');
-    spinner.className = 'spinner-border spinner-border-sm me-1';
-    spinner.setAttribute('aria-hidden', 'true');
-
-    importBtn.disabled = true;
-    importBtn.replaceChildren(spinner, document.createTextNode(t('importingTags')));
-
-    window.setTimeout(() => {
-      importBtn.disabled = false;
-      importBtn.replaceChildren(...originalContent);
-      if (field) field.value = '';
-      showToast(t('tagsImported', { count: tags.length }), 'success');
-    }, 800);
+    this.withPendingButton(
+      importBtn,
+      t('importingTags'),
+      () => api.tags.import(tags),
+      () => {
+        if (field) field.value = '';
+        showToast(t('tagsImported', { count: tags.length }), 'success');
+      }
+    );
   }
 
   selectCoverMedia(mediaBtn) {
@@ -522,6 +554,7 @@ export class DelegationManager {
   }
 
   saveNotificationPreference() {
+    api.notifications.savePreference({}).catch(() => showToast(t('actionFailed'), 'danger'));
     showToast(t('notificationPreferenceSaved'), 'success');
   }
 
