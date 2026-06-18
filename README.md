@@ -22,6 +22,7 @@
 - **🌐 i18n 文案切换**：根据 HTML 的 `<html lang="...">` 属性切换确认提示、加载状态、通知气泡和 Chart.js 图表标签等运行时文案。
 - **🔌 服务/适配层**：所有"后端操作"（删除、发布、状态切换、登录、维护任务等）统一经 `services/http.js` 的单一 `request()` 接缝调用，并在调用处具备失败提示接缝。买家只需把该函数体从内置 mock 换成 `fetch()` 即可对接真实后端，无需在各模块里逐个查找替换。
 - **📏 代码质量工具**：配置 ESLint、Stylelint、Prettier、HTML 结构检查、可访问性检查、响应式守卫、内联样式检查、运行时 i18n 检查、JS 边界检查和模板动作校验，可通过 `npm run quality` 运行发布前检查。
+- **🧪 测试体系**：`npm run test` 运行 Vitest 单元测试（i18n、ListFilter、ActionBus、服务层 mock）；`npm run test:e2e` 用零依赖的 Chrome DevTools Protocol 脚本驱动真实无头浏览器，对全部页面做「加载无报错 + 核心交互」冒烟（无需安装 Playwright/Puppeteer）。测试默认独立运行，不阻断发布门禁。
 - **🗜️ 发布打包**：使用 Node.js 标准库生成 `releases/inkflow-admin-v*.zip`，发布包只包含构建产物和 README 文档。
 - **🤖 GitHub Actions 发布流程**：推送 `v*` 标签时运行质量检查、构建、打包并上传 ZIP 到 GitHub Release。
 
@@ -61,10 +62,14 @@ inkflow-admin/
 │   ├── category-edit.html      # 18 个页面模板
 │   ├── index.html
 │   └── ...
+├── test/                       # 测试（不纳入发布包）
+│   ├── unit/                   # Vitest 单元测试
+│   └── e2e/                    # 零依赖 CDP 全页冒烟脚本
 ├── eslint.config.js            # 代码规范校验配置
 ├── .prettierrc                 # Prettier 自动格式化配置
 ├── postcss.config.js           # PostCSS (Autoprefixer + CSSNano) 配置
 ├── package.json                # 项目依赖及自动化脚本配置
+├── vitest.config.js            # Vitest 单元测试配置 (jsdom)
 └── vite.config.js              # Vite 现代化工程构建配置
 ```
 
@@ -169,6 +174,7 @@ npm run check:release
 
 | 版本 | 主要内容 |
 | :--- | :--- |
+| **v2.6.0** | **测试体系更新**：引入 Vitest（jsdom）单元测试，覆盖 i18n、`ListFilterManager`、`ActionBus` 与服务层 mock，共 26 项断言；新增零依赖的 Chrome DevTools Protocol 端到端冒烟脚本（`npm run test:e2e`），自管 `vite preview` 与无头 Chrome/Edge，对全部 18 个页面做「加载无报错 + 主题切换 / 乐观删除 / 列表过滤 / 设置导航 / 通知已读」冒烟，无需安装 Playwright/Puppeteer；测试独立于 `quality` 与 CI 发版门禁运行，不阻断发布。 |
 | **v2.5.0** | **客户端服务/适配层更新**：新增 `services/http.js`（唯一传输接缝，内置 mock，替换函数体为 `fetch()` 即可对接真实后端）与 `services/api.js`（按 posts/comments/users/links/tags/media/notifications/maintenance/auth 分域的薄方法封装）；将 delegation、editor、bulk、login、notification、settings 各模块中原本内联的 `setTimeout` 模拟操作全部改为经服务层调用，并在调用处加入 `try/catch → 失败 toast` 接缝（新增 `actionFailed` 文案）；各方法保留原有延迟时长，对外可见的延迟、加载态、toast 与 DOM 效果保持完全不变。 |
 | **v2.4.1** | **事件委托统一与列表过滤修复更新**：将分散在 6 个模块的 `document` 监听器整合为单一中央 `ActionBus`，各模块通过 `registerActions(map, type)` 注册 click/change 动作，使「中央事件委托」名实相符并大幅精简委托层；新增统一的 `ListFilterManager`，按「搜索关键词 ∧ 状态筛选」双条件单点求值行可见性，修复了先搜索后切换筛选标签（或反之）会重新显示已过滤行的状态丢失问题，并在 `inkflow:rows-changed` 后按合并条件复算可见性。 |
 | **v2.4.0** | **构建分包与性能优化更新**：将 Chart.js 经动态 `import()` 拆出主包，并在编译期独立为 `inkflow-chart.js`，仅在含 `#visits-chart` 的仪表盘页按需加载，主入口脚本体积从约 247KB 降至约 44KB（gzip 约 83→13KB）；将图表月份、文章/用户状态徽章与编辑器全屏等剩余运行时中文文案收敛进 `i18n.js`，顶栏日期 locale 随当前语言切换，并为 `I18nManager` 新增 `list()` 与 `dateLocale` 辅助方法；修正中英 README 目录结构中不存在的脚本条目，与实际工程化脚本保持一致。 |

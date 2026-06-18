@@ -22,6 +22,7 @@ An HTML administration dashboard template designed for blogs and content managem
 - **🌐 Runtime i18n Text Switching**: Reads the HTML `<html lang="...">` attribute to switch runtime text for confirms, loading states, toasts, and Chart.js labels.
 - **🔌 Service / Adapter Layer**: Every "backend operation" (delete, publish, status toggle, login, maintenance tasks, etc.) funnels through a single `request()` seam in `services/http.js`, with an error-toast seam at each call site. To go live, a buyer just swaps that function body from the built-in mock to `fetch()` — no hunting through individual modules.
 - **📏 Code Quality Tooling**: Configures ESLint, Stylelint, Prettier, HTML structure checks, accessibility checks, responsive guards, inline-style checks, runtime i18n checks, JS boundary checks, and template action validation. Run `npm run quality` before publishing.
+- **🧪 Test Suite**: `npm run test` runs Vitest unit tests (i18n, ListFilter, ActionBus, service-layer mock); `npm run test:e2e` drives real headless Chrome via a zero-dependency Chrome DevTools Protocol script, smoke-testing every page for "loads with no console errors + core interactions" (no Playwright/Puppeteer needed). Tests run independently and do not block the release gate.
 - **🗜️ Release Packaging**: Uses the Node.js standard library to generate `releases/inkflow-admin-v*.zip`, containing the built assets and README files.
 - **🤖 GitHub Actions Release Workflow**: A `v*` tag runs quality checks, builds the project, packages the release ZIP, and uploads it to GitHub Release.
 
@@ -61,10 +62,14 @@ inkflow-admin/
 │   ├── category-edit.html      # 18 page templates
 │   ├── index.html
 │   └── ...
+├── test/                       # Tests (excluded from the release package)
+│   ├── unit/                   # Vitest unit tests
+│   └── e2e/                    # Zero-dependency CDP full-page smoke script
 ├── eslint.config.js            # ESLint Flat Config
 ├── .prettierrc                 # Prettier formatting rules
 ├── postcss.config.js           # PostCSS (Autoprefixer + CSSNano) config
 ├── package.json                # Project dependencies and script commands
+├── vitest.config.js            # Vitest unit-test config (jsdom)
 └── vite.config.js              # Vite bundler configurations
 ```
 
@@ -169,7 +174,7 @@ The project uses centralized event delegation mapped to `data-action` attributes
 
 | Version | Description |
 | :--- | :--- |
-| **v2.5.0** | **Client-Side Service / Adapter Layer**: Added `services/http.js` (the single transport seam — built-in mock; swap the function body for `fetch()` to wire a real backend) and `services/api.js` (thin method wrappers grouped by domain: posts/comments/users/links/tags/media/notifications/maintenance/auth). Rewired the inline `setTimeout` simulations across the delegation, editor, bulk, login, notification, and settings modules to call through the service layer, with a `try/catch → error toast` seam at each call site (new `actionFailed` string). Each method keeps its original latency, so the visible delays, loading states, toasts, and DOM effects are unchanged. |
+| **v2.6.0** | **Test Suite Update**: Introduced Vitest (jsdom) unit tests covering i18n, `ListFilterManager`, `ActionBus`, and the service-layer mock — 26 assertions in total. Added a zero-dependency Chrome DevTools Protocol end-to-end smoke script (`npm run test:e2e`) that self-manages `vite preview` and headless Chrome/Edge, smoke-testing all 18 pages for "loads with no console errors + theme toggle / optimistic delete / list filter / settings nav / notification read", with no Playwright/Puppeteer needed. Tests run independently of `quality` and the CI release gate and never block a release. |
 | **v2.5.0** | **Client-Side Service / Adapter Layer Update**: Added `services/http.js` (the single transport seam — a built-in mock whose function body can be swapped to `fetch()` to talk to a real backend) and `services/api.js` (thin domain-grouped wrappers across posts/comments/users/links/tags/media/notifications/maintenance/auth). Rewired the inline `setTimeout` mocks in the delegation, editor, bulk, login, notification, and settings modules to call through the service layer, with a `try/catch → error toast` seam at each call site (new `actionFailed` text). Each method keeps its original latency, so the visible delays, loading states, toasts, and DOM effects are unchanged. |
 | **v2.4.1** | **Unified Event Delegation & List-Filter Fix**: Consolidated the `document` listeners scattered across six modules into a single central `ActionBus`; each module now registers click/change actions via `registerActions(map, type)`, making the "central event delegation" claim match the implementation and trimming the delegation layer substantially. Added a unified `ListFilterManager` that derives row visibility from a single `search ∧ status-filter` predicate, fixing the state-loss bug where searching and then switching filter tabs (or vice versa) re-revealed already-filtered rows; it also recomputes visibility on `inkflow:rows-changed`. |
 | **v2.4.0** | **Build Code-Splitting & Performance Update**: Split Chart.js out of the entry bundle via a dynamic `import()` and emit it as a standalone `inkflow-chart.js`, loaded on demand only on the dashboard page that contains `#visits-chart`; the main entry script drops from ~247 kB to ~44 kB (gzip ~83 → 13 kB). Moved the remaining runtime Chinese text (chart months, post/user status badges, editor fullscreen labels) into `i18n.js`, derived the topbar date locale from the active language, and added `list()` / `dateLocale` helpers to `I18nManager`; fixed the zh/en README directory structure to drop non-existent scripts and match the real engineering scripts. |
