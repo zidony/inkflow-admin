@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    SIDEBAR
    ============================================================ */
 #sidebar {
@@ -16,7 +16,7 @@
   overflow: hidden;
   will-change: width;
 }
-#sidebar.collapsed {
+.sidebar-collapsed #sidebar {
   width: var(--sidebar-collapsed-width);
 }
 
@@ -89,7 +89,7 @@
   overflow: hidden;
   transition: opacity var(--sidebar-transition);
 }
-#sidebar.collapsed .nav-section-label {
+.sidebar-collapsed #sidebar .nav-section-label {
   opacity: 0;
 }
 
@@ -132,11 +132,11 @@
   flex-shrink: 0;
   width: 20px;
   text-align: center;
-  color: var(--sidebar-text-muted);
+  color: inherit;
   transition: color 0.15s;
 }
-.nav-link-item:hover .nav-icon {
-  color: var(--ink-text-on-brand);
+.sidebar-nav-wrap > .nav-item-wrapper > .nav-link-item > .nav-icon {
+  -webkit-text-stroke: 0.4px currentColor;
 }
 .nav-link-item.active .nav-icon {
   color: var(--ink-300);
@@ -148,7 +148,7 @@
     opacity var(--sidebar-transition),
     width var(--sidebar-transition);
 }
-#sidebar.collapsed .nav-label {
+.sidebar-collapsed #sidebar .nav-label {
   opacity: 0;
   width: 0;
 }
@@ -159,7 +159,7 @@
     opacity var(--sidebar-transition);
   color: var(--sidebar-text-muted);
 }
-#sidebar.collapsed .nav-arrow {
+.sidebar-collapsed #sidebar .nav-arrow {
   opacity: 0;
 }
 .nav-link-item[aria-expanded='true'] .nav-arrow {
@@ -199,8 +199,11 @@
   background: var(--ink-400);
   border-radius: 2px;
 }
-#sidebar.collapsed .submenu-wrap {
-  display: none !important;
+.sidebar-collapsed #sidebar .submenu {
+  padding-left: 0;
+}
+.sidebar-collapsed #sidebar .submenu .nav-item-wrapper {
+  padding: 1px 10px;
 }
 
 .sidebar-footer {
@@ -226,12 +229,12 @@
   overflow: hidden;
   transition: opacity var(--sidebar-transition);
 }
-#sidebar.collapsed .sidebar-user-info {
+.sidebar-collapsed #sidebar .sidebar-user-info {
   opacity: 0;
   width: 0;
 }
 
-#sidebar.collapsed .nav-link-item[data-tooltip]:hover::after {
+.sidebar-collapsed #sidebar .nav-link-item[data-tooltip]:hover::after {
   content: attr(data-tooltip);
   position: absolute;
   left: calc(100% + 10px);
@@ -260,7 +263,7 @@
   flex-direction: column;
   transition: margin-left var(--sidebar-transition);
 }
-body.sidebar-collapsed #main-wrapper {
+.sidebar-collapsed #main-wrapper {
   margin-left: var(--sidebar-collapsed-width);
 }
 

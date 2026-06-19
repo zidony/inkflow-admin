@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    STAT CARDS
    ============================================================ */
 .stat-card {
@@ -1879,7 +1879,7 @@ textarea.form-control {
 }
 .ink-login-card {
   background: var(--ink-login-card-bg);
-  border-radius: var(--ink-badge-radius);
+  border-radius: var(--ink-card-radius);
   box-shadow: var(--ink-login-card-shadow);
   padding: 44px 40px;
   width: 100%;

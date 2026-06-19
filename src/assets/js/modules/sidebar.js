@@ -25,6 +25,7 @@ export class SidebarManager {
       this.toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
     }
     document.body.classList.toggle('sidebar-collapsed', collapsed);
+    document.documentElement.classList.toggle('sidebar-collapsed', collapsed);
     try {
       localStorage.setItem(this.COLLAPSED_KEY, collapsed ? '1' : '0');
     } catch {}
@@ -87,7 +88,10 @@ export class SidebarManager {
       const submenuWrap = activeLink.closest('.submenu-wrap');
       if (submenuWrap) {
         const toggleBtn = document.querySelector(`.nav-link-item[data-target="${submenuWrap.id}"]`);
-        if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+        if (toggleBtn) {
+          toggleBtn.setAttribute('aria-expanded', 'true');
+          toggleBtn.classList.add('active');
+        }
       }
     }
 
