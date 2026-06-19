@@ -176,6 +176,7 @@ npm run check:release
 
 | 版本 | 主要内容 |
 | :--- | :--- |
+| **v2.6.2** | **响应式溢出修复与巡检脚本更新**：修复文章编辑页 `post-edit.html` 粘性操作条在桌面宽度下因负边距（`margin: 0 -24px`）导致页面横向溢出、出现水平滚动条的问题 —— 该 sticky bar 位于 `#page-content` 之外，没有内边距可抵消，故改为 `margin: 0 0 20px`（与移动端方针一致，视觉不变）；新增零依赖的 CDP 响应式巡检脚本（`npm run test:responsive`），对全部 18 页 × 桌面/平板/手机/小屏 4 个视口做横向溢出检测并截图存档，同时校验移动端侧边栏抽屉开合，独立于发版门禁运行。 |
 | **v2.6.1** | **确认弹窗组件化更新**：新增可复用的 `confirm-dialog.js`，用运行时构建的 Bootstrap Modal（`createElement`，与头像裁剪弹窗同栈）替代删除/永久删除/批量删除三处的原生 `confirm()`，规避浏览器"阻止此页面再创建对话框"导致删除静默失效的陷阱并统一品牌视觉；三处调用改为 `async/await`，Bootstrap 不可用时降级回原生 `confirm()`；新增 `confirmTitle/confirmOk/confirmCancel` 中英文案；e2e 冒烟补充确认/取消两条路径（取消保留行、确认删除行），并在无头环境注入本地 Bootstrap 以确定性验证。 |
 | **v2.6.0** | **测试体系更新**：引入 Vitest（jsdom）单元测试，覆盖 i18n、`ListFilterManager`、`ActionBus` 与服务层 mock，共 26 项断言；新增零依赖的 Chrome DevTools Protocol 端到端冒烟脚本（`npm run test:e2e`），自管 `vite preview` 与无头 Chrome/Edge，对全部 18 个页面做「加载无报错 + 主题切换 / 乐观删除 / 列表过滤 / 设置导航 / 通知已读」冒烟，无需安装 Playwright/Puppeteer；测试独立于 `quality` 与 CI 发版门禁运行，不阻断发布。 |
 | **v2.5.0** | **客户端服务/适配层更新**：新增 `services/http.js`（唯一传输接缝，内置 mock，替换函数体为 `fetch()` 即可对接真实后端）与 `services/api.js`（按 posts/comments/users/links/tags/media/notifications/maintenance/auth 分域的薄方法封装）；将 delegation、editor、bulk、login、notification、settings 各模块中原本内联的 `setTimeout` 模拟操作全部改为经服务层调用，并在调用处加入 `try/catch → 失败 toast` 接缝（新增 `actionFailed` 文案）；各方法保留原有延迟时长，对外可见的延迟、加载态、toast 与 DOM 效果保持完全不变。 |

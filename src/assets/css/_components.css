@@ -1044,7 +1044,7 @@ textarea.form-control {
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--ink-gray-200);
   padding: 10px 24px;
-  margin: 0 -24px 20px;
+  margin: 0 0 20px;
 }
 .ink-editor-sticky-bar > .ink-sticky-inner {
   display: flex;

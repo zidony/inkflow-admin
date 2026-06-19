@@ -27,3 +27,6 @@ pnpm-debug.log*
 lerna-debug.log*
 # Temporary debugging scripts
 /scratch/
+
+# E2E responsive screenshots (generated artifacts)
+/test/e2e/screenshots/
