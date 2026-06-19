@@ -89,6 +89,9 @@
   overflow: hidden;
   transition: opacity var(--sidebar-transition);
 }
+.sidebar-nav-wrap > .nav-section-label:first-child {
+  padding-top: 8px;
+}
 .sidebar-collapsed #sidebar .nav-section-label {
   opacity: 0;
 }
