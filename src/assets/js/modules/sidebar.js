@@ -72,25 +72,30 @@ export class SidebarManager {
       }
     });
 
-    // 5. Highlight active menu based on current URL
-    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    // 5. Highlight active menu based on current URL or SSR state
+    const ssrActiveLink = document.querySelector('.sidebar-nav-wrap .nav-link-item.active');
 
-    // Remove default active classes in case they were left in HTML
-    document.querySelectorAll('.nav-link-item').forEach(link => {
-      link.classList.remove('active');
-      link.removeAttribute('aria-current');
-    });
+    if (!ssrActiveLink) {
+      const currentPath = window.location.pathname.split('/').pop() || 'index.html';
 
-    const activeLink = document.querySelector(`.sidebar-nav-wrap a[href="${currentPath}"]`);
-    if (activeLink) {
-      activeLink.classList.add('active');
-      activeLink.setAttribute('aria-current', 'page');
-      const submenuWrap = activeLink.closest('.submenu-wrap');
-      if (submenuWrap) {
-        const toggleBtn = document.querySelector(`.nav-link-item[data-target="${submenuWrap.id}"]`);
-        if (toggleBtn) {
-          toggleBtn.setAttribute('aria-expanded', 'true');
-          toggleBtn.classList.add('active');
+      // Remove default active classes in case they were left in HTML
+      document.querySelectorAll('.nav-link-item').forEach(link => {
+        link.classList.remove('active');
+        link.removeAttribute('aria-current');
+      });
+
+      const activeLink = document.querySelector(`.sidebar-nav-wrap a[href="${currentPath}"]`);
+      if (activeLink) {
+        activeLink.classList.add('active');
+        activeLink.setAttribute('aria-current', 'page');
+        const submenuWrap = activeLink.closest('.submenu-wrap');
+        if (submenuWrap) {
+          submenuWrap.classList.add('show');
+          const toggleBtn = document.querySelector(`.nav-link-item[data-target="${submenuWrap.id}"]`);
+          if (toggleBtn) {
+            toggleBtn.setAttribute('aria-expanded', 'true');
+            toggleBtn.classList.add('active');
+          }
         }
       }
     }
@@ -99,10 +104,10 @@ export class SidebarManager {
     document.querySelectorAll('.nav-link-item[data-toggle="submenu"]').forEach(btn => {
       const targetEl = document.getElementById(btn.getAttribute('data-target'));
       if (targetEl) {
-        targetEl.style.transition = 'max-height 0.25s cubic-bezier(.4,0,.2,1)';
-        targetEl.style.overflow = 'hidden';
-        targetEl.style.maxHeight =
-          btn.getAttribute('aria-expanded') === 'true' ? targetEl.scrollHeight + 'px' : '0';
+        // Sync initial state from SSR or JS routing
+        if (btn.getAttribute('aria-expanded') === 'true') {
+          targetEl.classList.add('show');
+        }
       }
 
       btn.addEventListener('click', e => {
@@ -116,16 +121,16 @@ export class SidebarManager {
           if (b !== btn) {
             b.setAttribute('aria-expanded', 'false');
             const t = document.getElementById(b.getAttribute('data-target'));
-            if (t) t.style.maxHeight = '0';
+            if (t) t.classList.remove('show');
           }
         });
 
         if (!isOpen) {
           btn.setAttribute('aria-expanded', 'true');
-          target.style.maxHeight = target.scrollHeight + 'px';
+          target.classList.add('show');
         } else {
           btn.setAttribute('aria-expanded', 'false');
-          target.style.maxHeight = '0';
+          target.classList.remove('show');
         }
       });
     });
