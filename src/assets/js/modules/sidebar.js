@@ -91,7 +91,9 @@ export class SidebarManager {
         const submenuWrap = activeLink.closest('.submenu-wrap');
         if (submenuWrap) {
           submenuWrap.classList.add('show');
-          const toggleBtn = document.querySelector(`.nav-link-item[data-target="${submenuWrap.id}"]`);
+          const toggleBtn = document.querySelector(
+            `.nav-link-item[data-target="${submenuWrap.id}"]`
+          );
           if (toggleBtn) {
             toggleBtn.setAttribute('aria-expanded', 'true');
             toggleBtn.classList.add('active');
