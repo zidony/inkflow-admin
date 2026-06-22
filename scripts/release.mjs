@@ -62,7 +62,8 @@ function assertReleaseEntries(entries, folderName) {
     `${folderName}/assets/js/inkflow-admin.js`,
     `${folderName}/README.md`,
     `${folderName}/README.en.md`,
-    `${folderName}/INSTALL.md`
+    `${folderName}/INSTALL.md`,
+    `${folderName}/CHANGELOG.md`
   ];
   const missingFiles = requiredFiles.filter(file => !archiveNames.has(file));
 
@@ -229,7 +230,7 @@ async function release() {
   const readmeFiles = (await fs.readdir(rootDir))
     .filter(file => {
       const lowerFile = file.toLowerCase();
-      return (lowerFile.startsWith('readme') || lowerFile === 'install.md') && lowerFile.endsWith('.md');
+      return (lowerFile.startsWith('readme') || lowerFile === 'install.md' || lowerFile === 'changelog.md') && lowerFile.endsWith('.md');
     })
     .sort((a, b) => a.localeCompare(b));
 

@@ -6,7 +6,7 @@ const distDir = path.join(rootDir, 'dist');
 const releaseDir = path.join(rootDir, 'releases');
 const blockedPathSegments = ['/node_modules/', '/src/', '/temp/', '/.git/'];
 const blockedExtensions = ['.py'];
-const allowedExternalResourceFiles = new Set(['README.md', 'README.en.md', 'INSTALL.md']);
+const allowedExternalResourceFiles = new Set(['README.md', 'README.en.md', 'INSTALL.md', 'CHANGELOG.md']);
 const textFileExtensions = new Set([
   '.css',
   '.html',
@@ -152,18 +152,17 @@ async function assertVersionConsistency() {
     );
   }
 
-  for (const readme of ['README.md', 'README.en.md']) {
-    const content = await readTextAsync(path.join(rootDir, readme));
-    if (!content.includes(`**v${packageVersion}**`)) {
-      throw new Error(`${readme} does not contain the latest version entry **v${packageVersion}**.`);
-    }
+  const changelog = 'CHANGELOG.md';
+  const content = await readTextAsync(path.join(rootDir, changelog));
+  if (!content.includes(`**v${packageVersion}**`)) {
+    throw new Error(`${changelog} does not contain the latest version entry **v${packageVersion}**.`);
+  }
 
-    const latestVersionLine = content
-      .split(/\r?\n/)
-      .find(line => line.includes(`**v${packageVersion}**`));
-    if (latestVersionLine && /(?:\?{3,}|�)/.test(latestVersionLine)) {
-      throw new Error(`${readme} latest version entry contains mojibake or placeholder characters.`);
-    }
+  const latestVersionLine = content
+    .split(/\r?\n/)
+    .find(line => line.includes(`**v${packageVersion}**`));
+  if (latestVersionLine && /(?:\?{3,}|\ufffd)/.test(latestVersionLine)) {
+    throw new Error(`${changelog} latest version entry contains mojibake or placeholder characters.`);
   }
 
   return packageJson;
@@ -216,7 +215,8 @@ async function assertZipContents(packageJson) {
     `${packageJson.name}-v${packageJson.version}/assets/js/inkflow-admin.js`,
     `${packageJson.name}-v${packageJson.version}/README.md`,
     `${packageJson.name}-v${packageJson.version}/README.en.md`,
-    `${packageJson.name}-v${packageJson.version}/INSTALL.md`
+    `${packageJson.name}-v${packageJson.version}/INSTALL.md`,
+    `${packageJson.name}-v${packageJson.version}/CHANGELOG.md`
   ];
   const missingEntries = requiredEntries.filter(entry => !entries.includes(entry));
 
