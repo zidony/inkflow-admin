@@ -1,5 +1,6 @@
 # InkFlow Admin rules.
 temp/
+dev/
 releases/
 dist/
 node_modules/

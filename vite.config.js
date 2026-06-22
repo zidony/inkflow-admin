@@ -45,7 +45,16 @@ export default defineConfig({
           if (chunkInfo.name === 'chart') return 'assets/js/inkflow-chart.js';
           return 'assets/js/[name].js';
         },
-        assetFileNames: 'assets/[ext]/[name].[ext]'
+        assetFileNames: (assetInfo) => {
+          let ext = assetInfo.name.split('.').pop();
+          let folder = ext;
+          if (/woff2?|eot|ttf|otf/i.test(ext)) {
+            folder = 'fonts';
+          } else if (/png|jpe?g|svg|gif|webp|ico/i.test(ext)) {
+            folder = 'images';
+          }
+          return `assets/${folder}/[name].[ext]`;
+        }
       }
     }
   },
